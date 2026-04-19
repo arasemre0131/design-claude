@@ -1,0 +1,168 @@
+---
+id: insaat-data-dense-dashboard
+sector: insaat
+style: data-dense-dashboard
+recipe: next-premium                  # Tier 4 CRM için next-enterprise-monorepo'ya çıkar
+tier: mid
+budget_range_try: [20000, 45000]      # insaat CRM mid-üst band
+delivery_weeks: [3, 5]
+matrix_cell: "✓"                      # insaat × data-dense-dashboard AKTIF (CRM native match)
+---
+
+# Konsept: İnşaat CRM — Yıldız İnşaat / saha yönetimi tarzı.
+# Proje takip pipeline, iş emri tablosu, saha foto stream, bütçe vs. fiili bar,
+# tedarikçi/malzeme dense table, çalışan shift planı, ilerleme progress.
+# Müşteri-facing tanıtım sitesi DEĞİL — iç kullanım admin/ops/saha CRM.
+mood: [compact, information-dense, monospace-label, receipt-rail, saha-ops, blueprint-touch, calm-ink]
+
+atoms:
+  palette: PL21                       # Ozalit Blueprint — insaat recommended + data-dense linear-style uyumlu
+                                      # Bluefish/cyan ozalit + pearl bg, acid green = "tamamlandı" signal
+                                      # Alt: PL4 Concrete (industrial-workwear hibrit) — ama dashboard için ozalit daha temiz
+  typography: TY26                    # Rubik Mono One + Inter Tight + JetBrains Mono — insaat recommended + monospace-first
+                                      # Alt: TY10 IBM Plex Sans + IBM Plex Mono (daha sade Linear benchmark)
+  hero: HR14                          # Zero-Hero receipt strip — "Aktif proje 8 · gecikme 2 · bugün teslim 1 · şantiye fotoğrafı 34"
+                                      # HR13 Blueprint title block alt seçenek (daha editorial, dashboard için ağır)
+  layout:
+    - L7                              # Sticky Sidebar + Feed — sol rail: Proje/Ekip/Tedarikçi/İş Emri/Saha/Bütçe
+    - L3                              # Bento-no-glass — proje özet kartı (KPI grid overview)
+  motion:
+    - MO4                             # Framer layout morph — Gantt bar genişleme, row expand
+    - MO8                             # WAAPI — command palette, toast
+    - MO3                             # CSS scroll-driven — sticky header shadow, progress ring
+  motion_ajans: []                    # dashboard minimal motion — blueprint dili hızlı kinetic'le çakışır
+  header: H3                          # Sidebar Rail + Breadcrumb — "Projeler / Yıldız Tower / İş Emirleri"
+                                      # Alt: H9 Corner Brackets (industrial) — blueprint hissi için
+  nav: N5                             # Command Palette ⌘K — "Proje ara", "İş emri #42", "Saha foto yükle", "Tedarikçi ekle"
+  kpi: K12                            # Blueprint Stat — insaat recommended + data-dense kompatibel
+                                      # "Tamamlanma: 68% · Bütçe: 4.2M / 5.8M · Gecikme: 3 gün"
+                                      # Alt: K8 Inline Sparkline (ilerleme trend), K3 Chip Row (hazard durum etiketi)
+  pipeline: P8                        # Dense Table pipeline — iş emri/proje aşama (Planlama → Kazı → Kaba → İnce → Teslim)
+                                      # insaat recommended P2+P8 — bu preset P8 primary (data-dense uyumlu)
+  table: T3                           # Spec Sheet — insaat native (BOM, malzeme, kod, adet, birim, tedarikçi)
+                                      # Alt: T2 Linear Issue Dense (iş emri + gecikme)
+  chart: CH6                          # Column Bar Elevation — blueprint dashed grid + scale bar (insaat native)
+                                      # Alt: CH10 sparkline-only (bütçe trend), CH11 D3 stacked bar (aşama süre)
+  form: F4                            # Inline Edit — iş emri ilerleme %, saha not, tedarikçi bilgi
+  modal: M5                           # Inline Expand — satır aç, iş emri detay + saha foto önizleme
+                                      # Alt: M3 Bottom Sheet (mobile saha)
+  footer: FT5                         # Contact Card single line — admin destek + versiyon + environment
+
+components:
+  core:
+    - ZeroHeroReceiptStripCRM         # HR14 — aktif proje · gecikme · bütçe risk · saha foto · iş emri açık
+    - StickySidebarFeedCRM            # L7 — 8 ana bölüm: Dashboard/Projeler/Ekip/Tedarikçi/İş Emri/Saha/Bütçe/Raporlar
+    - SidebarRailHeaderBreadcrumb     # H3 — proje seçici + arama + ⌘K tetik + kullanıcı avatar
+    - CommandPaletteCmdK              # N5 — cmdk, "/p Yıldız Tower", "/is #42", "/foto yükle"
+    - BlueprintStatKpiGrid            # K12 — 4 stat: tamamlanma / bütçe / gecikme / kalite skoru
+    - DenseTableProjePipeline         # P8 — proje list: ad / durum / %ilerleme / bitiş / bütçe
+    - SpecSheetMalzemeBom             # T3 — malzeme BOM: kod / ad / miktar / birim / tedarikçi / fiyat
+    - IsEmriLinearTable               # T2 — iş emri: no / başlık / atanan / durum / son tarih / öncelik
+    - BlueprintColumnChart            # CH6 — aşama süre bar + dashed grid + scale bar
+    - InlineEditProgressCell          # F4 — iş emri %ilerleme tabloda edit + ⌘S
+    - InlineExpandIsEmriRow           # M5 — iş emri satır aç, saha foto + açıklama + yorum thread
+    - SahaFotoStreamFeed              # T4 opsiyonel — activity log "Ahmet yükledi · kat 3 kalıp · 14:22"
+    - SitemapFooterMinimal            # FT5 + FT6 — contact card + sertifika (TSE/ISO/OHSAS)
+  optional:
+    - GanttTimelinePipelineP5         # P5 alternative — horizontal pinned proje timeline
+    - InteractiveSiteMapHR9           # Mapbox marker (Ankara/İstanbul aktif şantiyeler)
+    - TedarikciKarsilastirmaT4        # filterable stream (fiyat/teslim/kalite skor)
+    - BudgetVsActualBarCH7            # stacked bar bütçe vs fiili kategori bazında
+    - DroneVideoThumbGridL8           # saha drone kayıt thumbnail (Tier 4)
+    - SupabaseRealtimeSahaActivity    # canlı saha foto stream (pulse notification)
+    - ExportPdfRaporGenerator         # aylık rapor PDF (jsPDF veya @react-pdf)
+    - KVKKAuditLog                    # kim ne zaman hangi veri gördü (yasal gereklilik)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark+gold inşaat'ta zaten yoktu, CRM'de daha kesin YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7, HR8]   # split hero + dashboard-as-hero + chat hero — v1-CONSTRUO klişesine ASLA düşme
+  forbidden_headers: [H8]             # mix-blend-mode
+  forbidden_pipeline: [P1]            # klasik kanban — dense table tercih (v1-CONSTRUO P1 klişesi)
+  forbidden_tables: [T6]              # card grid CRM'de kesin YASAK
+  forbidden_layouts: [K1, L1]         # bento glass + tam-frame grid
+  forbidden_chart: [CH1, CH2]         # Chart.js smooth + Tremor default — v1-CONSTRUO CH1 klişesi, bu preset CH6 native
+  forbidden_motion: [MO10-print-first-full, MO11-opsz-dramatic, MO1-aggressive-pin]
+  forbidden_patterns:
+    - "Dribbble turuncu/siyah SaaS dashboard klişesi"
+    - "Unsplash safety-vest adamı hero"
+    - "Mavi dalga + '20 yıldır' klişe metin"
+    - "Bento glass morphism K1"
+  repeat_score_vs_existing: 2         # v1-CONSTRUO (H3+P1+T2+CH1+MO4): H3 + MO4 eşleşme = 2 kolon PASS
+                                      # v2-blueprint (HR13+K12+P2+T3+CH6+TY5+PL5+L5+MO1): K12+T3+CH6 = 3 kolon → warning
+                                      # Fatih Bey ile: MO4 tek kolon
+  warning: |
+    v1-CONSTRUO (deprecated) — H3·HR7·K1·P1·T2·C1·CH1·TY4·PL8·L1·MO4 — editorial luxury klişesi.
+    Bu preset sadece H3 + MO4 paylaşıyor (universal). HR7 yerine HR14, P1 yerine P8, K1 yerine K12,
+    CH1 yerine CH6, T2 opsiyonel (primary T3), TY4 yerine TY26, PL8 yerine PL21, L1 yerine L7.
+    2/15 kolon eşleşme PASS.
+
+    v2-blueprint (reference) — H9·HR13·K12·P2·T3·CH6·TY5·PL5·L5·MO1 — blueprint editorial.
+    Bu preset K12 + T3 + CH6 paylaşıyor (3 kolon). Ancak:
+      - v2-blueprint EDITORIAL tanıtım sitesi, bu preset CRM/admin
+      - L5 newspaper vs L7 sidebar rail — tamamen farklı IA
+      - HR13 title block vs HR14 receipt strip — farklı hero grammatiği
+      - H9 corner brackets vs H3 sidebar rail — farklı header
+      - TY5 Syne vs TY26 Rubik Mono — farklı dil
+      - MO1 aggressive scroll vs MO4+MO8 reactive — farklı tempo
+    3/15 kolon eşleşme = PASS (skor < 4) ama yakın takip; K12+T3+CH6 insaat için
+    native atomlar — tüm insaat presetlerinde görüleceği kabul edilir.
+
+compatibility:
+  forbidden_sectors: [spa, mucevher, kuafor, restoran, fotograf, otel]
+  conditional_sectors: [klinik, gayrimenkul]
+  recommended_for: [insaat, eticaret]
+  notes:
+    - "Bu preset insaat CRM/admin/saha için — müşteri-facing tanıtım sitesi için industrial-workwear default tercih"
+    - "Yıldız İnşaat tarzı enterprise (multi-tenant, SLA, observability) için recipe: next-enterprise-monorepo (Tier 5)"
+    - "Sahibi/şantiye şefi masaüstü + saha mobile hibrit — 768px tablet view kritik (saha mühendisi)"
+    - "Proje takip + iş emri + bütçe + saha foto stream 4 ana modül"
+
+preview_app_route: /preview/insaat-data-dense-dashboard
+scaffold_command: "node scaffold.js insaat-data-dense-dashboard --out ./insaat-crm-b/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+  - Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+  - Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+  - Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/siparis-lojistik-analiz.md             # iş emri = sipariş benzeri pipeline
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md             # KVKK audit log
+  - research/design-claude/insaat-crm/a-safe/index.html               # 5/5 Linear-style dense native ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: |
+    Saha mühendisi tablet (768px) primary use case — sidebar rail collapse,
+    sağ icon only, command palette her yerde accessible.
+    Saha telefon 375px için "Saha" sekmesi: foto yükle + iş emri tick + mini harita.
+    Dense table 375px → kart view fallback (M3 bottom sheet expand).
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Rubik Mono One (display, şantiye proje başlığı)"
+    - "Inter Tight 300-700 (body)"
+    - "JetBrains Mono 400 (tabular-nums, BOM kod, iş emri no, bütçe tutar)"
+  wcag_contrast_target: "AA (4.5:1) — saha tablet dış ışık için AA+ (5.5:1) tercih"
+  lighthouse_target: 90
+  virtualization: "TanStack Virtual ZORUNLU 200+ satır (iş emri, tedarikçi, malzeme BOM, saha foto feed)"
+  keyboard_nav: "j/k vim + ⌘K + / arama + g+d dashboard, g+p projeler, g+i iş emri quick jump"
+  tabular_nums_css: "font-variant-numeric: tabular-nums — tüm bütçe/yüzde/tarih/iş emri no alanlarında"
+  primary_cta: "Yeni İş Emri / Proje Oluştur"
+  secondary_cta: "Saha Fotoğrafı Yükle / Raporu İndir"
+  special_features:
+    - "⌘K command palette — 'proje ara', 'iş emri #42', 'tedarikçi ekle', 'saha foto'"
+    - "Supabase Realtime saha activity (foto yüklendiğinde canlı toast)"
+    - "File upload saha foto (Supabase Storage + EXIF date/GPS metadata)"
+    - "PDF export (aylık proje raporu, jsPDF + react-pdf)"
+    - "KVKK audit log (kim ne zaman hangi dosyayı gördü)"
+    - "Offline-first PWA (saha internet zayıf — IndexedDB + background sync)"
+    - "Role-based access: sahib / şantiye-şefi / mühendis / muhasebe / tedarikçi portal"
+  schema: "Internal admin — SEO gerekmez (robots.txt Disallow: /)"
+  performance_critical: "Table render < 16ms/row, ⌘K < 50ms, saha foto upload progress < 200ms INP"
+  auth_critical: |
+    Supabase RLS her tabloda (project_members + row-level ownership)
+    + service_role server-only + audit_log tablosu (insert trigger)
+    + şantiye-şefi sadece kendi projelerini görür (ownership check)
+    + mühendis iş emri oluşturabilir, tedarikçi sadece kendi siparişlerini görür

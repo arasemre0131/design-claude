@@ -1,0 +1,117 @@
+---
+id: mucevher-warm-organic
+sector: mucevher
+style: warm-organic
+recipe: next-premium           # Mid tier — editorial-luxury default'a warm-organic alternatif
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"               # mucevher × warm-organic — el-emeği / atölye / zanaat tarafı
+---
+
+# Stil mood — mücevher editorial-luxury default'a organik alternatif
+# Konsept: Atölye + el-emeği + tactile clay palette. Dagıntaslı/Fatih Bey luxury-dark değil, zanaat-odaklı.
+mood: [el-emegi, atolye, tactile, sakin, clay, ritueel, zanaat, unhurried]
+
+atoms:
+  palette: PL22                # Tobacco + Pearl — mücevher warm native, PL1 dark+gold klişesinin alternatifi
+                               # Alt: PL31 Clay + Mist (atölye tactile)
+  typography: TY37             # Cormorant Infant italic + Inter Tight — soft italic, zanaat warmth
+                               # Alt: TY29 Schibsted Grotesk (daha modern atölye)
+  hero: HR11                   # Brochure Cover Grid — koleksiyon kapak + 3-4 ürün thumbnail
+                               # Alt: HR3 atölye slow-mo video (el çalışıyor — 8-12s loop)
+  layout:
+    - L8                       # Masonry ürün vitrin (square 1:1 crop, hover alternate angle)
+    - L6                       # Center single col (ürün detay sayfası)
+  motion:
+    - MO2                      # Lenis smooth (lerp 0.07-0.09)
+    - MO10                     # Print-first static — zanaat sessizliği
+    - MO3                      # CSS scroll-driven subtle
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # ürün kart reveal (sakin)
+    - ultra-variable-font-opsz-scroll    # Fraunces opsz 9→144 başlık scroll-linked
+  header: H2                   # Masthead Centered — atölye adı + "Est. X · Kapalıçarşı"
+  nav: N2                      # Horizontal Tabs Underline (Koleksiyon/Atölye/Sertifika/İletişim)
+  kpi: K5                      # Almanac Editorial — "47 parça · 18 yıl · 3 usta"
+  table: T3                    # Spec Sheet — sertifika, ayar, karat, taş, kesim
+  form: F1                     # Single-col tall (sipariş/özel tasarım)
+  modal: M1                    # Centered Dialog (ürün 3D preview)
+  footer: FT4                  # Colophon editorial credits — atölye künyesi + sertifika
+
+components:
+  core:
+    - HeroBrochureCover                  # HR11 — koleksiyon kapak + thumbnail grid
+    - MasonryProductGallery              # L8 — square 1:1 crop, hover alternate angle
+    - MastheadCentered                   # H2 — Cormorant Infant atölye adı + subtitle
+    - HorizontalTabsNav                  # N2 — Koleksiyon/Atölye/Sertifika/Blog/İletişim
+    - AlmanacEditorialKpi                # K5 — "47 parça · 18 yıl · 3 usta"
+    - ProductSpecSheet                   # T3 — sertifika + ayar + karat + taş + kesim
+    - OzelTasarimForm                    # F1 — özel sipariş (metal + taş + ölçü + mesaj)
+    - ColophonFooter                     # FT4 — atölye + sertifika + SAN-TEZ + Kuyumcukent üyelik
+    - BlurRevealSubtle                   # wearebrand 36px reveal sakin (0.8-1.2s)
+    - VariableFontOpszScroll             # Fraunces opsz 9→144 başlık
+  optional:
+    - AtolyeVideoBg                      # HR3 alternatif (atölyede el çalışıyor slow-mo)
+    - ProductCard3D                      # hover = alternate angle preview
+    - WhatsAppChat                       # sticky mobile
+    - WishlistLocalSync                  # favori + Supabase auth sync
+    - IyzicoCheckout                     # ödeme (Tier 2 e-ticaret modu aktifse)
+    - GaussianSplatViewer                # Tier 3+ gerçek ürün 3D scan
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # dark #0A0A0A + gold #C9A84C — 5+ mücevher projesi kanıtı
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # Playfair italic + Inter yasak
+  forbidden_heroes: [HR2, HR7]           # split-hero + dashboard-hero
+  forbidden_tables: [T6]                 # card grid yasak
+  forbidden_kpi: [K1]                    # bento glass yasak
+  forbidden_headers: [H8]                # mix-blend-mode difference klişesi
+  forbidden_layouts: [L1]                # Fatih Bey kullandı
+  repeat_score_vs_existing: 2            # Fatih Bey v1 (H8·HR2·K1·T6·L1·TY3·PL10) ile N2 + F1 ortak — 2 kolon
+  warning: |
+    Fatih Bey Mücevher v1 combo (H8+HR2+K1+T6+L1+TY3+PL10) KOPYALANAMAZ. Warm-organic varyantı
+    editorial-luxury default'a alternatif — atölye/el-emeği markası için. PL22 Tobacco+Pearl + TY37
+    Cormorant Infant italic + HR11 + K5 + T3 — hepsi Fatih Bey'den farklı kolon. Gold vurgu YASAK,
+    italic başlık = Cormorant Infant veya Fraunces opsz 144 (Playfair DEĞİL). Square crop 1:1 ürün
+    kartı, hover alternate angle — HR2 split YASAK.
+
+compatibility:
+  forbidden_sectors: [insaat-endustriyel, fintech, gaming]
+  conditional_sectors: [kuafor, eticaret, gayrimenkul]
+  recommended_for: [mucevher-el-isi, atolye-zanaat, spa, otel, restoran-organic]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓ (bu preset)
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/mucevher-warm-organic
+scaffold_command: "node scaffold.js mucevher-warm-organic --out ./mucevher-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md         # Product JSON-LD
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - Fatih Bey Mücevher Sitesi/research/                                            # 49 dosya müşteri bağlamı
+  - research/design-claude/mockups/a-warm-dark/index.html                          # 5/5 warm-dark ref
+  - research/design-claude/templates/02-mucevher/index.html                        # sektör ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Cormorant Infant italic 400/600 (display)"
+    - "Inter Tight 300-500 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #F5F0E8 × tobacco #2A1F14 = 13.8:1 AAA ✓"
+  lighthouse_target: 92
+  product_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile, square 1:1 crop"
+  product_card: "square 1:1, hover alternate angle + zoom hint, HR2 split YASAK"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  motion_config: "Lenis lerp 0.07-0.09, Fraunces opsz 9→144 scroll-linked, prefers-reduced-motion respect"
+  prefers_reduced_motion: "Scroll-reveal off, immediate display + static masonry"
+  special_note: "El-emeği/zanaat tarafı — Fatih Bey luxury-dark'ı tekrarlamaz. Italic = Cormorant Infant (Playfair DEĞİL). Gold YASAK."
+  schema: "Product + Offer + Brand + AggregateRating + BreadcrumbList JSON-LD"
+  trust_badges: "iyzico SSL + KVKK + Kuyumcukent + SAN-TEZ sertifika"
+  mobile_critical: "Sticky bottom bar: WhatsApp + Favorile + Sepete"

@@ -1,0 +1,115 @@
+---
+id: klinik-warm-organic
+sector: klinik
+style: warm-organic
+recipe: next-premium           # Mid tier — editorial-luxury default'a sakin doğal alternatif
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"               # klinik × warm-organic — doğal sağlık / fizyoterapi / wellness
+---
+
+# Stil mood — klinik güven + Cream+Forest doğal sakinlik
+# Konsept: Sterilize beyaz hastane UI'sının tam karşıtı. Doğal sağlık, fizyoterapi, homeopati için.
+mood: [guven, netlik, huzur, dogal-saglik, warm-sakin, seffaflik, profesyonel, unhurried]
+
+atoms:
+  palette: PL28                # Cream + Forest — klinik doğal sağlık, PL1 dark+gold YASAK
+                               # Alt: PL27 Glacier + Sage (soğuk modern klinik için)
+  typography: TY37             # Cormorant Infant italic + Inter Tight — sakin, okunabilir
+                               # Alt: TY33 Fraunces + IBM Plex Sans (daha kurumsal)
+  hero: HR11                   # Brochure Cover — klinik + ekip foto + "sakin karşılama"
+                               # Alt: HR12 Conversational Q&A (randevu flow typeform-tarzı)
+  layout:
+    - L6                       # Center single column (meditative max 720-780px)
+    - L7                       # Sticky sidebar (tedavi kategorisi + güncel durum)
+  motion:
+    - MO10                     # Print-first static — klinik dikkat dağıtmamalı
+    - MO4                      # Framer light (çok sakin transitions)
+    - MO3                      # CSS scroll-driven subtle
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # tedavi kartı reveal (sakin 1.0-1.5s)
+  header: H2                   # Masthead Centered — klinik adı + "Dr. X · Est. 2015 · Kadıköy"
+  nav: N3                      # Breadcrumb-only minimal (Tedavi/Ekip/Randevu)
+  kpi: K5                      # Almanac Editorial — "11 yıl · 4 uzman · 847 hasta · 12 tedavi"
+  form: F1                     # Single-col tall (randevu + KVKK onay + şikayet form)
+  modal: M1                    # Centered Dialog (tedavi detay + SSS)
+  footer: FT4                  # Colophon — klinik + ekip + lisans + sertifika künyesi
+
+components:
+  core:
+    - HeroBrochureCover                  # HR11 — klinik kapak + ekip thumbnail (3-4)
+    - CenterSingleColumn                 # L6 — max-width 780px meditative
+    - MastheadCentered                   # H2 — Cormorant Infant italic klinik adı + subtitle
+    - BreadcrumbOnlyNav                  # N3 — Tedavi/Ekip/Randevu/SSS
+    - AlmanacEditorialKpi                # K5 — "11 yıl · 4 uzman · 847 hasta"
+    - TedaviKategoriler                  # L7 sticky sidebar (tedavi listesi + filtre)
+    - RandevuForm                        # F1 — tarih → saat → doktor → tedavi → KVKK onay
+    - ColophonFooter                     # FT4 — klinik + lisans + sağlık bakanlığı + ekip künyesi
+    - BlurRevealSubtle                   # wearebrand 36px (1.0-1.5s sakin)
+    - SSS                                # tedavi detay accordion (okuma odaklı)
+  optional:
+    - HastaPortali                       # Tier 2+ dosya + randevu geçmişi (RLS zorunlu)
+    - EmailSmsHatirlatma                 # randevu hatırlatma
+    - GulusTasarimAr                     # Tier 3+ (estetik diş kliniği için, WebXR)
+    - OncesiSonrasiBeforeAfter           # etik bildirim zorunlu (Sağlık Bakanlığı reklam yasası)
+    - WhatsAppChat                       # sticky mobile
+    - KvkkOnayCerezBanner                # zorunlu
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # dark+gold hasta tedirgin eder, hasta güveni kırar
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_motion: [MO1-aggressive, MO11-kinetic, MO9-bounce, "agresif-scroll-pin", "neon-flash"]
+  forbidden_patterns:
+    - "'Merhaba, ben Dr. X' typeform-overpersonal hero (bot hissi)"
+    - "dental boutique Playfair italic + gold underline"
+    - "stok foto 'gülümseyen dişler'"
+    - "sterilize beyaz hastane UI (sıcaklık eksik)"
+  repeat_score_vs_existing: 1            # temiz sektör, sadece H2 + F1 universal
+  warning: |
+    Agresif renk, hızlı motion, neon flash YASAK — hasta güven hissetmez. 'Merhaba, ben Dr. X'
+    typeform-overpersonal hero klişesi kaçınılmalı (HR12 Q&A iyi ama bot hissi vermesin).
+    Stok foto 'gülümseyen dişler' YASAK — gerçek klinik + ekip fotoğrafı. Sterilize beyaz hastane
+    UI'sı değil, sıcak-sakin: Cream+Forest (PL28) veya Glacier+Sage (PL27) doğal. Öncesi-sonrası
+    fotoğrafları Sağlık Bakanlığı reklam yasasına takılır — etik bildirim zorunlu.
+
+compatibility:
+  forbidden_sectors: [insaat-endustriyel, fintech-agresif, gaming]
+  conditional_sectors: [spa, mucevher-butik, restoran-organic]
+  recommended_for: [klinik-dogal, fizyoterapi, homeopati, wellness, spa, yasli-bakim]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓ (bu preset)
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/klinik-warm-organic
+scaffold_command: "node scaffold.js klinik-warm-organic --out ./klinik-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md                # hasta portalı RLS
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md                     # AAA hedef
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md                          # KVKK + sağlık reklam yasası
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - research/design-claude/mockups/a-warm-dark/index.html                          # 5/5 warm ref
+  - research/design-claude/templates/05-klinik/index.html                          # 4/5 Cream+Forest sektör ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Cormorant Infant italic 400/600 (display)"
+    - "Inter Tight 300-500 (body)"
+  wcag_contrast_target: "AAA (7:1) — bg #FBF9F3 × forest #3A5A40 = 7.4:1 AAA ✓ (klinik AA değil AAA)"
+  lighthouse_target: 94
+  hero_assets: "gerçek klinik iç foto (doğal ışık, sterile ama sıcak) — stok foto YASAK"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Tedavileri İncele"
+  motion_config: "MO10 print-first + MO4 Framer light (çok sakin, duration 1.0-1.5s), kinetic YASAK"
+  prefers_reduced_motion: "Tüm motion off, static display (klinik zaten minimal motion)"
+  special_note: "Klinik AAA contrast hedef (AA değil). Stok foto YASAK, gerçek ekip + mekan. Kinetic/bouncy YASAK."
+  legal_critical: "KVKK onay + çerez banner + sağlık reklam yasası 'öncesi-sonrası bildirimi' zorunlu"
+  schema: "MedicalClinic + Physician + MedicalProcedure + OpeningHoursSpecification JSON-LD"

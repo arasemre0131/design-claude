@@ -1,0 +1,93 @@
+---
+id: fotograf-minimal-swiss
+sector: fotograf
+style: minimal-swiss
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.4, 1]
+matrix_cell: "✓"                    # fotograf × minimal-swiss AKTIF (default editorial-print)
+---
+
+mood: [grid-first, whitespace, sessiz-tipografi, görsel-kahraman, readable, disciplined-portfolio]
+
+atoms:
+  palette: PL33                     # Pure Off-Black — stil sample'da belirtilen, fotograf template 5/5 ref
+  typography: TY39                  # IBM Plex Sans monolithic — templates/08-fotograf/index.html 5/5 kanıtı
+  hero: HR11                        # Brochure Cover — portfolyo kapak grid
+  layout:
+    - L1                            # 12-col standard
+    - L5                            # 3-col editorial (portfolyo)
+  motion:
+    - MO7                           # View Transitions API (image → detail morph kritik)
+    - MO3                           # CSS scroll-driven
+  motion_ajans: []
+  header: H3                        # Sidebar Rail + Breadcrumb (kategori nav)
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules (opsiyonel — "180 düğün · 12 yıl")
+  table: T2                         # Linear Dense (paket + süre + fiyat)
+  form: F1                          # Single-col (rezervasyon + brief)
+  modal: M1                         # Centered Dialog (foto detay)
+  footer: FT4                       # Colophon (EXIF + equipment + credits)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — portfolyo kapak
+    - SidebarRailBreadcrumb         # H3 — kategori nav (düğün/portre/ticari)
+    - HorizontalTabsUnderline       # N2
+    - GalleryGridEditorial          # L5 3-col editorial portfolyo (masonry alternatif)
+    - ImageViewTransition           # MO7 image → detail morph (kritik fotoğrafçı UX)
+    - SingleColInquiryForm          # F1 — rezervasyon + brief
+    - ColophonFooter                # FT4 — EXIF + ekipman + credits
+    - LinearPackageList             # T2 — paket liste
+  optional:
+    - ClientGalleryAuth             # Tier mid+ password-protected galeri
+    - CloudinaryCDNIntegration      # image optimization
+    - WhatsAppChat
+    - InstagramFeedEmbed
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # BG Foto dark+gold kanıtlı klişe
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY2 Playfair+Inter BG Foto'da kullanıldı
+  forbidden_heroes: [HR2]
+  forbidden_kpi: [K1]               # bento glass fotoğraf kahramanı öldürür
+  forbidden_headers: [H8]
+  forbidden_patterns: [italic-gradient-title, gold-underline-foto-üstü]
+  repeat_score_vs_existing: 1       # BG Foto (H8·N2·HR2·K1·F1·M1·FT1·TY2·PL1·L1·MO4) ile N2 + F1 = 2 kolon (universal)
+  warning: |
+    BG Foto combo'su (H8+HR2+K1+TY2+PL1) tam yasak örneği. Bu Swiss preset'te hiçbir klişe kolon yok —
+    templates/08-fotograf/index.html (score 5/5) direkt referans. Tipografi sessiz: IBM Plex monolithic,
+    italic gradient başlık YASAK. Resim kahraman, font kürsüsü boş. View Transitions (MO7) image → detail
+    morph kritik UX.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [fotograf-portfolyo, düğün-fotografcisi, ticari-fotograf, ajans]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/fotograf-minimal-swiss
+scaffold_command: "node scaffold.js fotograf-minimal-swiss --out ./fotograf-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+  - research/design-claude/templates/08-fotograf/index.html    # 5/5 Swiss reference impl
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1) + foto üstü text overlay 7:1"
+  lighthouse_target: 95
+  bundle_size_target: "< 140KB first load (Cloudinary CDN + view-transitions)"
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP, lazy-load, LQIP blur placeholder"
+  gallery_layout: "L5 3-col editorial desktop, 2-col tablet, 1-col mobile"
+  performance_critical: "LCP < 2.5s (featured image), CLS < 0.05"
+  view_transitions: "Image → detail morph (MO7 kritik UX)"
+  schema: "ImageGallery + Photograph + Person (photographer) JSON-LD"

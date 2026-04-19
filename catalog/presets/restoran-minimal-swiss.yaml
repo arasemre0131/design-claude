@@ -1,0 +1,90 @@
+---
+id: restoran-minimal-swiss
+sector: restoran
+style: minimal-swiss
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.4, 1]
+matrix_cell: "✓"                    # restoran × minimal-swiss AKTIF (default editorial-print)
+---
+
+mood: [grid-first, whitespace, sessiz-iştah, readable, disiplin, modern-bistro]
+
+atoms:
+  palette: PL34                     # Cream + Black — Swiss warm-neutral, PL1 dark+gold YASAK
+  typography: TY39                  # IBM Plex Sans all-weights monolithic
+  hero: HR11                        # Brochure Cover — menü kapak, HR3 video alternatif
+  layout:
+    - L5                            # 3-col editorial — menü için ideal (L5 restoran default)
+    - L1                            # 12-col Swiss grid
+  motion:
+    - MO3                           # CSS scroll-driven
+    - MO7                           # View Transitions (menü → kategori morph)
+  motion_ajans: []
+  header: H2                        # Masthead Centered — restoran isim + logo (masthead)
+  nav: N2                           # Horizontal Tabs Underline (menü / rezervasyon / hakkında)
+  kpi: K2                           # Band + Rules ("bugün taze: 12 öğün")
+  table: T2                         # Linear Dense (fiyat/menü list), T6 card grid YASAK
+  form: F1                          # Single-col (rezervasyon)
+  modal: M1                         # Centered Dialog
+  footer: FT1                       # Minimal Strip (adres + saat)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — menü kapak
+    - MastheadCentered              # H2 — restoran isim masthead
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — "bugün taze" daily band
+    - MenuListEditorial             # L5 3-col (öğün / ara sıcak / ana / tatlı)
+    - SingleColReservationForm      # F1 — masa rezervasyon
+    - LinearPriceList               # T2 — fiyat listesi (T6 card grid YASAK)
+    - MinimalStripFooter            # FT1 — adres/saat/tel
+  optional:
+    - WhatsAppChat
+    - GoogleMapsEmbed
+    - OpenTableIframe               # rezervasyon (budget tier)
+    - YemekSepetiLink               # getir/yemeksepeti CTA
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # dark menü + gold italic fine dining klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]            # menü card grid YASAK (sector warning)
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 1       # mevcut restoran projesi yok; mockup-B (H2·HR6·K5·TY10·PL3·L5·MO10) ile H2 + L5 = 2 kolon (H2 centered restoran için doğal)
+  warning: |
+    Generic dark + Playfair italic + gold underline fine-dining klişesi YASAK — Swiss warm-cream
+    alternatifine kayar. Menü sayfası T6 card grid YASAK — L5 3-col editorial liste (MenuListEditorial).
+    Yemek fotoğrafı üstünde gold italic başlık klişesi YASAK. Fine dining için editorial-print default
+    tercih edilir ama modern-bistro için Swiss'in sadeliği iyi match.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [restoran-bistro, kafe, kahvaltı-mekanı]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/restoran-minimal-swiss
+scaffold_command: "node scaffold.js restoran-minimal-swiss --out ./restoran-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 95
+  bundle_size_target: "< 140KB first load"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  menu_layout: "L5 3-col desktop (öğün/ara sıcak/ana/tatlı), 1-col accordion mobile"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification JSON-LD zorunlu"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar"

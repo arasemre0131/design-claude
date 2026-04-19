@@ -1,0 +1,137 @@
+---
+id: fotograf-brutalist
+sector: fotograf
+style: brutalist
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+conditional: true
+condition: "Kreatif moda / editorial portfolyo / dergi fotoğrafçılığı için OK. Sessiz belgesel / düğün / aile fotoğrafçısı için ✗ — editorial-print default."
+---
+
+# Stil mood — kreatif moda / editorial portfolyo brutalist
+# Konsept: moda editoryal, magazine cover, album/plak kapak, tasarım stüdyosu portfolio
+# (düğün/aile/belgesel DEĞİL — onun için editorial-print default).
+mood: [raw, bold, tilted-sticker, image-hero, controlled-chaos, magazine-cover]
+
+# Atom seçimi — brutalist compatible + fotograf recommended + anti-cliché pass
+atoms:
+  palette: PL33                   # Pure Off-Black (cream + orange accent + off-black)
+                                  # Fotograf recommended + minimal ama orange accent brutalist touch
+                                  # Alt: PL6 neobrutal multi (daha cover poster)
+  typography: TY6                 # Archivo Black + Space Grotesk 900 — brutalist pair
+                                  # Fotograf sector normally TY39 (sessiz IBM Plex) ama kreatif
+                                  # moda portfolyoda bold başlık OK — görsel kahraman, tipo ikinci
+  hero: HR11                      # Brochure Cover Grid — album/dergi kapak, photo-framed variant
+                                  # HR5 sign board çok kitchen; HR11 cover-grid magazine feel
+  layout: L9                      # Card Deck Carousel (stacked rotated) — portfolio showcase
+                                  # L8 masonry fotograf default, L9 brutalist tilt uyumlu
+  motion:
+    - MO4                         # Framer Motion — brutalist preferred + image morph
+    - MO7                         # View Transitions API — fotograf native (image → detail)
+  header: H2                      # Masthead Centered — editorial wordmark + subtitle
+                                  # H1 plate çok industrial fotoğrafçı için
+  nav: N2                         # Horizontal Tabs Underline — portfolio/hakkında/iletişim minimal
+  kpi: K2                         # Band with Horizontal Rules — editorial density
+                                  # "47 shoot / 12 yıl / 8 ödül" (K3 hazard chip aşırı agresif)
+  pipeline: null                  # Fotoğrafçıda pipeline gereksiz (portfolyo statik)
+  table: T4                       # Editorial Byline List — "son işler" liste (date/client/title)
+  chart: null                     # Fotoğrafçıda chart gereksiz
+  form: F3                        # Wizard — booking (tarih → paket → mekan → onay)
+                                  # Alt: F1 basit contact form
+  modal: M3                       # Bottom Sheet — mobile fotoğraf detay
+                                  # M5 inline expand de uyar (masonry hover)
+  footer: FT3                     # Receipt Strip dashed — minimalist studio imza
+  motion_ajans:
+    - fraxbit-clip-path-reveal    # Image clip-path reveal (fotograf native)
+    - wearebrand-magnetic-elastic # Magnetic "Booking" CTA
+
+# Components
+components:
+  core:
+    - BrochureCoverGridHero       # HR11 impl — photo-framed, symbol ◎, 3/4 aspect
+    - MastheadCenteredHeader      # H2 impl — serif-display variant + subtitle italic
+    - TabsUnderlineNav            # N2 impl — portfolio/about/contact
+    - CardDeckPortfolio           # L9 impl — rotated stacked deck (drag reveal)
+    - HorizontalRuleKpiBand       # K2 impl — shoot/yıl/ödül 3-metric row
+    - EditorialBylineList         # T4 impl — date · client · title 3-kolon
+    - BookingWizard               # F3 impl — tarih/paket/mekan/onay
+    - BottomSheetPhoto            # M3 impl — mobile detay + CTA
+    - ReceiptStripFooter          # FT3 impl — dashed + studio name + email
+  optional:
+    - MasonryGallery              # L8 — fotograf default (L9 yerine daha klasik)
+    - VideoHero                   # HR3 — moda editorial video cover
+    - InlineExpandDetail          # M5 — masonry hover inline expand (modal yerine)
+    - AlmanacKpi                  # K5 — "bu yıl 47 shoot" editorial prose
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                    # dark+gold — BG Foto klişesi (fotograf sector)
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # özellikle TY2 (BG Foto'da kullanıldı — tam yasak)
+  forbidden_heroes: [HR2, HR7]                 # split hero (BG Foto), dashboard hero
+  forbidden_layouts: []
+  forbidden_kpi: [K1]                          # bento glass (BG Foto'da)
+  forbidden_tables: [T6]
+  forbidden_patterns:
+    - "BG-Foto-combo (TY2+PL1+HR2+K1 — TAM YASAK ÖRNEĞİ)"
+    - "italic-gradient-baslik (fotograf sector warning)"
+    - "header-hero-attached-mix-blend-difference (H8 — BG Foto'da)"
+  repeat_score_vs_existing: 1                  # v2-neobrutalist ile sadece motion MO4 ortak
+                                               # BG Foto ile 0 kolon (TÜM yasakları bypass)
+  warning: |
+    BG Foto combo (H8+N2+HR2+K1+TY2+PL1+L1+MO4) TAM YASAK ÖRNEĞİ — bu preset hepsini devre dışı bıraktı.
+    TY6 Archivo Black + PL33 off-black + HR11 brochure + L9 card deck + H2 masthead — hiçbiri BG Foto'da yok.
+    Fotoğraf kahraman kalsın: tipografi bold olsa bile "font kürsüsü boş" prensibi korunmalı
+    (hero HR11'de resim %70 alan + tipo %30).
+
+# Compatibility notes — ⚠ CONDITIONAL
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, gayrimenkul, otel]
+  conditional_sectors: [restoran, fotograf]
+  recommended_for: [insaat, eticaret]
+  conditional_rules:
+    - "Kreatif moda / editorial portfolyo / dergi / album kapak fotoğrafçısı: ✓ KULLAN"
+    - "Düğün / aile / belgesel / sanatçı portre sessiz: ✗ KULLANMA → editorial-print default"
+    - "Ticari mimari fotoğraf: ⚠ minimal-swiss tercih (daha sessiz)"
+    - "360 / VR / Gaussian Splat premium tier: brutalist + immersive-3d hibrit mümkün Tier 3+"
+  notes:
+    - "Default fotograf stili EDITORIAL-PRINT — masonry + PL33 + sessiz tipografi"
+    - "Bu preset kreatif/moda/editorial portfolyo için alternatif imza"
+    - "Görsel kahraman kuralı: HR11 photo-framed variant + L9 card deck image-first"
+    - "TY6 Archivo Black seçildi ama metin KISA (başlık 1-3 kelime, gövde minimal)"
+
+# Preview
+preview_app_route: /preview/fotograf-brutalist
+scaffold_command: "node scaffold.js fotograf-brutalist --out ./fotograf-brutalist-test/"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md   # client galeri
+  - templates/SECTOR-RESEARCH.md#fotograf
+  - v2-neobrutalist/index.html                                        # brutalist referans
+  - BG Foto (deprecated)                                              # YASAK ÖRNEĞİ — anti-pattern
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Black (display, KISA metin)"
+    - "Space Grotesk 300-900 (body + UI)"
+    - "JetBrains Mono (EXIF/metadata/date)"
+  wcag_contrast_target: "AA (4.5:1) — bg #FAFAFA × ink #1C1C1E = 16.2:1 ✓ (AAA)"
+  lighthouse_target: 90
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP, lazy-load, LQIP blur placeholder"
+  gallery_layout: "L9 card deck desktop (rotated stacked), L8 masonry mobile"
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  performance_critical: "LCP < 2.5s (featured image hero), CLS < 0.05 (masonry preset)"
+  schema: "ImageGallery + Photograph + Person (photographer) JSON-LD"
+  view_transitions: "Image → detail sayfa morph animate (MO7 kritik)"
+  shadow_signature: "7px hard shadow (card deck items)"
+  rotation_signature: "Card deck items -2deg / +1deg / -0.5deg staggered tilt"
+  image_to_text_ratio: "%70 image / %30 text (brutalist olsa da görsel kahraman)"

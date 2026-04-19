@@ -1,0 +1,153 @@
+---
+id: eticaret-data-dense-dashboard
+sector: eticaret
+style: data-dense-dashboard
+recipe: next-premium                  # mid default; büyük e-ticaret için next-enterprise-monorepo'ya çıkar
+tier: mid
+budget_range_try: [18000, 32000]
+delivery_weeks: [3, 4]
+matrix_cell: "✓✓"                     # eticaret × data-dense-dashboard DEFAULT
+---
+
+# Konsept: Linear admin + Airbnb ops + Notion kombinasyonu
+# E-ticaret için dense ürün yönetimi, sipariş pipeline, stok tabloları,
+# ⌘K hızlı erişim, tabular-nums, monospace label — power user tempolu SaaS admin.
+# Customer-facing değil: bu preset admin paneli / B2B portal / marketplace ops için.
+mood: [compact, information-dense, monospace-label, Linear-tarzi, keyboard-first, tabular-nums, receipt-rail]
+
+atoms:
+  palette: PL29                       # Slate + Acid neon (eticaret recommended) — linear-style FCFCFC + tek acid accent
+                                      # Alt: PL30 Kraft+Burst (genç marka), yoksa styles default linear-style
+  typography: TY35                    # Unbounded + Manrope + IBM Plex Mono — eticaret recommended, admin UI için tabular
+                                      # Alt: TY12 Inter Tight + Berkeley Mono (saf linear-style)
+  hero: HR14                          # Zero-Hero receipt strip — dashboard direkt, HR2/HR7 YASAK
+                                      # Dashboard hero yok, giriş SIPARIS BEKLEYEN + STOK DUSUK + BUGUN KPI strip
+  layout:
+    - L7                              # Sticky Sidebar + Feed — admin default (Twitter ops + Linear sidebar)
+    - L3                              # Bento-no-glass fallback (KPI overview sayfası, widget ekranı)
+  motion:
+    - MO4                             # Framer Motion layoutId — row morph, filter/sort reactive animate
+    - MO8                             # WAAPI imperative — command palette açılış, toast slide
+    - MO3                             # CSS scroll-driven — subtle sticky header shadow
+  motion_ajans: []                    # data-dense minimal motion — ajans ekleme YASAK (dikkat dağıtır)
+  header: H3                          # Sidebar Rail + Breadcrumb — Linear-style, H8 mix-blend difference YASAK
+  nav: N5                             # Command Palette (cmdk ⌘K) — imza, her sayfada Ctrl+K açar
+                                      # Alt: N2 horizontal tabs bar sticky üstte (kategoriler)
+  kpi: K8                             # Inline Sparkline minimal — "1.248 sipariş · ▁▂▆▃▄▅" tek satır
+                                      # Alt: K2 Band + rules (almanac dashboard üstü)
+  pipeline: P8                        # Dense Table sipariş pipeline (Linear issue tarzı) — P1 klasik kanban YASAK
+  table: T2                           # Linear Issue Dense — ürün tablosu, sipariş listesi
+                                      # Alt: T4 filterable stream (stok, activity log)
+  chart: CH10                         # Sparkline-only minimal — CH1 smooth + CH2 tremor YASAK
+                                      # Alt: CH11 D3 column (satış günlük), CH7 stacked bar (kategori breakdown)
+  form: F4                            # Inline Edit — ürün başlığı, fiyat, stok direkt tabloda edit
+  modal: M5                           # Inline Expand (no overlay) — satır açılır, ürün detay inline
+                                      # Alt: M3 Bottom sheet (mobile)
+  footer: FT5                         # Contact Card single line — admin footer minimal
+
+components:
+  core:
+    - ZeroHeroReceiptStrip            # HR14 — bugün sipariş | beklemede | ciro | stok uyarı | return
+    - StickySidebarFeed               # L7 — sol rail: Dashboard/Sipariş/Ürün/Stok/Müşteri/Kampanya/Analitik
+    - SidebarRailHeader               # H3 — breadcrumb + arama + command palette tetik + avatar
+    - CommandPaletteCmdK              # N5 — cmdk lib, "Ürün ara", "Sipariş git", "Kupon oluştur", "Rapor al"
+    - InlineSparklineKpi              # K8 — 4 KPI satır satır: ciro/order/aov/conversion + D3 sparkline
+    - LinearStyleOrderTable           # T2 + P8 — sipariş list dense, status badge, tabular-nums tutar
+    - ProductDenseTable               # T2 — ürün list: görsel thumb 24px + SKU + stok + fiyat + variant count
+    - StockLowAlertStream             # T4 — activity log low stock (< 5 adet)
+    - InlineEditRow                   # F4 — fiyat/stok/başlık satır içi contentEditable + ⌘S kaydet
+    - InlineExpandRow                 # M5 — satır tıkla aşağı açılır (variant + tedarikçi + ship info)
+    - SparklineOnlyChart              # CH10 — satış trendi 7/30/90 gün minimal
+    - ContactCardFooter               # FT5 — admin destek tek satır
+  optional:
+    - KampanyaBulkActionToolbar       # sticky top bar — seçim yapınca "5 ürün seçildi · indirim uygula · sil"
+    - SupabaseRealtimeOrderStream     # canlı sipariş feed (pulse animate)
+    - DragDropCategoryTree            # dnd-kit sortable kategori/variant reorder
+    - VirtualizedProductList          # TanStack Virtual 1000+ ürün için
+    - TerminalLogDebugPanel           # C4 — developer mode admin için
+    - D3SatisHeatmap                  # gün × saat heatmap
+    - KargoTrackingPanel              # P8 — kargo pipeline (hazırlanıyor → kargoda → teslim)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark+gold e-ticaret admin'de tamamen klişe
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # Inter-only, Playfair italic, Instrument Serif, DM Serif
+  forbidden_heroes: [HR2, HR7, HR8]   # split hero YASAK, dashboard-as-hero v1-CONSTRUO klişesi YASAK
+  forbidden_headers: [H8]             # mix-blend-mode difference — e-ticaret değil (6+ proje)
+  forbidden_pipeline: [P1]            # klasik kanban — dense table tercih
+  forbidden_tables: [T6]              # card grid admin dense'e direkt çelişir (Fatih Bey'de kullanıldı zaten)
+  forbidden_layouts: [K1, L1]         # bento glass morphism yasak (admin okunaklılık kritik)
+  forbidden_chart: [CH1, CH2]         # Chart.js smooth + Recharts Tremor SaaS default — data-dense dili değil
+  forbidden_motion: [MO10-print-first-full, MO11-opsz-dramatic, MO1-aggressive-pin, "elastic-bouncy", "5s-page-loader"]
+  forbidden_patterns:
+    - "hero-carousel-5s-autoplay"
+    - "glass-morphism-card"
+    - "countdown-timer-fake-urgency"
+    - "splash-hero-video-long"
+    - "decorative-serif-italic-main"   # Instrument Serif sadece KPI label OK
+  repeat_score_vs_existing: 1         # v1-CONSTRUO ile: MO4 tek kolon
+                                      # v2-kinetic-data ile: T4 optional tek kolon
+                                      # Fatih Bey ile: MO4 tek kolon (universal)
+  warning: |
+    v1-CONSTRUO (H3·HR7·K1·P1·T2·CH1·TY4·PL8-variant·L1·MO4) deprecated combo —
+    bu preset H3 + T2'yi paylaşıyor ama HR7 yerine HR14, K1 yerine K8, P1 yerine P8,
+    CH1 yerine CH10, TY4 yerine TY35, PL8 yerine PL29 farklı. Toplam 2/15 eşleşme PASS.
+    Fatih Bey combo'su (H8·HR2·K1·T6·L1) — bu preset hiçbirini kullanmıyor, 0 eşleşme.
+    v1-CONSTRUO dashboard-as-hero + bento glass + chart.js smooth klişesine DÜŞME.
+    "Hero carousel 5-slide autoplay" YASAK (eticaret sector warning).
+
+compatibility:
+  forbidden_sectors: [spa, mucevher, kuafor, restoran, fotograf, otel]   # compatibility.yaml forbidden + incompatible_sectors
+  conditional_sectors: [klinik, gayrimenkul]                              # ⚠ — admin paneli için
+  recommended_for: [eticaret, insaat]
+  notes:
+    - "Bu preset admin paneli / B2B portal için — customer-facing storefront için editorial-print veya warm-organic tercih"
+    - "Marketplace/multi-tenant büyük e-ticaret için recipe: next-enterprise-monorepo (Tier 5, 80K+ TL)"
+    - "Küçük butik e-ticaret 20-30 ürün için bu preset overkill — minimal-swiss + next-premium yeterli"
+    - "Shopify admin alternatifi niyetiyle — Medusa.js veya Saleor headless + Next admin üstüne oturtuluyor"
+
+preview_app_route: /preview/eticaret-data-dense-dashboard
+scaffold_command: "node scaffold.js eticaret-data-dense-dashboard --out ./eticaret-admin/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+  - Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+  - Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+  - Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/stok-yonetimi-analiz.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - research/design-claude/insaat-crm/a-safe/index.html           # 5/5 Linear-style dense reference
+  - research/design-claude/templates/06-eticaret/index.html       # 3/5 e-ticaret admin hibrit
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: |
+    Dense dashboard mobile'da zorlanır — 375px için sidebar collapse,
+    CommandPalette (⌘K → mobile'da tap "ara" buton) primary nav,
+    dense tablolar horizontal scroll + sticky ilk sütun (SKU/Sipariş No).
+    InlineExpandRow yerine M3 bottom sheet mobile.
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Unbounded 400-800 (display)"
+    - "Manrope 300-700 (body)"
+    - "IBM Plex Mono 400 (tabular-nums, SKU, tutar, tarih)"
+  wcag_contrast_target: "AA (4.5:1) + monospace 14px minimum readable"
+  lighthouse_target: 92
+  virtualization: "TanStack Virtual ZORUNLU 200+ row (ürün listesi, sipariş listesi, activity log)"
+  keyboard_nav: "j/k vim navigation + arrow + Tab + ⌘K palette + / arama + ⌘Enter save ZORUNLU"
+  tabular_nums_css: "font-variant-numeric: tabular-nums lining-nums — tüm para/adet/tarih hücrelerinde"
+  primary_cta: "Yeni Ürün Ekle / Sipariş İncele"
+  secondary_cta: "Filtrele / Dışa Aktar"
+  special_features:
+    - "⌘K command palette (cmdk lib) — 'Ürün ara' / 'Sipariş git #1248' / 'Rapor çek'"
+    - "Inline edit (fiyat/stok/başlık contentEditable + ⌘S auto-save)"
+    - "Bulk action toolbar (5 ürün seçili · indirim uygula / sil / export)"
+    - "Supabase Realtime sipariş feed (pulse dot canlı)"
+    - "TanStack Virtual (1000+ ürün performanslı)"
+    - "dnd-kit sortable (kategori + variant sıralama)"
+    - "sonner toast (save confirmation)"
+    - "vaul drawer (mobile filter sheet)"
+  schema: "Admin-only route — storefront SEO ayrı proje (noindex header)"
+  performance_critical: "Table render < 16ms/row, ⌘K açılış < 50ms, filter apply < 100ms INP"
+  auth_critical: "Supabase RLS her tabloda + admin role check middleware + audit log (kim ne zaman ne değiştirdi)"

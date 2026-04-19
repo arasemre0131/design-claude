@@ -1,0 +1,113 @@
+---
+id: restoran-warm-organic
+sector: restoran
+style: warm-organic
+recipe: next-premium           # Mid tier — editorial-print default'a organik alternatif
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"               # restoran × warm-organic — zanaat/mevsimsel/yerel-üretim
+---
+
+# Stil mood — restoran sıcaklık + mevsimsel + zanaat
+# Konsept: Editorial-print default'a (newspaper menü) warm alternatif. Salmon+Burgundy yemek davet.
+mood: [sicaklik, mevsim, yerel-uretim, zanaat, davet, warm-tactile, unhurried, masa-cagri]
+
+atoms:
+  palette: PL14                # Salmon + Burgundy — yemek warm native, PL1 dark+gold YASAK
+                               # Alt: PL26 Olive + Tomato (bistro organik)
+  typography: TY37             # Cormorant Infant italic + Inter Tight — yumuşak mevsim tonu
+                               # Alt: TY31 Fraunces SC + Work Sans (daha editorial)
+  hero: HR3                    # Full-bleed yemek hazırlama video (chef kesim/plate üstü, 10-15s ≤6MB)
+                               # Alt: HR11 Brochure Cover (mevsimsel menü kapak)
+  layout:
+    - L5                       # Newspaper 3-col menu (CSS columns editorial list)
+    - L6                       # Center single col (şef hikayesi + mekan tanıtımı)
+  motion:
+    - MO2                      # Lenis smooth (lerp 0.08-0.10)
+    - MO3                      # CSS scroll-driven subtle (mevsimsel menü reveal)
+    - MO10                     # Print-first static fallback
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # yemek foto reveal (yumuşak)
+    - wearebrand-lenis-gsap-bridge       # Lenis + GSAP scrub davet hissi
+  header: H2                   # Masthead Centered — restoran adı + "Galata · Est. 1987"
+  nav: N2                      # Horizontal Tabs Underline (Menü/Şef/Rezervasyon/Hikaye)
+  kpi: K5                      # Almanac — "38 yıl · 14 mevsimsel menü · 6 yerel üretici"
+  form: F1                     # Single-col tall (masa rezervasyon: tarih → saat → kişi → not)
+  modal: M1                    # Centered Dialog (yemek detay + alerjen + kalori)
+  footer: FT4                  # Colophon editorial — künye + yerel üretici + sertifika
+
+components:
+  core:
+    - HeroFoodVideo                      # HR3 — chef kesim/plate üstü slow-mo loop 10-15s ≤6MB
+    - NewspaperMenuColumns               # L5 — CSS columns 3-col (öğün/ara sıcak/ana/tatlı)
+    - MastheadCentered                   # H2 — Cormorant Infant italic restoran adı + subtitle
+    - HorizontalTabsNav                  # N2 — Menü/Şef/Rezervasyon/Hikaye/İletişim
+    - AlmanacEditorialKpi                # K5 — "38 yıl · 14 mevsimsel menü · 6 yerel üretici"
+    - MasaRezervasyonForm                # F1 — tarih → saat → kişi sayısı → özel not
+    - MevsimSelectorBanner               # "Bugünün menüsü" banner (admin seçimli)
+    - ColophonFooter                     # FT4 — künye + yerel üretici listesi + sertifika
+    - BlurRevealSubtle                   # wearebrand 36px reveal (0.8-1.2s)
+  optional:
+    - OnlineSiparis                      # Getir/Yemeksepeti link + kendi siparis flow
+    - SefTanitimScroll                   # scroll-storytelling (Tier 3+ premium)
+    - MenuPdfDownload                    # fallback PDF (eski müşteri profili)
+    - GaleriyiGoster                     # mekan + yemek galerisi
+    - LoyaltyCard                        # sadakat puanı (Tier 2+)
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # dark menü + gold italic 'fine dining' klişesi YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # Playfair italic + Inter 5+ restoran projesi
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]                 # menü kart grid YASAK (L5 editorial list zorunlu)
+  forbidden_patterns:
+    - "yemek fotoğrafı üstünde gold italic başlık"
+    - "generic 'fine dining' dark+gold"
+    - "menü T6 card grid (editorial list L5 zorunlu)"
+  repeat_score_vs_existing: 1            # temiz sektör, sadece H2 universal
+  warning: |
+    Generic dark menü + Playfair italic + gold underline 'fine dining' klişesi YASAK — her bistro aynı.
+    Ramen-ya / Ezogelin street food için aşırı şık kaçar. Menü sayfası T6 card grid YASAK, L5 editorial
+    list (CSS columns 3-col newspaper) zorunlu. Yemek fotoğrafı üstünde gold italic başlık klişesi.
+    Salmon+Burgundy (PL14) yemek davet veya Olive+Tomato (PL26) bistro organik alternatif.
+
+compatibility:
+  forbidden_sectors: [insaat-endustriyel, fintech, gaming]
+  conditional_sectors: [kuafor, eticaret-food, mucevher-boutique]
+  recommended_for: [restoran-organic, spa, otel, mucevher-el-isi, bistro-butik]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓ (bu preset)
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/restoran-warm-organic
+scaffold_command: "node scaffold.js restoran-warm-organic --out ./restoran-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md                                  # local SEO + Restaurant JSON-LD
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - research/design-claude/mockups/a-warm-dark/index.html                          # 5/5 warm ref
+  - research/design-claude/templates/04-restoran/index.html                        # sektör ref (masthead + brochure)
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Cormorant Infant italic 400/600 (display)"
+    - "Inter Tight 300-500 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #F4D5C4 × burgundy #6B1B2E = 8.6:1 AAA ✓"
+  lighthouse_target: 93
+  hero_assets: "yemek hazırlama video (chef kesim / plate üstü, 10-15s loop, ≤6MB)"
+  menu_layout: "L5 CSS columns 3-col desktop (öğün/ara sıcak/ana/tatlı), 1-col accordion mobile"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  motion_config: "Lenis lerp 0.08-0.10, CSS scroll-driven menü reveal, Fraunces opsz scroll-linked opsiyonel"
+  prefers_reduced_motion: "Scroll-reveal off, immediate display + static menü fallback"
+  special_note: "Menü T6 card grid YASAK — L5 newspaper 3-col zorunlu. Gold YASAK. Italic = Cormorant Infant (Playfair DEĞİL)."
+  schema: "Restaurant + Menu + MenuItem + OpeningHoursSpecification + Offer JSON-LD"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification zorunlu"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar"

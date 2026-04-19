@@ -1,0 +1,90 @@
+---
+id: insaat-minimal-swiss
+sector: insaat
+style: minimal-swiss
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                    # insaat × minimal-swiss AKTIF (default industrial-workwear)
+---
+
+mood: [grid-disciplined, blueprint-restraint, whitespace, şeffaflık, güven, readable]
+
+atoms:
+  palette: PL21                     # Ozalit Blueprint — insaat recommended, Swiss grid ile editorial
+  typography: TY40                  # Inter Tight + JetBrains Mono — Swiss mono, TY11 Archivo Black değil
+  hero: HR11                        # Brochure Cover — proje kataloğu kapağı, HR5 sign board industrial'e bırakıldı
+  layout:
+    - L1                            # 12-col Swiss grid (tavan)
+    - L5                            # 3-col editorial (proje listesi 3 kolon)
+  motion:
+    - MO3                           # CSS scroll-driven native
+    - MO10                          # Print-first / no-motion fallback
+  motion_ajans: []
+  header: H3                        # Sidebar Rail + Breadcrumb — kurumsal Swiss
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Horizontal Rules ("20 yıl · 84 proje · 3 şehir")
+  pipeline: P2                      # Blueprint step diagonal (insaat recommended, P1 Klasik Kanban globally_forbidden)
+  table: T3                         # Spec Sheet (BOM, sertifika)
+  chart: CH6                        # Column Bar Elevation — blueprint column
+  form: F1                          # Single-col Tall (keşif formu)
+  modal: M1                         # Centered Dialog
+  footer: FT4                       # Colophon (sertifikalar: TSE, ISO 9001, OHSAS 18001)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — proje kataloğu kapak
+    - SidebarRailBreadcrumb         # H3
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — stat band
+    - BlueprintStepPipeline         # P2 — keşif → tasarım → ruhsat → inşa → teslim
+    - SpecSheetTable                # T3 — BOM 5-col
+    - BlueprintColumnChart          # CH6 — proje süre/m² chart
+    - SingleColInquiryForm          # F1 — keşif randevusu
+    - ColophonFooter                # FT4 — sertifika + ekip künyesi
+  optional:
+    - InteractiveMap                # Ankara/İstanbul proje lokasyon (Mapbox custom style)
+    - DroneVideoEmbed               # HR3 alternatif hero (Tier 3+ premium tier'a yakın)
+    - ProjectTimeline               # P2 alternatif
+
+anti_cliche:
+  forbidden_palettes: [PL1]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_kpi: [K1]               # bento glass (sector warning'de de yasak)
+  forbidden_pipelines: [P1]         # klasik Kanban globally_forbidden
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 2       # mockup-C (industrial) ile hiç ortak kolon yok; v2-blueprint ile P2 + T3 = 2 kolon ama stil farklı (maximalist blueprint vs Swiss)
+  warning: |
+    v2-blueprint (H9·N3·HR13·K12·P2·T3·CH6·TY5·PL5·L5·MO1) özgün ozalit variant — bu Swiss preset onunla
+    stilen çakışmaz (Swiss = whitespace-first, blueprint = dense gridded). Stok foto hero YASAK (Unsplash
+    safety-vest adamı değil, gerçek proje). Mavi dalga hero + "biz 20 yıldır" klişe metni YASAK.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [insaat, kurumsal, mimarlık]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/insaat-minimal-swiss
+scaffold_command: "node scaffold.js insaat-minimal-swiss --out ./insaat-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA (4.5:1) — blueprint PL21 üzerinde dikkat, ink #0A0A0A baseline zorunlu"
+  lighthouse_target: 95
+  bundle_size_target: "< 180KB first load (chart library dahil)"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Projelerimizi İncele"
+  safety_badges: "TSE / ISO 9001 / OHSAS 18001 — FT4 colophon alanında"
+  schema: "GeneralContractor + Project + LocalBusiness JSON-LD"

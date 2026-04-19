@@ -1,0 +1,94 @@
+---
+id: otel-minimal-swiss
+sector: otel
+style: minimal-swiss
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                    # otel × minimal-swiss AKTIF (default warm-organic)
+---
+
+mood: [grid-first, whitespace, sessiz-lüks, readable, disciplined-booking, Swiss-butik]
+
+atoms:
+  palette: PL34                     # Cream + Black — Swiss + butik sıcak, PL1 luxury dark+gold YASAK
+  typography: TY39                  # IBM Plex Sans monolithic — oda adı + tarih tabular
+  hero: HR11                        # Brochure Cover — oda kataloğu (HR3 video warm-organic default'ta)
+  layout:
+    - L1                            # 12-col Swiss grid
+    - L5                            # 3-col editorial (oda listesi)
+  motion:
+    - MO3                           # CSS scroll-driven
+    - MO7                           # View Transitions (oda → rezervasyon morph)
+  motion_ajans: []
+  header: H2                        # Masthead Centered — otel identity sakin
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules ("42 oda · 2 restoran · 1 spa")
+  table: T2                         # Linear Dense (oda tip + fiyat + kapasite)
+  form: F1                          # Single-col (rezervasyon 5 adım)
+  modal: M1                         # Centered Dialog (tarih picker)
+  footer: FT4                       # Colophon (otel künyesi + sertifika)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — oda katalog kapak (HR3 video warm'da)
+    - MastheadCentered              # H2
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — otel stat band
+    - RoomListEditorial             # L5 3-col editorial oda listesi
+    - RoomSpecLinear                # T2 — oda tip + kişi + fiyat linear
+    - SingleColBookingForm          # F1 — 5 adım (tarih/oda/misafir/ekstra/ödeme)
+    - ColophonFooter                # FT4 — otel künyesi + sertifika (TGA, TÜRSAB)
+    - RoomDetailViewTransition      # MO7 oda → rezervasyon morph
+  optional:
+    - ConciergeChat                 # WhatsApp Business veya custom chat
+    - IyzicoEmbed                   # native rezervasyon ödeme
+    - I18nSwitcher                  # TR + EN minimum
+    - ReviewWidget                  # misafir yorumları
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # luxury otel dark+gold KLIŞE (her butik otel aynı)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_patterns: [stok-foto-havuz-hero, gold-italic-title, fake-instagram-feed, booking-com-iframe]
+  repeat_score_vs_existing: 0       # otel projesi yok
+  warning: |
+    Luxury dark gradient + gold italic 'Welcome to X' klişesi YASAK — Swiss PL34 cream+black sessiz
+    alternatif. Stok foto havuz YASAK — gerçek otel + drone video (HR3 warm-organic'de). Fine-art italic
+    başlık: Fraunces opsz OK (italic discipline) ama Playfair YASAK. Booking.com iframe native rezervasyon
+    akışını öldürür — F1 single-col native rezervasyon zorunlu. Mücevher PL1 tekrarına en yakın risk
+    otel (luxury marka).
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [otel-butik, şehir-oteli, minimal-lüks-otel, iş-oteli]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/otel-minimal-swiss
+scaffold_command: "node scaffold.js otel-minimal-swiss --out ./otel-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1) + oda foto üstü overlay 7:1"
+  lighthouse_target: 95
+  bundle_size_target: "< 180KB first load"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları İncele"
+  booking_flow: "Tarih → oda tipi → misafir sayısı → ekstra (yemek/spa) → ödeme (5 adım F1)"
+  i18n_critical: "TR + EN minimum; Arapça + Rusça Tier 4 (Antalya/Bodrum müşteri profili)"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review JSON-LD"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran modal M1"

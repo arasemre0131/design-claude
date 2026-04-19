@@ -1,0 +1,90 @@
+---
+id: kuafor-minimal-swiss
+sector: kuafor
+style: minimal-swiss
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.4, 1]           # 3-7 gün
+matrix_cell: "✓✓"                   # kuaför × minimal-swiss DEFAULT
+---
+
+mood: [grid-first, sakin, sıcak-karşılama, hijyen, disiplinli-whitespace, readable, accessible]
+
+atoms:
+  palette: PL24                     # Salt + Peach — kuaför warm; stil sample PL33'e göre daha kadın-dostu
+  typography: TY39                  # IBM Plex Sans all-weights — Swiss monolithic, TY1 Inter-only DEĞİL
+  hero: HR11                        # Brochure Cover 2-col — koleksiyon/salon kapak, HR2 split YASAK
+  layout:
+    - L1                            # 12-col standard Swiss grid
+    - L5                            # 3-col editorial alternatif (ekip kartları)
+  motion:
+    - MO3                           # CSS scroll-driven native (stil preferred)
+    - MO7                           # View Transitions API (sayfa morph)
+  motion_ajans: []                  # minimal-swiss saf CSS tercih, ajans atomu yok
+  header: H3                        # Sidebar Rail + Breadcrumb — Swiss klasik, H8 YASAK
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Horizontal Rules (ekip tecrübe, saat)
+  table: T2                         # Linear Issue Dense (fiyat listesi)
+  form: F1                          # Single-col Tall (randevu)
+  modal: M1                         # Centered Dialog
+  footer: FT1                       # Minimal Strip (colophon alternatif FT4)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — salon kapak grid
+    - SidebarRailBreadcrumb         # H3
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — "15 yıl, 6 kuaför, Cumartesi açık"
+    - LinearPriceList               # T2 — hizmet + süre + fiyat
+    - SingleColBookingForm          # F1 — tarih/saat/kuaför/hizmet 4 adım
+    - MinimalStripFooter            # FT1
+  optional:
+    - BookingWidget                 # online randevu (Supabase + react-day-picker)
+    - WhatsAppChat
+    - InstagramFeedEmbed
+    - TeamCardDeck                  # L5 3-col alternatif
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # Freeman/Odak/Solarium dark+gold klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_headers: [H8]
+  forbidden_kpi: [K1]
+  forbidden_motion: [MO1-aggressive, MO6-heavy-stagger, MO11-kinetic-opsz]
+  repeat_score_vs_existing: 1       # Freeman (H8·N2·HR2·F1·M1·FT1·TY1·PL1·L1·MO4) ile nav N2 + footer FT1 + form F1 = 3 kolon ama hepsi universal; header/hero/palette/typography farklı
+  warning: |
+    Freeman/Odak/Solarium klişesi (dark+gold+custom cursor+Inter italic) tam ters — PL24 warm Salt+Peach
+    + IBM Plex monolithic + HR11 brochure + H3 sidebar Swiss tradition'a çekiyor. Custom cursor YASAK.
+    Industrial tekstür (concrete/hazard) kuaförde hijyen psikolojisine ters — minimal-swiss bu yüzden default.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [kuafor, klinik, spa, restoran, mucevher, eticaret, fotograf, gayrimenkul, otel, insaat]
+  matrix_row_peers:
+    default: [kuafor]               # ✓✓ sadece burada
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]  # ✓
+
+preview_app_route: /preview/kuafor-minimal-swiss
+scaffold_command: "node scaffold.js kuafor-minimal-swiss --out ./kuafor-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - KADIKÖY SATIŞ/
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1) — minimal-swiss accessibility-first, AAA hedefi mümkün"
+  lighthouse_target: 95             # minimal stack, yüksek skor
+  bundle_size_target: "< 150KB first load"
+  prefers_reduced_motion: "Animation minimal zaten — CSS scroll-driven fallback otomatik"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Ekibimizi Tanı"
+  booking_flow: "Tarih → saat → kuaför → hizmet (4 adım, progress bar, F1 single-col)"
+  mobile_critical: "Sticky WhatsApp + tap-to-call + Google Maps bottom bar"
+  schema: "HairSalon + Service + OpeningHoursSpecification + Person (team) JSON-LD"

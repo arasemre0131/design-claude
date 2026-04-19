@@ -1,0 +1,101 @@
+---
+id: otel-maximalist-atmospheric
+sector: otel
+style: maximalist-atmospheric
+recipe: next-r3f  # atmospheric + 3D sanal tur hybrid premium (Matterport/Gaussian Splat)
+tier: premium
+budget_range_try: [28000, 65000]
+delivery_weeks: [4, 5]
+---
+
+mood: [atmospheric, terracotta-warm-aurora, overlapping-italic-welcome, escape-space-metaphor, mediterranean-dense, drone-cinematic-drift]
+
+atoms:
+  palette: PL37  # Terracotta + Sky + Ochre (otel warm maximalist — PL38 Cool Marble alt)
+  typography: TY43  # Fraunces Italic + Inter Tight (otel native, TY2 Playfair YASAK)
+  hero: HR3  # Full-bleed drone video bg (havuz + manzara + dis cephe 15-20s loop)
+  layout:
+    - L4  # Full-bleed horizontal rails (resepsiyon -> lobi -> oda -> spa cinematic)
+    - L8  # Masonry oda tipi grid
+  motion:
+    - MO1  # GSAP ScrollTrigger
+    - MO2  # Lenis smooth (lerp 0.08)
+    - MO6  # SplitText stagger ("90 ODA · 18 SUITE" number reveal)
+  motion_ajans:
+    - wearebrand-mask-y-reveal      # oda kategorilerinde CSS mask --mask-y
+    - wearebrand-theme-switch       # scroll zone gun -> gece theme shift
+    - ultra-theme-switch-scroll
+    - rejouice-mix-blend-difference # header drone video uzerinde difference
+    - fiddle-textpath-circle        # "est. YYYY · Bogaz" circle stamp
+    - ultra-porthole-dive           # scroll ile porthole -> oda gecis
+    - wearebrand-magnetic-elastic   # rezervasyon CTA magnetic hover
+  header: H2  # Masthead Centered (editorial otel native, mix-blend difference ile kombine)
+  kpi: K11  # Postcard Stack (rotated) — travel mood-board imza (rooms 3 postcards)
+  pipeline: P3  # Funnel stages (rezervasyon funnel admin)
+  chart: CH11  # Stacked area kinetic (admin occupancy + revenue trend)
+
+components:
+  core:
+    - AtmosphericDriftBg            # 4 radial layer: terracotta + sky + ochre + deep night 24s drift
+    - PortholeConicGradient         # spinning porthole (oda kartlari)
+    - MaximalistOverlapTitle        # "YALI SUIT · BOGAZ / MANZARA / DAVET" 3 satir italic offset
+    - MaskYReveal                   # wearebrand MIT-safe
+    - ThemeScrollSwitch             # gun -> gun-bati -> gece scroll zone
+    - FullBleedVideoHero            # HR3 drone video + scrim + aurora overlay
+    - HorizontalRailsStory          # L4 scroll-linked cinematic narrative
+    - PostcardStackKpi              # K11 Istanbul/Bodrum postkart travel-mood
+    - MixBlendDifferenceHeader      # REJOUICE pattern
+    - FiddleTextPathCircle          # "est. YYYY · Rumeli Hisari" circle
+    - NativeBookingFlow             # 5-step: tarih -> oda -> misafir -> ekstra -> odeme
+    - PortholeDiveRoomTransition    # ultra-porthole-dive scroll-linked oda gecisi
+  optional:
+    - NoiseOverlaySvg               # SVG feTurbulence warm grain
+    - HugeMarquee                   # 160px Fraunces italic "KACIS BASLIYOR"
+    - VirtualRoomTourR3F            # Matterport/Gaussian Splat R3F
+    - ScrollCameraRig               # resepsiyon -> lobi -> oda R3F rig
+    - ConciergeChat                 # AI concierge chat widget
+    - MultiLangSwitch               # TR/EN/AR/RU (Bodrum/Antalya profil)
+
+anti_cliche:
+  forbidden_palettes: [PL1]                # dark + gold welcome to luxury otel klisesi
+  forbidden_typography: [TY1, TY2, TY4, TY8] # Playfair italic butik otel YASAK
+  forbidden_heroes: [HR2, HR7]
+  forbidden_patterns: ["stok-foto-havuz-hero", "gold-italic-welcome", "fake-instagram-feed", "bookingcom-iframe-only"]
+  repeat_score_vs_existing: 2              # temiz sektor, Fatih Bey/Freeman combo cakismasi yok
+  note: "Booking.com iframe + rate compare external YASAK — native rezervasyon zorunlu. Gercek drone video zorunlu; stok foto havuz YASAK. Fraunces italic OK, Playfair kesin YASAK."
+
+compatibility:
+  forbidden_sectors: [insaat, klinik, spa, gayrimenkul]
+  conditional_sectors: [mucevher, eticaret]
+  recommended_for: [otel, restoran, fotograf]
+  note: "Butik design hotel + terracotta/warm profil; city urban cool marble icin PL38 alt. Resort/aile oteli icin warm-organic default tercih. Tier 4+ icin PMS + channel manager entegrasyon (Opera/Fidelio)."
+
+preview_app_route: /preview/otel-maximalist-atmospheric
+scaffold_command: "node scaffold.js otel-maximalist-atmospheric --out ./out/otel-ma"
+
+research_refs:
+  - research/gradient-glass-visual-effects-2026.md
+  - research/page-transitions-nextjs-2026.md
+  - Mobilyaci/3d-demo/research/forms-validation-zod-react-hook-form-2026.md   # 5-step rezervasyon
+  - Mobilyaci/3d-demo/research/iyzico-analiz.md                                # iyzico 3DS
+  - Mobilyaci/3d-demo/research/hospitality-virtual-tour.md                     # sanal tur
+  - Mobilyaci/3d-demo/research/scroll-storytelling-patterns.md                 # cinematic rails
+  - Mobilyaci/3d-demo/research/image-optimization-cdn-cloudinary-2026.md       # drone video encode
+  - templates/13-maximalist/index.html                                          # wearebrand-inspired 4.5/5
+  - templates/14-ultra/index.html                                              # 14 signature imza
+  - templates/10-otel/index.html                                                # otel K11 postcard ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA + warm panel >= 4.5 (PL37 terracotta #B34F1B on sand #F2E3D1 = 5.4:1 AA / ink #2A1F14 on sand = 13.8:1 AAA)"
+  lighthouse_target: 88
+  perf_note: "Drone video + 4 radial drift + aurora overlay: LCP < 2.5s zorunlu. Video max 8MB, poster.webp + loading=lazy, autoplay muted. Mobile'da drift 2-layer blur(20px), video yerine poster only opsiyonu. R3F sanal tur frameloop='demand' + AdaptiveDpr."
+  prefers_reduced_motion: "Drift + porthole dive off, statik gradient; video yerine poster; SplitText yerine fade 200ms"
+  hero_assets: "drone video (havuz, manzara, dis cephe 15-20s, <=8MB, autoplay muted loop)"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odalari Incele"
+  booking_flow: "Tarih -> oda tipi -> misafir sayisi -> ekstra (yemek/spa) -> odeme (5 adim progress)"
+  i18n_critical: "TR + EN minimum; Arapca + Rusca Tier 4+ (Antalya/Bodrum profil)"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review + BreadcrumbList JSON-LD"
+  mobile_critical: "Sticky Rezervasyon bottom bar, tarih picker tam ekran, WhatsApp concierge shortcut"

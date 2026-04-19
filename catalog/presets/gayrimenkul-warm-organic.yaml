@@ -1,0 +1,115 @@
+---
+id: gayrimenkul-warm-organic
+sector: gayrimenkul
+style: warm-organic
+recipe: next-premium           # Mid tier default — gayrimenkul suitability ✓✓
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓✓"              # gayrimenkul × warm-organic DEFAULT
+---
+
+# Stil mood — yaşam-tarzı + güven + organik emlak
+# Konsept: Sand+Ocean warm palette, Fraunces opsz güven, masonry ilan grid.
+mood: [guvenilir, yasam-tarzi, earthy, sand-ocean, unhurried, lokasyon-odakli, aile]
+
+atoms:
+  palette: PL35                # Sand + Ocean — emlak native organik güven, PL1 dark+gold ters
+                               # Alt: PL36 Mist+Sunset (boutique villa için)
+  typography: TY41             # Fraunces opsz 9-144 + IBM Plex Sans 300-600 — güven + warm serif
+  hero: HR11                   # Brochure Cover Grid — kapak ev + yan thumbnails (3 ilan preview)
+                               # Alt: HR9 interactive map hero (Tier 3+ Mapbox custom style)
+  layout:
+    - L8                       # Masonry ilan (3-col desktop, 2-col tablet, 1-col mobile)
+    - L6                       # Center single col (tek ilan detay sayfası)
+  motion:
+    - MO2                      # Lenis smooth (lerp 0.08-0.10, sakin ama spa kadar yavaş değil)
+    - MO7                      # View Transitions API (ilan listesi → detay morph)
+    - MO10                     # Print-first static fallback (reduced-motion)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # ilan kart reveal (sakin)
+    - ultra-variable-font-opsz-scroll    # Fraunces opsz 9→144 scroll-linked (fiyat/başlık)
+  header: H2                   # Masthead Centered — wordmark + lokasyon subtitle + hairline
+  nav: N2                      # Horizontal Tabs Underline (sessiz: Satılık/Kiralık/Proje/Hakkımızda)
+  kpi: K5                      # Almanac Editorial — "127 ilan · 18 bölge · 14 yıl"
+  table: T3                    # Spec Sheet — ilan detay (m², oda, cephe, tapu, ısıtma)
+  form: F1                     # Single-col tall (agent ile iletişim)
+  modal: M1                    # Centered Dialog (ilan galerisi)
+  footer: FT4                  # Colophon editorial credits — ofis + ekip + sertifika
+
+components:
+  core:
+    - HeroBrochureCover                  # HR11 — kapak ilan + 3 thumbnail preview
+    - MasonryListingGrid                 # L8 — ilan kart (foto + fiyat + m² + oda)
+    - MastheadCentered                   # H2 — Fraunces opsz 144 wordmark
+    - HorizontalTabsNav                  # N2 — Satılık/Kiralık/Proje/Ekip
+    - AlmanacEditorialKpi                # K5 — "127 ilan · 18 bölge · 14 yıl"
+    - ListingSpecSheet                   # T3 — m²/oda/cephe/tapu/ısıtma/aidat tabular
+    - ViewTransitionListingDetail        # MO7 — liste → detay morph
+    - ContactAgentForm                   # F1 — agent + tarih + saat + mesaj
+    - ColophonFooter                     # FT4 — ofis künyesi + lisans + sertifika
+    - VariableFontOpszScroll             # Fraunces 9→144 fiyat/başlık scroll-linked
+  optional:
+    - MapboxCustomStyle                  # Mapbox GL JS marka tonlu (Tier 3+)
+    - KrediHesaplama                     # ödeme planı hesap (form)
+    - FavoriListesi                      # localStorage + auth sync
+    - KarsilastirmaModu                  # 2-3 ilan yan yana karşılaştır
+    - SanalTurR3F                        # Tier 3+ (premium villa için, 3D sanal oda turu)
+    - DroneVideoHero                     # HR3 alternatif (tier 3+ premium ilan)
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # Dark+gold luxury hilesi YASAK — emlak güven gerektirir
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_patterns:
+    - "stok foto hero (Unsplash 'modern villa')"
+    - "'Yatırım güvencesi + altın anahtar' klişe metin"
+    - "her ilan kartı aynı template"
+    - "generic Google Maps iframe embed"
+  repeat_score_vs_existing: 1            # temiz sektör, sadece H2 + N2 universal
+  warning: |
+    Stok foto hero YASAK — bu ev değil, bu fotoğraf kriz. Her ilan için gerçek fotoğraf gerekli.
+    PL1 (dark+gold) YASAK — emlak güven gerektirir, mücevher luxury hilesi buraya sızmamalı.
+    Google Maps iframe minimum — Mapbox GL JS marka tonlu custom style zorunlu (Tier 3+).
+    Premium villa + 2+1 daire aynı template ile sunulmaz — L8 masonry farklı aspect ratio destekliyor.
+
+compatibility:
+  forbidden_sectors: [insaat-endustriyel, fintech, gaming]
+  conditional_sectors: [mucevher-butik, eticaret-premium, kuafor]
+  recommended_for: [gayrimenkul, otel, spa, mucevher-el-isi, restoran-organic]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/gayrimenkul-warm-organic
+scaffold_command: "node scaffold.js gayrimenkul-warm-organic --out ./gayrimenkul-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md       # RealEstateListing JSON-LD
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md                    # Tier 3+ sanal tur
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - research/design-claude/mockups/a-warm-dark/index.html                        # 5/5 warm ref
+  - research/design-claude/templates/09-gayrimenkul/index.html                   # TY41 + PL35 sektör ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 400/600 (variable display)"
+    - "IBM Plex Sans 300-600 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #F0EBE0 × ocean #1B3A4B = 11.4:1 AAA ✓"
+  lighthouse_target: 92
+  listing_card: "foto + fiyat + m² + oda + konum + hover floor plan preview"
+  listing_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  primary_cta: "İlanı Gör"
+  secondary_cta: "Agent ile İletişime Geç"
+  map_integration: "Mapbox GL JS custom style (sand+ocean marker cluster), hover ilan preview"
+  motion_config: "Lenis lerp 0.08-0.10, View Transitions API (liste→detay), Fraunces opsz 9→144 scroll-linked"
+  prefers_reduced_motion: "View Transitions off, immediate swap + static fallback"
+  special_note: "Her ilan gerçek foto, stok YASAK. Tier 3+ Mapbox marka stili + R3F sanal tur opsiyonel."
+  schema: "RealEstateListing + PostalAddress + GeoCoordinates + Offer + Agent JSON-LD"
+  mobile_critical: "Sticky bottom bar: 'İletişim' + 'Harita' + 'Favorile' toggle"

@@ -1,0 +1,98 @@
+---
+id: mucevher-kinetic-agency
+sector: mucevher
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [22000, 40000]
+delivery_weeks: [3, 4]
+status: conditional  # MATRIX ⚠ — fashion-editorial yönünde kinetic mücevher
+conditional_gate: "Sadece fashion-editorial koleksiyon/drop yönelen marka için (ör. kreatif çağdaş mücevher). Geleneksel/klasik mücevher için editorial-luxury DEFAULT önerilir — compatibility.yaml conditional_combinations."
+---
+
+mood: [kinetic, fashion-editorial, italic-opsz, variable-font-axis, rafine-rebel, drop-launch]
+
+atoms:
+  palette: PL22              # Tobacco + Pearl (ivory bg + tobacco + clay + tan) — mücevher native PL1 YASAK
+  typography: TY27           # Fraunces + IBM Plex Sans + JetBrains Mono (opsz 144 kinetic axis)
+  hero: HR11                 # Brochure Cover Grid — koleksiyon cover + 4-6 thumbnail
+  layout: L4                 # Full-bleed rails — drop narrative
+  motion:
+    - MO1                    # GSAP ScrollTrigger
+    - MO2                    # Lenis smooth lerp 0.06 (mücevher sakin ton)
+    - MO6                    # SplitText chars/words stagger
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Fraunces opsz 9→144 axis scroll — mücevher zarafet imzası
+    - wearebrand-blur-36px-reveal       # SplitText blur-36 → 0 koleksiyon isim reveal
+    - wearebrand-lenis-gsap-bridge
+  header: H5                 # Marquee Ticker Top — "2026 YAKUT KOLEKSIYONU · ATÖLYE ANKARA · SERTIFIKALI"
+  nav: N7                    # Vertical rail — "01 · Koleksiyon / 02 · Atölye / 03 · Miras"
+  kpi: K5                    # Almanac editorial (el emeği yıl, parça sayısı, sertifika)
+  pipeline: null
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card — "atolye@ankara-kuyum.tr · WhatsApp"
+
+components:
+  core:
+    - FraunceOpszScrollHero            # HR11 + TY27 Fraunces opsz 9→144 scroll-linked başlık
+    - BrochureCoverThumbnailGrid       # HR11 variant — koleksiyon + thumbnail 4-6
+    - MarqueeTickerCollection          # H5 — koleksiyon/sertifika/atölye durum
+    - Blur36CollectionNameReveal       # MO6 + blur-36 chars stagger koleksiyon isim
+    - FullBleedNarrativeRails          # L4 — drop hikaye storytelling
+    - AlmanacStats                     # K5 (1987'den beri · 47 parça · SAN-TEZ sertifika)
+    - WritingModeRailCollection        # N7 "MIRAS · ATÖLYE · KOLEKSIYON"
+  optional:
+    - LenisGsapBridge                  # lerp 0.06 sakin
+    - R3FMeshTransmissionMaterial      # Tier 3+ — diamond configurator refraction (premium paketle)
+    - ViewTransitionsMorph             # ürün listing → detay
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # mücevher 5+ proje klişesi — MANDATORY YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY2 Playfair+Inter 5+ proje
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]              # mucevher.yaml card grid YASAK
+  forbidden_kpi: [K1]                 # bento glass mucevher.yaml YASAK
+  repeat_score_vs_existing:
+    "Fatih Bey Mücevher": 2           # PL10→PL22, TY3→TY27, HR2→HR11, K1→K5, T6→yok, MO4→MO1+MO2+MO6 ayrışma güçlü
+    "Dagintaslı": 0
+    "Modern Alyans": 0
+    "BG Foto": 0
+    v2-kinetic-data: 3                # H5+N7+MO1 overlap ama PL22+TY27+HR11 mücevher ayrıştırıcı
+  warning: "Fatih Bey/Dagintaşlı/Modern Alyans dark+gold (PL1) + Playfair italic (TY2) + HR2 split + K1 bento glass + T6 card grid — TAM YASAK COMBO, tek bir tanesi bile tekrar edilmez. Custom cursor + gold shimmer klişesi YASAK. Italic başlık Fraunces opsz 144 axis (Playfair DEĞİL) — TY27 zorunlu. Ürün kart square crop 1:1 (HR2 split YASAK). KOŞUL: Sadece fashion-editorial/drop/koleksiyon launch yönelen marka için kinetic uygun. Geleneksel miras/klasik mücevher → editorial-luxury DEFAULT."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, kuafor, fotograf]
+  sector_rationale: "mucevher.yaml kinetic_typography:yes + 3d_spline:yes. Fraunces opsz 9→144 axis scroll-linked zarafet imzası, sakin Lenis lerp 0.06 ile rafine. Conditional — sadece kreatif çağdaş mücevher markası için; klasik kuyumcu için editorial-luxury (PL22 + TY27 aynı paletle statik) önerilir (compatibility.yaml conditional_combinations)."
+
+preview_app_route: /preview/mucevher-kinetic-agency
+scaffold_command: "node scaffold.js mucevher-kinetic-agency --out ./out/mucevher-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+  - "Fatih Bey Mücevher Sitesi/research/"
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html        # TY27 Fraunces opsz 9-144 scroll uygulama
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/mucevher.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL22 tobacco 13.8:1 ok
+  lighthouse_target: 92
+  prefers_reduced_motion: "MANDATORY fallback — Fraunces opsz axis statik (144 weight snapshot), blur-36 reveal skip, marquee paused, Lenis devre dışı"
+  product_card: "square crop 1:1, hover alternate angle, HR2 split KESIN YASAK"
+  product_gallery: "L4 rails drop narrative + L8 masonry katalog sayfası"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  mobile_critical: "Sticky WhatsApp + Favorile + Sepete bottom bar (ürün detay)"
+  trust_badges: "iyzico SSL · KVKK · SAN-TEZ · Kuyumcukent"
+  fraxbit_hm_evidence: "fraxbit HM CSS-var-parallax (atom 7) + wearebrand blur-36 reveal (atom 2) + variable-font opsz scroll (atom 25). Pattern MIT-safe rewrite."

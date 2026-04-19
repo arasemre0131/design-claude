@@ -1,0 +1,99 @@
+---
+id: kuafor-editorial-luxury
+sector: kuafor
+style: editorial-luxury
+recipe: next-premium               # kuaför editorial = koleksiyon/lookbook mid tier
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                   # kuafor × editorial-luxury aktif (default minimal-swiss)
+---
+
+mood: [sakin, rafine, atelye-hissi, kalicilik, baski-hissi, premium-salon]
+
+# NOT: Kuaför editorial-luxury = "koleksiyon/lookbook" yönelimli salonlar için
+# (Toni&Guy tarzı kurumsal zincir, yüksek-fiyat segment). Kadıköy berber değil.
+
+atoms:
+  palette: PL25                    # Slate + Olive (cool atelier) — PL24 Salt+Peach warm alternatif
+  typography: TY28                 # Cormorant Garamond + Mulish (editorial kuaför)
+  hero: HR11                       # Brochure Cover (koleksiyon kapağı) — HR2 split YASAK
+  layout:
+    - L6                           # Center single col (editorial)
+    - L9                           # Card deck (ekip profilleri)
+  motion:
+    - MO4                          # Framer light
+    - MO6                          # SplitText slow stagger (koleksiyon başlık)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal  # editorial reveal
+    - wearebrand-mask-y-reveal     # başlık mask reveal
+    - wearebrand-lenis-gsap-bridge
+  header: H2                       # Masthead Centered — H8 YASAK
+  nav: N2                          # Horizontal Tabs Underline
+  kpi: K2                          # Band+rules (tecrübe, ekip sayısı, saat)
+  table: T3                        # Spec Sheet (hizmet fiyat listesi)
+  chat: C3                         # Email Threaded
+  form: F4                         # Inline Edit (online randevu)
+  modal: M1                        # Centered Dialog
+  footer: FT3                      # Warm editorial (salon lokasyonu + saatler)
+
+components:
+  core:
+    - HeroBrochure                 # HR11 koleksiyon kapağı
+    - MastheadCentered
+    - KoleksiyonGalleryEditorial   # saç tasarım koleksiyon (masonry editorial)
+    - EkipCardsEditorial           # stylist profilleri (italic isim + uzmanlık)
+    - HizmetFiyatListesi           # T3 spec sheet
+    - RandevuForm                  # F4 4-adım (tarih+saat+stylist+hizmet)
+    - BlurRevealText
+    - WarmEditorialFooter          # FT3 salon adres + saat
+  optional:
+    - SacTipiQuiz                  # style matcher quiz (mid+ tier)
+    - UyeSadakatPuani              # sadakat programı
+    - GiftCardGenerator            # hediye çeki PDF+QR
+
+anti_cliche:
+  forbidden_palettes: [PL1]        # Freeman/Odak/Solarium dark+gold YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_motion: [MO1-aggressive, "custom-cursor-difference", "magnetic-button-abarti"]
+  repeat_score_vs_existing: 1      # Freeman combo'suyla sadece MO4 eşleşir
+  warning: |
+    Freeman/Odak/Solarium combo (H8+HR2+PL1+TY1+L1+MO4) KOPYALANAMAZ.
+    Kuaför editorial-luxury = koleksiyon/lookbook — Kadıköy berber için MiNiMAL-SWISS tercih.
+    Concrete/industrial tekstür hijyen algısına UYMAZ.
+    Custom cursor + magnetic button abartılı — kaçın.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [kuafor, mucevher, klinik, restoran, spa, fotograf, gayrimenkul, otel]
+  alternative_default: minimal-swiss  # kuaför default mid bütçede minimal-swiss tercih
+
+preview_app_route: /preview/kuafor-editorial-luxury
+scaffold_command: "node scaffold.js kuafor-editorial-luxury --out ./kuafor-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - KADIKÖY SATIŞ/     # 10 soğuk satış salon portföyü (referans ama tier 0)
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Cormorant Garamond (editorial display)"
+    - "Mulish 300-700"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 92
+  primary_cta: "Randevu Al"
+  secondary_cta: "Ekibimizi Tanı"
+  hero_assets: "salon içi atölye fotoğraf (doğal ışık) VEYA koleksiyon lookbook (editorial magazine)"
+  booking_flow: "Tarih → saat → stylist → hizmet → onay (4 adım, progress bar)"
+  mobile_critical: "Sticky WhatsApp + tap-to-call + Google Maps"
+  schema: "HairSalon + Service + OpeningHoursSpecification JSON-LD"

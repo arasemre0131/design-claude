@@ -1,0 +1,98 @@
+---
+id: restoran-editorial-luxury
+sector: restoran
+style: editorial-luxury
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                  # restoran × editorial-luxury aktif (default editorial-print)
+---
+
+mood: [sakin, rafine, davet, yerel-uretim, mevsim, editorial-masa]
+
+# NOT: Restoran editorial-luxury = bistro/fine dining editorial (Noma/Olluco tarzı rafine).
+# Aile lokantası için editorial-print (masthead menü) default. Street food için brutalist koşullu.
+
+atoms:
+  palette: PL26                   # Olive + Tomato (toprak, sakin) — PL14 Salmon+Burgundy sıcak alternatif
+  typography: TY31                # Fraunces SC + Work Sans
+  hero: HR11                      # Brochure Cover (menü kapağı stili) — HR2 YASAK
+  layout:
+    - L6                          # Center single col (chef story)
+    - L5                          # Newspaper 3-col (menü kategorileri)
+  motion:
+    - MO4                         # Framer light
+    - MO10                        # Print-first (menü statik hiss)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal # editorial reveal
+    - wearebrand-mask-y-reveal    # dish name mask reveal (yavaş)
+  header: H2                      # Masthead Centered
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K5                         # Almanac editorial ("bugün taze", "bu akşam chef's choice")
+  table: T3                       # Spec Sheet (menü detay: malzeme, alerjen)
+  chat: C3                        # Email Threaded (rezervasyon danışma)
+  form: F4                        # Inline Edit (rezervasyon)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon editorial (tedarikçi künyesi, terroir)
+
+components:
+  core:
+    - HeroBrochure                # HR11 menü kapak
+    - MastheadCentered            # H2
+    - MenuEditorial3Col           # L5 newspaper 3-col (öğün/ara/ana/tatlı)
+    - DishDetailTypography        # dish name Fraunces SC reveal
+    - ChefBio                     # single col L6 (chef story)
+    - RezervasyonForm             # F4 (tarih+saat+kişi sayısı+ekstra)
+    - AlmanacKPI                  # K5 "bugün taze" (günlük değişen)
+    - ColophonFooter              # FT4 tedarikçi/üretici künyesi
+  optional:
+    - MevsimselMenuEditor         # admin markdown editor
+    - OnlineSiparis               # Getir/Yemeksepeti link
+    - SadakatLoyalty              # tekrar gelen müşteri
+    - OpenTableEmbed              # iframe rezervasyon (alternative)
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # dark menü + gold italic YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]          # menü card grid YASAK (editorial list L5 olmalı)
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 0     # restoran temiz sektör
+  warning: |
+    Generic dark menü + Playfair italic başlık + gold underline 'fine dining' klişesi YASAK.
+    Menü sayfası T6 card grid YASAK — editorial list (L5 3-col) tercih.
+    Yemek fotoğrafı üstünde gold italic başlık klişesi YASAK.
+    Ramen-ya/street food için aşırı şık kaçar — brutalist koşullu tercih.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [restoran, mucevher, klinik, kuafor, spa, fotograf, gayrimenkul, otel]
+  alternative_default: editorial-print  # aile lokantası + menü masthead için
+
+preview_app_route: /preview/restoran-editorial-luxury
+scaffold_command: "node scaffold.js restoran-editorial-luxury --out ./restoran-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md            # local SEO + Restaurant JSON-LD
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - research/design-claude/templates/04-restoran/index.html  # 4/5 ref Fraunces SC
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces SC (small-caps display)"
+    - "Work Sans 300-700"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 92
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  hero_assets: "yemek hazırlama close-up (chef eli, plate üstü 10-15s loop)"
+  menu_layout: "L5 3-col desktop (başlangıç/ana/tatlı), 1-col accordion mobile"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar"
+  schema: "Restaurant + MenuItem + OpeningHoursSpecification + Review JSON-LD"

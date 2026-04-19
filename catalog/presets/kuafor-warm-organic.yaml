@@ -1,0 +1,113 @@
+---
+id: kuafor-warm-organic
+sector: kuafor
+style: warm-organic
+recipe: next-premium           # Mid tier — minimal-swiss default'a alternatif (salon-butik)
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"               # kuafor × warm-organic — sıcak karşılama + doğal palette
+---
+
+# Stil mood — kuaför sıcak karşılama + Salt+Peach organik
+# Konsept: Freeman/Odak/Solarium dark+gold klişesinin tam karşıtı. Salon-butik (Toni&Guy değil, "mahalle atölye").
+mood: [sicak-karsilama, ritueel-donusum, kisisel-bakim, earthy, salt-peach, modern-atolye, unhurried]
+
+atoms:
+  palette: PL24                # Salt + Peach — kuaför warm primary, PL1 dark+gold klişesinin alternatifi
+                               # Alt: PL31 Clay + Mist (unisex sakin)
+  typography: TY37             # Cormorant Infant italic + Inter Tight — yumuşak salon tonu
+                               # Alt: TY29 Schibsted Grotesk (daha modern)
+  hero: HR3                    # Full-bleed salon içi video (sessiz loop 12-15s ≤5MB)
+                               # Alt: HR11 Brochure Cover (koleksiyon/look book)
+  layout:
+    - L6                       # Center single column (sakin meditative salon sayfası)
+    - L8                       # Masonry before/after + ekip galerisi
+  motion:
+    - MO2                      # Lenis smooth (lerp 0.07-0.09 salon sakin)
+    - MO3                      # CSS scroll-driven subtle
+    - MO10                     # Print-first fallback
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # ekip kart reveal (sakin)
+    - wearebrand-lenis-gsap-bridge       # Lenis + GSAP scrub sakin
+  header: H2                   # Masthead Centered — salon adı + "Kadıköy · Est. 2018"
+  nav: N3                      # Breadcrumb-only minimal (Hizmetler/Ekip/Randevu)
+  kpi: K5                      # Almanac — "8 yıl · 12 stilist · 4 hizmet · 3 salon"
+  form: F1                     # Single-col tall (online randevu: tarih → saat → kuaför → hizmet)
+  modal: M1                    # Centered Dialog (hizmet detay + fiyat)
+  footer: FT5                  # Contact Card — tek satır iletişim + adres + Instagram
+
+components:
+  core:
+    - HeroSalonVideo                     # HR3 — salon içi sessiz loop 12-15s ≤5MB
+    - CenterSingleColumn                 # L6 — max-width 780px meditative
+    - MastheadCentered                   # H2 — Cormorant Infant italic salon adı
+    - BreadcrumbOnlyNav                  # N3 — Hizmetler/Ekip/Randevu
+    - AlmanacEditorialKpi                # K5 — "8 yıl · 12 stilist · 4 hizmet"
+    - BookingFlowForm                    # F1 — 4 adım tarih → saat → kuaför → hizmet (progress bar)
+    - TeamMasonry                        # L8 — ekip kart (foto + isim + uzmanlık + Instagram)
+    - BeforeAfterGallery                 # L8 masonry before/after koleksiyon
+    - ContactCardFooter                  # FT5 — WhatsApp + tap-to-call + Maps
+    - BlurRevealSubtle                   # wearebrand 36px (0.8-1.2s)
+  optional:
+    - OnlineRandevuSupabase              # slot-based (react-day-picker + Supabase)
+    - SacTipiQuiz                        # style matcher (Tier 2+)
+    - SadakatPuani                       # üye sistem (Tier 2+)
+    - HediyeCeki                         # PDF + QR (Tier 2+)
+    - InstagramEmbed                     # son 6 post (lazy load)
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # Freeman/Odak/Solarium dark+gold + custom cursor klişesi YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # TY1 Inter-only özellikle kuaför klişesi
+  forbidden_heroes: [HR2, HR7]
+  forbidden_patterns:
+    - "custom cursor + magnetic button abartı"
+    - "Tom Ford kokusu sunumu"
+    - "concrete/industrial tekstür"
+    - "dark #0A0A0A + gold #C9A84C Inter italic başlık"
+  repeat_score_vs_existing: 1            # Freeman ile sadece N2 ortak yok (N3 kullanıyoruz), temiz
+  warning: |
+    Freeman/Odak/Solarium 3 kuaför projesi aynı PL1 (dark+gold) + TY1 Inter-only + custom cursor
+    kullandı — KESIN YASAK. Kadıköy berber Instagram'dan Armut'tan gelir, sakin/sıcak tonda olmalı.
+    Custom cursor + magnetic button abartılı kalır. Hijyen algısı için concrete/industrial tekstür
+    UYMAZ. Salt+Peach (PL24) warm feminen veya Clay+Mist (PL31) unisex sakin alternatif.
+
+compatibility:
+  forbidden_sectors: [insaat-endustriyel, fintech, gaming]
+  conditional_sectors: [eticaret-beauty, mucevher-butik, fotograf-moda]
+  recommended_for: [kuafor, berber, salon, spa, beauty-boutique]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓ (bu preset)
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/kuafor-warm-organic
+scaffold_command: "node scaffold.js kuafor-warm-organic --out ./kuafor-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - KADIKÖY SATIŞ/                                                                 # 10 soğuk satış salon portföyü
+  - research/design-claude/mockups/a-warm-dark/index.html                          # 5/5 warm ref
+  - research/design-claude/templates/03-kuafor/index.html                          # sektör ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Cormorant Infant italic 400/600 (display)"
+    - "Inter Tight 300-500 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #FAF7F2 × ink #2A2420 = 14.4:1 AAA ✓"
+  lighthouse_target: 93
+  hero_assets: "salon içi full-bleed video (sessiz loop 12-15s ≤5MB) VEYA before/after koleksiyon foto"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Ekibimizi Tanı"
+  booking_flow: "Tarih → saat → kuaför → hizmet → onay (4 adım, progress bar)"
+  motion_config: "Lenis lerp 0.07-0.09 salon sakin, CSS scroll-driven opacity subtle, prefers-reduced-motion respect"
+  prefers_reduced_motion: "Scroll-reveal off, immediate display + static salon foto fallback"
+  special_note: "Custom cursor + magnetic button YASAK. Gold/dark YASAK. Salt+Peach warm feminen, Clay+Mist unisex sakin."
+  schema: "HairSalon + BeautySalon + Service + OpeningHoursSpecification JSON-LD"
+  mobile_critical: "Sticky WhatsApp button + tap-to-call + Google Maps tap-to-open"

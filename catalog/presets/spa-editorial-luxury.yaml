@@ -1,0 +1,103 @@
+---
+id: spa-editorial-luxury
+sector: spa
+style: editorial-luxury
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                  # spa × editorial-luxury aktif (default warm-organic)
+---
+
+mood: [sakin, huzur, yavaslik, dogal, nefes, ritueel-bakim, sessizlik, editorial-terroir]
+
+# NOT: Spa editorial-luxury = "terroir editorial" (botanik + bitki + çay içerik-ağırlıklı)
+# Kampanya/paket satış için warm-organic default. Editorial-luxury dergi-editorial spa için.
+
+atoms:
+  palette: PL32                   # Pearl + Seafoam — PL1 YASAK
+  typography: TY37                # Cormorant Infant + Inter Tight (editorial spa)
+  hero: HR3                       # Slow-mo su/bitki video (tek hero) — HR2 YASAK
+  layout:
+    - L6                          # Center single col (meditatif akış)
+  motion:
+    - MO10                        # Print-first (no-motion statik)
+    - MO4                         # Framer ultra-light (tek tek)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal # yumuşak reveal
+    - wearebrand-lenis-gsap-bridge  # Lenis lerp 0.05-0.08 (ultra-slow)
+  header: H2                      # Masthead Centered (sessiz)
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K2                         # Band+rules (paket sayısı, terapist, yıl)
+  table: T3                       # Spec Sheet (paket detay + süre + fiyat)
+  chat: C3                        # Email Threaded
+  form: F4                        # Inline Edit (randevu + hediye çeki)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon editorial (terroir, ürün kaynakları)
+
+components:
+  core:
+    - HeroSlowMoVideo             # HR3 su/yaprak/buhar 8-12s loop
+    - MastheadCentered
+    - PaketListeEditorial         # L6 center single col (paket kartları dikey)
+    - TerapistCards               # ekip (Person schema)
+    - RandevuForm                 # F4
+    - GiftCardGenerator           # hediye çeki PDF+QR
+    - TerroirSection              # ürün kaynakları editorial (Colophon)
+    - ColophonFooter
+  optional:
+    - PaketEticaret               # paket satış (Supabase + iyzico)
+    - UyeSadakatSistem
+    - BlogEditorialTerroir        # botanik + bitki + yaşam içerik
+    - CSSCrollDrivenSubtle        # subtle opacity fade (spa-safe)
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # dark gradient + gold şelale foto klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_motion: [MO1-aggressive, MO11-scrolljack, "fast-scroll", "neon", "hard-snap", "bouncy-spring"]
+  repeat_score_vs_existing: 0     # spa temiz sektör
+  warning: |
+    Luxury spa dark gradient + gold şelale foto klişesi YASAK — her otel-spa aynı.
+    Framer Motion bouncy spring YASAK — Lenis ultra-slow lerp 0.05-0.08 zorunlu.
+    Gold vurgu YASAK. Stok foto 'yüzü peçeli kadın + taş' klişesi YASAK.
+    Organik clay/pearl/seafoam palette zorunlu.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [spa, mucevher, klinik, kuafor, restoran, fotograf, gayrimenkul, otel]
+  alternative_default: warm-organic
+
+preview_app_route: /preview/spa-editorial-luxury
+scaffold_command: "node scaffold.js spa-editorial-luxury --out ./spa-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Cormorant Infant (editorial italic display)"
+    - "Inter Tight 300-500"
+  wcag_contrast_target: "AA (4.5:1) — organik/natural ton"
+  lighthouse_target: 93
+  primary_cta: "Randevu Al"
+  secondary_cta: "Paketleri İncele"
+  hero_assets: "slow-mo su damlası/yaprak/buhar 8-12s loop, ≤4MB"
+  motion_config:
+    lenis_lerp: [0.05, 0.08]       # ultra-slow
+    css_scroll_driven: "subtle opacity 0.3→1, transform scale 0.98→1"
+    no_scrolljack: true
+  schema: "HealthAndBeautyBusiness + Service + OpeningHoursSpecification JSON-LD"
+  special_features:
+    - "Gift card PDF generator (QR kod + kullanım süresi)"
+    - "Randevu sistemi (Supabase + slot-based)"
+    - "Paket e-ticaret (Tier 3+)"

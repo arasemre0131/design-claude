@@ -1,0 +1,113 @@
+---
+id: insaat-brutalist
+sector: insaat
+style: brutalist
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+---
+
+# Stil mood — neobrutalist X inşaat hibrit
+# Konsept: industrial-workwear default'a alternatif bold/agresif sunum.
+# Genç inşaat firması / design-forward mimarlık + saha atölyesi için.
+mood: [raw, bold, geometric, sharp-shadow, playful-industrial, sticker-rotation]
+
+# Atom seçimi — brutalist compatible + insaat recommended + anti-clichè pass
+atoms:
+  palette: PL4                    # Concrete + Safety Orange — brutalist raw + insaat native
+                                  # Alt seçenek: PL6 neobrutal multi (daha genç marka için)
+  typography: TY11                # Archivo Black + Geist + Stardos Stencil — brutalist pair_ids + insaat recommended
+  hero: HR5                       # Sign Board rotated — brutalist imza + insaat industrial
+  layout: L11                     # Bento 2.0 asymmetric no-glass — brutalist preferred
+  motion:
+    - MO1                         # GSAP ScrollTrigger — brutalist acceptable + insaat recommended
+    - MO4                         # Framer Motion — brutalist preferred (React-native)
+  header: H1                      # Plate + Hazard Strip — insaat + brutalist kompatibel
+  nav: N4                         # Mega Menu Full-Width (projeler + hizmetler + ekip)
+  kpi: K3                         # Chip Row Colored Blocks — hazard chip, brutalist + insaat
+  pipeline: P10                   # Neo-brutal Sticker Blocks — brutalist imza + proje aşama sunumu
+  table: T3                       # Spec Sheet — insaat BOM + industrial precision
+  chart: CH6                      # Column Bar Elevation blueprint — insaat native
+  form: F2                        # Multi-col grid (keşif formu + proje brief)
+  modal: M3                       # Bottom Sheet (mobile proje detay)
+  footer: FT2                     # Sitemap 4-col (projeler / hizmet / sertifika / iletişim)
+  motion_ajans:
+    - fraxbit-clip-path-reveal    # Industrial reveal — brutalist sharp edge ile uyumlu
+    - ultra-svg-feturbulence-grain # %7 grain — concrete texture reinforce
+
+# Components (scaffolder için)
+components:
+  core:
+    - SignBoardHero               # HR5 impl — -1.5deg rotate, 8px hard shadow, hazard frame
+    - HazardStripe                # Chrome — 14px 45deg repeating-linear-gradient
+    - PlateHeader                 # H1 impl — concrete bg + hazard top/bottom
+    - MegaNav                     # N4 impl — hizmetler/projeler/ekip 3-col
+    - ColoredChipRow              # K3 impl — hazard+ink+cream 3-block split
+    - StickerPipelineBlocks       # P10 impl — rotated sticker + sharp drop shadow
+    - SpecSheetTable              # T3 impl — BOM 5-col (id/parça/adet/birim/not)
+    - BlueprintColumnChart        # CH6 impl — dashed grid + scale bar + GSAP grow
+    - BentoAsymGrid               # L11 impl — 6-col span asymmetric, solid fills
+    - BottomSheet                 # M3 impl — mobile proje detay drag handle
+    - SitemapFooter               # FT2 impl — 4-col grouped
+  optional:
+    - HorizontalTimeline          # P5 alternatif — scroll-pinned gantt (P10 yerine)
+    - BlueprintTitleBlock         # HR13 alternatif hero (Tier 3 kurumsal)
+    - InteractiveMap              # HR9 alternatif (Ankara/İstanbul proje lokasyonları)
+    - SlabDarkFooter              # FT8 alternatif (daha ağır endüstriyel)
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                    # dark+gold evrensel yasak (insaat'ta zaten yoktu)
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # insaat sector anti_cliche
+  forbidden_heroes: [HR2, HR7, HR8]            # split hero + dashboard hero + chat hero (insaat değil)
+  forbidden_layouts: []
+  forbidden_kpi: [K1]                          # bento glass yasak (insaat + globally_forbidden)
+  repeat_score_vs_existing: 2                  # mockup-C (insaat) ile kolon eşleşme: TY11 + PL4 (2)
+                                               # v2-blueprint ile: MO1 tek kolon
+                                               # v2-neobrutalist ile: K3 tek kolon (not P10)
+  warning: |
+    mockup-C (industrial) ile TY11 + PL4 ortak — 2 kolon. Ama hero HR5 + pipeline P10 + layout L11 farklı,
+    kombo özgün kalıyor. v2-neobrutalist ile sadece K3 ortak, geri kalan tamamen insaat dilinde.
+
+# Compatibility notes
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, gayrimenkul, otel]  # brutalist compat. yaml
+  conditional_sectors: [restoran, fotograf]                               # ⚠ koşullu
+  recommended_for: [insaat, eticaret]
+  notes:
+    - "industrial-workwear default'dan farklı — bu preset genç/design-forward inşaat markası için"
+    - "Kurumsal 20+ yıllık firma için industrial-workwear tercih edilmeli (FT8 slab footer + HR13 blueprint)"
+    - "Şantiye tanıtım sitesi OK, CRM değil (CRM için data-dense-dashboard tercih)"
+
+# Preview (scaffolder/preview-app için)
+preview_app_route: /preview/insaat-brutalist
+scaffold_command: "node scaffold.js insaat-brutalist --out ./insaat-brutalist-test/"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/header_navigation_analiz.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+  - templates/SECTOR-RESEARCH.md:9-26          # insaat sektör
+  - v2-neobrutalist/index.html                 # brutalist imza combo referans score 4/5
+  - mockups/c-concrete-industrial/index.html   # concrete palette referans score 3/5
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Black (display)"
+    - "Archivo Narrow (secondary display)"
+    - "Geist Sans (body 300-700)"
+    - "Stardos Stencil (accent 700)"
+    - "Geist Mono (code/specs)"
+  wcag_contrast_target: "AA (4.5:1) — bg #D4CFC4 × accent #E85D04 = 4.6:1 ✓"
+  lighthouse_target: 90
+  hero_assets: "drone video (16:9, ≤6MB) VEYA sign board static (hazard frame + Archivo Black wordmark)"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Projelerimizi İncele"
+  shadow_signature: "7px hard shadow (solid offset, blur YOK)"
+  rotation_signature: "Pills +/- 1.5deg, sticker -8deg (controlled chaos)"
+  safety_badges: "TSE / ISO 9001 / OHSAS 18001 — footer veya about"

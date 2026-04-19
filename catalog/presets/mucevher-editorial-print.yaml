@@ -1,0 +1,137 @@
+---
+id: mucevher-editorial-print
+sector: mucevher
+style: editorial-print
+recipe: next-premium                    # Tier 2-3 mid (mücevher e-ticaret + editorial hibrit)
+tier: mid
+budget_range_try: [15000, 30000]
+delivery_weeks: [2, 3.5]
+matrix_cell: "✓"                        # mücevher × editorial-print AKTIF (default değil, alt opsyon)
+---
+
+mood: [atolye-gunlugu, zanaat-baski, el-emegi-ritmi, editorial-zarafet, koleksiyon-katalog, press-release-feel]
+
+atoms:
+  palette: PL3                # Off-White Editorial — newsprint #F5F1E8 + ink #131313 + red #C43D2B
+  typography: TY10            # Instrument Serif italic display + IBM Plex Serif body + IBM Plex Mono
+  hero: HR6                   # Newspaper Hed + Deck + Byline (koleksiyon başlık + şehir + tarih)
+  layout:
+    - L5                      # 3-col CSS columns (koleksiyon hikaye + parça anlatımı)
+    - L6                      # Center single col (parça detay + sertifika)
+  motion:
+    - MO10                    # Print-first static (gazete diline sadık)
+    - MO4                     # Framer light (hover alternate angle + cart morph)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal      # editorial blur→clarity reveal (ürün başlığı)
+    - ultra-variable-font-opsz-scroll  # Instrument Serif ital axis (italic reveal, sakin)
+  header: H2                  # Masthead Centered (marka adı + kuruluş yılı + "ANKARA")
+  nav: N2                     # Horizontal Tabs Underline (Koleksiyon / Atölye / Dergi / Sepet)
+  kpi: K5                     # Almanac Editorial ("28 yıl · 12 usta · 840 parça · 3 ayar")
+  form: F1                    # Single-col (newsletter + özel sipariş inquiry)
+  footer: FT4                 # Colophon editorial (atölye künyesi + sertifikalar + KVKK)
+
+components:
+  core:
+    - NewspaperHed                     # HR6 — "HAFTALIK KOLEKSİYON · Altın Dalı" + byline
+    - MastheadCentered                 # H2 — marka masthead (gazete başlığı tarz)
+    - ThreeColCssColumns               # L5 — koleksiyon hikayesi + parça anlatımı (editorial)
+    - DropCapEditorial                 # atölye yazısı / usta hikayesi (first-letter float)
+    - PullQuote                        # usta alıntısı double-border (editorial press)
+    - UrunEditorialList                # ürün listesi: ad + italic açıklama + mono fiyat (T6 YASAK)
+    - MasonrySmallGallery              # 2-col masonry fotoğraf (minimal — type öncelikli)
+    - AlmanacKpi                       # K5 almanac (yıl · usta · parça · sertifika)
+    - BylineBar                        # mono metadata (ayar · gram · taş · sertifika no)
+    - ColophonFooter                   # FT4 (Kuyumcukent + SAN-TEZ + KVKK + iyzico)
+    - SepetFormEditorial               # F1 + iyzico (editorial fiş tarz)
+    - NewsletterSignup                 # "aylık dergi" mail listesi (press release tonu)
+  optional:
+    - DergiBlogMDX                     # atölye dergisi (MDX + drop cap + pull quote)
+    - PrintKatalogExport               # koleksiyon PDF export (press kit)
+    - SertifikaDogrulama               # sertifika numarası QR kod + doğrulama
+    - OzelSiparis                      # inquiry form (butik parça — Fraunces italic form label)
+    - WhatsappConsierje                # WhatsApp konsiyerj iletişim
+
+anti_cliche:
+  forbidden_palettes: [PL1]                                 # dark #0A0A0A + gold #C9A84C — 6 proje
+  forbidden_typography: [TY1, TY2, TY4, TY8]                # Playfair+Inter YASAK (5+ mücevher)
+  forbidden_heroes: [HR2, HR7]                              # split-hero + dashboard
+  forbidden_tables: [T6]                                    # card grid
+  forbidden_kpi: [K1]                                       # bento glass
+  forbidden_headers: [H8]                                   # mix-blend-mode difference
+  forbidden_layouts: [L1]                                   # tam-frame grid (Fatih Bey v1)
+  forbidden_motion: [MO1-aggressive, MO11-scrolljack, custom-cursor-gold-shimmer]
+  repeat_score_vs_existing: 0                               # Fatih Bey (H8·HR2·K1·T6·L1·PL10) ZERO
+  fatih_bey_override_warning: |
+    KRITIK: Fatih Bey Mücevher v1 (aktif, 8 Mayıs 2026 teslim) combo'su:
+      H8 · N2 · HR2 · K1 · T6 · L1 · TY3 · PL10 · MO4
+    Bu preset (mucevher-editorial-print) combo'su:
+      H2 · N2 · HR6 · K5 · — · L5+L6 · TY10 · PL3 · MO10+MO4
+    Eşleşme kontrolü:
+      header H2  != H8  ✓
+      hero HR6   != HR2 ✓
+      kpi K5     != K1  ✓
+      layout L5  != L1  ✓
+      typo TY10  != TY3 ✓
+      palette PL3 != PL10 ✓
+      motion MO4 == MO4 (1 kolon, framer light universal — KABUL)
+      nav N2 == N2 (1 kolon, editorial default — KABUL)
+    Toplam eşleşme: 2/15 kolon = PASS (skor 0-3)
+  warning: |
+    Mücevher-editorial-print editorial-luxury'nin GAZETE kardeşidir: Fraunces yerine Instrument
+    Serif, Tobacco+Pearl yerine newsprint+red, brochure cover yerine masthead. PL1 (dark+gold)
+    KESİN YASAK. Fatih Bey v1 combo'su (H8+HR2+K1+T6+L1) KOPYALANAMAZ. Italic başlık kullanılacaksa
+    Instrument Serif italic ya da Fraunces opsz 144 axis — Playfair DEĞİL. Editorial imza:
+    3px masthead rule + byline mono metadata + drop cap + pull quote + column-count:3. Kirmizi
+    #C43D2B editorial accent — gold/orange/coral ile KARIŞTIRMA. Ürün kart: editorial list
+    (ad + italic açıklama + mono fiyat) — card grid T6 YASAK.
+
+compatibility:
+  forbidden_sectors: [insaat, gaming, fintech-tech]
+  conditional_sectors: [spa, klinik, kuafor, gayrimenkul, eticaret, otel, insaat]
+  recommended_for: [mucevher, restoran, fotograf]           # koleksiyon/editorial portföy ideal
+  incompatible_sectors: [insaat-endustriyel, spor-arena, gaming]
+  matrix_row_peers:
+    default: [restoran, fotograf]
+    active: [mucevher]
+    conditional: [insaat, kuafor, klinik, eticaret, spa, gayrimenkul, otel]
+
+preview_app_route: /preview/mucevher-editorial-print
+scaffold_command: "node scaffold.js mucevher-editorial-print --out ./mucevher-editorial-print/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/mdx-blog-documentation-2026.md
+  - Mobilyacı/3d-demo/research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/print-pdf-export-screenshot-2026.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md    # Product JSON-LD
+  - Fatih Bey Mücevher Sitesi/research/    # 49 dosya — müşteri profili + rakip + KVKK bağlam
+  - research/design-claude/mockups/b-off-white-editorial/index.html          # 5/5 ref iconic
+  - research/design-claude/templates/02-mucevher/index.html
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: "3-col CSS columns mobile'da 1-col fallback · masonry 2→1 col responsive"
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Instrument Serif italic (display — koleksiyon başlık)"
+    - "IBM Plex Serif 400-500 + italic (body + ürün açıklama)"
+    - "IBM Plex Mono 400-500 (ayar · gram · fiyat metadata)"
+  wcag_contrast_target: "AA (4.5:1) baseline — ink #131313 × paper #F5F1E8 = 17.2:1 AAA native"
+  lighthouse_target: 93                     # editorial + e-ticaret + iyzico — dengeli
+  hyphens: "auto (Türkçe justified editorial text için kelime kopması kontrollü)"
+  print_stylesheet: "YES — @media print + koleksiyon PDF katalog export (press kit zorunlu)"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölye Dergi"
+  product_gallery: "masonry 2-col small (type-öncelikli · L8 dev kıyasla küçük) · 1-col mobile"
+  product_card: "editorial list: ad (Instrument italic) + italic açıklama + mono fiyat + square 1:1 crop"
+  schema: "Product + Offer + Brand + CreativeWork + Article (atölye dergisi) JSON-LD"
+  trust_badges: "iyzico SSL · KVKK · Kuyumcukent · SAN-TEZ · sertifika QR doğrulama"
+  mobile_critical: "Sticky bottom bar: WhatsApp · Favorile · Sepete · Dergi"
+  special_features:
+    - "Atölye dergisi MDX (drop cap + pull quote + byline — press release tonu)"
+    - "Koleksiyon PDF katalog export (print stylesheet + press kit)"
+    - "Sertifika QR doğrulama (sertifika no + atölye imza)"
+    - "Editorial ürün listesi (card grid T6 DEĞİL — list ad+italic+mono)"
+    - "Newsletter 'aylık dergi' signup (press release abonelik)"
+    - "Özel sipariş inquiry form (Fraunces italic form label — editorial ton)"

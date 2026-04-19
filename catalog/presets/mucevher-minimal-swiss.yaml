@@ -1,0 +1,94 @@
+---
+id: mucevher-minimal-swiss
+sector: mucevher
+style: minimal-swiss
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                    # mucevher × minimal-swiss AKTIF (default editorial-luxury)
+---
+
+mood: [grid-first, whitespace, rafine, sessiz-lüks, disiplinli, readable, ritueel]
+
+atoms:
+  palette: PL33                     # Pure Off-Black — Swiss native, PL1 dark+gold YASAK
+  typography: TY18                  # Soehne-Breit + Soehne + Soehne-Mono — Swiss stil native, TY2 Playfair+Inter YASAK
+  hero: HR11                        # Brochure Cover — koleksiyon kapak grid, HR2 split YASAK (5+ mücevher proje)
+  layout:
+    - L2                            # Asymmetric grid (stil preferred)
+    - L5                            # 3-col editorial (ürün listesi)
+  motion:
+    - MO3                           # CSS scroll-driven native
+    - MO10                          # Print-first (reduced-motion + premium dinginlik)
+  motion_ajans: []
+  header: H2                        # Masthead Centered — Swiss editorial, H8 mix-blend YASAK (6+ proje)
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Horizontal Rules, K1 bento glass YASAK
+  table: T3                         # Spec Sheet (ayar, karat, sertifika), T6 card grid YASAK
+  form: F1                          # Single-col Tall (konsiyerj iletişim)
+  modal: M1                         # Centered Dialog
+  footer: FT4                       # Colophon editorial (atölye künyesi)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — koleksiyon kapak
+    - MastheadCentered              # H2
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — "1987'den beri · 4 atölye · 12 usta"
+    - SpecSheet                     # T3 — ayar/karat/sertifika/taş kaynağı
+    - SingleColConciergeForm        # F1
+    - ColophonFooter                # FT4
+    - ProductListEditorial          # L5 3-col editorial ürün listesi (T6 YASAK)
+  optional:
+    - GaussianSplatViewer           # Tier 3 premium (gerçek ürün fotogrametri)
+    - WhatsAppChat
+    - InstagramFeedEmbed
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # dark+gold 5+ proje
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]            # card grid 4+ mücevher
+  forbidden_kpi: [K1]               # bento glass 5+ proje
+  forbidden_headers: [H8]           # mix-blend-mode 6+ proje
+  repeat_score_vs_existing: 1       # Fatih Bey (H8·N2·HR2·K1·T6·L1·TY3·PL10·MO4) ile nav N2 = 1 kolon (N2 universal)
+  warning: |
+    Fatih Bey Mücevher v1 (aktif, 8 Mayıs 2026 teslim) combo'su:
+      H8·N2·HR2·K1·T6·L1·TY3·PL10·MO4
+    Bu preset (mucevher-minimal-swiss) combo'su:
+      H2·N2·HR11·K2·T3·L2+L5·TY18·PL33·MO3+MO10
+    Eşleşme: sadece nav N2 (universal Swiss tabs). Toplam 1/15 = PASS.
+    Playfair italic + gold gradient (TY2+PL1) YASAK — IBM Plex alternatifine Soehne'yi tercih etti
+    (Swiss stil native). Custom cursor + gold shimmer YASAK. Ürün kart: square 1:1, hover alternate angle,
+    HR2 split kesinlikle YASAK.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [mucevher-editorial, kurumsal-atölye]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/mucevher-minimal-swiss
+scaffold_command: "node scaffold.js mucevher-minimal-swiss --out ./mucevher-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Fatih Bey Mücevher Sitesi/research/
+  - research/design-claude/templates/08-fotograf/index.html    # Swiss ref score 5/5
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AAA (7:1) — premium Swiss discipline, ink #0A0A0A × bg #F7F7F5 = 18:1 ✓"
+  lighthouse_target: 95
+  bundle_size_target: "< 150KB first load"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  product_card: "square 1:1 crop, hover alternate angle, HR2 split YASAK"
+  trust_badges: "iyzico SSL + KVKK + Kuyumcukent + SAN-TEZ sertifika"
+  schema: "Product + Offer + Brand + AggregateRating + BreadcrumbList JSON-LD"

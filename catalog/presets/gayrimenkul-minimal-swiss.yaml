@@ -1,0 +1,94 @@
+---
+id: gayrimenkul-minimal-swiss
+sector: gayrimenkul
+style: minimal-swiss
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                    # gayrimenkul × minimal-swiss AKTIF (default warm-organic)
+---
+
+mood: [grid-first, whitespace, güven-netlik, disciplined-katalog, readable-listing, Swiss-profesyonel]
+
+atoms:
+  palette: PL33                     # Pure Off-Black — Swiss, PL1 dark+gold YASAK (emlak güven kırılır)
+  typography: TY40                  # Inter Tight + JetBrains Mono — ilan detay tabular-nums
+  hero: HR11                        # Brochure Cover — katalog kapak (HR9 map warm-organic'de)
+  layout:
+    - L1                            # 12-col Swiss grid
+    - L5                            # 3-col editorial (ilan listesi)
+  motion:
+    - MO3                           # CSS scroll-driven
+    - MO7                           # View Transitions (ilan → detay morph)
+  motion_ajans: []
+  header: H3                        # Sidebar Rail + Breadcrumb (kategori filter nav)
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules ("184 ilan · 3 ofis · 12 agent")
+  table: T2                         # Linear Dense (metrekare/fiyat/oda spec sheet)
+  form: F1                          # Single-col (iletişim + kredi hesaplama)
+  modal: M1                         # Centered Dialog (harita preview)
+  footer: FT4                       # Colophon (agent künyesi + lisans)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — katalog kapak
+    - SidebarRailBreadcrumb         # H3 — kategori + filter nav
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — portföy stat
+    - ListingListEditorial          # L5 3-col editorial (premium villa + 2+1 farklı cardlar)
+    - SpecSheetLinear               # T2 — m² / oda / cephe / yıl / fiyat linear
+    - SingleColContactForm          # F1 — iletişim + kredi hesaplama
+    - ColophonFooter                # FT4 — agent + lisans numarası
+    - ListingDetailView             # MO7 ilan → detay morph
+  optional:
+    - MapboxCustomStyle             # custom tone harita (Google Maps embed minimum)
+    - WhatsAppChat
+    - FavoriteSystem                # wishlist
+    - CompareListings               # karşılaştırma
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # emlak luxury dark+gold YASAK (sector warning)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_patterns: [stok-foto-hero, generic-google-maps-embed, her-ev-ayni-template]
+  repeat_score_vs_existing: 0       # gayrimenkul projesi yok
+  warning: |
+    Stok foto hero YASAK (Unsplash 'modern villa' güveni düşürür — bu ev değil). Her ilan kartı aynı
+    template DEĞİL — premium villa + 2+1 daire farklı card layout. 'Yatırım güvencesi + altın anahtar'
+    klişe metni YASAK. Google Maps embed minimum — Mapbox/MapLibre custom tone. PL1 dark+gold'a kaçma
+    riski var (bazı lüks emlak sitesi bu hataya düşer) — Swiss PL33 off-black disiplin.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [gayrimenkul-kurumsal, emlak-butik, ofis-zinciri, mimarlık-katalog]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/gayrimenkul-minimal-swiss
+scaffold_command: "node scaffold.js gayrimenkul-minimal-swiss --out ./gayrimenkul-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1) + tabular-nums ilan detay"
+  lighthouse_target: 95
+  bundle_size_target: "< 200KB first load (Mapbox GL dahil)"
+  primary_cta: "İlanı Gör"
+  secondary_cta: "Agent ile İletişime Geç"
+  listing_card: "foto + fiyat + m² + oda + konum, hover floor plan preview"
+  listing_gallery: "L5 3-col editorial desktop, 2-col tablet, 1-col mobile"
+  map_integration: "Mapbox GL JS custom Swiss tone (grayscale), marker cluster 50+ ilan"
+  schema: "RealEstateListing + PostalAddress + GeoCoordinates + Offer JSON-LD"
+  mobile_critical: "Sticky 'İletişim' + 'Harita' toggle bottom bar"

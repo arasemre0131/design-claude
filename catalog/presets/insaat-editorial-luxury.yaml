@@ -1,0 +1,101 @@
+---
+id: insaat-editorial-luxury
+sector: insaat
+style: editorial-luxury
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "⚠"                  # KOŞULLU — CRM/admin paneli için OK; şantiye tanıtımı için industrial-workwear tercih
+---
+
+mood: [sakin, rafine, editorial, seffaflik, guven, baski-hissi, admin-pozlama]
+
+# KOŞUL: Bu preset inşaat CRM / admin paneli / müşteri-portal için kullanılır.
+# Şantiye tanıtım sitesi için industrial-workwear (PL4 concrete + TY11 Archivo Black) tercih.
+# Yıldız İnşaat tarzı B2B CRM / saha yönetimi sistemi için editorial-luxury admin UI uygun.
+
+atoms:
+  palette: PL28                   # Cream + Forest (admin editorial — concrete YASAK admin için)
+  typography: TY27                # Fraunces + IBM Plex Sans (editorial admin)
+  hero: HR11                      # Brochure Cover (proje katalog kapağı) — HR2 YASAK
+  layout:
+    - L6                          # Center single col (proje story)
+    - L5                          # Newspaper 3-col (proje kategorileri)
+  motion:
+    - MO4                         # Framer light (admin için sakin)
+    - MO10                        # Print-first (reduced-motion fallback)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal
+    - wearebrand-lenis-gsap-bridge
+  header: H2                      # Masthead Centered (admin header sade)
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K5                         # Almanac editorial ("18 yıl, 140 proje, 12 ilçe")
+  table: T3                       # Spec Sheet (proje spec: m², metraj, teslim tarihi)
+  chat: C3                        # Email Threaded (müşteri iletişim)
+  form: F4                        # Inline Edit (iş emri, keşif randevusu)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon editorial (ofis + sertifika)
+
+components:
+  core:
+    - HeroBrochure                # HR11 proje katalog
+    - MastheadCentered
+    - ProjeGalleryEditorial       # L5 newspaper 3-col (kategori + proje)
+    - ProjeSpecSheet              # T3 (m² + metraj + teslim)
+    - AlmanacKPI                  # K5 yıl/proje/ilçe stats
+    - MusteriIletisimForm         # F4
+    - SertifikaBadges             # TSE/ISO 9001/OHSAS 18001
+    - ColophonFooter              # FT4 ofis künyesi + lisans
+  optional:
+    - MusteriPortali              # saha foto + iş emri + progress (RLS)
+    - IsEmriSistem                # Tier 4 enterprise
+    - InteractiveMap              # Mapbox proje lokasyonları
+    - 3DYapiGosterimi             # R3F (Tier 3+ premium)
+    - DroneVideoSection           # proje drone videolar
+
+anti_cliche:
+  forbidden_palettes: []          # inşaat'ta PL1 klişesi zaten yok
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]             # bento glass YASAK admin için
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 0     # v2-blueprint (H9+HR13+TY5+PL5) ile 0 eşleşme
+  warning: |
+    KOŞULLU (⚠): Bu preset CRM/admin/müşteri-portal için. Şantiye tanıtım için industrial-workwear tercih.
+    Stok fotoğraf hero YASAK (Unsplash safety-vest değil — gerçek proje fotoğrafı).
+    'Mavi dalga hero + 20 yıldır' klişe metin YASAK.
+    Dribbble turuncu/siyah SaaS dashboard klişesi YASAK.
+    K1 bento glass YASAK — editorial ciddi ton gerekli.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]  # self (bu preset koşullu)
+  recommended_for: [mucevher, klinik, kuafor, restoran, spa, fotograf, gayrimenkul, otel]
+  alternative_default: industrial-workwear   # şantiye tanıtım default
+  use_case: "B2B CRM / müşteri portal / proje katalog editorial"
+
+preview_app_route: /preview/insaat-editorial-luxury
+scaffold_command: "node scaffold.js insaat-editorial-luxury --out ./insaat-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - research/design-claude/insaat-crm/       # Yıldız İnşaat mevcut proje
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144"
+    - "IBM Plex Sans 300-600"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 92
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Projelerimizi İncele"
+  hero_assets: "gerçek proje fotoğrafı (drone veya saha) — stok foto YASAK"
+  safety_badges: "TSE, ISO 9001, OHSAS 18001 — footer + about page"
+  schema: "Organization + Project + LocalBusiness JSON-LD"

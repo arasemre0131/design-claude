@@ -1,0 +1,95 @@
+---
+id: fotograf-kinetic-agency
+sector: fotograf
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+status: active  # MATRIX ✓ — moda/kreatif fotoğrafçı + kinetic portfolio
+---
+
+mood: [kinetic, visual-first, italic-vurgu, mono-bw, image-kahraman, quiet-type]
+
+atoms:
+  palette: PL33              # Pure Off-Black (#FAFAFA + off-black + orange accent) — fotoğraf minimal
+  typography: TY14           # Monument Extended + Inter Tight + JetBrains Mono (sessiz ama iz bırakan)
+  hero: HR15                 # Porthole Dive Scroll-Zoom — tek featured foto 1→6.5 scale zoom
+  layout: L4                 # Full-bleed rails — koleksiyon narrative
+  motion:
+    - MO1                    # GSAP ScrollTrigger pin+scrub (porthole dive kritik)
+    - MO2                    # Lenis smooth (lerp 0.1)
+    - MO6                    # SplitText + stagger
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Monument wght scroll-linked minimal
+    - wearebrand-lenis-gsap-bridge
+    - ultra-blur-char-reveal            # scroll-scrubbed opacity char reveal (caption animate)
+    - fraxbit-css-var-parallax          # image plate parallax
+  header: H5                 # Marquee Ticker Top — "ISTANBUL · PARIS · 2026 · BOOKING OPEN"
+  nav: N7                    # Vertical writing-mode rail — "01 · Portrait / 02 · Editorial / 03 · Wedding"
+  kpi: K2                    # Band+rules opsiyonel (yıl, yayın, brief)
+  pipeline: null
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card tek satır — "bookings@studio · +90 ... · @ig"
+
+components:
+  core:
+    - PortholeDiveHero                 # HR15 — featured foto pin+scrub 1→6.5 scale, title yanlara kayar
+    - MarqueeTickerCities              # H5 — gezi/lokasyon/rezervasyon durum
+    - MonumentScrollWghtAxis           # TY14 wght axis scroll (sakin ama iz bırakan)
+    - BlurCharCaptionReveal            # MO6 + blur char-reveal caption metinleri
+    - FullBleedPhotoRails              # L4 — koleksiyon narrative 1920×1080 full-bleed
+    - WritingModeRailPortfolio         # N7 — sağ kenar "01 · 02 · 03" bölüm
+    - ImageParallaxCSSVar              # motion-ajans — hover image plate parallax
+  optional:
+    - ViewTransitionsImageMorph        # MO7 image → detail sayfa morph (fotograf.yaml kritik)
+    - SplitTextDekReveal               # MO6 caption/deck metni stagger
+    - LenisGsapBridge
+    - ScatterPreloader                 # fraxbit — scatter 14 thumbnail intro (Tier 3 kampanya)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # BG Foto klişesi (fotograf.yaml)
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY2 Playfair+Inter BG Foto yasak
+  forbidden_heroes: [HR2]
+  forbidden_layouts: []
+  repeat_score_vs_existing:
+    "BG Foto": 0                      # TY+PL+HR+K tümü değişti
+    v2-kinetic-data: 4                # H5+MO1+MO2+MO6 overlap ama HR15 portholeLoop farklı + PL33 minimal
+  warning: "BG Foto combo'su (H8+HR2+K1+TY2+PL1) TAM YASAK — her alan değişti. Italic gradient başlık YASAK (fotograf.yaml) — tipografi sessiz: Monument Ext. opsz axis scroll-linked OK ama italic gradient renk YOK. 'Resim kahraman, font kürsüsü boş' prensibi — HR15 portholeLoop featured foto'ya odak. Marquee ticker şehir/booking durumu (kampanya değil, kalite signal). View Transitions image→detail morph ZORUNLU (fotograf.yaml MO7 kritik)."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [fotograf, insaat, eticaret, kuafor]
+  sector_rationale: "fotograf.yaml kinetic_typography:partial — başlık italic reveal OK, gövdede ASLA. Moda/editorial/kreatif fotoğrafçı için kinetic-agency uygun. Düğün/belgesel fotoğrafçı için editorial-print (PL33 Pure Off-Black default) veya minimal-swiss tercih."
+
+preview_app_route: /preview/fotograf-kinetic-agency
+scaffold_command: "node scaffold.js fotograf-kinetic-agency --out ./out/fotograf-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md  # client galeri
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/fotograf.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL33 16.2:1 ok
+  lighthouse_target: 92                # görsel ağır, porthole pin-scrub dikkatli
+  prefers_reduced_motion: "MANDATORY fallback — porthole scale 1→6.5 tek frame snapshot, opsz scroll kapalı, blur char-reveal skip, marquee paused, Lenis devre dışı. Image rails statik grid'e düşer."
+  image_optimization: "Cloudinary CDN + next/image AVIF/WebP + LQIP blur placeholder + lazy-load"
+  gallery_layout: "L4 full-bleed rails koleksiyon + L8 masonry 3-col alt sayfa"
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  performance_critical: "LCP < 2.5s (featured image), CLS < 0.05 (masonry preset), porthole hero JS lazy-init"
+  schema: "ImageGallery + Photograph + Person (photographer) JSON-LD"
+  view_transitions: "Image → detail sayfa morph ZORUNLU (MO7 atom, fotograf.yaml kritik)"
+  fraxbit_hm_evidence: "wearebrand porthole dive scale pattern (ULTRAPLAN atom 24) + blur char-reveal (atom 32) + CSS-var-parallax (atom 7) — fraxbit HM MIT-safe rewrite."

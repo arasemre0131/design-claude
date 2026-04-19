@@ -1,0 +1,100 @@
+---
+id: otel-kinetic-agency
+sector: otel
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [22000, 42000]
+delivery_weeks: [3, 4]
+status: conditional  # MATRIX ⚠ — butik design hotel / urban-luxury
+conditional_gate: "Sadece butik design hotel / urban-luxury / cosmopolitan retreat için. Resort / aile oteli / antalya-butik sahil için warm-organic DEFAULT önerilir."
+---
+
+mood: [kinetic, design-hotel, cool-marble, italic-vurgu, variable-font-axis, cosmopolitan-retreat]
+
+atoms:
+  palette: PL38              # Cool Marble (marble bg + deep ocean + warm gold + moss) — urban design hotel
+  typography: TY14           # Monument Extended + Inter Tight + JetBrains Mono
+  hero: HR3                  # Video bg (drone havuz/manzara) — otel.yaml default
+  layout: L4                 # Full-bleed rails — oda/mekan story narrative
+  motion:
+    - MO1                    # GSAP ScrollTrigger pin+scrub
+    - MO2                    # Lenis smooth lerp 0.08 (otel sakin kinetic)
+    - MO6                    # SplitText oda sayısı/feature reveal
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Monument wght scroll-linked minimal
+    - wearebrand-blur-36px-reveal       # oda ismi / feature blur reveal
+    - wearebrand-lenis-gsap-bridge
+    - fraxbit-css-var-parallax          # mekan foto plate parallax
+  header: H5                 # Marquee Ticker Top — "90 ODA · 2 HAVUZ · SPA · URBAN DESIGN · 2026"
+  nav: N7                    # Vertical rail — "01 · Odalar / 02 · Mekan / 03 · Rezervasyon"
+  kpi: K5                    # Almanac editorial (oda/suite/restoran/spa envanteri)
+  pipeline: null
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card — "concierge@hotel.com · +90 ..."
+
+components:
+  core:
+    - VideoBgDroneHero                 # HR3 — drone video havuz/manzara 15-20s loop
+    - MarqueeTickerInventory           # H5 — "90 oda · 2 havuz · spa · 18 suite"
+    - MonumentWghtScrollTitle          # TY14 opsz axis scroll room-name reveal
+    - RoomFeatureBlurReveal            # MO6 + blur-36 oda feature/amenity stagger
+    - AlmanacHotelStats                # K5 inventory editorial (SplitText number count)
+    - FullBleedSpaceStoryRails         # L4 rails mekan hikaye (resepsiyon→lobi→oda→spa)
+    - WritingModeRailRoomCategory      # N7 "ODALAR · MEKAN · REZERVASYON"
+    - ImageParallaxCSSVar              # room/amenity foto plate parallax
+  optional:
+    - LenisGsapBridge                  # lerp 0.08 sakin
+    - R3FVirtualRoomTour               # Tier 3+ sanal oda turu (otel.yaml premium)
+    - NativeBookingFlow                # 5-adım rezervasyon (iframe YASAK)
+    - ViewTransitionsRoomMorph         # oda liste → detay morph
+    - I18nTREn                         # TR + EN min, Arapça + Rusça Tier 4
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark+gold KLISE YASAK (otel.yaml)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_patterns: ["stok-foto-havuz-hero", "gold-italic-title", "fake-instagram-feed", "booking-com-iframe"]
+  repeat_score_vs_existing:
+    v2-kinetic-data: 3                # H5+N7+MO1 overlap ama PL38+TY14+HR3+K5 otel ayrışır
+  warning: "Luxury dark gradient + gold italic 'Welcome to X' KLISE YASAK (otel.yaml). Stok foto havuz YASAK — gerçek otel + drone video. PL38 Cool Marble urban design hotel tercih; terracotta+sky rustic için warm-organic önerilir. Fine-art italic başlık Fraunces OK (TY27 alternatif) ama Playfair KESIN YASAK. Booking.com iframe otel sitesini ÖLDÜRÜR — native rezervasyon 5-adım akış ZORUNLU (otel.yaml). KOŞUL: Sadece butik design hotel / urban-luxury için; resort/aile oteli için warm-organic DEFAULT."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, kuafor, fotograf]
+  sector_rationale: "otel.yaml kinetic_typography:yes (oda sayısı SplitText reveal) + bento_2_0:yes + 3d_spline:yes + scroll_triggered_3d:yes. Urban design hotel / cosmopolitan retreat için Cool Marble + Monument Ext. sakin kinetic. Conditional — resort/antalya-aile oteli için warm-organic DEFAULT (PL37 Terracotta+Sky)."
+
+preview_app_route: /preview/otel-kinetic-agency
+scaffold_command: "node scaffold.js otel-kinetic-agency --out ./out/otel-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/hospitality-virtual-tour.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # LodgingBusiness JSON-LD
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/otel.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL38 ocean 11.1:1 ok
+  lighthouse_target: 90                # drone video ağır — lazy-init + poster
+  prefers_reduced_motion: "MANDATORY fallback — drone video pause + poster frame, image parallax devre dışı, opsz axis statik, blur-36 reveal skip, marquee paused, Lenis yok"
+  hero_assets: "drone video havuz/manzara/dış cephe 15-20s loop ≤8MB autoplay muted — stok foto YASAK"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları İncele"
+  booking_flow: "Tarih → oda tipi → misafir sayısı → ekstra (yemek, spa) → ödeme (5 adım native, iframe YASAK)"
+  i18n_critical: "TR + EN minimum, Arapça + Rusça Tier 4"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review JSON-LD"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran"
+  fraxbit_hm_evidence: "fraxbit HM CSS-var-parallax (atom 7) + wearebrand blur-36 reveal (atom 2) + variable-font opsz scroll (atom 25). MIT-safe rewrite."

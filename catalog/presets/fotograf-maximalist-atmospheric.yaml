@@ -1,0 +1,95 @@
+---
+id: fotograf-maximalist-atmospheric
+sector: fotograf
+style: maximalist-atmospheric
+recipe: next-r3f  # atmospheric + 3D/Gaussian Splat hybrid premium (360/VR tier)
+tier: premium
+budget_range_try: [25000, 60000]
+delivery_weeks: [3, 5]
+---
+
+mood: [atmospheric, deep-space-aurora, overlapping-italic, image-hero-maximalist, moda-editorial-dense, portfolio-narrative-drift]
+
+atoms:
+  palette: PL33  # Pure Off-Black + orange accent — aurora driftte moda editorial
+  typography: TY12  # Migra Italic + IBM Plex Sans + Berkeley Mono (moda editorial premium)
+  hero: HR3  # Full-bleed video bg + radial drift overlay (moda/portfolyo reel)
+  layout:
+    - L8  # Masonry 3-col (portfolyo imza)
+    - L11  # Bento 2.0 asymmetric (hero + spot frames)
+  motion:
+    - MO1  # GSAP ScrollTrigger
+    - MO2  # Lenis
+    - MO6  # SplitText stagger (photographer name reveal)
+  motion_ajans:
+    - wearebrand-mask-y-reveal      # CSS mask --mask-y reveal resim
+    - wearebrand-theme-switch       # scroll zone cream -> ink theme shift
+    - ultra-theme-switch-scroll
+    - rejouice-mix-blend-difference # header image uzerinde difference
+    - fiddle-textpath-circle        # "est. YYYY" stamp circle
+    - ultra-blur-char-reveal        # her fotograf alt bashligi blur char reveal
+  header: H2  # Masthead Centered (editorial + mix-blend ile difference)
+  kpi: K11  # Postcard Stack (rotated) — "2024 120 cekim · 7 dugun"
+  pipeline: P3  # Funnel stages (admin panelde booking akis)
+  chart: CH11  # Stacked area kinetic (admin yillik booking trendi)
+
+components:
+  core:
+    - AtmosphericDriftBg            # 4 radial layer: magenta + amber + aurora + deep indigo
+    - PortholeConicGradient         # circle frame image pop (moda editorial imza)
+    - MaximalistOverlapTitle        # 3 satir: photographer name + gig + year italic offset
+    - MaskYReveal                   # wearebrand MIT-safe
+    - ThemeScrollSwitch             # scroll zone portfolyo kategorisi (moda -> dugun -> sokak)
+    - ScrollTimelineHero            # HR10 opsiyonel (narrative portfolio)
+    - PostcardStackKpi              # K11 travel-mood postkart (cekim yerleri)
+    - MixBlendDifferenceHeader      # REJOUICE pattern
+    - FiddleTextPathCircle          # "est. YYYY" circle mark
+    - MasonryGallery                # L8 3-col masonry, hover alternate
+    - ViewTransitionImageMorph      # resim -> detay sayfasi View Transitions API morph
+  optional:
+    - NoiseOverlaySvg               # SVG feTurbulence film grain
+    - HugeMarquee                   # 160px Migra italic photographer name
+    - GaussianSplatScene            # Tier 4+ mekan scanning (dugun mekani)
+    - VR360Gallery                  # 360 foto galeri (WebXR)
+    - ClientGalleryPasswordGate     # pass-protected client gallery
+
+anti_cliche:
+  forbidden_palettes: [PL1]                # BG Foto dark + gold tam yasak combo
+  forbidden_typography: [TY1, TY2, TY4, TY8] # TY2 Playfair BG Foto'da kullanildi
+  forbidden_heroes: [HR2, HR7]             # split-hero kanitli klise
+  forbidden_kpi: [K1]                      # bento glass morphism
+  forbidden_patterns: ["italic-gradient-title", "gold-shimmer", "custom-cursor-spark"]
+  repeat_score_vs_existing: 3
+  note: "BG Foto TY2+PL1+HR2+K1 tam yasak combo. Bu preset TY12+PL33+HR3+K11 ile radikal zit. Fraunces/Migra italic OK; Playfair italic YASAK."
+
+compatibility:
+  forbidden_sectors: [insaat, klinik, spa, gayrimenkul]
+  conditional_sectors: [mucevher, eticaret]
+  recommended_for: [fotograf, restoran, otel]
+  note: "Moda/kreatif portfolyo + dugun fotoğrafçısı + mekan/mimari. Sessiz belgesel icin warm-organic tercih edilir. Tier 3+ icin 360/VR + Gaussian Splat entegrasyon ideal."
+
+preview_app_route: /preview/fotograf-maximalist-atmospheric
+scaffold_command: "node scaffold.js fotograf-maximalist-atmospheric --out ./out/fotograf-ma"
+
+research_refs:
+  - research/gradient-glass-visual-effects-2026.md
+  - research/page-transitions-nextjs-2026.md
+  - Mobilyaci/3d-demo/research/image-optimization-cdn-cloudinary-2026.md  # Cloudinary AVIF/WebP
+  - Mobilyaci/3d-demo/research/view-transitions-api-2026.md                # image morph
+  - Mobilyaci/3d-demo/research/gaussian-splatting-research.md              # Tier 4+
+  - Mobilyaci/3d-demo/research/webxr-ar-vr-2026.md                         # 360/VR galeri
+  - templates/13-maximalist/index.html                                      # wearebrand-inspired 4.5/5
+  - templates/14-ultra/index.html                                          # 14 signature imza
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA + dark panel >= 4.5 (PL33 ink #1C1C1E on bg #FAFAFA = 16.2:1 AAA)"
+  lighthouse_target: 88
+  perf_note: "Masonry + 4 radial drift layer GPU-heavy; LCP < 2.5s (hero first image priority), CLS < 0.05 (aspect-ratio zorunlu). Drift mobile'da 2-layer blur(20px). Cloudinary LQIP blur placeholder zorunlu."
+  prefers_reduced_motion: "Drift off, statik gradient; image -> detay morph yerine opacity fade 180ms; SplitText yerine fade-in"
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP, f_auto q_auto, lazy, blur LQIP, eager sadece ilk 3"
+  primary_cta: "Portfolyoyu Gor"
+  secondary_cta: "Rezervasyon"
+  schema: "ImageGallery + Photograph + Person (photographer) + LocalBusiness JSON-LD"
+  view_transitions: "Image -> detay MO7 kritik (Chrome 126+)"

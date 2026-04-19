@@ -1,0 +1,89 @@
+---
+id: spa-minimal-swiss
+sector: spa
+style: minimal-swiss
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.4, 1]
+matrix_cell: "✓"                    # spa × minimal-swiss AKTIF (default warm-organic)
+---
+
+mood: [grid-first, whitespace, huzur, sessizlik, disiplinli-sakinlik, readable, meditative]
+
+atoms:
+  palette: PL34                     # Cream + Black — Swiss + spa neutral (warm-organic değil ama PL1 YASAK yerine)
+  typography: TY39                  # IBM Plex Sans monolithic — sessiz tipografi
+  hero: HR11                        # Brochure Cover — paket kataloğu kapak, HR3 video warm-organic'de
+  layout:
+    - L6                            # Center single column (meditative)
+    - L1                            # 12-col Swiss grid
+  motion:
+    - MO3                           # CSS scroll-driven subtle (spa opacity 0.3→1)
+    - MO10                          # Print-first no-motion fallback
+  motion_ajans: []
+  header: H2                        # Masthead Centered — spa identity, sakin
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules ("12 paket · 6 oda · 8 terapist")
+  table: T2                         # Linear Dense (paket + süre + fiyat)
+  form: F1                          # Single-col Tall (randevu + paket seçim)
+  modal: M1                         # Centered Dialog
+  footer: FT4                       # Colophon (terapist künyesi + sertifika)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — paket kapak (HR3 video warm-organic)
+    - MastheadCentered              # H2
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2
+    - PackageListLinear             # T2 — paket + süre + fiyat linear
+    - SingleColBookingForm          # F1 — randevu (slot picker)
+    - ColophonFooter                # FT4 — terapist + sertifika
+    - TreatmentDetailCenter         # L6 single column meditative
+  optional:
+    - GiftCardGenerator             # Tier mid+ hediye çeki PDF+QR
+    - WhatsAppChat
+    - GoogleMapsEmbed
+    - InstagramFeedEmbed            # spa ambiance görseli
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # luxury spa dark+gold YASAK (her otel-spa aynı)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_motion: [fast-scroll, neon, hard-snap]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 0       # spa projesi henüz yok
+  warning: |
+    Luxury spa dark gradient + gold şelale foto klişesi YASAK — Swiss cream+black sessiz alternatifi
+    sunuyor. Framer Motion bouncy spring YASAK — CSS scroll-driven subtle (MO3) veya no-motion (MO10).
+    Gold vurgu YASAK. Stok foto 'yüzü peçeli kadın + taş' YASAK. Organik clay/pearl default warm-organic'de
+    (PL31/PL32) — Swiss'te PL34 Cream+Black sessiz sadelik tercih.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [spa-butik, şehir-spa, day-spa, minimal-wellness]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/spa-minimal-swiss
+scaffold_command: "node scaffold.js spa-minimal-swiss --out ./spa-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 95
+  bundle_size_target: "< 130KB first load (minimal motion)"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Paketleri İncele"
+  motion_config: "CSS scroll-driven opacity subtle (0.3→1) + prefers-reduced-motion respect, bouncy YASAK"
+  schema: "HealthAndBeautyBusiness + Service + OpeningHoursSpecification JSON-LD"

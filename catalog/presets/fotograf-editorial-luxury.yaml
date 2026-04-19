@@ -1,0 +1,105 @@
+---
+id: fotograf-editorial-luxury
+sector: fotograf
+style: editorial-luxury
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                  # fotograf × editorial-luxury aktif (default editorial-print)
+---
+
+mood: [sakin, gorsel-oncelik, sessiz-tipografi, rafine, ritmli-whitespace, portfolio]
+
+# NOT: Fotograf editorial-luxury = premium düğün/boutique portfolyo
+# (sessiz typo + generous whitespace). Editorial-print default (masthead masonry).
+
+atoms:
+  palette: PL34                   # Cream + Black (editorial warm off-white)
+  typography: TY40                # Inter Tight + JetBrains Mono (sessiz mono + sans)
+  hero: HR11                      # Brochure Cover Grid (koleksiyon kapağı) — HR2 YASAK
+  layout:
+    - L8                          # Masonry (fotoğraf için doğal)
+    - L6                          # Center single col (editorial essay)
+  motion:
+    - MO7                         # View Transitions API (image→detail morph KRITIK)
+    - MO4                         # Framer light
+  motion_ajans:
+    - wearebrand-blur-36px-reveal # yumuşak reveal
+    - wearebrand-mask-y-reveal    # başlık mask reveal
+  header: H2                      # Masthead Centered — H8 YASAK (BG Foto klişe)
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K2                         # Band+rules (yıl, iş sayısı, ödül — minimal)
+  table: T3                       # Spec Sheet (paket fiyat + kapsam)
+  chat: C3                        # Email Threaded
+  form: F4                        # Inline Edit (booking + client galeri)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon editorial
+
+components:
+  core:
+    - HeroBrochure                # HR11 koleksiyon kapağı
+    - MastheadCentered
+    - MasonryGallery              # L8 masonry 3-col
+    - ImageDetailMorph            # MO7 View Transitions (tıklama → detail)
+    - AboutSection                # L6 center editorial essay
+    - PaketSpecSheet              # T3 fiyat + kapsam
+    - BookingForm                 # F4
+    - ColophonFooter
+  optional:
+    - ClientGalleryPasswordProtected   # client-only (Supabase RLS)
+    - DownloadControl             # resolution + watermark
+    - CloudinaryCDN               # resim optimizasyon (next/image + AVIF)
+    - InstagramFeed               # organik (API v19 son)
+    - BlogEditorial               # editorial essay (behind the scenes)
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # BG Foto dark+gold kanıtlı YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # özellikle TY2 Playfair+Inter BG Foto kullandı
+  forbidden_heroes: [HR2]         # split-hero klişesi (BG Foto combo)
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]             # BG Foto K1 bento kullandı YASAK
+  forbidden_headers: [H8]         # BG Foto H8 difference YASAK
+  forbidden_layouts: [L1]         # BG Foto L1 tam-frame kullandı
+  repeat_score_vs_existing: 0     # BG Foto (H8+HR2+K1+L1+TY2+PL1+MO4) ile ZERO eşleşme
+  bg_foto_override_warning: |
+    BG Foto combo (H8·N2·HR2·K1·L1·TY2 YASAK·PL1 YASAK·MO4) deprecated.
+    Bu preset: H2·N2·HR11·K2·L8·TY40·PL34·MO7+MO4 — tamamen farklı.
+    Eşleşme: sadece N2 (nav universal) ve MO4 (framer light universal) = 2/15 PASS.
+  warning: |
+    BG Foto projesi TY2+PL1+HR2+K1+L1+H8 — tam yasak combo örneği.
+    Fotoğrafçı portfolyosu: tipografi sessiz (monolithic Inter Tight), renk minimal (cream+black).
+    Italic gradient başlık YASAK — fotoğraf kahraman, font kürsüsü boş.
+    LCP < 2.5s kritik (featured image), CLS < 0.05 (masonry preset).
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [fotograf, mucevher, klinik, kuafor, restoran, spa, gayrimenkul, otel]
+  alternative_default: editorial-print
+
+preview_app_route: /preview/fotograf-editorial-luxury
+scaffold_command: "node scaffold.js fotograf-editorial-luxury --out ./fotograf-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md     # MO7 kritik
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md  # client galeri
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Inter Tight 300-600 (sessiz monolithic)"
+    - "JetBrains Mono (mono accent)"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 93
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP, lazy-load, LQIP blur placeholder"
+  gallery_layout: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  performance_critical: "LCP < 2.5s (featured image), CLS < 0.05 (masonry preset)"
+  schema: "ImageGallery + Photograph + Person (photographer) JSON-LD"
+  view_transitions: "Image thumb → detail sayfa morph animate (MO7 kritik)"

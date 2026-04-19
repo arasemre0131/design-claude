@@ -1,0 +1,90 @@
+---
+id: klinik-minimal-swiss
+sector: klinik
+style: minimal-swiss
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.4, 1]
+matrix_cell: "✓"                    # klinik × minimal-swiss AKTIF (default editorial-luxury)
+---
+
+mood: [grid-first, whitespace, güven, netlik, huzur, readable, AAA-accessibility]
+
+atoms:
+  palette: PL34                     # Cream + Black — Swiss + klinik sıcak-sakin (PL27 Glacier+Sage klinik alt, ama minimal-swiss PL34)
+  typography: TY39                  # IBM Plex Sans monolithic — medikal okunabilirlik
+  hero: HR11                        # Brochure Cover — klinik brochure, HR12 Q&A editorial-luxury'de
+  layout:
+    - L1                            # 12-col standard
+    - L6                            # Center single column (meditative klinik tonu)
+  motion:
+    - MO10                          # Print-first static (klinik kinetic YASAK)
+    - MO3                           # CSS scroll-driven (çok subtle)
+  motion_ajans: []
+  header: H3                        # Sidebar Rail + Breadcrumb (hasta nav için net)
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules ("18 yıl · 4 hekim · 2.400 mutlu hasta")
+  table: T2                         # Linear Dense (tedavi + süre + fiyat)
+  form: F1                          # Single-col Tall (randevu formu, KVKK onay)
+  modal: M1                         # Centered Dialog
+  footer: FT4                       # Colophon (hekim diploma + sertifika)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11
+    - SidebarRailBreadcrumb         # H3
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — klinik stat band
+    - TreatmentListLinear           # T2 — tedavi listesi (linear dense)
+    - SingleColAppointmentForm      # F1 — randevu + KVKK onay
+    - ColophonFooter                # FT4 — hekim diploma + sertifika
+    - TeamListCenter                # L6 ekip sayfa (meditative)
+  optional:
+    - PatientPortal                 # Tier mid+ hasta portalı (mid recipe'de)
+    - WhatsAppChat
+    - KVKKConsentBanner             # zorunlu
+    - CookieBanner
+
+anti_cliche:
+  forbidden_palettes: [PL1]         # dark+gold klinik için tam ters
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_motion: [agresif-scroll-pin, fast-kinetic-typography, neon-flash]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  repeat_score_vs_existing: 0       # klinikte aktif proje yok
+  warning: |
+    Hasta güveni için agresif renk, hızlı motion, neon flash YASAK. Dental boutique Playfair italic + gold
+    underline klişesi YASAK. Stok foto 'gülümseyen dişler' YASAK — gerçek klinik + ekip fotoğrafı. Sterilize
+    beyaz hastane UI'sı değil, Swiss cream + off-black sıcak-güven. Sağlık Bakanlığı reklam yasası
+    'öncesi-sonrası bildirimi' zorunlu. MO10 print-first veya MO3 subtle CSS tercih — kinetic ASLA.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [klinik-genel, diş-hekimliği, fizyoterapi, aile-hekimi]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/klinik-minimal-swiss
+scaffold_command: "node scaffold.js klinik-minimal-swiss --out ./klinik-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AAA (7:1) — klinik için zorunlu (AA yetmez)"
+  lighthouse_target: 95
+  bundle_size_target: "< 140KB first load"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Tedavileri İncele"
+  legal_critical: "KVKK onay + çerez banner + Sağlık Bakanlığı reklam yasası 'öncesi-sonrası bildirimi' zorunlu"
+  schema: "MedicalClinic + Physician + MedicalProcedure JSON-LD"
+  contrast: "WCAG AAA + prefers-reduced-motion respect (MO10 default)"

@@ -1,0 +1,112 @@
+---
+id: eticaret-maximalist-atmospheric
+sector: eticaret
+style: maximalist-atmospheric
+recipe: next-r3f  # atmospheric + 3D hybrid premium (Liquid Death tarzi genc marka)
+tier: premium
+budget_range_try: [25000, 60000]
+delivery_weeks: [3, 5]
+
+# CONDITIONAL (MATRIX sarisi): genc marka + kampanya landing + drop-culture.
+# Klasik commodity e-ticaret icin data-dense-dashboard (default ✓✓) tercih.
+conditional_use_case: "genc-marka-drop-culture-kampanya-landing"
+---
+
+mood: [atmospheric, acid-lime-aurora, overlapping-kinetic-type, liquid-death-dense, drop-culture-maximalist, kinetic-drift]
+
+atoms:
+  palette: PL7  # Kinetic Lime/Cyan/Magenta (bg #08090C + lime #C7FF4D + amber) — Liquid Death genc marka
+  typography: TY23  # Editorial Old + PP Neue Machina Maximalist (Unbounded alt)
+  hero: HR3  # Full-bleed video bg (urun makro/kampanya reel) + radial drift overlay
+  layout:
+    - L11  # Bento 2.0 asymmetric no-glass (kampanya + featured urun)
+    - L8  # Masonry editorial urun grid (T6 card grid YASAK)
+  motion:
+    - MO1  # GSAP ScrollTrigger
+    - MO2  # Lenis
+    - MO6  # SplitText stagger (drop name + countdown reveal)
+  motion_ajans:
+    - wearebrand-mask-y-reveal      # kampanya kategori geciste CSS mask
+    - wearebrand-theme-switch       # scroll zone tier/drop arkaplan shift
+    - ultra-theme-switch-scroll
+    - rejouice-mix-blend-difference # sticky add-to-cart bar difference
+    - fiddle-textpath-circle        # "DROP 03 · LIMITED" circle stamp
+    - wearebrand-magnetic-elastic   # favori + sepet magnetic hover
+    - ultra-porthole-dive           # kategori gecisinde porthole dive
+    - ultra-scramble-text           # fiyat/countdown scramble reveal
+  header: H5  # Marquee Ticker Top (drop countdown + live stok ticker — kampanya imza)
+  kpi: K11  # Postcard Stack (rotated) — "DROP 03 · 248 stok · 72h"
+  pipeline: P3  # Funnel stages (admin — kampanya conversion funnel)
+  chart: CH11  # Stacked area kinetic (admin kampanya satis + stok trend)
+
+components:
+  core:
+    - AtmosphericDriftBg            # 4 radial: lime + cyan + magenta + amber 24s drift
+    - PortholeConicGradient         # urun spin porthole imza
+    - MaximalistOverlapTitle        # "DROP 03 / LIMITED / 72H" 3 satir overlap italic
+    - MaskYReveal                   # wearebrand MIT-safe
+    - ThemeScrollSwitch             # tier/drop scroll zone theme shift
+    - FullBleedVideoHero            # HR3 kampanya reel + aurora overlay
+    - MarqueeTickerTop              # H5 live stok + countdown ticker
+    - PostcardStackKpi              # K11 drop postcard stack
+    - MixBlendDifferenceHeader      # REJOUICE
+    - FiddleTextPathCircle          # "DROP 03" circle stamp
+    - MasonryProductGrid            # L8 editorial masonry (T6 YASAK)
+    - ScrambleCountdown             # real drop countdown (fake YASAK)
+    - StickyAddToCartBar            # mobile bottom sticky
+  optional:
+    - NoiseOverlaySvg               # SVG feTurbulence grain
+    - HugeMarquee                   # 160px PP Neue Machina "DROP 03"
+    - Product3DViewer               # drei viewer (mobilya/ayakkabi)
+    - ARTryOn                       # WebXR iOS Quick Look + Android Scene Viewer
+    - HeadlessCMS                   # Sanity/Payload (kampanya editorial)
+    - WishlistFavori                # kalp ikon + Supabase sync
+    - QuickAddCart                  # hover quick-add (masonry)
+
+anti_cliche:
+  forbidden_palettes: [PL1]                # dark + gold yasak
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]             # split hero 5-slide carousel CTR <1%
+  forbidden_layouts: [K1]                  # glass morphism kart okunaklik kirar
+  forbidden_tables: [T6]                   # urun card grid YASAK — masonry tercih
+  forbidden_patterns: ["hero-carousel-5s-autoplay", "glass-morphism-card", "countdown-timer-fake-urgency"]
+  repeat_score_vs_existing: 2              # Fatih Bey (mucevher) kopyasi degil, ContentFlow SaaS degil
+  note: "Hero carousel 5-slide YASAK — tek guclu statik hero + kampanya reel. T6 urun grid YASAK — L8 masonry. Fake countdown YASAK — real drop sayim. Liquid Death + Spotify Wrapped + Aesop tarzi genc marka kampanya."
+
+compatibility:
+  forbidden_sectors: [insaat, klinik, spa, gayrimenkul]
+  conditional_sectors: [mucevher, eticaret]
+  recommended_for: [restoran, fotograf, otel]
+  note: "CONDITIONAL: Genc marka + drop culture + Liquid Death tarzi kampanya landing. Klasik commodity e-ticaret icin data-dense-dashboard (default ✓✓) tercih. Kampanya omru 1-8 hafta mikrosite; tier 3+ icin 3D viewer + AR try entegrasyon."
+
+preview_app_route: /preview/eticaret-maximalist-atmospheric
+scaffold_command: "node scaffold.js eticaret-maximalist-atmospheric --out ./out/eticaret-ma-campaign"
+
+research_refs:
+  - research/gradient-glass-visual-effects-2026.md
+  - research/page-transitions-nextjs-2026.md
+  - Mobilyaci/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyaci/3d-demo/research/iyzico-analiz.md
+  - Mobilyaci/3d-demo/research/checkout-analiz.md
+  - Mobilyaci/3d-demo/research/kampanya-analiz.md
+  - Mobilyaci/3d-demo/research/stok-yonetimi-analiz.md
+  - Mobilyaci/3d-demo/research/favori-sistem-tasarim.md
+  - Mobilyaci/3d-demo/research/furniture-3d-ecommerce.md
+  - Mobilyaci/3d-demo/research/headless-cms-payload-sanity-strapi-2026.md
+  - Mobilyaci/3d-demo/research/webxr-ar-vr-2026.md
+  - templates/13-maximalist/index.html                                          # wearebrand-inspired 4.5/5
+  - templates/14-ultra/index.html                                              # 14 imza
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA + dark maximal panel >= 4.5 (PL7 lime #C7FF4D on bg #08090C = 15.4:1 AAA)"
+  lighthouse_target: 88
+  perf_note: "Radial drift (4 layer) + marquee ticker + masonry GPU-heavy. LCP < 2.5s (hero poster priority), INP < 200ms (add-to-cart). Mobile: 2-layer drift blur(20px), video poster-only opsiyonu. Ticker WebSocket lazy-connect."
+  prefers_reduced_motion: "Drift off, statik gradient; ticker animation off (statik list); porthole dive yerine fade; scramble yerine fade 180ms"
+  product_card: "1:1 kare, hover alternate angle, quick-add sepet, favori kalp"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  checkout_flow: "Sepet -> bilgi -> odeme -> onay (4 adim, progress bar, guest checkout)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList + SpecialAnnouncement (drop) JSON-LD"
+  mobile_critical: "Sticky Sepete Ekle bottom bar (urun detay); top sticky countdown ticker"

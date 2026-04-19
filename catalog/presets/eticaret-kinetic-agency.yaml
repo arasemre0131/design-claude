@@ -1,0 +1,99 @@
+---
+id: eticaret-kinetic-agency
+sector: eticaret
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [20000, 35000]
+delivery_weeks: [3, 4]
+status: active  # MATRIX ✓ — DTC streetwear/electronics + kinetic campaign
+---
+
+mood: [kinetic, dtc-streetwear, signal-acid, variable-font-axis, bold-campaign, fast-paced]
+
+atoms:
+  palette: PL29              # Slate+Acid (#F5F7F8 + #D4FF00 acid + orange) — DTC/streetwear signal
+  typography: TY7            # Bricolage Grotesque italic + Space Grotesk + JetBrains Mono
+  hero: HR1                  # Kinetic Typography Mask — "INDIRIM / DROP" scramble + acid flash
+  layout: L4                 # Full-bleed rails — campaign story stages
+  motion:
+    - MO1                    # GSAP ScrollTrigger
+    - MO2                    # Lenis smooth (lerp 0.12 hızlı)
+    - MO6                    # SplitText chars/words stagger
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Bricolage opsz 12-96 italic scroll-linked
+    - fraxbit-css-var-parallax          # ürün kart parallax
+    - wearebrand-lenis-gsap-bridge
+    - ultra-textpath-marquee            # SVG kavisli path marquee (kampanya band)
+  header: H5                 # Marquee Ticker — "FREE SHIPPING 500 TL ÜZERİ · NEW DROP · %20"
+  nav: N7                    # Vertical rail OR top nav — "01 · New / 02 · Sale / 03 · Archive"
+  kpi: K10                   # Kinetic Counter Marquee — "47.283 sipariş · live"
+  pipeline: null             # E-ticaret pipeline değil (tier 4 admin'de olabilir)
+  chart: null                # Müşteri-facing değil
+  form: F2
+  modal: M1
+  footer: FT7                # Marquee Text — "DESIGN · SHOP · SHIP · 2026 ·"
+
+components:
+  core:
+    - KineticTypographyDropHero        # HR1 — Bricolage italic + SplitText chars + acid flash
+    - MarqueeTickerCampaign            # H5 — kampanya/free-shipping + countdown (fake countdown YASAK)
+    - VariableFontOpszScroll           # Bricolage opsz 12→96 scroll axis
+    - KineticCounterLive               # K10 — canlı sipariş/stok/mutlu müşteri
+    - SVGTextPathMarquee               # motion-ajans imza — kavisli kampanya band
+    - FullBleedRailsCampaign           # L4 — hikaye-style ürün sunumu
+    - ProductCardParallax              # CSS var parallax ürün grid hover
+    - MarqueeFooter                    # FT7 sonsuz tagline
+  optional:
+    - SplitTextProductName             # MO6 ürün detay isim reveal
+    - LenisGsapBridge
+    - ScatterPreloader                 # fraxbit imza — drop intro (Tier 3+ kampanya launch)
+
+anti_cliche:
+  forbidden_palettes: [PL1]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]        # eticaret.yaml + global
+  forbidden_layouts: [K1]             # bento glass eticaret.yaml ALARM
+  forbidden_tables: [T6]              # ürün kart grid klişe — L4 rails veya L8 masonry tercih
+  forbidden_patterns: ["hero-carousel-5s-autoplay", "fake-countdown-timer", "glass-morphism-card"]
+  repeat_score_vs_existing:
+    v2-kinetic-data: 5                # H5+HR1+K10+MO1+MO2+MO6 overlap çok yüksek — PL29+TY7 pozisyonu eticaret dili ile ayrışır + L4 rails kampanya narrative farklı
+    Fatih-Bey-Mucevher: 2             # mücevher-specific combo, overlap düşük
+  warning: "v2-kinetic-data ile motion-stack + H5 + HR1 + K10 overlap YÜKSEK — ayrışma: (1) PL29 Slate+Acid eticaret signal dili (PL7 dark değil, light bg + acid accent), (2) TY7 Bricolage italic (agency değil DTC drop), (3) L4 rails kampanya storytelling (dashboard değil). Hero carousel 5-slide YASAK. Fake countdown ('son 2 saat!') güven kırıcı. Glass morphism kart kontrastı kırar. Ürün kartı T6 yasak — editorial rails/masonry."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [eticaret, insaat, kuafor, fotograf]
+  sector_rationale: "eticaret.yaml kinetic_typography:yes + maximalism:yes (Liquid Death, Spotify Wrapped tarzı) — genç DTC marka, streetwear, electronics, sportswear. Commodity e-ticaret için data-dense-dashboard tercih edilir."
+
+preview_app_route: /preview/eticaret-kinetic-agency
+scaffold_command: "node scaffold.js eticaret-kinetic-agency --out ./out/eticaret-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/checkout-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/eticaret.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL29 ink 15.2:1 ok, acid accent large-text-only
+  lighthouse_target: 90                # marquee + animation ağır, 90 hedef
+  prefers_reduced_motion: "MANDATORY fallback — marquee paused, opsz scroll kapalı, CSS-var parallax devre dışı, SplitText stagger skip, Lenis yok"
+  product_card: "1:1 kare, hover alternate angle + parallax tilt 3deg, quick-add cart, favorile kalp"
+  product_gallery: "L4 full-bleed rails OR L8 masonry 3-col desktop — T6 klasik grid YASAK"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Drop'a Katıl (email)"
+  checkout_flow: "Sepet → bilgi → ödeme → onay (4 adım, progress bar, guest checkout)"
+  performance_critical: "LCP < 2.5s, INP < 200ms (add-to-cart), kinetic marquee GPU-layer"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList JSON-LD"
+  mobile_critical: "Sticky 'Sepete Ekle' bottom bar (ürün detay)"
+  fraxbit_hm_evidence: "fraxbit Awwwards HM — CSS var parallax + scatter preloader + dual cursor. Bu preset CSS-var-parallax (atom 7) + scatter-preloader (atom 11, opsiyonel) + SVG textPath marquee (atom 28) kullanır."

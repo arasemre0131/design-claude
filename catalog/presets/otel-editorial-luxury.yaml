@@ -1,0 +1,105 @@
+---
+id: otel-editorial-luxury
+sector: otel
+style: editorial-luxury
+recipe: next-premium              # native booking + admin zorunlu
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                  # otel × editorial-luxury aktif (default warm-organic)
+---
+
+mood: [sakin, kacis, rafine, luks-erisilebilir, editorial-dergi, ritmli-whitespace]
+
+# NOT: Otel editorial-luxury = butik dergi-editorial (terroir, tarihi, sanat koleksiyonu olan otel)
+# Resort/aile oteli için warm-organic default. Booking-flow yoğun otel için data-dense inner admin.
+
+atoms:
+  palette: PL38                   # Cool Marble (sakin, minimal) — PL37 Terracotta+Sky alternative
+  typography: TY43                # Fraunces italic + Inter Tight — TY44 Recoleta alternative
+  hero: HR3                       # Video bg (drone havuz/manzara) — HR2 YASAK
+  layout:
+    - L6                          # Center single col (otel story editorial)
+    - L8                          # Masonry oda tipleri
+  motion:
+    - MO7                         # View Transitions (oda → rezervasyon morph)
+    - MO4                         # Framer light
+  motion_ajans:
+    - wearebrand-blur-36px-reveal # editorial reveal
+    - wearebrand-lenis-gsap-bridge  # Lenis lerp 0.08
+  header: H2                      # Masthead Centered — H8 YASAK
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K5                         # Almanac editorial ("90 oda, 2 havuz, 1 spa, 200m sahil")
+  table: T3                       # Spec Sheet (oda detay: m², kapasite, kahvaltı, ekstra)
+  chat: C3                        # Email Threaded (konsiyerj)
+  form: F4                        # Inline Edit (rezervasyon multi-step)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon editorial (otel hikayesi + sanat koleksiyonu)
+
+components:
+  core:
+    - HeroDroneVideo              # HR3 drone video 15-20s loop
+    - MastheadCentered
+    - OdaMasonryEditorial         # L8 oda tipi grid (suite/standard/family)
+    - OdaSpecSheet                # T3 (m² + kapasite + manzara + ekstra)
+    - AlmanacKPI                  # K5 (otel özelliği almanak)
+    - RezervasyonNativeForm       # F4 5-adım (tarih+oda+misafir+ekstra+ödeme)
+    - KonsiyerjEmail              # C3 email threaded
+    - OtelHikayeEditorial         # L6 center single col (terroir, sanat, tarih)
+    - ColophonFooter
+  optional:
+    - SanalOdaTuru                # R3F + Matterport (Tier 3+ premium)
+    - ScrollStorytelling          # GSAP ScrollTrigger otel story
+    - SpaPaketSatis               # spa modülü bağla
+    - LoyaltyProgram              # tekrar gelen misafir
+    - ChannelManagerSync          # Tier 4 enterprise (Booking.com, Expedia)
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # dark+gold "Welcome to X" luxury otel KLIŞE
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_patterns: ["stok-foto-havuz-hero", "gold-italic-title", "fake-instagram-feed", "booking-com-iframe-only"]
+  repeat_score_vs_existing: 0     # otel temiz sektör
+  warning: |
+    Luxury dark gradient + gold italic 'Welcome to X' klişesi YASAK — her butik otel aynı.
+    Stok foto havuz YASAK — gerçek otel + drone video ZORUNLU.
+    Fine-art italic: Fraunces italic OK ama Playfair YASAK.
+    Booking.com iframe + 'rate comparison' external link otel sitesini öldürür — native
+    rezervasyon akışı ZORUNLU (Supabase + iyzico).
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [otel, mucevher, klinik, kuafor, restoran, spa, fotograf, gayrimenkul]
+  alternative_default: warm-organic
+
+preview_app_route: /preview/otel-editorial-luxury
+scaffold_command: "node scaffold.js otel-editorial-luxury --out ./otel-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/hospitality-virtual-tour.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces italic opsz 9-144"
+    - "Inter Tight 300-600"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 92
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları İncele"
+  hero_assets: "drone video (havuz/manzara/dış cephe 15-20s, ≤8MB, autoplay muted loop)"
+  booking_flow: "Tarih → oda tipi → misafir sayısı → ekstra (yemek/spa) → ödeme (5 adım)"
+  i18n_critical: "TR + EN minimum; Arapça + Rusça Tier 4+ (Antalya/Bodrum profil)"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review JSON-LD"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran"

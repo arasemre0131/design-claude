@@ -1,0 +1,93 @@
+---
+id: restoran-kinetic-agency
+sector: restoran
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+status: conditional  # MATRIX ⚠ — kreatif kokteyl/bar/şef-driven restoran
+conditional_gate: "Sadece kreatif kokteyl bar / chef-driven restoran / tasting menu için. Aile lokantası / terroir / fine dining klasik için editorial-print DEFAULT önerilir (compatibility.yaml)."
+---
+
+mood: [kinetic, chef-driven, italic-vurgu, cocktail-bar, warm-rebel, moody-energetic]
+
+atoms:
+  palette: PL26              # Olive + Tomato (cream + tomato + olive + walnut) — italyan bistro/şef mutfak
+  typography: TY7            # Bricolage Grotesque italic + Space Grotesk + JetBrains Mono
+  hero: HR11                 # Brochure Cover Grid — menü cover + 4 yemek thumbnail
+  layout: L4                 # Full-bleed rails — chef hikaye narrative
+  motion:
+    - MO1                    # GSAP ScrollTrigger pin+scrub
+    - MO2                    # Lenis smooth (lerp 0.1)
+    - MO6                    # SplitText dish name reveal
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Bricolage opsz 12-96 italic scroll
+    - wearebrand-blur-36px-reveal       # chef/dish name blur-36 reveal
+    - wearebrand-lenis-gsap-bridge
+  header: H5                 # Marquee Ticker — "BU HAFTA · YEREL · REZERVASYON AÇIK · 19:00-23:00"
+  nav: N7                    # Vertical rail — "01 · Menü / 02 · Şef / 03 · Bar"
+  kpi: K5                    # Almanac editorial (masa sayısı, "bugün taze", mevsim)
+  pipeline: null
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card — "rezervasyon@bar.com · +90 ..."
+
+components:
+  core:
+    - BrochureCoverMenuHero            # HR11 — menü cover + dish thumbnail 4-6
+    - MarqueeTickerReservation         # H5 — rezervasyon durumu + çalışma saati + haftanın tabağı
+    - BricolageItalicDishReveal        # TY7 opsz axis + SplitText dish name blur-36 reveal
+    - AlmanacWeeklyStats               # K5 ("bu hafta": 47 masa, 12 yeni tarif, 3 mevsim sebzesi)
+    - FullBleedChefStoryRails          # L4 rails şef hikaye narrative
+    - WritingModeRailMenu              # N7 "MENÜ · ŞEF · BAR"
+    - ContactCardReservation           # FT5 personal tone
+  optional:
+    - LenisGsapBridge                  # lerp 0.1
+    - OpenTableEmbedOrNativeBooking    # rezervasyon (native >> iframe)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark menü + gold italic bistro klişesi YASAK (restoran.yaml)
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # Playfair italic + beyaz serif 5+ restoran
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]              # menü sayfası T6 YASAK — L5 3-col editorial tercih
+  repeat_score_vs_existing:
+    v2-kinetic-data: 3                # H5+N7+MO1 overlap ama PL26+TY7+HR11 restoran dilinde ayrışır
+    mockup-B-editorial: 1
+  warning: "Generic dark menü + Playfair italic + gold underline fine dining KLISE YASAK (restoran.yaml). Menü sayfası T6 card grid YASAK — menü editorial list L5 3-col tercih. Yemek fotoğrafı üstünde gold italic başlık KLISE YASAK — Bricolage italic Space Grotesk combo sıcak ama rebel. 2D food photography kritik (3D render yapay). KOŞUL: Sadece kreatif kokteyl bar / şef-driven / tasting menu için uygun. Aile lokantası, terroir için editorial-print DEFAULT."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, kuafor, fotograf]
+  sector_rationale: "restoran.yaml kinetic_typography:yes (dish name SplitText reveal) + bento_2_0:yes — şef-driven energetik restoran için. 3d_spline:no — yemek 3D render yapay. Budget tier next-premium + rezervasyon Supabase slot-based."
+
+preview_app_route: /preview/restoran-kinetic-agency
+scaffold_command: "node scaffold.js restoran-kinetic-agency --out ./out/restoran-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md        # local SEO + Restaurant JSON-LD
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/restoran.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA"           # PL26 tomato 4.8:1 + walnut/ink ok
+  lighthouse_target: 92
+  prefers_reduced_motion: "MANDATORY fallback — dish name blur-36 reveal skip, opsz scroll kapalı, marquee paused, Lenis devre dışı. Menü listesi statik editorial L5."
+  hero_assets: "yemek hazırlama / şef mutfak video (chef kesim, plate üstü, 10-15s loop, ≤6MB)"
+  menu_layout: "L5 3-col desktop (öğün/ara sıcak/ana/tatlı) + 1-col accordion mobile — T6 card YASAK"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification JSON-LD ZORUNLU"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar"
+  fraxbit_hm_evidence: "fraxbit HM CSS-var-parallax + wearebrand blur-36 reveal + variable opsz scroll — MIT-safe rewrite."

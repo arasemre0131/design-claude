@@ -1,0 +1,93 @@
+---
+id: insaat-kinetic-agency
+sector: insaat
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [18000, 28000]
+delivery_weeks: [2, 3]
+status: active  # MATRIX ✓ — industrial spirit + kinetic agency hybrid
+---
+
+mood: [kinetic, scroll-reactive, blueprint, variable-font-axis, chunky-display, site-energy]
+
+atoms:
+  palette: PL21              # Ozalit Blueprint (#E8EDF2 + #1B3A4B + kil) — insaat native
+  typography: TY26           # Rubik Mono One + Manrope + JetBrains Mono (chunky + variable)
+  hero: HR1                  # Kinetic Typography Mask — "YAPI" scramble + blueprint measures
+  layout: L4                 # Full-bleed rails — stage-based site progress
+  motion:
+    - MO1                    # GSAP ScrollTrigger (pin + scrub timeline)
+    - MO2                    # Lenis smooth scroll (lerp 0.12)
+    - MO6                    # SplitText + Stagger (chunky reveal)
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Rubik Mono One wght 400-900 scroll-linked
+    - fraxbit-css-var-parallax          # blueprint grid parallax
+    - wearebrand-lenis-gsap-bridge      # Lenis+GSAP ticker bridge (MIT-safe)
+    - ultra-blur-char-reveal            # scroll-scrubbed opacity char reveal
+  header: H5                 # Marquee Ticker Top — "AKTIF ŞANTIYE · 12 PROJE · TSE · ISO 9001"
+  nav: N7                    # Vertical Writing-Mode Rail — "01 · Projeler / 02 · Süreç"
+  kpi: K12                   # Blueprint stat (proje sayısı, m², teslim)
+  pipeline: P5               # Horizontal Timeline — proje aşaması pin-scrub
+  chart: CH11                # Stacked area kinetic (teslim performansı)
+  form: F2
+  modal: M1
+  footer: FT7                # Marquee Text — "YAPIYORUZ · BUILD · İNŞA · 1987 ·"
+
+components:
+  core:
+    - KineticBlueprintHero             # HR1 variant: Rubik Mono One + ozalit grid bg + scatter scale
+    - MarqueeTickerTop                 # H5 — JetBrains Mono project counter + SSG warning stripe
+    - VariableFontWghtScrollLinked     # Rubik Mono One wght axis tied to scroll
+    - BlueprintGridParallax            # CSS var --speed-x/y on measurement lines
+    - SplitTextChunkyReveal            # MO6 chunky char stagger
+    - HorizontalTimelinePin            # P5 proje stage pinned
+    - BlueprintStatCounter             # K12 counter marquee variant
+    - StackedAreaRevealChart           # CH11 GSAP path draw
+  optional:
+    - WritingModeRail                  # N7 sağ kenar "ŞANTIYE 01 · 02 · 03"
+    - LenisGsapBridge                  # infrastructure
+    - ScatterPreloader                 # fraxbit imza — proje fotoğraf scatter intro (Tier 3+)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # global dark+gold yasak
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_layouts: [K1]             # bento glass insaat.yaml uyarı
+  repeat_score_vs_existing:
+    v2-kinetic-data: 3                # H5+MO1+MO2 overlap, PL21+TY26 farklı ayrışır
+    v2-blueprint: 4                   # PL5→PL21 ve TY5→TY26 ile ayırır, HR+K+motion stack farklı
+    mockup-C-industrial: 2            # PL4→PL21, MO10→MO1 kinetic ayrışım güçlü
+  warning: "v2-kinetic-data motion-stack overlap — farklı palette (PL7→PL21) + TY7→TY26 + HR1 insaat dilinde chunky Rubik Mono One. v2-blueprint ile PL/TY değiş + kinetic motion ekle. Stok hero YASAK (insaat.yaml). Dribbble turuncu/siyah SaaS dashboard KESIN YASAK."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, fotograf, kuafor]
+  sector_rationale: "insaat.yaml kinetic_typography:partial — başlıkta OK gövdede değil. Industrial spirit + blueprint palette + chunky Rubik Mono One kinetic ile uyumlu. Şantiye süreç storytelling için MO1 pin-scrub ideal."
+
+preview_app_route: /preview/insaat-kinetic-agency
+scaffold_command: "node scaffold.js insaat-kinetic-agency --out ./out/insaat-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - templates/11-kinetic/index.html      # 4.5/5 fraxbit-ishi kinetic italic
+  - templates/14-ultra/index.html        # 14 signature technique — variable font opsz scroll
+  - templates/01-insaat/index.html       # insaat HR5 + P5 timeline impl
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/insaat.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL21 9.6:1 ok
+  lighthouse_target: 92
+  prefers_reduced_motion: "MANDATORY fallback — kinetic animation off, static wght snapshot, no pin-scrub, marquee paused, Lenis devre dışı"
+  hero_assets: "gerçek şantiye drone video (blueprint overlay, 12-15s loop, ≤6MB) VEYA interactive Mapbox Türkiye proje haritası"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Aktif Projeleri Gör"
+  trust_badges: "TSE · ISO 9001 · OHSAS 18001 — footer sticky"
+  fraxbit_hm_evidence: "fraxbit Awwwards HM (Honorable Mention) — CSS custom property parallax pattern MIT-safe rewrite kullanıldı (ULTRAPLAN atom 7)"

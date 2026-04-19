@@ -1,0 +1,97 @@
+---
+id: gayrimenkul-kinetic-agency
+sector: gayrimenkul
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [22000, 40000]
+delivery_weeks: [3, 4]
+status: conditional  # MATRIX ⚠ — butik/design-forward emlak ofisi
+conditional_gate: "Sadece butik/design-forward emlak ofisi (sınırlı premium portfolyo, lifestyle-driven) için. Genel ilan portföyü / MLS için warm-organic DEFAULT veya data-dense-dashboard önerilir."
+---
+
+mood: [kinetic, boutique-realty, lifestyle-editorial, italic-vurgu, variable-font-axis, quiet-energy]
+
+atoms:
+  palette: PL36              # Mist + Sunset (mist bg + sunset warm + navy + stone) — warm-residential butik
+  typography: TY14           # Monument Extended + Inter Tight + JetBrains Mono (sakin kinetic)
+  hero: HR9                  # Interactive map hero (gayrimenkul.yaml recommended) + HR15 hybrid
+  layout: L4                 # Full-bleed rails — property story narrative
+  motion:
+    - MO1                    # GSAP ScrollTrigger pin+scrub
+    - MO2                    # Lenis smooth lerp 0.08 (güven/sakin ton)
+    - MO6                    # SplitText fiyat/istatistik stagger reveal
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Monument wght scroll-linked minimal
+    - wearebrand-blur-36px-reveal       # property name/price reveal
+    - wearebrand-lenis-gsap-bridge
+    - fraxbit-css-var-parallax          # property image plate parallax
+  header: H5                 # Marquee Ticker Top — "47 AKTIF İLAN · ANKARA · ISTANBUL · 2026"
+  nav: N7                    # Vertical rail — "01 · Villa / 02 · Daire / 03 · Yatırım"
+  kpi: K3                    # Stencil stat (metrekare, oda, fiyat kinetic reveal)
+  pipeline: null
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card tek satır — "agent@butik.realty · WhatsApp"
+
+components:
+  core:
+    - MapHeroInteractive               # HR9 — Mapbox custom style + hover property preview
+    - MarqueeTickerListingCount        # H5 — "47 aktif ilan · yeni: 3 · fiyat güncel"
+    - MonumentWghtScrollTitle          # TY14 opsz axis scroll-linked property title
+    - StencilStatReveal                # K3 — metrekare/oda/fiyat SplitText blur-36 reveal
+    - FullBleedPropertyNarrative       # L4 rails — ev-yaşam hikayesi storytelling
+    - PropertyImageParallax            # CSS var parallax ilan foto hover
+    - WritingModeRailCategory          # N7 "VILLA · DAIRE · YATIRIM"
+  optional:
+    - LenisGsapBridge                  # lerp 0.08 sakin
+    - R3FVirtualTour                   # Tier 3+ (premium paket) sanal tur
+    - MapboxCustomStyle                # marka tonunda harita zorunlu (gayrimenkul.yaml)
+    - ViewTransitionsListingMorph      # ilan → detay morph (MO7, gayrimenkul.yaml)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark+gold YASAK — emlak güven, luxury hilesi değil
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_patterns: ["stok-foto-hero", "generic-google-maps-embed", "her-ev-ayni-template"]
+  repeat_score_vs_existing:
+    v2-kinetic-data: 3                # H5+N7+MO1 overlap ama PL36+TY14+HR9+K3 gayrimenkul ayrıştırır
+  warning: "Stok foto hero YASAK (bu ev değil, bu fotoğraf kriz — gayrimenkul.yaml). Google Maps embed minimum — Mapbox/MapLibre custom marka tonu ZORUNLU. Her ilan kartı aynı template değil — villa + 2+1 daire farklı card layout. 'Yatırım güvencesi + altın anahtar' KLISE YASAK. Dark+gold YASAK — güven palette PL36 Mist+Sunset tercih. KOŞUL: Sadece butik premium emlak ofisi için; genel ilan portföyü için warm-organic (PL35 Sand+Ocean DEFAULT) önerilir."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, kuafor, fotograf]
+  sector_rationale: "gayrimenkul.yaml kinetic_typography:partial (fiyat stat SplitText reveal OK) + 3d_spline:yes + scroll_triggered_3d:yes. Butik emlak ofisi için sakin kinetic (Lenis lerp 0.08, Monument Ext. sessiz opsz) uygun. Conditional — genel MLS portföyü için warm-organic DEFAULT."
+
+preview_app_route: /preview/gayrimenkul-kinetic-agency
+scaffold_command: "node scaffold.js gayrimenkul-kinetic-agency --out ./out/gayrimenkul-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # RealEstateListing JSON-LD
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/gayrimenkul.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AAA"          # PL36 navy 9.2:1 ok
+  lighthouse_target: 92
+  prefers_reduced_motion: "MANDATORY fallback — property image parallax devre dışı, opsz axis statik, blur-36 reveal skip, marquee paused, Lenis yok. Harita animate yok sadece Mapbox statik."
+  listing_card: "foto + fiyat + m² + oda + konum, hover floor plan preview + parallax 3deg"
+  listing_gallery: "L4 rails featured + L8 masonry 3-col alt sayfa"
+  primary_cta: "İlanı Gör"
+  secondary_cta: "Agent ile İletişime Geç"
+  map_integration: "Mapbox GL JS custom marka style + marker cluster (50+ ilan) + hover ilan preview"
+  schema: "RealEstateListing + PostalAddress + GeoCoordinates + Offer JSON-LD"
+  mobile_critical: "Sticky 'İletişim' + 'Harita' toggle bottom bar"
+  fraxbit_hm_evidence: "fraxbit HM CSS-var-parallax (atom 7) + wearebrand blur-36 reveal (atom 2) + variable-font opsz scroll (atom 25). MIT-safe rewrite."

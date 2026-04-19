@@ -1,0 +1,150 @@
+---
+id: klinik-immersive-3d
+sector: klinik
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ — SADECE estetik klinik için (before/after simülasyon)
+tier: premium
+budget_range_try: [40000, 70000]
+delivery_weeks: [5, 7]
+matrix_cell: "⚠"             # klinik × immersive-3d CONDITIONAL — sadece estetik klinik + KVKK + Sağlık Bakanlığı uyum
+---
+
+# KOŞUL (matrix_cell ⚠ gereği):
+# Bu preset SADECE aşağıdaki durumda kullanılır:
+#   1. Estetik klinik (plastik cerrahi, diş hekim gülüş tasarımı, saç ekim)
+#   2. "Before-after" yerine "simülasyon önizleme" (önceki/sonraki klişesi DEĞİL)
+#   3. Sağlık Bakanlığı reklam yasası uyumu (etik bildirim zorunlu, promise = tehlikeli)
+#   4. KVKK onay + hasta verisi RLS + lokal işlenir (3D simülasyon client-side only, cloud upload YOK)
+# Genel klinik tanıtım sitesi için editorial-luxury (mucevher-editorial-luxury benzeri) tercih.
+
+mood: [sakin, controlled-immersion, before-after-simulation, medical-grade-3d, trust-forward, low-motion]
+
+atoms:
+  palette: PL27              # Glacier + Sage — PL1 YASAK (klinik güveni!), sıcak-sakin medikal ton
+  typography: TY33           # Fraunces + IBM Plex Sans — TY8 YASAK, italic overlay sadece section başlığı
+  hero: HR11                 # Brochure cover (HR4 3D-canvas hero KLİNİKTE TEDIRGİNLİK) — 3D inspector alt sayfada
+  layout:
+    - L6                     # Center single col (sakin, güven odaklı)
+    - L7                     # Sticky sidebar + feed (tedavi listesi)
+  motion:
+    - MO10                   # Print-first static (hero + genel sayfa)
+    - MO4                    # Framer Motion light (Framer subtle, kinetic YASAK klinik.yaml kuralı)
+    - MO2                    # Lenis lerp 0.05 (çok yavaş, medikal nefes)
+    - MO12                   # R3F postprocessing SADECE simülasyon alt sayfasında (hero'da değil!)
+  motion_ajans: []                      # lusion glsl noise + porthole dive KLİNİKTE YASAK — agresif
+  3d:
+    - 3D-01-drei-envmap                 # Medical studio HDRI (nötr ışık)
+    - 3D-02-drei-orbitcontrols          # Simülasyon 360 (ürün değil, before/after model)
+    - 3D-03-drei-presentationcontrols   # Mobilde drag + damped
+    - 3D-04-drei-contactshadows         # Subtle shadow (opacity 0.4)
+    - 3D-05-drei-html                   # 3D nokta üzerinde tooltip (diş adı, estetik işlem)
+    - 3D-08-drei-meshtransmission       # Diş hekim — cam/email material (gülüş tasarımı)
+    - 3D-11-gaussian-splat              # Hasta-yüz scan (client-side only, lokal, RLS + storage null)
+    - 3D-12-gltf-draco-ktx2             # Compression ZORUNLU
+  header: H9                 # Corner brackets — H8 YASAK
+  nav: N2                    # Horizontal tabs underline (N10 scroll-locked klinik için aşırı)
+  kpi: K5                    # Almanac editorial (15 yıl, 5000 hasta) — K1 K7 YASAK
+  table: T3                  # Spec sheet (tedavi süresi, iyileşme, fiyat aralığı)
+  chat: C3                   # Email threaded (randevu formu)
+  form: F5                   # Multi-step wizard (randevu + KVKK onay)
+  modal: M1                  # Centered (KVKK onay, randevu onayı)
+  footer: FT3                # Warm editorial (güven + sıcak ton)
+
+components:
+  core:
+    - HeroBrochure                      # HR11 — tedavi kapak grid (3D canvas hero YASAK)
+    - TreatmentListSticky               # L7 — tedavi listesi sticky sidebar
+    - SimulationViewer3D                # ALT SAYFA — gülüş tasarımı / estetik before-after 3D
+    - GaussianSplatFacePreview          # Hasta-yüz scan (SADECE client-side, cloud upload YOK)
+    - SmileDesignPreview                # Diş hekim — kesim + material + renk önizleme
+    - PostprocessingStack               # Simülasyon sayfasında tone mapping sadece (bloom KAPALI)
+    - AppointmentWizard                 # F5 multi-step (tarih → tedavi → KVKK onay → iletişim)
+    - KvkkConsentModal                  # M1 — açık rıza (3D simülasyon öncesi zorunlu)
+    - TreatmentSpecSheet                # T3 — süre, iyileşme, fiyat aralığı (Sağlık Bakanlığı uyum)
+    - EthicalDisclaimer                 # "Bireysel sonuçlar değişir" etik bildirim zorunlu alt yazı
+    - WarmFooter                        # FT3
+  optional:
+    - PatientPortal                     # Hasta portalı (Supabase auth + RLS)
+    - WhatsAppBookingBridge             # Randevu onayı WhatsApp bildirim
+    - ArSmileTryOn                      # Model-viewer AR (telefon önüne tut → gülüş önizle)
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR4, HR7]     # HR4 3D-canvas-hero KLİNİKTE YASAK (agresif mood)
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1, K7]
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1, L7-unless-treatment-list]
+  forbidden_motion: ["agresif-scroll-pin", "fast-kinetic-typography", "neon-flash", "MO1-scrub-1.5-aggressive"]
+  forbidden_motion_ajans: ["lusion-glsl-noise", "ultra-porthole-dive"]  # klinikte agresif shader YASAK
+  forbidden_patterns:                   # klinik.yaml'dan
+    - "dental-boutique-playfair-italic-gold-underline"
+    - "stok-foto-gulumseyen-disler"
+    - "typeform-merhaba-ben-dr-x-overpersonal"
+    - "before-after-yasal-ihlal-promising"
+  repeat_score_vs_existing: 1           # temiz sektör + 3D hero yok — eşleşme risk düşük
+  warning: |
+    KLİNİK × immersive-3d KONDİSYONEL — sadece estetik klinik (gülüş tasarımı, saç ekim, plastik
+    cerrahi) için KULLANILIR. Genel klinik (aile hekimi, fizyoterapi, dermatoloji) için
+    editorial-luxury default. HR4 3D-canvas-hero KLİNİKTE YASAK — hasta tedirgin olur. 3D
+    simülasyon ALT SAYFADA izole canvas + açık rıza modal (KVKK) + "Bireysel sonuçlar değişir"
+    etik bildirim ZORUNLU. Gaussian Splat hasta-yüz scan SADECE client-side (lokal işlenir, cloud
+    upload YOK, RLS + storage null). Sağlık Bakanlığı reklam yasası uyumu: before-after
+    fotoğrafı kullanılıyorsa etik bildirim + disclaimer zorunlu. Motion sakin (MO10 + MO4 + MO2
+    lerp 0.05), lusion-glsl-noise + porthole-dive klinik için YASAK.
+
+compatibility:
+  forbidden_sectors: []                 # self
+  conditional_sectors: [klinik-estetik-only]
+  recommended_for: [klinik-estetik, dis-hekim-gulus-tasarim, sac-ekim, plastik-cerrahi]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/klinik-immersive-3d
+scaffold_command: "node scaffold.js klinik-immersive-3d --out ./klinik-v3-estetik/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md  # KVKK + Sağlık reklam yasası
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md  # diş email
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D simülasyon skip → 2D before-after slider (klasik, etik disclaimer zorunlu), hero zaten HR11 brochure (3D canvas yok)"
+  gpu_tier_detection: "detect-gpu tier 0-2 → 2D before-after slider fallback, tier 3+ → 3D simülasyon aktif ama opt-in (kullanıcı 'Görüntülemek için Tıkla' buton)"
+  model_compression: "Gaussian Splat yüz scan max 15K point (~5MB, client-side only — cloud upload yok), GLB Draco + KTX2 max 2MB"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-600 (variable, sadece section başlık)"
+    - "IBM Plex Sans 300-700 (gövde)"
+  wcag_contrast_target: "AAA (7:1) — klinik için AAA zorunlu (klinik.yaml kural) + 3D canvas aria-label='Tedavi simülasyon önizleme — etkileşim için opt-in. Bireysel sonuçlar değişir.' + keyboard nav (tam erişim: tab + enter + esc + ok)"
+  lighthouse_target: 90                             # klinik için 90 zorunlu (AAA + güven)
+  prefers_reduced_motion: "Tüm motion off, 3D simülasyon 1 frame render (frameloop='never'), Lenis lerp 0 (instant scroll)"
+  legal_critical: "KVKK açık rıza (3D simülasyon öncesi) + çerez banner + Sağlık Bakanlığı reklam yasası 'öncesi-sonrası etik bildirimi' + 'Bireysel sonuçlar değişir' disclaimer + tedavi süresi/iyileşme/risk tablosu zorunlu"
+  privacy_3d_critical: "Hasta-yüz Gaussian Splat scan SADECE client-side (browser memory), sunucuya upload YOK, RLS + storage null, session end = data flush"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Tedavileri İncele"
+  mobile_critical: "Sticky WhatsApp + telefon bottom bar, 3D simülasyon opt-in butonu (default kapalı)"
+  schema: "MedicalClinic + Physician + MedicalProcedure + MedicalContraindication (risk) + Offer JSON-LD"
+  accessibility_extras: "WCAG AAA contrast + screen reader testi + tab order + focus visible + skip to content link + text-to-speech compatible"
+  special_features:
+    - "3D gülüş tasarımı (drei MeshTransmissionMaterial — diş email)"
+    - "Gaussian Splat hasta-yüz scan (client-side only, cloud YOK)"
+    - "KVKK açık rıza modal (3D simülasyon öncesi zorunlu)"
+    - "Sağlık Bakanlığı uyum (etik bildirim + disclaimer)"
+    - "Opt-in 3D (default kapalı, kullanıcı tıklar aktif)"
+    - "AAA contrast + full keyboard nav"

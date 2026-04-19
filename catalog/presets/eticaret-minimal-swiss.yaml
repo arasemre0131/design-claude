@@ -1,0 +1,94 @@
+---
+id: eticaret-minimal-swiss
+sector: eticaret
+style: minimal-swiss
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                    # eticaret × minimal-swiss AKTIF (default data-dense-dashboard)
+---
+
+mood: [grid-first, whitespace, readable-catalog, disciplined-product, Swiss-retail, sessiz-lüks]
+
+atoms:
+  palette: PL33                     # Pure Off-Black — Swiss katalog, PL1 YASAK
+  typography: TY39                  # IBM Plex Sans all-weights — ürün adı + varyant okuma
+  hero: HR11                        # Brochure Cover koleksiyon, HR2 split + carousel YASAK
+  layout:
+    - L1                            # 12-col Swiss grid (katalog)
+    - L5                            # 3-col editorial (öne çıkan ürün)
+  motion:
+    - MO3                           # CSS scroll-driven
+    - MO7                           # View Transitions (ürün → detay morph)
+  motion_ajans: []
+  header: H3                        # Sidebar Rail + Breadcrumb (katalog nav)
+  nav: N2                           # Horizontal Tabs Underline
+  kpi: K2                           # Band + Rules ("150 ürün · 2 gün kargo · KVKK")
+  table: T2                         # Linear Dense (ürün özellikleri), T6 card grid YASAK (sector warning)
+  form: F1                          # Single-col (checkout + hesap)
+  modal: M1                         # Centered Dialog (quick-add)
+  footer: FT4                       # Colophon (iyzico SSL + KVKK + iade politikası)
+
+components:
+  core:
+    - HeroBrochureCover             # HR11 — koleksiyon kapak (carousel YASAK)
+    - SidebarRailBreadcrumb         # H3 — kategori nav
+    - HorizontalTabsUnderline       # N2
+    - BandWithRules                 # K2 — güven band
+    - ProductListEditorial          # L5 3-col — ürün listesi (T6 card grid YASAK)
+    - ProductSpecLinear             # T2 — ürün detay özellikleri linear
+    - SingleColCheckout             # F1 — 4 adım (sepet/bilgi/ödeme/onay)
+    - ColophonFooter                # FT4 — iyzico + KVKK + iade
+    - QuickAddModal                 # M1 — hızlı sepete ekle
+  optional:
+    - WishlistToggle
+    - IyzicoEmbed
+    - WhatsAppChat
+    - KampanyaBanner                # statik — fake countdown YASAK
+    - NewsletterForm
+
+anti_cliche:
+  forbidden_palettes: [PL1]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]           # split carousel 5-slide autoplay CTR < %1
+  forbidden_tables: [T6]            # card grid ürün YASAK (sector warning)
+  forbidden_kpi: [K1]               # bento glass kart okunaklılığı azaltır
+  forbidden_headers: [H8]
+  forbidden_patterns: [hero-carousel-5s-autoplay, glass-morphism-card, countdown-timer-fake-urgency]
+  repeat_score_vs_existing: 1       # Fatih Bey (H8·N2·HR2·K1·T6·L1·TY3·PL10) ile N2 + L1 = 2 kolon (universal)
+  warning: |
+    Hero carousel 5-slide autoplay CTR < %1 — HR11 tek güçlü statik hero. Glass morphism kart (K1 + L3)
+    kontrast AA kırar — L5 editorial + T2 linear tercih. Fake countdown timer güven kırıcı. T6 ürün kart
+    grid YASAK — editorial 3-col liste daha Swiss. Fatih Bey combo'su (H8+HR2+K1+T6) yeni projede YASAK.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: []
+  recommended_for: [eticaret-butik, mobilya-modernist, kitap, zanaat-ürünleri, ev-aksesuarları]
+  matrix_row_peers:
+    default: [kuafor]
+    active: [insaat, mucevher, restoran, klinik, eticaret, spa, fotograf, gayrimenkul, otel]
+
+preview_app_route: /preview/eticaret-minimal-swiss
+scaffold_command: "node scaffold.js eticaret-minimal-swiss --out ./eticaret-swiss-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/checkout-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  wcag_contrast_target: "AA (4.5:1) + ürün foto üzeri text overlay kontrast 7:1"
+  lighthouse_target: 95
+  bundle_size_target: "< 180KB first load (checkout + iyzico dahil)"
+  product_card: "square 1:1, hover alternate angle, quick-add cart, fav kalp"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  checkout_flow: "Sepet → bilgi → ödeme → onay (4 adım, progress bar, guest checkout)"
+  performance_critical: "LCP < 2.5s (product page hero), INP < 200ms (add-to-cart)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList JSON-LD"

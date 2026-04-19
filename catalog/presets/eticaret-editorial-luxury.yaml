@@ -1,0 +1,129 @@
+---
+id: eticaret-editorial-luxury
+sector: eticaret
+style: editorial-luxury
+recipe: next-r3f                  # lüks e-ticaret premium — 3D viewer + AR
+tier: premium
+budget_range_try: [25000, 80000]
+delivery_weeks: [3, 5]
+matrix_cell: "⚠"                  # KOŞULLU — lüks e-ticaret (mücevher, premium mobilya, butik moda) için OK
+---
+
+mood: [sakin, rafine, premium, editorial-magaza, baski-hissi, butik-secim]
+
+# KOŞUL: Bu preset lüks e-ticaret için (butik moda, premium mobilya, zanaat ürün).
+# Commodity/mass e-ticaret için data-dense-dashboard default.
+# Genç marka kampanya için maximalist-atmospheric ⚠.
+
+atoms:
+  palette: PL22                   # Tobacco + Pearl (editorial e-ticaret) — PL1 YASAK
+  typography: TY27                # Fraunces opsz + IBM Plex Sans
+  hero: HR11                      # Brochure Cover (koleksiyon kapak) — HR2 5-slide carousel YASAK
+  layout:
+    - L8                          # Masonry editorial (ürün vitrin)
+    - L6                          # Center single col (editorial story)
+  motion:
+    - MO7                         # View Transitions (ürün → detay)
+    - MO4                         # Framer layoutId morph (sepet morph)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal
+    - ultra-variable-font-opsz-scroll   # Fraunces opsz 9→144 scroll-linked
+    - wearebrand-lenis-gsap-bridge
+  header: H2                      # Masthead Centered — H8 YASAK
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K2                         # Band+rules (koleksiyon özelliği)
+  table: T3                       # Spec Sheet (ürün spec + malzeme + boyut) — T6 YASAK
+  chat: C3                        # Email Threaded (müşteri hizmetleri)
+  form: F4                        # Inline Edit (sepet + kupon + adres)
+  modal: M1                       # Centered Dialog (quick-view)
+  footer: FT4                     # Colophon editorial (atölye + tedarikçi künyesi)
+  3d_optional:
+    - 3D-08-drei-meshtransmission       # cam/taş refraction (takı/kristal)
+    - 3D-03-drei-presentationcontrols   # ürün döndürme
+    - 3D-11-gaussian-splat              # gerçek ürün scan (premium)
+
+components:
+  core:
+    - HeroBrochure                # HR11 koleksiyon kapak
+    - MastheadCentered
+    - UrunMasonryEditorial        # L8 masonry (editorial, T6 card grid YASAK)
+    - UrunDetayEditorial          # L6 center single col (editorial story)
+    - UrunSpecSheet               # T3 (malzeme + boyut + üretim)
+    - SepetInline                 # F4 inline edit
+    - CheckoutNative              # iyzico native (4 adım)
+    - FavoriList                  # wishlist (Supabase auth sync)
+    - KupponKampanya              # kampanya sistemi (fake countdown YASAK)
+    - ColophonFooter              # FT4 atölye künyesi
+  optional:
+    - Urun3DViewer                # R3F + MeshTransmissionMaterial (takı/kristal)
+    - ARTryOn                     # WebXR iOS Quick Look + Android Scene Viewer
+    - Konfigurator                # mobilya (kumaş + boyut + renk)
+    - ScrollStorytelling          # ürün hikayesi (GSAP + Lenis)
+    - GaussianSplatViewer         # gerçek ürün scan (premium)
+    - HeadlessCMS                 # Sanity/Payload blog + içerik
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # dark+gold YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]         # split-hero 5-slide carousel CTR < %1
+  forbidden_tables: [T6]          # card grid YASAK — editorial masonry tercih
+  forbidden_kpi: [K1]             # bento glass kontrast kırar
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1]
+  forbidden_patterns:
+    - "hero-carousel-5s-autoplay"
+    - "glass-morphism-card"
+    - "countdown-timer-fake-urgency"
+    - "product-card-grid-T6"
+  repeat_score_vs_existing: 1     # Fatih Bey (mücevher e-ticaret) ile MO4 + N2 eşleşir max 2/15
+  warning: |
+    KOŞULLU (⚠): Bu preset LÜKS e-ticaret için (butik moda, premium mobilya, zanaat).
+    Commodity/mass için data-dense-dashboard default.
+    Hero carousel 5-slide autoplay CTR < %1 — tek güçlü statik hero ZORUNLU.
+    Glass morphism kart K1 kontrast kırar — L8 masonry editorial tercih.
+    Fake countdown timer güven kırıcı — YASAK.
+    T6 ürün kart grid YASAK — editorial masonry L8.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]  # self (bu preset koşullu)
+  recommended_for: [mucevher, klinik, kuafor, restoran, spa, fotograf, gayrimenkul, otel]
+  alternative_default: data-dense-dashboard  # mass e-ticaret
+  use_case: "Lüks e-ticaret (butik moda, premium mobilya, takı, zanaat ürün)"
+
+preview_app_route: /preview/eticaret-editorial-luxury
+scaffold_command: "node scaffold.js eticaret-editorial-luxury --out ./eticaret-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/checkout-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/kampanya-analiz.md
+  - Mobilyacı/3d-demo/research/furniture-3d-ecommerce.md
+  - research/webxr-ar-vr-2026.md
+  - research/headless-cms-payload-sanity-strapi-2026.md
+  - research/design-claude/templates/02-mucevher/index.html  # editorial e-ticaret ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-700"
+    - "IBM Plex Sans 300-600"
+    - "IBM Plex Mono"
+  wcag_contrast_target: "AA (4.5:1) baseline — Premium AAA (7:1)"
+  lighthouse_target: 92
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  product_card: "1:1 kare, hover alternate angle, quick-add cart, kalp favorile"
+  product_gallery: "L8 masonry 3-col desktop, 2-col mobile"
+  checkout_flow: "Sepet → bilgi → ödeme → onay (4 adım, progress bar, guest checkout)"
+  performance_critical: "LCP < 2.5s (product hero), INP < 200ms (add-to-cart)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList + Brand JSON-LD"
+  mobile_critical: "Sticky 'Sepete Ekle' bottom bar (ürün detay)"
+  special_features:
+    - "3D ürün viewer (mobilya/takı için)"
+    - "AR try (WebXR)"
+    - "Konfigurator (mobilya renk/kumaş/boyut)"
+    - "Variable font opsz scroll (Fraunces axis)"

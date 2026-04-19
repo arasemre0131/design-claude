@@ -1,0 +1,139 @@
+---
+id: insaat-immersive-3d
+sector: insaat
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ zorunlu (yapı rendering)
+tier: premium
+budget_range_try: [35000, 80000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # insaat × immersive-3d AKTIF (default industrial-workwear)
+---
+
+mood: [cinematic, scroll-camera, architectural-3d, blueprint-overlay, technical-precision, drone-flythrough]
+
+atoms:
+  palette: PL21              # Ozalit Blueprint (cyan+black) — PL8 (v2-immersive-3d) YASAK, inşaat için teknik dil
+  typography: TY26           # Rubik Mono One + Inter Tight — TY8 DM+Inter YASAK, monospace stencil inşaat tonu
+  hero: HR4                  # 3D Canvas Scroll-Camera (drone flythrough + yapı inspection)
+  layout:
+    - L4                     # Full-bleed rails (kamera path)
+    - L5                     # Newspaper (teknik spec + proje metni)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scrub 1.8 — teknik precision)
+    - MO2                    # Lenis smooth (lerp 0.08)
+    - MO12                   # R3F postprocessing (SSAO + bloom düşük)
+  motion_ajans:
+    - lusion-glsl-noise                 # Beton/rüzgar atmosferi shader
+    - ultra-porthole-dive               # Binaya giriş scale 1→4
+    - ultra-variable-font-opsz-scroll   # Teknik başlık (opsiyonel)
+  3d:
+    - 3D-01-drei-envmap                 # Outdoor HDRI (şantiye ışık)
+    - 3D-02-drei-orbitcontrols          # Proje detay sayfasında 360 inspect
+    - 3D-04-drei-contactshadows         # Bina yere gölge
+    - 3D-09-postprocessing-bloom        # Düşük intensity (0.3), güneş parıltısı
+    - 3D-10-postprocessing-dof          # Drone shot bokeh
+    - 3D-11-gaussian-splat              # Gerçek şantiye fotogrametri (drone kapture)
+    - 3D-12-gltf-draco-ktx2             # Mimari model compression ZORUNLU (çoklu bina = ağır)
+    - 3D-13-rapier-physics              # Opsiyonel — yapı "explosive view" physics
+  header: H9                 # Corner brackets (technical drawing hissi) — H8 YASAK
+  nav: N10                   # Timeline scroll-locked (proje aşamaları)
+  kpi: K12                   # Blueprint stat (coordinat + proje sayıları) — K7 tower v2'de kullanıldı
+  table: T3                  # Spec sheet (metrekare, kat, daire, teslim) — T6 YASAK
+  chat: C3                   # Email threaded (keşif randevusu)
+  form: F4                   # Inline edit
+  modal: M1                  # Centered dialog
+  footer: FT8                # Industrial stripe (hazard pattern alt band)
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl
+    - DroneFlythroughPath               # Scroll-linked drone kamera (şantiye → kuşbakışı)
+    - BuildingInspector                 # Bina orbit + katları geçiş (drei OrbitControls)
+    - BlueprintOverlay                  # Teknik çizim overlay (SVG ozalit stili)
+    - ProgressTimeline                  # Proje aşamaları (temel → çatı → teslim) 3D camera scroll
+    - GaussianSplatSite                 # Şantiye gerçek fotogrametri (drone capture)
+    - PostprocessingStack               # Bloom (0.3) + DOF + SSAO
+    - InteractiveMap                    # 2D map, proje lokasyonları (Mapbox overlay)
+    - SpecSheet                         # T3 — metrekare, kat, teslim tarihi
+  optional:
+    - ExplodedView                      # drei + rapier physics, yapı parçalara ayrılır
+    - FloorPlanViewer                   # Kat planı click → 3D oda
+    - ConstructionTimeline              # Theatre.js keyframe (temel→çatı progress)
+    - ArSitePreview                     # Model-viewer AR (müşteri arsayı gezer)
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]        # dark+gold (emlak değil) + v2-immersive-3d PL8
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]          # split-hero + dashboard-as-hero
+  forbidden_tables: [T6]                # card grid
+  forbidden_kpi: [K1, K7]               # bento glass + v2-immersive-3d tower
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1, L7]
+  forbidden_motion: [MO10-print-first]
+  forbidden_patterns:                   # insaat.yaml'dan
+    - "stok-foto-unsplash-safety-vest"
+    - "mavi-dalga-hero-20-yildir"
+    - "dribbble-turuncu-siyah-saas"
+    - "drone-video-ama-3d-yok"
+  repeat_score_vs_existing: 3           # v2-immersive-3d ile HR4+MO1 ortak
+  warning: |
+    İnşaat immersive-3d için PL21 Ozalit Blueprint (cyan+black) + TY26 Rubik Mono imza. Stok foto
+    Unsplash safety-vest hero YASAK — gerçek drone footage veya Gaussian Splat scan zorunlu.
+    3D bina rendering'de photorealism değil "blueprint overlay" hissi tercih (SSAO + outline shader).
+    Drone flythrough kamera path düz değil bezier — scale + easing ease.inOut. v2-blueprint
+    (TY5+PL5+HR13+L5+MO1) combo'suyla 3+ kolon eşleşme riski var — layout L4 (v2'de L5) ve motion
+    MO2 eklemesi farklılaştırır.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]
+  conditional_sectors: [klinik]
+  recommended_for: [insaat, mimari, gayrimenkul-premium, sanat-muze]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/insaat-immersive-3d
+scaffold_command: "node scaffold.js insaat-immersive-3d --out ./insaat-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/ultra-immersive-stories-research.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/scroll-animation-patterns.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/blender-to-r3f-pipeline.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - research/design-claude/templates/12-immersive-3d/index.html
+  - research/design-claude/v2-blueprint/index.html           # ozalit imza referansı
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → drone video poster (.webp) + MP4 (10-15s loop, ≤6MB, muted autoplay), frameloop='demand'"
+  gpu_tier_detection: "detect-gpu tier 0-1 → video fallback, tier 2 → düşük poly bina + postprocess off, tier 3+ → full flythrough"
+  model_compression: "Draco + KTX2 + Meshopt ZORUNLU — bina modeli max 5MB, site-wide 20MB (bin bina = LOD 3 seviye)"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Rubik Mono One 400 (başlık)"
+    - "Inter Tight 300-700 (gövde)"
+    - "JetBrains Mono 400 (teknik spec)"
+  wcag_contrast_target: "AA (4.5:1) minimum + 3D canvas aria-label='Proje tanıtım 3D sahnesi, metin detayları aşağıda' + tabindex='-1' (decorative flythrough), inspector mode için keyboard (ok = rotate, +/- = zoom)"
+  lighthouse_target: 87
+  prefers_reduced_motion: "Drone flythrough → static hero image (drone tek kare), 3D animation durur, scroll-camera skip"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Projelerimizi İncele"
+  mobile_critical: "Sticky WhatsApp + telefon bottom bar, 3D canvas üstünde 'BINAYI DÖNDÜR' ipucu"
+  safety_badges: "TSE + ISO 9001 + OHSAS 18001 — footer"
+  schema: "Place + ConstructionProject (custom) + GeoCoordinates + Offer (satılık daire) JSON-LD"
+  special_features:
+    - "Drone flythrough scroll-camera (GSAP scrub 1.8, Hermite path)"
+    - "Gaussian Splat şantiye fotogrametri (canlı proje durumu)"
+    - "Bina orbit inspector (drei OrbitControls + drei Bounds auto-fit)"
+    - "Interactive map (Mapbox GL JS custom style + 3D flyTo)"
+    - "Kat planı click → 3D oda geçişi (View Transitions API)"
+    - "Exploded view (Rapier physics, opsiyonel Tier 4)"

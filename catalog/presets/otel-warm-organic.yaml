@@ -1,0 +1,116 @@
+---
+id: otel-warm-organic
+sector: otel
+style: warm-organic
+recipe: next-premium           # Mid tier default — otel suitability ✓✓ (native booking)
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓✓"              # otel × warm-organic DEFAULT
+---
+
+# Stil mood — butik otel kaçış + terracotta+sky organik
+# Konsept: Drone video hero + Fraunces italic kaçış hissi + native booking (iframe DEĞİL).
+mood: [kacis, lux-erisilebilir, warm-terracotta, deneyim, isik-manzara, unhurried, butik]
+
+atoms:
+  palette: PL37                # Terracotta + Sky — butik otel warm, PL1 luxury dark'ın ters
+                               # Alt: PL38 Cool Marble (minimal butik otel için)
+  typography: TY43             # Fraunces italic opsz 144 + Inter Tight — "kaçış" italic
+  hero: HR3                    # Full-bleed drone video (havuz/manzara/dış cephe, 15-20s, ≤8MB)
+                               # Alt: HR11 Brochure Cover (editorial odak)
+  layout:
+    - L4                       # Full-bleed rails (oda tipi horizontal gallery)
+    - L8                       # Masonry oda foto grid
+  motion:
+    - MO2                      # Lenis smooth (lerp 0.06-0.08, sakin butik)
+    - MO7                      # View Transitions API (oda → rezervasyon flow morph)
+    - MO10                     # Print-first fallback
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # oda kartı reveal (yumuşak)
+    - wearebrand-lenis-gsap-bridge       # Lenis + GSAP scrub 2.5 (kaçış akışı)
+    - ultra-variable-font-opsz-scroll    # Fraunces opsz 9→144 oda adı scroll-linked
+  header: H2                   # Masthead Centered — wordmark + lokasyon subtitle + hairline
+  nav: N2                      # Horizontal Tabs Underline (Odalar/Restoran/Spa/Rezervasyon)
+  kpi: K5                      # Almanac Editorial — "90 oda · 18 suite · 2 havuz · 1 spa"
+  form: F1                     # Single-col tall (native rezervasyon: tarih → oda → misafir → ekstra)
+  modal: M1                    # Centered Dialog (oda detay galerisi + fiyat)
+  footer: FT4                  # Colophon — otel künyesi + adres + sosyal + sertifika
+
+components:
+  core:
+    - HeroFullBleedDroneVideo            # HR3 — drone loop 15-20s ≤8MB, gradient scrim + copy
+    - MastheadCentered                   # H2 — Fraunces italic otel adı + "Bodrum · Est. 1998"
+    - HorizontalTabsNav                  # N2 — Odalar/Restoran/Spa/Rezervasyon/İletişim
+    - FullBleedRoomRails                 # L4 — oda tipi horizontal scroll gallery
+    - MasonryRoomGallery                 # L8 — her oda foto galerisi masonry
+    - AlmanacEditorialKpi                # K5 — "90 oda · 2 havuz · 1 spa · Est. 1998"
+    - NativeBookingFlow                  # F1 — 5 adım: tarih → oda → misafir → ekstra → ödeme
+    - ViewTransitionRoomDetail           # MO7 — oda listesi → detay morph
+    - VariableFontOpszScroll             # Fraunces 9→144 oda adı (suite/deluxe/standart)
+    - ColophonFooter                     # FT4 — otel künyesi + yıldız + sertifika
+  optional:
+    - ConciergeChat                      # gerçek zamanlı (Supabase Realtime)
+    - ReviewCarousel                     # TripAdvisor/Google review sync
+    - SpaPaketSatis                      # otel-spa hibrit (ek paket)
+    - TransferServis                     # havaalanı transfer rezervasyonu
+    - SanalOdaTuruR3F                    # Tier 3+ (premium suite sanal tur)
+    - I18nTrEnAr                         # TR + EN zorunlu, AR/RU Antalya/Bodrum için
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # luxury dark+gold 'Welcome to X' klişesi YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # Playfair italic gold YASAK — Fraunces italic OK
+  forbidden_heroes: [HR2, HR7]
+  forbidden_patterns:
+    - "gold italic 'Welcome to X' başlığı"
+    - "stok foto havuz hero"
+    - "Booking.com iframe (native booking akışını öldürür)"
+    - "fake Instagram feed overlay"
+  repeat_score_vs_existing: 1            # sadece H2 + N2 universal
+  warning: |
+    Luxury dark gradient + gold italic 'Welcome to X' klişesi YASAK — her butik otel aynı. Stok foto
+    havuz YASAK, gerçek otel + drone video zorunlu. Booking.com iframe + rate comparison external link
+    otel sitesini öldürür — native rezervasyon akışı (5 adım: tarih → oda → misafir → ekstra → ödeme)
+    zorunlu. Fine-art italic başlık için Fraunces italic OK ama Playfair YASAK.
+
+compatibility:
+  forbidden_sectors: [insaat, fintech, gaming]
+  conditional_sectors: [kuafor, eticaret, mucevher]
+  recommended_for: [otel, spa, mucevher-el-isi, restoran-organic, gayrimenkul-butik]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/otel-warm-organic
+scaffold_command: "node scaffold.js otel-warm-organic --out ./otel-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/hospitality-virtual-tour.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md        # LodgingBusiness JSON-LD
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - research/design-claude/mockups/a-warm-dark/index.html                         # 5/5 warm ref
+  - research/design-claude/templates/10-otel/index.html                           # TY43 + PL37 sektör ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Fraunces italic opsz 9-144 wght 400/600 (variable display)"
+    - "Inter Tight 300-600 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #F2E3D1 × terracotta #B34F1B = 5.4:1 ✓"
+  lighthouse_target: 92
+  hero_assets: "drone video (havuz + manzara + dış cephe, 15-20s, ≤8MB, autoplay muted loop)"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları İncele"
+  booking_flow: "Tarih → oda tipi → misafir sayısı → ekstra (yemek, spa) → ödeme (5 adım, progress bar)"
+  motion_config: "Lenis lerp 0.06-0.08, View Transitions (oda→detay+rezervasyon), Fraunces opsz scroll-linked"
+  prefers_reduced_motion: "View Transitions off, immediate swap + static hero frame"
+  special_note: "Native booking ZORUNLU (iframe yasak). i18n TR+EN minimum, AR+RU Antalya/Bodrum için."
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review + AggregateRating JSON-LD"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran"
+  i18n_critical: "TR + EN zorunlu, AR + RU Tier 4'te otel müşteri profiline göre"

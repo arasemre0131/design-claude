@@ -1,0 +1,108 @@
+---
+id: spa-warm-organic
+sector: spa
+style: warm-organic
+recipe: next-premium           # Mid tier default — spa suitability ✓
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓✓"              # spa × warm-organic DEFAULT
+---
+
+# Stil mood — spa sessizliği + warm-organic clay/mist
+# Konsept: Meditatif, nefes-alan, tactile. Luxury dark gradient'in tam karşıtı.
+mood: [sakin, earthy, natural, botanical, organic-tones, breathable-whitespace, unhurried, ritüel-bakım]
+
+atoms:
+  palette: PL31                # Clay + Mist — spa primary, PL1 dark+gold klişesinin ESER alternatifi
+                               # Alt: PL32 Pearl+Seafoam (coastal spa için)
+  typography: TY37             # Cormorant Infant italic + Inter Tight — organik, soft italic
+  hero: HR3                    # Full-bleed video (slow-mo su damlası, yaprak, buhar) — spa imza
+  layout:
+    - L6                       # Center single column (meditative, max 720-780px)
+  motion:
+    - MO2                      # Lenis çok yavaş (lerp 0.05-0.08) — nefes-alan hissi
+    - MO3                      # CSS scroll-driven subtle (opacity 0.3→1)
+    - MO10                     # Print-first static sections — sessizlik
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # yumuşak premium reveal (blur → clarity)
+    - wearebrand-lenis-gsap-bridge       # Lenis 1.3 + GSAP scrub 2.5+ (çok sakin)
+  header: H2                   # Masthead Centered — minimal, wordmark + subtitle + hairline
+  nav: N3                      # Breadcrumb-only (minimal navigation)
+  kpi: K5                      # Almanac Editorial — serif büyük sayı + prose açıklama
+  form: F1                     # Single-col tall (randevu formu)
+  modal: M1                    # Centered Dialog (paket detayı)
+  footer: FT5                  # Contact Card minimal — tek satır iletişim + adres
+
+components:
+  core:
+    - HeroFullBleedVideo                 # HR3 — slow-mo su/yaprak/buhar loop 8-12s, ≤4MB
+    - CenterSingleColumn                 # L6 — max-width 780px meditative
+    - MastheadCentered                   # H2 — Cormorant Infant italic wordmark + hairline
+    - BreadcrumbOnlyNav                  # N3 — minimal path
+    - AlmanacEditorialKpi                # K5 — "15 yıl · 12 terapist · 8 ritüel"
+    - SingleColForm                      # F1 — randevu (tarih → saat → paket → ad → telefon)
+    - ContactCardFooter                  # FT5 — tek satır adres + telefon + WhatsApp
+    - BlurRevealSubtle                   # wearebrand 36px blur reveal (0.8-1.2s duration)
+    - LenisSlowScroll                    # lerp 0.05-0.08, çok yavaş
+  optional:
+    - BookingCalendar                    # Supabase + react-day-picker slot-based
+    - WhatsAppChat                       # sticky mobile bottom
+    - PackageSelector                    # paket listesi (fiyat + süre + ritüel anlatımı)
+    - GiftCardPdf                        # hediye çeki PDF + QR
+    - BotanicalSvgGrain                  # SVG grain opacity 0.04 (tactile)
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # Luxury spa dark + gold gradient YASAK — her otel-spa aynı
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_motion: [MO1-aggressive, MO11-kinetic, MO9-bounce, "fast-scroll", "neon", "hard-snap"]
+  forbidden_patterns:
+    - "yüzü peçeli kadın + taş klişesi"
+    - "gold vurgu"
+    - "Framer Motion bouncy spring"
+    - "şelale stok foto hero"
+  repeat_score_vs_existing: 1            # sadece MO4 framer universal olmayacak (MO2+MO3+MO10 özgün)
+  warning: |
+    Spa için PL1 (dark #0A0A0A + gold #C9A84C + şelale foto) klişesi KESIN YASAK — 5+ mücevher/otel
+    projesinde kullanıldı. Clay+Mist (PL31) spa sakin + earthy alternatif. Framer Motion bouncy spring
+    spa'da fazla — Lenis lerp 0.05-0.08 zorunlu. Gold vurgu yok, italic başlıkta Cormorant Infant
+    (Playfair DEĞİL). Motion çok sakin: 0.8-1.5s duration, ease 'power2.out'. Hızlı animation YASAK.
+
+compatibility:
+  forbidden_sectors: [insaat, fintech, gaming]   # agresif/tech sektörle çelişir
+  conditional_sectors: [kuafor, eticaret, gayrimenkul-butik]
+  recommended_for: [spa, otel, mucevher-el-isi, restoran-organic, klinik-sakin, yoga-meditasyon]
+  matrix_row_peers:
+    default: [spa, gayrimenkul, otel]            # ✓✓
+    active: [mucevher, kuafor, restoran, klinik] # ✓
+    conditional: [insaat, eticaret, fotograf]    # ⚠
+
+preview_app_route: /preview/spa-warm-organic
+scaffold_command: "node scaffold.js spa-warm-organic --out ./spa-warm-organic-test/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - research/design-claude/mockups/a-warm-dark/index.html       # 5/5 warm dark variant ref
+  - research/design-claude/templates/07-spa/index.html          # 4/5 Pearl+Seafoam + Lenis slow ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Cormorant Infant italic 400/600 (display)"
+    - "Inter Tight 300-500 (body)"
+  wcag_contrast_target: "AA (4.5:1) — bg #F5F1E8 × rootbark #6B5E4C = 5.7:1 ✓"
+  lighthouse_target: 93
+  hero_assets: "slow-mo loop video (su damlası, yaprak, buhar, 8-12s, ≤4MB) VEYA still organik bitki foto"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Paketleri İncele"
+  motion_config: "Lenis lerp 0.05-0.08 (ultra-slow), CSS scroll-driven opacity subtle (0.3→1), duration 0.8-1.5s ease power2.out"
+  prefers_reduced_motion: "Scroll-reveal off, immediate display + static fallback"
+  special_note: "Motion çok sakin — 0.8-1.5s duration, ease 'power2.out', hızlı animation YASAK. Gold vurgu YASAK, italic = Cormorant Infant (Playfair DEĞİL). SVG grain opacity 0.04 tactile katman."
+  schema: "HealthAndBeautyBusiness + Service + OpeningHoursSpecification JSON-LD"
+  legal: "KVKK onay + çerez banner, hediye çeki tek kullanımlık token"

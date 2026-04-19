@@ -1,0 +1,180 @@
+---
+id: klinik-data-dense-dashboard
+sector: klinik
+style: data-dense-dashboard
+recipe: next-premium
+tier: mid
+budget_range_try: [18000, 35000]
+delivery_weeks: [3, 4]
+matrix_cell: "⚠"                      # klinik × data-dense-dashboard KOŞULLU (admin/portal için, tanıtım sitesi için YASAK)
+---
+
+# Konsept: Klinik admin paneli / randevu yönetimi / hasta portal backoffice.
+# KRITIK: Bu preset sadece İÇ ADMIN için — hasta-facing tanıtım sitesi için editorial-luxury default kullan.
+# Hastane/klinik kabul: randevu takvim, hasta listesi, tedavi kayıt, dosya yönetimi (KVKK),
+# SMS/email hatırlatma log, doktor shift planı, gelir raporu.
+mood: [compact, calm-clinical, monospace-stat, trust-ink, low-visual-noise, accessibility-first]
+
+atoms:
+  palette: PL28                       # Cream + Forest — klinik recommended + light linear-style palette
+                                      # Sıcak-sakin (sterile beyaz YASAK), forest accent = "onaylandı/tamam"
+                                      # Alt: linear-style #FCFCFC bg + IBM Plex Sans siyah ink (daha nötr)
+  typography: TY33                    # Fraunces + IBM Plex Sans + IBM Plex Mono — klinik recommended + data-dense uyumlu
+                                      # Fraunces sadece KPI LABEL üst başlığında (decorative-serif-italic-main YASAK)
+                                      # Body ve tablo IBM Plex Sans, tablo sayıları IBM Plex Mono tabular-nums
+  hero: HR14                          # Zero-Hero receipt strip — "Bugün 12 randevu · bekleyen onay 3 · dosya yükleme 8"
+                                      # HR7/HR2/HR8 klinik sector YASAK
+  layout:
+    - L7                              # Sticky Sidebar + Feed — sol rail: Randevu/Hasta/Tedavi/Ekip/Raporlar/KVKK
+    - L6                              # Center single col fallback (tek hasta detay sayfası)
+  motion:
+    - MO4                             # Framer light — row expand, filter morph (klinik yumuşak)
+    - MO8                             # WAAPI minimal — command palette, toast
+    - MO10                            # Print-first fallback (reduced-motion, klinik AAA erişilebilirlik)
+  motion_ajans: []                    # KLINIK YASAK: agresif-scroll-pin, fast-kinetic-typography, neon-flash
+  header: H3                          # Sidebar Rail + Breadcrumb — "Randevular / Dr. Ayşe / 22 Nisan"
+                                      # H8 mix-blend YASAK, H2 masthead editorial için (tanıtım sitesi)
+  nav: N5                             # Command Palette ⌘K — "Hasta ara", "Randevu git 14:30", "Dosya yükle"
+                                      # Alt: N2 horizontal tabs (sessiz klinik için)
+  kpi: K5                             # Almanac Editorial — "Bu ay: 248 hasta · 42 yeni · 16 takip · memnuniyet 94%"
+                                      # klinik recommended + data-dense uyumlu (K1 bento YASAK)
+                                      # Alt: K8 inline sparkline (randevu trend 7 gün)
+  pipeline: P8                        # Dense Table — randevu pipeline "Onay bekliyor → Onaylandı → Geldi → Tamamlandı"
+                                      # P1 klasik kanban YASAK
+  table: T3                           # Spec Sheet — tedavi planı: işlem / süre / fiyat / hekim / randevu tarihi
+                                      # Alt: T2 Linear Issue (hasta dosya işlemleri), T4 filterable stream (SMS log)
+  chart: CH10                         # Sparkline-only — randevu doluluk / gelir trend (sessiz)
+                                      # Alt: CH6 column bar (aylık gelir) — smooth line CH1 YASAK
+  form: F4                            # Inline Edit — randevu saat değiştir, not ekle, dosya upload
+  modal: M1                           # Centered Dialog — KVKK onay modal (yasal kritik), M5 inline expand (hasta detay)
+  footer: FT5                         # Contact Card single line — admin destek + versiyon + environment badge
+
+components:
+  core:
+    - ZeroHeroReceiptStripKlinik      # HR14 — bugün randevu · bekleyen onay · dosya upload · SMS gönderim
+    - StickySidebarFeedKlinik         # L7 — Randevular/Hastalar/Tedaviler/Ekip/Raporlar/KVKK-Audit
+    - SidebarRailHeaderBreadcrumb     # H3 — kullanıcı + klinik seçici (multi-location support)
+    - CommandPaletteCmdK              # N5 — "/h hasta ara", "/r randevu", "/t tedavi", "/d dosya"
+    - AlmanacEditorialKpi             # K5 — editorial stat grid (ay/hafta/yıl karşılaştırma)
+    - RandevuTakvimDenseGrid          # Full-calendar benzeri, dense week view + ⌘K jump
+    - HastaListeLinearTable           # T2 — hasta: ad / son randevu / tedavi / kvkk durum / notlar
+    - TedaviPlaniSpecSheet            # T3 — işlem / süre / fiyat / hekim / sigorta kapsam
+    - SparklineOnlyChart              # CH10 — randevu doluluk / aylık gelir
+    - InlineEditRandevuRow            # F4 — saat/hekim/tedavi edit + ⌘S kaydet
+    - CentredKVKKModal                # M1 — KVKK açık rıza (yasal zorunlu) + imza padi
+    - InlineExpandHastaRow            # M5 — hasta satır aç → son randevu + dosya + ilaç + alerji
+    - KVKKAuditLogStream              # T4 — "Dr. Ayşe · Murat K. dosyasını gördü · 14:22" yasal log
+    - SitemapFooterMinimalKlinik      # FT5 — destek + KVKK politika link + versiyon
+  optional:
+    - SMSEmailHatirlatmaLog           # T4 filterable stream ("Hatırlatma gönderildi · 17:00 Dr. Serdar")
+    - DosyaUploadSupabaseStorage      # hasta dosya (x-ray, rapor) RLS zorunlu
+    - DoktorShiftPlaniGantt           # P5 — haftalık shift pinned
+    - GelirRaporuExportPdf            # @react-pdf aylık rapor
+    - OncesiSonrasiGalleryModerated   # Sağlık Bakanlığı etik bildirim + watermark zorunlu
+    - AyikBildirimSpotlight           # yasal banner "Bu bir reklam değil, sağlık bilgilendirmesi"
+    - HastaPortalPasswordProtected    # auth ayrı domain/subroute
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # klinik sector: dark+gold tamamen ters mood, hasta tedirgin olur
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7, HR8]
+  forbidden_headers: [H8]
+  forbidden_pipeline: [P1]
+  forbidden_tables: [T6]              # card grid klinik dense'e ters
+  forbidden_layouts: [K1]             # bento glass YASAK (AAA okunabilirlik kritik)
+  forbidden_chart: [CH1, CH2]         # smooth + tremor default
+  forbidden_motion:
+    - MO10-dramatic                   # print-first OK ama dramatik scroll YASAK
+    - MO11-opsz-dramatic
+    - MO1-aggressive-pin
+    - "agresif-scroll-pin"
+    - "fast-kinetic-typography"
+    - "neon-flash"
+    - "elastic-bouncy"
+  forbidden_patterns:
+    - "dental-boutique-playfair-italic-gold-underline"   # klinik klişesi
+    - "stok-foto-gulumseyen-disler"                      # gerçek klinik fotoğraf zorunlu
+    - "typeform-style-overpersonal-hero"                 # bot hissi
+    - "oncesi-sonrasi-etik-bildirimsiz"                  # Sağlık Bakanlığı yasa
+  repeat_score_vs_existing: 0         # klinik temiz sektör — benzer proje yok (YASAK: PL1+TY2 dental boutique klişesine düşme)
+  warning: |
+    KRITIK: Bu preset SADECE iç admin / hasta portal için — hasta-facing tanıtım sitesi için
+    klinik-editorial-luxury (default) kullan. Admin yönlendirmesi /admin subroute + auth koruması zorunlu.
+
+    Klinik için agresif renk + hızlı motion YASAK — hasta (admin bile olsa) güven hissetmez.
+    Linear-style dense tablonun "soğuk ops" hissi var, bu yüzden PL28 cream+forest ile yumuşatılıyor.
+    Dense tablo olsa bile monospace sayı rahat okunabilir (AAA contrast zorunlu).
+
+    KVKK kritik: her hasta dosyası erişimi audit log'da + hasta açık rıza modal ilk login.
+    Sağlık Bakanlığı reklam yasası: admin'de öncesi-sonrası galeri kullanılıyorsa
+    watermark + etik bildirim zorunlu (aksi yasal yaptırım).
+
+compatibility:
+  forbidden_sectors: [spa, mucevher, kuafor, restoran, fotograf, otel]
+  conditional_sectors: [klinik, gayrimenkul]
+  recommended_for: [eticaret, insaat]  # data-dense native match olan sektörler
+  notes:
+    - "KLINIK için KOŞULLU (⚠): sadece hasta portal / randevu admin / dosya yönetimi için"
+    - "Hasta tanıtım sitesi (hero + tedaviler + randevu al) için klinik-editorial-luxury zorunlu"
+    - "Diş + estetik + fizyoterapi kliniklerinde randevu trafiği > 20/gün ise bu preset anlamlı"
+    - "Tek hekim muayenehanesi için overkill — basit form + Google Takvim entegresyonu yeterli"
+    - "Zincir klinik / çok şubeli için multi-tenant yapı + next-enterprise-monorepo'ya çıkar"
+
+preview_app_route: /preview/klinik-data-dense-dashboard
+scaffold_command: "node scaffold.js klinik-data-dense-dashboard --out ./klinik-admin/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+  - Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+  - Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+  - Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md      # RLS + hasta portal
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md           # AAA kritik
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md                # KVKK + sağlık reklam yasası
+  - Mobilyacı/3d-demo/research/email-analiz.md                           # SMS/email hatırlatma
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - research/design-claude/insaat-crm/a-safe/index.html                   # 5/5 Linear-style dense ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: |
+    Klinik resepsiyon tablet (768px) primary — sidebar rail collapse, sağ icon-only.
+    Doktor telefon (375px): Bugün sekmesi + ⌘K arama + hasta mini kart.
+    Dense tablo → kart view (M3 bottom sheet detay), randevu takvim swipe nav.
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Fraunces opsz 9-72 wght 400-600 (KPI label + breadcrumb üst başlık)"
+    - "IBM Plex Sans 300-600 (body, tablo, form)"
+    - "IBM Plex Mono 400 (tabular-nums, TC kimlik, tarih, saat, tutar)"
+  wcag_contrast_target: "AAA (7:1) — klinik okunaklılık + medikal hata riski için AA yetersiz"
+  lighthouse_target: 95                                                  # klinik sade + az asset
+  virtualization: "TanStack Virtual ZORUNLU — hasta listesi 500+ kayıt, randevu 200+ satır"
+  keyboard_nav: "j/k vim + ⌘K + / arama + g+r randevu, g+h hasta, g+t tedavi quick jump"
+  tabular_nums_css: "font-variant-numeric: tabular-nums — TC kimlik, telefon, tarih, tutar, dozaj"
+  primary_cta: "Randevu Oluştur / Hasta Ekle"
+  secondary_cta: "Dosya Yükle / Rapor İndir"
+  special_features:
+    - "⌘K palette: hasta ara (TC no / ad soyad / telefon), randevu git (tarih+saat), tedavi açıklama"
+    - "Randevu çakışma uyarısı (overlap detection + sonner toast)"
+    - "SMS/email hatırlatma log (Twilio + Resend entegre)"
+    - "KVKK açık rıza modal (ilk login + her hasta dosyası açılınca audit)"
+    - "Supabase Storage hasta dosya (x-ray, rapor) + RLS (hasta kendi dosyasını görür)"
+    - "Hasta portal /hasta subroute — ayrı auth + doktor panel farklı view"
+    - "@react-pdf aylık rapor (gelir, hasta dağılımı, tedavi tipi)"
+    - "Yazdırılabilir reçete + faturalandırma (e-fatura XML hazırlık)"
+  schema: "Admin-only — tanıtım sitesi ayrı MedicalClinic + Physician + MedicalProcedure JSON-LD"
+  performance_critical: "Randevu takvim render < 100ms, hasta arama /k autocomplete < 50ms INP"
+  auth_critical: |
+    Supabase RLS her tabloda (patients, appointments, files, audit_log)
+    + role-based (sahib / doktor / resepsiyon / hasta)
+    + KVKK audit log (insert trigger — kim ne zaman hangi hasta dosyasını gördü)
+    + service_role server-only + hasta portal ayrı subroute
+    + 15dk idle session timeout (sağlık verisi hassas)
+    + IP whitelist (klinik içi + VPN) opsiyonel
+  legal_critical:
+    - "KVKK açık rıza checkbox (ilk login + her hasta form)"
+    - "Çerez banner (reject-all var) — tanıtım sitesi de zorunlu"
+    - "Sağlık Bakanlığı öncesi-sonrası etik bildirim (admin'de galeri varsa)"
+    - "e-fatura (GİB) entegrasyonu hazır (Tier 3+)"
+    - "Hasta dosya silme talepi workflow (GDPR/KVKK hakkı)"

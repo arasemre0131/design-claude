@@ -1,0 +1,91 @@
+---
+id: kuafor-kinetic-agency
+sector: kuafor
+style: kinetic-agency
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 22000]
+delivery_weeks: [2, 3]
+status: active  # MATRIX ✓ — modern atelier barber + kinetic editorial
+---
+
+mood: [kinetic, modern-atelier, italic-vurgu, variable-font-axis, cool-craft, editorial-barber]
+
+atoms:
+  palette: PL25              # Slate+Olive (#EDEAE3 + #556B2F + wheat) — cool atelier, warm kaçın
+  typography: TY14           # Monument Extended + Inter Tight + JetBrains Mono (tech-chic alternatif)
+  hero: HR11                 # Brochure Cover Grid — koleksiyon cover + chef-portrait stil ekip
+  layout: L2                 # Asymmetric Broken Grid — editorial magazine look
+  motion:
+    - MO1                    # GSAP ScrollTrigger
+    - MO2                    # Lenis smooth (lerp 0.08 — salon sakin ton)
+    - MO6                    # SplitText + Stagger
+  motion_ajans:
+    - ultra-variable-font-opsz-scroll   # Monument wght scroll-linked (Monument Ext. alt: Big Shoulders)
+    - wearebrand-blur-36px-reveal       # SplitText chars blur-36 → 0 stagger (koleksiyon isim reveal)
+    - wearebrand-lenis-gsap-bridge      # Lenis+GSAP bridge
+  header: H5                 # Marquee Ticker — "BUGÜN AÇIK 09:00-21:00 · RANDEVU · WHATSAPP"
+  nav: N7                    # Vertical rail — "01 · Hizmetler / 02 · Ekip / 03 · Koleksiyon"
+  kpi: K2                    # Band+rules (tecrübe yılı, ekip sayısı, lokasyon)
+  pipeline: null             # Kuaför timeline gerektirmez
+  chart: null
+  form: F2
+  modal: M1
+  footer: FT5                # Contact Card tek satır — "+90 216 ... · randevu@salon.tr"
+
+components:
+  core:
+    - BrochureCoverGridHero            # HR11 — koleksiyon foto + ekip portre grid
+    - MarqueeTickerOpen                # H5 — "AÇIK · RANDEVU AL" + working hours
+    - MonumentItalicReveal             # TY14 opsz axis scroll-linked title reveal
+    - Blur36CharReveal                 # MO6 + wearebrand blur-36 koleksiyon isim
+    - AsymmetricCollectionGrid         # L2 broken grid ekip + koleksiyon
+    - BandRulesStats                   # K2 (2017'den beri · 8 stilist · 3 şube)
+    - ContactCardLiner                 # FT5 salon personal tone
+  optional:
+    - WritingModeRail                  # N7 portfolio feel
+    - LenisGsapBridge                  # infrastructure (lerp 0.08)
+    - SplitTextWordsMaskY              # MO6 variant — hizmet listesi reveal
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # Freeman/Odak dark+gold YASAK (kuafor.yaml)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_layouts: []
+  repeat_score_vs_existing:
+    Freeman: 1                        # palette + tüm stack farklı
+    v2-kinetic-data: 3                # H5+MO1 overlap, PL25+TY14+HR11 kinetic dilinde ayrışır
+    v2-neobrutalist: 2                # L2 overlap ama motion stack ve palette farklı
+  warning: "Freeman/Odak/Solarium dark+gold + custom cursor + Inter italic klişesi YASAK (kuafor.yaml). Concrete/industrial tekstür salon hijyen hissine TERS — PL25 cool atelier slate+olive seçildi. Custom cursor + magnetic button abartılı kalır, sadece marquee + blur reveal imza. Kinetic imzası var ama lerp 0.08 sakin ton — salon 'Tom Ford kokusu' olmaz."
+
+compatibility:
+  forbidden_sectors: [klinik, spa]
+  conditional_sectors: [mucevher, restoran, gayrimenkul, otel]
+  recommended_for: [insaat, eticaret, fotograf, kuafor]
+  sector_rationale: "kuafor.yaml kinetic_typography:partial — başlık SplitText OK, body değil. Modern atelier/editorial barber için Monument Ext + cool palette uyumlu. Budget+ tier (online randevu + ekip + admin)."
+
+preview_app_route: /preview/kuafor-kinetic-agency
+scaffold_command: "node scaffold.js kuafor-kinetic-agency --out ./out/kuafor-kinetic --recipe next-premium"
+
+research_refs:
+  - research/animation-gsap-framer-lenis-masterclass-2026.md
+  - research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  - templates/11-kinetic/index.html
+  - templates/14-ultra/index.html
+  - catalog/styles/kinetic-agency.yaml
+  - catalog/sectors/kuafor.yaml
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA"           # PL25 olive 5.5:1 ok
+  lighthouse_target: 92
+  prefers_reduced_motion: "MANDATORY fallback — blur reveal off, opsz scroll kapalı, marquee paused, Lenis devre dışı, statik wght snapshot"
+  hero_assets: "salon içi full-bleed sessiz loop video (12-15s, ≤5MB) + ekip portre 4-6 grid thumbnail"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Ekibimizi Tanı"
+  booking_flow: "Tarih → saat → stilist → hizmet → onay (4 adım, progress bar)"
+  mobile_critical: "Sticky WhatsApp + tap-to-call + Google Maps tap-to-open"
+  fraxbit_hm_evidence: "wearebrand blur-36px reveal pattern MIT-safe rewrite (ULTRAPLAN atom 2). fraxbit HM stacks CSS-var parallax yoluyla referans."

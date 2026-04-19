@@ -1,0 +1,133 @@
+---
+id: fotograf-immersive-3d
+sector: fotograf
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ — 360/VR + Gaussian Splat sahne scan
+tier: premium
+budget_range_try: [30000, 70000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # fotograf × immersive-3d AKTIF (default editorial-print)
+---
+
+mood: [cinematic, scroll-camera, immersive-scene, 360-vr, atmospheric, visual-first-silent-typography]
+
+atoms:
+  palette: PL33              # Pure Off-Black — PL1 gold YASAK (BG Foto klişe), fotoğraf görsel-öncelik
+  typography: TY39           # IBM Plex Sans all-weights — TY2 Playfair+Inter BG Foto klişesi YASAK
+  hero: HR4                  # 3D Canvas Scroll-Camera (mekan scan → galeri)
+  layout:
+    - L4                     # Full-bleed rails (immersive sahne)
+    - L8                     # Masonry (geleneksel fotoğraf galerisi altta)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scrub 2 — sinematik)
+    - MO2                    # Lenis smooth (lerp 0.06 — yavaş + zarif)
+    - MO12                   # R3F postprocessing (film grain, vignette)
+    - MO7                    # View Transitions (foto → detay morph)
+  motion_ajans:
+    - lusion-glsl-noise                 # Film grain shader (postprocess)
+    - ultra-porthole-dive               # Sahneye scroll girişi
+  3d:
+    - 3D-01-drei-envmap                 # HDRI (gerçek mekan aydınlatma)
+    - 3D-02-drei-orbitcontrols          # Sahne 360 orbit (düğün mekanı, mimari)
+    - 3D-04-drei-contactshadows         # Sahne içi object shadows
+    - 3D-09-postprocessing-bloom        # Düşük (0.4) — sessiz ışık
+    - 3D-10-postprocessing-dof          # Sinematik bokeh
+    - 3D-11-gaussian-splat              # KRITIK — gerçek mekan fotogrametri (düğün lokasyon, mimari)
+    - 3D-12-gltf-draco-ktx2             # Compression ZORUNLU
+  header: H9                 # Corner brackets — H8 BG Foto YASAK
+  nav: N10                   # Timeline scroll-locked
+  kpi: K2                    # Band + rules (opsiyonel — "250 düğün, 5 yıl") — K1 K7 YASAK
+  table: T3                  # Spec sheet (lens + makine + teslim formatı)
+  chat: C3                   # Email threaded (rezervasyon)
+  form: F4                   # Inline edit
+  modal: M1                  # Centered (foto detay)
+  footer: FT4                # Colophon editorial
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl
+    - GaussianSplatScene                # IMZA — gerçek mekan scan (düğün salonu, mimari)
+    - SceneCameraPath                   # Scroll-linked kamera (sahnede tur)
+    - PostprocessingStack               # Film grain + bloom düşük + vignette + DOF
+    - MasonryGallery                    # L8 — geleneksel foto galerisi (scroll down'da açılır)
+    - PhotoDetailOverlay                # View Transitions (grid → fullscreen)
+    - SilentTypography                  # IBM Plex Sans 400 — başlık sessiz, foto kahraman
+    - SpecSheet                         # T3 — teknik bilgi (lens, makine, teslim)
+    - ColophonFooter                    # FT4
+  optional:
+    - VR360Viewer                       # Equirectangular HDR (düğün salonu 360)
+    - ClientGalleryProtected            # Password-protected (bcrypt) — download kontrol
+    - BookingForm                       # Tarih + paket + iletişim
+    - CinematicIntro                    # İlk load intro animation (2-3s, skip button)
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]        # BG Foto PL1 YASAK + v2-immersive-3d PL8
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY2 BG Foto tam klişe
+  forbidden_heroes: [HR2, HR7]          # split-hero BG Foto
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1, K7]
+  forbidden_headers: [H8]               # BG Foto + v2-immersive-3d
+  forbidden_layouts: [L1, L7]
+  forbidden_motion: [MO10-print-first]
+  forbidden_patterns:                   # fotograf.yaml'dan
+    - "italic-gradient-baslik"
+    - "gold-underline-dekor"
+    - "playfair-italic-buyuk-baslik"
+  repeat_score_vs_existing: 2           # v2-immersive-3d ile HR4+MO1 ortak — palette+tipo farklı
+  warning: |
+    Fotoğrafçı sitesi GÖRSEL-ÖNCELİKLİ — tipografi SESSIZ kalmalı. IBM Plex Sans monolithic tercih,
+    italic gradient başlık YASAK, gold vurgu YASAK. 3D sahne Gaussian Splat ile gerçek mekan scan
+    (düğün salonu, mimari) — synthetic 3D rendering fotoğrafçı context'inde yapay durur. BG Foto
+    combo'su (H8+HR2+K1+TY2+PL1) tam yasak örneği. Scroll-camera path yavaş (scrub 2+) — sinematik
+    nefes ritmi. Film grain shader (MO12 lusion-glsl-noise) imza.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]
+  conditional_sectors: [klinik]
+  recommended_for: [fotograf-360-vr, mimari, sanat-muze, dugun-premium]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/fotograf-immersive-3d
+scaffold_command: "node scaffold.js fotograf-immersive-3d --out ./fotograf-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md  # client galeri
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - Mobilyacı/3d-demo/research/scroll-animation-patterns.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → hero cinematic video (10s, ≤4MB) + klasik masonry galeri, frameloop='demand'"
+  gpu_tier_detection: "detect-gpu tier 0-1 → video fallback + masonry, tier 2 → tek Gaussian Splat + postprocess off, tier 3+ → full sahne"
+  model_compression: "Gaussian Splat compression (.splat binary) — 15K-30K point max (5-10MB), GLB Draco + KTX2 toplam max 8MB"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "IBM Plex Sans 300-700 (monolithic family)"
+    - "Inter Tight 400 (caption, meta)"
+  wcag_contrast_target: "AA (4.5:1) — fotoğraf overlay text için gradient scrim zorunlu + 3D canvas aria-label='Mekan 360 tarama sahnesi, fotoğraf galerisi aşağıda' + keyboard nav (ok = orbit, esc = fullscreen kapat)"
+  lighthouse_target: 88                             # Gaussian Splat ağır ama foto + next/image hızlı
+  prefers_reduced_motion: "Cinematic intro skip, scroll-camera static pose, Gaussian Splat 1 frame render (frameloop='never'), film grain off"
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP + LQIP blur, Gaussian Splat sonrası klasik galeri fallback"
+  primary_cta: "Portfolyoyu Keşfet"
+  secondary_cta: "Rezervasyon"
+  performance_critical: "LCP < 3s (3D canvas poster + Suspense), CLS < 0.05"
+  schema: "ImageGallery + Photograph + Person (photographer) + Place (GaussianSplat sahne için mainEntity) JSON-LD"
+  special_features:
+    - "Gaussian Splatting mekan scan (düğün salonu, mimari lokasyon)"
+    - "360 VR foto galeri (equirectangular HDR, WebXR opsiyonel)"
+    - "Scroll-linked sinematik kamera (GSAP scrub 2 + film grain shader)"
+    - "View Transitions foto grid → fullscreen"
+    - "Client galeri password-protected (bcrypt + download kontrol)"
+    - "Silent typography (IBM Plex Sans monolithic, italic gradient YASAK)"

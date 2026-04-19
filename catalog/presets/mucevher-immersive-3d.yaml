@@ -1,0 +1,151 @@
+---
+id: mucevher-immersive-3d
+sector: mucevher
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ zorunlu
+tier: premium
+budget_range_try: [30000, 80000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # mücevher × immersive-3d AKTIF (default değil — editorial-luxury default)
+---
+
+mood: [cinematic, scroll-camera, premium-3d, glass-caustics, interactive, rafine, el-emegi-sayisal]
+
+atoms:
+  palette: PL22              # Tobacco + Pearl — PL1 dark+gold (5+ proje) ve PL8 (v2-immersive-3d) klişelerinden uzak
+  typography: TY27           # Fraunces opsz 9-144 + IBM Plex Sans — TY8 (DM Serif+Inter v2-immersive-3d) YASAK
+  hero: HR4                  # 3D Canvas Scroll-Camera (scroll ile orbit + kamera yaklaşma)
+  layout:
+    - L4                     # Full-bleed rails (kamera path sahnesi)
+    - L6                     # Center single col (ürün detay + brochure hissi)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scroll-linked kamera, scrub 1.5-2.5)
+    - MO2                    # Lenis smooth scroll (lerp 0.07)
+    - MO12                   # R3F postprocessing (Bloom + DOF + Chromatic)
+  motion_ajans:
+    - lusion-glsl-noise                 # raw GLSL simplex/fBM (opsiyonel caustic shader)
+    - lusion-css-var-uniform            # CSS var → shader uniform (tema rengi shader'a)
+    - ultra-porthole-dive               # scroll scale 1→6.5 (pırlanta close-up)
+    - ultra-variable-font-opsz-scroll   # Fraunces opsz 9→144 (overlay başlık)
+  3d:
+    - 3D-01-drei-envmap                 # Studio HDRI (altın yansıma için kritik)
+    - 3D-03-drei-presentationcontrols   # Mobilde drag + auto-rotate
+    - 3D-04-drei-contactshadows         # Pırlanta yere yumuşak gölge
+    - 3D-08-drei-meshtransmission       # Cam/kristal/elmas refraction — MÜCEVHER IMZASI
+    - 3D-09-postprocessing-bloom        # Taş parıltısı (intensity 0.8-1.2)
+    - 3D-10-postprocessing-dof          # Arka plan bulanık, ürün odakta
+    - 3D-11-gaussian-splat              # Gerçek ürün fotogrametri (premium tier)
+    - 3D-12-gltf-draco-ktx2             # Model compression ZORUNLU (max 2MB/GLB)
+  header: H9                 # Corner Brackets (technical) — H8 difference (v2-immersive-3d) YASAK
+  nav: N10                   # Timeline Scroll-Locked (scroll progress indicator)
+  kpi: K2                    # Band + horizontal rules (editorial, K7 tower v2-immersive-3d'de kullanıldı)
+  table: T3                  # Spec sheet (ayar, karat, taş bilgisi) — T6 card grid YASAK
+  chat: C3                   # Email threaded (konsiyerj)
+  form: F4                   # Inline edit (sepet/favori)
+  modal: M1                  # Centered dialog
+  footer: FT6                # Signature block (atölye künyesi)
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl — React Three Fiber + drei
+    - ScrollCameraPath                  # Hermite cubic interpolation (GSAP ScrollTrigger scrub)
+    - MeshTransmissionViewer            # Glass/crystal jewelry (drei MeshTransmissionMaterial)
+    - DiamondConfigurator               # Metal + ayar + taş + kesim seçimi (canlı güncelleme)
+    - GaussianSplatViewer               # Gerçek ürün fotogrametri (.splat dosyası)
+    - ParticleSystem                    # BufferGeometry + drei Sparkles (pırlanta atmosferi)
+    - PostprocessingStack               # Bloom (0.9) + DOF (focalLength 0.5) + ChromaticAberration
+    - ProductDetailSpec                 # T3 — sertifika, ayar, karat, taş ağırlığı
+    - ColophonFooter                    # FT6 — atölye künyesi + SAN-TEZ + Kuyumcukent üyelik
+  optional:
+    - ArTryOn                           # model-viewer + WebXR (iOS Quick Look + Scene Viewer)
+    - TheatreJsScripted                 # Tier 4+ keyframe editor (kamera path manuel)
+    - CausticShader                     # GLSL custom (lusion-glsl-noise) — masa üstünde parıltı
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]        # PL1 dark+gold (5+ proje) + PL8 (v2-immersive-3d referans)
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY8 v2-immersive-3d'de kullanıldı — tarihsel hata
+  forbidden_heroes: [HR2, HR7]          # split-hero mücevher klişesi + dashboard-as-hero
+  forbidden_tables: [T6]                # card grid — Fatih Bey + v2-immersive-3d
+  forbidden_kpi: [K1, K7]               # K1 bento glass + K7 tower v2-immersive-3d
+  forbidden_headers: [H8]               # mix-blend-mode difference — 6+ proje
+  forbidden_layouts: [L1, L7]           # L1 Fatih Bey + L7 v2-immersive-3d
+  forbidden_motion: [MO10-print-first]  # immersive-3d için MO10 static yasak
+  repeat_score_vs_existing: 3           # v2-immersive-3d (HR4+K7+MO1+3D) ile HR4 ve MO1 eşleşir — palette/type/kpi/table farkı ZORUNLU
+  v2_immersive_3d_override_warning: |
+    KRITIK: v2-immersive-3d referansı (deprecated) combo'su:
+      H8 · N10 · HR4 · K7 · T6 · L7 · TY8 · PL8 · MO1+3D
+    Bu preset (mucevher-immersive-3d) combo'su:
+      H9 · N10 · HR4 · K2 · T3 · L4+L6 · TY27 · PL22 · MO1+MO2+MO12+3D
+    Eşleşme kolon kontrolü:
+      header H9  != H8  ✓
+      nav N10    == N10 (universal scroll-locked — kabul)
+      hero HR4   == HR4 (3D imza hero — stil gereği)
+      kpi K2     != K7  ✓ (tower yerine band+rules)
+      table T3   != T6  ✓
+      layout L4  != L7  ✓
+      typo TY27  != TY8 ✓
+      palette PL22 != PL8 ✓
+      motion MO1 == MO1 (ScrollTrigger — stil gereği)
+    Toplam eşleşme: 3/15 kolon = PASS (skor 0-3 aralığında)
+  warning: |
+    Mücevher immersive-3d için PL8 deep blue (v2-immersive-3d) ve TY8 DM Serif+Inter YASAK — Emre'nin
+    tarihsel klişe hatası. Palette PL22 (Tobacco+Pearl) + TY27 (Fraunces+IBM Plex) zorunlu. HR4 3D canvas
+    stil gereği tutulur AMA K7 tower KPI ve T6 card grid DEĞİŞTIRILIR. MeshTransmissionMaterial
+    (3D-08) mücevher için imza — transmission=1, ior=2.4 (elmas), chromaticAberration=0.04. Fatih Bey
+    combo'su (H8+HR2+K1+T6+L1) kopyalanamaz.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]  # styles/immersive-3d.yaml + matrix
+  conditional_sectors: [klinik]                      # sadece estetik before-after için ⚠
+  recommended_for: [mucevher, otomotiv, mimari, mobilya-AR, otel-sanaltur, gayrimenkul-premium, eticaret-3d, sanat-muze]
+  matrix_row_peers:
+    default: []                                      # immersive-3d default sektörü yok
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]  # ✓
+    conditional: [klinik]                            # ⚠
+
+preview_app_route: /preview/mucevher-immersive-3d
+scaffold_command: "node scaffold.js mucevher-immersive-3d --out ./fatih-bey-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/scroll-animation-patterns.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - Mobilyacı/3d-demo/research/blender-to-r3f-pipeline.md
+  - Fatih Bey Mücevher Sitesi/research/            # 49 dosya müşteri bağlamı
+  - research/design-claude/templates/12-immersive-3d/index.html  # 4/5 referans
+  - research/design-claude/v2-immersive-3d/index.html           # 4/5 (ama palette + typo değiş)
+  - research/design-claude/templates/14-ultra/index.html        # signature techniques
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → static poster image (.webp) + frameloop='demand', AdaptiveDpr(pixelated), Suspense + useProgress loader"
+  gpu_tier_detection: "detect-gpu v5+ tier 0-1 → skip 3D canvas, tier 2 → düşük poly GLB + postprocess off, tier 3+ → full quality"
+  model_compression: "Draco geometry + KTX2 texture + Meshopt ZORUNLU — max 2MB/GLB, toplam 8MB hero sahne"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-700 (variable, overlay başlık için)"
+    - "IBM Plex Sans 300-600"
+    - "IBM Plex Mono 400 (karat/ayar spec)"
+  wcag_contrast_target: "AA (4.5:1) + 3D canvas aria-label='Dekoratif ürün sahnesi, ürün detayları aşağıda listelenmiştir' + tabindex='-1' (decorative) VEYA interactive mode için full keyboard nav (ok tuşları = kamera, enter = zoom)"
+  lighthouse_target: 88                             # 3D heavy — 90 zor, 88 hedef (mobile 75)
+  prefers_reduced_motion: "3D animation off, static 3D pose (frameloop='never' + pozisyon angle=45deg), scroll-camera skip, tüm postprocess off"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  mobile_critical: "Sticky bottom bar (WhatsApp + Favorile + Sepete) + 3D canvas üstünde 'ÇEVİR' ipucu 3s göster"
+  trust_badges: "iyzico SSL + KVKK + Kuyumcukent + SAN-TEZ sertifika"
+  schema: "Product + Offer + Brand + AggregateRating + BreadcrumbList + 3DModel (mainEntity.model.encodingFormat=model/gltf-binary) JSON-LD"
+  special_features:
+    - "Pırlanta/alyans configurator (metal 14K/18K/platinum × ayar × taş kesim 10 varyant)"
+    - "drei MeshTransmissionMaterial (transmission=1, ior=2.4 elmas, chromaticAberration=0.04)"
+    - "Gaussian Splatting (gerçek ürün fotogrametri — 15K-50K gaussian point)"
+    - "Scroll-linked kamera (GSAP ScrollTrigger scrub 2, Hermite cubic path)"
+    - "AR try-on (iOS Quick Look USDZ + Android Scene Viewer GLB)"
+    - "Variable font opsz scroll overlay (Fraunces 9→144)"

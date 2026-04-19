@@ -1,0 +1,141 @@
+---
+id: gayrimenkul-immersive-3d
+sector: gayrimenkul
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ — sanal tur + oda→oda scroll kamera
+tier: premium
+budget_range_try: [35000, 80000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # gayrimenkul × immersive-3d AKTIF (default warm-organic)
+---
+
+mood: [cinematic, scroll-camera, virtual-tour, floor-plan-interactive, spatial-navigation, lifestyle-premium]
+
+atoms:
+  palette: PL36              # Mist + Sunset (warm-cool organik) — PL1 dark+gold emlak güveni kırar YASAK
+  typography: TY41           # Fraunces + IBM Plex Sans — TY8 v2-immersive-3d YASAK
+  hero: HR4                  # 3D Canvas Scroll-Camera (sanal tur — giriş → salon → oda)
+  layout:
+    - L4                     # Full-bleed rails (sanal tur)
+    - L8                     # Masonry ilan grid (liste sayfası)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scrub 2 — yavaş, ev gezer gibi)
+    - MO2                    # Lenis smooth (lerp 0.06)
+    - MO12                   # R3F postprocessing
+    - MO7                    # View Transitions (ilan kartı → detay morph)
+  motion_ajans:
+    - lusion-glsl-noise                 # Doğal ışık atmosferi (gün/akşam fade)
+    - lusion-css-var-uniform            # Gün/gece toggle → shader uniform
+    - ultra-porthole-dive               # Eve girişte scale 1→5 (kapıdan gir)
+  3d:
+    - 3D-01-drei-envmap                 # Outdoor HDRI (cephe için gün ışığı)
+    - 3D-02-drei-orbitcontrols          # Oda detay 360
+    - 3D-04-drei-contactshadows         # Mobilya yere gölge (sahne realizm)
+    - 3D-05-drei-html                   # 3D nokta üzerinde HTML tooltip (oda isimleri, m²)
+    - 3D-09-postprocessing-bloom        # Pencere güneş parıltısı (düşük 0.4)
+    - 3D-10-postprocessing-dof          # Sinematik tur bokeh
+    - 3D-11-gaussian-splat              # KRITIK — gerçek evin 360 fotogrametri (Matterport alternatifi)
+    - 3D-12-gltf-draco-ktx2             # Mimari model compression ZORUNLU
+  header: H9                 # Corner brackets — H8 YASAK
+  nav: N10                   # Timeline scroll-locked (oda → oda progress)
+  kpi: K12                   # Blueprint stat (m² + oda sayısı + cephe) — K7 v2-immersive-3d YASAK
+  table: T3                  # Spec sheet (m², kat, oda, balkon, cephe) — T6 YASAK
+  chat: C3                   # Email threaded (agent iletişim)
+  form: F4                   # Inline edit
+  modal: M1                  # Centered (kredi hesaplama)
+  footer: FT6                # Signature block
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl
+    - VirtualTourScrollCamera           # Scroll-linked oda → oda kamera (GSAP scrub 2)
+    - GaussianSplatHome                 # Gerçek ev fotogrametri (Matterport benzeri)
+    - FloorPlanInteractive              # 2D plan click → 3D oda camera teleport
+    - RoomLabels3D                      # drei <Html> tooltip (oda ismi, m²)
+    - PostprocessingStack               # DOF + Bloom (0.4) + tone mapping (warm)
+    - DayNightToggle                    # Shader uniform — gün/akşam aydınlatma switch
+    - MapboxInteractive                 # Mapbox GL JS custom style + 3D flyTo
+    - ListingSpec                       # T3 — m², oda, kat, fiyat, cephe
+    - MortgageCalculator                # Kredi hesaplama modal (M1)
+  optional:
+    - DroneFlythrough                   # Dış cephe drone shot (scroll intro)
+    - Ar360TourMobile                   # Model-viewer AR (telefonla evi gez)
+    - LocationLifestyle                 # Çevre bilgisi (okul, market, transport)
+    - ListingComparison                 # 2-3 ilan yan yana spec
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1, K7]
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1, L7]
+  forbidden_motion: [MO10-print-first]
+  forbidden_patterns:                   # gayrimenkul.yaml'dan
+    - "stok-foto-unsplash-villa"
+    - "generic-google-maps-embed"
+    - "her-ev-ayni-template"
+    - "altin-anahtar-klise-metin"
+  repeat_score_vs_existing: 2
+  warning: |
+    Gayrimenkul immersive-3d için PL1 dark+gold YASAK (emlak güven + yaşam-tarzı). Stok foto villa
+    hero YASAK — Gaussian Splat ile gerçek ev scan (Matterport alternatifi) zorunlu. Google Maps
+    embed minimum — Mapbox GL JS custom style + 3D flyTo marka tonunda. Scroll-linked kamera path
+    yavaş (scrub 2+) — ev gezer gibi nefes alan ritim. Her ilan kartı aynı template değil: premium
+    villa + 2+1 daire farklı layout. drei <Html> ile 3D ortama oda ismi + m² tooltip imza.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]
+  conditional_sectors: [klinik]
+  recommended_for: [gayrimenkul-premium, mimari, otel-sanaltur, insaat]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/gayrimenkul-immersive-3d
+scaffold_command: "node scaffold.js gayrimenkul-immersive-3d --out ./gayrimenkul-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/interactive-svg-patterns.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/scroll-animation-patterns.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → 360 panorama (Pannellum veya marzipano), Gaussian Splat yerine equirectangular JPG, frameloop='demand'"
+  gpu_tier_detection: "detect-gpu tier 0-1 → 360 panorama fallback, tier 2 → düşük poly ev + tek kat, tier 3+ → full Gaussian Splat + physics"
+  model_compression: "Gaussian Splat max 30K point (10-15MB), mimari GLB Draco + KTX2 max 8MB, toplam sahne 25MB (Cloudflare R2 CDN)"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-600 (variable)"
+    - "IBM Plex Sans 300-600 (gövde)"
+    - "JetBrains Mono 400 (m² + fiyat spec)"
+  wcag_contrast_target: "AA (4.5:1) + 3D canvas aria-label='Evin sanal turu, ilan detayları aşağıda: {m², oda, fiyat}' + keyboard nav (ok = kamera, enter = oda seç, esc = kapat)"
+  lighthouse_target: 85                             # Gaussian Splat + map ağır — 85 hedef, mobile 70
+  prefers_reduced_motion: "Scroll-camera static (ilk oda pose), day-night toggle manuel (default day), Gaussian Splat tek frame render"
+  listing_card: "foto + fiyat + m² + oda + konum, hover floor plan preview + 'Sanal Tur' butonu"
+  primary_cta: "Sanal Turu Başlat"
+  secondary_cta: "Agent ile İletişime Geç"
+  map_integration: "Mapbox GL JS custom style + marker cluster + hover = ilan preview + 3D flyTo animasyon"
+  mobile_critical: "Sticky 'İletişim' + 'Harita' + 'Sanal Tur' toggle bottom bar"
+  schema: "RealEstateListing + Place + PostalAddress + GeoCoordinates + Offer + 3DModel (mainEntity encodingFormat=model/gltf-binary) JSON-LD"
+  special_features:
+    - "Gaussian Splatting ev fotogrametri (Matterport alternatifi)"
+    - "Scroll-linked oda → oda kamera (GSAP scrub 2, kapı teleport)"
+    - "Floor plan click → 3D oda (SVG + R3F teleport)"
+    - "Day-night toggle (shader uniform, aydınlatma dinamik)"
+    - "Mapbox 3D flyTo custom style marka tonunda"
+    - "AR telefon turu (model-viewer, telefon kamerayla ev gez)"

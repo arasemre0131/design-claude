@@ -1,0 +1,88 @@
+---
+id: restoran-maximalist-atmospheric
+sector: restoran
+style: maximalist-atmospheric
+recipe: next-premium  # editorial food + atmospheric drift hybrid, Tier 2-3
+tier: mid-premium
+budget_range_try: [18000, 45000]
+delivery_weeks: [3, 4]
+---
+
+mood: [atmospheric, warm-aurora-drift, overlapping-type, dense-menu-editorial, salmon-burgundy-night, kinetic-dish-reveal]
+
+atoms:
+  palette: PL14  # Salmon + Burgundy + Champagne — aurora driftte warm katman
+  typography: TY23  # Editorial Old + PP Neue Machina Maximalist (Fraunces fallback)
+  hero: HR3  # Full-bleed video bg (chef hazirlik loop 10-15s) + radial drift overlay
+  layout:
+    - L4  # Full-bleed horizontal rails (kategori -> gun menusu)
+    - L11  # Bento 2.0 asymmetric no-glass (mevsimsel spots)
+  motion:
+    - MO1  # GSAP ScrollTrigger
+    - MO2  # Lenis
+    - MO6  # SplitText stagger (dish name reveal)
+  motion_ajans:
+    - wearebrand-mask-y-reveal      # menu kategorilerinde CSS mask --mask-y reveal
+    - wearebrand-theme-switch       # scroll zone "ogun" geciste arkaplan sifti
+    - ultra-theme-switch-scroll
+    - fiddle-textpath-circle        # imza "est. YYYY" circle textPath
+    - rejouice-mix-blend-difference # header dish name uzerinde difference
+  header: H2  # Masthead Centered (editorial restoran native, H4 yasak)
+  kpi: K11  # Postcard Stack (bugun taze · 7 yemek · 3 menu)
+  pipeline: P3  # Funnel stages (rezervasyon funnel admin panelde)
+  chart: CH11  # Stacked area kinetic (reservation trend, admin)
+
+components:
+  core:
+    - AtmosphericDriftBg            # 4 radial-gradient layered (salmon/burgundy/champagne) 24s drift
+    - PortholeConicGradient         # tabak dongusu imza (ana + tatli + icecek)
+    - MaximalistOverlapTitle        # "BUGUNUN MENUSU / TERROIR / MEVSIM" 3 satir progressive offset
+    - MaskYReveal                   # wearebrand MIT-safe
+    - ThemeScrollSwitch             # kahvalti -> ogle -> aksam scroll zone
+    - FullBleedVideoHero            # HR3 chef loop + scrim + aurora overlay
+    - PostcardStackKpi              # K11 "bu hafta taze"
+    - MixBlendDifferenceHeader      # REJOUICE pattern
+    - FiddleTextPathCircle          # "est. 2019 · galata" circle mark
+    - EditorialMenuColumn           # L5 3-col CSS columns menu (mevsimsel)
+  optional:
+    - NoiseOverlaySvg               # SVG feTurbulence warm grain
+    - HugeMarquee                   # 160px Fraunces italic "SOFRAYA DAVET"
+    - MasaRezervSlotCmdK            # cmdk slot picker (tarih -> kisi -> saat)
+
+anti_cliche:
+  forbidden_palettes: [PL1]                # dark + gold fine-dining klisesi
+  forbidden_typography: [TY1, TY2, TY4, TY8] # Playfair italic fine dining YASAK
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]                   # menu T6 card grid YASAK (sector kural)
+  forbidden_kpi: [K1]                      # bento glass morphism yasakli
+  repeat_score_vs_existing: 2              # temiz sektor, Freeman/Fatih Bey combo cakismasi yok
+
+compatibility:
+  forbidden_sectors: [insaat, klinik, spa, gayrimenkul]
+  conditional_sectors: [mucevher, eticaret]
+  recommended_for: [restoran, fotograf, otel]
+  note: "Fine dining + gecis mevsimi menu launch, ramen-ya + cocktail bar + seff-driven boutique. Aile lokantasi icin editorial-print default tercih."
+
+preview_app_route: /preview/restoran-maximalist-atmospheric
+scaffold_command: "node scaffold.js restoran-maximalist-atmospheric --out ./out/restoran-ma"
+
+research_refs:
+  - research/gradient-glass-visual-effects-2026.md
+  - research/page-transitions-nextjs-2026.md
+  - research/forms-validation-zod-react-hook-form-2026.md       # rezervasyon formu
+  - Mobilyaci/3d-demo/research/seo-teknik-2026.md               # Restaurant + MenuItem JSON-LD
+  - templates/13-maximalist/index.html                          # wearebrand-inspired 4.5/5 ref
+  - templates/14-ultra/index.html                               # ultra signature 14 imza
+  - templates/04-restoran/index.html                            # editorial masthead ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA + warm dark panel >= 4.5 (PL14 burgundy #6B1B2E on salmon #F4D5C4 = 8.6:1 AAA)"
+  lighthouse_target: 88
+  perf_note: "Radial drift (4 layer blur(30px)) GPU-heavy; mobile'da 2-layer + 40s slow drift. Video hero poster.webp + lazy + muted autoplay. Pixi.js WiggleFilter optional (Tier 3+)."
+  prefers_reduced_motion: "Drift animation off, tek statik gradient; SplitText yerine fade-in 200ms; video hero poster only"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menuyu Incele"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification + Menu JSON-LD zorunlu"
+  mobile_critical: "Sticky bottom bar: Menu | Rezervasyon | WhatsApp"

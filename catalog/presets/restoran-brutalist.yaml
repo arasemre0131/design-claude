@@ -1,0 +1,132 @@
+---
+id: restoran-brutalist
+sector: restoran
+style: brutalist
+recipe: wordpress-elementor-motion
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [1, 2]
+conditional: true
+condition: "Street food / kreatif fast food (ramen-ya, taco, pizza, smash burger) için OK. Fine dining için ✗ — editorial-print tercih."
+---
+
+# Stil mood — street food brutalist
+# Konsept: Ramen-ya, smash burger, taco shop, pizza-box, specialty coffee
+# (fine dining DEĞİL — onun için editorial-print default).
+mood: [raw, bold, sticker-menu, poster-cream, controlled-chaos, playful]
+
+# Atom seçimi — brutalist compatible + restoran conditional + anti-cliché pass
+atoms:
+  palette: PL6                    # Neobrutal Multi (cream + cobalt + yellow + red + green)
+                                  # Brutalist imza + street food poster dili
+                                  # Alt: PL26 olive+tomato (daha warm ama trattoria'ya kayar)
+  typography: TY6                 # Archivo Black + Space Grotesk 900 — brutalist pair
+                                  # TY11 stencil kaçınıldı (çok inşaat-feel)
+  hero: HR5                       # Sign Board rotated — "SMASH HOUSE" sticker poster
+                                  # HR11 brochure (restoran default) DEĞIL — brutalist tilt
+  layout: L5                      # 3-Column Newspaper — menü için editorial-dense
+                                  # Restoran default + brutalist raw kombinasyonu
+  motion:
+    - MO4                         # Framer Motion — brutalist preferred
+    - MO6                         # SplitText stagger — "dish name" reveal (restoran recommended)
+  header: H1                      # Plate + Hazard Strip — sign board kitchen vibes
+                                  # "hazard-top-only" variant
+  nav: N2                         # Horizontal Tabs Underline — minimal, menu/rezervasyon/iletişim
+                                  # N4 mega menu overkill (restoran 4-5 sayfa)
+  kpi: K3                         # Chip Row Colored Blocks — "taze / vegan / acılı" filtre chip
+  pipeline: P10                   # Neo-brutal Sticker Blocks — "mevsim menü fazları" sticker
+  table: T4                       # Editorial Byline List — menü öğeleri (byline + price)
+                                  # T6 KART GRID YASAK (restoran anti-cliché)
+  chart: null                     # Restoran'da chart gereksiz
+  form: F3                        # Wizard — rezervasyon (tarih → kişi → saat → onay)
+                                  # Basit restoran için F1 de olur ama F3 daha guided
+  modal: M3                       # Bottom Sheet — mobile menü detay (yemek fotoğrafı + içerik)
+  footer: FT3                     # Receipt Strip dashed — makbuz estetiği, restoran-native
+                                  # FT2 sitemap fazla kurumsal
+  motion_ajans:
+    - ultra-svg-feturbulence-grain # Cream bg %7 grain — kağıt/poster feel
+    - wearebrand-magnetic-elastic  # "Rezerve Et" magnetic CTA
+
+# Components
+components:
+  core:
+    - SignBoardHero               # HR5 impl — "SMASH HOUSE" poster, -2deg rotate
+    - HazardTopHeader             # H1 variant — sadece üst hazard, minimal
+    - TabsNav                     # N2 impl — Menü/Rezervasyon/Galeri/İletişim
+    - NewspaperMenuColumns        # L5 impl — 3-col editorial menü (öğün/ara/ana/tatlı)
+    - EditorialBylineMenuList     # T4 impl — yemek adı + byline + fiyat
+    - ColoredChipFilter           # K3 impl — taze/vegan/acılı/glutensiz tag
+    - StickerMenuPhases           # P10 impl — mevsim menü (yaz/kış/özel)
+    - ReservationWizard           # F3 impl — 4-adım (tarih/kişi/saat/onay)
+    - BottomSheetDish             # M3 impl — mobile yemek detay
+    - ReceiptStripFooter          # FT3 impl — dashed strip + contact single-line
+  optional:
+    - VideoHero                   # HR3 alternatif — yemek hazırlama loop (brutalist'ten kayar)
+    - AlmanacKpiMevsim            # K5 — "bugün taze" editorial KPI
+    - SlabDarkFooter              # FT8 alternatif (daha kasap/kebapçı havası)
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                    # dark menü + gold italic — fine dining klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # Playfair italic klişe
+  forbidden_heroes: [HR2, HR7]                 # split hero + dashboard
+  forbidden_layouts: []
+  forbidden_kpi: [K1]                          # bento glass
+  forbidden_tables: [T6]                       # kart grid menü YASAK (restoran sector)
+  forbidden_patterns:
+    - "generic-dark-menu-playfair-italic-gold-underline"
+    - "yemek-foto-ustunde-gold-italic-baslik"
+    - "card-grid-menu-layout"
+  repeat_score_vs_existing: 1                  # v2-neobrutalist ile sadece palette family ortak
+                                               # Diğer mevcut projelerle 0 kolon (temiz sektör)
+  warning: |
+    Restoran sektöründe mevcut proje yok — temiz zemin. Brutalist street food için özgün.
+    Fine dining projesi gelirse bu preset UYGUN DEĞİL — editorial-print default kullan.
+    Menü layout'ta T6 card grid TAM YASAK — L5 newspaper 3-col + T4 byline list ikilisi kullan.
+
+# Compatibility notes — ⚠ CONDITIONAL
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, gayrimenkul, otel]
+  conditional_sectors: [restoran, fotograf]
+  recommended_for: [insaat, eticaret]
+  conditional_rules:
+    - "Street food / fast-casual / smash burger / ramen / taco / pizza: ✓ KULLAN"
+    - "Fine dining / Michelin / haute cuisine: ✗ KULLANMA → editorial-print default"
+    - "Aile lokantası / Anadolu mutfağı: ⚠ warm-organic veya editorial-print tercih"
+    - "Specialty coffee / bakery / zanaat: ✓ OK — brutalist cream bg + Archivo Black uyuyor"
+  notes:
+    - "Tier BUDGET (WordPress + Elementor Pro + GSAP CDN) — restoran çoğunlukla bu tier"
+    - "MID tier (Next.js) için online-sipariş + admin eklenir — recipe next-premium'a geç"
+    - "3D YASAK (restoran sector) — yemek 2D fotoğraf daha iştah açıcı"
+
+# Preview
+preview_app_route: /preview/restoran-brutalist
+scaffold_command: "node scaffold.js restoran-brutalist --out ./restoran-brutalist-test/"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md   # Restaurant + MenuItem JSON-LD
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - templates/SECTOR-RESEARCH.md#restoran
+  - v2-neobrutalist/index.html                      # brutalist referans
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Black (hero + dish name)"
+    - "Space Grotesk 300-900 (body + menü)"
+    - "JetBrains Mono (fiyat + saat)"
+  wcag_contrast_target: "AA (4.5:1) — bg #FFF8EB × ink #111 = 16.8:1 ✓"
+  lighthouse_target: 90
+  hero_assets: "sign board static (hazard frame + sticker poster) + ops: yemek hazırlama 10-15s loop"
+  menu_layout: "L5 3-col desktop (öğün/ara/ana/tatlı), 1-col accordion mobile"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification JSON-LD zorunlu"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar + M3 bottom sheet"
+  shadow_signature: "5-7px hard shadow (menü kartları)"
+  rotation_signature: "Sign board -2deg, menü section tilt -0.5deg"
+  reservation_backend: "Supabase slot-based (Tier 2+) veya OpenTable embed (Tier 1)"

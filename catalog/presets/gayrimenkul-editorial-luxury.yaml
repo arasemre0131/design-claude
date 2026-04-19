@@ -1,0 +1,102 @@
+---
+id: gayrimenkul-editorial-luxury
+sector: gayrimenkul
+style: editorial-luxury
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓"                  # gayrimenkul × editorial-luxury aktif (default warm-organic)
+---
+
+mood: [sakin, guven, rafine, yasam-tarzi, editorial-katalog, seffaflik]
+
+# NOT: Gayrimenkul editorial-luxury = butik/premium villa katalogu
+# (magazin-editorial yaşam tarzı). MLS/ilan-yoğun için data-dense ⚠, genel için warm-organic.
+
+atoms:
+  palette: PL35                   # Sand + Ocean (doğal, güvenilir) — PL1 YASAK
+  typography: TY41                # Fraunces + IBM Plex Sans (editorial katalog)
+  hero: HR11                      # Brochure Cover (katalog kapağı) — HR2 YASAK
+  layout:
+    - L6                          # Center single col (villa story)
+    - L8                          # Masonry (ilan grid editorial)
+  motion:
+    - MO7                         # View Transitions (ilan → detay morph)
+    - MO4                         # Framer light
+  motion_ajans:
+    - wearebrand-blur-36px-reveal # editorial reveal
+    - wearebrand-lenis-gsap-bridge  # Lenis lerp 0.08 (premium sakin)
+  header: H2                      # Masthead Centered
+  nav: N2                         # Horizontal Tabs Underline
+  kpi: K5                         # Almanac editorial ("45 m² bahçe, 3+1, deniz manzarası")
+  table: T3                       # Spec Sheet (villa spec: m², cephe, tapu, inşaat yılı)
+  chat: C3                        # Email Threaded (agent iletişim)
+  form: F4                        # Inline Edit (kredi hesaplama, favori)
+  modal: M1                       # Centered Dialog
+  footer: FT4                     # Colophon (emlak ofisi künyesi + lisans)
+
+components:
+  core:
+    - HeroBrochure                # HR11 katalog kapağı
+    - MastheadCentered
+    - IlanMasonryEditorial        # L8 masonry 3-col (premium villa + 2+1 daire farklı kart)
+    - VillaSpecSheet              # T3 (m² + cephe + tapu + yapı yılı + KDV)
+    - AlmanacKPI                  # K5 (lokasyon özellikleri)
+    - MapboxCustomStyle           # marka tonunda harita (Google Maps YASAK)
+    - KrediHesaplayici            # F4 inline (aylık taksit hesap)
+    - ColophonFooter              # FT4 ofis + ajan lisans
+  optional:
+    - SanalTur3D                  # R3F + Matterport alternatif (premium)
+    - InteractiveFloorPlan        # SVG + click → oda detayı
+    - DroneVideoHero              # premium villa için (tek ilan)
+    - AgentProfili                # ajan Person schema
+    - FavoriListe                 # kullanıcı kaydı opsiyonel
+
+anti_cliche:
+  forbidden_palettes: [PL1]       # dark+gold YASAK — emlak güven gerektirir
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_patterns: ["stok-foto-hero", "generic-google-maps-embed", "her-ev-ayni-template", "altin-anahtar-klise"]
+  repeat_score_vs_existing: 0     # gayrimenkul temiz sektör
+  warning: |
+    Stok foto hero YASAK — Unsplash 'modern villa' güveni düşürür (bu ev değil, bu foto kriz).
+    Google Maps embed minimum — Mapbox custom style ZORUNLU.
+    Her ilan kartı aynı template YASAK — premium villa + 2+1 daire farklı layout.
+    'Yatırım güvencesi + altın anahtar' klişe metni YASAK.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [gayrimenkul, mucevher, klinik, kuafor, restoran, spa, fotograf, otel]
+  alternative_default: warm-organic
+
+preview_app_route: /preview/gayrimenkul-editorial-luxury
+scaffold_command: "node scaffold.js gayrimenkul-editorial-luxury --out ./gayrimenkul-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144"
+    - "IBM Plex Sans 300-600"
+  wcag_contrast_target: "AA (4.5:1)"
+  lighthouse_target: 92
+  primary_cta: "İlanı Gör"
+  secondary_cta: "Agent ile İletişime Geç"
+  listing_card: "foto + fiyat + m² + oda + konum, hover = floor plan preview"
+  listing_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  map_integration: "Mapbox GL JS custom style, marker cluster (50+ ilan), hover = ilan preview"
+  schema: "RealEstateListing + PostalAddress + GeoCoordinates + Offer JSON-LD"
+  mobile_critical: "Sticky 'İletişim' + 'Harita' toggle bottom bar"

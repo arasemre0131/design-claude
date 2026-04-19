@@ -1,0 +1,177 @@
+---
+id: insaat-industrial-workwear
+sector: insaat
+style: industrial-workwear
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 30000]
+delivery_weeks: [2, 3]
+status: active  # MATRIX ✓✓ — DEFAULT for insaat (concrete + hazard + stencil native şantiye dili)
+---
+
+# Stil mood — şantiye / atölye native dili
+# Konsept: concrete bg + hazard sarı-siyah stripe + stencil plaka + safety orange.
+# Orta-büyük inşaat firması müşteri-facing tanıtım sitesi (Ankara proje lokasyonları, TSE/ISO ağırlıklı).
+# CRM değil, tanıtım + iletişim + proje galerisi. Enterprise CRM için → data-dense-dashboard.
+mood: [concrete-industrial, hazard-stripe, stencil-plate, work-safety, raw-utilitarian, blueprint-measure]
+
+# Atom seçimi — industrial-workwear compatible + insaat native + anti-cliché pass
+atoms:
+  palette: PL4                    # Concrete #D4CFC4 + Safety Orange #E85D04 + Hazard #F5C400 + Ink #111
+                                  # Alt: PL21 Ozalit Blueprint (daha editorial/ozalit); PL19 Steel+Copper (zanaat)
+  typography: TY11                # Archivo Narrow Black + Geist Sans + Stardos Stencil + Geist Mono
+                                  # Alt: TY26 Rubik Mono One + Manrope (chunky+kinetic uyumlu); TY5 Syne (ozalit)
+  hero: HR9                       # Interactive Map — Ankara/İstanbul proje lokasyonları (insaat native)
+                                  # Alt: HR13 Blueprint Title Block (teknik-çizim variant); HR5 Sign Board (küçük firma)
+  layout:
+    - L4                          # Full-bleed horizontal rails — şantiye aşama stage akışı
+    - L1                          # Standart 12-col — proje galerisi + referans grid (ikincil sayfalar)
+  motion:
+    - MO1                         # GSAP ScrollTrigger — sharp reveal (industrial preferred)
+    - MO2                         # Lenis smooth scroll (lerp 0.08-0.12 — fazla sakin değil)
+    - MO3                         # CSS scroll-driven — hafif parallax fallback
+  motion_ajans:
+    - ultra-svg-feturbulence-grain    # Concrete speckle texture (radial-gradient + düşük opacity turb)
+    - fraxbit-clip-path-reveal        # Industrial reveal — sharp edge clip path (sticker feel)
+    - wearebrand-lenis-gsap-bridge    # Lenis+GSAP ticker bridge — marquee header için
+  header: H1                      # Plate + Hazard Strip — concrete plate arkaplan + üst hazard çizgi
+  nav: N4                         # Mega Menu Full-Width — "Projeler / Hizmetler / Ekip / Sertifika / İletişim"
+  kpi: K9                         # Barometer Dial — analog gauge (proje tamamlanma %, aktif şantiye sayısı)
+                                  # Alt: K12 Blueprint stat (ozalit çizim tarzı), K3 Chip Row (sticker)
+  pipeline: P5                    # Horizontal Timeline — proje aşama pin-scrub (1987 → 2026 şirket geçmişi)
+                                  # Alt: P2 Blueprint step (ozalit teknik)
+  table: T7                       # Receipt Strip — şantiye teslim tutanağı / malzeme listesi (receipt feel)
+                                  # Alt: T3 Spec Sheet (BOM); T6 YASAK (globally forbidden)
+  chat: C4                        # Terminal Log — iş emri / saha raporu formatı (mono + timestamp)
+                                  # Opsiyonel — yoğun CRM ise enterprise recipe tercih
+  chart: CH6                      # Column Bar Elevation blueprint — proje m²/teslim sürü dashed grid
+                                  # Alt: CH11 Stacked area (zaman ekseni)
+  form: F3                        # Wizard Steps — Keşif Randevusu 4-adım (lokasyon → proje tipi → metrekare → iletişim)
+  modal: M3                       # Bottom Sheet — mobile proje detay + drone video embed
+  footer: FT8                     # Slab Dark Info-Strip + hazard stripe — endüstriyel ağır footer
+
+# Components (scaffolder için)
+components:
+  core:
+    - InteractiveProjectMap           # HR9 impl — Mapbox/MapLibre Türkiye, pin cluster proje fotoğraf popup
+    - SignBoardRotated                # HR5 fallback — -1.5deg rotate, 8px hard shadow, hazard çerçeve
+    - HazardStripe                    # Chrome — repeating-linear-gradient(45deg, #F5C400 18px, #111 18px)
+    - ConcreteSpeckleGrain            # Layer — radial-gradient speckle + %6 grain overlay (SVG turbulence DEĞİL)
+    - PlatePlusHazardHeader           # H1 impl — concrete plate bg + üst hazard strip + ISO/TSE badge satırı
+    - MegaNavInsaat                   # N4 impl — 5-col (projeler / hizmetler / süreç / ekip / iletişim)
+    - BarometerGaugeKpi               # K9 impl — analog gauge SVG, GSAP needle rotate on scroll
+    - TimelineMilestonesPin           # P5 impl — 1987 → 2026 şantiye dönüm noktaları, scrub
+    - ReceiptStripTable               # T7 impl — şantiye tutanak formatı (sipariş no / parça / adet / imza)
+    - TerminalLogSahaRapor            # C4 impl — mono font + timestamp, saha raporu stream
+    - ColumnBarBlueprint              # CH6 impl — dashed grid + scale bar + GSAP grow (blueprint-style)
+    - WizardKesifRandevu              # F3 impl — 4-adım numbered, stencil başlık
+    - BottomSheetProjeDetay           # M3 impl — mobile drone video + proje BOM tab
+    - SlabDarkFooter                  # FT8 impl — #111 bg + hazard top stripe + sitemap + TSE/ISO row
+  optional:
+    - SafetyBadgeRow                  # TSE + ISO 9001 + OHSAS 18001 logo şeridi (sticky footer üstü)
+    - BlueprintTitleBlockHero         # HR13 alternatif — kurumsal 20+ yıllık firma için teknik-çizim variant
+    - DroneVideoEmbed                 # Hero bg — 16:9 muted autoplay loop 12-15s, ≤6MB
+    - StencilSectionDivider           # Stardos Stencil büyük bölüm ayraç ("01 / PROJELERIMIZ" gibi)
+    - WritingModeRail                 # N7 alternatif sağ kenar "01 AKTIF / 02 TAMAMLANAN / 03 GELECEK"
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                         # global dark+gold yasak (insaat'ta zaten yoktu ama pekiştir)
+  forbidden_typography: [TY1, TY2, TY4, TY8]        # insaat sector anti_cliche (global yasak ID'ler)
+  forbidden_heroes: [HR2, HR7, HR8]                 # split hero + dashboard hero + chat hero
+  forbidden_layouts: []
+  forbidden_kpi: [K1]                               # bento glass (insaat sector warning + global yasak)
+  forbidden_tables: [T6]                            # card grid (globally forbidden)
+  forbidden_patterns:
+    - "stok safety-vest adamı hero (Unsplash) — gerçek proje fotoğrafı veya drone"
+    - "mavi dalga hero + '20 yıldır' klişe metni"
+    - "Dribbble turuncu/siyah SaaS dashboard klişesi"
+    - "glassmorphism + rounded corners (border-radius: 0 zorunlu)"
+    - "aurora-drift / warm-fade / elastic motion (endüstriyel disiplin kırar)"
+  repeat_score_vs_existing:
+    mockup-C-industrial: 2           # TY11 + PL4 ortak (2 kolon) — ama hero HR9 (map) + K9 gauge + P5 pipeline + T7 receipt farklı
+    v2-blueprint: 3                  # MO1 + FT8-yakın + blueprint dil — ama PL21→PL4 + TY5→TY11 + HR13→HR9 ayırır
+    insaat-crm-b-edge: 4             # Lenis+GSAP+Hazard+Concrete stack overlap — ama müşteri-facing vs iç CRM semantik farklı
+    v2-neobrutalist: 1               # sadece hazard stripe dili ortak, combo bambaşka
+  warning: |
+    mockup-C (industrial) referans score 4.5/5 ile TY11 + PL4 atom seviyesinde ortak — 2 kolon.
+    Ama HR9 interactive map + K9 barometer gauge + P5 timeline + T7 receipt strip + C4 terminal log farklı,
+    5+ yeni atom ile özgün kalıyor. insaat-crm/b-edge (Lenis+GSAP production referansı) ile motion stack overlap
+    yüksek (MO1+MO2+ajans) ama müşteri-facing tanıtım siteleri için dil doğal. Yeni projede palette
+    opsiyonel olarak PL21 ozalit blueprint'e kaydırılabilir — concrete tekrar hissini kırar.
+
+# Compatibility notes
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, fotograf, gayrimenkul, otel]  # industrial-workwear 7 forbidden
+  conditional_sectors: []                                                           # insaat için koşul yok — direkt default
+  recommended_for: [insaat, eticaret]                                               # eticaret B2B tedarik için ✓
+  notes:
+    - "DEFAULT insaat stili — şantiye native dili (concrete + hazard + stencil)"
+    - "Orta-büyük firma tanıtım sitesi (3-5 hafta) için ideal"
+    - "Enterprise CRM (Yıldız İnşaat tarzı multi-tenant, iş emri, saha foto) için → data-dense-dashboard recipe"
+    - "Şantiye tanıtımı ≠ CRM — müşteri-facing preset (keşif randevusu + proje galerisi + harita)"
+    - "Genç/design-forward firma için alternatif → insaat-brutalist (bold sticker + sharp shadow)"
+    - "Kurumsal 20+ yıllık firma için → HR13 blueprint title block tercih (daha ozalit/editorial)"
+    - "Zanaat atölye (ahşap işleri, tuğla restorasyon) için → warm-organic conditional ⚠"
+
+# Preview (scaffolder/preview-app için)
+preview_app_route: /preview/insaat-industrial-workwear
+scaffold_command: "node scaffold.js insaat-industrial-workwear --out ./out/insaat-industrial --recipe next-premium"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md          # HR9 interactive map (Mapbox/MapLibre)
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md        # K9 + CH6 dashboard pattern
+  - Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - Mobilyacı/3d-demo/research/header_navigation_analiz.md
+  - Mobilyacı/3d-demo/research/footer_analiz.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md                      # LocalBusiness + Project JSON-LD
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - mockups/c-concrete-industrial/index.html                            # 4.5/5 concrete+hazard referans
+  - insaat-crm/b-edge/index.html                                        # 4.2/5 Lenis+GSAP production impl
+  - v2-blueprint/index.html                                             # 4/5 ozalit alternatif referans
+  - templates/SECTOR-RESEARCH.md#insaat
+  - catalog/styles/industrial-workwear.yaml
+  - catalog/sectors/insaat.yaml
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Narrow Black 700-900 (display — hero wordmark + section titles)"
+    - "Archivo Black 900 (fallback display)"
+    - "Geist Sans 300-700 (body + UI)"
+    - "Geist Mono 400-600 (spec / timestamp / terminal)"
+    - "Stardos Stencil 400-700 (hazard label + plate numerik)"
+  wcag_contrast_target: "AA (4.5:1) — bg #D4CFC4 × ink #111 = 11.8:1 ✓ ; hazard #F5C400 × ink #111 = 12.2:1 ✓ ; orange #E85D04 × concrete = 4.6:1 ✓"
+  lighthouse_target: 90
+  perf_budget: "First load < 180KB gzip; concrete speckle + hazard stripe + Lenis production; Mapbox static tile fallback"
+  prefers_reduced_motion: "MANDATORY fallback — GSAP pin-scrub off, Lenis devre dışı, gauge needle statik, timeline scroll-snap"
+  hero_assets: "gerçek şantiye drone video (16:9, 12-15s loop, muted autoplay, ≤6MB) VEYA Mapbox/MapLibre interactive proje haritası (custom industrial style)"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Aktif Projeleri Gör"
+  trust_badges: "TSE · ISO 9001 · OHSAS 18001 · ÇED uygun — footer stripe + about page"
+  hazard_stripe_spec: "repeating-linear-gradient(45deg, #F5C400 0 18px, #111 18px 36px) — kullanım: header top, footer top, CTA underline, warning callout"
+  concrete_speckle_spec: "radial-gradient(circle at 20% 30%, rgba(0,0,0,0.08) 0 1px, transparent 1px) multi-layer + grain.svg %6 opacity"
+  rounded_corners: "border-radius: 0 KESIN ZORUNLU — tüm elementler sharp edge (industrial imza)"
+  shadow_signature: "offset hard shadow 6-8px (solid, blur YOK) — plate elements + CTA + card"
+  safety_badge_placement: "Footer sabit sticky satır + about page grid + hero altı trust row"
+  payment_note: "İnşaat sitesi ödeme entegre gerekmez — sadece iletişim + randevu formu. Opsiyonel: proje bedel pay-link (iyzipay simplepay)"
+  mobile_critical: "Sticky bottom 'Keşif Randevusu Al' bar — tek tap ile WhatsApp + form seçeneği"
+  seo_critical: "LocalBusiness + Project (CreativeWork) + Review JSON-LD zorunlu; Ankara/İstanbul şehir sayfaları programmatic seo ile çoğaltılabilir"
+
+# Müşteri-facing vs CRM ayrımı
+semantic_scope:
+  included: [tanıtım, proje-galerisi, harita, keşif-randevu, referans, blog, sertifika, ekip, iletişim]
+  excluded: [crm, is-emri, saha-foto-upload, musteri-portal, multi-tenant, observability]
+  crm_alternative_preset: "data-dense-dashboard recipe — enterprise tier (80K+ TL)"
+
+# Sektör istisnası
+sector_rationale: |
+  insaat.yaml recommended atom listesi ile 5/8 match (PL4, TY11, HR9, MO1/MO2, FT8).
+  mockup-C referans score 4.5/5 olarak industrial-workwear imzasını kanıtlıyor.
+  Rounded corners YASAK + hazard stripe + concrete speckle + stencil label inşaat sektörünün
+  psikolojik tonunu (sağlamlık + şeffaflık + hazard + görünürlük + güven) doğrudan karşılıyor.
+  mucevher/kuafor/klinik/spa/otel gibi premium/feminen sektörler için UYGUN DEĞİL (atölye hissi yaratır).

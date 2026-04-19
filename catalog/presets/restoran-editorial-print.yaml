@@ -1,0 +1,114 @@
+---
+id: restoran-editorial-print
+sector: restoran
+style: editorial-print
+recipe: wordpress-elementor-motion     # Tier 2 budget (restoran çoğu 10K TL)
+tier: budget
+budget_range_try: [7500, 15000]
+delivery_weeks: [0.7, 1]                # 5-7 gün
+matrix_cell: "✓✓"                       # restoran × editorial-print DEFAULT
+---
+
+mood: [gazete-feel, masthead, 3-col-column-menu, drop-cap, pull-quote, print-ritmi, sicak-kagit, terroir-baski]
+
+atoms:
+  palette: PL3                # Off-White Editorial — newsprint #F5F1E8 + ink #131313 + red #C43D2B
+  typography: TY10            # Instrument Serif + IBM Plex Serif body + IBM Plex Mono byline
+  hero: HR6                   # Newspaper Hed + Deck + Byline (italic deck + by-line metadata)
+  layout:
+    - L5                      # 3-col CSS columns (menü için ideal: mezeler/ana/tatlı)
+    - L6                      # Center single col (hakkında/hikâye/içecek sayfaları)
+  motion:
+    - MO10                    # Print-first static (motion minimal) — gazete diline sadık
+    - MO4                     # Framer light (hover subtle, randevu modal fade)
+  motion_ajans:
+    - ultra-clip-path-4-yon           # minimal clip-path reveal (menü kategori geçişleri)
+    - wearebrand-blur-36px-reveal     # menü başlıkları blur→clarity reveal
+  header: H2                  # Masthead Centered (gazete başlığı — restoran adı + tarih + şehir)
+  nav: N2                     # Horizontal Tabs Underline (Menü / Rezervasyon / Hikaye / İletişim)
+  kpi: K5                     # Almanac Editorial ("sezon 2026 · 47 taze ürün · 12 tedarikçi çiftlik")
+  form: F1                    # Single-col (rezervasyon form + newsletter signup)
+  footer: FT4                 # Colophon editorial (şef künyesi + tedarikçiler + adres)
+
+components:
+  core:
+    - NewspaperHed                     # HR6 + byline (bugünün tarihi + şef imza)
+    - MastheadCentered                 # H2 — restoran adı masthead + 3px rule
+    - ThreeColCssColumns               # L5 column-count: 3 (menü bölümleri)
+    - DropCapEditorial                 # first-letter float (hikaye sayfası)
+    - PullQuote                        # double-border top/bottom (şef alıntısı)
+    - MenuEditorialList                # yemek adı + italic açıklama + mono fiyat (T6 card YASAK)
+    - AlmanacKpi                       # K5 almanac grid (sezon/taze/tedarikçi sayıları)
+    - BylineBar                        # monospace metadata (lokasyon · saat · telefon)
+    - ColophonFooter                   # FT4 (şef + restoran künyesi)
+    - RezervasyonForm                  # F1 single-col (Supabase slot-based)
+    - GoogleMapsIframe                 # native embed + WhatsApp link
+  optional:
+    - PrintPdfExport                   # menü PDF export (yazdırılabilir gerçek menü)
+    - InstagramFeedStatic              # IG feed grid (statik, auto-refresh yok)
+    - BlogIcerikEditorial              # şef yazıları (MDX) — sezon menüsü hikayesi
+    - NewsletterSignup                 # "haftalık menü değişimi" email listesi
+
+anti_cliche:
+  forbidden_palettes: [PL1]                               # dark + gold italic "fine dining" klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]              # özellikle TY2 Playfair — restoran klişesi
+  forbidden_heroes: [HR2, HR7]                            # split-hero + dashboard-as-hero
+  forbidden_tables: [T6]                                  # card grid menü — editorial list zorunlu
+  forbidden_headers: [H8]                                 # mix-blend-mode
+  forbidden_motion: [MO1-aggressive, MO11-kinetic-opsz]   # kinetic abartı gazete tonuyla çelişir
+  repeat_score_vs_existing: 1                             # düşük tekrar riski (sektör henüz temiz)
+  warning: |
+    Generic dark menü + Playfair italic başlık + gold underline "fine dining" klişesi YASAK.
+    Ramen-ya / Ezogelin tarzı street food için aşırı şık kaçar — editorial-print sıcak kağıt diline
+    sadık kal. Menü sayfası T6 card grid YASAK — editorial list (L5 3-col CSS columns) zorunlu.
+    Yemek fotoğrafı üstünde gold italic başlık klişesinden kaçın. Editorial imza: 3px masthead rule +
+    byline mono metadata + drop cap + justify body + column-count:3. Kirmizi #C43D2B editorial
+    accent — gold/orange/coral ile KARIŞTIRMA.
+
+compatibility:
+  forbidden_sectors: [insaat, gaming, fintech-tech]
+  conditional_sectors: [spa, klinik, kuafor, gayrimenkul, insaat, eticaret, otel]
+  recommended_for: [restoran, fotograf, mucevher]         # koleksiyon/menü/portfolyo için ideal
+  incompatible_sectors: [insaat-endustriyel, spor-arena, gaming, fintech-tech]
+  matrix_row_peers:
+    default: [restoran, fotograf]
+    active: [mucevher]
+    conditional: [insaat, kuafor, klinik, eticaret, spa, gayrimenkul, otel]
+
+preview_app_route: /preview/restoran-editorial-print
+scaffold_command: "node scaffold.js restoran-editorial-print --out ./restoran-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/mdx-blog-documentation-2026.md
+  - Mobilyacı/3d-demo/research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/print-pdf-export-screenshot-2026.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md       # Restaurant + MenuItem JSON-LD
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+  - research/design-claude/mockups/b-off-white-editorial/index.html    # 5/5 ref — birebir referans
+  - research/design-claude/templates/04-restoran/index.html
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: "3-col CSS columns mobile'da 1-col fallback (column-count: 1 @media max-width:768px)"
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Instrument Serif italic (display) — ücretsiz Google Fonts"
+    - "IBM Plex Serif 300-500 (body) + italic"
+    - "IBM Plex Mono 400-500 (byline + metadata)"
+  wcag_contrast_target: "AA + serif body 16px minimum, line-height 1.6 (okunaklılık kritik)"
+  lighthouse_target: 95                      # budget tier, motion minimum → hızlı
+  hyphens: "auto (Türkçe justified text için — kelime kopması kontrollü)"
+  print_stylesheet: "YES — @media print CSS dahil (menü PDF export için) · grayscale fallback"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör (PDF)"
+  hero_assets: "masthead SVG + bugünün tarihi dinamik (Intl.DateTimeFormat tr-TR)"
+  menu_layout: "L5 3-col CSS columns desktop · 2-col tablet · 1-col mobile accordion"
+  schema: "Restaurant + MenuItem + OpeningHoursSpecification + PostalAddress JSON-LD"
+  mobile_critical: "Sticky bottom bar: WhatsApp + Ara + Rezervasyon (3 CTA)"
+  special_features:
+    - "Mevsimsel menü editör (admin panel, Markdown input)"
+    - "Masa rezervasyon (Supabase slot-based + email onay)"
+    - "Menü PDF export (print stylesheet + screenshot fallback)"
+    - "Şef blog editorial (MDX + drop cap + pull quote component)"
+    - "WhatsApp hızlı menü paylaşımı (shareAPI + QR kod)"

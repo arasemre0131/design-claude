@@ -1,0 +1,144 @@
+---
+id: otel-immersive-3d
+sector: otel
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ — sanal oda turu + scroll storytelling
+tier: premium
+budget_range_try: [35000, 80000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # otel × immersive-3d AKTIF (default warm-organic)
+---
+
+mood: [cinematic, scroll-storytelling, virtual-room-tour, warm-atmospheric, escape-ritual, lifestyle-immersive]
+
+atoms:
+  palette: PL37              # Terracotta + Sky (warm organic + cinematic) — PL1 luxury dark+gold YASAK (otel klişesi!)
+  typography: TY43           # Fraunces italic + Inter Tight — TY8 v2-immersive-3d YASAK, Playfair italic YASAK
+  hero: HR4                  # 3D Canvas Scroll-Camera (resepsiyon → lobi → oda → havuz)
+  layout:
+    - L4                     # Full-bleed rails (cinematic tur)
+    - L8                     # Masonry oda tipleri (alt sayfalar)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scrub 2.5 — çok yavaş, sinematik)
+    - MO2                    # Lenis smooth (lerp 0.05 — çok yumuşak, spa-adjacent)
+    - MO12                   # R3F postprocessing (warm tone mapping)
+    - MO7                    # View Transitions (oda → rezervasyon morph)
+  motion_ajans:
+    - lusion-glsl-noise                 # Gün batımı atmosferi (vignette + grain)
+    - lusion-css-var-uniform            # Saat (gündüz/akşam/gece) → shader uniform
+    - ultra-porthole-dive               # Odaya girişte scale 1→4
+  3d:
+    - 3D-01-drei-envmap                 # Outdoor HDRI (manzara + gün batımı)
+    - 3D-02-drei-orbitcontrols          # Oda 360 detay
+    - 3D-04-drei-contactshadows         # Mobilya yere gölge
+    - 3D-05-drei-html                   # 3D nokta üzerinde HTML tooltip (odanın özellikleri)
+    - 3D-07-drei-scrollcontrols         # Scroll-linked sahne geçişleri (drei imza)
+    - 3D-09-postprocessing-bloom        # Gün batımı parıltı (intensity 0.7)
+    - 3D-10-postprocessing-dof          # Cinematic bokeh
+    - 3D-11-gaussian-splat              # Gerçek oda fotogrametri (sanal check-in)
+    - 3D-12-gltf-draco-ktx2             # Compression ZORUNLU
+  header: H9                 # Corner brackets — H8 YASAK
+  nav: N10                   # Timeline scroll-locked (otel hikayesi)
+  kpi: K5                    # Almanac editorial ("90 oda, 2 havuz, 1 spa, 1 restoran") — K1 K7 YASAK
+  table: T3                  # Spec sheet (oda tipi: king bed, balkon, manzara)
+  chat: C3                   # Email threaded (concierge)
+  form: F4                   # Inline edit (rezervasyon)
+  modal: M1                  # Centered (booking flow)
+  footer: FT6                # Signature block (otel künyesi + social)
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl
+    - HotelStorytellingScroll           # Scroll-linked otel hikayesi (resepsiyon → lobi → oda → havuz)
+    - GaussianSplatRoom                 # Sanal oda check-in (gerçek fotogrametri)
+    - RoomInspector360                  # Oda detay 360 (drei OrbitControls)
+    - PostprocessingStack               # Bloom (0.7) + DOF + warm tone mapping + grain (gün batımı)
+    - TimeOfDayToggle                   # Gündüz/akşam/gece shader switch
+    - NativeBookingFlow                 # 5 adım: tarih → oda → misafir → ekstra → ödeme (iyzico)
+    - RoomTypeGallery                   # L8 masonry (oda kategorileri)
+    - ConciergeChat                     # C3 email threaded (tarih önerisi, transfer)
+    - Almanac                           # K5 — otel istatistik editorial
+  optional:
+    - DroneIntro                        # 10s drone shot (intro skip button)
+    - PmsIntegration                    # Opera/Fidelio/protel API (Tier 4)
+    - ChannelManager                    # Booking.com/Expedia sync (Tier 4)
+    - I18nLanguageSwitch                # TR + EN + AR + RU (Antalya/Bodrum profil)
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]        # PL1 luxury dark+gold OTEL KLİŞESİ!
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # TY2 Playfair italic "Welcome to X" YASAK
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1, K7]
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1, L7]
+  forbidden_motion: [MO10-print-first]
+  forbidden_patterns:                   # otel.yaml'dan
+    - "stok-foto-havuz-hero"
+    - "gold-italic-welcome-baslik"
+    - "fake-instagram-feed"
+    - "booking-com-iframe-native-yok"
+  repeat_score_vs_existing: 2
+  warning: |
+    Otel için PL1 dark gradient + gold italic 'Welcome to X' KLASIK KLİŞE — her butik otel aynı.
+    Terracotta + sky (PL37) warm organik palette zorunlu. Playfair italic YASAK, Fraunces italic OK.
+    Stok havuz foto YASAK — gerçek drone video + Gaussian Splat oda scan. Booking.com iframe
+    NATIVE rezervasyon akışını öldürür — 5 adım native flow + iyzico embed zorunlu. Scroll-linked
+    kamera çok yavaş (scrub 2.5) — kaçış/nefes ritmi. Time-of-day shader (gün batımı) imza.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]
+  conditional_sectors: [klinik]
+  recommended_for: [otel-sanaltur, butik-otel, resort, design-hotel, gayrimenkul-premium]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/otel-immersive-3d
+scaffold_command: "node scaffold.js otel-immersive-3d --out ./otel-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/hospitality-virtual-tour.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → drone video bg (16:9, 15-20s loop, ≤8MB autoplay muted) + klasik oda masonry, frameloop='demand'"
+  gpu_tier_detection: "detect-gpu tier 0-1 → video fallback, tier 2 → tek Gaussian Splat (1 oda) + postprocess off, tier 3+ → full scroll storytelling"
+  model_compression: "Gaussian Splat oda başı 20K point (~8MB), mimari lobi GLB Draco + KTX2 max 8MB, toplam 30MB (Cloudflare R2)"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-600 italic (variable, overlay başlık)"
+    - "Inter Tight 300-700 (gövde)"
+    - "Space Mono 400 (oda numara + tarih)"
+  wcag_contrast_target: "AA (4.5:1) + 3D canvas aria-label='Otel sanal turu — resepsiyondan odaya. Rezervasyon detayları aşağıda.' + keyboard nav (ok = ilerle, enter = oda seç)"
+  lighthouse_target: 85                             # 3D + video + Gaussian Splat ağır — 85 hedef, mobile 72
+  prefers_reduced_motion: "Scroll storytelling → section anchor scroll (instant jump), 3D canvas static pose, drone intro skip"
+  hero_assets: "Drone video (havuz + manzara + cephe 15-20s, ≤8MB) VEYA Gaussian Splat lobi (tier 3+)"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları Keşfet"
+  booking_flow: "Tarih picker → oda tipi → misafir sayısı → ekstra (yemek, spa, transfer) → ödeme (iyzico 3DS, 5 adım, guest checkout)"
+  i18n_critical: "TR + EN minimum (Tier 3+), Arapça + Rusça Tier 4 (Antalya/Bodrum profil)"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran, Gaussian Splat canvas üstünde 'ODAYI GEZ' ipucu 3s"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review + 3DModel + Place (GaussianSplat mainEntity) JSON-LD"
+  special_features:
+    - "Scroll storytelling (resepsiyon → lobi → oda → havuz, GSAP scrub 2.5)"
+    - "Gaussian Splat oda scan (sanal check-in)"
+    - "Time-of-day shader (gündüz/akşam/gece shader uniform)"
+    - "Native booking (5 adım + iyzico embed + i18n)"
+    - "drei <Html> 3D tooltip (oda özellikleri noktasında)"
+    - "Drone intro (10s, skip button, 4MB lazy)"

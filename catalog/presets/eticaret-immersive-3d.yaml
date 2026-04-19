@@ -1,0 +1,142 @@
+---
+id: eticaret-immersive-3d
+sector: eticaret
+style: immersive-3d
+recipe: next-r3f            # 3D Tier 3+ — mobilya/ayakkabı/çanta konfigürator
+tier: premium
+budget_range_try: [30000, 75000]
+delivery_weeks: [4, 6]
+matrix_cell: "✓"             # eticaret × immersive-3d AKTIF (default data-dense-dashboard)
+---
+
+mood: [cinematic, scroll-camera, product-showcase, tactile-3d, configurator, conversion-focused]
+
+atoms:
+  palette: PL29              # Slate + Acid neon — PL1 YASAK, eticaret genç marka tonu
+  typography: TY35           # Unbounded + Manrope — TY8 v2-immersive-3d YASAK
+  hero: HR4                  # 3D Canvas Scroll-Camera (ürün 360 scroll)
+  layout:
+    - L4                     # Full-bleed rails (ürün cinematic)
+    - L8                     # Masonry ürün vitrin (ana kategori grid)
+  motion:
+    - MO1                    # GSAP ScrollTrigger (scrub 1.5 — hızlı conversion için)
+    - MO2                    # Lenis smooth (lerp 0.09)
+    - MO12                   # R3F postprocessing
+    - MO7                    # View Transitions API (ürün → detay geçiş)
+  motion_ajans:
+    - lusion-glsl-noise                 # Ürün arka plan atmosferi
+    - lusion-css-var-uniform            # Ürün rengi değişince shader uniform güncelle (konfigürator)
+    - ultra-porthole-dive               # Ürüne scroll yaklaşma
+  3d:
+    - 3D-01-drei-envmap                 # HDRI studio (ürün yansıma)
+    - 3D-03-drei-presentationcontrols   # Drag to rotate (mobil kritik)
+    - 3D-04-drei-contactshadows         # Ürün yere gölge
+    - 3D-08-drei-meshtransmission       # Cam/akrilik ürün (parfüm, kristal mobilya)
+    - 3D-09-postprocessing-bloom        # Ürün highlight
+    - 3D-10-postprocessing-dof          # Arka plan blur, ürün focus
+    - 3D-11-gaussian-splat              # Gerçek ürün fotogrametri (mobilya)
+    - 3D-12-gltf-draco-ktx2             # Compression ZORUNLU
+    - 3D-15-model-viewer                # AR ticaret (iOS Quick Look + Android Scene Viewer)
+  header: H9                 # Corner brackets — H8 YASAK
+  nav: N10                   # Timeline scroll-locked (ürün hikayesi)
+  kpi: K2                    # Band + rules — K1 K7 YASAK
+  table: T3                  # Spec sheet (boyut, materyal, garanti) — T6 card grid YASAK
+  chat: C1                   # Bubble chat (live support)
+  form: F4                   # Inline edit (sepet)
+  modal: M1                  # Centered dialog (sepete eklendi)
+  footer: FT7                # Link-heavy mega footer (kategori + help center)
+
+components:
+  core:
+    - Immersive3DCanvas                 # HR4 impl
+    - ProductConfigurator               # Renk + materyal + boyut + canlı 3D güncelleme
+    - ScrollProduct360                  # Scroll = 360 ürün rotation (GSAP scrub)
+    - MeshTransmissionViewer            # Cam/akrilik materyal (parfüm, vazo)
+    - GaussianSplatViewer               # Gerçek ürün (mobilya — IKEA benzeri)
+    - PostprocessingStack               # Bloom + DOF + tone mapping
+    - StickyAddToCart                   # 3D canvas scroll-in, sticky sepete ekle button
+    - ProductDetailSpec                 # T3
+    - ReviewGrid                        # Müşteri yorumları + yıldız
+    - MegaFooter                        # FT7
+  optional:
+    - ArTryProduct                      # model-viewer (koltuk salonda göster, çanta omzunda)
+    - RoomPlanner                       # Mobilya 3D odaya yerleştir (drei TransformControls)
+    - ScrollStorytelling                # Kampanya sayfası scroll-linked story (GSAP)
+    - InfiniteMarquee                   # Kampanya banner (MO6)
+
+anti_cliche:
+  forbidden_palettes: [PL1, PL8]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]                # ürün kartı grid YASAK — eticaret.yaml kuralı
+  forbidden_kpi: [K1, K7]
+  forbidden_headers: [H8]
+  forbidden_layouts: [L1, L7]
+  forbidden_motion: [MO10-print-first]
+  forbidden_patterns:                   # eticaret.yaml'dan
+    - "hero-carousel-5s-autoplay"
+    - "glass-morphism-card"
+    - "countdown-timer-fake-urgency"
+  repeat_score_vs_existing: 2           # v2-immersive-3d ile HR4+MO1 ortak, ticaret context farklı
+  warning: |
+    E-ticaret immersive-3d için conversion kritik — 3D canvas scroll-in hemen sticky 'Sepete Ekle'
+    button açmalı. Glass morphism card (K1) YASAK, hero carousel 5-slide autoplay YASAK, fake
+    countdown timer YASAK. Ürün konfigürator canlı 3D render olmalı (renk → materyal → boyut).
+    PL29 acid neon genç marka için tercih (Liquid Death, Gymshark tarzı), klasik e-ticaret için
+    editorial-luxury recipe'ine kay. Fatih Bey combo'su (H8+HR2+K1+T6+L1) kopyalanamaz.
+
+compatibility:
+  forbidden_sectors: [klinik, spa, kuafor, restoran]
+  conditional_sectors: [klinik]
+  recommended_for: [eticaret-3d, mobilya-AR, otomotiv, mucevher-premium]
+  matrix_row_peers:
+    default: []
+    active: [insaat, mucevher, eticaret, fotograf, gayrimenkul, otel]
+    conditional: [klinik]
+
+preview_app_route: /preview/eticaret-immersive-3d
+scaffold_command: "node scaffold.js eticaret-immersive-3d --out ./eticaret-v3-immersive/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/furniture-3d-ecommerce.md
+  - Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Mobilyacı/3d-demo/research/checkout-analiz.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+  - Mobilyacı/3d-demo/research/nextjs-r3f-architecture-guide.md
+  - Mobilyacı/3d-demo/research/r3f-postprocessing-34-efekt.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_fallback: "3D skip → 6-frame 360 turntable (img sequence lazy-load) + frameloop='demand', AR butonu aktif kalır (model-viewer)"
+  gpu_tier_detection: "detect-gpu tier 0-1 → 360 turntable + AR, tier 2 → düşük poly GLB + postprocess off, tier 3+ → full config"
+  model_compression: "Draco + KTX2 + Meshopt ZORUNLU — tek ürün max 2MB, konfigürator variant'ları LOD"
+  target_fps:
+    desktop: 60
+    mobile: 30
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Unbounded 400-800 (başlık)"
+    - "Manrope 300-700 (gövde)"
+    - "JetBrains Mono 400 (spec)"
+  wcag_contrast_target: "AA (4.5:1) + 3D canvas aria-label='Ürün 3D sahnesi, detaylar aşağıda listelenmiştir' + interactive mode için keyboard nav (ok = rotate, enter = configurator modal)"
+  lighthouse_target: 85                             # 3D + konfigürator ağır — 85 hedef, mobile 70
+  prefers_reduced_motion: "3D animation off, 360 turntable 1 frame static, scroll-camera skip, AR buton aktif kalır (kullanıcı manuel)"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  checkout_flow: "Sepet → bilgi → ödeme → onay (4 adım, iyzico embed, guest checkout)"
+  performance_critical: "LCP < 2.5s (3D canvas Suspense + poster), INP < 200ms (konfigürator interact), CLS < 0.05"
+  mobile_critical: "Sticky 'Sepete Ekle' bottom bar (3D canvas scroll-out'ta görünür), AR butonu 3D canvas üstünde"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList + 3DModel (encodingFormat=model/gltf-binary, potentialAction=viewAR) JSON-LD"
+  special_features:
+    - "Ürün konfigürator (renk + materyal + boyut canlı 3D)"
+    - "AR ürün önizleme (iOS Quick Look USDZ + Android Scene Viewer GLB)"
+    - "Gaussian Splatting (mobilya gerçek fotogrametri)"
+    - "Scroll 360 rotation (GSAP scrub 1.5)"
+    - "Room planner (mobilya drag-drop 3D odaya)"
+    - "View Transitions (ürün grid → detay morph)"

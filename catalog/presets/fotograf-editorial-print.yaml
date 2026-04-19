@@ -1,0 +1,131 @@
+---
+id: fotograf-editorial-print
+sector: fotograf
+style: editorial-print
+recipe: nextjs-template-swap            # Tier 0-1 fotograf portfolyo için yeterli (görsel-odak)
+tier: ultra-budget
+budget_range_try: [5000, 12000]
+delivery_weeks: [0.4, 1]                # 2-7 gün
+matrix_cell: "✓✓"                       # fotograf × editorial-print DEFAULT
+---
+
+mood: [sessiz-tipografi, gorsel-kahraman, masonry, editorial-mono, gallery-feel, portfolio-discipline, print-serigrafi]
+
+atoms:
+  palette: PL33               # Pure Off-Black (Fotograf A) — #FAFAFA bg + #1C1C1E ink + #FF5E3A orange accent
+  typography: TY10            # Instrument Serif display + IBM Plex Serif body + IBM Plex Mono byline
+  hero: HR6                   # Newspaper Hed + Deck + Byline (fotoğrafçı adı + seri başlık + tarih)
+  layout:
+    - L8                      # Masonry — fotoğraf portfolyosu için native layout
+    - L6                      # Center single col (tek seri / tek proje detay)
+  motion:
+    - MO10                    # Print-first static (görsel kahraman, motion gürültü yaratır)
+    - MO7                     # View Transitions API (image → detail morph — fotoğrafçı için kritik)
+  motion_ajans:
+    - ultra-clip-path-4-yon           # clip-path image reveal (minimal)
+    - fraxbit-clip-path-reveal        # image reveal + mask
+  header: H2                  # Masthead Centered (sessiz — isim + tarih + yer)
+  nav: N2                     # Horizontal Tabs Underline (Portfolyo / Hakkında / İletişim)
+  kpi: K5                     # Almanac Editorial ("12 yıl · 340 düğün · 28 ülke")
+  form: F1                    # Single-col (booking/inquiry form)
+  footer: FT4                 # Colophon editorial (ekipman + sertifika + konum künyesi)
+
+components:
+  core:
+    - NewspaperHed                     # HR6 — seri adı + fotoğrafçı by-line + lokasyon tarihi
+    - MastheadCentered                 # H2 masthead
+    - MasonryGallery                   # L8 — CSS columns masonry (column-count responsive)
+    - ImageDetailViewTransition        # MO7 — image → fullscreen morph (View Transitions API)
+    - BylineBar                        # monospace metadata (ISO · lens · shutter · tarih)
+    - DropCapEditorial                 # about / hikaye sayfası (first-letter float)
+    - PullQuote                        # kullanıcı testimonial editorial tarz
+    - AlmanacKpi                       # K5 almanac (yıl · proje · ülke sayısı)
+    - ColophonFooter                   # FT4 (ekipman + sertifika)
+    - BookingForm                      # F1 single-col inquiry
+    - ContactSheet                     # film kontak sayfası gridi (portfolyo özet)
+  optional:
+    - ClientGaleri                     # password-protected client gallery (Supabase auth)
+    - DownloadKontrol                  # hi-res download + watermark kontrol
+    - PrintSeriAlbum                   # PDF album export (wedding book mockup)
+    - InstagramFeedEmbed               # statik grid (auto-refresh yok — görsel tutarlılık)
+    - BlogIcerikMDX                    # foto günlüğü MDX + image caption italic
+
+anti_cliche:
+  forbidden_palettes: [PL1]                                 # BG Foto'nun dark+gold klişesi
+  forbidden_typography: [TY1, TY2, TY4, TY8]                # TY2 Playfair+Inter BG Foto'da kullanıldı
+  forbidden_heroes: [HR2, HR7]                              # split-hero + dashboard-as-hero
+  forbidden_tables: [T6]                                    # card grid
+  forbidden_headers: [H8]                                   # mix-blend-mode difference
+  forbidden_motion: [MO1-aggressive, MO6-heavy-stagger]     # fotoğraf önde, type sessiz kalmalı
+  repeat_score_vs_existing: 2                               # BG Foto combo (H8·HR2·K1·TY2·PL1) ZERO overlap
+  bg_foto_override_warning: |
+    KRITIK: BG Foto v1 (deprecated) combo'su:
+      H8 · N2 · HR2 · K1 · TY2 · PL1 · L1 · MO4
+    Bu preset (fotograf-editorial-print) combo'su:
+      H2 · N2 · HR6 · K5 · TY10 · PL33 · L8+L6 · MO10+MO7
+    Eşleşme kontrolü:
+      header H2  != H8  ✓
+      hero HR6   != HR2 ✓
+      kpi K5     != K1  ✓
+      typo TY10  != TY2 ✓
+      palette PL33 != PL1 ✓
+      layout L8  != L1  ✓
+      nav N2 == N2 (1 kolon — universal editorial default, KABUL)
+    Toplam eşleşme: 1/15 kolon = PASS (skor 0-3 kesin)
+  warning: |
+    Fotoğrafçı portfolyosu GÖRSEL-ÖNCELİKLİ. Tipografi sessiz (IBM Plex Serif monolithic),
+    renk minimal (off-white + off-black + subtle orange accent). Italic gradient başlık YASAK
+    — resim kahraman, font kürsüsü boş. BG Foto combo'su (TY2+PL1+HR2+K1) YASAKLI TAM ÖRNEK.
+    Masonry layout (L8) fotoğrafçı için native — card grid YASAK. View Transitions API (MO7)
+    image→detail morph kritik. Print stylesheet (@media print) album PDF export için dahil.
+
+compatibility:
+  forbidden_sectors: [insaat, gaming, fintech-tech]
+  conditional_sectors: [spa, klinik, kuafor, gayrimenkul, eticaret, otel, insaat]
+  recommended_for: [fotograf, restoran, mucevher]
+  incompatible_sectors: [insaat-endustriyel, spor-arena, gaming]
+  matrix_row_peers:
+    default: [restoran, fotograf]
+    active: [mucevher]
+    conditional: [insaat, kuafor, klinik, eticaret, spa, gayrimenkul, otel]
+
+preview_app_route: /preview/fotograf-editorial-print
+scaffold_command: "node scaffold.js fotograf-editorial-print --out ./fotograf-editorial/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+  - Mobilyacı/3d-demo/research/view-transitions-api-2026.md
+  - Mobilyacı/3d-demo/research/typography-font-text-animation-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/print-pdf-export-screenshot-2026.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md             # ImageGallery + Photograph JSON-LD
+  - research/design-claude/mockups/b-off-white-editorial/index.html    # 5/5 ref
+  - research/design-claude/templates/08-fotograf/index.html           # 4/5 ref — editorial hibrit
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: "L8 masonry 3-col desktop · 2-col tablet · 1-col mobile (column-count responsive)"
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Instrument Serif italic 0,1 (display — seri adları)"
+    - "IBM Plex Serif 400-500 + italic (body caption)"
+    - "IBM Plex Mono 400-500 (EXIF metadata + byline)"
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP · lazy-load · LQIP blur placeholder"
+  wcag_contrast_target: "AAA (7:1 ink on paper) — fotoğrafçı okunaklılık editorial kritik"
+  lighthouse_target: 95                 # görsel ağır ama perf sıkı — LCP < 2.5s
+  hyphens: "manual (image caption'da yok, body'de auto)"
+  print_stylesheet: "YES — @media print CSS + album PDF export (wedding book mockup)"
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  hero_assets: "featured image (1920×1280, AVIF) + LQIP 20px blur base64"
+  performance_critical: "LCP < 2.5s (featured image priority hint · preconnect Cloudinary)"
+  view_transitions: "image-gallery → image-detail morph (aspectRatio preserve, name: photo-${id})"
+  schema: "ImageGallery + Photograph + Person (photographer) + CreativeWork JSON-LD"
+  mobile_critical: "Sticky bottom bar: Portfolyo · WhatsApp · Rezervasyon"
+  special_features:
+    - "View Transitions API (image → detail morph — fotoğrafçı için KRITIK)"
+    - "Client galeri (password-protected Supabase auth)"
+    - "Print album PDF export (@media print + jsPDF + html2canvas)"
+    - "EXIF metadata byline (ISO · lens · tarih — IBM Plex Mono)"
+    - "Contact sheet layout (film kontak sayfası tarz)"
+    - "Cloudinary CDN (AVIF/WebP + 3 responsive breakpoint)"

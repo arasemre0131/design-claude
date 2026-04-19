@@ -1,0 +1,110 @@
+---
+id: mucevher-maximalist-atmospheric
+sector: mucevher
+style: maximalist-atmospheric
+recipe: next-r3f  # atmospheric + drei MeshTransmissionMaterial hybrid premium
+tier: premium
+budget_range_try: [28000, 70000]
+delivery_weeks: [4, 5]
+
+# CONDITIONAL (MATRIX sarisi): sadece koleksiyon launch kampanya sayfasi icin.
+# Kok portfolyo/ana site icin editorial-luxury (mucevher default) tercih edilir.
+# Bu preset kampanya/micro-site + launch countdown icin optimize.
+conditional_use_case: "koleksiyon-launch-kampanya-microsite"
+---
+
+mood: [atmospheric, deep-plum-aurora, overlapping-italic, jewel-porthole, launch-campaign-dense, refraction-drift]
+
+atoms:
+  palette: PL22  # Tobacco + Pearl + Clay + Tan (mucevher A, aurora driftte warm maximal)
+  typography: TY12  # Migra Italic + IBM Plex Sans + Berkeley Mono (TY2 Playfair KESIN YASAK)
+  hero: HR3  # Full-bleed video bg (atolye/el-emegi kesim makro loop) + radial drift overlay
+  layout:
+    - L11  # Bento 2.0 asymmetric no-glass (mucevher vitrin asimetrik)
+    - L8  # Masonry urun grid
+  motion:
+    - MO1  # GSAP ScrollTrigger
+    - MO2  # Lenis (lerp 0.05 rafine)
+    - MO6  # SplitText stagger (koleksiyon adi italic reveal)
+    - MO11 # R3F drei ScrollControls (3D viewer scroll-linked)
+  motion_ajans:
+    - wearebrand-mask-y-reveal      # koleksiyon resimleri mask --mask-y
+    - wearebrand-theme-switch       # scroll zone day -> evening warm shift
+    - ultra-theme-switch-scroll
+    - rejouice-mix-blend-difference # header makro video uzerinde difference
+    - fiddle-textpath-circle        # "est. YYYY · Kuyumcukent" circle stamp
+    - ultra-variable-font-opsz-scroll # Fraunces opsz 9 -> 144 scroll (zarafet)
+    - wearebrand-magnetic-elastic   # favori + sepet magnetic hover
+  header: H2  # Masthead Centered (editorial mucevher native, H8+HR2+K1 YASAK combo'nun tam zitti)
+  kpi: K11  # Postcard Stack (koleksiyon stories — "14 pirlanta · 3 metal · 1 launch")
+  pipeline: P3  # Funnel stages (kampanya launch funnel: teaser -> drop -> stock)
+  chart: CH11  # Stacked area kinetic (admin kampanya satis trendi)
+
+components:
+  core:
+    - AtmosphericDriftBg            # 4 radial: plum + champagne + tobacco + deep indigo 24s
+    - PortholeConicGradient         # JEWEL porthole: tas/metal donen circle imza
+    - MaximalistOverlapTitle        # "ATELYE / KOLEKSIYON / LAUNCH" 3 satir Migra italic offset
+    - MaskYReveal                   # wearebrand MIT-safe
+    - ThemeScrollSwitch             # pearl day -> plum evening scroll zone
+    - FullBleedVideoHero            # HR3 atolye makro kesim video + aurora
+    - PostcardStackKpi              # K11 koleksiyon postcard stack
+    - MixBlendDifferenceHeader      # REJOUICE
+    - FiddleTextPathCircle          # "est. YYYY" circle mark
+    - VariableOpszScrollTitle       # Fraunces opsz 9 -> 144 scroll scrub (zarafet axis)
+    - JewelConfigurator3D           # drei MeshTransmissionMaterial refraction
+    - LaunchCountdown               # koleksiyon launch countdown (fake YASAK — real drop)
+  optional:
+    - NoiseOverlaySvg               # SVG feTurbulence warm grain
+    - HugeMarquee                   # 160px Migra italic koleksiyon adi
+    - DiamondConfigurator           # pirlanta kesim + metal + tas (drei MeshTransmission)
+    - GaussianSplatProduct          # gercek urun fotogrametri (premium)
+    - ARTryOn                       # WebXR iOS Quick Look + Android Scene Viewer
+    - WishlistFavori                # kalp ikon + local storage + auth sync
+
+anti_cliche:
+  forbidden_palettes: [PL1]                # dark + gold tam yasak (6 proje)
+  forbidden_typography: [TY1, TY2, TY4, TY8] # Playfair italic mucevher klise 5+ proje
+  forbidden_heroes: [HR2, HR7]             # split hero klise
+  forbidden_tables: [T6]                   # urun card grid 4 mucevher projesinde
+  forbidden_kpi: [K1]                      # bento glass 5+ proje
+  forbidden_patterns: ["custom-cursor-gold-shimmer", "italic-gradient-gold-title", "fake-countdown"]
+  forbidden_combos: ["H8+N2+HR2+K1", "TY2+PL1", "PL1+TY3+HR2"]
+  repeat_score_vs_existing: 3              # Fatih Bey HR2+K1+T6+L1 ters cevrilmis
+  note: "Fatih Bey combo (H8+N2+HR2+K1+T6) ile 0 kolonda eslesme. Freeman/BG Foto/Dagintasli/Modern Alyans TY2+PL1+HR2+K1 tam yasak combo — bu preset TY12+PL22+HR3+L11+K11 ile radikal zit. Italic basliik icin Migra veya Fraunces opsz axis — Playfair KESIN YASAK."
+
+compatibility:
+  forbidden_sectors: [insaat, klinik, spa, gayrimenkul]
+  conditional_sectors: [mucevher, eticaret]
+  recommended_for: [restoran, fotograf, otel]
+  note: "CONDITIONAL: Sadece koleksiyon launch kampanya sayfasi + micro-site + yeni drop. Kok portfolyo / ana site icin editorial-luxury (TY27+PL22+HR11+L6) default tercih. Kampanya omru 2-6 hafta."
+
+preview_app_route: /preview/mucevher-maximalist-atmospheric
+scaffold_command: "node scaffold.js mucevher-maximalist-atmospheric --out ./out/mucevher-ma-campaign"
+
+research_refs:
+  - research/gradient-glass-visual-effects-2026.md
+  - research/page-transitions-nextjs-2026.md
+  - Mobilyaci/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyaci/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+  - Mobilyaci/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyaci/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyaci/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyaci/3d-demo/research/iyzico-analiz.md
+  - Fatih Bey Mucevher Sitesi/research/                                        # 49 dosya repeat-guard icin
+  - templates/13-maximalist/index.html                                          # wearebrand-inspired 4.5/5
+  - templates/14-ultra/index.html                                              # 14 imza
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  wcag_contrast_target: "AA + warm panel >= 4.5 (PL22 tobacco #2A1F14 on pearl #F5F0E8 = 13.8:1 AAA)"
+  lighthouse_target: 88
+  perf_note: "R3F MeshTransmissionMaterial ZORUNLU + 4 layer radial drift GPU-heavy. Mobile fallback: 2-layer drift blur(20px) + Scene3D frameloop='demand' + AdaptiveDpr. 3D model <=2MB Draco+Meshopt+KTX2."
+  prefers_reduced_motion: "Drift off + variable-font axis scroll off, statik gradient; 3D viewer yerine foto karusel poster; SplitText yerine fade 180ms"
+  product_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile; square crop 1:1; hover alternate angle"
+  primary_cta: "Koleksiyonu Kesfet"
+  secondary_cta: "Atolyeyi Tani"
+  trust_badges: "iyzico SSL + KVKK + sertifika (SAN-TEZ / Kuyumcukent uyelik)"
+  schema: "Product + Offer + AggregateRating + Organization + CollectionPage JSON-LD"
+  mobile_critical: "Sticky bottom bar: Favori | Sepete Ekle | WhatsApp"

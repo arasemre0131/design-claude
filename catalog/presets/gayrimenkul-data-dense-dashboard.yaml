@@ -1,0 +1,179 @@
+---
+id: gayrimenkul-data-dense-dashboard
+sector: gayrimenkul
+style: data-dense-dashboard
+recipe: next-premium
+tier: mid
+budget_range_try: [20000, 40000]
+delivery_weeks: [3, 4]
+matrix_cell: "⚠"                      # gayrimenkul × data-dense-dashboard KOŞULLU (agent CRM/portal için, ilan sitesi için YASAK)
+---
+
+# Konsept: Emlak agent CRM / MLS admin / ofis portföy yönetimi.
+# KRITIK: Bu preset SADECE agent iç panel — müşteri-facing ilan sitesi için warm-organic (default) kullan.
+# Ofis zinciri (Remax, Century21 alternatifi) veya bağımsız emlak ofisi iç kullanım:
+# Portföy yönetimi, lead pipeline, randevu gösterme, komisyon takip, MLS feed ingestion.
+mood: [compact, agent-ops, monospace-stat, calm-ink, map-sidebar-hybrid, tabular-nums]
+
+atoms:
+  palette: PL35                       # Sand + Ocean — gayrimenkul recommended + light linear uyumlu
+                                      # Sand bg (sıcak-güven) + ocean ink (profesyonel) + acid green "satıldı" signal
+                                      # Alt: linear-style FCFCFC (daha nötr admin), PL36 Mist+Sunset (tab görünüm)
+  typography: TY42                    # Big Shoulders + Inter Tight + Geist Mono — gayrimenkul recommended
+                                      # Big Shoulders sadece KPI büyük rakamda, Inter Tight body, Geist Mono tablo
+                                      # Alt: TY41 Fraunces + IBM Plex (daha editorial ama admin için fazla dekoratif)
+  hero: HR14                          # Zero-Hero receipt strip — "Aktif ilan 48 · yeni lead 12 · görüntüleme 3.2K · bugün randevu 4"
+                                      # HR2 split + HR9 interactive map müşteri-facing için; admin'de HR14 direkt giriş
+  layout:
+    - L7                              # Sticky Sidebar + Feed — sol rail: Portföy/Lead/Randevu/Agent/Rapor/MLS
+    - L3                              # Bento-no-glass fallback — KPI overview + mini map widget
+  motion:
+    - MO4                             # Framer layoutId — ilan kart morph, filter reactive
+    - MO8                             # WAAPI — command palette, map marker hover
+    - MO3                             # CSS scroll-driven — sticky header shadow
+    - MO7                             # View Transitions API — ilan detay geçiş (gayrimenkul recommended)
+  motion_ajans: []                    # admin dense minimal motion
+  header: H3                          # Sidebar Rail + Breadcrumb — "Portföy / Kadıköy / Moda / 3+1 villa"
+  nav: N5                             # Command Palette ⌘K — "İlan ara", "Lead git", "Randevu oluştur", "MLS senkron"
+                                      # Alt: N2 horizontal tabs (Portföy/Lead/Satış/Kiralama)
+  kpi: K3                             # Chip Row colored blocks — hazard chip "satıldı/aktif/beklemede/kiralık"
+                                      # Alt: K8 inline sparkline (lead trend), K5 almanac (aylık performans)
+  pipeline: P8                        # Dense Table — lead pipeline "İlk temas → Gösterim → Teklif → Kapora → Satış"
+                                      # P1 klasik kanban YASAK (sales kanban klişesi)
+  table: T2                           # Linear Issue Dense — ilan listesi: no / başlık / tip / m² / fiyat / status / agent
+                                      # Alt: T4 filterable stream (MLS feed log), T3 spec sheet (ilan detay küçük)
+  chart: CH11                         # D3 column bar — aylık satış/kiralama bar chart
+                                      # Alt: CH10 sparkline-only (lead trend), CH7 stacked bar (kategori breakdown)
+  form: F4                            # Inline Edit — ilan fiyat, durum, agent değiştir tablo içi
+  modal: M5                           # Inline Expand — ilan satır aç → foto + harita + özellik tab
+                                      # Alt: M3 Bottom sheet (mobile agent)
+  footer: FT5                         # Contact Card single line — destek + versiyon + ofis bilgisi
+
+components:
+  core:
+    - ZeroHeroReceiptStripGayrimenkul # HR14 — aktif ilan · yeni lead · günlük görüntüleme · randevu · MLS senkron durum
+    - StickySidebarFeedEmlak          # L7 — Dashboard/Portföy/Lead/Randevu/Agent/Rapor/MLS/Ayarlar
+    - SidebarRailHeaderBreadcrumb     # H3 — ofis seçici (multi-location) + arama + ⌘K tetik
+    - CommandPaletteCmdK              # N5 — "/i ilan #1248", "/l lead ara", "/r randevu oluştur", "/m MLS"
+    - ChipRowKpiColored               # K3 — aktif/satıldı/kiralık/beklemede colored chip
+    - IlanLinearDenseTable            # T2 — portföy: no/başlık/tip/m²/fiyat/durum/agent/güncelleme
+    - LeadPipelineDenseTable          # P8 — lead: ad/kaynak/ilgilenilen ilan/aşama/son temas/agent
+    - MapSidebarHybrid                # sol ilan liste + sağ Mapbox harita (marker cluster)
+    - D3ColumnBarChart                # CH11 — aylık satış/kiralama bar
+    - InlineEditIlanRow               # F4 — fiyat/durum/agent tabloda edit + ⌘S
+    - InlineExpandIlanDetail          # M5 — ilan satır aç → foto carousel + floor plan + m² + harita mini
+    - ContactCardFooter               # FT5 — destek + ofis telefon + versiyon
+  optional:
+    - MapboxClusterMarkerL5           # L5-variant — harita + sidebar dual view
+    - VirtualTourIframe3DOptional     # premium tier — R3F veya Matterport embed (Tier 3+)
+    - MLSFeedIngestionLog             # T4 — "MLS → 42 yeni ilan eklendi · 14:22" activity stream
+    - AgentPerformanceLeaderboard     # aylık agent sıralama (komisyon bazında)
+    - KomisyonTakipCalculator         # oran × satış → komisyon otomatik hesap
+    - CreditCalculatorModal           # M1 — kredi hesaplama (DTI, taksit, faiz)
+    - EmailAlertSubscriber            # lead filter kaydet → yeni eşleşen ilan email
+    - DroneVideoThumbGrid             # ilan premium (Tier 3+)
+    - FloorPlanInteractiveSVG         # oda tıkla → foto (premium)
+    - ExportPdfIlanBrochure           # müşteri için PDF broşür (@react-pdf)
+
+anti_cliche:
+  forbidden_palettes: [PL1]           # dark+gold emlak güven yerine luxury hilesine kayar, YASAK
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7, HR8]
+  forbidden_headers: [H8]
+  forbidden_pipeline: [P1]
+  forbidden_tables: [T6]              # card grid admin dense'e ters
+  forbidden_layouts: [K1, L1]         # bento glass + tam-frame grid
+  forbidden_chart: [CH1, CH2]
+  forbidden_motion: [MO10-print-first-full, MO11-opsz-dramatic, MO1-aggressive-pin]
+  forbidden_patterns:
+    - "stok-foto-hero-modern-villa"                 # gayrimenkul sector warning
+    - "generic-google-maps-embed"                   # Mapbox custom style zorunlu
+    - "her-ilan-karti-ayni-template"                # premium villa + 2+1 daire farklı gösterim
+    - "yatirim-guvencesi-altin-anahtar-klise-metin" # klişe copywrite
+    - "luxury-dark-gradient-gold-italic"            # emlak klişesi
+  repeat_score_vs_existing: 0         # gayrimenkul temiz sektör — benzer proje yok
+  warning: |
+    KRITIK: Bu preset SADECE agent CRM / iç admin — müşteri-facing ilan sitesi için
+    gayrimenkul-warm-organic (default) zorunlu. Admin /admin subroute + auth.
+
+    Lüks emlak siteleri sık sık PL1 (dark+gold) klişesine düşer (yanlış — güven kırar).
+    Bu preset PL35 Sand+Ocean ile sıcak-güven + admin dense dili birleştiriyor.
+
+    Agent CRM'de KVKK kritik: müşteri PII (telefon/adres) sadece ilgili agent görür (RLS).
+    Komisyon bilgisi sahip + agent arası (muhasebe role ayrı).
+
+    MLS feed ingestion varsa hukuki: başka ofisin ilanını kendi gibi göstermek YASAK —
+    kaynak atıf + orijinal ajans linki zorunlu.
+
+compatibility:
+  forbidden_sectors: [spa, mucevher, kuafor, restoran, fotograf, otel]
+  conditional_sectors: [klinik, gayrimenkul]
+  recommended_for: [eticaret, insaat]   # data-dense native sektörler
+  notes:
+    - "GAYRIMENKUL için KOŞULLU (⚠): sadece agent portal / MLS admin / ofis CRM için"
+    - "Müşteri ilan sitesi (hero + ilan masonry + harita + kredi hesapla) için warm-organic default"
+    - "Butik/design-forward ofis için kinetic-agency, premium katalog için editorial-print koşullu"
+    - "10+ agent ofis zinciri için bu preset ideal — tek ofis tek agent için overkill"
+    - "Remax/Century21 alternatifi multi-tenant için next-enterprise-monorepo (Tier 5)"
+
+preview_app_route: /preview/gayrimenkul-data-dense-dashboard
+scaffold_command: "node scaffold.js gayrimenkul-data-dense-dashboard --out ./emlak-crm/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+  - Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+  - Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+  - Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md          # Mapbox cluster + custom style
+  - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md          # sanal tur premium
+  - Mobilyacı/3d-demo/research/api-integration-patterns.md              # MLS XML feed ingestion
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md               # KVKK + MLS atıf
+  - research/design-claude/insaat-crm/a-safe/index.html                  # 5/5 Linear-style dense ref
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  mobile_strategy: |
+    Agent saha (375px) primary — müşteriye gezdirme sırasında telefondan ilan açma.
+    Sidebar collapse + icon rail, ⌘K mobile alt bottom sheet "Ara".
+    Dense tablo 375px → kart view (M3 bottom sheet), harita swipe overlay.
+    Ofis resepsiyon (768px tablet): dense tablo + harita yan yana.
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Big Shoulders Display 600-800 (KPI büyük rakam)"
+    - "Inter Tight 300-700 (body, tablo)"
+    - "Geist Mono 400 (tabular-nums, m², fiyat, ilan no, telefon)"
+  wcag_contrast_target: "AA (4.5:1) + agent saha dış ışık için AA+ (5.5:1)"
+  lighthouse_target: 90
+  virtualization: "TanStack Virtual ZORUNLU — ilan 1000+ portföy, lead 500+, MLS feed 5000+"
+  keyboard_nav: "j/k vim + ⌘K + / arama + g+p portföy, g+l lead, g+r randevu, g+m harita quick jump"
+  tabular_nums_css: "font-variant-numeric: tabular-nums — m², fiyat, ilan no, telefon, kredi aylık"
+  map_integration: "Mapbox GL JS custom style (marka tonu) + marker cluster 50+ ilan + hover preview"
+  primary_cta: "Yeni İlan Ekle / Lead Kaydet"
+  secondary_cta: "Randevu Planla / Müşteriye Broşür Gönder"
+  special_features:
+    - "⌘K palette: ilan ara (no/adres/m²/fiyat), lead ara, randevu oluştur, MLS senkron"
+    - "Harita-liste hybrid (ilan listesi sol + Mapbox sağ, marker hover ilan vurgula)"
+    - "Lead kaynağı tracking (Google/Instagram/web formu/MLS/referral)"
+    - "Agent komisyon takip (satış × oran → otomatik kalem)"
+    - "MLS feed ingestion (XML cron job + değişiklik diff log)"
+    - "PDF broşür export (ilan → @react-pdf müşteri için A4 broşür)"
+    - "Virtual tour embed (Matterport iframe veya R3F — premium tier)"
+    - "Kredi hesaplama modal (DTI, taksit, faiz — lead engagement)"
+    - "Email alert (lead filter kaydet → yeni eşleşen ilan email)"
+    - "Supabase Realtime lead feed (yeni form submit → pulse notification)"
+  schema: "Admin-only — customer ilan sitesi ayrı RealEstateListing + PostalAddress + GeoCoordinates + Offer JSON-LD"
+  performance_critical: "Map render 500 marker < 100ms, ⌘K < 50ms, ilan filter apply < 150ms INP"
+  auth_critical: |
+    Supabase RLS her tabloda (listings, leads, appointments, commissions, mls_feed)
+    + role-based: sahib / müdür / agent / muhasebe / stajyer
+    + agent sadece kendi lead + kendi ilanlarını görür (ownership check)
+    + muhasebe komisyon görür ama müşteri PII görmez
+    + KVKK audit log (müşteri telefon/adres görüntüleme log)
+    + MLS ingestion service_role only
+  legal_critical:
+    - "KVKK açık rıza (lead form + müşteri veri saklama süresi)"
+    - "MLS feed atıf (kaynak ajans + orijinal link zorunlu)"
+    - "Komisyon sözleşmesi digital imza (TAPU yasası)"
+    - "Reklam yasası: 'yatırım garantisi' klişesi YASAK (SPK regulation)"

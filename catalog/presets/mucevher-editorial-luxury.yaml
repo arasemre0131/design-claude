@@ -1,0 +1,138 @@
+---
+id: mucevher-editorial-luxury
+sector: mucevher
+style: editorial-luxury
+recipe: next-r3f            # premium tier default — 3D viewer + AR zorunlu
+tier: premium
+budget_range_try: [25000, 80000]
+delivery_weeks: [3, 5]
+matrix_cell: "✓✓"           # mücevher × editorial-luxury DEFAULT
+---
+
+mood: [sakin, rafine, ritmli-whitespace, baski-hissi, premium, el-emegi, ritueel]
+
+atoms:
+  palette: PL22              # Tobacco + Pearl — mücevher native dili, PL1 klişesinin ESER alternatifi
+  typography: TY27           # Fraunces opsz 9-144 + IBM Plex Sans 300-600 + IBM Plex Mono
+  hero: HR11                 # Brochure Cover 2-col — HR2 split'in editorial karşıtı
+  layout:
+    - L6                     # Center single column (meditatif, brochure gibi)
+    - L8                     # Masonry ürün vitrin (3-col masonry)
+  motion:
+    - MO4                    # Framer layoutId morph (sakin, MO1 ScrollTrigger yerine)
+    - MO10                   # Print-first / no-motion fallback (reduced-motion kullanıcı)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal        # editorial premium reveal (blur → clarity)
+    - ultra-variable-font-opsz-scroll    # Fraunces opsz axis scroll-linked (9→144)
+    - wearebrand-lenis-gsap-bridge       # Lenis 1.3 + GSAP scrub 2.5 (sakin)
+  header: H2                 # Masthead Centered (gazete başlığı) — H8 difference KLIŞE
+  nav: N2                    # Horizontal Tabs Underline (sessiz)
+  kpi: K2                    # Band + Horizontal Rules — K1 bento glass YASAK
+  table: T3                  # Spec Sheet (sertifika, ayar, karat) — T6 card grid YASAK
+  chat: C3                   # Email Threaded (konsiyerj iletişim)
+  form: F4                   # Inline Edit (sepet/favori)
+  modal: M1                  # Centered Dialog
+  footer: FT4                # Colophon editorial credits
+  3d_optional:
+    - 3D-08-drei-meshtransmission        # cam/kristal/elmas refraction (pırlanta)
+    - 3D-01-drei-envmap                  # altın yansıması için studio HDRI
+    - 3D-11-gaussian-splat               # gerçek ürün fotogrametri (premium)
+
+components:
+  core:
+    - HeroBrochure                       # HR11 — koleksiyon kapak grid
+    - MastheadCentered                   # H2 — masthead logo
+    - MasonryGallery                     # L8 — ürün vitrin (square 1:1 crop)
+    - ProductCard3D                      # hover = alternate angle + 3D preview
+    - BlurRevealText                     # wearebrand MIT-safe rewrite (başlıklar)
+    - VariableFontOpszScroll             # Fraunces 9→144 scroll-linked
+    - SpecSheet                          # T3 — sertifika + ayar + karat + taş bilgisi
+    - FavoriteList                       # wishlist (localStorage + auth sync)
+    - EmailThreadedInbox                 # C3 — konsiyerj email dialog
+    - ColophonFooter                     # FT4 — atölye künyesi + sertifikalar
+  optional:
+    - Custom3DViewer                     # MeshTransmissionMaterial (elmas/taş)
+    - DiamondConfigurator                # metal + ayar + taş + kesim seçimi
+    - GaussianSplatViewer                # gerçek ürün 3D scan (premium)
+    - ARTryOn                            # WebXR iOS Quick Look + Android Scene Viewer
+    - AtolyeVideoBackground              # HR3 tier 4+ (tek sayfa full-bleed)
+
+anti_cliche:
+  forbidden_palettes: [PL1]              # dark+gold (Freeman, BG Foto, Dagintaslı, Modern Alyans, Fatih Bey v1)
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]           # split-hero + dashboard-as-hero
+  forbidden_tables: [T6]                 # card grid
+  forbidden_kpi: [K1]                    # bento glass
+  forbidden_headers: [H8]                # mix-blend-mode difference (6+ proje)
+  forbidden_layouts: [L1]                # tam-frame grid (Fatih Bey kullandı)
+  forbidden_motion: [MO1-aggressive, MO11-scrolljack]  # agresif scroll-pin spa değil
+  repeat_score_vs_existing: 0            # Fatih Bey (H8·HR2·K1·T6·L1·TY3·PL10·MO4) ile ZERO kolon eşleşme hedef
+  fatih_bey_override_warning: |
+    KRITIK: Fatih Bey Mücevher v1 (aktif, 8 Mayıs 2026 teslim) combo'su:
+      H8 · N2 · HR2 · K1 · T6 · L1 · TY3 · PL10 · MO4
+    Bu preset (mucevher-editorial-luxury v2) combo'su:
+      H2 · N2 · HR11 · K2 · T3 · L6+L8 · TY27 · PL22 · MO4+MO10
+    Eşleşme kolon kontrolü:
+      header H2  != H8  ✓
+      hero HR11  != HR2 ✓
+      kpi K2     != K1  ✓
+      table T3   != T6  ✓
+      layout L6  != L1  ✓
+      typo TY27  != TY3 ✓
+      palette PL22 != PL10 ✓
+      motion MO4 == MO4 (1 kolon eşleşme — KABUL, framer light universal)
+      nav N2 == N2 (1 kolon eşleşme — N2 editorial default, universal)
+    Toplam eşleşme: 2/15 kolon = PASS (skor 0-3 aralığında)
+  warning: |
+    Mücevher için PL1 (dark+gold) YASAK — 5+ proje kanıtı. TY2 Playfair italic + Inter YASAK —
+    Fatih Bey Mücevher v1 combo'su (H8+HR2+K1+T6+L1) KOPYALANAMAZ. Custom cursor + gold shimmer
+    klişesi de kaçınılmalı. Italic başlık kullanılacaksa Fraunces opsz 144 axis (Playfair DEĞİL).
+    Product kart: square 1:1 crop, hover alternate angle, HR2 split YASAK.
+
+compatibility:
+  forbidden_sectors: []                  # self, n/a
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [mucevher, klinik, restoran, spa, fotograf, gayrimenkul, otel]
+  incompatible_sectors: [insaat-endustriyel]  # editorial-luxury.yaml
+  matrix_row_peers:
+    default: [mucevher, klinik]         # ✓✓
+    active: [kuafor, restoran, spa, fotograf, gayrimenkul, otel]  # ✓
+    conditional: [insaat, eticaret]    # ⚠
+
+preview_app_route: /preview/mucevher-editorial-luxury
+scaffold_command: "node scaffold.js mucevher-editorial-luxury --out ./fatih-bey-v2/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+  - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+  - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+  - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/iyzico-analiz.md
+  - Fatih Bey Mücevher Sitesi/research/     # 49 dosya müşteri bağlamı (KVKK, rakip, yasal)
+  - research/design-claude/mockups/a-warm-dark/index.html  # 5/5 ref
+  - research/design-claude/templates/02-mucevher/index.html
+  - research/design-claude/templates/14-ultra/index.html    # signature techniques
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 wght 300-700 (variable)"
+    - "IBM Plex Sans 300-600"
+    - "IBM Plex Mono 400"
+  wcag_contrast_target: "AA (4.5:1) baseline — Premium tier için AAA (7:1) hedef"
+  lighthouse_target: 92                    # premium tier
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  product_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  product_card: "square 1:1 crop, hover alternate angle, tap=detail"
+  mobile_critical: "Sticky bottom bar: WhatsApp + Favorile + Sepete"
+  trust_badges: "iyzico SSL + KVKK + Kuyumcukent + SAN-TEZ sertifika"
+  special_features:
+    - "Ürün 3D viewer (drei MeshTransmissionMaterial — cam/taş refraction)"
+    - "Pırlanta/alyans configurator (metal + ayar + taş kesimi)"
+    - "AR try-on (WebXR — iOS Quick Look + Android Scene Viewer)"
+    - "Gaussian Splatting (gerçek ürün fotogrametri, premium tier)"
+    - "Variable font opsz scroll (Fraunces 9→144 axis)"
+  schema: "Product + Offer + Brand + AggregateRating + BreadcrumbList JSON-LD"

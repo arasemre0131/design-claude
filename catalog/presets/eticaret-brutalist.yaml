@@ -1,0 +1,130 @@
+---
+id: eticaret-brutalist
+sector: eticaret
+style: brutalist
+recipe: next-premium
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+---
+
+# Stil mood — neobrutalist genç marka e-ticaret
+# Konsept: Liquid Death / Glossier-anti / Supreme tarzı bold genç markalar.
+# Commodity e-ticaret DEĞİL — DTC, streetwear, sportswear, merch, acid/bold brand.
+mood: [raw, bold, saturated-primary, sticker-rotation, playful-aggressive, cream-bg]
+
+# Atom seçimi — brutalist compatible + eticaret recommended + anti-cliché pass
+atoms:
+  palette: PL6                    # Neobrutal Multi (cream + cobalt + yellow + red + green)
+                                  # brutalist palette_families imza + eticaret acid/bold match
+                                  # Alt: PL29 slate+acid (e-ticaret recommended A — daha sakin)
+  typography: TY6                 # Archivo Black + Space Grotesk 900 — brutalist pair_ids
+                                  # TY11 (insaat native) yerine saf neobrutalist tercih
+  hero: HR11                      # Brochure Cover Grid — koleksiyon launch, object-centered variant
+                                  # HR5 sign board daha "kampanya landing" için; HR11 mağaza ana
+  layout: L11                     # Bento 2.0 asymmetric no-glass — kategori + featured ürün
+                                  # L3 alternatif (Mondrian box-in-box)
+  motion:
+    - MO4                         # Framer Motion — brutalist preferred + React
+    - MO1                         # GSAP ScrollTrigger — kategori reveal
+  header: H1                      # Plate + Hazard Strip variant — ama e-ticaret'e uyarlı (sepet/arama/hesap ekli)
+                                  # H1 "hazard-top-only" variant — agresifliği azalt
+  nav: N4                         # Mega Menu Full-Width — eticaret default (kategori + featured image)
+  kpi: K3                         # Chip Row Colored Blocks — "bugün 47 sipariş / %98 teslim" chip
+  pipeline: P10                   # Neo-brutal Sticker Blocks — "yeni / sıcak / kazandı" kategori filtre
+  table: T3                       # Spec Sheet — ürün teknik özellik (ölçü/ağırlık/malzeme)
+                                  # T6 card grid YASAK (eticaret anti-cliché + globally forbidden)
+  chart: CH3                      # Nivo Geometric colorful — admin dashboard için (opsiyonel)
+                                  # CH1 CH2 yasak (globally forbidden)
+  form: F3                        # Wizard Steps — checkout 4-adım (sepet→bilgi→ödeme→onay)
+  modal: M3                       # Bottom Sheet — mobile ürün detay + sepet drawer
+  footer: FT2                     # Sitemap 4-col — eticaret standart (ürün/şirket/destek/yasal)
+  motion_ajans:
+    - wearebrand-magnetic-elastic # Mıknatıslı "Sepete Ekle" butonu — brutalist + bold CTA
+    - ultra-svg-feturbulence-grain # %7 cream bg grain — analog/artisan feel
+
+# Components (scaffolder için)
+components:
+  core:
+    - BrochureCoverHero           # HR11 impl — koleksiyon launch, object-centered
+    - HazardTopPlateHeader        # H1 variant — sadece üst hazard + sepet/arama/hesap icon
+    - MegaNavEcom                 # N4 impl — 4-col kategori + featured image sütunu
+    - BentoAsymCollectionGrid     # L11 impl — 6-col featured + küçük ürün kartlar
+    - ColoredChipMetrics          # K3 impl — sipariş/teslim/iade %
+    - StickerFilterBlocks         # P10 impl — kategori filtre sticker (yeni/sıcak/indirim)
+    - WizardCheckout              # F3 impl — 4-adım numbered-circles
+    - BottomSheetProduct          # M3 impl — mobile detay + add-to-cart
+    - SitemapFooterEcom           # FT2 impl — 5-col (+ newsletter)
+  optional:
+    - SpecSheetProduct            # T3 — ürün teknik detay (konfekta / elektronik)
+    - NivoColorfulDashboard       # CH3 — admin analytics
+    - CardDeckCarousel            # L9 — featured ürün hero carousel (HR2 yasağına alternatif)
+    - MasonryLayout               # L8 — lookbook / editorial kategori
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                    # dark+gold — eticaret klişe + global yasak
+  forbidden_typography: [TY1, TY2, TY4, TY8]   # eticaret sector anti_cliche
+  forbidden_heroes: [HR2, HR7]                 # split hero + dashboard hero
+  forbidden_layouts: []
+  forbidden_kpi: [K1]                          # bento glass (eticaret sector + global yasak)
+  forbidden_tables: [T6]                       # card grid (eticaret + v2-immersive-3d + Fatih Bey)
+  forbidden_patterns:
+    - "hero-carousel-5s-autoplay (CTR < %1)"
+    - "glass-morphism-card (kontrast kırar)"
+    - "countdown-timer-fake-urgency"
+  repeat_score_vs_existing: 2                  # v2-neobrutalist ile: K3 + L11 benzer (2)
+                                               # Fatih Bey ile: N2 DEĞİL N4 seçildi, HR11 ortak sadece
+                                               # v2-immersive-3d ile: T6 YASAK — kombo farklı
+  warning: |
+    v2-neobrutalist ile palette family aynı (PL6 benzeri) ve K3 ortak — 2 kolon.
+    Ama hero HR11 brochure (v2-neobrut HR5 sign) + wizard F3 + mega menu N4 farklı,
+    e-ticaret semantik için özel uyarlanmış. PL29 slate+acid alternatifi de elde.
+
+# Compatibility notes
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, gayrimenkul, otel]   # brutalist compat
+  conditional_sectors: [restoran, fotograf]                                # ⚠ koşullu
+  recommended_for: [eticaret, insaat]
+  notes:
+    - "Default eticaret stili DATA-DENSE-DASHBOARD — admin yoğun, dense grid."
+    - "Bu preset kampanya landing / DTC genç marka / streetwear / sportswear / acid brand için."
+    - "Commodity e-ticaret (giyim + elektronik geniş katalog) için NEXT-PREMIUM + minimal-swiss tercih."
+    - "T6 card grid YASAK — L8 masonry veya L11 bento asymmetric kullan."
+    - "HR2 split hero + 5-slide carousel YASAK — tek güçlü statik hero tercih."
+
+# Preview
+preview_app_route: /preview/eticaret-brutalist
+scaffold_command: "node scaffold.js eticaret-brutalist --out ./eticaret-brutalist-test/"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/urun_listesi_analiz.md
+  - Mobilyacı/3d-demo/research/checkout_analiz.md
+  - Mobilyacı/3d-demo/research/iyzico_analiz.md
+  - Mobilyacı/3d-demo/research/kampanya_analiz.md
+  - templates/SECTOR-RESEARCH.md#eticaret
+  - v2-neobrutalist/index.html                 # brutalist imza referans
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Black (display — hero + product title)"
+    - "Space Grotesk 300-900 (body + UI)"
+    - "JetBrains Mono (fiyat/SKU)"
+  wcag_contrast_target: "AA (4.5:1) — bg #FFF8EB × cobalt #2B4DDB = 6.8:1 ✓"
+  lighthouse_target: 90
+  product_card: "1:1 kare, hover alternate angle, quick-add cart, 4px hard border"
+  product_gallery: "L11 bento asymmetric desktop, L8 masonry mobile"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  checkout_flow: "F3 Wizard 4-adım (Sepet → Bilgi → Ödeme → Onay) + progress bar"
+  performance_critical: "LCP < 2.5s (product hero), INP < 200ms (add-to-cart button)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList JSON-LD"
+  mobile_critical: "Sticky 'Sepete Ekle' bottom bar + M3 bottom sheet detail"
+  shadow_signature: "7px hard shadow, blur YOK"
+  rotation_signature: "Product card hover -1.5deg tilt (sticker feel)"
+  payment: "iyzipay (Türkiye) + Stripe (uluslararası opsiyonel)"

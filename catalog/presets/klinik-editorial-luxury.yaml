@@ -1,0 +1,106 @@
+---
+id: klinik-editorial-luxury
+sector: klinik
+style: editorial-luxury
+recipe: next-premium                # klinik premium için 3D az, hasta portal + KVKK kritik
+tier: mid
+budget_range_try: [15000, 25000]
+delivery_weeks: [2, 3]
+matrix_cell: "✓✓"                   # klinik × editorial-luxury DEFAULT
+---
+
+mood: [sakin, guven, netlik, huzur, temizlik, profesyonel, seffaflik]
+
+atoms:
+  palette: PL28                      # Cream + Forest — sıcak-sakin, sterile değil
+  typography: TY33                   # Fraunces + IBM Plex Sans (editorial klinik)
+  hero: HR12                         # Conversational Q&A (randevu flow) — HR2 split YASAK
+  layout:
+    - L6                             # Center single col — hasta okuma akışı
+    - L7                             # Sticky sidebar (doktor puanı + referans)
+  motion:
+    - MO10                           # Print-first no-motion (klinik kinetic YASAK)
+    - MO4                            # Framer light (çok sakin transitions)
+  motion_ajans:
+    - wearebrand-blur-36px-reveal    # editorial yumuşak reveal
+    - wearebrand-lenis-gsap-bridge   # Lenis lerp 0.08 (agresif değil)
+  header: H2                         # Masthead Centered (güven tonu) — H8 difference YASAK
+  nav: N2                            # Horizontal Tabs Underline
+  kpi: K5                            # Almanac editorial ("15 yıllık deneyim, 3200 hasta") — K1 bento YASAK
+  table: T3                          # Spec Sheet (tedavi + süre + fiyat)
+  chat: C3                           # Email Threaded (randevu danışma)
+  form: F4                           # Inline Edit (hasta dosyası — RLS zorunlu)
+  modal: M1                          # Centered Dialog (KVKK onay)
+  footer: FT4                        # Colophon editorial (doktor künyesi + diplomalar)
+
+components:
+  core:
+    - HeroQA                         # HR12 — "Ne hakkında randevu?" conversational
+    - MastheadCentered               # H2
+    - TedaviCardListEditorial        # L6 center single col (editorial)
+    - EkipCards                      # doktor profilleri (Person schema)
+    - BlurRevealText                 # başlık reveal (yumuşak)
+    - RandevuForm                    # F4 multi-step + RLS + KVKK
+    - SSS Accordion                  # FAQ schema
+    - ColophonFooter                 # diploma + sertifika + adres
+  optional:
+    - HastaPortali                   # password-protected + dosya upload (RLS)
+    - ARGulusTasarim                 # estetik diş (Tier 3 premium)
+    - OncesiSonrasiGallery           # Sağlık Bakanlığı reklam yasası etik bildirim zorunlu
+    - EmailSMSHatirlatma             # randevu hatırlatma
+
+anti_cliche:
+  forbidden_palettes: [PL1]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2, HR7]
+  forbidden_tables: [T6]
+  forbidden_kpi: [K1]
+  forbidden_headers: [H8]
+  forbidden_motion: [MO1-aggressive, MO11-scrolljack, "fast-kinetic-typography", "neon-flash"]
+  repeat_score_vs_existing: 0        # klinik temiz sektör — benzer proje yok
+  warning: |
+    Klinik için agresif renk + hızlı motion YASAK — hasta güven hissetmez.
+    'Dental boutique Playfair italic + gold underline' klişesi YASAK.
+    Stok foto 'gülümseyen dişler' YASAK — gerçek klinik iç fotoğraf + ekip.
+    Sağlık Bakanlığı reklam yasası: 'öncesi-sonrası fotoğrafları' etik bildirim zorunlu.
+    Before/after 3D render'ları Tier 3+ estetik klinikte OK, genel klinikte YASAK.
+
+compatibility:
+  forbidden_sectors: []
+  conditional_sectors: [insaat, eticaret]
+  recommended_for: [klinik, mucevher, restoran, spa, fotograf, gayrimenkul, otel]
+  incompatible_sectors: [insaat-endustriyel]
+
+preview_app_route: /preview/klinik-editorial-luxury
+scaffold_command: "node scaffold.js klinik-editorial-luxury --out ./klinik-template/"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+  - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+  - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md   # KVKK + sağlık reklam yasası
+  - Mobilyacı/3d-demo/research/email-analiz.md
+  - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  - research/design-claude/mockups/a-warm-dark/index.html
+
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  font_test_urls:
+    - "Fraunces opsz 9-144 (sakin editorial)"
+    - "IBM Plex Sans 300-600"
+  wcag_contrast_target: "AAA (7:1) — klinik okunaklılık kritik"
+  lighthouse_target: 95                # klinik sade, performans yüksek
+  primary_cta: "Randevu Al"
+  secondary_cta: "Tedavileri İncele"
+  hero_assets: "gerçek klinik iç fotoğraf (doğal ışık, sıcak tonda) — stok foto YASAK"
+  legal_critical:
+    - "KVKK onay checkbox (açık rıza)"
+    - "Çerez banner (reject-all var)"
+    - "Sağlık Bakanlığı öncesi-sonrası etik bildirim"
+  schema: "MedicalClinic + Physician + MedicalProcedure + FAQ JSON-LD"
+  special_features:
+    - "Randevu formu (tarih + saat + doktor + tedavi, 4 adım)"
+    - "Hasta portali (Supabase RLS zorunlu)"
+    - "Email + SMS randevu hatırlatma"
+    - "FAQ schema (Google rich result)"

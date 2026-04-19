@@ -1,0 +1,190 @@
+---
+id: eticaret-industrial-workwear
+sector: eticaret
+style: industrial-workwear
+recipe: next-premium
+tier: mid
+budget_range_try: [18000, 30000]
+delivery_weeks: [2, 3]
+status: active  # MATRIX ✓ — B2B tedarik / endüstriyel malzeme e-ticaret
+---
+
+# Stil mood — B2B tedarik / hırdavat / iş güvenliği e-ticaret
+# Konsept: concrete bg + hazard sarı stripe + stencil SKU + safety orange accent.
+# Müşteri segmenti: hırdavatçı, çelik toptancı, iş güvenliği ekipmanları (baret/bot/yelek),
+# endüstriyel kimyasal, şantiye malzeme tedariki, elektrik/tesisat malzemesi toptan.
+# B2C fashion/mücevher/kozmetik DEĞİL — endüstriyel commodity + spec-yoğun.
+mood: [industrial-supply, hazard-utility, spec-sheet-priority, receipt-strip, workwear-palette, bulk-order]
+
+# Atom seçimi — industrial-workwear compatible + eticaret recommended + anti-cliché pass
+atoms:
+  palette: PL4                    # Concrete #D4CFC4 + Safety Orange #E85D04 + Hazard #F5C400 + Ink #111
+                                  # Alt: rust-steel variant (oksit kirmizi + celik gri) daha çelik/demir tedarik
+                                  # PL1 global yasak, PL29 slate+acid (eticaret recommended) burada acid fazla neon
+  typography: TY11                # Archivo Narrow Black + Geist Sans + Stardos Stencil + Geist Mono
+                                  # SKU + fiyat mono zorunlu; stencil ürün kategori başlığı
+  hero: HR13                      # Blueprint Title Block — "CETVEL / KATALOG 2026 / ADET" tarzı teknik tablo hero
+                                  # Alt: HR5 Sign Board (küçük toptan); HR9 Map (bayi lokasyon ağı)
+                                  # HR11 brochure cover eticaret recommended ama industrial-workwear için HR13 native
+  layout:
+    - L4                          # Full-bleed horizontal rails — kategori satır akışı (hırdavat/güvenlik/kimyasal)
+    - L3                          # Bento-no-glass — öne çıkan ürün + indirim satırı (glass YASAK)
+  motion:
+    - MO1                         # GSAP ScrollTrigger — ürün filtre reveal
+    - MO2                         # Lenis smooth scroll (lerp 0.10 — ticari hızda)
+    - MO9                         # WAAPI popover — sepet drawer + quick-add popover
+  motion_ajans:
+    - ultra-svg-feturbulence-grain   # Concrete speckle %6 — katalog kağıt hissi
+    - fraxbit-clip-path-reveal       # Endüstriyel reveal — sharp edge filter panel
+  header: H1                      # Plate + Hazard Strip + E-ticaret UI (arama / sepet / hesap / bayi-giriş)
+  nav: N4                         # Mega Menu Full-Width — kategori ağacı (5-6 ana + alt kategori grid)
+  kpi: K9                         # Barometer Dial — "aylık sipariş / stok durumu / teslim süresi" gauge
+                                  # Alt: K3 Chip Row (sticker metric)
+  pipeline: P5                    # Horizontal Timeline — sipariş takip aşaması (sepet → onay → kargo → teslim)
+  table: T7                       # Receipt Strip — ürün teknik spec + SKU + adet + birim fiyat (invoice feel)
+                                  # T6 card grid KESIN YASAK (globally forbidden + eticaret sector)
+                                  # Alt: T3 Spec Sheet (detay sayfası için teknik tablo)
+  chat: C4                        # Terminal Log — B2B sipariş durum stream (opsiyonel admin için)
+  chart: CH6                      # Column Bar Elevation blueprint — stok seviyesi / aylık sipariş dashboard
+  form: F3                        # Wizard Steps — B2B teklif formu 4-adım (firma → ürün → adet → teslim)
+                                  # Standart B2C sepet farklı flow: sepet → bilgi → ödeme → onay
+  modal: M3                       # Bottom Sheet — mobile ürün detay + quick-add
+  footer: FT8                     # Slab Dark Info-Strip + hazard stripe — endüstriyel ağır footer
+                                  # Alt: FT2 Sitemap 4-col (daha klasik e-ticaret) — ama FT8 native industrial
+
+# Components (scaffolder için)
+components:
+  core:
+    - BlueprintTitleBlockHero         # HR13 impl — "KATALOG 2026 / SAYI 048 / 1.240 ÜRÜN" teknik cetvel
+    - HazardStripe                    # Chrome — repeating-linear-gradient(45deg, #F5C400 18px, #111 18px)
+    - ConcreteSpeckleGrain            # Layer — radial-gradient speckle bg
+    - PlatePlusHazardHeader           # H1 variant — sepet/arama/hesap/bayi-giriş icon satırı
+    - MegaNavKategori                 # N4 impl — 6-col (hırdavat / iş güvenliği / çelik / elektrik / kimyasal / makine)
+    - ReceiptStripProductList         # T7 impl — liste satırı SKU + ürün + adet + birim + toplam (invoice tarzı)
+    - SpecSheetDetailTable            # T3 impl — detay sayfa teknik spec (ölçü/ağırlık/malzeme/sertifika)
+    - BarometerStockGauge             # K9 impl — stok seviyesi analog gauge + "kritik / normal / yüksek" bölge
+    - ColumnBarMonthlyOrders          # CH6 impl — blueprint style aylık sipariş grafiği
+    - WizardB2BQuoteForm              # F3 impl — 4-adım teklif talep (firma VKN → ürün → adet → teslim adres)
+    - HorizontalOrderTimeline         # P5 impl — sipariş takip (sepet → onay → hazırlık → kargo → teslim)
+    - BottomSheetProductQuickAdd      # M3 impl — mobile detay + quick-add stencil adet stepper
+    - SlabDarkFooter                  # FT8 impl — #111 bg + hazard top + ödeme logo + bayi giriş
+  optional:
+    - TerminalOrderStream             # C4 — admin sipariş log (opsiyonel)
+    - StencilCategoryDivider          # Büyük bölüm ayraç (Stardos Stencil "01 / HIRDAVAT" tarzı)
+    - SafetyCertBadgeRow              # CE / TSE / ISO 9001 / EN 388 ürün sertifika badge
+    - BulkDiscountTable               # Adet kademeli iskonto tablosu (1-10 / 11-50 / 51+ fiyat)
+    - BayiLoginCard                   # Toptan müşteri için özel fiyat giriş (KVKK uyumlu)
+
+# Anti-cliché check
+anti_cliche:
+  forbidden_palettes: [PL1]                         # dark+gold global yasak (eticaret sector da zaten yasaklı)
+  forbidden_typography: [TY1, TY2, TY4, TY8]        # eticaret sector anti_cliche
+  forbidden_heroes: [HR2, HR7]                      # split hero + dashboard hero (eticaret warning)
+  forbidden_layouts: [K1]                           # bento glass (eticaret warning + global yasak)
+  forbidden_kpi: [K1]
+  forbidden_tables: [T6]                            # card grid KESIN YASAK (eticaret + global)
+  forbidden_patterns:
+    - "hero-carousel-5s-autoplay (CTR < %1)"
+    - "glass-morphism-card (kontrast kırar, AA kalmaz)"
+    - "countdown-timer-fake-urgency"
+    - "glamorous product photography (industrial tedarik için yanlış dil)"
+    - "rounded corners (border-radius: 0 zorunlu)"
+    - "soft-coral-pink / pastel-palette (industrial forbidden)"
+    - "warm-organic-clay (industrial forbidden)"
+  repeat_score_vs_existing:
+    mockup-C-industrial: 2           # PL4 + TY11 ortak — ama hero HR13 + T7 + K9 + F3 (B2B wizard) farklı
+    Fatih-Bey-Mucevher: 0            # hiç ortak atom yok — premium mücevher tamamen farklı dil
+    v2-blueprint: 3                  # MO1 + HR13 + blueprint dil — ama PL21→PL4 + TY5→TY11 + eticaret semantik (sepet/K9/T7)
+    v2-neobrutalist: 1               # hazard stripe dili ortak, bambaşka combo
+    insaat-industrial-workwear: 6    # aynı stil + PL4/TY11/MO1/MO2/H1/FT8 overlap — ama sektör farklı (tanıtım vs tedarik)
+  warning: |
+    insaat-industrial-workwear preset'i ile 6 kolon overlap — aynı stil doğal olarak atom paylaşır.
+    Ayrım: eticaret preset'te HR13 blueprint title block (insaat HR9 map) + T7 invoice-style liste +
+    WizardB2BQuoteForm + Stock gauge + sepet/ödeme semantiği. mockup-C ile 2 kolon overlap (PL4+TY11)
+    atom seviyesinde ama component layer (receipt table + stock gauge + wizard) farklı — özgün kalıyor.
+    YASAK: premium/luxury ürün fotoğraf dili (ışık+gradient) — bu katalog tedarik sitesi, spec ön planda.
+
+# Compatibility notes
+compatibility:
+  forbidden_sectors: [mucevher, kuafor, klinik, spa, fotograf, gayrimenkul, otel]  # industrial-workwear 7 forbidden
+  conditional_sectors: []
+  recommended_for: [insaat, eticaret]
+  notes:
+    - "B2B tedarik / endüstriyel commodity e-ticaret (hırdavat, çelik, iş güvenliği, kimyasal, elektrik)"
+    - "Default eticaret stili DATA-DENSE-DASHBOARD — admin yoğun tablo, filtre, ⌘K"
+    - "Bu preset B2B-heavy endüstriyel tedarik için — spec-sheet, SKU, adet, bayi-giriş ön planda"
+    - "B2C fashion/mücevher/kozmetik için UYGUN DEĞİL — premium ürün fotoğrafı ile çatışır"
+    - "Genç DTC marka (streetwear/acid brand) için → eticaret-brutalist (PL6 neobrutal multi)"
+    - "Lüks e-ticaret (mücevher/premium mobilya) için → eticaret conditional editorial-luxury ⚠"
+    - "Organik/natural ürün (sabun/zanaat) için → eticaret conditional warm-organic ⚠"
+    - "Büyük commodity geniş katalog için → minimal-swiss veya data-dense-dashboard tercih"
+
+# Preview
+preview_app_route: /preview/eticaret-industrial-workwear
+scaffold_command: "node scaffold.js eticaret-industrial-workwear --out ./out/eticaret-industrial --recipe next-premium"
+
+# Research referansları
+research_refs:
+  - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+  - Mobilyacı/3d-demo/research/urun_listesi_analiz.md
+  - Mobilyacı/3d-demo/research/urun_sayfasi_analiz.md
+  - Mobilyacı/3d-demo/research/checkout_analiz.md
+  - Mobilyacı/3d-demo/research/iyzico_analiz.md
+  - Mobilyacı/3d-demo/research/stok_yonetimi_analiz.md
+  - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # Product + Offer JSON-LD
+  - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+  - Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+  - mockups/c-concrete-industrial/index.html          # 4.5/5 concrete+hazard imza
+  - insaat-crm/b-edge/index.html                      # 4.2/5 Lenis+GSAP production
+  - templates/SECTOR-RESEARCH.md#eticaret
+  - catalog/styles/industrial-workwear.yaml
+  - catalog/sectors/eticaret.yaml
+
+# Scaffolder hints
+scaffold_hints:
+  mobile_breakpoint: [375, 768, 1280]
+  turkish_chars_test: ["ı", "İ", "ğ", "Ğ", "ş", "Ş", "ç", "Ç", "ö", "Ö", "ü", "Ü"]
+  font_test_urls:
+    - "Archivo Narrow Black 700-900 (display — kategori başlık + hero)"
+    - "Geist Sans 300-700 (body + ürün adı + UI)"
+    - "Geist Mono 400-600 (SKU + fiyat + stok kodu + birim)"
+    - "Stardos Stencil 400-700 (hazard label + adet stepper)"
+  wcag_contrast_target: "AA (4.5:1) — bg #D4CFC4 × ink #111 = 11.8:1 ✓ ; hazard #F5C400 × ink #111 = 12.2:1 ✓ ; orange CTA = 4.6:1 ✓"
+  lighthouse_target: 90
+  perf_budget: "LCP < 2.5s (ürün listesi) ; INP < 200ms (quick-add) ; First load < 200KB gzip ; ürün görsel lazy + blurDataURL"
+  prefers_reduced_motion: "MANDATORY fallback — GSAP scrub off, Lenis devre dışı, gauge statik"
+  product_card: "1:1 kare, sharp border 2px ink, hover alternate angle + hazard ribbon indirim, border-radius: 0"
+  product_gallery: "L3 bento-no-glass desktop 4-col, L4 horizontal rails featured kategori; masonry DEĞİL (spec-yoğun)"
+  product_list_row: "T7 receipt strip — görsel + SKU + ad + adet stepper + birim/toplam fiyat + sepete-ekle"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Teklif Al (B2B)"
+  bulk_order_cta: "Adet Kademeli İskonto"
+  checkout_flow: "Sepet → Bilgi (B2C/B2B switch: VKN/TC) → Ödeme → Onay — 4 adım progress stencil numaralı"
+  performance_critical: "ürün listesinde LCP < 2.5s (400+ ürün katalog için virtualized scroll tercih)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList + ItemList JSON-LD — B2B için priceSpecification"
+  mobile_critical: "Sticky bottom 'Sepete Ekle' + 'WhatsApp Toptan Fiyat' dual-CTA bar"
+  payment: "iyzipay (Türkiye B2C/B2B) + havale/EFT seçeneği (B2B zorunlu) + carî hesap opsiyonel (bayi giriş)"
+  rounded_corners: "border-radius: 0 KESIN ZORUNLU — tüm elementler sharp edge"
+  shadow_signature: "offset hard shadow 4-6px (ürün kart + CTA); blur YOK"
+  hazard_stripe_spec: "repeating-linear-gradient(45deg, #F5C400 0 18px, #111 18px 36px) — kampanya ribbon, indirim badge, stock-critical banner"
+  concrete_speckle_spec: "radial-gradient speckle + grain.svg %6 opacity — katalog kağıt hissi"
+  seo_critical: "Product + Offer schema her ürün için; kategori programmatic seo ile [kategori]+[şehir]; B2B için organization + priceSpecification"
+
+# B2B vs B2C ayrımı
+semantic_scope:
+  b2c_flow: "sepet → bilgi → ödeme → onay (iyzipay); 1-10 adet; misafir checkout OK"
+  b2b_flow: "teklif talep wizard → firma onay → özel fiyat → cari/EFT/kredi kartı; 10+ adet; VKN zorunlu"
+  bayi_portal: "opsiyonel — bayi giriş sonrası özel fiyat + carî bakiye + toplu sipariş CSV upload"
+  excluded: [ar-try, 3d-viewer, configurator]  # tedarik için gereksiz
+  alternative_if_3d_needed: "premium recipe next-r3f + immersive-3d stili (mobilya/makine showcase için)"
+
+# Sektör rationale
+sector_rationale: |
+  eticaret.yaml MATRIX ✓ olarak "B2B tedarik" gerekçesiyle listelendi.
+  industrial-workwear stilinin compatible_sectors listesinde endustriyel-imalat, lojistik,
+  toptan-malzeme, otomotiv-tamirhane var — hepsi eticaret sektörünün B2B alt-kolu.
+  mucevher/klinik/spa gibi premium sektörlerde yasak ama endüstriyel commodity için native.
+  PL4 concrete + TY11 stencil + T7 receipt + K9 stock gauge + F3 B2B wizard kombinasyonu
+  "spec-yoğun + SKU + adet + bayi" B2B psikolojisini doğrudan destekliyor. Lüks e-ticaret için
+  editorial-luxury, commodity genç marka için brutalist, admin-yoğun için data-dense-dashboard
+  alternatif olarak MATRIX'te mevcut.
