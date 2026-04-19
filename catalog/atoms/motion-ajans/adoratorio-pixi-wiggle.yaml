@@ -1,0 +1,41 @@
+---
+id: adoratorio-pixi-wiggle
+name: Pixi Custom WiggleFilter (Adoratorio Max Mara)
+category: motion-ajans
+description: PixiJS fragment shader displacement noise, 2D WebGL wiggle
+license: MIT-safe rewrite (GLSL displacement standart)
+source: Adoratorio (Max Mara site)
+source_file: Adoratorio PixiJS shader
+---
+
+usage_sectors: [maximalist-atm, immersive-3d, fashion-brand, campaign]
+forbidden_sectors: [low-end, accessibility-strict]
+
+forbidden_with: []
+
+requires:
+  libraries: ["pixi.js"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "296-303"
+
+preview_snippet: |
+  // PixiJS v8 custom Filter
+  import { Filter, GpuProgram } from 'pixi.js';
+  const vertex = `...`;
+  const fragment = `
+    uniform sampler2D uNoise;
+    uniform float uProgress;
+    uniform float uNoiseScale;
+    void main() {
+      vec4 noise = texture(uNoise, vTextureCoord * 10.0);
+      noise *= 0.003 * uNoiseScale;
+      vec2 displaced = vec2(vTextureCoord.x + noise.r, vTextureCoord.y);
+      gl_FragColor = texture(uTexture, displaced);
+    }
+  `;
+  const wiggle = new Filter({ glProgram: GpuProgram.from({ vertex, fragment }), resources: { /* ... */ } });
+
+research_refs:
+  - ULTRAPLAN.md:754 (atom 16)

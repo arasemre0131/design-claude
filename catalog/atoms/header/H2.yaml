@@ -1,0 +1,52 @@
+---
+id: H2
+name: Masthead Centered
+category: header
+description: Gazete başlığı tarzı, ortalanmış wordmark + altında küçük subtitle + hairline rule
+---
+
+usage_sectors: [editorial, news, magazine, kitap, kultur, muze, restoran, otel]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  typography: [TY10, TY9, TY19, TY24]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: templates/04-restoran/index.html
+    lines: "42-76"
+    note: Editorial masthead + subtitle
+  - file: mockups/b-editorial/index.html
+    lines: "38-78"
+    note: Newspaper-style centered masthead
+
+variants:
+  - name: serif-display
+    visual: "Tiempos/Fraunces display, ortalanmış, subtitle italic"
+  - name: all-caps-spaced
+    visual: "Tracking 0.3em uppercase wordmark"
+  - name: rule-above-below
+    visual: "Hairline rule wordmark'ın üstü + altı"
+
+preview_snippet: |
+  <header class="masthead">
+    <hr class="rule-top"/>
+    <div class="wordmark">AKDENIZ</div>
+    <div class="subtitle">Est. 1987 · Galatasaray, İstanbul</div>
+    <hr class="rule-bottom"/>
+  </header>
+  <style>
+    .masthead { text-align: center; padding: 28px 0; }
+    .wordmark { font-family: 'Fraunces', serif; font-size: 48px; letter-spacing: 0.01em; font-variation-settings: 'opsz' 144; }
+    .subtitle { font-family: 'IBM Plex Serif'; font-style: italic; font-size: 13px; opacity: 0.7; }
+    .rule-top, .rule-bottom { border: 0; border-top: 1px solid currentColor; width: 60%; margin: 12px auto; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:67-82 (restoran sektör)
+  - Mobilyacı/3d-demo/research/header_navigation_analiz.md

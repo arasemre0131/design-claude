@@ -1,0 +1,33 @@
+---
+id: CH1
+name: Chart.js Smooth Line
+category: chart
+description: Chart.js default smooth line — kaçın, vanilla dashboard feel
+forbidden: true
+reason: Default Chart.js 5+ projede tekrar. Daha iyisi CH3 (Nivo), CH5 (ECharts), CH7 (SVG custom)
+---
+
+usage_sectors: []
+forbidden_sectors: [default-dashboard]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/default-dash/chart.html
+    lines: "1-60"
+    note: YASAK
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: Chart.js default 5+ projede kullanıldı. CH3/CH5/CH7 tercih et. -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:147-147

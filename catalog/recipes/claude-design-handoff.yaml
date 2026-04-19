@@ -1,0 +1,124 @@
+---
+id: claude-design-handoff
+name: Claude Design Stage 3.75 Handoff (Meta Recipe)
+tier: meta
+description: |
+  claude.ai/design web app ile visual exploration -> handoff bundle export ->
+  bundle parser -> mevcut preset merge. Tier 3+ projeler icin opsiyonel prototip asamasi.
+  17 Nis 2026 Anthropic Labs lansmani sonrasi Stage 3.75 olarak pipeline'a eklendi.
+---
+
+evidence:
+  - url: https://claude.ai/design
+    platform: "Anthropic Labs"
+    launch_date: "2026-04-17"
+    note: "Bagimsiz web app — Claude Code icinden cagrilamaz, kullanici tarayicida."
+  - url: https://www.anthropic.com/news/claude-design
+    note: "Resmi lansman duyurusu + kullanim sinirli (Pro/Max/Enterprise plan)."
+  - file: "research/claude-design-anthropic-labs-2026.md"
+    note: "Emre'nin derin analiz raporu — 55K token/session ortalama maliyet + handoff flow."
+
+budget_tier: meta            # recipe kendisi tier degil, AUGMENT
+augments_tiers: [3, 4]
+delivery_weeks: [0.5, 1]     # handoff integration 3-7 gun ekler
+cost_session_tokens: 55000   # ortalama
+maintenance_impact: "yok (tek sefer integration)"
+
+core:
+  workflow_stage: "Stage 3.75 (Stage 3 musteri onay + Stage 4 gelistirme arasi)"
+  entry_trigger: "Tier 3+ proje ve muşteri custom design istegi"
+  output: "handoff bundle (.zip veya folder: screens.html, tokens.json, assets/, constraints.md)"
+
+dependencies:
+  user_side:
+    - "Claude Pro/Max/Enterprise subscription"
+    - "claude.ai/design web app access"
+    - "Kullanici tarayici (prototip burada olusturulur)"
+  code_side:
+    - "scripts/claude-design-bundle-parser.js (Emre'nin bundle parse utility)"
+    - "agents/claude-design-liaison.md (18. agent — handoff orchestrator)"
+    - "MCP servers: playwright + chrome-devtools + context7 + figma-dev-mode"
+
+mcp_setup:
+  required:
+    - "@executeautomation/playwright-mcp-server"
+    - "@modelcontextprotocol/server-chrome-devtools"
+    - "@upstash/context7-mcp-server"
+  optional:
+    - "figma-dev-mode-mcp (tasarim -> kod kontrolu)"
+  configuration: |
+    # Claude Code settings.json -> mcpServers
+    {
+      "mcpServers": {
+        "playwright": { "command": "npx", "args": ["-y", "@executeautomation/playwright-mcp-server"] },
+        "chrome-devtools": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-chrome-devtools"] },
+        "context7": { "command": "npx", "args": ["-y", "@upstash/context7-mcp-server"] }
+      }
+    }
+
+workflow:
+  step_1:
+    action: "Muşteri onay sonrasi (Stage 3 complete)"
+    duration: "1 gun"
+    actor: "Emre"
+    note: "Stage 3.5 Master Analiz PDF hazir, teknoloji tespit edildi, stil belli."
+  step_2:
+    action: "claude.ai/design web app'e giris, prototip olustur"
+    duration: "2-4 saat"
+    actor: "Emre (tarayici)"
+    inputs:
+      - "Brief + sektor + stil ID (editorial-luxury / kinetic-agency / vb.)"
+      - "Referans resim (muşteri Instagram, Pinterest, rakip)"
+      - "Kisitlamalar: Turkce karakter, iyzipay, WhatsApp widget"
+    output: "3-5 ekran tasarim + design tokens (color, type, space) + component spec"
+  step_3:
+    action: "Handoff bundle export"
+    duration: "10 dk"
+    output_format:
+      - "screens/*.html (Tailwind classes dahil)"
+      - "tokens.json (OKLCH color, type scale, space scale)"
+      - "assets/ (SVG icon, preview image)"
+      - "constraints.md (motion rules, a11y, responsive)"
+  step_4:
+    action: "Bundle parse + preset merge"
+    duration: "30 dk - 2 saat"
+    actor: "Claude Code (claude-design-liaison agent)"
+    tool: "scripts/claude-design-bundle-parser.js"
+    output:
+      - "src/app/**/*.tsx (Next.js component)"
+      - "src/styles/globals.css (Tailwind v4 @theme directive)"
+      - "tailwind.config.ts (token inject)"
+  step_5:
+    action: "Gelistirme devam (Stage 4 baslar)"
+    agent: "frontend-design + ui-ux-pro-max"
+
+constraints:
+  - "Tier 1-2'de YASAK — overkill, zaman kayip."
+  - "Tier 3+ oplsiyonel, muşteri onayli."
+  - "55K token/session maliyet ortalama — Claude Pro plan cover ediyor."
+  - "Handoff bundle Tailwind v4 output — shadcn/ui uyumlu."
+  - "Turkce karakter test et (bundle export bazen ı/ğ/ş bozuyor)."
+  - "Motion primitives bundle'da yok — GSAP/Lenis manuel eklenir."
+
+agent_integration:
+  new_agent:
+    name: claude-design-liaison
+    location: "C:/Users/EAS/.claude/agents/claude-design-liaison.md"
+    responsibility:
+      - "Handoff bundle validate"
+      - "tokens.json -> tailwind.config.ts merge"
+      - "screens/*.html -> src/app/**/*.tsx convert"
+      - "constraints.md oku + frontend-design'a aktar"
+  pipeline_position: "Stage 3.75 (Stage 3 Claude Design handoff -> Stage 4 gelistirme)"
+
+research_refs:
+  - "research/claude-design-anthropic-labs-2026.md"
+  - "FRONTEND-TECHSTACK.md (AI Design Tooling bolumu)"
+  - "ULTRAPLAN.md Bolum 15"
+  - "Mobilyaci/3d-demo/research/claude-design-anthropic-labs-2026.md (derin rapor)"
+
+red_line:
+  - "Tier 1-2'de yasak (zaman + maliyet overkill)"
+  - "Hizli teslim (<1 hafta) projelerde atla — fikir kesinlesmeden uygulamaya girme"
+  - "Acele eden muşteri -> Stage 3.75 atla, Stage 4'e direkt gec"
+  - "Design lock edilmemisse (yani Stage 3 henuz onay almadi) kullanma"

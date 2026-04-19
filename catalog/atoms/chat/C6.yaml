@@ -1,0 +1,41 @@
+---
+id: C6
+name: Voice-First (transcript + audio wave)
+category: chat
+description: Call center, podcast, ses dosyası + transcript + wave visualization
+---
+
+usage_sectors: [call-center, podcast, voice-assistant, transcription]
+forbidden_sectors: [text-only-chat]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY20]
+  motion: [MO1, MO4]
+  libraries: ["wavesurfer"]
+
+reference_impl:
+  - file: mockups/voice-chat-wave.html
+    lines: "1-100"
+
+variants:
+  - name: playable-transcript
+    visual: "Transcript click → audio timestamp jump"
+  - name: live-transcription
+    visual: "Real-time Whisper transcript stream"
+
+preview_snippet: |
+  <div class="voice-chat">
+    <div class="wave" id="wave"></div>
+    <div class="controls"><button>▶</button><span>02:14 / 08:32</span></div>
+    <div class="transcript">
+      <p data-t="00:12">Merhaba, rezervasyon için aradım.</p>
+      <p data-t="00:21">Buyurun. Hangi tarih için?</p>
+    </div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:139-139

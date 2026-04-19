@@ -1,0 +1,37 @@
+---
+id: wearebrand-mask-y-reveal
+name: CSS Mask --mask-y Reveal (wearebrand özgün)
+category: motion-ajans
+description: CSS custom property --mask-y + mask-image, browser native
+license: MIT-safe rewrite (CSS pattern browser native, özgün değil)
+source: wearebrand.io
+source_file: research-assets/wab/wearebrand_brand.html
+source_lines: "CSS only"
+---
+
+usage_sectors: [editorial, maximalist, kinetic-reveal]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    note: CSS + GSAP animate custom property
+  - file: templates/14-ultra/index.html
+    lines: "85-87"
+
+preview_snippet: |
+  /* CSS */
+  .preloader-bg {
+    --mask-y: 0%;
+    mask-image: radial-gradient(circle at 50% var(--mask-y), #000 0%, #000 30%, transparent 60%);
+  }
+  /* JS */
+  gsap.fromTo(bg, { '--mask-y': '0%' }, { '--mask-y': '200%', duration: 1.2, ease: 'power2.out' });
+
+research_refs:
+  - ULTRAPLAN.md:742 (atom 4 CSS-Mask-maskY)
+  - SCRAPED-STACKS-2026.md:264-275

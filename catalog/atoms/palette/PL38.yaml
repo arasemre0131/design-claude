@@ -1,0 +1,33 @@
+---
+id: PL38
+name: Cool Marble (Otel B)
+category: palette
+description: Marble cool + deep ocean + gold az + moss
+bg: "#F0F2F5 marble"
+accent: "#1B3A4B deep ocean"
+ikincil: "#C9A46B warm gold + #9CAF88 moss"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [otel, urban-luxury, design-hotel, cosmopolitan-retreat]
+forbidden_sectors: [warm-rustic]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F0F2F5 × ocean #1B3A4B = 11.1:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F0F2F5;
+    --ocean: #1B3A4B;
+    --gold: #C9A46B;
+    --moss: #9CAF88;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:184 (otel PL38)

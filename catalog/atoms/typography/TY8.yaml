@@ -1,0 +1,31 @@
+---
+id: TY8
+name: DM Serif Display Italic + Inter
+category: typography
+description: 3D immersive, DM Serif Display italic — default luxury combo
+display_font: "DM Serif Display italic"
+body_font: "Inter"
+mono_font: "JetBrains Mono"
+forbidden: true
+reason: Default 3D immersive / luxury combo 5+ projede tekrar
+---
+
+usage_sectors: []
+forbidden_sectors: [immersive-3d-yeni, luxury-yeni]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: v2-immersive-3d/style.css
+    note: YASAK
+
+google_fonts: "DM+Serif+Display:ital@0;1&family=Inter:wght@300..700&family=JetBrains+Mono"
+
+preview_snippet: |
+  <!-- YASAK: DM Serif+Inter 3D immersive klişe -->
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:218 (TY8 YASAK)

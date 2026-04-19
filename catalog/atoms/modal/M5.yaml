@@ -1,0 +1,39 @@
+---
+id: M5
+name: Inline Expand (no overlay, row grows)
+category: modal
+description: Overlay yok, satır büyür, accordion benzeri detail
+---
+
+usage_sectors: [list-table, faq, accordion-ui, inline-detail]
+forbidden_sectors: [alert-action]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/inline-expand.html
+    lines: "1-80"
+
+variants:
+  - name: row-accordion
+    visual: "Table row altına açılan detail"
+  - name: card-expand
+    visual: "Card yukarı-aşağı büyür"
+
+preview_snippet: |
+  <details class="inline-expand">
+    <summary>
+      <span>ORD-047</span><span>Ayşe K.</span><span>₺1.240</span>
+    </summary>
+    <div class="detail">...</div>
+  </details>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:185-185

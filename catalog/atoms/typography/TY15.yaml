@@ -1,0 +1,31 @@
+---
+id: TY15
+name: Redaction (variable) + Supreme + Operator Mono
+category: typography
+description: Declassified document, Redaction serif-to-sans variable axis
+display_font: "Redaction (variable)"
+body_font: "Supreme"
+mono_font: "Operator Mono"
+---
+
+usage_sectors: [declassified, legal-premium, cyber, editorial-experimental]
+forbidden_sectors: [mucevher, restoran]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/declassified.html
+
+google_fonts: null
+notes: "Redaction (Forest/OSS) + Supreme + Operator premium. Alt: IBM Plex + Fraunces."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Redaction', serif; font-variation-settings: 'wght' 700; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:225

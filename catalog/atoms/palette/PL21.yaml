@@ -1,0 +1,32 @@
+---
+id: PL21
+name: Ozalit Blueprint
+category: palette
+description: İnşaat alternatif, ozalit mavi + kil kahve
+bg: "#E8EDF2"
+accent: "#1B3A4B deep blueprint"
+ikincil: "#A0522D kil"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [insaat, blueprint, architecture, technical]
+forbidden_sectors: [mucevher, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #E8EDF2 × blueprint #1B3A4B = 9.6:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #E8EDF2;
+    --blueprint: #1B3A4B;
+    --kil: #A0522D;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:15-20 (inşaat PL21)

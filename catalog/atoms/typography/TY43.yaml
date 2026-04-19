@@ -1,0 +1,31 @@
+---
+id: TY43
+name: Fraunces Italic + Inter Tight (Otel)
+category: typography
+description: Otel escape, Fraunces italic warm
+display_font: "Fraunces italic"
+body_font: "Inter Tight"
+mono_font: null
+---
+
+usage_sectors: [otel, hospitality, resort, boutique-hotel, luxury-escape]
+forbidden_sectors: [industrial, dashboard]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/10-otel/style.css
+
+google_fonts: "Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,600&family=Inter+Tight:wght@300..600"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-style: italic; font-variation-settings: 'opsz' 144, 'SOFT' 100; font-weight: 500; }
+    body { font-family: 'Inter Tight'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:189 (otel TY43)

@@ -1,0 +1,48 @@
+---
+id: K11
+name: Postcard Stack
+category: kpi
+description: Her metric kart bir postkart, rotate + shadow, travel/mood-board aesthetic
+---
+
+usage_sectors: [travel, otel, mood-board, restoran-casual, hospitality]
+forbidden_sectors: [b2b-corporate, engineering]
+
+forbidden_with: []
+
+requires:
+  typography: [TY10, TY13, TY22, TY43]
+  motion: [MO4, MO10]
+  libraries: []
+
+reference_impl:
+  - file: templates/10-otel/index.html
+    lines: "300-360"
+  - file: mockups/postcard-kpi.html
+    lines: "1-70"
+
+variants:
+  - name: 3-postcards-tilted
+    visual: "3 kart hafif -2deg/+3deg rotate, shadow"
+  - name: polaroid-vintage
+    visual: "Alt kısım beyaz kalın kenar + caption"
+  - name: stamp-corner
+    visual: "Sağ üst köşede posta stamp"
+
+preview_snippet: |
+  <div class="postcard-row">
+    <article class="pc" style="transform: rotate(-2deg);">
+      <img src="/room-01.webp"/>
+      <div class="pc-caption">Yalı Suit · 47 m²</div>
+      <div class="pc-stamp">◎</div>
+    </article>
+    <article class="pc" style="transform: rotate(1.5deg);">
+      <img src="/room-02.webp"/>
+      <div class="pc-caption">Boğaz Manzaralı · ₺8.400</div>
+    </article>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:93-93

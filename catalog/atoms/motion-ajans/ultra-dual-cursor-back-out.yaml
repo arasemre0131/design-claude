@@ -1,0 +1,43 @@
+---
+id: ultra-dual-cursor-back-out
+name: Dual Cursor + back.out(1.7) (14-ultra)
+category: motion-ajans
+description: İki cursor lerp + back.out(1.7) hover scale, fraxbit benzeri
+license: Bizim yazdığımız (fraxbit pattern rewrite)
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "520-546"
+---
+
+usage_sectors: [kinetic, agency, portfolio-tech]
+forbidden_sectors: [mobile-only, accessibility-strict]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "520-546"
+
+preview_snippet: |
+  const cur = document.querySelector('.cursor');
+  const curBig = document.querySelector('.cursor-big');
+  let mx = 0, my = 0, bx = 0, by = 0;
+  addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+  });
+  gsap.ticker.add(() => {
+    bx += (mx - bx) * 0.14;
+    by += (my - by) * 0.14;
+    curBig.style.transform = `translate(${bx}px, ${by}px) translate(-50%, -50%)`;
+  });
+  document.querySelectorAll('[data-magnetic]').forEach(el => {
+    el.addEventListener('mouseenter', () => curBig.classList.add('magnetic'));
+    el.addEventListener('mouseleave', () => curBig.classList.remove('magnetic'));
+  });
+
+research_refs:
+  - ULTRAPLAN.md:747 (atom 9 cursor)

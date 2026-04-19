@@ -1,0 +1,37 @@
+---
+id: FT4
+name: Colophon (editorial credits)
+category: footer
+description: Editorial colophon, tasarım + set + yazı künyesi
+---
+
+usage_sectors: [editorial, magazine, kitap, brand-story, agency-premium]
+forbidden_sectors: [eticaret, dashboard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY19, TY24]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/colophon.html
+    lines: "1-60"
+
+variants:
+  - name: newspaper-colophon
+    visual: "Tiempos, Tasarım X, Set Y, Baskı Z"
+
+preview_snippet: |
+  <footer class="colophon">
+    <p class="line"><strong>Tasarım:</strong> Parallel Studio</p>
+    <p class="line"><strong>Tipografi:</strong> Fraunces (Klim Type Foundry)</p>
+    <p class="line"><strong>Yayıncı:</strong> Emre Aras · İstanbul</p>
+    <p class="line"><strong>Baskı:</strong> Dijital, 2026</p>
+  </footer>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:197-197

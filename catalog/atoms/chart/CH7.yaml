@@ -1,0 +1,41 @@
+---
+id: CH7
+name: Ring/Radial Custom SVG
+category: chart
+description: Özel SVG ring/radial chart, brand-specific
+---
+
+usage_sectors: [fitness, okr, wellness, brand-custom, editorial-kpi]
+forbidden_sectors: [dense-data-enterprise]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO1, MO4]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: mockups/a-warm-dark/ring-chart.html
+    lines: "1-80"
+
+variants:
+  - name: stacked-rings
+    visual: "Apple fitness 3 iç içe ring"
+  - name: segmented-arc
+    visual: "Arc parça parça, her biri KPI"
+  - name: progress-ring-animated
+    visual: "Dash-offset scroll-linked"
+
+preview_snippet: |
+  <svg class="ring-custom" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="4" fill="none" opacity="0.15"/>
+    <circle cx="60" cy="60" r="54" stroke="var(--accent)" stroke-width="4" fill="none"
+      stroke-dasharray="339" stroke-dashoffset="68" transform="rotate(-90 60 60)"/>
+    <text x="60" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="24">80%</text>
+  </svg>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:153-153

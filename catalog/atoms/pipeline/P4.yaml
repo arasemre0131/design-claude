@@ -1,0 +1,40 @@
+---
+id: P4
+name: D3 Force Network
+category: pipeline
+description: Node-link graph, lead↔agent bağları, relationship visualization
+---
+
+usage_sectors: [relationships, network-analysis, knowledge-graph, data-ops]
+forbidden_sectors: [eticaret-standard, editorial]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY20]
+  motion: [MO1]
+  libraries: ["d3"]
+
+reference_impl:
+  - file: v2-kinetic-data/force-network.html
+    lines: "1-150"
+
+variants:
+  - name: radial-layout
+    visual: "Radial force layout"
+  - name: clustered-communities
+    visual: "D3 community detection + colored clusters"
+
+preview_snippet: |
+  <svg id="force-graph" viewBox="0 0 800 600"></svg>
+  <script>
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).distance(80))
+      .force('charge', d3.forceManyBody().strength(-200))
+      .force('center', d3.forceCenter(400, 300));
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:105-105

@@ -1,0 +1,36 @@
+---
+id: PL6
+name: Neobrutalist Multi
+category: palette
+description: Cream + cobalt + yellow + red + green + lavender
+bg: "#FFF8EB"
+accent: "#2B4DDB cobalt"
+ikincil: "#FFD500 + #FF3B30 + #00A86B + #B794F6"
+ink: "#111"
+---
+
+usage_sectors: [neobrutalist, bold-creative, playful, events, startup-bold]
+forbidden_sectors: [mucevher, spa, klinik]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #FFF8EB × accent #2B4DDB = 6.8:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #FFF8EB;
+    --cobalt: #2B4DDB;
+    --yellow: #FFD500;
+    --red: #FF3B30;
+    --green: #00A86B;
+    --lavender: #B794F6;
+    --ink: #111;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:248
+  - v2-neobrutalist

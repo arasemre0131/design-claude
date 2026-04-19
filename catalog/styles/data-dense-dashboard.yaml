@@ -1,0 +1,84 @@
+---
+id: data-dense-dashboard
+name: Data-Dense Dashboard
+mood: [Linear-style, tabular-nums, keyboard-first, receipt-strip, compact, efficient]
+one_liner: "Linear + Notion + Airbnb admin hissi: tabular-nums, ⌘K palette, receipt strip, dense table."
+---
+
+typography:
+  display: [Instrument-Serif, Migra-Italic, Monument-Extended]
+  body: [Inter-Tight, IBM-Plex-Sans, Soehne]
+  mono: [Berkeley-Mono, JetBrains-Mono, IBM-Plex-Mono]
+  variable_axes: [wght]
+  pair_ids: [TY12, TY14, TY10]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - dark-terminal          # #08090C bg + #C7FF4D lime signal + cyan/magenta data pops
+  - linear-style           # #FCFCFC bg + #0A0A0A ink + tek mono accent
+  - notion-muted           # #FAFAFA + slate neutrals
+  - insaat-safe-dashboard  # insaat-crm dashboard palette
+
+motion_primitives:
+  preferred: [MO3, MO8, MO4]    # CSS scroll subtle, WAAPI imperative, Framer layout
+  acceptable: [MO7]             # View Transitions
+  forbidden: [MO10-print-first-full, MO11-opsz-dramatic, MO1-aggressive-pin]
+
+motion_stack:
+  required: []
+  optional: [Framer Motion v12 (layout), GSAP 3.13 (minimal), CSS @property, D3 v7]
+  forbidden: [splash-hero-video, 5s-page-loader, dramatic-stagger, elastic]
+
+preferred_heroes: [HR7, HR8]          # data dashboard hero, huge-number kpi card
+preferred_layouts: [L7, L3, L9]       # sticky sidebar + dense main, bento-no-glass, card deck
+preferred_footers: [FT1, FT4]         # minimal + colophon
+
+forbidden:
+  - splash-hero-video-long
+  - 5s-page-loader
+  - decorative-serif-italic-main  # Instrument Serif sadece KPI label olabilir
+  - glassmorphism
+  - aurora-drift
+  - brutalist-hard-shadow
+  - warm-organic-slow
+  - parallax
+
+reference_impls:
+  - file: insaat-crm/a-safe/index.html
+    score: 5/5
+    note: "Dense table + sticky sidebar + tabular-nums + calm palette + receipt rail."
+  - file: templates/06-eticaret/index.html
+    score: 3/5
+    note: "E-ticaret admin gorunumu tarafi var — compact."
+  - file: v2-kinetic-data/index.html
+    score: 4/5
+    note: "Dark terminal + D3 v7 + JetBrains Mono rail + ticker bar — hibrit kinetic-data."
+
+trends_2026:
+  bento_2_0: YES                  # dashboard bento rich
+  kinetic_typography: NO
+  maximalism: NO
+  scroll_triggered_3d: NO
+  variable_fonts: PARTIAL         # wght + tabular-nums
+  command_palette_cmd_k: YES      # imza
+  sparkline: YES                  # inline recharts/D3
+
+compatible_sectors: [insaat-crm, eticaret-admin, saas-dashboard, analytics, fintech, hukuk-kayit-yonetimi, hastane-admin, stok-yonetim, randevu-yonetim]
+incompatible_sectors: [spa-landing, mucevher-showcase, fotograf-portfolyo, otel-booking-visual]
+
+sample_palette:
+  bg: "#FCFCFC"               # light variant
+  surface: "#F5F5F5"
+  ink: "#0A0A0A"
+  ink_soft: "#6B6B6B"
+  rule: "#E5E5E5"
+  accent_positive: "#10B981"
+  accent_warning: "#F59E0B"
+  accent_critical: "#EF4444"
+sample_font_pair: "Inter Tight 400-600 + Berkeley Mono tabular-nums"
+
+tier_fit: [3, 4]
+notes:
+  - "Imza: font-variant-numeric: tabular-nums + tabular-lining zorunlu."
+  - "⌘K command palette (cmdk lib) + sonner toast + vaul mobile drawer."
+  - "Spa/mucevher showcase/fotograf portfolyo sektorunde YASAK — oralar gorsel-oncelikli, data degil."

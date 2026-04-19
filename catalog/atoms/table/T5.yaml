@@ -1,0 +1,40 @@
+---
+id: T5
+name: Spreadsheet Dense
+category: table
+description: Excel feel, grid lines, inline cell edit, tabular-nums
+---
+
+usage_sectors: [finance, accounting, admin-dense, analytics, internal-tool]
+forbidden_sectors: [editorial, marketing-landing]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/spreadsheet-dense.html
+    lines: "1-120"
+
+variants:
+  - name: editable-cells
+    visual: "contenteditable cells + on-enter save"
+  - name: frozen-header
+    visual: "Sticky header + frozen first column"
+
+preview_snippet: |
+  <table class="spreadsheet">
+    <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td contenteditable>12.480</td><td contenteditable>Ocak</td><td>2026</td></tr>
+      <tr><th>2</th><td contenteditable>14.120</td><td contenteditable>Şubat</td><td>2026</td></tr>
+    </tbody>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:123-123

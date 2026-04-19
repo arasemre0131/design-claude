@@ -1,0 +1,33 @@
+---
+id: L1
+name: 12-Col Flex Grid (default)
+category: layout
+description: Default 12-column flex grid, responsive breakpoints
+---
+
+usage_sectors: [tum-sektorler-default]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/*/index.html
+    note: En yaygın kullanılan default layout
+
+variants:
+  - name: bootstrap-12col
+    visual: "Klasik 12 col"
+  - name: tailwind-grid-12
+    visual: "grid-cols-12 + gap"
+
+preview_snippet: |
+  <div class="grid grid-cols-12 gap-6 px-6 max-w-[1440px] mx-auto">
+    <div class="col-span-8">Main</div>
+    <div class="col-span-4">Sidebar</div>
+  </div>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:272

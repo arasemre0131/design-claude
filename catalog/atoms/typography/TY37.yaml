@@ -1,0 +1,31 @@
+---
+id: TY37
+name: Cormorant Infant + Inter Tight (Spa)
+category: typography
+description: Spa huzur, Cormorant Infant soft italic
+display_font: "Cormorant Infant italic"
+body_font: "Inter Tight"
+mono_font: null
+---
+
+usage_sectors: [spa, wellness, beauty-soft, meditation, yoga-studio]
+forbidden_sectors: [industrial, neobrutalist]
+
+forbidden_with: [PL1, PL6]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/07-spa/style.css
+
+google_fonts: "Cormorant+Infant:ital,wght@0,400;1,400;1,600&family=Inter+Tight:wght@300..500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Cormorant Infant', serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+    body { font-family: 'Inter Tight'; font-weight: 400; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:134 (spa TY37)

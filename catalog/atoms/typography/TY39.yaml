@@ -1,0 +1,32 @@
+---
+id: TY39
+name: IBM Plex Sans All Weights (Monolithic)
+category: typography
+description: Fotoğraf monolithic, tek aile farklı weight
+display_font: "IBM Plex Sans (all weights)"
+body_font: "IBM Plex Sans"
+mono_font: "IBM Plex Mono"
+---
+
+usage_sectors: [fotograf, media, image-first, minimalist-gallery]
+forbidden_sectors: [luxury-ornate]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/08-fotograf/style.css
+
+google_fonts: "IBM+Plex+Sans:ital,wght@0,100..700;1,400&family=IBM+Plex+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
+    h2 { font-family: 'IBM Plex Sans'; font-weight: 500; }
+    body { font-family: 'IBM Plex Sans'; font-weight: 400; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:153 (fotograf TY39)

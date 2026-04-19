@@ -1,0 +1,34 @@
+---
+id: H8
+name: Hero-Attached (No Separate Header)
+category: header
+description: Header hero'nun bir parçası, scroll'da ince bar'a dönüşür, Apple tarzı
+forbidden: true
+reason: 5+ mevcut projede kullanıldı (Freeman, BG Foto, Dagintaslı, Modern Alyans, Fatih Bey, v2-immersive) — tekrar riski yüksek
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-mevcut-projeler]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/freeman/index.html
+    lines: "1-80"
+    note: YASAK — tekrar edilemez
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: bu pattern 5+ projede kullanıldı, yeni projede önerilemez -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:35-35 (H8 tanım)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:308-318 (Project Matrix — 5+ kez kullanıldı)

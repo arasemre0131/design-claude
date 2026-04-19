@@ -1,0 +1,45 @@
+---
+id: P2
+name: Elevation Cross-Section
+category: pipeline
+description: Mimarlık kesit çizimi gibi kolonlar + dashed grid, architectural docket
+---
+
+usage_sectors: [architecture, insaat, engineering, industrial]
+forbidden_sectors: [eticaret, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY26]
+  motion: [MO1, MO10]
+  libraries: []
+
+reference_impl:
+  - file: v2-blueprint/pipeline-elevation.html
+    lines: "1-120"
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "180-250"
+
+variants:
+  - name: section-view
+    visual: "Kesit çizimi ölçek çubuğu + dashed grid"
+  - name: elevation-columns
+    visual: "Her kolon bir kat/aşama, height ölçülü"
+
+preview_snippet: |
+  <div class="elevation">
+    <div class="scale-bar">0 ————— 5m ————— 10m</div>
+    <div class="columns">
+      <div class="col" style="--h: 120px;">Plan · 12</div>
+      <div class="col" style="--h: 180px;">Ruhsat · 8</div>
+      <div class="col" style="--h: 240px;">Yapım · 24</div>
+      <div class="col" style="--h: 140px;">Teslim · 7</div>
+    </div>
+    <div class="grid-dashed"></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:103-103

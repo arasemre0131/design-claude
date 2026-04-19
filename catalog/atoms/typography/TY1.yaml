@@ -1,0 +1,31 @@
+---
+id: TY1
+name: Inter-Only Vanilla SaaS
+category: typography
+description: Sadece Inter sans, default SaaS vanilla
+display_font: "Inter"
+body_font: "Inter"
+mono_font: null
+forbidden: true
+reason: 5+ projede kullanıldı (Freeman, BG Foto, Dagintaslı) — vanilla SaaS default, karakter yok
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-yeni-projeler]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/freeman/style.css
+    note: YASAK — tekrar edilemez
+
+google_fonts: "Inter:wght@300;400;500;600;700"
+
+preview_snippet: |
+  <!-- YASAK: Inter-only vanilla SaaS, yeni projede kullanılamaz -->
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:211 (TY1 YASAK)

@@ -1,0 +1,33 @@
+---
+id: 3D-11-gaussian-splat
+name: Gaussian Splat Photoreal 3D Scene
+category: 3d
+description: Gaussian Splatting ile gerçek dünya sahnesi (GSplats/Active Theory)
+license: MIT (various splat libraries)
+---
+
+usage_sectors: [architecture-walkthrough, museum-3d, real-estate-tour, photoreal-scene]
+forbidden_sectors: [low-bandwidth]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsplat", "three"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "85"
+
+preview_snippet: |
+  import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
+  const viewer = new GaussianSplats3D.Viewer({
+    cameraUp: [0, -1, 0],
+    initialCameraPosition: [0, 0, 3],
+    selfDrivenMode: true,
+    sharedMemoryForWorkers: false
+  });
+  viewer.addSplatScene('/scene.splat', { progressiveLoad: true }).then(() => viewer.start());
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - SCRAPED-STACKS-2026.md:85 (Active Theory GaussianSplats3D)

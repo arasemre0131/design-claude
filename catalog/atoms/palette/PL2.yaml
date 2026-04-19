@@ -1,0 +1,34 @@
+---
+id: PL2
+name: Warm Dark Espresso
+category: palette
+description: Warm dark espresso + coral + brass, editorial warm-dark
+bg: "#1C1A17"
+accent: "#E89B7C coral"
+ikincil: "#B8875C brass"
+ink: "#F5F1E8"
+---
+
+usage_sectors: [editorial-warm-dark, restoran-intimate, kuafor-boutique, cafe-moody]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #1C1A17 × accent #E89B7C = 5.8:1 (AA)"
+  - "bg #1C1A17 × ink #F5F1E8 = 12.3:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #1C1A17;
+    --accent: #E89B7C;
+    --secondary: #B8875C;
+    --ink: #F5F1E8;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:244
+  - mockups/a-warm-dark

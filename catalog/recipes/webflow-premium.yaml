@@ -1,0 +1,103 @@
+---
+id: webflow-premium
+name: Webflow + GSAP + Lenis + Barba (Portfolio/Showcase)
+tier: 1
+description: |
+  Webflow + Slater.app (code editor) + GSAP 3.13 + Lenis + Barba + Unicorn Studio
+  + AVIF. Portfolio, kucuk ajans, freelance showcase — "solo freelancer premium" recetesi.
+  Evolve/Studio X/FLOT NOIR/Ravi Klaassens kanitli.
+---
+
+evidence:
+  - url: https://thisisstudiox.com
+    studio: Studio X (Jordan Gilroy)
+    stack: "Webflow + Lenis + Barba + AVIF + GSAP quickTo"
+    note: "Drag-to-reveal imza, AVIF asset optimization."
+  - url: https://flotnoir.studio
+    studio: FLOT NOIR
+    stack: "Webflow + Vite bundle Netlify + Lenis + Taxi.js (PJAX curtain)"
+    note: "Custom Mersi pattern + curtain transitions."
+  - url: https://raviklaassens.com
+    studio: Ravi Klaassens
+    stack: "Webflow + Slater.app + Unicorn Studio + Lenis 1.1.5 + Barba 2.10.3"
+    note: "data-hover-follower/bg/inner attribute system — deklaratif design."
+  - url: https://madeinevolve.com
+    studio: Evolve Studio
+    stack: "Webflow + external Vite bundle + Three.js + Barba (persistent canvas)"
+    note: "Shopify Plus luxury — Webflow framing + Vite ile orchestrate."
+
+budget_tier: budget
+budget_try: [8000, 18000]
+delivery_weeks: [0.5, 2]        # 3-10 gun
+maintenance_monthly_try: [500, 1500]
+profit_margin: "%70-80"         # en yuksek kar tier (Webflow plan musteriye fatura)
+
+core:
+  platform:
+    name: Webflow
+    plan: "CMS veya Business (Team plan degil — Business tercih)"
+  code_editor:
+    name: "Slater.app (Webflow code editor service)"
+    note: "Module yonetimi, Vite bundle, Webflow disinda kod."
+  language: "HTML + CSS + JS (vanilla, hibrit)"
+
+webflow_stack:
+  interactions: "Webflow native Interactions 2.0 (zorunlu asgari)"
+  cms: "Webflow CMS (blog, portfolyo item)"
+  forms: "Webflow Forms (native)"
+  hosting: "Webflow hosting (Business plan)"
+
+frontend_libs:
+  animation:
+    - "gsap@3.13.0 (CDN)"
+    - "ScrollTrigger + SplitText + quickTo (all ucretsiz 2024+)"
+    - "lenis@1.3.4"
+    - "barba@2.10.3 (veya @unseenco/taxi)"
+  shader:
+    - "unicornstudio-js@2 (Ravi Klaassens imza — JSON shader config)"
+  video:
+    - "hls.js@1.6.11 (case study video streaming, opsiyonel)"
+
+cdn_urls:
+  - "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+  - "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"
+  - "https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.min.js"
+  - "https://cdn.jsdelivr.net/npm/unicornstudio-js@2"
+
+deploy:
+  target: "Webflow hosting (SSL + CDN dahil)"
+  alternative: "Webflow export + Netlify (sadece zaten Webflow plani bittiyse)"
+  assets: "AVIF (Webflow auto optimize)"
+
+scaffold_command: |
+  # Webflow no-CLI — Dashboard'dan clone template veya yeni project
+  # 1. Webflow clone "Studio X Clone" veya yeni Business plan
+  # 2. Slater.app connect + modules klasor
+  # 3. Custom code: before </body> -> GSAP + Lenis + Barba CDN
+  # 4. Webflow Interactions 2.0 ile temel page transitions
+  # 5. Export opsiyonu: Webflow -> static HTML + Vite bundle
+
+constraints:
+  - "Webflow hosting plani zorunlu (export-only cok kisitli)"
+  - "Mobile Lighthouse >= 85 (Webflow bundle biraz agir)"
+  - "Bundle ~70KB JS hedef"
+  - "AVIF kullan (Webflow native optimize)"
+  - "GSAP 3.13 plugin'leri CDN'den yukle, npm paketi Webflow'da yok"
+  - "Barba destroy/create lifecycle Webflow Interactions'la catismamali"
+  - "prefers-reduced-motion: respect"
+
+signature_patterns:
+  - "Pattern A: Lenis + GSAP bridge"
+  - "Pattern B: Barba + curtain transition"
+  - "Pattern C: Attribute-driven hover follower (data-hover-follower/bg/inner)"
+  - "Pattern N: Unicorn Studio shader embed (JSON config)"
+
+research_refs:
+  - templates/SCRAPED-STACKS-2026.md (6/14 ajans Webflow)
+  - research/webflow-premium-patterns.md
+
+red_line:
+  - "Custom backend, admin panel, e-ticaret CRUD -> WordPress veya next-premium"
+  - "3D heavy (Three.js > 30MB model) -> next-r3f (Tier 3)"
+  - "Multi-tenant, SaaS dashboard -> next-enterprise-monorepo"
+  - "Webflow Turkce SEO hicbir zaman ciddi degil — Rank Math benzeri yok, SSR limitli"

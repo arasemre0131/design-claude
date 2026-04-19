@@ -1,0 +1,32 @@
+---
+id: PL18
+name: Plum + Champagne
+category: palette
+description: Light cream + plum + champagne, florist/events
+bg: "#F5EFE8"
+accent: "#5B2A4A plum"
+ikincil: "#D4B896 champagne"
+ink: "#2A1F14"
+---
+
+usage_sectors: [florist, wedding-events, luxury-boutique, perfume]
+forbidden_sectors: [industrial, tech-dark]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5EFE8 × plum #5B2A4A = 9.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5EFE8;
+    --plum: #5B2A4A;
+    --champagne: #D4B896;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:260

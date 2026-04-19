@@ -1,0 +1,33 @@
+---
+id: PL37
+name: Terracotta + Sky (Otel A)
+category: palette
+description: Sand bg + terracotta + sky + ochre
+bg: "#F2E3D1 sand"
+accent: "#B34F1B terracotta"
+ikincil: "#8EC5D6 sky + #D4A04C ochre"
+ink: "#2A1F14"
+---
+
+usage_sectors: [otel, boutique-hotel, mediterranean-resort, island-getaway]
+forbidden_sectors: [tech, industrial]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F2E3D1 × terracotta #B34F1B = 5.4:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F2E3D1;
+    --terracotta: #B34F1B;
+    --sky: #8EC5D6;
+    --ochre: #D4A04C;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:183 (otel PL37)

@@ -1,0 +1,34 @@
+---
+id: TY11
+name: Archivo Black + Narrow + Geist Sans + Stardos Stencil
+category: typography
+description: Industrial, Archivo Black + Stardos Stencil accent
+display_font: "Archivo Black + Archivo Narrow"
+body_font: "Geist Sans"
+mono_font: "Geist Mono + Stardos Stencil"
+---
+
+usage_sectors: [industrial, insaat, construction, factory, brutalist]
+forbidden_sectors: [mucevher, spa, editorial-soft]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/c-concrete/style.css
+  - file: templates/01-insaat/style.css
+
+google_fonts: "Archivo:wght@400..900;ital@1&family=Archivo+Narrow:wght@400..700&family=Geist+Sans:wght@300..700&family=Stardos+Stencil:wght@700&family=Geist+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Archivo Black', sans-serif; letter-spacing: -0.01em; line-height: 0.9; }
+    .stencil { font-family: 'Stardos Stencil', sans-serif; }
+    body { font-family: 'Geist Sans', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:221
+  - templates/SECTOR-RESEARCH.md:22 (inşaat Fonts A TY11)

@@ -1,0 +1,32 @@
+---
+id: PL20
+name: Moss + Cream
+category: palette
+description: Cream + moss + bone, herbal/natural
+bg: "#F2F0E6"
+accent: "#4A5D3A moss"
+ikincil: "#C5B290 bone"
+ink: "#2E2E2E"
+---
+
+usage_sectors: [herbal, natural, spa-organic, botanical-boutique, wellness-earth]
+forbidden_sectors: [tech-dark, neon]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F2F0E6 × moss #4A5D3A = 7.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F2F0E6;
+    --moss: #4A5D3A;
+    --bone: #C5B290;
+    --ink: #2E2E2E;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:262

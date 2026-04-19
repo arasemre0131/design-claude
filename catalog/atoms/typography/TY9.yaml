@@ -1,0 +1,33 @@
+---
+id: TY9
+name: Fraunces + Hanken Grotesk + Geist Mono
+category: typography
+description: Warm editorial, Fraunces variable opsz (9-144 axis)
+display_font: "Fraunces (variable, opsz)"
+body_font: "Hanken Grotesk"
+mono_font: "Geist Mono"
+---
+
+usage_sectors: [editorial, warm-editorial, mucevher-luxury, restoran-editorial, otel, gayrimenkul]
+forbidden_sectors: [data-ops, minimal-dashboard]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/a-warm-dark/style.css
+
+google_fonts: "Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Hanken+Grotesk:wght@300..700&family=Geist+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 100; letter-spacing: -0.03em; }
+    body { font-family: 'Hanken Grotesk', sans-serif; }
+    code { font-family: 'Geist Mono', monospace; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:219
+  - templates/14-ultra/index.html (Fraunces opsz axis kullanım)

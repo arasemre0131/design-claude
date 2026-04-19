@@ -1,0 +1,34 @@
+---
+id: HR2
+name: Split Hero (Text-Left Media-Right)
+category: hero
+description: Text sol, media (image/video/3D) sağ — SaaS standart default
+forbidden: true
+reason: 5+ mevcut projede kullanıldı (Freeman, BG Foto, Dagintaslı, Modern Alyans, Fatih Bey) — yeni projede önerilemez
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-mevcut-projeler]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/bgfoto/index.html
+    lines: "1-120"
+    note: YASAK — tekrar edilemez
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: default SaaS split hero 5+ projede kullanıldı, yeni projede önerilemez -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:63-63 (HR2 tanım)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:308-318 (Project Matrix — 5+ kez kullanıldı)

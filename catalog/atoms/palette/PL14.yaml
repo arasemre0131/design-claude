@@ -1,0 +1,32 @@
+---
+id: PL14
+name: Salmon + Burgundy
+category: palette
+description: Salmon + burgundy + champagne, restaurant/food
+bg: "#F4D5C4 salmon"
+accent: "#6B1B2E burgundy"
+ikincil: "#D4B896 champagne"
+ink: "#2A1F14"
+---
+
+usage_sectors: [restoran, food, kitchen, winery, boutique-dining]
+forbidden_sectors: [industrial, tech]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F4D5C4 × burgundy #6B1B2E = 8.6:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F4D5C4;
+    --accent: #6B1B2E;
+    --champagne: #D4B896;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:256

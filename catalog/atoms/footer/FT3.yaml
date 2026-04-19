@@ -1,0 +1,40 @@
+---
+id: FT3
+name: Receipt Strip (dashed, minimal)
+category: footer
+description: Makbuz şeridi, dashed border, minimalist
+---
+
+usage_sectors: [minimalist, editorial, portfolio, brand-minimal]
+forbidden_sectors: [eticaret-classic]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY14, TY15]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/a-warm-dark/footer-receipt.html
+    lines: "1-40"
+
+variants:
+  - name: dashed-border-top
+    visual: "border-top: 1px dashed"
+  - name: perforated-edge
+    visual: "Üstte tear-mark"
+
+preview_snippet: |
+  <footer class="receipt-ft">
+    <div class="strip">—·—·—·—·—·—·—·—·—·—·—·—·—·—·—·—</div>
+    <div class="row">
+      <span>PARALLEL STUDIO · 2026</span>
+      <span>hello@parallel.studio</span>
+    </div>
+  </footer>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:196-196

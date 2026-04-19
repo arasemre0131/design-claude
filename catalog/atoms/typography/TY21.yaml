@@ -1,0 +1,32 @@
+---
+id: TY21
+name: Recoleta + Lato + IBM Plex Mono
+category: typography
+description: Warm serif, Recoleta rounded display
+display_font: "Recoleta"
+body_font: "Lato"
+mono_font: "IBM Plex Mono"
+---
+
+usage_sectors: [warm-brand, kuafor, wellness-modern, cafe, bakery]
+forbidden_sectors: [industrial, dark-maximalist]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/warm-serif.html
+
+google_fonts: "Lato:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500"
+notes: "Recoleta premium (Latinotype). Alt: Fraunces (Google Fonts yakın kıvrımlı)."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Recoleta', 'Fraunces', serif; font-weight: 600; }
+    body { font-family: 'Lato', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:231

@@ -1,0 +1,83 @@
+---
+id: editorial-print
+name: Editorial Print (Newspaper)
+mood: [gazete-column, newspaper-hed, byline, printed-paper, typographic-discipline]
+one_liner: "Mockup-b tarzi: masthead + 3-col CSS columns + byline grid + drop cap + kirmizi editorial vurgu."
+---
+
+typography:
+  display: [Instrument-Serif, Tiempos-Headline, Marfa]
+  body: [IBM-Plex-Serif, National-2, Neue-Haas-Unica]
+  mono: [IBM-Plex-Mono, Operator-Mono]
+  drop_cap: [PP-Editorial-New, Instrument-Serif-Bold]
+  variable_axes: [wght, ital]
+  pair_ids: [TY10, TY19, TY25]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - newsprint-cream        # #F5F1E8 paper + #131313 ink + #C43D2B editorial red (mockup-b)
+  - pure-off-black         # PL33 fotograf sektor
+  - aged-paper
+  - black-ink-only         # no accent, pure typography
+
+motion_primitives:
+  preferred: [MO10, MO7]    # print-first (0 motion), View Transitions slide
+  acceptable: [MO3, MO4]
+  forbidden: [MO1-aggressive, MO6-heavy-stagger, MO11-kinetic-opsz, MO12-3d-camera, MO2-lenis-dramatic]
+
+motion_stack:
+  required: []              # print-first, motion opsiyonel
+  optional: [View Transitions API, CSS scroll-driven, Framer Motion v12 (layout minimal)]
+  forbidden: [parallax, glassmorphism, aurora-drift, scramble, custom-cursor]
+
+preferred_heroes: [HR6, HR11]         # newspaper hed, brochure cover
+preferred_layouts: [L5, L2, L6]       # 3-col CSS columns, asymmetric, single col
+preferred_footers: [FT4, FT6]         # colophon (editorial signature), signature
+
+forbidden:
+  - parallax-everything
+  - glassmorphism
+  - dark-bg-default
+  - any-gold-luxury
+  - orange-coral-warm-organic
+  - aurora-gradient
+  - custom-cursor
+  - noise-turbulence-overlay
+  - kpi-bento-card
+  - box-shadow-dramatic
+  - gradient-text
+
+reference_impls:
+  - file: mockups/b-off-white-editorial/index.html
+    score: 5/5
+    note: "Mockup B — Instrument Serif italic display + IBM Plex Serif body + masthead 3px rule + 4-col byline grid + drop cap + PP Editorial fallback."
+  - file: templates/08-fotograf/index.html
+    score: 4/5
+    note: "Fotograf editorial hibrit — PL33 pure off-black + IBM Plex Sans monolithic + masonry."
+
+trends_2026:
+  bento_2_0: NO
+  kinetic_typography: NO
+  maximalism: NO
+  scroll_triggered_3d: NO
+  variable_fonts: PARTIAL          # wght + ital axis
+  view_transitions_api: YES        # slide transitions OK
+  print-first-discipline: YES
+
+compatible_sectors: [blog-icerik, fotograf, yayinevi, editorial-icerik, dergi, gazete, kitap, akademi, restoran-terroir, mucevher-zanaat]
+incompatible_sectors: [insaat-endustriyel, spor-arena, gaming, fintech-tech]
+
+sample_palette:
+  paper: "#F5F1E8"             # newsprint cream
+  paper_dark: "#E5DFCE"
+  ink: "#131313"
+  ink_soft: "#4A4A48"
+  rule: "#131313"
+  red: "#C43D2B"               # editorial kirmizi — gold DEGIL, orange DEGIL
+sample_font_pair: "Instrument Serif italic + IBM Plex Serif 300-500 + IBM Plex Mono"
+
+tier_fit: [1, 2]
+notes:
+  - "Imza: 3-4px masthead rule + byline 4-col grid + drop cap (PP Editorial) + justify body + column-count: 3."
+  - "Motion <0.5s, mostly STATIC. View Transitions slide OK ama parallax yasak."
+  - "Kirmizi (#C43D2B) editorial accent — gold/orange/coral ile karistirma."

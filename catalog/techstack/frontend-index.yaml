@@ -1,0 +1,911 @@
+version: "1.0"
+last_updated: "2026-04-19"
+total_research_files: 82
+total_lines: 250518
+total_size_mb: 6.5
+source_catalog: FRONTEND-TECHSTACK.md
+research_root: "Mobilyacı/3d-demo/research/"
+description: "Frontend research dosyalarinin machine-readable indeksi. Claude her feature icin buraya bakip ilgili research dosyasina gider."
+
+entries:
+  - id: accessibility-wcag-aria-2026
+    file: Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    lines: 5578
+    size_kb: 146
+    topic: "WCAG 2.2, ARIA patterns, inclusive design, a11y testing"
+    categories: [accessibility, a11y, wcag, forms]
+    keywords: [aria, wcag, accessibility, focus-trap, keyboard-nav, inclusive-design, screen-reader]
+    usage_context: ["her projede mandatory Lighthouse a11y check", "Tier 4+ AAA zorunlu", "form component yazilirken"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, frontend-design, design-council]
+
+  - id: advanced-email-templates-flows-2026
+    file: Mobilyacı/3d-demo/research/advanced-email-templates-flows-2026.md
+    lines: 3744
+    size_kb: 111
+    topic: "E-commerce email, marketing flows, automated campaigns"
+    categories: [email, marketing, automation, e-commerce]
+    keywords: [react-email, resend, drip-campaign, transactional, abandoned-cart, nurture-flow]
+    usage_context: ["Tier 3+ e-ticaret", "email marketing aktif ise", "order confirmation / shipping notification"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder, launch-strategy]
+
+  - id: advanced-i18n-routing-localization-2026
+    file: Mobilyacı/3d-demo/research/advanced-i18n-routing-localization-2026.md
+    lines: 2400
+    size_kb: 62
+    topic: "i18n routing, content translation, localization workflows"
+    categories: [i18n, localization, routing, seo]
+    keywords: [next-intl, locale-routing, rtl, translation, cjk, locale-switch]
+    usage_context: ["coklu dil site", "uluslararasi musteri", "TR/EN/AR zorunlu"]
+    linked_atoms: []
+    linked_skills: [frontend-design, seo-audit]
+
+  - id: ai-integration-vercel-sdk-claude-2026
+    file: Mobilyacı/3d-demo/research/ai-integration-vercel-sdk-claude-2026.md
+    lines: 3223
+    size_kb: 85
+    topic: "Vercel AI SDK, Claude API, OpenAI, LangChain, AI features"
+    categories: [ai, claude-api, sdk, integration]
+    keywords: [vercel-ai-sdk, claude-api, openai, langchain, streaming, tool-calling]
+    usage_context: ["AI chatbot", "AI destekli arama", "content generation", "Claude API entegrasyonu"]
+    linked_atoms: []
+    linked_skills: [claude-api, rag-architect, senior-prompt-engineer]
+
+  - id: analytics-tracking-ab-testing-2026
+    file: Mobilyacı/3d-demo/research/analytics-tracking-ab-testing-2026.md
+    lines: 2527
+    size_kb: 63
+    topic: "Analytics, event tracking, A/B testing, user behavior"
+    categories: [analytics, tracking, ab-testing, conversion]
+    keywords: [ga4, meta-pixel, posthog, amplitude, event-tracking, funnel]
+    usage_context: ["her teslim projede", "conversion optimize", "A/B test aktif"]
+    linked_atoms: []
+    linked_skills: [launch-strategy, seo-audit]
+
+  - id: animation-gsap-framer-lenis-masterclass-2026
+    file: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    lines: 2654
+    size_kb: 65
+    topic: "GSAP + Framer Motion + Lenis advanced animation patterns"
+    categories: [animation, gsap, framer-motion, scroll, lenis]
+    keywords: [gsap, scrolltrigger, splittext, framer-motion, lenis, scroll-animation, timeline]
+    usage_context: ["Tier 3+ premium animation", "scroll effect, hover, page transition", "micro-interaction"]
+    linked_atoms: [MO1, MO2, MO6]
+    linked_skills: [frontend-design, design-council]
+
+  - id: auth-nextauth-supabase-2026
+    file: Mobilyacı/3d-demo/research/auth-nextauth-supabase-2026.md
+    lines: 3210
+    size_kb: 87
+    topic: "Authentication, Next.js 16, e-commerce auth patterns"
+    categories: [auth, authentication, supabase, nextauth]
+    keywords: [nextauth, supabase-auth, jwt, session, oauth, magic-link]
+    usage_context: ["e-ticaret login", "admin panel", "user account"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder, code-reviewer]
+
+  - id: auth-patterns-supabase-nextauth-2026
+    file: Mobilyacı/3d-demo/research/auth-patterns-supabase-nextauth-2026.md
+    lines: 4871
+    size_kb: 119
+    topic: "Supabase Auth, NextAuth v5, Clerk, auth security"
+    categories: [auth, security, supabase, nextauth, clerk]
+    keywords: [supabase-auth, nextauth-v5, clerk, mfa, rls, session-security]
+    usage_context: ["multi-tenant SaaS", "advanced auth patterns", "security hardening"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, e-commerce-builder]
+
+  - id: caching-redis-edge-strategies-2026
+    file: Mobilyacı/3d-demo/research/caching-redis-edge-strategies-2026.md
+    lines: 2199
+    size_kb: 58
+    topic: "Redis, edge cache, ISR, SWR, performance patterns"
+    categories: [cache, performance, redis, edge]
+    keywords: [redis, upstash, isr, swr, edge-cache, rate-limit]
+    usage_context: ["yuksek trafik site", "performance optimization", "Tier 3+ projeler"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+
+  - id: charts-dataviz-recharts-nivo-2026
+    file: Mobilyacı/3d-demo/research/charts-dataviz-recharts-nivo-2026.md
+    lines: 2655
+    size_kb: 71
+    topic: "Recharts, Nivo, Tremor, dashboard charts"
+    categories: [charts, dataviz, dashboard]
+    keywords: [recharts, nivo, tremor, chart, kpi, dashboard-viz]
+    usage_context: ["admin panel", "dashboard", "analytics sayfasi"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: clipboard-share-social-2026
+    file: Mobilyacı/3d-demo/research/clipboard-share-social-2026.md
+    lines: 2315
+    size_kb: 59
+    topic: "Clipboard API, copy/paste, Share API, social sharing"
+    categories: [clipboard, share, social]
+    keywords: [clipboard-api, share-api, copy-to-clipboard, social-share]
+    usage_context: ["urun paylasim", "referans kod", "social share button"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: component-library-storybook-docs-2026
+    file: Mobilyacı/3d-demo/research/component-library-storybook-docs-2026.md
+    lines: 2663
+    size_kb: 62
+    topic: "Component library, Storybook, documentation, publishing"
+    categories: [component-library, storybook, documentation]
+    keywords: [storybook, component-library, design-system, npm-publish, docs]
+    usage_context: ["internal design system", "reusable component", "monorepo icin shared UI"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: cookie-consent-gdpr-kvkk-privacy-2026
+    file: Mobilyacı/3d-demo/research/cookie-consent-gdpr-kvkk-privacy-2026.md
+    lines: 2181
+    size_kb: 65
+    topic: "Cookie consent, GDPR, KVKK, privacy compliance"
+    categories: [privacy, gdpr, kvkk, compliance]
+    keywords: [cookie-consent, gdpr, kvkk, privacy-banner, cmp]
+    usage_context: ["TR yasal zorunlu", "AB kullanicisi varsa GDPR", "her teslim icin"]
+    linked_atoms: []
+    linked_skills: [launch-strategy, code-reviewer]
+
+  - id: css-scroll-driven-view-transitions-2026
+    file: Mobilyacı/3d-demo/research/css-scroll-driven-view-transitions-2026.md
+    lines: 3224
+    size_kb: 78
+    topic: "CSS scroll-driven animations, View Transitions API"
+    categories: [animation, css, scroll, view-transitions]
+    keywords: [scroll-timeline, view-transitions, scroll-driven, startviewtransition, animation-timeline]
+    usage_context: ["modern browser", "Next.js 16 page transition", "scroll-linked animation"]
+    linked_atoms: [MO6, MO2]
+    linked_skills: [frontend-design]
+
+  - id: dark-mode-theming-design-tokens-2026
+    file: Mobilyacı/3d-demo/research/dark-mode-theming-design-tokens-2026.md
+    lines: 3334
+    size_kb: 86
+    topic: "next-themes, Tailwind v4, OKLCH, design tokens, Style Dictionary"
+    categories: [dark-mode, theming, design-tokens, tailwind]
+    keywords: [next-themes, tailwind-v4, oklch, design-tokens, style-dictionary, theme-switch]
+    usage_context: ["her modern site", "design system", "white-label SaaS"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: database-drizzle-prisma-supabase-2026
+    file: Mobilyacı/3d-demo/research/database-drizzle-prisma-supabase-2026.md
+    lines: 4158
+    size_kb: 108
+    topic: "Drizzle ORM, Prisma 6/7, Supabase PostgreSQL, data patterns"
+    categories: [database, orm, drizzle, prisma, supabase]
+    keywords: [drizzle, prisma, supabase, postgresql, migration, rls]
+    usage_context: ["backend data layer", "schema design", "migration yonetimi"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder, code-reviewer]
+
+  - id: date-time-calendar-scheduling-2026
+    file: Mobilyacı/3d-demo/research/date-time-calendar-scheduling-2026.md
+    lines: 2654
+    size_kb: 72
+    topic: "Date/time, calendar components, scheduling patterns"
+    categories: [date-time, calendar, scheduling]
+    keywords: [date-fns, calendar, scheduling, react-day-picker, time-picker]
+    usage_context: ["randevu sistemi", "takvim", "booking flow"]
+    linked_atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+
+  - id: deployment-cicd-docker-devops-2026
+    file: Mobilyacı/3d-demo/research/deployment-cicd-docker-devops-2026.md
+    lines: 3716
+    size_kb: 86
+    topic: "Vercel, Docker, GitHub Actions, CI/CD, DevOps"
+    categories: [deployment, ci-cd, docker, devops]
+    keywords: [vercel, docker, github-actions, ci-cd, deploy]
+    usage_context: ["her teslim oncesi", "CI/CD kurulum", "production deploy"]
+    linked_atoms: []
+    linked_skills: [docker-development, launch-strategy]
+
+  - id: drag-drop-dndkit-sortable-2026
+    file: Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+    lines: 2433
+    size_kb: 59
+    topic: "DnD Kit, sortable lists, Kanban boards, file reordering"
+    categories: [drag-drop, dnd, interaction]
+    keywords: [dnd-kit, sortable, kanban, drag-drop, reorder]
+    usage_context: ["admin panel sortable list", "Kanban board", "file upload reorder"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: drizzle-vs-prisma-2026
+    file: Mobilyacı/3d-demo/research/drizzle-vs-prisma-2026.md
+    lines: 1854
+    size_kb: 55
+    topic: "Drizzle ORM vs Prisma 6 karsilastirma"
+    categories: [database, orm, drizzle, prisma, comparison]
+    keywords: [drizzle, prisma, orm-comparison, benchmark]
+    usage_context: ["proje baslangicinda ORM secimi", "migration planlama"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: ecommerce-supabase-payment-turkey-2026
+    file: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    lines: 5834
+    size_kb: 171
+    topic: "Supabase backend, iyzico/PayTR, cart, checkout"
+    categories: [e-commerce, payment, supabase, turkey]
+    keywords: [supabase, iyzico, paytr, cart, checkout, taksit]
+    usage_context: ["TR e-ticaret projeleri (ZORUNLU)", "sepet + odeme", "Fatih Bey Mucevher tarzi musteri"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder, code-reviewer]
+
+  - id: email-notification-react-email-2026
+    file: Mobilyacı/3d-demo/research/email-notification-react-email-2026.md
+    lines: 2638
+    size_kb: 83
+    topic: "React Email, Resend, transactional email, notifications"
+    categories: [email, notification, react-email, resend]
+    keywords: [react-email, resend, transactional-email, email-template, smtp]
+    usage_context: ["order confirmation", "reset password", "transactional emails"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: error-handling-logging-monitoring-2026
+    file: Mobilyacı/3d-demo/research/error-handling-logging-monitoring-2026.md
+    lines: 3155
+    size_kb: 75
+    topic: "Error handling, Sentry, logging, monitoring, debugging"
+    categories: [error-handling, monitoring, sentry, logging]
+    keywords: [sentry, error-boundary, logging, monitoring, stack-trace]
+    usage_context: ["production projeler", "error observability", "Tier 3+ icin zorunlu"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+
+  - id: file-upload-storage-cdn-2026
+    file: Mobilyacı/3d-demo/research/file-upload-storage-cdn-2026.md
+    lines: 2715
+    size_kb: 74
+    topic: "File upload, Supabase Storage, CDN, asset management"
+    categories: [file-upload, storage, cdn, supabase-storage]
+    keywords: [file-upload, supabase-storage, r2, cdn, signed-url, resumable]
+    usage_context: ["admin panel upload", "user avatar", "gallery upload"]
+    linked_atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+
+  - id: form-datatable-dashboard-2026
+    file: Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+    lines: 4081
+    size_kb: 108
+    topic: "React Hook Form, Zod, TanStack Table, dashboard patterns"
+    categories: [form, datatable, dashboard, admin]
+    keywords: [react-hook-form, zod, tanstack-table, dashboard, crud]
+    usage_context: ["admin panel", "dashboard ui", "CRUD views"]
+    linked_atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+
+  - id: geolocation-address-autocomplete-2026
+    file: Mobilyacı/3d-demo/research/geolocation-address-autocomplete-2026.md
+    lines: 2850
+    size_kb: 77
+    topic: "Geolocation, address autocomplete, location features"
+    categories: [geolocation, autocomplete, location, address]
+    keywords: [geolocation, address-autocomplete, google-places, geocoding]
+    usage_context: ["checkout adres", "shipping address", "nearest store"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: gradient-glass-visual-effects-2026
+    file: Mobilyacı/3d-demo/research/gradient-glass-visual-effects-2026.md
+    lines: 3647
+    size_kb: 93
+    topic: "Gradient mesh, glassmorphism, neomorphism, visual effects"
+    categories: [visual-effects, gradient, glassmorphism, design]
+    keywords: [gradient-mesh, glassmorphism, neomorphism, backdrop-filter, aurora]
+    usage_context: ["premium site visual", "hero background", "Tier 4+ aesthetic"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: headless-cms-sanity-payload-2026
+    file: Mobilyacı/3d-demo/research/headless-cms-sanity-payload-2026.md
+    lines: 3339
+    size_kb: 81
+    topic: "Sanity, Payload CMS, Keystatic, content management"
+    categories: [cms, headless-cms, sanity, payload]
+    keywords: [sanity, payload, keystatic, headless-cms, groq, visual-editing]
+    usage_context: ["blog / icerik yonetimi", "musteri content update", "Prismic alternatif"]
+    linked_atoms: []
+    linked_skills: [content-strategy, e-commerce-builder]
+
+  - id: i18n-seo-meta-turkish-web-2026
+    file: Mobilyacı/3d-demo/research/i18n-seo-meta-turkish-web-2026.md
+    lines: 3325
+    size_kb: 87
+    topic: "i18n, SEO, meta tags, Turkish web optimization"
+    categories: [i18n, seo, meta-tags, turkish]
+    keywords: [next-intl, seo-tr, meta-tags, hreflang, turkish-web]
+    usage_context: ["TR odakli SEO", "TR + EN site", "yerel arama"]
+    linked_atoms: []
+    linked_skills: [seo-audit, content-strategy]
+
+  - id: image-editor-crop-filter-canvas-2026
+    file: Mobilyacı/3d-demo/research/image-editor-crop-filter-canvas-2026.md
+    lines: 2714
+    size_kb: 77
+    topic: "Image editing, crop, filter, canvas manipulation"
+    categories: [image-editor, canvas, filter, crop]
+    keywords: [crop, filter, canvas, fabric-js, konva, image-edit]
+    usage_context: ["user upload crop", "avatar editor", "image filter"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: image-media-video-optimization-2026
+    file: Mobilyacı/3d-demo/research/image-media-video-optimization-2026.md
+    lines: 4511
+    size_kb: 109
+    topic: "next/image, video optimization, lazy loading, formats"
+    categories: [image, media, video, optimization, performance]
+    keywords: [next-image, avif, webp, lazy-load, video-optimize, mux]
+    usage_context: ["her projede zorunlu", "performans", "Core Web Vitals"]
+    linked_atoms: []
+    linked_skills: [launch-strategy, code-reviewer]
+
+  - id: image-optimization-cdn-2026
+    file: Mobilyacı/3d-demo/research/image-optimization-cdn-2026.md
+    lines: 2220
+    size_kb: 64
+    topic: "Image optimization, CDN strategy, e-commerce"
+    categories: [image, cdn, optimization, e-commerce]
+    keywords: [image-cdn, cloudflare, r2, image-optimize, ecommerce-image]
+    usage_context: ["e-ticaret urun fotograflari", "CDN strategy", "Cloudflare R2"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: inventory-stock-management-2026
+    file: Mobilyacı/3d-demo/research/inventory-stock-management-2026.md
+    lines: 2690
+    size_kb: 80
+    topic: "Inventory management, stock tracking, variants"
+    categories: [inventory, stock, e-commerce, admin]
+    keywords: [inventory, stock, variants, low-stock-alert, multi-warehouse]
+    usage_context: ["e-ticaret admin", "stok yonetimi", "multi-location"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: keyboard-shortcuts-hotkeys-2026
+    file: Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+    lines: 1977
+    size_kb: 54
+    topic: "Keyboard shortcuts, hotkeys, keyboard-first UX"
+    categories: [keyboard, hotkeys, accessibility]
+    keywords: [hotkeys, cmdk, keyboard-shortcut, keyboard-first, command-palette]
+    usage_context: ["admin panel productivity", "command palette", "keyboard-first app"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: landing-page-conversion-patterns-2026
+    file: Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+    lines: 3380
+    size_kb: 108
+    topic: "Landing page, conversion patterns, hero, section templates"
+    categories: [landing-page, conversion, hero, cta]
+    keywords: [landing-page, hero, cta, social-proof, ab-test, conversion]
+    usage_context: ["SaaS landing", "marketing site", "urun tanitim sayfasi"]
+    linked_atoms: [HR1, HR2, HR3, HR5]
+    linked_skills: [frontend-design, launch-strategy, design-council]
+
+  - id: loading-skeleton-shimmer-states-2026
+    file: Mobilyacı/3d-demo/research/loading-skeleton-shimmer-states-2026.md
+    lines: 2592
+    size_kb: 69
+    topic: "Skeleton, shimmer, spinner, progress, Suspense"
+    categories: [loading, skeleton, shimmer, ux]
+    keywords: [skeleton, shimmer, suspense, spinner, progress]
+    usage_context: ["data-fetch ui", "Suspense fallback", "hosted UI state"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: maps-location-contact-2026
+    file: Mobilyacı/3d-demo/research/maps-location-contact-2026.md
+    lines: 2210
+    size_kb: 64
+    topic: "Maps, Google Business, contact pages, location"
+    categories: [maps, location, contact]
+    keywords: [google-maps, mapbox, leaflet, store-locator, contact-page]
+    usage_context: ["magaza konumu", "contact page", "branch locator"]
+    linked_atoms: []
+    linked_skills: [frontend-design, seo-audit]
+
+  - id: mdx-blog-documentation-2026
+    file: Mobilyacı/3d-demo/research/mdx-blog-documentation-2026.md
+    lines: 3225
+    size_kb: 79
+    topic: "MDX v3, blog systems, documentation sites"
+    categories: [mdx, blog, documentation, content]
+    keywords: [mdx, blog, docs-site, syntax-highlight, toc]
+    usage_context: ["blog kurulum", "documentation site", "developer blog"]
+    linked_atoms: []
+    linked_skills: [content-strategy, programmatic-seo]
+
+  - id: micro-interactions-hover-cursor-2026
+    file: Mobilyacı/3d-demo/research/micro-interactions-hover-cursor-2026.md
+    lines: 4668
+    size_kb: 114
+    topic: "Micro-interactions, hover effects, cursor, magnetic UI"
+    categories: [micro-interaction, hover, cursor, animation]
+    keywords: [micro-interaction, hover, magnetic, cursor, custom-cursor, ripple]
+    usage_context: ["Tier 4+ premium", "every polished site", "cursor effect / hover state"]
+    linked_atoms: [MO6, MO1]
+    linked_skills: [frontend-design, design-council]
+
+  - id: mobile-responsive-pwa-touch-2026
+    file: Mobilyacı/3d-demo/research/mobile-responsive-pwa-touch-2026.md
+    lines: 3536
+    size_kb: 84
+    topic: "Responsive design, PWA, touch gestures, mobile optimization"
+    categories: [mobile, responsive, pwa, touch]
+    keywords: [responsive, pwa, service-worker, touch-gesture, mobile-first]
+    usage_context: ["her modern site mandatory", "mobile-first musteri", "PWA toggle"]
+    linked_atoms: []
+    linked_skills: [frontend-design, launch-strategy]
+
+  - id: modal-dialog-sheet-drawer-2026
+    file: Mobilyacı/3d-demo/research/modal-dialog-sheet-drawer-2026.md
+    lines: 3109
+    size_kb: 83
+    topic: "Modal, dialog, sheet, drawer, overlay patterns"
+    categories: [modal, dialog, sheet, overlay, ui-patterns]
+    keywords: [modal, dialog, drawer, sheet, overlay, radix-dialog, vaul]
+    usage_context: ["cart drawer", "modal form", "mobile sheet"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: monorepo-turborepo-pnpm-2026
+    file: Mobilyacı/3d-demo/research/monorepo-turborepo-pnpm-2026.md
+    lines: 3453
+    size_kb: 75
+    topic: "Turborepo, pnpm workspaces, shared packages"
+    categories: [monorepo, turborepo, pnpm, architecture]
+    keywords: [turborepo, pnpm, monorepo, shared-packages, workspace]
+    usage_context: ["multi-app project", "shared UI library", "StandartTIMWeb-tarzi"]
+    linked_atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+
+  - id: multi-tenant-whitelabel-saas-2026
+    file: Mobilyacı/3d-demo/research/multi-tenant-whitelabel-saas-2026.md
+    lines: 2165
+    size_kb: 58
+    topic: "Multi-tenant architecture, white-label, SaaS patterns"
+    categories: [multi-tenant, saas, white-label, architecture]
+    keywords: [multi-tenant, white-label, subdomain-routing, tenant-isolation]
+    usage_context: ["SaaS product", "B2B platform", "tenant-based pricing"]
+    linked_atoms: []
+    linked_skills: [pricing-strategy, code-reviewer]
+
+  - id: navigation-menu-sidebar-patterns-2026
+    file: Mobilyacı/3d-demo/research/navigation-menu-sidebar-patterns-2026.md
+    lines: 1913
+    size_kb: 61
+    topic: "Mega menu, sidebar, command palette, header design"
+    categories: [navigation, menu, sidebar, header]
+    keywords: [mega-menu, sidebar, command-palette, header-design, nav-patterns]
+    usage_context: ["navigasyon tasarimi", "admin sidebar", "marketing site header"]
+    linked_atoms: [H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10]
+    linked_skills: [frontend-design, design-council]
+
+  - id: nextjs-16-advanced-patterns-2026
+    file: Mobilyacı/3d-demo/research/nextjs-16-advanced-patterns-2026.md
+    lines: 3112
+    size_kb: 75
+    topic: "RSC, streaming, edge, performance, Server Actions"
+    categories: [nextjs, rsc, streaming, edge, architecture]
+    keywords: [nextjs-16, rsc, server-actions, streaming, edge-runtime, turbopack]
+    usage_context: ["Next.js 16 proje (ZORUNLU default)", "advanced patterns", "performance"]
+    linked_atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+
+  - id: notification-system-2026
+    file: Mobilyacı/3d-demo/research/notification-system-2026.md
+    lines: 3581
+    size_kb: 105
+    topic: "E-ticaret bildirim sistemi, push, email, in-app"
+    categories: [notification, push, email, in-app]
+    keywords: [notification, push-notification, web-push, in-app, email-notify]
+    usage_context: ["e-ticaret bildirim", "siparis durumu", "kampanya duyurusu"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: notification-toast-badge-alert-2026
+    file: Mobilyacı/3d-demo/research/notification-toast-badge-alert-2026.md
+    lines: 2224
+    size_kb: 61
+    topic: "Toast, snackbar, banner, badge, alert patterns"
+    categories: [notification, toast, badge, alert, ui-patterns]
+    keywords: [toast, sonner, snackbar, badge, alert-banner]
+    usage_context: ["success/error feedback", "top banner", "inline alerts"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: page-transitions-nextjs-2026
+    file: Mobilyacı/3d-demo/research/page-transitions-nextjs-2026.md
+    lines: 4687
+    size_kb: 117
+    topic: "Page transitions, route animations, Next.js 16"
+    categories: [page-transition, animation, nextjs, routing]
+    keywords: [page-transition, view-transitions, barba-js, taxi-js, route-animation]
+    usage_context: ["premium page transition", "Tier 4+ aesthetic", "agency-style site"]
+    linked_atoms: [MO6]
+    linked_skills: [frontend-design, design-council]
+
+  - id: payment-gateways-turkey-2026
+    file: Mobilyacı/3d-demo/research/payment-gateways-turkey-2026.md
+    lines: 2014
+    size_kb: 60
+    topic: "iyzico, PayTR, Stripe, taksit, 3D Secure"
+    categories: [payment, turkey, iyzico, paytr, stripe]
+    keywords: [iyzico, paytr, stripe, taksit, 3d-secure, payment-gateway]
+    usage_context: ["TR e-ticaret (ZORUNLU)", "subscription billing", "3D Secure zorunlu"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder, code-reviewer]
+
+  - id: portfolio-showcase-creative-2026
+    file: Mobilyacı/3d-demo/research/portfolio-showcase-creative-2026.md
+    lines: 2991
+    size_kb: 78
+    topic: "Portfolio, case study, creative patterns, agency design"
+    categories: [portfolio, creative, agency, case-study]
+    keywords: [portfolio, case-study, creative, agency-style, awwwards]
+    usage_context: ["creative agency site", "portfolio showcase", "Tier 4+ aesthetic"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: print-pdf-export-screenshot-2026
+    file: Mobilyacı/3d-demo/research/print-pdf-export-screenshot-2026.md
+    lines: 2623
+    size_kb: 64
+    topic: "Print, PDF export, screenshot, document generation"
+    categories: [print, pdf, screenshot, export]
+    keywords: [print-css, pdf-export, jspdf, html2canvas, screenshot]
+    usage_context: ["rapor export", "invoice PDF", "receipt print"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: react-19-complete-guide-2026
+    file: Mobilyacı/3d-demo/research/react-19-complete-guide-2026.md
+    lines: 2571
+    size_kb: 63
+    topic: "React 19 hooks, features, compiler, migration"
+    categories: [react, react-19, hooks, framework]
+    keywords: [react-19, use-hook, actions, useoptimistic, compiler]
+    usage_context: ["React 19 projeler (ZORUNLU default)", "migration from 18", "feature overview"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: react-19-features-2026
+    file: Mobilyacı/3d-demo/research/react-19-features-2026.md
+    lines: 1767
+    size_kb: 47
+    topic: "React 19 features & patterns"
+    categories: [react, react-19, features, patterns]
+    keywords: [react-19, features, patterns, migration]
+    usage_context: ["React 19 deep-dive", "Complete guide tamamlayici"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: react-hook-form-zod-2026
+    file: Mobilyacı/3d-demo/research/react-hook-form-zod-2026.md
+    lines: 2816
+    size_kb: 77
+    topic: "React Hook Form v7, Zod validation, Next.js e-commerce"
+    categories: [form, validation, react-hook-form, zod]
+    keywords: [react-hook-form, zod, form-validation, schema-validation]
+    usage_context: ["her form component", "schema-based validation", "Server Actions form"]
+    linked_atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+
+  - id: realtime-chat-full-implementation-2026
+    file: Mobilyacı/3d-demo/research/realtime-chat-full-implementation-2026.md
+    lines: 3125
+    size_kb: 84
+    topic: "Real-time chat, typing indicators, read receipts, reactions"
+    categories: [chat, realtime, websocket, messaging]
+    keywords: [realtime-chat, typing-indicator, read-receipt, reactions, supabase-realtime]
+    usage_context: ["canli destek chat", "messaging feature", "customer support"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: realtime-websocket-sse-collab-2026
+    file: Mobilyacı/3d-demo/research/realtime-websocket-sse-collab-2026.md
+    lines: 5683
+    size_kb: 143
+    topic: "WebSocket, SSE, Supabase Realtime, Liveblocks, collaboration"
+    categories: [realtime, websocket, sse, collaboration]
+    keywords: [websocket, sse, supabase-realtime, liveblocks, partykit, collab]
+    usage_context: ["collab features", "live cursors", "realtime dashboard"]
+    linked_atoms: []
+    linked_skills: [frontend-design, rag-architect]
+
+  - id: responsive-tables-data-display-2026
+    file: Mobilyacı/3d-demo/research/responsive-tables-data-display-2026.md
+    lines: 3060
+    size_kb: 86
+    topic: "Responsive tables, data display, complex list patterns"
+    categories: [table, data-display, responsive]
+    keywords: [responsive-table, tanstack-table, data-display, list-view]
+    usage_context: ["admin panel table", "dashboard data display", "invoice table"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: search-autocomplete-2026
+    file: Mobilyacı/3d-demo/research/search-autocomplete-2026.md
+    lines: 3458
+    size_kb: 102
+    topic: "E-commerce search, autocomplete, fuzzy search"
+    categories: [search, autocomplete, e-commerce]
+    keywords: [search, autocomplete, fuzzy-search, meilisearch, algolia, typesense]
+    usage_context: ["e-ticaret urun arama", "site search", "command palette"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: search-autocomplete-filter-2026
+    file: Mobilyacı/3d-demo/research/search-autocomplete-filter-2026.md
+    lines: 2984
+    size_kb: 86
+    topic: "Search, autocomplete, filtering, faceted navigation"
+    categories: [search, filter, faceted, e-commerce]
+    keywords: [search-filter, faceted-search, filter-sidebar, sort]
+    usage_context: ["urun listesi filter", "faceted navigation", "advanced filter UI"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+
+  - id: sitemap-robots-structured-data-seo-2026
+    file: Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+    lines: 3081
+    size_kb: 78
+    topic: "Sitemap, robots.txt, JSON-LD structured data, crawl optimization"
+    categories: [seo, sitemap, structured-data, json-ld]
+    keywords: [sitemap, robots-txt, json-ld, schema, structured-data, crawl]
+    usage_context: ["her teslim (ZORUNLU)", "SEO mandatory", "rich results"]
+    linked_atoms: []
+    linked_skills: [seo-audit, schema-markup]
+
+  - id: state-machines-xstate-workflows-2026
+    file: Mobilyacı/3d-demo/research/state-machines-xstate-workflows-2026.md
+    lines: 2353
+    size_kb: 51
+    topic: "XState v5, workflows, complex UI state"
+    categories: [state-machine, xstate, workflow]
+    keywords: [xstate, state-machine, workflow, fsm]
+    usage_context: ["complex onboarding", "multi-step wizard", "booking flow"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: state-management-patterns-2026
+    file: Mobilyacı/3d-demo/research/state-management-patterns-2026.md
+    lines: 4126
+    size_kb: 109
+    topic: "Zustand, Jotai, TanStack Query, URL state, React 19"
+    categories: [state, zustand, jotai, tanstack-query]
+    keywords: [zustand, jotai, tanstack-query, nuqs, url-state, valtio]
+    usage_context: ["her Next.js proje (ZORUNLU)", "client state mimarisi", "server state"]
+    linked_atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+
+  - id: stepper-wizard-multistep-onboarding-2026
+    file: Mobilyacı/3d-demo/research/stepper-wizard-multistep-onboarding-2026.md
+    lines: 2288
+    size_kb: 66
+    topic: "Stepper, wizard, multi-step forms, onboarding flows"
+    categories: [stepper, wizard, onboarding, multi-step]
+    keywords: [stepper, wizard, multi-step-form, onboarding]
+    usage_context: ["onboarding flow", "kayit wizard", "checkout steps"]
+    linked_atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+
+  - id: stripe-subscription-recurring-billing-2026
+    file: Mobilyacı/3d-demo/research/stripe-subscription-recurring-billing-2026.md
+    lines: 2592
+    size_kb: 74
+    topic: "Stripe subscriptions, recurring billing, SaaS payment"
+    categories: [stripe, subscription, billing, saas]
+    keywords: [stripe, subscription, recurring, saas, billing-portal]
+    usage_context: ["SaaS aylik/yillik odeme", "recurring revenue", "trial periods"]
+    linked_atoms: []
+    linked_skills: [pricing-strategy, e-commerce-builder]
+
+  - id: svg-lottie-rive-animation-2026
+    file: Mobilyacı/3d-demo/research/svg-lottie-rive-animation-2026.md
+    lines: 3386
+    size_kb: 90
+    topic: "SVG animation, Lottie, Rive, motion design"
+    categories: [svg, lottie, rive, animation]
+    keywords: [svg-animation, lottie, rive, motion-design, after-effects]
+    usage_context: ["illustrated animation", "loader animation", "micro-moment"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: tabs-accordion-collapsible-panels-2026
+    file: Mobilyacı/3d-demo/research/tabs-accordion-collapsible-panels-2026.md
+    lines: 3093
+    size_kb: 86
+    topic: "Tabs, accordion, collapsible, content organization"
+    categories: [tabs, accordion, collapsible, ui-patterns]
+    keywords: [tabs, accordion, collapsible, radix-tabs, radix-accordion]
+    usage_context: ["FAQ sayfasi", "urun detay tabs", "admin panel tabs"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: tailwind-v4-advanced-design-system-2026
+    file: Mobilyacı/3d-demo/research/tailwind-v4-advanced-design-system-2026.md
+    lines: 3467
+    size_kb: 81
+    topic: "Tailwind v4 advanced patterns, plugins, design system"
+    categories: [tailwind, design-system, css]
+    keywords: [tailwind-v4, theme-directive, css-first, plugins, design-system]
+    usage_context: ["her modern proje (ZORUNLU default)", "design token setup", "design system mimari"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: tanstack-query-2026
+    file: Mobilyacı/3d-demo/research/tanstack-query-2026.md
+    lines: 1995
+    size_kb: 55
+    topic: "TanStack Query v5, App Router, e-commerce data fetching"
+    categories: [tanstack-query, data-fetching, server-state]
+    keywords: [tanstack-query, react-query, data-fetching, cache, optimistic]
+    usage_context: ["server state sync", "data-heavy SPA", "infinite scroll"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: testing-vitest-playwright-2026
+    file: Mobilyacı/3d-demo/research/testing-vitest-playwright-2026.md
+    lines: 2691
+    size_kb: 68
+    topic: "Vitest, Playwright, MSW, testing stack"
+    categories: [testing, vitest, playwright, msw]
+    keywords: [vitest, playwright, msw, testing, e2e, unit-test]
+    usage_context: ["her production teslim", "e2e smoke test", "component test"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+
+  - id: testing-vitest-playwright-ci-2026
+    file: Mobilyacı/3d-demo/research/testing-vitest-playwright-ci-2026.md
+    lines: 4240
+    size_kb: 104
+    topic: "Vitest, Playwright, visual regression, CI/CD test automation"
+    categories: [testing, ci-cd, visual-regression, e2e]
+    keywords: [vitest, playwright, ci-cd, visual-regression, test-automation]
+    usage_context: ["CI/CD kurulum", "visual regression testing", "Tier 3+ projeler"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+
+  - id: tooltip-popover-dropdown-floating-2026
+    file: Mobilyacı/3d-demo/research/tooltip-popover-dropdown-floating-2026.md
+    lines: 3543
+    size_kb: 96
+    topic: "Tooltip, popover, dropdown, context menu, Floating UI"
+    categories: [tooltip, popover, dropdown, floating-ui, ui-patterns]
+    keywords: [tooltip, popover, dropdown, floating-ui, context-menu]
+    usage_context: ["detail tooltip", "user menu dropdown", "hover card"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: turborepo-monorepo-2026
+    file: Mobilyacı/3d-demo/research/turborepo-monorepo-2026.md
+    lines: 2478
+    size_kb: 61
+    topic: "Turborepo 2.8.20, monorepo mimarisi"
+    categories: [monorepo, turborepo, architecture]
+    keywords: [turborepo, monorepo, workspace, cache, parallel-build]
+    usage_context: ["multi-app mimari", "shared-package strategy", "StandartTIMWeb"]
+    linked_atoms: []
+    linked_skills: [code-reviewer]
+
+  - id: typescript-advanced-patterns-2026
+    file: Mobilyacı/3d-demo/research/typescript-advanced-patterns-2026.md
+    lines: 2895
+    size_kb: 79
+    topic: "TypeScript 5.9 generics, type-safe design patterns"
+    categories: [typescript, types, patterns]
+    keywords: [typescript, generics, branded-types, type-safe, discriminated-union]
+    usage_context: ["type-safe proje", "complex type modelling", "Drizzle/Prisma tipleme"]
+    linked_atoms: []
+    linked_skills: [code-reviewer]
+
+  - id: typography-font-text-animation-2026
+    file: Mobilyacı/3d-demo/research/typography-font-text-animation-2026.md
+    lines: 4587
+    size_kb: 113
+    topic: "Typography, font systems, text animation, kinetic type"
+    categories: [typography, font, text-animation, kinetic-type]
+    keywords: [typography, font-pairing, text-animation, kinetic-type, splittext, gsap-text]
+    usage_context: ["typography-first design", "hero kinetic title", "editorial layout"]
+    linked_atoms: [MO1]
+    linked_skills: [frontend-design, design-council]
+
+  - id: ui-component-ecosystem-2026
+    file: Mobilyacı/3d-demo/research/ui-component-ecosystem-2026.md
+    lines: 2934
+    size_kb: 93
+    topic: "shadcn/ui, Radix, Aceternity UI, Magic UI, HeroUI"
+    categories: [component-library, shadcn, radix, ui]
+    keywords: [shadcn, radix, aceternity, magic-ui, heroui, component-ecosystem]
+    usage_context: ["proje baslangicinda UI kit secimi", "component library degerlendirme"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: vercel-ai-sdk-2026
+    file: Mobilyacı/3d-demo/research/vercel-ai-sdk-2026.md
+    lines: 2848
+    size_kb: 77
+    topic: "Vercel AI SDK, streaming, tool calling, RAG"
+    categories: [ai, vercel-ai-sdk, streaming, rag]
+    keywords: [vercel-ai-sdk, streaming, tool-calling, rag, ai-chatbot]
+    usage_context: ["AI feature icin SDK", "streaming chat ui", "RAG ile arama"]
+    linked_atoms: []
+    linked_skills: [claude-api, rag-architect]
+
+  - id: video-player-streaming-hls-2026
+    file: Mobilyacı/3d-demo/research/video-player-streaming-hls-2026.md
+    lines: 3736
+    size_kb: 94
+    topic: "Custom video player, HLS streaming, Mux"
+    categories: [video, streaming, hls, mux]
+    keywords: [video-player, hls, mux, streaming, video-cdn]
+    usage_context: ["video platformu", "case study video", "course video"]
+    linked_atoms: []
+    linked_skills: [frontend-design]
+
+  - id: virtualization-infinite-list-perf-2026
+    file: Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+    lines: 2715
+    size_kb: 75
+    topic: "List virtualization, infinite scroll, large dataset performance"
+    categories: [virtualization, performance, infinite-scroll]
+    keywords: [virtualization, tanstack-virtual, infinite-scroll, list-performance]
+    usage_context: ["1000+ item listesi", "infinite scroll feed", "dashboard table"]
+    linked_atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+
+  - id: web-animation-trends-2025-2026
+    file: Mobilyacı/3d-demo/research/web-animation-trends-2025-2026.md
+    lines: 616
+    size_kb: 27
+    topic: "CSS scroll-driven, View Transitions, WebGPU trends"
+    categories: [animation, trends, css, webgpu]
+    keywords: [css-scroll-driven, view-transitions, webgpu, animation-trends]
+    usage_context: ["trend arastirma", "modern teknoloji degerlendirme", "tier-karar destegi"]
+    linked_atoms: []
+    linked_skills: [frontend-design, design-council]
+
+  - id: webgl-shader-effects-frontend-2026
+    file: Mobilyacı/3d-demo/research/webgl-shader-effects-frontend-2026.md
+    lines: 2233
+    size_kb: 59
+    topic: "WebGL distortion, liquid, noise, shader backgrounds"
+    categories: [webgl, shader, background, frontend]
+    keywords: [webgl, shader, distortion, liquid-effect, noise-bg, glsl]
+    usage_context: ["Tier 4+ hero WebGL", "shader background", "distortion effect"]
+    linked_atoms: []
+    linked_skills: [frontend-design, 3d-site-builder]
+
+  - id: webhook-queue-background-jobs-2026
+    file: Mobilyacı/3d-demo/research/webhook-queue-background-jobs-2026.md
+    lines: 2274
+    size_kb: 58
+    topic: "Webhooks, Inngest, Trigger.dev, QStash, background jobs"
+    categories: [webhook, queue, background-jobs]
+    keywords: [webhook, inngest, trigger-dev, qstash, background-jobs]
+    usage_context: ["async worker", "scheduled tasks", "integration webhooks"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, e-commerce-builder]
+
+  - id: web-security-headers-owasp-2026
+    file: Mobilyacı/3d-demo/research/web-security-headers-owasp-2026.md
+    lines: 2111
+    size_kb: 52
+    topic: "Security headers, CORS, CSRF, XSS, rate limiting, OWASP"
+    categories: [security, headers, owasp, csrf, xss]
+    keywords: [security-headers, owasp, csrf, xss, rate-limit, csp]
+    usage_context: ["her production teslim (ZORUNLU)", "security review", "hardening"]
+    linked_atoms: []
+    linked_skills: [code-reviewer, launch-strategy]

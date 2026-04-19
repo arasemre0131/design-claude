@@ -1,0 +1,31 @@
+---
+id: fraxbit-trackpad-ease
+name: Trackpad Custom Ease (fraxbit özgün)
+category: motion-ajans
+description: cubic-bezier(0, .33, .07, 1.03) jelly-feel trackpad ease
+license: MIT-safe rewrite (pattern standart, değer fraxbit'e atıf)
+source: fraxbit.com
+source_file: fraxbit JS bundle
+source_lines: "trackpad detection"
+---
+
+usage_sectors: [kinetic, agency, portfolio-tech]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "40"
+
+preview_snippet: |
+  // Trackpad jelly-feel ease
+  gsap.defaults({ ease: 'cubic-bezier(0, .33, .07, 1.03)' });
+  // veya specific:
+  gsap.to(el, { y: -40, duration: 0.8, ease: 'cubic-bezier(0, .33, .07, 1.03)' });
+
+research_refs:
+  - ULTRAPLAN.md:748 (atom 10 Trackpad-Custom-Ease)

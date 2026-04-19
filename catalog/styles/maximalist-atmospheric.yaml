@@ -1,0 +1,78 @@
+---
+id: maximalist-atmospheric
+name: Maximalist Atmospheric
+mood: [overlap, aurora, deep-gradient, rich-layer, space-metaphor, kinetic-overlay]
+one_liner: "wearebrand.io-tarzi: radial aurora drift + overlapping italic title + deep indigo space."
+---
+
+typography:
+  display: [Fraunces-Italic, Editorial-Old, PP-Neue-Machina]
+  body: [Hanken-Grotesk, Mulish, Inter-Tight]
+  mono: [JetBrains-Mono, IBM-Plex-Mono]
+  variable_axes: [opsz, wght, SOFT]
+  pair_ids: [TY23]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - deep-space-aurora       # PL39 #050612 deep + magenta+aurora+amber radial
+  - liquid-death-raw        # PL40 raw maximalist sat saturation
+  - violet-indigo-magenta
+
+motion_primitives:
+  preferred: [MO1, MO6, MO11]   # GSAP ScrollTrigger + SplitText + variable-opsz scroll
+  acceptable: [MO2]
+  forbidden: [MO10-print-first, MO3-static-subtle]
+
+motion_stack:
+  required: [GSAP 3.13, ScrollTrigger, SplitText, Lenis 1.3.4]
+  optional: [Pixi.js v8 (WiggleFilter), Howler.js, CustomEase, Barba.js]
+  forbidden: [static-minimal, print-layout]
+
+preferred_heroes: [HR17, HR5, HR3]    # atmospheric space hero, italic kinetic type, full-bleed video
+preferred_layouts: [L4, L11, L2]      # full-bleed rails, bento-2.0-asymmetric, asymmetric overlap
+preferred_footers: [FT5, FT3]
+
+forbidden:
+  - minimal-whitespace-only
+  - mono-chromatic
+  - print-first
+  - brutalist-hard-shadow
+  - warm-organic-slow
+  - data-dense-receipt
+
+reference_impls:
+  - file: templates/13-maximalist/index.html
+    score: 5/5
+    note: "wearebrand.io-tarzi atmospheric aurora + overlapping Fraunces italic clamp(80px,16vw,280px) + gradient text imza + 24s drift + hue-rotate -12deg."
+  - file: research-assets/wearebrand_home.html
+    score: 4/5
+    note: "Orijinal scrape kaynak — blur-36 reveal, mask-y imza, magnetic elastic hover."
+
+trends_2026:
+  bento_2_0: PARTIAL
+  kinetic_typography: YES          # buyuk italic overlap imza
+  maximalism: YES                  # ANA TREND
+  scroll_triggered_3d: PARTIAL     # Pixi 2D tercih (3D degil)
+  variable_fonts: YES
+  aurora-drift-bg: YES             # imza
+  audio-ui-cues: OPTIONAL          # Howler.js
+
+compatible_sectors: [ajans, moda, kozmetik, muzik-label, kreatif-portfolyo, eticaret-premium, kampanya-landing]
+incompatible_sectors: [klinik, hukuk, muhasebe, yasli-bakim, egitim-formal]
+
+sample_palette:
+  deep: "#050612"
+  deep_2: "#0A0B1F"
+  indigo: "#1A1B3E"
+  violet: "#3A1B5E"
+  magenta: "#B83D7E"
+  amber: "#E89B4C"
+  aurora: "#6EE2D9"
+  ink: "#F5F2E8"
+sample_font_pair: "Fraunces opsz 144 italic + Hanken Grotesk 300-700 + JetBrains Mono"
+
+tier_fit: [2, 3, 4]
+notes:
+  - "Imza: 4-5 radial-gradient katmanli atmosfer + drift animation 24s + hue-rotate -12deg."
+  - "Overlapping title: nth-child(2) margin-left 10vw, outline variant, mix-blend-mode difference 'big'."
+  - "Klinik/kurumsal/resmi sektorlerde KESINLIKLE YASAK — ciddiyeti kirar."

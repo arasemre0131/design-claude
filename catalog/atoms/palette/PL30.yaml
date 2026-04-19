@@ -1,0 +1,33 @@
+---
+id: PL30
+name: Kraft + Burst (E-ticaret B)
+category: palette
+description: Kraft paper + burst orange + dark earth
+bg: "#F0E6D2 kraft"
+accent: "#E85D04 burst"
+ikincil: "#2B2520 dark earth"
+ink: "#2B2520"
+---
+
+usage_sectors: [eticaret, artisan, handmade, craft, boutique-retail]
+forbidden_sectors: [tech-dark, saas-minimal]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F0E6D2 × burst #E85D04 = 4.2:1 (AA Large)"
+  - "bg #F0E6D2 × earth #2B2520 = 11.7:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F0E6D2;
+    --burst: #E85D04;
+    --earth: #2B2520;
+    --ink: #2B2520;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:110 (eticaret PL30)

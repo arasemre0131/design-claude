@@ -1,0 +1,38 @@
+---
+id: evolve-persistent-canvas
+name: Persistent Canvas across Barba (Evolve pattern)
+category: motion-ajans
+description: Canvas Barba container dışında, sayfa geçişlerinde 3D yaşar
+license: MIT-safe rewrite (pattern generic)
+source: Evolve Studio (madeinevolve.com)
+---
+
+usage_sectors: [immersive-3d, maximalist-atm, brand-campaign, luxury-3d]
+forbidden_sectors: [simple-static-site]
+
+forbidden_with: []
+
+requires:
+  libraries: ["three", "@barba/core"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "237-244"
+
+preview_snippet: |
+  <!-- Canvas Barba dışında — global -->
+  <canvas class="webgl" style="position: fixed; inset: 0; z-index: -1;"></canvas>
+  <div data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="home">...</div>
+  </div>
+  <script>
+    // Three scene global, Barba hook'ta sadece tema/kamera güncellenir
+    barba.init({
+      transitions: [{
+        afterEnter: ({next}) => { updateCameraForPage(next.namespace); }
+      }]
+    });
+  </script>
+
+research_refs:
+  - ULTRAPLAN.md:761 (atom 23 Persistent-Canvas-Barba)

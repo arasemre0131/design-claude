@@ -1,0 +1,30 @@
+---
+id: ultra-clip-path-4-yon
+name: Clip-Path 4-Direction Reveal (14-ultra)
+category: motion-ajans
+description: clip-path polygon reveal 4 yönlü, fraxbit pattern + GSAP
+license: Bizim yazdığımız
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "314-315"
+---
+
+usage_sectors: [kinetic, minimal-swiss, editorial-motion]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "314-315"
+
+preview_snippet: |
+  .clip-reveal { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 1.4s cubic-bezier(.2,.8,.2,1); }
+  .clip-reveal.in-view { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  /* +3 other dirs */
+
+research_refs:
+  - ULTRAPLAN.md:771 (atom 33 Clip-Path-Mask-Polygon)

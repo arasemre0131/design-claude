@@ -1,0 +1,33 @@
+---
+id: PL36
+name: Mist + Sunset (Gayrimenkul B)
+category: palette
+description: Mist bg + sunset warm + navy + stone
+bg: "#EDE7DF mist"
+accent: "#E89B7C sunset"
+ikincil: "#2E3B4E navy + #CFB997 stone"
+ink: "#2E3B4E"
+---
+
+usage_sectors: [gayrimenkul, warm-residential, boutique-realty, vacation-homes]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #EDE7DF × navy #2E3B4E = 9.2:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #EDE7DF;
+    --sunset: #E89B7C;
+    --navy: #2E3B4E;
+    --stone: #CFB997;
+    --ink: #2E3B4E;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:166 (gayrimenkul PL36)

@@ -1,0 +1,33 @@
+---
+id: CH2
+name: Recharts Tremor-Style
+category: chart
+description: Tremor/shadcn dashboard chart — SaaS default
+forbidden: true
+reason: SaaS default çok tekrar ediyor — yeni projede kaçın
+---
+
+usage_sectors: []
+forbidden_sectors: [saas-default]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/tremor-default.html
+    lines: "1-60"
+    note: YASAK
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: Recharts/Tremor default çok tekrar. Custom SVG + GSAP tercih et. -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:148-148

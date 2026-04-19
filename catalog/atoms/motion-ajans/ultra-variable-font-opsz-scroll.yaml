@@ -1,0 +1,37 @@
+---
+id: ultra-variable-font-opsz-scroll
+name: Variable Font opsz Axis Scroll-Linked (14-ultra)
+category: motion-ajans
+description: Scroll'a bağlı opsz 144→9 axis animation, Fraunces breathe
+license: Bizim yazdığımız
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "586-595"
+---
+
+usage_sectors: [kinetic, editorial, type-forward, brand-type]
+forbidden_sectors: [variable-font-unsupported]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+  fonts: ["Fraunces variable opsz 9-144", "Bricolage opsz", "Roboto Flex opsz"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "586-595"
+
+preview_snippet: |
+  const heroMid = document.querySelector('.hero-middle');
+  ScrollTrigger.create({
+    trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1,
+    onUpdate: (s) => {
+      const opsz = 9 + (144 - 9) * (1 - s.progress);
+      const soft = 50 + 50 * (1 - s.progress);
+      heroMid.style.fontVariationSettings = `"opsz" ${opsz}, "SOFT" ${soft}`;
+    }
+  });
+
+research_refs:
+  - ULTRAPLAN.md:763 (atom 25 Variable-Font-Opsz-Scroll)

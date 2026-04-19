@@ -1,0 +1,54 @@
+---
+id: HR4
+name: 3D Canvas Scroll-Camera
+category: hero
+description: Three.js sahne, scroll kamera uçurur, immersive product showcase
+---
+
+usage_sectors: [architecture, product-3d, gayrimenkul, automotive, mobilya-3d]
+forbidden_sectors: [klinik, kargo]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY8, TY14]
+  motion: [MO1, MO2]
+  libraries: ["three", "gsap", "lenis", "r3f", "drei"]
+
+reference_impl:
+  - file: v2-immersive-3d/index.html
+    lines: "1-200"
+  - file: templates/09-gayrimenkul/index.html
+    lines: "80-180"
+  - file: SCRAPED-STACKS-2026.md
+    lines: "206-215"
+    note: Pattern D — Scroll-Linked Camera (Evolve + Lusion)
+
+variants:
+  - name: camera-pan-z
+    visual: "Kamera z eksende scroll ile ilerler"
+  - name: orbit-scene
+    visual: "Scroll ile orbit rotation"
+  - name: gltf-product
+    visual: "GLTF ürün model + scroll inspection"
+  - name: gaussian-splat
+    visual: "Gaussian splat photoreal 3D scene"
+
+preview_snippet: |
+  <canvas id="webgl" class="hero-3d"></canvas>
+  <script type="module">
+    import * as THREE from 'three';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera();
+    ScrollTrigger.create({
+      trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5,
+      onUpdate: s => { camera.position.z = 4 - s.progress * 2; }
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:65-65

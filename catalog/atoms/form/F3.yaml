@@ -1,0 +1,41 @@
+---
+id: F3
+name: Wizard Steps (progress bar)
+category: form
+description: Multi-step wizard, numbered steps + progress bar
+---
+
+usage_sectors: [onboarding, checkout, registration, multi-step]
+forbidden_sectors: [simple-contact]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: templates/06-eticaret/checkout.html
+    lines: "1-180"
+
+variants:
+  - name: numbered-circles
+    visual: "1 → 2 → 3 numaralı circle + line"
+  - name: linear-bar
+    visual: "Yatay progress bar (%)"
+
+preview_snippet: |
+  <form class="wizard">
+    <ol class="wz-steps">
+      <li class="done">1. Teslimat</li>
+      <li class="active">2. Ödeme</li>
+      <li>3. Onay</li>
+    </ol>
+    <div class="wz-body">...</div>
+  </form>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:168-168

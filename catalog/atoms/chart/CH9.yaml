@@ -1,0 +1,45 @@
+---
+id: CH9
+name: Heatmap Grid (calendar/status)
+category: chart
+description: Calendar heatmap (GitHub contribution) veya status grid
+---
+
+usage_sectors: [activity-tracker, status-monitor, analytics, github-style]
+forbidden_sectors: [luxury-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/github-heatmap.html
+    lines: "1-80"
+
+variants:
+  - name: github-calendar
+    visual: "53 hafta × 7 gün grid, 5 renk level"
+  - name: status-matrix
+    visual: "Service × time heatmap"
+
+preview_snippet: |
+  <div class="heatmap">
+    <div class="cell" data-level="0"></div>
+    <div class="cell" data-level="2"></div>
+    <div class="cell" data-level="4"></div>
+    <!-- ... 371 cells -->
+  </div>
+  <style>
+    .heatmap { display: grid; grid-template-columns: repeat(53, 12px); gap: 3px; }
+    .cell { width: 12px; height: 12px; }
+    .cell[data-level="0"] { background: #161b22; }
+    .cell[data-level="4"] { background: #26a641; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:155-155

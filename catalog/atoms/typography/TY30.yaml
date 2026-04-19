@@ -1,0 +1,32 @@
+---
+id: TY30
+name: Recoleta + Lato + JetBrains Mono
+category: typography
+description: Kuaför warm serif, Recoleta rounded (slate+olive combo)
+display_font: "Recoleta"
+body_font: "Lato"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [kuafor, cafe, bakery, wellness-modern]
+forbidden_sectors: [industrial, dark-maximalist]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/03-kuafor/style-b.css
+
+google_fonts: "Lato:wght@300;400;700&family=JetBrains+Mono:wght@400;500"
+notes: "Recoleta premium — alt Fraunces"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Recoleta', 'Fraunces', serif; font-weight: 500; }
+    body { font-family: 'Lato', sans-serif; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:61 (kuaför TY30)

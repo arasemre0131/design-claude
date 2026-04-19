@@ -1,0 +1,42 @@
+---
+id: P5
+name: Horizontal Timeline
+category: pipeline
+description: Scroll-lock timeline, stage'ler ilerlerken — gantt / schedule
+---
+
+usage_sectors: [schedule, gantt, project-management, construction, events]
+forbidden_sectors: [editorial-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: templates/01-insaat/index.html
+    lines: "460-520"
+    note: Timeline gantt-style
+  - file: mockups/horizontal-timeline.html
+    lines: "1-100"
+
+variants:
+  - name: scroll-pinned-gantt
+    visual: "Full-height pin + horizontal scroll scrub"
+  - name: milestone-dots
+    visual: "Horizontal line + milestones"
+
+preview_snippet: |
+  <div class="h-timeline" data-scroll-pin>
+    <div class="stage" data-date="2026-Q1">Planlama</div>
+    <div class="stage active" data-date="2026-Q2">Yapım</div>
+    <div class="stage" data-date="2026-Q3">Denetim</div>
+    <div class="stage" data-date="2026-Q4">Teslim</div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:106-106

@@ -1,0 +1,40 @@
+---
+id: FT2
+name: Sitemap Columns (classic 4-col)
+category: footer
+description: Klasik 4-column sitemap footer
+---
+
+usage_sectors: [eticaret, corporate, saas-marketing, enterprise]
+forbidden_sectors: [minimalist-portfolio]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: templates/06-eticaret/index.html
+    lines: "700-780"
+
+variants:
+  - name: 4-col-grouped
+    visual: "4 col: Ürün · Şirket · Destek · Yasal"
+  - name: with-newsletter
+    visual: "5 col + newsletter input"
+
+preview_snippet: |
+  <footer class="sitemap">
+    <div class="col"><h5>Ürün</h5><a>Özellikler</a><a>Fiyatlama</a></div>
+    <div class="col"><h5>Şirket</h5><a>Hakkımızda</a><a>Blog</a></div>
+    <div class="col"><h5>Destek</h5><a>Yardım</a><a>İletişim</a></div>
+    <div class="col"><h5>Yasal</h5><a>KVKK</a><a>Çerezler</a></div>
+  </footer>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:195-195
+  - Mobilyacı/3d-demo/research/footer_analiz.md

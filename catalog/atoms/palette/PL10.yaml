@@ -1,0 +1,32 @@
+---
+id: PL10
+name: Deep Night Cobalt
+category: palette
+description: Deep night cobalt navy + gold + cream (Fatih Bey)
+bg: "#0F1A30 navy"
+accent: "#C5A46D gold"
+ikincil: "#F5F1E8 cream"
+ink: "#F5F1E8"
+---
+
+usage_sectors: [luxury-alternative-to-PL1, jewelry-alternative]
+forbidden_sectors: []
+
+forbidden_with: [TY2, TY4]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #0F1A30 × gold #C5A46D = 6.4:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #0F1A30;
+    --gold: #C5A46D;
+    --cream: #F5F1E8;
+    --ink: #F5F1E8;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:252 (Fatih Bey mevcut)

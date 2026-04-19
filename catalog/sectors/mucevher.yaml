@@ -1,0 +1,134 @@
+---
+id: mucevher
+name: "Mücevher / Jewelry"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - el-emeği
+  - ritüel
+  - nadir
+  - mikro-detay
+  - güven (el işi otantiklik)
+  - miras / kuşaktan kuşağa
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # dark #0A0A0A + gold #C9A84C gradient — 5+ mücevher projesinde kullanıldı
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # Inter-only, Playfair+Inter, Instrument+SpaceGrotesk, DM+Inter
+  forbidden_heroes: [HR2]  # split-hero ("büyük ürün + yandan metin + CTA") klişesi
+  forbidden_tables: [T6]  # Card grid — 4 mücevher projesinde aynı
+  forbidden_kpi: [K1]  # bento glass
+  warning: "Mücevher için Playfair italic + gold gradient (#0A0A0A bg + #C9A84C) 5+ projede kullanıldı (Freeman, BG Foto, Dagintaslı, Modern Alyans, Fatih Bey). Yeni projede PL22 (Tobacco+Pearl) veya PL23 (Plum+Champagne) önerilir. Custom cursor + gold shimmer klişesi de kaçınılmalı. Italic başlık kullanılacaksa Fraunces opsz 144 axis veya Cormorant Garamond — Playfair DEĞİL."
+
+# Repeat-guard context — mevcut mücevher/kuyum projelerinin combo'ları
+existing_projects:
+  - name: "Freeman (kuaför ama gold klişe kanıtı)"
+    combo: "H8 + N2 + HR2 + F1 + M1 + FT1 + TY1 YASAK + PL1 YASAK + L1 + MO4"
+    note: "TY1 ve PL1 yasaklı. Mücevher değil ama aynı dark+gold klişesi."
+  - name: "BG Foto"
+    combo: "H8 + N2 + HR2 + K1 + F1 + M1 + FT1 + TY2 YASAK + PL1 YASAK + L1 + MO4"
+    note: "TY2 Playfair+Inter ve PL1 yasaklı. Mücevher çıkışlı proje."
+  - name: "Dagintaslı"
+    combo: "H8 + N2 + HR2 + K1 + F1 + M1 + FT2 + TY2 YASAK + PL1 YASAK + L1 + MO4"
+    note: "Dagıntaşlı mücevher, TY2 ve PL1 yasaklı. Tekrar deprecated."
+  - name: "Modern Alyans"
+    combo: "H8 + N2 + HR2 + K1 + F1 + M1 + FT2 + TY2 YASAK + PL1 YASAK + L1 + MO4"
+    note: "Alyans odaklı mücevher. TY2, PL1 — tam yasak combo."
+  - name: "Fatih Bey Mücevher (AKTIF — 8 Mayıs 2026 teslim)"
+    combo: "H8 + N2 + HR2 + K1 + T6 + F1 + M1 + FT2 + TY3 + PL10 + L1 + MO4"
+    note: "PL10 (Deep Night Cobalt) + TY3 gold'dan kaçtı ama HR2+K1+T6+L1 tekrar riski. Yeni mücevher projesinde HR11 + L6/L8 + PL22/23 + TY27/28 zorunlu — Fatih Bey combo'su kopyalanmaz."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL22, PL23, PL11, PL18]  # Tobacco+Pearl, Plum+Champagne, Warm Tobacco+Clay, Plum+Champagne alt
+  typography: [TY27, TY28]             # Fraunces + IBM Plex, Cormorant Garamond + Mulish
+  heroes: [HR11, HR3, HR4]             # Brochure cover grid, full-bleed video (atölye), 3D canvas (Tier 3+)
+  layouts: [L6, L8]                    # Center single col, Masonry ürün
+  motion_primitives: [MO4, MO10]       # Framer layoutId morph, No-motion print-first (sakin)
+  kpi: [K2, K5]                        # Band+rules, Almanac editorial
+  footer: [FT4, FT6]                   # Colophon editorial, Signature block
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [whatsapp, instagram-feed, katalog-galerisi]
+    delivery: "2-3 gün"
+    suitability: "✗"  # mücevher imaj-yoğun, 3 gün yetmez
+    note: "Mücevher müşterisi en az Tier 1 ister — el emeği anlatımı + ürün fotoğrafı kalitesi zaman alır"
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [katalog, blog, whatsapp, instagram, scroll-animations]
+    delivery: "3-7 gün"
+    suitability: "⚠"  # e-ticaret değilse OK
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [e-ticaret, admin, blog, email, wishlist, iyzico]
+    delivery: "2-3 hafta"
+    suitability: "✓✓"  # Fatih Bey bu tier
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    features: [3d-viewer, ar-try-on, diamond-configurator, gaussian-splat, scroll-camera]
+    delivery: "3-5 hafta"
+    suitability: "✓✓"  # ideal tier — mücevher 3D real şine yansıyor
+  enterprise:     # 80K+ TL, 6-12 hafta
+    recipe: next-enterprise-monorepo
+    features: [multi-brand, b2b-portal, sertifika-doğrulama, blockchain-authenticity]
+    delivery: "6-12 hafta"
+    suitability: "⚠"  # sadece çok-şubeli kuyumcu zinciri için
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [e-ticaret, admin, katalog, wishlist, iyzico, whatsapp]
+  optional: [blog, karsilastirma, misafir-alisveris, kampanya, email-newsletter]
+  special:
+    - name: "3D viewer (MeshTransmissionMaterial — cam/taş refraction)"
+      tier: "premium"
+      research: "research/drei-MeshTransmissionMaterial-research.md"
+    - name: "Diamond configurator (pırlanta kesim + metal + taş seçimi)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md"
+    - name: "Gaussian Splatting (gerçek ürün fotogrametri)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/gaussian-splatting-research.md"
+    - name: "AR try-on (WebXR iOS Quick Look + Android Scene Viewer)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+    - Mobilyacı/3d-demo/research/drei-MeshTransmissionMaterial-research.md
+    - Fatih Bey Mücevher Sitesi/research/  # 49 dosya — müşteri profili, KVKK, iyzico, rakip analiz
+  secondary:
+    - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    - Mobilyacı/3d-demo/research/iyzico-analiz.md
+    - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # Product JSON-LD
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/gaussian-splatting-research.md
+    - Mobilyacı/3d-demo/research/webxr-ar-vr-2026.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#mucevher
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: yes        # Fraunces opsz 9→144 axis scroll-linked — mücevher zarafet
+  bento_2_0: yes                 # L8 masonry + asymmetric ürün vitrin
+  maximalism: no                 # mücevher sakin + rafine olmalı, dense overlap premium hissi öldürür
+  3d_spline: yes                 # Tier 3+ için şart (diamond, saat)
+  scroll_triggered_3d: yes       # Premium'da kritik — ürün döndürme + kamera path
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  product_gallery: "masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  product_card: "square crop (1:1), hover alternate angle, HR2 split YASAK"
+  primary_cta: "Koleksiyonu Keşfet"
+  secondary_cta: "Atölyeyi Tanı"
+  mobile_critical: "Ürün detay sayfasında WhatsApp + Favorile + Sepete, sticky bottom bar"
+  trust_badges: "iyzico SSL, KVKK, sertifika (SAN-TEZ, Kuyumcukent üyelik)"

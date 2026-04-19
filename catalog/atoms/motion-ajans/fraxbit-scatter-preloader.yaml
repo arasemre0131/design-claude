@@ -1,0 +1,37 @@
+---
+id: fraxbit-scatter-preloader
+name: Scatter Preloader (fraxbit imza)
+category: motion-ajans
+description: 14 resim scale 0→1.5, random scatter, shrink, y:-100% exit
+license: MIT-safe rewrite (GSAP stagger pattern generic)
+source: fraxbit.com
+source_file: research-assets/_fraxbit_home.html
+source_lines: "preloader JS"
+---
+
+usage_sectors: [agency, portfolio, brand-launch]
+forbidden_sectors: [fast-loading-required]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "18-28"
+
+preview_snippet: |
+  gsap.to(loaderImgs, {
+    scale: 1.5, width: '300px', height: '400px',
+    stagger: 0.15, ease: 'power2.out',
+    onComplete: () => {
+      // scatter random + shrink + exit
+      gsap.to(loaderImgs, { x: () => gsap.utils.random(-400, 400), y: () => gsap.utils.random(-300, 300), scale: 0.4, duration: 0.8 });
+      gsap.to(loader, { y: '-100%', duration: 1.2, ease: 'power3.inOut', delay: 1 });
+    }
+  });
+
+research_refs:
+  - ULTRAPLAN.md:749 (atom 11 Scatter-Preloader)
+  - SCRAPED-STACKS-2026.md:322-330

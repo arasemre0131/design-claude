@@ -1,0 +1,27 @@
+---
+id: MO8
+name: Web Animations API (imperative)
+category: motion
+description: Native Web Animations API, JS imperative
+---
+
+usage_sectors: [native-motion, library-free, progressive-enhancement]
+forbidden_sectors: [heavy-orchestration]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/waapi-example.html
+    lines: "1-60"
+
+preview_snippet: |
+  el.animate([
+    { opacity: 0, transform: 'translateY(40px)' },
+    { opacity: 1, transform: 'translateY(0)' }
+  ], { duration: 600, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'forwards' });
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:296

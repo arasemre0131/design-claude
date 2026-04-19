@@ -1,0 +1,33 @@
+---
+id: PL32
+name: Pearl + Seafoam (Spa B)
+category: palette
+description: Pearl + seafoam + deep teal + warm beige
+bg: "#F8F6F1 pearl"
+accent: "#3A5A5A deep teal"
+ikincil: "#B4C5B8 seafoam + #D4A574 warm beige"
+ink: "#1E2E2E"
+---
+
+usage_sectors: [spa, wellness-coastal, thalasso, nordic-wellness]
+forbidden_sectors: [industrial]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F8F6F1 × teal #3A5A5A = 7.8:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F8F6F1;
+    --teal: #3A5A5A;
+    --seafoam: #B4C5B8;
+    --beige: #D4A574;
+    --ink: #1E2E2E;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:129 (spa PL32)

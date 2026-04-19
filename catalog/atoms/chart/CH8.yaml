@@ -1,0 +1,41 @@
+---
+id: CH8
+name: Candlestick / OHLC
+category: chart
+description: Finance candlestick, green/red OHLC bars
+---
+
+usage_sectors: [finance, trading, crypto, stock-analysis]
+forbidden_sectors: [mucevher, spa, editorial-soft]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: ["echarts", "d3"]
+
+reference_impl:
+  - file: v2-kinetic-data/candlestick.html
+    lines: "1-100"
+
+variants:
+  - name: classic-green-red
+    visual: "Yeşil/kırmızı wick + body"
+  - name: heikin-ashi
+    visual: "Heikin Ashi smoothed"
+
+preview_snippet: |
+  <div id="ohlc-chart" style="height: 400px;"></div>
+  <script>
+    echarts.init($0).setOption({
+      xAxis: { type: 'category', data: dates },
+      yAxis: { scale: true },
+      series: [{ type: 'candlestick', data: ohlcData }]
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:154-154

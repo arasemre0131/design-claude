@@ -1,0 +1,34 @@
+---
+id: PL4
+name: Concrete Industrial
+category: palette
+description: Concrete gri + safety orange + hazard sarı, industrial
+bg: "#D4CFC4"
+accent: "#E85D04 safety orange"
+ikincil: "#F5C400 hazard"
+ink: "#111"
+---
+
+usage_sectors: [insaat, industrial, construction, factory, engineering]
+forbidden_sectors: [mucevher, spa, klinik]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #D4CFC4 × accent #E85D04 = 4.6:1 (AA)"
+  - "bg #D4CFC4 × ink #111 = 14.1:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #D4CFC4;
+    --accent: #E85D04;
+    --secondary: #F5C400;
+    --ink: #111;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:246
+  - templates/SECTOR-RESEARCH.md:15 (inşaat PL4)

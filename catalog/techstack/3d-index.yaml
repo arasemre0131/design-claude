@@ -1,0 +1,1198 @@
+version: "1.0"
+last_updated: "2026-04-19"
+total_research_files: 98
+total_lines: 181428
+total_size_mb: 5.2
+source_catalog: 3D-TECHSTACK.md
+research_root: "Mobilyacı/3d-demo/research/"
+description: "3D/WebGL/R3F research dosyalarinin machine-readable indeksi. Her 3D feature icin hangi research'e bakacagini gosterir."
+
+entries:
+  - id: 3d-annotation-hotspot-system
+    file: Mobilyacı/3d-demo/research/3d-annotation-hotspot-system.md
+    lines: 2902
+    size_kb: 72
+    topic: "Clickable hotspot, pulse ring, info panel, guided tour"
+    categories: [3d, annotation, hotspot, interaction]
+    keywords: [hotspot, annotation, pulse-ring, info-panel, guided-tour]
+    usage_context: ["3D urun bilgi panelleri", "muze sanal tur", "product feature highlight"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [muze, mucevher, mobilya, otomotiv]
+
+  - id: 3d-data-visualization
+    file: Mobilyacı/3d-demo/research/3d-data-visualization.md
+    lines: 2128
+    size_kb: 60
+    topic: "Globe, network graph, scatter plot, bar chart, WebSocket"
+    categories: [3d, dataviz, chart]
+    keywords: [3d-globe, network-graph, scatter-plot, 3d-chart, websocket]
+    usage_context: ["analytics dashboard 3D chart", "real-time visualization", "network viz"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [dashboard, analytics]
+
+  - id: 3d-portfolio-patterns
+    file: Mobilyacı/3d-demo/research/3d-portfolio-patterns.md
+    lines: 2438
+    size_kb: 72
+    topic: "Portal gallery, floating cards, about scene, contact"
+    categories: [3d, portfolio, showcase]
+    keywords: [portal-gallery, floating-cards, about-scene, 3d-portfolio]
+    usage_context: ["creative agency portfolio", "designer showcase", "awwwards-style site"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [portfolio, creative]
+
+  - id: 3d-product-configurator-research
+    file: Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+    lines: 2607
+    size_kb: 80
+    topic: "Material swap, part visibility, camera zoom, AR, screenshot"
+    categories: [3d, configurator, e-commerce, ar]
+    keywords: [r3f, drei, material-swap, camera-zoom, ar, configurator]
+    usage_context: ["Tier 4+ premium 3D", "jewelry/furniture/automotive configurator", "customize product"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [mucevher, mobilya, otomotiv, moda]
+
+  - id: 3d-room-builder-editor
+    file: Mobilyacı/3d-demo/research/3d-room-builder-editor.md
+    lines: 2423
+    size_kb: 64
+    topic: "Drag-drop, snap grid, wall placement, undo/redo, export"
+    categories: [3d, room-builder, editor]
+    keywords: [room-builder, drag-drop, snap-grid, wall-placement, undo-redo]
+    usage_context: ["mobilya yerleşim", "ic mimari planlama", "IKEA-style room planner"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [mobilya, mimari, gayrimenkul]
+
+  - id: 3d-timeline-history
+    file: Mobilyacı/3d-demo/research/3d-timeline-history.md
+    lines: 2360
+    size_kb: 72
+    topic: "Scroll timeline, time tunnel, era scenes, floating cards"
+    categories: [3d, timeline, storytelling, scroll]
+    keywords: [scroll-timeline, time-tunnel, era-scenes, history-viz]
+    usage_context: ["tarihcesi sayfasi", "about story", "brand heritage"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [muze, egitim, brand]
+
+  - id: 3d-typography-r3f
+    file: Mobilyacı/3d-demo/research/3d-typography-r3f.md
+    lines: 2255
+    size_kb: 64
+    topic: "Text/Text3D, kinetic, physics text, glass text, neon"
+    categories: [3d, typography, text]
+    keywords: [text-3d, kinetic-type, physics-text, glass-text, neon-text]
+    usage_context: ["3D hero title", "kinetic typography", "hero text effect"]
+    linked_atoms: [MO1]
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [creative, portfolio]
+
+  - id: ai-chatbot-3d-avatar
+    file: Mobilyacı/3d-demo/research/ai-chatbot-3d-avatar.md
+    lines: 2243
+    size_kb: 64
+    topic: "Ready Player Me, lip sync, viseme, TTS, Claude API"
+    categories: [3d, ai, avatar, chatbot]
+    keywords: [ready-player-me, lip-sync, viseme, tts, 3d-avatar]
+    usage_context: ["AI asistan 3D avatar", "customer support avatar", "virtual showroom guide"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, claude-api]
+    sektörs: [support, retail]
+
+  - id: ai-textures-materials-research
+    file: Mobilyacı/3d-demo/research/ai-textures-materials-research.md
+    lines: 1449
+    size_kb: 48
+    topic: "Meshy.ai, withpoly, Blockade Labs, procedural"
+    categories: [3d, ai, texture, material]
+    keywords: [meshy, withpoly, blockade-labs, ai-texture, procedural-material]
+    usage_context: ["AI texture generation", "procedural materials", "rapid prototyping"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: anti-aliasing-comparison
+    file: Mobilyacı/3d-demo/research/anti-aliasing-comparison.md
+    lines: 952
+    size_kb: 36
+    topic: "MSAA, FXAA, SMAA, TAA comparison"
+    categories: [3d, anti-aliasing, performance, quality]
+    keywords: [msaa, fxaa, smaa, taa, anti-aliasing]
+    usage_context: ["3D quality-settings", "performance vs quality tradeoff"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    sektörs: [all]
+
+  - id: architecture-bim-visualization
+    file: Mobilyacı/3d-demo/research/architecture-bim-visualization.md
+    lines: 2774
+    size_kb: 80
+    topic: "IFC, clipping planes, measurement, sun study"
+    categories: [3d, architecture, bim, visualization]
+    keywords: [ifc, bim, clipping-plane, measurement, sun-study]
+    usage_context: ["mimari 3D gosterim", "BIM viewer", "building analysis"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [mimari, insaat, gayrimenkul]
+
+  - id: audio-integration
+    file: Mobilyacı/3d-demo/research/audio-integration.md
+    lines: 1198
+    size_kb: 32
+    topic: "Howler.js, Tone.js, PositionalAudio, FFT reactive"
+    categories: [3d, audio, howler, tone]
+    keywords: [howler, tone-js, positional-audio, fft-reactive, 3d-audio]
+    usage_context: ["immersive 3D experience", "audio-reactive viz", "UI sound"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [muze, eglence, creative]
+
+  - id: automotive-3d-configurator
+    file: Mobilyacı/3d-demo/research/automotive-3d-configurator.md
+    lines: 2015
+    size_kb: 56
+    topic: "Car paint, wheels, interior, headlights, door anim"
+    categories: [3d, automotive, configurator]
+    keywords: [car-paint, wheels, interior, headlights, door-animation]
+    usage_context: ["oto galerisi 3D gosterim", "car configurator", "rent-a-car 3D"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [otomotiv]
+
+  - id: awwwards-analysis
+    file: Mobilyacı/3d-demo/research/awwwards-analysis.md
+    lines: 63
+    size_kb: 4
+    topic: "Top studio analysis, 80/20 formula"
+    categories: [3d, reference, awwwards]
+    keywords: [awwwards, studio-analysis, top-studios, 80-20]
+    usage_context: ["design reference", "top studio trends", "pitch iyilestirme"]
+    linked_atoms: []
+    linked_skills: [design-council]
+    sektörs: [creative, portfolio]
+
+  - id: camera-rigs-cinematography
+    file: Mobilyacı/3d-demo/research/camera-rigs-cinematography.md
+    lines: 2139
+    size_kb: 60
+    topic: "Dolly, jib, steadicam, drone, Hitchcock, rack focus"
+    categories: [3d, camera, cinematography]
+    keywords: [dolly-zoom, jib, steadicam, drone-camera, rack-focus, hitchcock]
+    usage_context: ["cinematic 3D scene", "product reveal camera", "hero camera sweep"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: cms-integration-dynamic-3d
+    file: Mobilyacı/3d-demo/research/cms-integration-dynamic-3d.md
+    lines: 2370
+    size_kb: 68
+    topic: "Sanity, Contentful, Supabase real-time, Shopify Hydrogen"
+    categories: [3d, cms, integration]
+    keywords: [sanity, contentful, supabase-realtime, shopify-hydrogen, dynamic-3d]
+    usage_context: ["musteri kendi urun fotografi yukleyecekse", "CMS-driven 3D", "dynamic product gallery"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [e-ticaret, mobilya, mucevher]
+
+  - id: color-theory-3d-design
+    file: Mobilyacı/3d-demo/research/color-theory-3d-design.md
+    lines: 1558
+    size_kb: 52
+    topic: "Harmonies, cinematic palettes, psychology, accessibility"
+    categories: [3d, color, design, palette]
+    keywords: [color-theory, cinematic-palette, color-harmony, psychology]
+    usage_context: ["3D scene color grading", "palette secimi", "accessibility cekap"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, design-council]
+    sektörs: [all]
+
+  - id: css3d-html-in-3d-space
+    file: Mobilyacı/3d-demo/research/css3d-html-in-3d-space.md
+    lines: 1346
+    size_kb: 40
+    topic: "CSS3DRenderer, drei Html, Billboard, Hud, ScreenSpace"
+    categories: [3d, css-3d, hybrid]
+    keywords: [css3d-renderer, drei-html, billboard, hud, screenspace]
+    usage_context: ["HTML overlay in 3D", "2D UI in 3D scene", "hybrid layout"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [all]
+
+  - id: dark-light-mode-3d
+    file: Mobilyacı/3d-demo/research/dark-light-mode-3d.md
+    lines: 1910
+    size_kb: 56
+    topic: "Theme switching, material adjust, env swap, smooth transition"
+    categories: [3d, dark-mode, theming]
+    keywords: [theme-switch, material-adjust, env-swap, dark-light-3d]
+    usage_context: ["dark mode 3D sahne", "theme switcher 3D", "env HDR swap"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: deferred-rendering-gbuffer
+    file: Mobilyacı/3d-demo/research/deferred-rendering-gbuffer.md
+    lines: 1687
+    size_kb: 56
+    topic: "G-buffer, MRT, deferred lighting, SSAO, WebGPU"
+    categories: [3d, rendering, deferred, webgpu]
+    keywords: [g-buffer, mrt, deferred-lighting, ssao, webgpu]
+    usage_context: ["Tier 4+ advanced rendering", "many-light scenes", "WebGPU upgrade"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [advanced]
+
+  - id: drei-catalog-v10
+    file: Mobilyacı/3d-demo/research/drei-catalog-v10.md
+    lines: 129
+    size_kb: 8
+    topic: "100+ drei component quick reference"
+    categories: [3d, drei, catalog, reference]
+    keywords: [drei, drei-v10, component-catalog, quick-ref]
+    usage_context: ["drei component lookup", "R3F setup reference", "quick ref"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: ecommerce-3d-product-pages
+    file: Mobilyacı/3d-demo/research/ecommerce-3d-product-pages.md
+    lines: 2728
+    size_kb: 84
+    topic: "Shopify Hydrogen, Medusa, WooCommerce, cart, payment"
+    categories: [3d, e-commerce, product-page]
+    keywords: [shopify-hydrogen, medusa, woocommerce, 3d-product-page, cart]
+    usage_context: ["e-ticaret 3D urun sayfasi", "premium shop", "3D cart integration"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [e-ticaret, mobilya, mucevher]
+
+  - id: education-science-3d
+    file: Mobilyacı/3d-demo/research/education-science-3d.md
+    lines: 1865
+    size_kb: 56
+    topic: "Molecular, solar system, anatomy, physics sim"
+    categories: [3d, education, science]
+    keywords: [molecular, solar-system, anatomy, physics-sim, education-3d]
+    usage_context: ["egitim platformu 3D gorsel", "interactive learning", "science viz"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [egitim, bilim]
+
+  - id: environment-lighting-r3f
+    file: Mobilyacı/3d-demo/research/environment-lighting-r3f.md
+    lines: 1537
+    size_kb: 40
+    topic: "HDR, Sky, Cloud, Lightformer, matcap, time-of-day"
+    categories: [3d, lighting, environment]
+    keywords: [hdr, sky, cloud, lightformer, matcap, time-of-day]
+    usage_context: ["her 3D sahne", "studio lighting", "env HDR setup"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: fashion-clothing-3d
+    file: Mobilyacı/3d-demo/research/fashion-clothing-3d.md
+    lines: 1852
+    size_kb: 56
+    topic: "Cloth draping, virtual try-on, fabric material, AR"
+    categories: [3d, fashion, clothing, ar]
+    keywords: [cloth-draping, virtual-try-on, fabric, fashion-ar]
+    usage_context: ["moda e-ticaret 3D", "virtual try-on", "fabric material demo"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [moda, giyim]
+
+  - id: fire-smoke-explosion-vfx
+    file: Mobilyacı/3d-demo/research/fire-smoke-explosion-vfx.md
+    lines: 2255
+    size_kb: 64
+    topic: "Sprite fire, shader fire, smoke, explosion, campfire"
+    categories: [3d, vfx, particle, fire]
+    keywords: [fire-shader, smoke, explosion, sprite-fire, vfx]
+    usage_context: ["game-like vfx", "dramatic scene", "hero reveal effect"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [eglence, creative]
+
+  - id: food-beverage-3d
+    file: Mobilyacı/3d-demo/research/food-beverage-3d.md
+    lines: 1932
+    size_kb: 56
+    topic: "Beverage can, condensation, ice, steam, AR table"
+    categories: [3d, food, beverage, ar]
+    keywords: [beverage, condensation, ice, steam, ar-table]
+    usage_context: ["gida icecek e-ticaret", "menu 3D", "restaurant AR"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [gida, icecek]
+
+  - id: fractal-rendering-3d
+    file: Mobilyacı/3d-demo/research/fractal-rendering-3d.md
+    lines: 1815
+    size_kb: 48
+    topic: "Mandelbrot, Julia, Mandelbulb, Mandelbox, L-system"
+    categories: [3d, fractal, generative, math]
+    keywords: [mandelbrot, julia, mandelbulb, l-system, fractal]
+    usage_context: ["generative art", "creative portfolio", "math viz"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, art]
+
+  - id: framer-motion-r3f-hybrid
+    file: Mobilyacı/3d-demo/research/framer-motion-r3f-hybrid.md
+    lines: 831
+    size_kb: 24
+    topic: "motion/react, useMotionValue bridge, AnimatePresence"
+    categories: [3d, framer-motion, hybrid, animation]
+    keywords: [framer-motion-r3f, use-motion-value, animate-presence, hybrid]
+    usage_context: ["DOM-3D hybrid animation", "Framer + R3F scroll", "state-driven 3D"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [all]
+
+  - id: free-3d-asset-directory
+    file: Mobilyacı/3d-demo/research/free-3d-asset-directory.md
+    lines: 571
+    size_kb: 24
+    topic: "pmndrs market, Poly Haven, Sketchfab, AI generated"
+    categories: [3d, asset, directory, free]
+    keywords: [pmndrs-market, poly-haven, sketchfab, ai-asset, free-3d]
+    usage_context: ["asset arama", "mockup icin hazir model", "prototyping"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: furniture-3d-web-experience-research
+    file: Mobilyacı/3d-demo/research/furniture-3d-web-experience-research.md
+    lines: 3090
+    size_kb: 96
+    topic: "Furniture showcase, configurator, room viz, AR"
+    categories: [3d, furniture, configurator, ar]
+    keywords: [furniture-showcase, furniture-configurator, room-viz, furniture-ar]
+    usage_context: ["Mobilyaci projeleri (ZORUNLU)", "furniture e-commerce", "room planner"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [mobilya]
+
+  - id: future-web-3d-2028
+    file: Mobilyacı/3d-demo/research/future-web-3d-2028.md
+    lines: 912
+    size_kb: 36
+    topic: "WebNN, WASM GC, WebTransport, WebGPU, R3F v10"
+    categories: [3d, future, webgpu, trends]
+    keywords: [webnn, wasm-gc, webtransport, webgpu, r3f-v10]
+    usage_context: ["uzun vadeli strateji", "technology roadmap", "future-proof tasarim"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [advanced]
+
+  - id: gamification-3d-web
+    file: Mobilyacı/3d-demo/research/gamification-3d-web.md
+    lines: 2646
+    size_kb: 76
+    topic: "Achievements, collectibles, mini-games, leaderboard"
+    categories: [3d, gamification, game, engagement]
+    keywords: [achievement, collectible, mini-game, leaderboard, gamification]
+    usage_context: ["engagement artirma", "loyalty program", "gamified learning"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [eglence, egitim, retail]
+
+  - id: generative-art-creative-coding
+    file: Mobilyacı/3d-demo/research/generative-art-creative-coding.md
+    lines: 1357
+    size_kb: 44
+    topic: "Flow fields, attractors, reaction-diffusion, NFT"
+    categories: [3d, generative, art, creative-coding]
+    keywords: [flow-field, attractor, reaction-diffusion, nft, creative-coding]
+    usage_context: ["NFT platformu", "generative art gallery", "art portfolio"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [art, creative, nft]
+
+  - id: generative-music-3d-viz
+    file: Mobilyacı/3d-demo/research/generative-music-3d-viz.md
+    lines: 2522
+    size_kb: 72
+    topic: "Tone.js, algorithmic composition, audio-reactive"
+    categories: [3d, music, audio, generative]
+    keywords: [tone-js, algorithmic-music, audio-reactive, music-viz]
+    usage_context: ["music platform", "audio-reactive viz", "sound art"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [music, art]
+
+  - id: glitch-art-databending
+    file: Mobilyacı/3d-demo/research/glitch-art-databending.md
+    lines: 1727
+    size_kb: 52
+    topic: "Glitch shader, VHS, channel split, pixel sort"
+    categories: [3d, glitch, vhs, art]
+    keywords: [glitch-shader, vhs, channel-split, pixel-sort, databending]
+    usage_context: ["retro aesthetic", "glitch effect", "transition vfx"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, art]
+
+  - id: global-illumination-techniques
+    file: Mobilyacı/3d-demo/research/global-illumination-techniques.md
+    lines: 1082
+    size_kb: 36
+    topic: "Baked GI, SSGI, light probes, path tracing"
+    categories: [3d, lighting, gi, rendering]
+    keywords: [gi, baked-gi, ssgi, light-probes, path-tracing]
+    usage_context: ["photorealistic rendering", "architecture viz", "Tier 4+ quality"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [mimari, mobilya, advanced]
+
+  - id: glsl-shaders-r3f
+    file: Mobilyacı/3d-demo/research/glsl-shaders-r3f.md
+    lines: 1111
+    size_kb: 28
+    topic: "shaderMaterial, fresnel, holographic, noise"
+    categories: [3d, shader, glsl, r3f]
+    keywords: [shader-material, fresnel, holographic, noise, glsl]
+    usage_context: ["custom shader effect", "fresnel rim light", "holographic material"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: gsap-free-plugins-deep-dive
+    file: Mobilyacı/3d-demo/research/gsap-free-plugins-deep-dive.md
+    lines: 2300
+    size_kb: 72
+    topic: "Flip, Observer, MorphSVG, DrawSVG, ScrambleText"
+    categories: [gsap, animation, plugins]
+    keywords: [flip, observer, morph-svg, draw-svg, scramble-text, gsap-plugins]
+    usage_context: ["GSAP advanced usage", "plugin kombinasyonu", "animation masterclass"]
+    linked_atoms: [MO1]
+    linked_skills: [frontend-design, 3d-site-builder]
+    sektörs: [all]
+
+  - id: hair-fur-rendering
+    file: Mobilyacı/3d-demo/research/hair-fur-rendering.md
+    lines: 1336
+    size_kb: 44
+    topic: "Shell texturing, strands, Kajiya-Kay, Marschner"
+    categories: [3d, hair, fur, rendering]
+    keywords: [shell-texturing, strands, kajiya-kay, marschner, hair-fur]
+    usage_context: ["karakter rendering", "kuafor kozmetik", "pet products"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [guzellik, pet, character]
+
+  - id: hand-drawn-sketch-shader
+    file: Mobilyacı/3d-demo/research/hand-drawn-sketch-shader.md
+    lines: 1868
+    size_kb: 56
+    topic: "Pencil, watercolor, ink, charcoal, comic, crosshatch"
+    categories: [3d, npr, sketch, style]
+    keywords: [pencil, watercolor, ink, charcoal, crosshatch, npr]
+    usage_context: ["artistic style site", "illustrated product", "comic style"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [art, illustration]
+
+  - id: healthcare-medical-3d
+    file: Mobilyacı/3d-demo/research/healthcare-medical-3d.md
+    lines: 1918
+    size_kb: 60
+    topic: "Anatomy layers, DICOM, dental, VR surgical"
+    categories: [3d, healthcare, medical, anatomy]
+    keywords: [anatomy, dicom, dental, surgical, medical-3d]
+    usage_context: ["dis klinigi site", "medical education", "patient-facing viz"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [saglik, dis]
+
+  - id: i18n-3d-multilingual
+    file: Mobilyacı/3d-demo/research/i18n-3d-multilingual.md
+    lines: 1951
+    size_kb: 56
+    topic: "next-intl, RTL, CJK fonts, currency, locale"
+    categories: [3d, i18n, multilingual]
+    keywords: [next-intl-3d, rtl, cjk-fonts, locale-3d]
+    usage_context: ["multilingual 3D site", "RTL arapca", "CJK 3D text"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [global, multi-locale]
+
+  - id: infinite-tunnel-warp-effects
+    file: Mobilyacı/3d-demo/research/infinite-tunnel-warp-effects.md
+    lines: 1915
+    size_kb: 56
+    topic: "Neon tunnel, hyperspace, DNA helix, vortex"
+    categories: [3d, tunnel, warp, vfx]
+    keywords: [neon-tunnel, hyperspace, dna-helix, vortex, warp]
+    usage_context: ["Tier 4+ hero effect", "portal transition", "immersive intro"]
+    linked_atoms: [ultra-porthole-dive]
+    linked_skills: [3d-site-builder]
+    sektörs: [creative]
+
+  - id: interactive-3d-maps-globe
+    file: Mobilyacı/3d-demo/research/interactive-3d-maps-globe.md
+    lines: 2146
+    size_kb: 64
+    topic: "Globe, flight routes, heatmap, Mapbox, CesiumJS"
+    categories: [3d, maps, globe, data-viz]
+    keywords: [3d-globe, flight-routes, heatmap, mapbox, cesium]
+    usage_context: ["global company site", "flight/travel", "data-journalism"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [travel, data-journalism, global]
+
+  - id: interactive-storytelling-3d
+    file: Mobilyacı/3d-demo/research/interactive-storytelling-3d.md
+    lines: 2907
+    size_kb: 84
+    topic: "Branching narrative, dialogue, Ink/Twine bridge"
+    categories: [3d, storytelling, narrative]
+    keywords: [branching-narrative, dialogue, ink, twine, 3d-story]
+    usage_context: ["interactive experience", "brand story", "educational game"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [egitim, eglence, brand]
+
+  - id: jewelry-watch-3d-showcase
+    file: Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+    lines: 1530
+    size_kb: 44
+    topic: "Gemstone refraction, metal recipes, studio lighting"
+    categories: [3d, jewelry, watch, showcase]
+    keywords: [gemstone-refraction, metal, studio-lighting, jewelry-3d]
+    usage_context: ["Fatih Bey Mucevher (ZORUNLU)", "kuyumcu/saat sitesi", "premium jewelry"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [mucevher, saat]
+
+  - id: lens-effects-bokeh-flare
+    file: Mobilyacı/3d-demo/research/lens-effects-bokeh-flare.md
+    lines: 1483
+    size_kb: 44
+    topic: "Bokeh shapes, anamorphic flare, film grain, light leak"
+    categories: [3d, lens, bokeh, postprocessing]
+    keywords: [bokeh, anamorphic-flare, film-grain, light-leak]
+    usage_context: ["cinematic look", "product hero shot", "premium aesthetic"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, premium]
+
+  - id: loading-transitions-r3f
+    file: Mobilyacı/3d-demo/research/loading-transitions-r3f.md
+    lines: 2534
+    size_kb: 68
+    topic: "useProgress, FrozenRouter, shader transitions"
+    categories: [3d, loading, transition, r3f]
+    keywords: [use-progress, frozen-router, shader-transition, 3d-loading]
+    usage_context: ["3D site loading", "route transition in 3D", "asset preload"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: massive-scene-instancing-research
+    file: Mobilyacı/3d-demo/research/massive-scene-instancing-research.md
+    lines: 2222
+    size_kb: 68
+    topic: "InstancedMesh, LOD, frustum culling, object pooling"
+    categories: [3d, instancing, lod, performance]
+    keywords: [instanced-mesh, lod, frustum-culling, object-pool, massive-scene]
+    usage_context: ["100K+ object scene", "city/crowd viz", "performance bottleneck"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [advanced]
+
+  - id: mesh-optimization-retopology
+    file: Mobilyacı/3d-demo/research/mesh-optimization-retopology.md
+    lines: 1520
+    size_kb: 52
+    topic: "Decimate, meshoptimizer, LOD generation, UV preserve"
+    categories: [3d, mesh, optimization, pipeline]
+    keywords: [decimate, meshoptimizer, lod-gen, retopo, uv-preserve]
+    usage_context: ["heavy mesh optimization", "mobile performance", "load reduction"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: micro-frontends-3d-widget
+    file: Mobilyacı/3d-demo/research/micro-frontends-3d-widget.md
+    lines: 2531
+    size_kb: 76
+    topic: "Module Federation, Web Components, embeddable widget"
+    categories: [3d, micro-frontend, widget, embed]
+    keywords: [module-federation, web-components, embed-3d, widget]
+    usage_context: ["shopify embeddable", "white-label 3D widget", "partner integration"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [e-ticaret, saas]
+
+  - id: mirror-reflection-techniques
+    file: Mobilyacı/3d-demo/research/mirror-reflection-techniques.md
+    lines: 1334
+    size_kb: 40
+    topic: "Planar, cubemap, SSR, matcap, MeshReflectorMaterial"
+    categories: [3d, mirror, reflection, rendering]
+    keywords: [planar, cubemap, ssr, matcap, mesh-reflector]
+    usage_context: ["showroom floor reflection", "luxury store", "premium product"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [premium, retail]
+
+  - id: morph-targets-research
+    file: Mobilyacı/3d-demo/research/morph-targets-research.md
+    lines: 2545
+    size_kb: 72
+    topic: "Blend shapes, scroll morphing, face controller"
+    categories: [3d, morph, blend-shape, animation]
+    keywords: [morph-target, blend-shape, scroll-morph, face-controller]
+    usage_context: ["scroll-driven shape-change", "face animation", "brand shape shift"]
+    linked_atoms: [MO2]
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, portfolio]
+
+  - id: motion-design-principles-3d
+    file: Mobilyacı/3d-demo/research/motion-design-principles-3d.md
+    lines: 2277
+    size_kb: 64
+    topic: "Disney 12 principles, timing, staging, choreography"
+    categories: [3d, motion, animation, principles]
+    keywords: [disney-12, timing, staging, choreography, motion-principle]
+    usage_context: ["her 3D animasyonda", "motion design review", "animation quality"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, design-council]
+    sektörs: [all]
+
+  - id: multi-user-3d-websocket
+    file: Mobilyacı/3d-demo/research/multi-user-3d-websocket.md
+    lines: 2158
+    size_kb: 60
+    topic: "WebSocket, WebRTC, Liveblocks, PartyKit, CRDT"
+    categories: [3d, multi-user, websocket, collab]
+    keywords: [websocket, webrtc, liveblocks, partykit, crdt, multi-user-3d]
+    usage_context: ["collaborative 3D editor", "shared showroom", "virtual meeting"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [collab, saas]
+
+  - id: museum-gallery-3d
+    file: Mobilyacı/3d-demo/research/museum-gallery-3d.md
+    lines: 2587
+    size_kb: 76
+    topic: "Gallery walk, artwork placement, audio guide"
+    categories: [3d, museum, gallery]
+    keywords: [gallery-walk, artwork-placement, audio-guide, museum-3d]
+    usage_context: ["muze sanal tur", "art gallery online", "exhibition"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [muze, art]
+
+  - id: nerf-web-viewer
+    file: Mobilyacı/3d-demo/research/nerf-web-viewer.md
+    lines: 923
+    size_kb: 32
+    topic: "NeRF vs 3DGS, Luma AI, MobileNeRF"
+    categories: [3d, nerf, 3dgs, capture]
+    keywords: [nerf, 3dgs, luma-ai, mobile-nerf, gaussian-splat]
+    usage_context: ["real object 3D capture", "premium photogrammetry", "Tier 4+ premium viewer"]
+    linked_atoms: [premium-gaussian-splat]
+    linked_skills: [3d-site-builder]
+    sektörs: [premium, mucevher, art]
+
+  - id: ocean-water-fft-gerstner
+    file: Mobilyacı/3d-demo/research/ocean-water-fft-gerstner.md
+    lines: 1907
+    size_kb: 60
+    topic: "Gerstner waves, FFT Tessendorf, foam, floating"
+    categories: [3d, water, ocean, simulation]
+    keywords: [gerstner, fft-tessendorf, foam, ocean-simulation]
+    usage_context: ["su efekti", "marine/yatcilik", "beachfront property"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [travel, property, creative]
+
+  - id: organic-nature-simulation
+    file: Mobilyacı/3d-demo/research/organic-nature-simulation.md
+    lines: 1607
+    size_kb: 48
+    topic: "Plant growth, grass, erosion, coral DLA, moss"
+    categories: [3d, nature, organic, simulation]
+    keywords: [plant-growth, grass, erosion, coral, nature-sim]
+    usage_context: ["ekolojik marka", "bahce/peyzaj", "nature-focused product"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [eco, nature, garden]
+
+  - id: particle-systems-deep-research
+    file: Mobilyacı/3d-demo/research/particle-systems-deep-research.md
+    lines: 2619
+    size_kb: 76
+    topic: "GPGPU, wawa-vfx, three.quarks, morphing, attractors"
+    categories: [3d, particle, vfx, gpgpu]
+    keywords: [gpgpu, wawa-vfx, three-quarks, particle-morph, attractor]
+    usage_context: ["100K+ particles", "hero particle scene", "audio-reactive"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: payment-integration-turkey
+    file: Mobilyacı/3d-demo/research/payment-integration-turkey.md
+    lines: 2245
+    size_kb: 72
+    topic: "iyzico, PayTR, Stripe, taksit, 3D Secure"
+    categories: [payment, turkey, iyzico, paytr]
+    keywords: [iyzico, paytr, stripe, taksit, 3d-secure, odeme]
+    usage_context: ["TR e-ticaret (alternatif)", "odeme altyapisi", "taksit setup"]
+    linked_atoms: []
+    linked_skills: [e-commerce-builder]
+    sektörs: [e-ticaret, turkey]
+
+  - id: pbr-materials-realistic-rendering
+    file: Mobilyacı/3d-demo/research/pbr-materials-realistic-rendering.md
+    lines: 2056
+    size_kb: 60
+    topic: "Clearcoat, sheen, iridescence, anisotropy, dispersion"
+    categories: [3d, pbr, material, rendering]
+    keywords: [clearcoat, sheen, iridescence, anisotropy, dispersion, pbr]
+    usage_context: ["photorealistic product", "premium material", "car paint / jewelry"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [premium, mucevher, otomotiv]
+
+  - id: photogrammetry-pipeline
+    file: Mobilyacı/3d-demo/research/photogrammetry-pipeline.md
+    lines: 863
+    size_kb: 32
+    topic: "SfM, MVS, Meshroom, RealityCapture, web pipeline"
+    categories: [3d, photogrammetry, pipeline, capture]
+    keywords: [sfm, mvs, meshroom, reality-capture, photogrammetry]
+    usage_context: ["3D scan from photos", "archaeological", "real product capture"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [premium, heritage]
+
+  - id: procedural-animation
+    file: Mobilyacı/3d-demo/research/procedural-animation.md
+    lines: 1783
+    size_kb: 52
+    topic: "Walk cycle, breathing, idle, look-at, tail chain"
+    categories: [3d, procedural, animation]
+    keywords: [walk-cycle, breathing, idle, look-at, tail-chain]
+    usage_context: ["character animation", "avatar idle", "pet/mascot"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [character, mascot]
+
+  - id: procedural-generation-terrain-city
+    file: Mobilyacı/3d-demo/research/procedural-generation-terrain-city.md
+    lines: 2098
+    size_kb: 64
+    topic: "fBM terrain, quadtree LOD, city, L-systems, WFC"
+    categories: [3d, procedural, terrain, city]
+    keywords: [fbm, quadtree-lod, city-gen, l-system, wfc]
+    usage_context: ["infinite terrain", "game-like city", "procedural world"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [game, creative]
+
+  - id: profiling-debugging-threejs
+    file: Mobilyacı/3d-demo/research/profiling-debugging-threejs.md
+    lines: 2011
+    size_kb: 56
+    topic: "SpectorJS, renderer.info, memory leaks, Lighthouse"
+    categories: [3d, profiling, debugging, performance]
+    keywords: [spector-js, renderer-info, memory-leak, lighthouse-3d]
+    usage_context: ["3D performans analizi", "memory leak debug", "Lighthouse fail"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    sektörs: [all]
+
+  - id: pwa-offline-3d
+    file: Mobilyacı/3d-demo/research/pwa-offline-3d.md
+    lines: 2047
+    size_kb: 56
+    topic: "Service Worker, cache strategies, manifest, push"
+    categories: [3d, pwa, offline]
+    keywords: [service-worker, cache-strategy, manifest, pwa-3d]
+    usage_context: ["PWA 3D site", "offline asset strategy", "mobile 3D"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [mobile]
+
+  - id: r3f-animation-libraries
+    file: Mobilyacı/3d-demo/research/r3f-animation-libraries.md
+    lines: 1933
+    size_kb: 52
+    topic: "react-spring, Theatre.js, Leva, maath, composition"
+    categories: [3d, animation, r3f, libraries]
+    keywords: [react-spring, theatre-js, leva, maath, r3f-animation]
+    usage_context: ["R3F animation toolkit", "spring physics", "keyframe editor"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: ragdoll-destruction-physics
+    file: Mobilyacı/3d-demo/research/ragdoll-destruction-physics.md
+    lines: 1656
+    size_kb: 48
+    topic: "Ragdoll joints, Voronoi fracture, bullet time"
+    categories: [3d, physics, ragdoll, destruction]
+    keywords: [ragdoll, voronoi-fracture, bullet-time, destruction]
+    usage_context: ["game-like destruction", "physics showcase", "impact vfx"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [game, creative]
+
+  - id: rapier-character-controllers-walkthrough
+    file: Mobilyacı/3d-demo/research/rapier-character-controllers-walkthrough.md
+    lines: 2351
+    size_kb: 68
+    topic: "FPS walkthrough, vehicle physics, platformer"
+    categories: [3d, rapier, physics, character]
+    keywords: [fps, vehicle-physics, platformer, rapier-character]
+    usage_context: ["first-person tour", "vehicle sim", "game element"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [gayrimenkul, eglence]
+
+  - id: raymarching-sdf-shapes
+    file: Mobilyacı/3d-demo/research/raymarching-sdf-shapes.md
+    lines: 1415
+    size_kb: 44
+    topic: "SDF primitives, boolean ops, metaballs, terrain"
+    categories: [3d, raymarching, sdf, shader]
+    keywords: [sdf, boolean-ops, metaballs, raymarching]
+    usage_context: ["Tier 4+ shader effect", "generative shape", "metaball logo"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative]
+
+  - id: react-spring-three-deep-research
+    file: Mobilyacı/3d-demo/research/react-spring-three-deep-research.md
+    lines: 1568
+    size_kb: 48
+    topic: "useSpring, useTrail, useChain, scroll springs"
+    categories: [3d, react-spring, animation]
+    keywords: [use-spring, use-trail, use-chain, scroll-spring]
+    usage_context: ["spring physics 3D", "declarative animation", "trail effect"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: real-estate-virtual-tour
+    file: Mobilyacı/3d-demo/research/real-estate-virtual-tour.md
+    lines: 1647
+    size_kb: 48
+    topic: "360 panorama, hotspot nav, dollhouse, GS capture"
+    categories: [3d, real-estate, virtual-tour]
+    keywords: [360-panorama, hotspot-nav, dollhouse, virtual-tour, gs-capture]
+    usage_context: ["emlak sitesi", "virtual showing", "property tour"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [gayrimenkul]
+
+  - id: responsive-mobile-optimization-r3f
+    file: Mobilyacı/3d-demo/research/responsive-mobile-optimization-r3f.md
+    lines: 1861
+    size_kb: 52
+    topic: "GPU tier, adaptive quality, touch, battery API"
+    categories: [3d, mobile, responsive, performance]
+    keywords: [gpu-tier, adaptive-quality, touch-3d, battery-api]
+    usage_context: ["mobile 3D optimization", "low-end device", "adaptive dpr"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [mobile, all]
+
+  - id: retro-synthwave-vaporwave
+    file: Mobilyacı/3d-demo/research/retro-synthwave-vaporwave.md
+    lines: 1673
+    size_kb: 48
+    topic: "Neon grid, sunset sky, chrome, VHS, equalizer"
+    categories: [3d, retro, synthwave, aesthetic]
+    keywords: [neon-grid, sunset-sky, chrome, vhs, synthwave]
+    usage_context: ["retro aesthetic brand", "music/indie", "80s vibe"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, music]
+
+  - id: server-side-3d-rendering
+    file: Mobilyacı/3d-demo/research/server-side-3d-rendering.md
+    lines: 1943
+    size_kb: 60
+    topic: "Headless GL, OG image, thumbnail, Puppeteer"
+    categories: [3d, ssr, og-image, server]
+    keywords: [headless-gl, og-image, thumbnail, puppeteer, ssr-3d]
+    usage_context: ["SEO icin OG image 3D", "thumbnail generation", "social share 3D"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, seo-audit]
+    sektörs: [all]
+
+  - id: shader-effects-catalog
+    file: Mobilyacı/3d-demo/research/shader-effects-catalog.md
+    lines: 1918
+    size_kb: 60
+    topic: "34 postprocessing effects, 11 GLSL effects, use-shader-fx"
+    categories: [3d, shader, postprocessing, catalog]
+    keywords: [postprocessing, bloom, chromatic-aberration, shader-catalog, use-shader-fx]
+    usage_context: ["effect catalog reference", "postprocess stack", "quick lookup"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: shadertoy-to-r3f-conversion
+    file: Mobilyacı/3d-demo/research/shadertoy-to-r3f-conversion.md
+    lines: 1580
+    size_kb: 48
+    topic: "Variable mapping, universal wrapper, aurora"
+    categories: [3d, shader, shadertoy, conversion]
+    keywords: [shadertoy, variable-mapping, wrapper, aurora-shader]
+    usage_context: ["Shadertoy effect R3F'e port", "community shader adapt", "aurora bg"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative]
+
+  - id: shadow-techniques-deep
+    file: Mobilyacı/3d-demo/research/shadow-techniques-deep.md
+    lines: 1218
+    size_kb: 40
+    topic: "CSM, VSM, PCSS, ContactShadows, fake shadows"
+    categories: [3d, shadow, rendering]
+    keywords: [csm, vsm, pcss, contact-shadows, fake-shadow]
+    usage_context: ["shadow quality", "performance vs fidelity", "premium scene"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: sharing-export-3d
+    file: Mobilyacı/3d-demo/research/sharing-export-3d.md
+    lines: 2145
+    size_kb: 60
+    topic: "Screenshot, video record, GIF, social share, PDF"
+    categories: [3d, export, share, social]
+    keywords: [screenshot, video-record, gif, social-share, 3d-export]
+    usage_context: ["configurator save-share", "product screenshot", "social viral"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    sektörs: [e-ticaret, configurator]
+
+  - id: skeletal-animation-mixamo-ik
+    file: Mobilyacı/3d-demo/research/skeletal-animation-mixamo-ik.md
+    lines: 1793
+    size_kb: 48
+    topic: "AnimationMixer, Mixamo, IK, blend tree, state machine"
+    categories: [3d, skeletal, animation, ik]
+    keywords: [animation-mixer, mixamo, ik, blend-tree, state-machine]
+    usage_context: ["character rigging", "avatar walk/run", "motion library"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [character, avatar]
+
+  - id: sky-atmosphere-scattering
+    file: Mobilyacı/3d-demo/research/sky-atmosphere-scattering.md
+    lines: 2057
+    size_kb: 60
+    topic: "Rayleigh, Mie, drei Sky, time-of-day, moon/stars"
+    categories: [3d, sky, atmosphere]
+    keywords: [rayleigh, mie-scattering, drei-sky, time-of-day, atmosphere]
+    usage_context: ["outdoor scene", "time-of-day animation", "cinematic sky"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [travel, architectural]
+
+  - id: soft-body-cloth-rope-jelly
+    file: Mobilyacı/3d-demo/research/soft-body-cloth-rope-jelly.md
+    lines: 1968
+    size_kb: 56
+    topic: "Verlet integration, cloth, rope joints, jelly shader"
+    categories: [3d, soft-body, cloth, physics]
+    keywords: [verlet, cloth, rope, jelly, soft-body]
+    usage_context: ["cloth sim", "rope physics", "jelly shader"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [moda, creative]
+
+  - id: sports-fitness-3d
+    file: Mobilyacı/3d-demo/research/sports-fitness-3d.md
+    lines: 1024
+    size_kb: 36
+    topic: "Equipment, sneaker configurator, motion capture"
+    categories: [3d, sports, fitness]
+    keywords: [sports-equipment, sneaker-config, motion-capture, fitness-3d]
+    usage_context: ["spor urun site", "sneaker configurator", "fitness tracking"]
+    linked_atoms: [HR4]
+    linked_skills: [3d-site-builder]
+    sektörs: [spor]
+
+  - id: sprite-animation-billboard
+    file: Mobilyacı/3d-demo/research/sprite-animation-billboard.md
+    lines: 1799
+    size_kb: 52
+    topic: "Sprite sheet, SpriteAnimator, billboard, health bars"
+    categories: [3d, sprite, billboard, 2d-in-3d]
+    keywords: [sprite-sheet, sprite-animator, billboard, health-bar]
+    usage_context: ["2D element in 3D", "flying text", "UI in scene"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [game, hybrid]
+
+  - id: tailwind-v4-3d-overlay-patterns
+    file: Mobilyacı/3d-demo/research/tailwind-v4-3d-overlay-patterns.md
+    lines: 1692
+    size_kb: 48
+    topic: "Glass morphism, text effects, animations, components"
+    categories: [3d, tailwind, overlay, hybrid]
+    keywords: [glass-morphism, text-effects, tailwind-3d, overlay-ui]
+    usage_context: ["3D + Tailwind UI overlay", "HUD", "hybrid design"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    sektörs: [all]
+
+  - id: texture-synthesis-procedural
+    file: Mobilyacı/3d-demo/research/texture-synthesis-procedural.md
+    lines: 2409
+    size_kb: 72
+    topic: "Canvas texture, marble/wood/brick shader, normal gen"
+    categories: [3d, texture, procedural]
+    keywords: [canvas-texture, marble, wood, brick, normal-gen, procedural-texture]
+    usage_context: ["infinite variations", "low bandwidth", "procedural material"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: threejs-r170-r183-research
+    file: Mobilyacı/3d-demo/research/threejs-r170-r183-research.md
+    lines: 962
+    size_kb: 32
+    topic: "Release highlights, new materials, WebGPU, shadows"
+    categories: [3d, threejs, release, reference]
+    keywords: [three-r170, three-r183, release-notes, webgpu, new-material]
+    usage_context: ["version migration", "feature lookup", "changelog reference"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [all]
+
+  - id: time-manipulation-slowmo
+    file: Mobilyacı/3d-demo/research/time-manipulation-slowmo.md
+    lines: 1804
+    size_kb: 48
+    topic: "Slow-mo, bullet time, time reverse, speed ramp"
+    categories: [3d, time, slow-mo, cinematic]
+    keywords: [slow-mo, bullet-time, time-reverse, speed-ramp]
+    usage_context: ["dramatic reveal", "time-freeze interaction", "cinematic moment"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative]
+
+  - id: toon-cel-shading-npr
+    file: Mobilyacı/3d-demo/research/toon-cel-shading-npr.md
+    lines: 1380
+    size_kb: 48
+    topic: "Toon shader, outlines, hatching, watercolor, anime"
+    categories: [3d, toon, npr, style]
+    keywords: [toon-shader, outlines, hatching, watercolor, anime]
+    usage_context: ["illustrated aesthetic", "anime/cartoon style", "friendly brand"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [creative, brand]
+
+  - id: version-control-3d-assets
+    file: Mobilyacı/3d-demo/research/version-control-3d-assets.md
+    lines: 1814
+    size_kb: 52
+    topic: "Git LFS, DVC, CI/CD, visual regression, CDN deploy"
+    categories: [3d, version-control, ci-cd, pipeline]
+    keywords: [git-lfs, dvc, visual-regression, cdn-deploy, 3d-pipeline]
+    usage_context: ["3D asset CI/CD", "large file management", "visual regression"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    sektörs: [all]
+
+  - id: view-transitions-api-research
+    file: Mobilyacı/3d-demo/research/view-transitions-api-research.md
+    lines: 1726
+    size_kb: 48
+    topic: "startViewTransition, CSS pseudo-elements, Next.js"
+    categories: [3d, view-transitions, page-transition]
+    keywords: [start-view-transition, css-pseudo, next-view-transition]
+    usage_context: ["Next.js page transition", "CSS-native morph", "modern browser"]
+    linked_atoms: [MO6]
+    linked_skills: [frontend-design, 3d-site-builder]
+    sektörs: [all]
+
+  - id: volumetric-fog-godrays
+    file: Mobilyacı/3d-demo/research/volumetric-fog-godrays.md
+    lines: 1169
+    size_kb: 36
+    topic: "Height fog, god rays, volumetric light shafts"
+    categories: [3d, fog, god-rays, atmosphere]
+    keywords: [height-fog, god-rays, volumetric, light-shaft]
+    usage_context: ["dramatic lighting", "cinematic scene", "premium aesthetic"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [premium, creative]
+
+  - id: voxel-rendering-pixel-art
+    file: Mobilyacı/3d-demo/research/voxel-rendering-pixel-art.md
+    lines: 1683
+    size_kb: 48
+    topic: "MagicaVoxel, VOXLoader, greedy meshing, AO"
+    categories: [3d, voxel, pixel-art]
+    keywords: [magica-voxel, voxloader, greedy-mesh, voxel-ao]
+    usage_context: ["voxel aesthetic", "game-like", "retro 3D"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [game, retro]
+
+  - id: weather-effects-snow-rain
+    file: Mobilyacı/3d-demo/research/weather-effects-snow-rain.md
+    lines: 2428
+    size_kb: 72
+    topic: "Rain, snow, fog, wind, lightning, puddles, wet shader"
+    categories: [3d, weather, particle, vfx]
+    keywords: [rain, snow, fog, wind, lightning, wet-shader]
+    usage_context: ["seasonal brand", "atmospheric scene", "ski/outdoor"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder]
+    sektörs: [travel, seasonal]
+
+  - id: web-animation-trends-2025-2026-3d
+    file: Mobilyacı/3d-demo/research/web-animation-trends-2025-2026.md
+    lines: 616
+    size_kb: 28
+    topic: "CSS scroll-driven, View Transitions, WebGPU"
+    categories: [3d, trends, animation]
+    keywords: [css-scroll-driven, view-transitions, webgpu, trends-2026]
+    usage_context: ["trend reference", "tier decision support", "modern tech lookup"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, design-council]
+    sektörs: [all]
+    note: "Bu dosya hem frontend-index'te hem 3d-index'te var (ortak dosya)."
+
+  - id: webgl-image-effects
+    file: Mobilyacı/3d-demo/research/webgl-image-effects.md
+    lines: 2068
+    size_kb: 56
+    topic: "Fake 3D depth, liquid hover, reveal, carousel"
+    categories: [3d, webgl, image, effect]
+    keywords: [fake-3d-depth, liquid-hover, reveal, webgl-carousel]
+    usage_context: ["Tier 4+ image effect", "parallax depth map", "hover distortion"]
+    linked_atoms: []
+    linked_skills: [frontend-design, 3d-site-builder]
+    sektörs: [creative, portfolio]
+
+  - id: web-workers-offscreencanvas
+    file: Mobilyacı/3d-demo/research/web-workers-offscreencanvas.md
+    lines: 2058
+    size_kb: 60
+    topic: "OffscreenCanvas, SharedArrayBuffer, comlink"
+    categories: [3d, web-workers, offscreen, performance]
+    keywords: [offscreen-canvas, shared-array-buffer, comlink, web-worker-3d]
+    usage_context: ["heavy compute off main thread", "3D in worker", "performance boost"]
+    linked_atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    sektörs: [advanced]

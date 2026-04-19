@@ -1,0 +1,49 @@
+---
+id: K5
+name: Almanac Editorial KPI
+category: kpi
+description: Gazete almanak/hava tahmini format, serif büyük sayı + descriptive prose
+---
+
+usage_sectors: [editorial, mucevher-luxury, hospitality, long-read, brand-story]
+forbidden_sectors: [dashboard, data-dense]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY19, TY27, TY43]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/index.html
+    lines: "180-240"
+    note: Almanac newspaper format
+  - file: templates/04-restoran/index.html
+    lines: "220-280"
+
+variants:
+  - name: weather-forecast
+    visual: "Hava tahmini tarzı: değer + kısa prose açıklama"
+  - name: almanac-entries
+    visual: "Gün gün satırlar, serif display sayı"
+
+preview_snippet: |
+  <section class="kpi-almanac">
+    <article>
+      <div class="ka-num">47°</div>
+      <div class="ka-label">Ortalama müşteri memnuniyeti</div>
+      <p class="ka-prose">Geçen yıla göre 3 puan artış — özellikle Boğaz rezidanslarında 51°'ye ulaştık.</p>
+    </article>
+    <hr/>
+    <article>
+      <div class="ka-num">128</div>
+      <div class="ka-label">Gün · ortalama teslim</div>
+      <p class="ka-prose">Hedef 135 gün altında, 18 projede rekor 98 gün.</p>
+    </article>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:87-87

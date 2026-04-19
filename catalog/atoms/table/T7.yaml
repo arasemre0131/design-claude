@@ -1,0 +1,37 @@
+---
+id: T7
+name: Receipt Strip (transaction list, kompakt)
+category: table
+description: Makbuz şeridi, dashed border, kompakt transaction row
+---
+
+usage_sectors: [retail-pos, finans, kargo, sipariş-takip, order-tracking]
+forbidden_sectors: [luxury, editorial-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY14, TY15]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "254-291"
+
+variants:
+  - name: dashed-border
+    visual: "Her row border-top: dashed 1px"
+  - name: perforated-tear
+    visual: "Köşelerde tear-mark pseudo-elements"
+
+preview_snippet: |
+  <ul class="receipt-rows">
+    <li><span>14:32</span><span>ORDER #047</span><span>₺1.240</span><span class="ok">PAID</span></li>
+    <li><span>14:21</span><span>ORDER #046</span><span>₺890</span><span class="ok">PAID</span></li>
+  </ul>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:125-125

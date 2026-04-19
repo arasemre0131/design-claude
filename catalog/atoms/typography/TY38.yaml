@@ -1,0 +1,31 @@
+---
+id: TY38
+name: Fraunces SC + Hanken Grotesk
+category: typography
+description: Spa small caps, Fraunces small caps + Hanken
+display_font: "Fraunces SC (small caps)"
+body_font: "Hanken Grotesk"
+mono_font: null
+---
+
+usage_sectors: [spa, wellness-editorial, yoga-studio, luxury-wellness]
+forbidden_sectors: [neobrutalist, industrial]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/07-spa/style-b.css
+
+google_fonts: "Fraunces:opsz,wght@9..144,400;9..144,600&family=Hanken+Grotesk:wght@300..700"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-variant-caps: small-caps; font-variation-settings: 'opsz' 144; font-weight: 500; }
+    body { font-family: 'Hanken Grotesk'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:135 (spa TY38)

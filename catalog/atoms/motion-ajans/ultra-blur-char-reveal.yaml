@@ -1,0 +1,33 @@
+---
+id: ultra-blur-char-reveal
+name: Scroll-Scrubbed Character Opacity Highlight (14-ultra)
+category: motion-ajans
+description: SplitText chars + scrub scroll, opacity 0.15 → 1 per char
+license: Bizim yazdığımız — direkt kullanılabilir
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "612-618"
+---
+
+usage_sectors: [editorial, kinetic, long-read, narrative]
+forbidden_sectors: [prefers-reduced-motion]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-splittext", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "612-618"
+
+preview_snippet: |
+  const scrubSplit = new SplitText('#scrubText', { type: 'chars,words' });
+  gsap.from(scrubSplit.chars, {
+    filter: 'blur(30px)', opacity: 0.15,
+    duration: 0.6, stagger: { each: 0.02 },
+    scrollTrigger: { trigger: '#scrubText', start: 'top 85%', end: 'bottom 60%', scrub: true }
+  });
+
+research_refs:
+  - ULTRAPLAN.md:770 (atom 32 Scroll-Scrubbed-Opacity-Char)

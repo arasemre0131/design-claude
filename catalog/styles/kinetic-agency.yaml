@@ -1,0 +1,77 @@
+---
+id: kinetic-agency
+name: Kinetic Agency
+mood: [italic-vurgu, scroll-pin, variable-font-axis, energetic, rebel-craft]
+one_liner: "fraxbit-style: italic kinetic display + variable font opsz scroll + GSAP pin-scrub."
+---
+
+typography:
+  display: [Bricolage-Grotesque, Monument-Extended, Syne-Italic]
+  body: [Inter-Tight, Space-Grotesk, Hanken-Grotesk]
+  mono: [JetBrains-Mono, Berkeley-Mono]
+  variable_axes: [opsz, wght, slnt]    # slnt critical (italic scroll-driven)
+  pair_ids: [TY7, TY14, TY5]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - fraxbit-black-bronze   # black+white+bronze/gold minimal (marble metafor)
+  - kinetic-mono-bw
+  - ink-and-signal         # #0A0A0A + tek signal lime/cyan accent
+
+motion_primitives:
+  preferred: [MO1, MO6, MO11]   # GSAP ScrollTrigger pin+scrub, SplitText stagger, variable-font opsz scroll-linked (YENI)
+  acceptable: [MO2]             # Lenis smooth (hizli lerp 0.12)
+  forbidden: [MO10-print-first, MO3-subtle-only]
+
+motion_stack:
+  required: [GSAP 3.13, ScrollTrigger, SplitText, Lenis 1.3.4]
+  optional: [Observer, CustomEase, ScrambleText, Flip]
+  forbidden: [static-typography, no-motion]
+
+preferred_heroes: [HR5, HR15, HR11]   # italic-kinetic type-hero, marble sculpture (fraxbit), brochure cover
+preferred_layouts: [L4, L2, L5]       # full-bleed rails, asymmetric, editorial 3-col
+preferred_footers: [FT5, FT1]         # big wordmark signoff, minimal strip
+
+forbidden:
+  - static-display-type
+  - print-first-only
+  - dark-gold-luxury        # PL1 klisesi
+  - glass-morphism
+  - pastel-bento
+  - brutalist-hard-shadow
+  - warm-sandy-organic
+
+reference_impls:
+  - file: templates/11-kinetic/index.html
+    score: 4/5
+    note: "fraxbit-ishi kinetic italic + scatter preloader + Bricolage Grotesque."
+  - file: templates/14-ultra/index.html
+    score: 5/5
+    note: "GSAP 3.13 + Lenis 1.3.4 + variable opsz scroll-linked + SplitText chars + blur-36 reveal + Fraunces italic kinetic."
+  - file: v2-kinetic-data/index.html
+    score: 3/5
+    note: "Kinetic tarafi var ama daha cok data-dense — hibrit."
+
+trends_2026:
+  bento_2_0: PARTIAL              # kinetic + bento uyum az
+  kinetic_typography: YES         # imza teknik
+  maximalism: PARTIAL             # italic overlap OK ama renk saturation degil
+  scroll_triggered_3d: PARTIAL    # sayet stil 3d'ye evrilmiyorsa
+  variable_fonts: YES             # ZORUNLU imza
+  scatter-preloader: YES          # fraxbit imza
+
+compatible_sectors: [ajans, kreatif-stüdyo, fotograf, moda, mobilya-designer, portfolyo]
+incompatible_sectors: [klinik, spa, yasli-bakim, yasal-danismanlik]
+
+sample_palette:
+  bg: "#0A0A0A"
+  ink: "#F8F8F8"
+  bronze: "#B8875C"           # molten brass
+  signal_lime: "#C7FF4D"      # optional single signal
+sample_font_pair: "Bricolage Grotesque opsz 12-96 italic + Inter Tight + JetBrains Mono"
+
+tier_fit: [2, 3]
+notes:
+  - "Imza: SplitText chars + blur-36 -> 0 reveal + variable opsz 9->144 scroll-linked."
+  - "CustomEase 'rkHover' (.645,.045,.355,1) tarzi imza ease'i onerilir."
+  - "Klinik/yasal sektorlerde forbidden — yavas, sakin stil gerekli orada."

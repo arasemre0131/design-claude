@@ -1,0 +1,38 @@
+---
+id: fiddle-textpath-circle
+name: SVG Text-on-Path Circle (Fiddle.Digital imza)
+category: motion-ajans
+description: Circular textPath + GSAP rotate infinite
+license: MIT-safe rewrite (SVG standart)
+source: Fiddle.Digital (Obsidian Assembly)
+---
+
+usage_sectors: [kinetic-agency, maximalist, brand-chrome, decorative]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "306-314"
+
+preview_snippet: |
+  <svg viewBox="0 0 400 400" id="circle-text">
+    <defs>
+      <path id="circlePath" d="M 200,200 m -150,0 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0"/>
+    </defs>
+    <text>
+      <textPath href="#circlePath">
+        THE OBSIDIAN ASSEMBLY · MEMBERS ONLY · THE OBSIDIAN ASSEMBLY ·
+      </textPath>
+    </text>
+  </svg>
+  <script>
+    gsap.to('#circle-text', { rotation: 360, ease: 'none', repeat: -1, duration: 30 });
+  </script>
+
+research_refs:
+  - ULTRAPLAN.md:757 (atom 19 SVG-TextPath-Circle)

@@ -1,0 +1,29 @@
+---
+id: MO7
+name: View Transitions API
+category: motion
+description: Native CSS View Transitions (Chrome 111+, 2026 yaygın)
+---
+
+usage_sectors: [modern-browsers, multi-page-apps, ecommerce-visual]
+forbidden_sectors: [legacy-browser]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/view-transitions.html
+    lines: "1-80"
+
+preview_snippet: |
+  if (document.startViewTransition) {
+    document.startViewTransition(() => updateDOM());
+  }
+  /* CSS */
+  ::view-transition-old(hero-img) { animation: fade-out 0.3s; }
+  ::view-transition-new(hero-img) { animation: fade-in 0.3s; }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:295

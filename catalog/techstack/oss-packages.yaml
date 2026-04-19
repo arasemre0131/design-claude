@@ -1,0 +1,266 @@
+version: "1.0"
+last_updated: "2026-04-19"
+source: "SCRAPED-STACKS-2026.md § 2 (Ajans Kendi OSS Paketleri)"
+description: "13 ajansin kendi yazip npm veya GitHub'a koyduklari OSS paketler. Bazilari MIT, bazilari yalniz referans. Adoratorio + Active Theory + Locomotive + Fiddle en aktif yayincilar."
+note: "Closed-source ajanslar (fraxbit, evolve, mdx.so, ravi-klaassens, studio-x, flot-noir, malvah, rejouice) OSS yayinlamiyor — pattern'leri atoms/motion-ajans/ altinda MIT-safe rewrite olarak tekrar cizilir."
+
+adoratorio_suite:
+  agency: "Adoratorio Studio (Italy, adoratorio.studio)"
+  framework: "Vue 3 + Vite"
+  engine_preference: "PixiJS v8 (2D WebGL, not Three.js)"
+  packages:
+    - package: "@adoratorio/aion"
+      description: "Central rAF queue"
+      npm: https://www.npmjs.com/package/@adoratorio/aion
+      license: MIT
+      usage: "Tum animation library'leri ayni rAF loop'u kullansin (performance, prevents jitter)"
+      size_kb: 2
+      atom_related: [MO1]
+    - package: "@adoratorio/hermes"
+      description: "Wheel/touch normalization"
+      npm: https://www.npmjs.com/package/@adoratorio/hermes
+      license: MIT
+      usage: "Desktop mouse wheel + mobile touch gesture normalize, cross-device consistency"
+      size_kb: 3
+      atom_related: []
+    - package: "@adoratorio/hades"
+      description: "Smooth scroll (Lenis alternatifi)"
+      npm: https://www.npmjs.com/package/@adoratorio/hades
+      license: MIT
+      usage: "Vue-friendly smooth scroll, Lenis alternatif"
+      size_kb: 5
+      atom_related: [MO2]
+    - package: "@adoratorio/apollo"
+      description: "Custom cursor"
+      npm: https://www.npmjs.com/package/@adoratorio/apollo
+      license: MIT
+      usage: "Premium custom cursor (magnetic, trail, exclusion blend)"
+      atom_related: [ultra-dual-cursor-back-out, MO6]
+    - package: "@adoratorio/medusa"
+      description: "IntersectionObserver multi-handler"
+      npm: https://www.npmjs.com/package/@adoratorio/medusa
+      license: MIT
+      usage: "Tek observer icinden coklu callback yonetimi"
+      atom_related: []
+    - package: "postcss-prune-vars"
+      description: "CSS custom property dead-code eliminator"
+      npm: https://www.npmjs.com/package/postcss-prune-vars
+      license: MIT
+      usage: "Unused CSS variables temizle, bundle size azalt"
+      atom_related: []
+
+active_theory:
+  agency: "Active Theory (USA, activetheory.net)"
+  framework: "Custom (Hydra proprietary engine)"
+  engine_preference: "Hydra (closed) + WebCodecs"
+  note: "Hydra kapali kaynak, ama supporting library'leri ac OSS"
+  packages:
+    - package: activetheory/activeframe
+      github: https://github.com/activetheory/activeframe
+      description: "WebCodecs-based .af video format"
+      license: MIT
+      use_case: "Premium video player (Vimeo/Mux alternatifi)"
+      atom_related: []
+    - package: activetheory/split-text
+      github: https://github.com/activetheory/split-text
+      description: "GSAP SplitText ucretsiz alternatif"
+      license: MIT
+      use_case: "MIT-safe wabSplit rewrite icin referans — SplitText baglantisizi"
+      atom_related: [wearebrand-custom-splittext, MO1]
+    - package: activetheory/fit-text
+      github: https://github.com/activetheory/fit-text
+      description: "Dynamic text sizing (auto-fit container)"
+      license: MIT
+      use_case: "Hero headline responsive scaling"
+      atom_related: []
+    - package: activetheory/svg2msdf
+      github: https://github.com/activetheory/svg2msdf
+      description: "SVG → MSDF font atlas (multi-channel signed distance field)"
+      license: MIT
+      use_case: "WebGL text rendering (Three.js TextGeometry alternatif), crisp at any scale"
+      atom_related: []
+    - package: activetheory/ios-silent-bypass
+      github: https://github.com/activetheory/ios-silent-bypass
+      description: "Audio bypass iPhone mute switch"
+      license: MIT
+      use_case: "iOS audio guaranteed-play (silent mode uzulmesin)"
+      atom_related: []
+    - package: activetheory/balance-text
+      github: https://github.com/activetheory/balance-text
+      description: "Multi-line text distribution (pretty line breaks)"
+      license: MIT
+      use_case: "Hero title balansli satir sonu, typography polish"
+      atom_related: []
+    - package: activetheory/modern-screenshot
+      github: https://github.com/activetheory/modern-screenshot
+      description: "DOM → canvas/SVG (html2canvas next-gen)"
+      license: MIT
+      use_case: "Share screenshot, case study export, debug visual"
+      atom_related: []
+    - package: activetheory/GaussianSplats3D
+      github: https://github.com/activetheory/GaussianSplats3D
+      description: "Three.js Gaussian Splat renderer"
+      license: MIT
+      use_case: "Tier 4+ premium urun fotogrametri, real object capture viewer"
+      atom_related: [premium-gaussian-splat]
+
+locomotive:
+  agency: "Locomotive (Canada, locomotive.ca)"
+  framework: "Vanilla JS (no framework)"
+  packages:
+    - package: locomotive-scroll
+      version: v5
+      stars: 8800
+      license: MIT
+      npm: https://www.npmjs.com/package/locomotive-scroll
+      github: https://github.com/locomotivemtl/locomotive-scroll
+      description: "Smooth scroll library, v5 Lenis ustune yeniden yazildi"
+      usage: "Smooth scroll + data-scroll-* attribute system, parallax, sticky"
+      atom_related: [MO2, locomotive-data-scroll-attrs]
+      signature_feature: "data-scroll-speed, data-scroll-call, data-scroll-offset attributes"
+
+fiddle_digital:
+  agency: "Fiddle Digital (Europe, fiddle.digital)"
+  framework: "Nuxt 3 + TypeScript"
+  engine_preference: "OGL (8KB, not Three.js)"
+  packages:
+    - package: "@fiddle-digital/string-tune"
+      npm: https://www.npmjs.com/package/@fiddle-digital/string-tune
+      license: MIT
+      description: "Declarative data-st-* attributes (parallax/progress/video scrubbing)"
+      usage: "data-st-parallax, data-st-progress, data-st-video-scrub gibi attribute'larla declarative animation"
+      atom_related: [fiddle-textpath-circle]
+      signature_feature: "Attribute-driven scroll animations (JS-free config)"
+
+wearebrand:
+  agency: "wearebrand.io (/brand)"
+  framework: "Hand-coded + vendored libs"
+  packages:
+    - package: wearebrand-animations.js
+      status: private
+      description: "Custom 30KB animation layer (SplitText fork + scroll utils)"
+      license: "Paylasilmamis (private)"
+      note: "Kaynaktan alindi ama OSS degil. MIT-safe rewrite'i atoms/motion-ajans/ altinda wearebrand-custom-splittext ID'si ile"
+      atom_related: [wearebrand-custom-splittext]
+
+other_agency_tools_mit_alternatives:
+  description: "Closed-source ajanslarin signature pattern'lerine MIT-safe yaklasim"
+  agencies_closed_source:
+    - fraxbit
+    - evolve_studio
+    - mdx_so
+    - ravi_klaassens
+    - studio_x
+    - flot_noir
+    - malvah
+    - rejouice
+    - theo_berry
+  pattern_mapping:
+    - agency: ravi_klaassens
+      signature: "data-hover-follower/bg/inner attribute sistem + Unicorn Studio shader JSON"
+      mit_alternative: "Custom hover attribute system + MIT shader (raw GLSL or shadertoy port)"
+      atom_related: [ravi-hover-follower]
+    - agency: flot_noir
+      signature: "Taxi.js curtain page transition"
+      mit_alternative: "View Transitions API (native, MIT)"
+      atom_related: [MO6]
+    - agency: studio_x
+      signature: "Drag-to-reveal + GSAP quickTo"
+      mit_alternative: "GSAP 3.13 (free) + custom reveal logic"
+      atom_related: [studio-x-drag-reveal]
+    - agency: mdx_so
+      signature: "Vimeo pre-rendered 3D videos + clip-path"
+      mit_alternative: "Mux + clip-path CSS (no proprietary)"
+      atom_related: []
+    - agency: rejouice
+      signature: "mix-blend-mode difference header + Prismic CMS"
+      mit_alternative: "mix-blend-mode (native CSS) + Sanity/Payload"
+      atom_related: [rejouice-blend-header]
+    - agency: malvah
+      signature: "TresJS (Vue + Three.js)"
+      mit_alternative: "R3F (React + Three.js) — daha yaygın"
+      atom_related: []
+    - agency: lusion
+      signature: "Raw GLSL curl/fBM/simplex noise shader + GSAP Observer (no Lenis)"
+      mit_alternative: "lygia library + glsl-noise + GSAP Observer (free)"
+      atom_related: [lusion-shader-noise]
+
+complementary_mit_libraries:
+  description: "13 ajansın sıkça kullandığı MIT-licensed core library'ler (SCRAPED-STACKS § 3 CDN havuzu)"
+  packages:
+    - package: gsap
+      version: "3.13.0"
+      license: MIT
+      usage_rate: "93% (13/14 ajans)"
+      cdn: "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+      note: "Fiili animasyon standardı. 3.13+ tüm plugin'ler ücretsiz (SplitText, MorphSVG, DrawSVG dahil)"
+      atom_related: [MO1]
+    - package: lenis
+      version: "1.3.4"
+      license: MIT
+      usage_rate: "86% (12/14 ajans)"
+      cdn: "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"
+      note: "Smooth scroll fiili tekel, Lusion hariç"
+      atom_related: [MO2]
+    - package: "@barba/core"
+      version: "2.10.3"
+      license: MIT
+      usage_rate: "36% (5/14)"
+      cdn: "https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.min.js"
+      note: "Page transition fiili standardı"
+      atom_related: [MO6]
+    - package: ogl
+      license: MIT
+      size_kb: 8
+      usage_rate: "7% (Fiddle.Digital)"
+      cdn: "https://cdn.jsdelivr.net/npm/ogl@1/dist/ogl.umd.js"
+      note: "Three.js lightweight alternatifi, 8KB"
+    - package: "pixi.js"
+      version: "8.6.0"
+      license: MIT
+      usage_rate: "7% (Adoratorio)"
+      cdn: "https://cdn.jsdelivr.net/npm/pixi.js@8.6.0/dist/pixi.min.mjs"
+      note: "2D WebGL, not Three.js — Max Mara'da kullanıldı"
+    - package: howler
+      version: "2.2.4"
+      license: MIT
+      usage_rate: "14% (2/14)"
+      cdn: "https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"
+      note: "UI + ambient audio standardı"
+    - package: hls.js
+      version: "1.6.11"
+      license: Apache-2.0
+      usage_rate: "7% (Ravi Klaassens)"
+      cdn: "https://cdn.jsdelivr.net/npm/hls.js@1.6.11/dist/hls.min.js"
+      note: "Case study video streaming"
+    - package: splitting
+      license: MIT
+      cdn: "https://unpkg.com/splitting/dist/splitting.min.js"
+      note: "CSS-driven text splitting, SplitText alternatifi"
+      atom_related: [MO1]
+
+usage_guidelines:
+  - "OSS paketleri asla blindly kurma — once license + bundle size + maintenance status kontrol et"
+  - "Ajans signature pattern'lerini piksel-piksel kopyalama (telif + vibe-coded risk)"
+  - "MIT-safe rewrite icin atoms/motion-ajans/ altinda atom ID uret"
+  - "Adoratorio suite Vue-centric, Next.js projeye adapt etmek gerekir"
+  - "Active Theory supporting lib'leri genelde vanilla JS, tree-shake dostudur"
+  - "Locomotive Scroll v5 Lenis ustune yazildi, direkt Lenis tercih edilebilir (v5 optional)"
+  - "Fiddle StringTune declarative ama Nuxt entegrasyonu agir — Next.js icin ozel wrapper gerekir"
+
+summary:
+  total_packages: 25
+  agency_oss_packages: 17
+  complementary_mit_packages: 8
+  mit_licensed: 24
+  apache_licensed: 1
+  agency_private: 1
+  mit_safe_rewrites: 7
+  most_valuable:
+    - "gsap 3.13.0 (fiili animasyon standardı — 93% ajans)"
+    - "lenis 1.3.4 (smooth scroll tekel — 86% ajans)"
+    - "@adoratorio/aion (animation orchestration / central rAF)"
+    - "activetheory/split-text (free SplitText alternative)"
+    - "activetheory/GaussianSplats3D (premium capture viewer)"
+    - "locomotive-scroll v5 (smooth scroll w/ attribute system)"
+    - "@fiddle-digital/string-tune (declarative scroll animation)"

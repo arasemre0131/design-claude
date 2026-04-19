@@ -1,0 +1,34 @@
+---
+id: PL31
+name: Clay + Mist (Spa A)
+category: palette
+description: Mist bg + clay + sand + rootbark
+bg: "#F5F1E8 mist"
+accent: "#A0826D clay"
+ikincil: "#D4B896 sand + #6B5E4C rootbark"
+ink: "#3A2E22"
+---
+
+usage_sectors: [spa, hamam, pottery-studio, botanical-spa, yoga]
+forbidden_sectors: [tech, industrial]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5F1E8 × clay #A0826D = 3.6:1 (AA Large)"
+  - "bg #F5F1E8 × rootbark #6B5E4C = 5.7:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5F1E8;
+    --clay: #A0826D;
+    --sand: #D4B896;
+    --rootbark: #6B5E4C;
+    --ink: #3A2E22;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:128 (spa PL31)

@@ -1,0 +1,31 @@
+---
+id: TY4
+name: Instrument Serif Italic + Space Grotesk + JetBrains Mono
+category: typography
+description: Editorial luxury, Instrument Serif italic display
+display_font: "Instrument Serif italic"
+body_font: "Space Grotesk"
+mono_font: "JetBrains Mono"
+forbidden: true
+reason: v1-CONSTRUO + 3 admin projede tekrar — editorial luxury klişe
+---
+
+usage_sectors: []
+forbidden_sectors: [admin-editorial-yeni]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: v1-CONSTRUO/style.css
+    note: YASAK
+
+google_fonts: "Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500"
+
+preview_snippet: |
+  <!-- YASAK: Instrument+Space editorial luxury klişe -->
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:214 (TY4 YASAK)

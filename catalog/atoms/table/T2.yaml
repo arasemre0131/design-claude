@@ -1,0 +1,37 @@
+---
+id: T2
+name: Linear Issue (dense, keyboard-first)
+category: table
+description: Dense, keyboard-first, j/k navigate, kısayol focused
+---
+
+usage_sectors: [saas, developer-tool, issue-tracker, admin-dense, power-user]
+forbidden_sectors: [eticaret, mucevher, spa]
+
+forbidden_with: [T6, T1]
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "126-200"
+
+variants:
+  - name: with-shortcut-hints
+    visual: "Seçili row'da kısayol ipucu"
+  - name: multi-select-checkbox
+    visual: "Toplu seçim + bulk actions"
+
+preview_snippet: |
+  <table class="linear-issue">
+    <thead><tr><th>#</th><th>Title</th><th>Assignee</th><th>Status</th><th>Priority</th></tr></thead>
+    <tbody tabindex="0" data-kb-nav>...</tbody>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:120-120

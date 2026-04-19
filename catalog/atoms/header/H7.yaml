@@ -1,0 +1,41 @@
+---
+id: H7
+name: Vertical Writing-Mode Rail
+category: header
+description: Sol taraf vertical-rl yazı ile logo + bölüm index, editorial rail
+---
+
+usage_sectors: [portfolio, art, gallery, luxury, fashion, editorial]
+forbidden_sectors: [dashboard, b2b, eticaret]
+
+forbidden_with: [H3]
+
+requires:
+  typography: [TY10, TY13, TY24, TY25]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: v2-kinetic-data/vertical-rail.html
+    lines: "1-60"
+    note: writing-mode vertical-rl rail
+
+variants:
+  - name: brand-vertical-left
+    visual: "Sol 40px rail, logo dik yazılı"
+  - name: index-numbered
+    visual: "01 — 02 — 03 bölüm numaraları dik"
+
+preview_snippet: |
+  <aside class="v-rail">
+    <div class="v-brand">PARALLEL · STUDIO · 2026</div>
+  </aside>
+  <style>
+    .v-rail { position: fixed; left: 0; top: 0; bottom: 0; width: 40px; border-right: 1px solid; display: flex; align-items: center; justify-content: center; }
+    .v-brand { writing-mode: vertical-rl; transform: rotate(180deg); font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:34-34

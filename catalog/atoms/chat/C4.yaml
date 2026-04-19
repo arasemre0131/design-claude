@@ -1,0 +1,39 @@
+---
+id: C4
+name: Terminal Log (mono, dense)
+category: chat
+description: IRC/Slack power user terminal, mono font + dense row log
+---
+
+usage_sectors: [developer-tool, devops, internal-tool, monitoring]
+forbidden_sectors: [eticaret, mucevher, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "293-310"
+
+variants:
+  - name: prompt-green-cursor
+    visual: "Yeşil prompt + block cursor"
+  - name: with-timestamp-col
+    visual: "14:32:07 | user | message"
+
+preview_snippet: |
+  <pre class="terminal-log">
+  14:32:07 [emre] deploy: started for project #047
+  14:32:12 [ci]   build: succeeded in 4.8s
+  14:32:15 [emre] merged to main · #047
+  </pre>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:137-137
+  - ULTRAPLAN.md:774 (atom 36 Terminal-Log-Mono)

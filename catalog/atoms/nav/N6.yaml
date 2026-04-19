@@ -1,0 +1,42 @@
+---
+id: N6
+name: Floating Dock (Radial/Bar)
+category: nav
+description: Ortada/altta yüzen, scroll'a duyarlı, interactive landing
+---
+
+usage_sectors: [interactive-landing, portfolio, agency, creative]
+forbidden_sectors: [dashboard, b2b]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO1, MO4]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-kinetic-data/floating-dock.html
+    lines: "1-70"
+
+variants:
+  - name: bottom-bar-shrinking
+    visual: "Alt ortada, scroll'da küçülür"
+  - name: radial-fan
+    visual: "Ortada bir butondan radial açılır menü"
+
+preview_snippet: |
+  <nav class="float-dock">
+    <a>01 · Work</a>
+    <a>02 · Studio</a>
+    <a>03 · Contact</a>
+  </nav>
+  <style>
+    .float-dock { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 6px; background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); }
+    .float-dock a { padding: 10px 16px; border-radius: 999px; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.2em; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:50-50

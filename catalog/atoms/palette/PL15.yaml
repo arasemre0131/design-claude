@@ -1,0 +1,32 @@
+---
+id: PL15
+name: Glacier + Fjord
+category: palette
+description: Ice bg + fjord + glacier, water/wellness
+bg: "#EDF4F7 ice"
+accent: "#2E5A72 fjord"
+ikincil: "#8FB8CE glacier"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [wellness, spa, water, cold-plunge, nordic-brand]
+forbidden_sectors: [industrial-dark, bold-orange]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #EDF4F7 × fjord #2E5A72 = 6.7:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #EDF4F7;
+    --fjord: #2E5A72;
+    --glacier: #8FB8CE;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:257

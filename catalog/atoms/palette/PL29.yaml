@@ -1,0 +1,32 @@
+---
+id: PL29
+name: Slate + Acid (E-ticaret A)
+category: palette
+description: Cool light + acid + orange, e-ticaret modern
+bg: "#F5F7F8 cool light"
+accent: "#D4FF00 acid"
+ikincil: "#EA580C orange + #1A1D21 ink"
+ink: "#1A1D21"
+---
+
+usage_sectors: [eticaret, dtc, electronics, sportswear, streetwear]
+forbidden_sectors: [luxury-soft, mucevher]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5F7F8 × ink #1A1D21 = 15.2:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5F7F8;
+    --acid: #D4FF00;
+    --orange: #EA580C;
+    --ink: #1A1D21;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:109 (eticaret PL29)

@@ -1,0 +1,40 @@
+---
+id: F1
+name: Single-Column Tall (Typeform)
+category: form
+description: Typeform style, tek sütun, her soru tam ekran, scroll step
+---
+
+usage_sectors: [onboarding, survey, lead-gen, randevu]
+forbidden_sectors: [enterprise-settings-dense]
+
+forbidden_with: [F2]
+
+requires:
+  typography: [TY9, TY16, TY20]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: templates/05-klinik/index.html
+    lines: "400-480"
+
+variants:
+  - name: full-screen-per-question
+    visual: "Her soru tam viewport"
+  - name: step-progress-line
+    visual: "Üstte ince progress bar"
+
+preview_snippet: |
+  <form class="single-col">
+    <div class="step active">
+      <label>Ad Soyad</label>
+      <input type="text" name="name" autofocus/>
+      <button type="button" data-next>İleri →</button>
+    </div>
+  </form>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:166-166

@@ -1,0 +1,32 @@
+---
+id: TY10
+name: Instrument Serif + IBM Plex Serif + IBM Plex Mono
+category: typography
+description: Newspaper, IBM Plex Serif body + Instrument Serif display
+display_font: "Instrument Serif"
+body_font: "IBM Plex Serif"
+mono_font: "IBM Plex Mono"
+---
+
+usage_sectors: [editorial, newspaper, kitap, magazine, long-read]
+forbidden_sectors: [data-ops, admin-dense]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/style.css
+
+google_fonts: "Instrument+Serif:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(48px, 8vw, 120px); letter-spacing: -0.04em; }
+    p.deck { font-family: 'IBM Plex Serif', serif; font-style: italic; }
+    body { font-family: 'IBM Plex Serif'; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:220

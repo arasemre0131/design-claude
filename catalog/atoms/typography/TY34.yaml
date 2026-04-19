@@ -1,0 +1,31 @@
+---
+id: TY34
+name: Manrope + DM Mono (Klinik Minimal)
+category: typography
+description: Klinik minimal, Manrope tek family + DM Mono
+display_font: "Manrope"
+body_font: "Manrope"
+mono_font: "DM Mono"
+---
+
+usage_sectors: [klinik, wellness, saglik, tech-klinik, telemedicine]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/05-klinik/style-b.css
+
+google_fonts: "Manrope:wght@300..800&family=DM+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Manrope', sans-serif; font-weight: 600; letter-spacing: -0.03em; }
+    body { font-family: 'Manrope'; font-weight: 400; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:98 (klinik TY34)

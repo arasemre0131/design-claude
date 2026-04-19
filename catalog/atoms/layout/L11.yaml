@@ -1,0 +1,36 @@
+---
+id: L11
+name: Bento 2.0 Asymmetric No-Glass
+category: layout
+description: Bento 2.0 — asymmetric span + solid fills, glass değil
+---
+
+usage_sectors: [portfolio, saas-landing, dashboard-modular, brand-feature]
+forbidden_sectors: []
+
+forbidden_with: [K1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "227-255"
+    note: Bento asymmetric pattern (glass değil)
+
+preview_snippet: |
+  <div class="bento2">
+    <div class="b-lead" style="grid-column: span 4; grid-row: span 2;">Lead KPI</div>
+    <div class="b-m" style="grid-column: span 2; grid-row: span 1;">Metric A</div>
+    <div class="b-s" style="grid-column: span 2; grid-row: span 1;">Metric B</div>
+    <div class="b-m" style="grid-column: span 2; grid-row: span 1;">Metric C</div>
+    <div class="b-full" style="grid-column: span 6;">Full-width chart</div>
+  </div>
+  <style>
+    .bento2 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: var(--line); }
+    .bento2 > * { background: var(--bg); padding: 24px; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md (Bento 2.0 trend)
+  - templates/REFERENCE-DESIGNERS.md:64 (Bento 2.0 trend)

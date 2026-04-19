@@ -1,0 +1,47 @@
+---
+id: FT7
+name: Marquee Text (sürekli kayan)
+category: footer
+description: Sürekli horizontal kayan marquee text, kinetic footer
+---
+
+usage_sectors: [kinetic, agency, data-ops, bold-creative]
+forbidden_sectors: [luxury-static, mucevher, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY6, TY7, TY14, TY22]
+  motion: [MO1, MO6]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-kinetic-data/footer-marquee.html
+    lines: "1-60"
+  - file: templates/14-ultra/index.html
+    lines: "454-466"
+    note: SVG textPath marquee pattern
+
+variants:
+  - name: css-keyframes-slide
+    visual: "CSS @keyframes translateX sonsuz"
+  - name: svg-textpath-curve
+    visual: "SVG path üstünde kavisli marquee"
+
+preview_snippet: |
+  <footer class="marquee-ft">
+    <div class="track">
+      <span>DESIGN · BUILD · GROW ·</span>
+      <span>DESIGN · BUILD · GROW ·</span>
+    </div>
+  </footer>
+  <style>
+    .track { display: flex; gap: 40px; animation: slide 30s linear infinite; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:200-200
+  - ULTRAPLAN.md:766 (atom 28 SVG-TextPath-Bend-Marquee)

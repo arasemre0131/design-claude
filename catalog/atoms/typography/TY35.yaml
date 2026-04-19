@@ -1,0 +1,31 @@
+---
+id: TY35
+name: Unbounded + Manrope + Inter Tight
+category: typography
+description: E-ticaret modern, Unbounded acid accent
+display_font: "Unbounded"
+body_font: "Manrope"
+mono_font: "Inter Tight"
+---
+
+usage_sectors: [eticaret, retail-modern, dtc-brand, startup-commerce]
+forbidden_sectors: [editorial-print]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/06-eticaret/style.css
+
+google_fonts: "Unbounded:wght@300..800&family=Manrope:wght@300..800&family=Inter+Tight:wght@300..700"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Unbounded', sans-serif; font-weight: 700; }
+    body { font-family: 'Manrope'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:115 (eticaret TY35)

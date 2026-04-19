@@ -1,0 +1,31 @@
+---
+id: TY31
+name: Fraunces SC + Work Sans + JetBrains Mono
+category: typography
+description: Restoran editorial, Fraunces Small Caps
+display_font: "Fraunces SC (small caps)"
+body_font: "Work Sans"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [restoran, kitchen, food-brand, artisan-cafe, bakery]
+forbidden_sectors: [industrial, tech]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/04-restoran/style.css
+
+google_fonts: "Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700&family=Work+Sans:wght@300..700&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-variant-caps: small-caps; font-variation-settings: 'opsz' 144; }
+    body { font-family: 'Work Sans', sans-serif; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:79 (restoran TY31)

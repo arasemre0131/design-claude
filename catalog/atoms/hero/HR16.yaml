@@ -1,0 +1,47 @@
+---
+id: HR16
+name: Split-Flap Announcement Board
+category: hero
+description: Havaalanı solari split-flap tabela, yazılar harf harf dönerek değişir
+---
+
+usage_sectors: [narrative, travel, airline, retro, data-ops, train-station]
+forbidden_sectors: [klinik, spa, minimalist-simple]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY14, TY15]
+  motion: [MO1, MO6]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: mockups/split-flap-hero.html
+    lines: "1-120"
+    note: split-flap keyframe per-char flip
+  - file: v2-kinetic-data/split-flap.html
+    lines: "1-100"
+
+variants:
+  - name: airport-solari
+    visual: "Matrix 24x6 char, her hücre 3D rotateX flip"
+  - name: stock-ticker-solari
+    visual: "Tek satır finance-board solari"
+  - name: clock-hybrid
+    visual: "Üstte dijital saat + altta destination board"
+
+preview_snippet: |
+  <section class="hero-solari">
+    <div class="solari-row">
+      <span class="flap">I</span><span class="flap">S</span><span class="flap">T</span>
+      <span class="flap">→</span>
+      <span class="flap">N</span><span class="flap">E</span><span class="flap">W</span>
+    </div>
+    <div class="solari-sub">14:32 · GATE A4 · BOARDING</div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - 2026-ADVANCED-TECHNIQUES.md (split-flap as Codrops-tier pattern)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md (ULTRAPLAN genişletmesi)

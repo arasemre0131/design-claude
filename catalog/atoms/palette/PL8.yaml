@@ -1,0 +1,34 @@
+---
+id: PL8
+name: Immersive 3D Warm
+category: palette
+description: Dark + orange + yellow + sky blue, 3D immersive
+bg: "#0B0D10"
+accent: "#FF5E3A orange"
+ikincil: "#FFB347 + #7FD4FF"
+ink: "#F5F5F5"
+---
+
+usage_sectors: [immersive-3d, maximalist-atm, brand-campaign, portfolio-tech]
+forbidden_sectors: [minimal-editorial, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #0B0D10 × orange #FF5E3A = 6.2:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #0B0D10;
+    --orange: #FF5E3A;
+    --amber: #FFB347;
+    --sky: #7FD4FF;
+    --ink: #F5F5F5;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:250
+  - v2-immersive-3d

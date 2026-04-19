@@ -1,0 +1,49 @@
+---
+id: N10
+name: Timeline Scroll-Locked Nav
+category: nav
+description: Scroll progress + section dots sağ kenarda, narrative structure
+---
+
+usage_sectors: [narrative, long-read, case-study, product-story, portfolio]
+forbidden_sectors: [dashboard, b2b, eticaret-standard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: templates/10-otel/index.html
+    lines: "180-220"
+    note: Section dot tracker
+  - file: v2-immersive-3d/timeline-nav.html
+    lines: "1-70"
+
+variants:
+  - name: dots-right-edge
+    visual: "Sağ kenarda vertical dot liste"
+  - name: progress-line
+    visual: "Scroll progress line + bölüm etiketi"
+  - name: numbered-sections
+    visual: "01 · 02 · 03 · 04 numaralı"
+
+preview_snippet: |
+  <nav class="tl-nav" aria-label="Section tracker">
+    <div class="tl-line">
+      <div class="tl-fill" style="height:45%;"></div>
+    </div>
+    <ol>
+      <li class="active" data-section="intro">01 · Intro</li>
+      <li data-section="method">02 · Method</li>
+      <li data-section="cases">03 · Cases</li>
+      <li data-section="contact">04 · Contact</li>
+    </ol>
+  </nav>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:54-54

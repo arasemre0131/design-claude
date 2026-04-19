@@ -1,0 +1,130 @@
+---
+id: next-r3f
+name: Next.js 16 + R3F + drei (Premium 3D)
+tier: 3
+description: |
+  Next.js 16 App Router + React 19 + Tailwind v4 + R3F v9 + drei v10 + Three.js r183
+  + GSAP 3.13 + Lenis 1.3.4 — mucevher konfigurator, mobilya AR, otel sanal tur,
+  otomotiv 3D konfigurator, gayrimenkul sanal tur. Lusion-tier immersive deneyim.
+---
+
+evidence:
+  - url: https://oryzo.lusion.co
+    studio: Lusion
+    award: "Awwwards SOTD"
+    note: "Three.js r158 raw + GSAP Observer + custom GLSL (curl/fBM/simplex)"
+  - url: https://madeinevolve.com
+    studio: Evolve Studio
+    note: "Webflow + Three.js + Barba + persistent canvas — Shopify Plus luxury"
+  - url: https://marcelodesignx.com
+    studio: Marcelo Design X
+    note: "3D scroll-camera tower (Cirus, Fedorgost, Drip Water)"
+  - url: https://r3f.docs.pmnd.rs
+    note: "React Three Fiber v9 official doc + drei v10 156 component"
+
+budget_tier: premium
+budget_try: [25000, 80000]
+delivery_weeks: [3, 5]
+maintenance_monthly_try: [3000, 8000]
+profit_margin: "%40-50"
+
+core:
+  framework:
+    name: Next.js
+    version: "16.x"
+    features: [App Router, Turbopack, RSC, Server Actions, Streaming, Partial Prerendering]
+  runtime:
+    node: "22 LTS"
+  language:
+    name: TypeScript
+    version: "5.9+"
+
+frontend_libs:
+  styling:
+    - tailwindcss@4.x
+    - "@radix-ui/react-* (shadcn/ui)"
+  animation:
+    - gsap@3.13.0
+    - "@gsap/react@latest"          # useGSAP hook
+    - lenis@1.3.4
+    - framer-motion@12.x
+    - react-spring@9.x              # spring physics
+  3d:
+    - three@r183                    # Three.js r183+
+    - "@react-three/fiber@9.x"      # R3F v9 (React 19 uyumlu)
+    - "@react-three/drei@10.x"      # 156 component
+    - "@react-three/postprocessing@3.x"   # 34 efekt (Bloom, DOF, Vignette, Glitch)
+    - "@react-three/rapier@2.x"     # WASM physics (opsiyonel)
+    - gsplat@latest                 # Gaussian Splatting
+    - "@theatre/core@latest"        # keyframe editor (opsiyonel)
+  ui:
+    - shadcn/ui
+    - "@radix-ui/react-*"
+    - cmdk
+    - vaul
+    - sonner
+  state:
+    - zustand@5.x
+    - "@tanstack/react-query@5.x"
+
+backend:
+  database: Supabase PostgreSQL 16
+  orm: "drizzle-orm@latest"
+  auth: "@supabase/ssr"
+  storage: "Supabase Storage + Cloudflare R2 (3D asset CDN)"
+  email: "resend + react-email"
+
+payment:
+  primary: iyzipay
+  alternative: paytr
+  international: stripe
+
+seo:
+  metadata: "Next.js Metadata API"
+  schema: "schema-dts (Product 3D model + Place LocalBusiness JSON-LD)"
+  sitemap: "next-sitemap@5.x"
+  i18n: "next-intl@3.x"
+
+deploy:
+  target: Vercel
+  edge_regions: [fra1, iad1]
+  asset_cdn: "Cloudflare R2 veya Vercel Blob (3D model)"
+
+scaffold_command: |
+  pnpm create next-app@latest <project-name> --ts --app --tailwind --turbo
+  pnpm dlx shadcn@latest init -d
+  pnpm add gsap @gsap/react lenis framer-motion
+  pnpm add three @react-three/fiber @react-three/drei
+  pnpm add @react-three/postprocessing @react-three/rapier
+  pnpm add @supabase/supabase-js @supabase/ssr drizzle-orm
+
+constraints:
+  - "3D model max 2 MB, Draco + Meshopt + KTX2 compress zorunlu"
+  - "Mobile fallback: frameloop='demand' + low-quality GLB + AdaptiveDpr"
+  - "60fps desktop / 30fps mobile hedef"
+  - "GPU tier detection (detect-gpu) + adaptive quality scaling"
+  - "WebGPU opt-in (Chrome 120+), WebGL fallback zorunlu"
+  - "R3F Canvas dpr=[1,2], performance.min: 0.5"
+  - "PerformanceMonitor + drei <AdaptiveDpr> + <AdaptiveEvents>"
+  - "Loading state: useProgress + Suspense fallback"
+  - "Scroll-linked kamera: ScrollTrigger scrub 1.5-2.5"
+
+research_refs:
+  - 3D-TECHSTACK.md (ana index)
+  - research/3d-product-configurator-research.md
+  - research/nextjs-r3f-architecture-guide.md
+  - research/drei-advanced-visual-components-research.md
+  - research/scroll-animation-patterns.md
+  - research/gaussian-splatting-capture-pipeline.md
+  - research/r3f-postprocessing-34-efekt.md
+
+claude_design_handoff:
+  supported: true
+  trigger: "Tier 3+ ve musteri custom design istediginde"
+  bundle_parser: scripts/claude-design-bundle-parser.js
+  agent: claude-design-liaison
+  note: "Stage 3.75 devreye girer, 55K token/session ortalama."
+
+red_line:
+  - "Multi-tenant / 99.9% SLA gerekiyorsa -> next-enterprise-monorepo (Tier 4)"
+  - "3D yoksa ve 2D yeterliyse -> next-premium (Tier 2, bu stack overkill)"

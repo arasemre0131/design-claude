@@ -1,0 +1,32 @@
+---
+id: PL28
+name: Cream + Forest (Klinik B)
+category: palette
+description: Cream + forest + warm ochre, doğal sağlık
+bg: "#FBF9F3 cream"
+accent: "#3A5A40 forest"
+ikincil: "#C9A46B warm ochre"
+ink: "#1E2420"
+---
+
+usage_sectors: [klinik, saglik-dogal, fizyoterapi, homeopati, wellness-organic]
+forbidden_sectors: [industrial]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #FBF9F3 × forest #3A5A40 = 7.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #FBF9F3;
+    --forest: #3A5A40;
+    --ochre: #C9A46B;
+    --ink: #1E2420;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:92 (klinik PL28)

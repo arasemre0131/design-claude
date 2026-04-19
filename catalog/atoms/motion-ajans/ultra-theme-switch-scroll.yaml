@@ -1,0 +1,35 @@
+---
+id: ultra-theme-switch-scroll
+name: Theme Switch on Scroll Zone (14-ultra rewrite)
+category: motion-ajans
+description: ScrollTrigger ile data-theme="light" alanda gir/çık theme toggle
+license: Bizim yazdığımız (wearebrand pattern rewrite)
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "637-645"
+---
+
+usage_sectors: [editorial, narrative, multi-section-story]
+forbidden_sectors: [single-theme-only]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "637-645"
+
+preview_snippet: |
+  ScrollTrigger.create({
+    trigger: '[data-theme="light"]',
+    start: 'top 50%', end: 'bottom 50%',
+    onEnter: () => document.body.classList.add('light'),
+    onLeave: () => document.body.classList.remove('light'),
+    onEnterBack: () => document.body.classList.add('light'),
+    onLeaveBack: () => document.body.classList.remove('light')
+  });
+
+research_refs:
+  - ULTRAPLAN.md:769 (atom 31 Theme-Scroll-Switch-Wab)

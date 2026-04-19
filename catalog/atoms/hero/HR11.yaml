@@ -1,0 +1,59 @@
+---
+id: HR11
+name: Brochure Cover Grid
+category: hero
+description: Kitap kapağı gibi tipografi + küçük thumbnails, magazine/catalog style
+---
+
+usage_sectors: [mucevher, restoran, otel, spa, fotograf, editorial, eticaret-premium]
+forbidden_sectors: [b2b-saas, dashboard]
+
+forbidden_with: [PL1]
+
+requires:
+  typography: [TY9, TY10, TY12, TY13, TY27, TY28, TY43]
+  motion: [MO4, MO10]
+  libraries: []
+
+reference_impl:
+  - file: templates/02-mucevher/index.html
+    lines: "74-78"
+    note: Fraunces + tobacco+pearl palette
+  - file: templates/04-restoran/index.html
+    lines: "76-81"
+  - file: templates/10-otel/index.html
+    lines: "82-88"
+  - file: mockups/a-warm-dark/index.html
+    lines: "42-100"
+
+variants:
+  - name: photo-framed
+    visual: "3/4 aspect, symbol ◎, photo ortada frame"
+  - name: object-centered
+    visual: "4/5 aspect, product render"
+  - name: 2-col-grid
+    visual: "Sol text, sağ ürün frame"
+  - name: catalog-thumbnails
+    visual: "Başlık + altta 4-6 küçük thumbnail"
+
+preview_snippet: |
+  <section class="hero-brochure">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="kicker">ANKARA · 2026 KOLEKSİYONU</div>
+        <h1 class="display italic">El emeği<br>her <em>iz</em> bir hikâye</h1>
+        <p class="deck">47 parça, her biri tek çift, sertifikalı el işçiliği.</p>
+      </div>
+      <figure class="product-frame">
+        <img src="/ring-01.webp" alt="Kırmızı yakut yüzük"/>
+        <figcaption>◎ 01 / Yakut Koleksiyonu</figcaption>
+      </figure>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:29-45 (mücevher)
+  - ULTRAPLAN.md:799-831 (HR11 tam örnek)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:72-72

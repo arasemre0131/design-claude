@@ -1,0 +1,36 @@
+---
+id: ultra-porthole-dive
+name: Porthole Dive Scroll-Zoom (14-ultra)
+category: motion-ajans
+description: Scroll-linked hero scale 1 → 6.5 + text sides flew out
+license: Bizim yazdığımız — direkt kullanılabilir
+source: templates/14-ultra (14-ultra showcase)
+source_file: templates/14-ultra/index.html
+source_lines: "572-584"
+---
+
+usage_sectors: [editorial-luxury, maximalist, brand-campaign, portfolio-premium]
+forbidden_sectors: [prefers-reduced-motion, simple-static]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "572-584"
+
+preview_snippet: |
+  const heroTl = gsap.timeline({
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1, pin: true }
+  });
+  heroTl
+    .fromTo('.hero-bg', { scale: 1 }, { scale: 6.5 }, 0)
+    .fromTo('.hero-sculpture', { scale: 1, rotation: 0 }, { scale: 8, rotation: 15 }, 0)
+    .fromTo('.hero-t-left', { x: '0vw' }, { x: '-60vw' }, 0)
+    .fromTo('.hero-t-right', { x: '0vw' }, { x: '60vw' }, 0)
+    .fromTo('.hero-middle', { scale: 1, opacity: 1 }, { scale: 1.8, opacity: 0 }, 0);
+
+research_refs:
+  - ULTRAPLAN.md:762 (atom 24)

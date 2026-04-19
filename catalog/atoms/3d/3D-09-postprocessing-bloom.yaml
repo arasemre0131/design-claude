@@ -1,0 +1,29 @@
+---
+id: 3D-09-postprocessing-bloom
+name: postprocessing Bloom Effect
+category: 3d
+description: UnrealBloom-style selective bloom, emissive material'a parıltı
+license: MIT (@react-three/postprocessing)
+---
+
+usage_sectors: [immersive-3d, cinematic, neon-scene, night-product]
+forbidden_sectors: [flat-minimal]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/postprocessing", "postprocessing"]
+
+preview_snippet: |
+  import { EffectComposer, Bloom } from '@react-three/postprocessing';
+  <EffectComposer>
+    <Bloom
+      intensity={1.2}
+      luminanceThreshold={0.6}
+      luminanceSmoothing={0.2}
+      mipmapBlur
+    />
+  </EffectComposer>
+
+research_refs:
+  - 3D-TECHSTACK.md

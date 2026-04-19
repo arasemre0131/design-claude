@@ -1,0 +1,44 @@
+---
+id: CH5
+name: Apache ECharts (enterprise dense)
+category: chart
+description: ECharts, büyük veri + çok tip, enterprise dashboard
+---
+
+usage_sectors: [enterprise, finance, bigdata, analytics-dense, iot]
+forbidden_sectors: [mucevher, editorial, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY20]
+  motion: [MO4]
+  libraries: ["echarts"]
+
+reference_impl:
+  - file: insaat-crm/a-safe/echarts.html
+    lines: "1-100"
+
+variants:
+  - name: multi-axis-line
+    visual: "Sol/sağ çift y-axis"
+  - name: gauge-speedometer
+    visual: "Gauge type (barometer benzeri)"
+  - name: candlestick-ohlc
+    visual: "Finance candlestick"
+
+preview_snippet: |
+  <div id="chart" style="width: 100%; height: 400px;"></div>
+  <script>
+    echarts.init(document.getElementById('chart')).setOption({
+      tooltip: {}, legend: {},
+      xAxis: { type: 'category', data: [...] },
+      yAxis: { type: 'value' },
+      series: [{ type: 'line', data: [...] }]
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:151-151

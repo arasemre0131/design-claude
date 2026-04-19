@@ -1,0 +1,26 @@
+---
+id: 3D-05-drei-html
+name: drei Html (DOM overlay in 3D)
+category: 3d
+description: 3D scene içinde DOM HTML overlay (label, tooltip, hotspot)
+license: MIT (drei)
+---
+
+usage_sectors: [configurator, product-annotation, architecture-hotspots, museum-3d]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/fiber", "@react-three/drei"]
+
+preview_snippet: |
+  import { Html } from '@react-three/drei';
+  <mesh position={[1, 1, 0]}>
+    <Html distanceFactor={8} transform occlude>
+      <div className="hotspot-label">Üst köşe vida</div>
+    </Html>
+  </mesh>
+
+research_refs:
+  - 3D-TECHSTACK.md

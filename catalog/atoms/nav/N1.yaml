@@ -1,0 +1,45 @@
+---
+id: N1
+name: Sidebar Fixed Rail
+category: nav
+description: Solda sabit, icon+label, admin/SaaS klasik, 220-260px genişlik
+---
+
+usage_sectors: [dashboard, crm, saas, admin, analytics]
+forbidden_sectors: [mucevher, kuafor, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY16, TY20]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "40-100"
+  - file: v1-blueprint/sidebar.html
+    lines: "1-60"
+
+variants:
+  - name: icon-only-48px
+    visual: "48px wide, sadece icon"
+  - name: icon-label-240px
+    visual: "240px, icon + label"
+  - name: grouped-sections
+    visual: "Bölüm başlıkları ile gruplu"
+
+preview_snippet: |
+  <aside class="sidebar">
+    <div class="s-group">
+      <div class="s-label">ANA MENU</div>
+      <a><span class="ico">⌂</span>Genel Bakis</a>
+      <a class="active"><span class="ico">≡</span>Projeler</a>
+      <a><span class="ico">◉</span>Musteriler</a>
+    </div>
+  </aside>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:45-45

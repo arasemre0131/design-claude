@@ -1,0 +1,32 @@
+---
+id: TY24
+name: Signifier + GT America
+category: typography
+description: Tech journal, Signifier (Klim) + GT America
+display_font: "Signifier"
+body_font: "GT America"
+mono_font: null
+---
+
+usage_sectors: [tech-journal, editorial-tech, research-publication, long-read-tech]
+forbidden_sectors: [eticaret, dashboard]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/tech-journal.html
+
+google_fonts: null
+notes: "Signifier (Klim) + GT America (Grilli Type) premium. Google Fonts alt: EB Garamond + Inter Tight."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Signifier', 'EB Garamond', serif; font-weight: 400; }
+    body { font-family: 'GT America', 'Inter Tight', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:234

@@ -1,0 +1,44 @@
+---
+id: CH6
+name: Column Bar Elevation (blueprint)
+category: chart
+description: Mimarlık kesit görünümü, dashed grid + scale bar, blueprint style
+---
+
+usage_sectors: [architecture, engineering, insaat, industrial, data-editorial]
+forbidden_sectors: [luxury-static, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY26]
+  motion: [MO1]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-blueprint/column-chart.html
+    lines: "1-100"
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "178-226"
+
+variants:
+  - name: with-scale-axis
+    visual: "Mimari ölçek çubuğu + dashed grid lines"
+  - name: cross-section-view
+    visual: "Kesit stili ince line bars"
+
+preview_snippet: |
+  <div class="blueprint-chart">
+    <div class="scale-v">0 — 100</div>
+    <div class="bars">
+      <div class="bar" style="--h:62%"><span>Q1</span></div>
+      <div class="bar" style="--h:84%"><span>Q2</span></div>
+      <div class="bar" style="--h:78%"><span>Q3</span></div>
+    </div>
+    <div class="grid-dashed"></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:152-152

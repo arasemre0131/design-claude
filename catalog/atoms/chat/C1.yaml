@@ -1,0 +1,43 @@
+---
+id: C1
+name: Classic Split (conversations left, thread right)
+category: chat
+description: Sol conversations, sağ thread, email-like classic split
+---
+
+usage_sectors: [crm, email-client, support-tool, helpdesk]
+forbidden_sectors: [marketing-landing]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: v1-CONSTRUO/chat-classic.html
+    lines: "1-120"
+
+variants:
+  - name: 2-pane-desktop
+    visual: "320px conversation list + 1fr thread"
+  - name: 3-pane-with-details
+    visual: "List + thread + details pane (Slack)"
+
+preview_snippet: |
+  <div class="chat-split">
+    <aside class="conv-list">
+      <a class="conv active"><strong>Ayşe K.</strong><span>Merhaba, randevu için...</span></a>
+      <a class="conv"><strong>Fatih B.</strong><span>Teklifi inceledim.</span></a>
+    </aside>
+    <main class="thread">
+      <div class="msg-list">...</div>
+      <form class="composer"><input/><button>Gönder</button></form>
+    </main>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:134-134

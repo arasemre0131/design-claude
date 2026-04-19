@@ -1,0 +1,33 @@
+---
+id: T6
+name: Card Grid (resim + 2-3 satır + rate)
+category: table
+description: Card grid, resim+başlık+fiyat — eticaret default
+forbidden: true
+reason: Eticaret default 5+ projede kullanıldı (Fatih Bey, neobrutalist, immersive-3d) — tekrar riski çok yüksek
+---
+
+usage_sectors: []
+forbidden_sectors: [eticaret-default]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/fatih/card-grid.html
+    lines: "1-80"
+    note: YASAK — tekrar edilemez
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: card grid default eticaret 5+ projede kullanıldı. T1, T7, T8 tercih et. -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:124-124 (T6 YASAK)

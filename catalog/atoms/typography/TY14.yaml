@@ -1,0 +1,32 @@
+---
+id: TY14
+name: Monument Extended + Inter Tight + JetBrains Mono
+category: typography
+description: Tech-chic, Monument Extended display
+display_font: "Monument Extended"
+body_font: "Inter Tight"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [tech, saas, crypto, agency-tech, portfolio-dev]
+forbidden_sectors: [mucevher, spa-soft]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/tech-chic.html
+
+google_fonts: "Inter+Tight:wght@300..700&family=JetBrains+Mono:wght@400..700"
+notes: "Monument Extended premium — alt: Big Shoulders Display (Google Fonts)"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Monument Extended', 'Big Shoulders Display', sans-serif; letter-spacing: -0.02em; }
+    body { font-family: 'Inter Tight', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:224

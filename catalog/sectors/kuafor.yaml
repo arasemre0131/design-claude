@@ -1,0 +1,108 @@
+---
+id: kuafor
+name: "Kuaför / Berber / Salon"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - ritüel-dönüşüm
+  - kişisel-bakım
+  - tanışıklık (müşteri = isim bazlı)
+  - modern-atelier
+  - sıcak-karşılama
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # dark #0A0A0A + gold #C9A84C — Freeman, Odak, Solarium aynı combo
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # global + TY1 özellikle Inter-only Kuaför klişesi
+  forbidden_heroes: [HR2]  # split-hero "büyük saç modeli + yan metin"
+  forbidden_layouts: []
+  warning: "Freeman/Odak/Solarium benzeri '3 kuaför projesinde' dark #0A0A0A + gold #C9A84C + custom cursor + Inter italic başlık klişesi YASAK. Kuaför salonu 'Tom Ford kokusu' gibi sunulmamalı — Kadıköy berber Instagram'dan Armut'tan gelir, sakin/sıcak tonda olmalı. Custom cursor + magnetic button abartılı kalır. Hijyen algısı için concrete/industrial tekstür UYMAZ."
+
+# Repeat-guard context — mevcut kuaför projelerinin combo'ları
+existing_projects:
+  - name: "Freeman (kuaför)"
+    combo: "H8 + N2 + HR2 + F1 + M1 + FT1 + TY1 YASAK + PL1 YASAK + L1 + MO4"
+    note: "Tipik Freeman combo'su — TY1 Inter-only + PL1 dark+gold. Tekrar edilemez."
+  - name: "KADIKOY SATIS 10 site (soğuk satış portföyü)"
+    combo: "Tier 0 — template swap"
+    note: "10 berber/salon için aynı recipe kullanılabilir ama her biri için palette/typo varyant gerekli. Kopya YOK."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL24, PL25, PL31]  # Salt+Peach (warm), Slate+Olive (cool atelier), Clay+Mist (unisex)
+  typography: [TY29, TY30]      # Schibsted Grotesk / Recoleta + Lato
+  heroes: [HR3, HR11]           # Full-bleed video (salon vibe), Brochure cover (koleksiyon)
+  layouts: [L4, L9]             # Full-bleed rails, Card deck (ekip)
+  motion_primitives: [MO1, MO6] # GSAP ScrollTrigger, SplitText reveal
+  kpi: [K2]                     # Band+rules (ekip tecrübe, saat, lokasyon)
+  footer: [FT1, FT3]            # Classic / Warm editorial
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [whatsapp, instagram-feed, google-maps, iletisim]
+    delivery: "2-3 gün"
+    suitability: "✓✓"  # KADIKOY 10 site target — en uygun tier
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [online-randevu, fiyat-listesi, ekip-kartlari, blog, whatsapp]
+    delivery: "3-7 gün"
+    suitability: "✓✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [online-randevu, uye-sistemi, sadakat-puani, admin, email-sms]
+    delivery: "2-3 hafta"
+    suitability: "✓"  # büyük zincir salon (Toni&Guy Türkiye gibi)
+  premium:        # 25-80K TL
+    recipe: next-r3f
+    suitability: "✗"  # 3D kuaförde gereksiz — saç kesimi 3D render yapay
+  enterprise:     # 80K+ TL
+    recipe: next-enterprise-monorepo
+    suitability: "✗"  # 10+ şubeli franchise gerekir, nadir
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [online-randevu, ekip-kartlari, fiyat-listesi, whatsapp, google-maps, instagram]
+  optional: [blog, uye-sistemi, sadakat-puani, hediye-ceki, online-odeme]
+  special:
+    - name: "Online randevu (Calendly alternative — Supabase + react-day-picker)"
+      tier: "budget+"
+      research: "research/forms-validation-zod-react-hook-form-2026.md"
+    - name: "Saç tipi quiz / style matcher"
+      tier: "mid"
+      research: "research/forms-validation-zod-react-hook-form-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+    - KADIKÖY SATIŞ/  # 10 soğuk satış salon portföyü
+  secondary:
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+    - Mobilyacı/3d-demo/research/email-analiz.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#kuafor
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: partial    # başlık SplitText reveal OK, body değil
+  bento_2_0: partial             # ekip kart grid L9 asymmetric OK
+  maximalism: no                 # salon sakin + sıcak olmalı
+  3d_spline: no                  # kuaförde gereksiz
+  scroll_triggered_3d: no
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "salon içi full-bleed video (sessiz loop, 12-15s, ≤5MB) OR koleksiyon foto (before/after kare)"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Ekibimizi Tanı"
+  mobile_critical: "Sticky WhatsApp button + tap-to-call + Google Maps tap-to-open"
+  booking_flow: "Tarih → saat → kuaför → hizmet → onay (4 adım, progress bar)"

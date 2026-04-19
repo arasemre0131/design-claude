@@ -1,0 +1,31 @@
+---
+id: TY36
+name: Big Shoulders Display + Public Sans + DM Mono
+category: typography
+description: E-ticaret bold, Big Shoulders display (narrow condensed)
+display_font: "Big Shoulders Display"
+body_font: "Public Sans"
+mono_font: "DM Mono"
+---
+
+usage_sectors: [eticaret, retail-bold, sports, streetwear, industrial-commerce]
+forbidden_sectors: [luxury-minimal, mucevher-soft]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/06-eticaret/style-b.css
+
+google_fonts: "Big+Shoulders+Display:wght@400..900&family=Public+Sans:wght@300..700&family=DM+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+    body { font-family: 'Public Sans'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:116 (eticaret TY36)

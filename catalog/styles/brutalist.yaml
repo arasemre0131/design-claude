@@ -1,0 +1,82 @@
+---
+id: brutalist
+name: Neo-Brutalist
+mood: [raw, bold, high-contrast, rebel, sharp-shadow, playful]
+one_liner: "Arsiv-black display + hard shadow + dotted grid + saturated primary."
+---
+
+typography:
+  display: [Archivo-Black, Space-Grotesk-900, Geist-900]
+  body: [Space-Grotesk, Geist-Sans]
+  mono: [JetBrains-Mono, Space-Mono]
+  variable_axes: [wght]
+  pair_ids: [TY6, TY11, TY26]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - brutal-primary       # cobalt+orange+yellow+red+green pasteless
+  - brutal-cream-bg      # #FFF8EB sicak krem bg + siyah
+  - brutal-raw-paper     # beyaz bg + siyah border + renk blok
+  - brutal-ink-white
+
+motion_primitives:
+  preferred: [MO4, MO9]          # Framer layout + WAAPI stateful popover
+  acceptable: [MO1, MO8]         # GSAP ScrollTrigger, WAAPI imperative
+  forbidden: [MO2-slow-lenis, MO10-print-first, MO11-opsz]
+
+motion_stack:
+  required: [GSAP 3.13]
+  optional: [Framer Motion v12, Lenis 1.3.4 (hizli lerp 0.15+)]
+  forbidden: [kinetic-opsz-scroll, blur-reveal, smooth-fade]
+
+preferred_heroes: [HR8, HR1, HR13]    # huge-number card, bold claim, blueprint title-block
+preferred_layouts: [L3, L9, L11]      # bento-no-glass, card deck, bento-2.0-asymmetric
+preferred_footers: [FT2, FT3]         # sitemap block, chunky contact card
+
+forbidden:
+  - rounded-2xl
+  - rounded-xl
+  - glassmorphism
+  - backdrop-filter-blur
+  - pastel-palette
+  - gradient-text
+  - italic-serif-luxury
+  - PL1-dark-gold
+  - variable-font-opsz-animate  # kinetic-agency isi, brutalist dusmani
+  - print-first-layout
+  - aurora-gradient
+
+reference_impls:
+  - file: v2-neobrutalist/index.html
+    score: 4/5
+    note: "Archivo Black + Space Grotesk + cobalt/orange/yellow/red/green + 7px hard shadow + 24px dotted grid + rotate -1.5deg pills."
+  - file: mockups/c-concrete-industrial/index.html
+    score: 3/5
+    note: "Brutal rawness + concrete ama industrial tarafa yakin, brutalist palette degil."
+
+trends_2026:
+  bento_2_0: YES                 # brutalist hard-shadow bento
+  kinetic_typography: NO         # static bold tercih
+  maximalism: PARTIAL            # renk saturation bol ama layer-overlap degil
+  scroll_triggered_3d: NO
+  variable_fonts: NO             # wght tek axis yeter
+  sticker-rotation: YES          # imza
+
+compatible_sectors: [kuafor, eticaret, ajans-portfoy, kreatif-stüdyo, muzik-label, young-brand]
+incompatible_sectors: [klinik, mucevher-luxury, spa, otel-lux, gayrimenkul-premium]
+
+sample_palette:
+  bg: "#FFF8EB"                  # sicak krem
+  ink: "#0A0A0A"
+  cobalt: "#2B4DDB"
+  orange: "#FF6B1A"
+  yellow: "#FFD500"
+  red: "#FF3B30"
+  green: "#00A86B"
+sample_font_pair: "Archivo Black display + Space Grotesk 500-900 + JetBrains Mono"
+
+tier_fit: [1, 2]
+notes:
+  - "7px hard shadow imza — blur YOK, solid offset."
+  - "Pills +/- 1.5deg rotate, sticker -8deg — asymmetric chaos kontrollu."
+  - "Klinik/spa/mucevher premium'a KESINLIKLE UYGUN DEGIL."

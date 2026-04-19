@@ -1,0 +1,32 @@
+---
+id: PL23
+name: Plum + Champagne (Mücevher B)
+category: palette
+description: Ivory bg + plum + champagne, mücevher alternatif
+bg: "#F5EFE8 ivory"
+accent: "#5B2A4A plum"
+ikincil: "#D4B896 champagne"
+ink: "#2A1F14"
+---
+
+usage_sectors: [mucevher, wedding-jewelry, perfume, luxury-cosmetics]
+forbidden_sectors: []
+
+forbidden_with: [TY2]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5EFE8 × plum #5B2A4A = 9.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5EFE8;
+    --plum: #5B2A4A;
+    --champagne: #D4B896;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:35 (mücevher PL23)

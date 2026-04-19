@@ -1,0 +1,117 @@
+---
+id: gayrimenkul
+name: "Gayrimenkul / Real Estate"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - güvenilir
+  - lokasyon (harita kritik)
+  - yaşam-tarzı (evin kendisi kadar çevre)
+  - ailevi
+  - yatırım-güveni
+  - şeffaflık (metrekare, cephe, tapu)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # dark+gold YASAK — emlak güven gerektirir, luxury hilesi değil
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_patterns: ["stok-foto-hero", "generic-google-maps-embed", "her-ev-ayni-template"]
+  warning: "Stok foto hero YASAK — Unsplash 'modern villa' fotoğrafı güveni düşürür (bu ev değil, bu fotoğraf). Google Maps embed minimum — Mapbox/MapLibre custom style ile marka tonu. Her ilan kartı aynı template değil — premium villa + 2+1 daire farklı card layout ister. 'Yatırım güvencesi + altın anahtar' klişe metni YASAK."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Yok"
+    combo: "—"
+    note: "Temiz sektör. Mücevher'in PL1 dark+gold'una kaymamak kritik (bazı lüks gayrimenkul siteleri bu hataya düşer)."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL35, PL36]         # Sand+Ocean, Mist+Sunset
+  typography: [TY41, TY42]       # Fraunces + IBM Plex Sans / Big Shoulders + Inter Tight
+  heroes: [HR9, HR11]            # Interactive map, Brochure cover
+  layouts: [L8, L3]              # Masonry ilan, Bento-no-glass
+  motion_primitives: [MO1, MO7]  # GSAP ScrollTrigger, View Transitions (ilan→detay)
+  kpi: [K2, K3, K5]              # Band+rules, Stencil stat, Almanac (lokasyon)
+  footer: [FT4, FT7]             # Colophon / Link-heavy
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    suitability: "⚠"  # tek emlakçı için OK ama ilan sistemi yetersiz
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [20-ilan, harita, whatsapp, blog, iletisim]
+    delivery: "3-7 gün"
+    suitability: "⚠"  # WP için ağır — filter + map yavaş
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [ilan-sistem, harita, admin, filtreleme, favori, kredi-hesaplama, iletisim-crm]
+    delivery: "2-3 hafta"
+    suitability: "✓✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    features: [sanal-tur-3d, 360-foto, floor-plan-interactive, matterport-embed, drone-video]
+    delivery: "3-5 hafta"
+    suitability: "✓✓"
+  enterprise:     # 80K+ TL, 6-12 hafta
+    recipe: next-enterprise-monorepo
+    features: [multi-ofis, mls-entegre, agent-portal, crm, komisyon-takip]
+    delivery: "6-12 hafta"
+    suitability: "✓"  # ofis zinciri (Remax, Century21 alternatif)
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [ilan-sistem, harita, filtreleme, iletisim, whatsapp, kredi-hesaplama]
+  optional: [favori, karsilastirma, blog, email-alert, agent-profili, review]
+  special:
+    - name: "Sanal tur 3D (R3F + Matterport SDK alternatif)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/architecture-real-estate-3d.md"
+    - name: "Interactive floor plan (SVG + click → oda detayı)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/interactive-svg-patterns.md"
+    - name: "Mapbox custom style (marka tonunda harita)"
+      tier: "mid+"
+      research: "Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md"
+    - name: "MLS entegrasyonu (XML feed ingestion)"
+      tier: "enterprise"
+      research: "Mobilyacı/3d-demo/research/api-integration-patterns.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/architecture-real-estate-3d.md
+  secondary:
+    - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # RealEstateListing JSON-LD
+    - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+    - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#gayrimenkul
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: partial    # fiyat stat SplitText reveal OK
+  bento_2_0: yes                 # ilan kartı + özellikler asymmetric
+  maximalism: no                 # güven + netlik
+  3d_spline: yes                 # Tier 3+ çok değerli (sanal tur)
+  scroll_triggered_3d: yes       # Premium'da oda-oda kamera path
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  listing_card: "foto + fiyat + m² + oda + konum, hover floor plan preview"
+  listing_gallery: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  primary_cta: "İlanı Gör"
+  secondary_cta: "Agent ile İletişime Geç"
+  map_integration: "Mapbox GL JS custom style, marker cluster (50+ ilan), hover = ilan preview"
+  schema: "RealEstateListing + PostalAddress + GeoCoordinates + Offer JSON-LD"
+  mobile_critical: "Sticky 'İletişim' + 'Harita' toggle bottom bar"

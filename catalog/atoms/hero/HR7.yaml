@@ -1,0 +1,34 @@
+---
+id: HR7
+name: Dashboard Panel-as-Hero
+category: hero
+description: Hero yerine direkt canlı data panel, admin tool first-impression
+forbidden: true
+reason: v1-CONSTRUO tekrar paterni (Instrument Serif + dashboard + Linear-style) — yeni projede kaçın
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-crm-admin-projeler]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: v1-CONSTRUO/dashboard-hero.html
+    lines: "1-150"
+    note: YASAK — tekrar edilemez (Instrument Serif+Space Grotesk TY4 combo)
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: HR7 dashboard-as-hero v1-CONSTRUO tekrarı, yeni projede önerilemez -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:68-68 (HR7 tanım)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:313-313 (v1-CONSTRUO kullandı)

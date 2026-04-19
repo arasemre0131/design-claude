@@ -1,0 +1,30 @@
+---
+id: L6
+name: Center-Stage Single Column
+category: layout
+description: Tek sütun long read, max-width 720px ortada
+---
+
+usage_sectors: [long-read, blog, documentation, editorial-focus, essay]
+forbidden_sectors: [dashboard-dense, eticaret-grid]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/a-warm-dark/single-col.html
+    lines: "1-60"
+
+preview_snippet: |
+  <article class="single-col">
+    <h1>Başlık</h1>
+    <p>Uzun yazı akışı...</p>
+  </article>
+  <style>
+    .single-col { max-width: 720px; margin: 0 auto; padding: 0 24px; line-height: 1.7; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:277

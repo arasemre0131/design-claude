@@ -1,0 +1,44 @@
+---
+id: HR8
+name: Chat Interface Hero
+category: hero
+description: Full-screen chat UI, demo konuşma, AI product / support first-impression
+---
+
+usage_sectors: [ai-product, saas, support-tool, chatbot, internal-tool]
+forbidden_sectors: [eticaret, restoran, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO4, MO6]
+  libraries: []
+
+reference_impl:
+  - file: mockups/raycast-ai-hero.html
+    lines: "1-100"
+  - file: v2-kinetic-data/chat-demo.html
+    lines: "1-80"
+
+variants:
+  - name: ai-demo-streaming
+    visual: "AI cevabı chunk chunk yazılıyor (fake stream)"
+  - name: user-bot-bubbles
+    visual: "Alternating user/bot bubble (iMessage)"
+  - name: terminal-log-style
+    visual: "Mono font + log format"
+
+preview_snippet: |
+  <section class="hero-chat">
+    <div class="chat">
+      <div class="bubble bot">Projenizin briefini yazın</div>
+      <div class="bubble user">Kuaför salonu, Kadıköy, premium</div>
+      <div class="bubble bot typing">Analiz ediyorum<span class="dots">...</span></div>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:69-69

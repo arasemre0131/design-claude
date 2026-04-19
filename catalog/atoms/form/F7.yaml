@@ -1,0 +1,38 @@
+---
+id: F7
+name: Document Fill-in-the-Blanks
+category: form
+description: Hukuki/teklif belgesi gibi fill-in-the-blanks, prose + input
+---
+
+usage_sectors: [legal, contract, proposal, prose-editor, lease-agreement]
+forbidden_sectors: [simple-contact, onboarding]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY19]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/document-fillin.html
+    lines: "1-120"
+
+variants:
+  - name: inline-underline-input
+    visual: "Prose içinde inline underlined blank input"
+  - name: sidebar-fill-summary
+    visual: "Sağda live preview prose"
+
+preview_snippet: |
+  <p class="doc-prose">
+    Ben, <input class="blank" type="text" placeholder="ad soyad"/>, T.C.
+    <input class="blank" type="text" placeholder="kimlik no"/> nolu vatandaş,
+    <input class="blank" type="date"/> tarihinde şu hizmeti kabul ediyorum.
+  </p>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:172-172

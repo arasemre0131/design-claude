@@ -1,0 +1,40 @@
+---
+id: M1
+name: Centered Dialog (default)
+category: modal
+description: Default centered dialog, backdrop blur + fade
+---
+
+usage_sectors: [tum-sektorler]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/dialog-centered.html
+    lines: "1-80"
+
+variants:
+  - name: small-alert
+    visual: "400px wide, alert only"
+  - name: medium-form
+    visual: "600px, form içinde"
+  - name: large-content
+    visual: "800px, rich content"
+
+preview_snippet: |
+  <dialog class="d-centered" id="alert">
+    <h3>Emin misiniz?</h3>
+    <p>Bu işlem geri alınamaz.</p>
+    <div class="actions"><button>İptal</button><button class="primary">Onayla</button></div>
+  </dialog>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:181-181

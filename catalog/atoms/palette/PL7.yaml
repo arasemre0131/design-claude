@@ -1,0 +1,35 @@
+---
+id: PL7
+name: Kinetic Lime/Cyan/Magenta
+category: palette
+description: Dark + lime + cyan + magenta + amber, kinetic data
+bg: "#08090C"
+accent: "#C7FF4D lime"
+ikincil: "#4DFFE6 cyan + #FF4DE6 magenta + #FFB84D amber"
+ink: "#F5F5F5"
+---
+
+usage_sectors: [kinetic, data-ops, trading, tech-agency, crypto]
+forbidden_sectors: [mucevher, spa, restoran-editorial]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #08090C × lime #C7FF4D = 15.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #08090C;
+    --lime: #C7FF4D;
+    --cyan: #4DFFE6;
+    --magenta: #FF4DE6;
+    --amber: #FFB84D;
+    --ink: #F5F5F5;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:249
+  - v2-kinetic-data

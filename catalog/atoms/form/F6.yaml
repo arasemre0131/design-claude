@@ -1,0 +1,39 @@
+---
+id: F6
+name: Conversational Chat Form
+category: form
+description: Chat UI ile form doldurma, AI/chatbot pattern
+---
+
+usage_sectors: [chatbot, ai-product, klinik-randevu, onboarding-playful]
+forbidden_sectors: [enterprise-settings, technical-settings]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20, TY33]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: templates/05-klinik/index.html
+    lines: "60-180"
+
+variants:
+  - name: bubble-form-inline
+    visual: "Her soru bubble içinde, cevap bubble altında"
+  - name: voice-input-option
+    visual: "Voice + text hybrid input"
+
+preview_snippet: |
+  <div class="chat-form">
+    <div class="msg bot">Merhaba! Randevu için hangi tarihi düşünüyorsun?</div>
+    <div class="msg user">Salı günü müsait misiniz?</div>
+    <div class="msg bot">23 Nisan 14:00 veya 16:00. Hangisi?</div>
+    <div class="msg bot quick-reply"><button>14:00</button><button>16:00</button></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:171-171

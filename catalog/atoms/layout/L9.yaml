@@ -1,0 +1,28 @@
+---
+id: L9
+name: Card Deck Carousel (stacked rotated)
+category: layout
+description: Stacked/rotated card deck, drag reveal
+---
+
+usage_sectors: [portfolio, team-showcase, product-carousel, storytelling]
+forbidden_sectors: [dashboard-dense]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: mockups/card-deck.html
+    lines: "1-100"
+
+preview_snippet: |
+  <div class="card-deck">
+    <div class="dc" style="transform: rotate(-2deg) translateY(0);">1</div>
+    <div class="dc" style="transform: rotate(1deg) translateY(-8px);">2</div>
+    <div class="dc" style="transform: rotate(-0.5deg) translateY(-16px);">3</div>
+  </div>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:280

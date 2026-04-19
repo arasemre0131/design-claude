@@ -1,0 +1,41 @@
+---
+id: N9
+name: Map Anchor Nav
+category: nav
+description: Sayfa bir haritaymış gibi noktalar → bölümler, storytelling/case study
+---
+
+usage_sectors: [storytelling, case-study, portfolio, travel, real-estate]
+forbidden_sectors: [dashboard, eticaret-standard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY13, TY24]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: v2-immersive-3d/map-nav.html
+    lines: "1-100"
+
+variants:
+  - name: svg-map-points
+    visual: "Harita üstünde click-to-scroll nokta"
+  - name: timeline-dots
+    visual: "Üstte horizontal timeline, her dot bölüm"
+
+preview_snippet: |
+  <nav class="map-nav">
+    <svg viewBox="0 0 1000 200">
+      <path d="M 0,100 C 250,50 500,150 750,80 1000,120" stroke="currentColor" fill="none"/>
+      <circle class="anchor" cx="100" cy="95" data-target="#intro"/>
+      <circle class="anchor" cx="400" cy="115" data-target="#method"/>
+      <circle class="anchor active" cx="700" cy="85" data-target="#cases"/>
+    </svg>
+  </nav>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:53-53

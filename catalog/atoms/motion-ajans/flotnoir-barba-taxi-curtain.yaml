@@ -1,0 +1,32 @@
+---
+id: flotnoir-barba-taxi-curtain
+name: Barba + Taxi.js Curtain Transition (FLOT NOIR imza)
+category: motion-ajans
+description: PJAX + curtain transition, Barba.js veya Taxi.js
+license: MIT (Barba, Taxi.js OSS)
+source: FLOT NOIR (flotnoir.studio)
+---
+
+usage_sectors: [kinetic, agency, editorial-luxury, portfolio]
+forbidden_sectors: [simple-spa-no-transitions]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@barba/core", "gsap"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "174-181"
+
+preview_snippet: |
+  import barba from '@barba/core';
+  barba.init({
+    transitions: [{
+      leave: ({current}) => gsap.to('.curtain-left', { x: '0%', duration: 0.6, ease: 'power4.inOut' }),
+      enter: ({next}) => gsap.to('.curtain-left', { x: '-100%', duration: 0.6, delay: 0.1 })
+    }]
+  });
+
+research_refs:
+  - ULTRAPLAN.md:758 (atom 20)

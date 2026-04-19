@@ -1,0 +1,29 @@
+---
+id: 3D-13-rapier-physics
+name: react-three-rapier (WASM physics)
+category: 3d
+description: Rust-based physics engine, drag-drop + collision
+license: MIT (@react-three/rapier)
+---
+
+usage_sectors: [interactive-3d, game-like, physics-product, drop-demo]
+forbidden_sectors: [static-showcase, low-end]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/rapier", "@react-three/fiber"]
+
+preview_snippet: |
+  import { Physics, RigidBody } from '@react-three/rapier';
+  <Physics gravity={[0, -9.81, 0]}>
+    <RigidBody colliders="hull" restitution={0.4}>
+      <mesh><boxGeometry /><meshStandardMaterial /></mesh>
+    </RigidBody>
+    <RigidBody type="fixed">
+      <mesh position={[0, -2, 0]}><planeGeometry args={[10, 10]} /></mesh>
+    </RigidBody>
+  </Physics>
+
+research_refs:
+  - 3D-TECHSTACK.md

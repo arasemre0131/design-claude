@@ -1,0 +1,47 @@
+---
+id: K6
+name: Ring / Radial Gauge
+category: kpi
+description: Daire grafik, progress ring, fitness/OKR/goal tracking
+---
+
+usage_sectors: [fitness, okr, goal-tracking, saas-dashboard, wellness]
+forbidden_sectors: [editorial, luxury-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO1, MO4]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "209-217"
+    note: Barometer gauge SVG path
+  - file: mockups/ring-gauge-kpi.html
+    lines: "1-80"
+
+variants:
+  - name: single-large-ring
+    visual: "Tek büyük ring + merkezde sayı"
+  - name: triple-stacked-ring
+    visual: "Apple fitness tarzı iç içe 3 ring"
+  - name: segmented-arc
+    visual: "Arc parçalı, her segment ayrı KPI"
+
+preview_snippet: |
+  <div class="ring-kpi">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="6" fill="none" opacity="0.15"/>
+      <circle cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="6" fill="none"
+        stroke-dasharray="276" stroke-dashoffset="55" transform="rotate(-90 50 50)"/>
+    </svg>
+    <div class="ring-center"><strong>80%</strong><span>Hedef</span></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:88-88
+  - ULTRAPLAN.md:775 (atom 37 Barometer-Gauge-SVG)

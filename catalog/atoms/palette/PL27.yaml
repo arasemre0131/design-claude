@@ -1,0 +1,33 @@
+---
+id: PL27
+name: Glacier + Sage (Klinik A)
+category: palette
+description: Glacier cool + teal + sage + mist, klinik güven
+bg: "#F0F4F5 glacier"
+accent: "#2D4A4A teal"
+ikincil: "#9CAF88 sage + #C4D5DB mist"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [klinik, dentist, estetik, mri-clinic, medical-wellness]
+forbidden_sectors: [industrial, dark-maximalist]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F0F4F5 × teal #2D4A4A = 9.8:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F0F4F5;
+    --teal: #2D4A4A;
+    --sage: #9CAF88;
+    --mist: #C4D5DB;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:91 (klinik PL27)

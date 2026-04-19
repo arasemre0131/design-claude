@@ -1,0 +1,97 @@
+---
+id: editorial-luxury
+name: Editorial Luxury
+mood: [sakin, rafine, ritmli-whitespace, baski-hissi, premium]
+one_liner: "Serif display + variable opsz + bol beyaz alan — gazete/dergi baskisi hissi."
+---
+
+# Tipografi ailesi — variable-axes zorunlu (opsz + wght)
+typography:
+  display: [Fraunces, Cormorant-Garamond, Instrument-Serif]
+  body: [IBM-Plex-Serif, Hanken-Grotesk, Mulish]
+  mono: [IBM-Plex-Mono, Geist-Mono, JetBrains-Mono]
+  variable_axes: [opsz, wght, SOFT]
+  pair_ids: [TY27, TY28, TY9]   # DESIGN-PATHWAYS
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]   # test: Fraunces + IBM Plex tam destek
+
+# Palette aileleri (PL ID'ler + hex sample)
+palette_families:
+  - warm-dark            # PL22 tobacco+pearl + mockup-a warm-dark espresso
+  - off-white-editorial  # PL34 cream+black (mockup-b)
+  - tobacco-pearl        # PL22 (templates/02-mucevher)
+  - plum-champagne       # PL23
+  - cream-forest         # PL28 (klinik ile paylasiliyor ama editorial side OK)
+
+# Motion primitives (DESIGN-PATHWAYS MO ID)
+motion_primitives:
+  preferred: [MO4, MO10]          # Framer layoutId morph + print-first (minimal motion)
+  acceptable: [MO1, MO6]          # GSAP ScrollTrigger yumusak, SplitText slow stagger
+  forbidden: [MO7-aggressive, MO11-scrolljack-fast]
+
+# Motion stack
+motion_stack:
+  required: [GSAP 3.13, Framer Motion v12]
+  optional: [Lenis 1.3.4, ScrollTrigger scrub 1.5-2.5]
+  forbidden: [bounce easings, elastic, back.out(1.7)]
+
+# Pathway ID tercihleri
+preferred_heroes: [HR11, HR3, HR6]   # brochure cover, video bg (sakin), newspaper
+preferred_layouts: [L6, L8, L2]      # single-col center, masonry urun, asymmetric
+preferred_footers: [FT4, FT6]        # colophon + signature
+
+# Yasaklar — bu stil icinde gorulmez
+forbidden:
+  - aggressive-bounce-easing
+  - neon-accent
+  - glass-morphism
+  - chrome-gradient
+  - brutalist-sharp-shadow
+  - PL1-dark-gold         # mucevher klisesi
+  - TY1-inter-only
+  - hazard-stripe
+  - difference-blend-header
+  - custom-cursor-difference
+
+# Referans implementations (audit edilmis)
+reference_impls:
+  - file: mockups/a-warm-dark/index.html
+    score: 5/5
+    note: "Fraunces opsz 144 + Hanken Grotesk + espresso bg + coral accent — production-ready"
+  - file: mockups/b-off-white-editorial/index.html
+    score: 4/5
+    note: "Instrument Serif italic + IBM Plex Serif body + gazete byline — newspaper print"
+  - file: templates/02-mucevher/index.html
+    score: 4/5
+    note: "Fraunces opsz 9-144 + tobacco+pearl PL22 — mucevher editorial standart"
+  - file: templates/04-restoran/index.html
+    score: 4/5
+    note: "Fraunces SC + Work Sans — restoran editorial"
+
+# 2026 trend uyumu
+trends_2026:
+  bento_2_0: compatible        # asimetrik editorial bento
+  kinetic_typography: YES      # variable opsz scroll-linked (9->144 yumusak)
+  maximalism: NO               # stil "sakin" — maximalism-atmospheric ayri
+  scroll_triggered_3d: PARTIAL # hero veya urun detayda, yorgun etmez
+  variable_fonts: YES          # zorunlu imza
+  bold_minimalism: YES
+
+# Sektor uyumlulugu
+compatible_sectors: [mucevher, restoran, otel, fotograf, spa, gayrimenkul, klinik]
+incompatible_sectors: [insaat-endustriyel]   # zanaat tarafinda OK, endustri tarafinda industrial-workwear
+
+# Sample (scaffold thumbnail)
+sample_palette:
+  bg: "#1C1A17"       # mockup-a warm-dark espresso
+  surface: "#26221D"
+  ink: "#F5EDE0"      # warm cream
+  accent: "#E89B7C"   # soft coral
+  accent_2: "#B8875C" # molten brass (NOT gold)
+sample_font_pair: "Fraunces opsz 9-144 wght 300-700 + Hanken Grotesk 300-800 + Geist Mono"
+
+# Tier uyumu
+tier_fit: [2, 3, 4]
+notes:
+  - "Ana imza: variable font opsz scroll-linked (9->144) + generous whitespace."
+  - "Aggresif motion YASAK — Lenis lerp 0.08-0.10, scrub 2+, stagger 120-180ms."
+  - "PL1 (dark+gold) Emre'nin en sik klise hatasi, editorial-luxury BU olamaz."

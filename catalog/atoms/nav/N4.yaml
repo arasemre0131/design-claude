@@ -1,0 +1,46 @@
+---
+id: N4
+name: Mega Menu Full-Width
+category: nav
+description: Hover ile açılan devasa sütunlu panel, kategori+gorsel+featured
+---
+
+usage_sectors: [eticaret, enterprise, marketplace, retail]
+forbidden_sectors: [portfolio, blog, minimalist]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: templates/06-eticaret/index.html
+    lines: "60-160"
+  - file: mockups/mega-menu-demo.html
+    lines: "1-120"
+
+variants:
+  - name: 4-col-categories
+    visual: "4 sütun, her biri bir kategori"
+  - name: with-featured-image
+    visual: "Son sütun featured product görsel"
+  - name: tabbed-sections
+    visual: "Üstte tab, altta ilgili column content"
+
+preview_snippet: |
+  <nav class="mega">
+    <a class="trigger">Kategoriler ▾</a>
+    <div class="mega-panel">
+      <div class="col"><strong>Mobilya</strong><a>Koltuk</a><a>Masa</a></div>
+      <div class="col"><strong>Aydinlatma</strong><a>Avize</a><a>Masa Lambasi</a></div>
+      <div class="col featured"><img src="/hero.webp"/></div>
+    </div>
+  </nav>
+
+tailwind_tokens: []
+
+research_refs:
+  - Mobilyacı/3d-demo/research/urun_listesi_analiz.md
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:48-48

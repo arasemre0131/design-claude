@@ -1,0 +1,45 @@
+---
+id: K12
+name: Columns Chart as KPI
+category: kpi
+description: Mini bar chart, label altında, blueprint / editorial feel
+---
+
+usage_sectors: [blueprint, engineering, analytics-editorial, data-story]
+forbidden_sectors: [luxury-static, minimalist-text]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY26]
+  motion: [MO1, MO4]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-blueprint/kpi-column.html
+    lines: "1-80"
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "178-226"
+    note: Column chart grow GSAP
+
+variants:
+  - name: 4-bar-comparison
+    visual: "4 bar yan yana, her biri KPI"
+  - name: grouped-stacked
+    visual: "Her KPI stacked iki değer"
+  - name: monochrome-minimal
+    visual: "Tek renk bar + ink axis"
+
+preview_snippet: |
+  <div class="kpi-columns">
+    <div class="bar" style="--h: 82%;"><span class="v">824</span><span class="l">Q1</span></div>
+    <div class="bar" style="--h: 67%;"><span class="v">672</span><span class="l">Q2</span></div>
+    <div class="bar" style="--h: 91%;"><span class="v">912</span><span class="l">Q3</span></div>
+    <div class="bar" style="--h: 100%;"><span class="v">1024</span><span class="l">Q4</span></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:94-94
+  - ULTRAPLAN.md:778 (atom 40 Column-Chart-Grow-GSAP)

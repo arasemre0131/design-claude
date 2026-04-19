@@ -1,0 +1,56 @@
+---
+id: H3
+name: Sidebar Rail + Breadcrumb
+category: header
+description: Solda vertical rail, üstte breadcrumb + command bar, dashboard/SaaS klasik
+---
+
+usage_sectors: [dashboard, admin, saas, crm, analytics, b2b]
+forbidden_sectors: [mucevher, restoran, spa, otel]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY16, TY20]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "40-122"
+    note: Linear-style sidebar + breadcrumb + K command
+  - file: v1-blueprint/sidebar-rail.html
+    lines: "1-80"
+    note: CONSTRUO-tier sidebar
+
+variants:
+  - name: icon-only-collapsed
+    visual: "Sadece icon, hover'da label aç"
+  - name: icon-label-expanded
+    visual: "Icon + label her zaman görünür, 240px genişlik"
+  - name: breadcrumb-cmdk
+    visual: "Üstte breadcrumb + ⌘K açılır palette"
+
+preview_snippet: |
+  <div class="app-shell">
+    <aside class="rail">
+      <div class="rail-logo">C</div>
+      <nav class="rail-nav">
+        <a><span class="ico">⌂</span><span>Home</span></a>
+        <a><span class="ico">≡</span><span>Projects</span></a>
+        <a><span class="ico">◉</span><span>Clients</span></a>
+      </nav>
+    </aside>
+    <main>
+      <div class="topbar">
+        <nav class="crumb">Home / Projects / Kadıköy Rezidans</nav>
+        <button class="cmdk">⌘K</button>
+      </div>
+    </main>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md (admin/CRM için)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:30-30

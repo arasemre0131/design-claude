@@ -1,0 +1,33 @@
+---
+id: PL35
+name: Sand + Ocean (Gayrimenkul A)
+category: palette
+description: Sand bg + ocean + copper + dune
+bg: "#F0EBE0 sand"
+accent: "#1B3A4B ocean"
+ikincil: "#B87333 copper + #E8DCC8 dune"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [gayrimenkul, real-estate-coastal, yalı, waterfront, residential-premium]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F0EBE0 × ocean #1B3A4B = 11.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F0EBE0;
+    --ocean: #1B3A4B;
+    --copper: #B87333;
+    --dune: #E8DCC8;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:165 (gayrimenkul PL35)

@@ -1,0 +1,47 @@
+---
+id: K13
+name: Typographic Number Hero KPI
+category: kpi
+description: Single devasa sayı (clamp 120-280px), serif display, editorial brag moment
+---
+
+usage_sectors: [editorial, brand-story, portfolio, landing-marketing, agency]
+forbidden_sectors: [dashboard-dense, admin]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY13, TY27, TY43]
+  motion: [MO6, MO10]
+  libraries: ["gsap", "splittext"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "586-595"
+    note: Variable font opsz axis scroll (similar mechanic)
+  - file: mockups/typographic-kpi-hero.html
+    lines: "1-80"
+
+variants:
+  - name: single-massive-number
+    visual: "Ortada 280px serif number + altta tek satır prose"
+  - name: counting-up-onscroll
+    visual: "Scroll'da 0 → final count"
+  - name: opsz-axis-breathe
+    visual: "Variable opsz 9→144 hover'da breathe"
+
+preview_snippet: |
+  <section class="kpi-hero">
+    <h2 class="big-num">1<span class="comma">,</span>247</h2>
+    <p class="deck">Yıllık başarıyla teslim edilen proje — son 12 yılda</p>
+  </section>
+  <style>
+    .big-num { font-family: 'Fraunces', serif; font-size: clamp(120px, 22vw, 280px); line-height: 0.85; letter-spacing: -0.05em; font-variation-settings: 'opsz' 144; text-align: center; }
+    .deck { text-align: center; font-family: 'IBM Plex Serif'; font-style: italic; opacity: 0.7; margin-top: 16px; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - ULTRAPLAN.md genişletme K13 eklendi
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md (yeni)

@@ -1,0 +1,113 @@
+---
+id: wordpress-elementor-motion
+name: WordPress + Elementor Pro + GSAP/Lenis (Budget Tier)
+tier: 1
+description: |
+  WordPress 6.9 + Hello Elementor child theme + Elementor Pro 3.35 + GSAP 3.13
+  (tum plugin'ler ucretsiz) + Lenis 1.3.4 + Rank Math SEO. Kuafor, kucuk restoran,
+  fotografci portfolyo, spa randevu, servis tanitim — "standart Armut musterisi".
+---
+
+evidence:
+  - url: https://fraxbit.com
+    studio: fraxbit
+    award: "Awwwards Honorable Mention"
+    stack: "WordPress 6.9 + Elementor Pro 3.35.7 + GSAP 3.12.5 + Lenis 0.2.28"
+    note: "Premium WordPress fiili kaniti — Motion Design plugin + scatter preloader + marble bust imagery."
+  - url: https://wearebrand.io
+    studio: wearebrand.io
+    award: "Awwwards SOTD"
+    stack: "WordPress + Custom Theme + Barba + Lenis 1.2.3 + GSAP"
+    note: "Hand-coded vendored libs, custom wearebrand-animations.js 30KB."
+  - url: https://flotnoir.studio
+    studio: FLOT NOIR
+    note: "Webflow + Taxi.js PJAX curtain transitions — WordPress degil ama Budget tier paralel reference."
+
+budget_tier: budget
+budget_try: [7500, 15000]
+delivery_weeks: [0.5, 1]        # 3-7 gun
+maintenance_monthly_try: [750, 1500]
+profit_margin: "%65-75"         # yuksek kar, hizli teslim
+
+core:
+  cms:
+    name: WordPress
+    version: "6.9+"
+  theme:
+    name: Hello Elementor child theme (custom)
+    note: "Elementor'un minimal child theme — 0 bloat, custom CSS/JS freedom."
+  runtime:
+    php: "8.3+"
+    mysql: "8.0+"
+  language:
+    name: PHP + JS (vanilla)
+
+wordpress_stack:
+  page_builder:
+    - "Elementor Pro 3.35+ (musteri lisansi veya Emre agency lisansi)"
+  motion_addon:
+    - "Motion Design for Elementor by MasterAddons (premium addon)"
+  seo:
+    - "Rank Math (ucretsiz)"
+  forms:
+    - "WPForms Lite veya Elementor Pro Forms"
+  performance:
+    - "WP Rocket (opsiyonel, premium cache)"
+    - "Cloudflare proxy (free tier)"
+  security:
+    - "Wordfence Security (free)"
+    - "Limit Login Attempts Reloaded"
+
+frontend_libs:
+  animation:
+    - "gsap@3.13.0 (CDN jsdelivr)"
+    - "ScrollTrigger + SplitText + ScrambleText + MorphSVG + Observer (hepsi ucretsiz 2024 sonrasi)"
+    - "lenis@1.3.4 (CDN)"
+    - "barba@2.10.3 (page transition, opsiyonel)"
+  custom:
+    - "wab-safe-animations.js (wearebrand.io 6 pattern MIT-safe rewrite)"
+
+cdn_urls:
+  - "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"
+  - "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"
+  - "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"
+  - "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"
+  - "https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.min.js"
+
+deploy:
+  target: "cPanel hosting (Turkiye: Natro/Hostinger/Turhost) + Cloudflare proxy"
+  alternative: "Kinsta managed WP, WP Engine (premium)"
+  ssl: "Let's Encrypt auto"
+
+scaffold_command: |
+  # 1. Fresh WP install (Softaculous or manual)
+  # 2. Theme: Hello Elementor + child theme activate
+  # 3. Plugins: Elementor Pro, Motion Design addon, Rank Math, WPForms
+  # 4. functions.php'ye GSAP + Lenis CDN enqueue
+  # 5. custom.js'de bridge + pattern (wab-safe-animations.js)
+
+constraints:
+  - "Mobile Lighthouse >= 90 (target)"
+  - "Minimum 3 GSAP animation pattern (scroll reveal, magnetic button, text split)"
+  - "WhatsApp + Instagram embed"
+  - "Rank Math schema (LocalBusiness + FAQ)"
+  - "Page transition smooth (Lenis + Barba)"
+  - "prefers-reduced-motion: respect"
+  - "WP admin: 2FA enabled (Wordfence)"
+  - "DB backup haftalik (UpdraftPlus veya Kinsta built-in)"
+
+signature_patterns:
+  - "Pattern A: Lenis + GSAP bridge (lenis.raf -> gsap.ticker.add)"
+  - "Pattern B: Barba page transition + curtain"
+  - "Pattern I: Blur-36px -> 0 text reveal (SplitText)"
+  - "Pattern O: Scatter preloader (fraxbit imza)"
+
+research_refs:
+  - templates/SCRAPED-STACKS-2026.md (fraxbit + wearebrand kaniti)
+  - research-assets/wearebrand-animations.js
+  - research-assets/wab-safe-animations.js
+
+red_line:
+  - "Headless CMS gerekli -> next-premium (Tier 2)"
+  - "Native auth, 3D viewer, >20 sayfa, tamamen custom JS -> next-premium veya next-r3f"
+  - "WordPress ama admin panel + e-ticaret custom logic -> WooCommerce'i asar, Next.js gerekli"

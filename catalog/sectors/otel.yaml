@@ -1,0 +1,117 @@
+---
+id: otel
+name: "Otel / Turizm / Hospitality"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - kaçış (günlük hayattan)
+  - lüks-erişilebilir (luxury ama overwhelming değil)
+  - deneyim (oda kadar mekan + hizmet)
+  - ışık-manzara
+  - aile/çift/solo ayrımı
+  - rezervasyon-güveni
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # luxury otel dark+gold KLIŞE — her butik otel sitesi aynı
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_patterns: ["stok-foto-havuz-hero", "gold-italic-title", "fake-instagram-feed"]
+  warning: "Luxury dark gradient + gold italic 'Welcome to X' klişesi YASAK — her butik otel aynı. Stok foto havuz YASAK — gerçek otel + drone video. Terracotta+sky (PL37) veya cool marble (PL38) organik palette tercih. Fine-art italic başlık için Fraunces italic OK ama Playfair YASAK. Booking.com iframe + 'rate comparison' external link otel sitesini öldürür — native rezervasyon akışı olmalı."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Yok"
+    combo: "—"
+    note: "Temiz sektör. Mücevher PL1 tekrarına en yakın risk — otel 'luxury' markasına kaymamalı. Spa sektörüne de dikkat (otel-spa birlikte anılır)."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL37, PL38]         # Terracotta+Sky, Cool Marble
+  typography: [TY43, TY44]       # Fraunces italic + Inter Tight / Recoleta + Mulish + Space Mono
+  heroes: [HR3]                  # Video bg (havuz, manzara, drone)
+  layouts: [L4, L8]              # Full-bleed rails, Masonry oda
+  motion_primitives: [MO2, MO7]  # Lenis smooth, View Transitions (oda→rezervasyon)
+  kpi: [K2, K5]                  # Band / Almanac ("90 oda, 2 havuz, 1 spa")
+  footer: [FT4, FT6]             # Colophon / Signature block
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    suitability: "✗"  # otel tek sayfa kabul etmez
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [oda-liste, booking-iframe, galeri, whatsapp, email]
+    delivery: "3-7 gün"
+    suitability: "⚠"  # native booking yok, iframe ile
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [native-booking, oda-sistem, admin, iyzico, email-sms, review, concierge-chat]
+    delivery: "2-3 hafta"
+    suitability: "✓✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    features: [sanal-tur-oda, 360-foto, scroll-storytelling, drone-video, virtual-check-in]
+    delivery: "3-5 hafta"
+    suitability: "✓✓"
+  enterprise:     # 80K+ TL, 6-12 hafta
+    recipe: next-enterprise-monorepo
+    features: [zincir-otel, multi-tenant, pms-entegre, channel-manager, gds-integrate, loyalty]
+    delivery: "6-12 hafta"
+    suitability: "✓"  # otel zinciri (Hilton, Marriott alternatif white-label)
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [oda-sistem, native-booking, galeri, iletisim, whatsapp, email]
+  optional: [concierge-chat, review, blog, loyalty, spa-paket-satis, transfer-servis]
+  special:
+    - name: "Sanal oda turu (R3F + Matterport veya Gaussian Splat)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/hospitality-virtual-tour.md"
+    - name: "Scroll storytelling (GSAP ScrollTrigger + otel story)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md"
+    - name: "PMS entegrasyonu (Opera, Fidelio, protel)"
+      tier: "enterprise"
+      research: "Mobilyacı/3d-demo/research/api-integration-patterns.md"
+    - name: "Channel manager (Booking.com, Expedia, Airbnb sync)"
+      tier: "enterprise"
+      research: "Mobilyacı/3d-demo/research/api-integration-patterns.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/iyzico-analiz.md
+    - Mobilyacı/3d-demo/research/hospitality-virtual-tour.md
+  secondary:
+    - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # LodgingBusiness JSON-LD
+    - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+    - Mobilyacı/3d-demo/research/email-analiz.md
+    - Mobilyacı/3d-demo/research/scroll-storytelling-patterns.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#otel
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: yes        # "90 oda, 18 suite" SplitText number reveal
+  bento_2_0: yes                 # oda tipi asymmetric grid
+  maximalism: partial            # warm terracotta dense OK, cool marble minimal
+  3d_spline: yes                 # Tier 3+ sanal tur kritik
+  scroll_triggered_3d: yes       # scroll-linked kamera (resepsiyon→lobi→oda)
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "drone video (havuz, manzara, dış cephe — 15-20s, ≤8MB, autoplay muted loop)"
+  primary_cta: "Rezervasyon Yap"
+  secondary_cta: "Odaları İncele"
+  booking_flow: "Tarih → oda tipi → misafir sayısı → ekstra (yemek, spa) → ödeme (5 adım)"
+  i18n_critical: "TR + EN minimum, Arapça + Rusça Tier 4'te (Antalya/Bodrum otel müşteri profiline göre)"
+  schema: "LodgingBusiness + Hotel + Room + Offer + Review JSON-LD"
+  mobile_critical: "Sticky 'Rezervasyon' bottom bar, tarih picker tam ekran"

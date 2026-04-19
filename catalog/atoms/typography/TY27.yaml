@@ -1,0 +1,35 @@
+---
+id: TY27
+name: Fraunces + IBM Plex Sans + IBM Plex Mono
+category: typography
+description: Mücevher, Fraunces opsz 144 axis, Playfair alternatifi (klişe değil)
+display_font: "Fraunces (variable opsz 9-144)"
+body_font: "IBM Plex Sans"
+mono_font: "IBM Plex Mono"
+---
+
+usage_sectors: [mucevher, editorial-luxury, otel, restoran-editorial, klinik-premium]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/02-mucevher/index.html
+  - file: templates/05-klinik/index.html (Fonts A)
+  - file: templates/09-gayrimenkul/index.html (Fonts A)
+  - file: templates/10-otel/index.html (Fonts A)
+
+google_fonts: "Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=IBM+Plex+Sans:wght@300..700&family=IBM+Plex+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 100; letter-spacing: -0.035em; }
+    body { font-family: 'IBM Plex Sans', sans-serif; }
+    code { font-family: 'IBM Plex Mono', monospace; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:41 (mücevher TY27)

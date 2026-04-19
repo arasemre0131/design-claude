@@ -1,0 +1,53 @@
+---
+id: HR15
+name: Porthole Dive Scroll-Zoom Hero
+category: hero
+description: Hero başlık scroll ile 1→6.5 scale zoom, wearebrand imza "porthole dive"
+---
+
+usage_sectors: [editorial-luxury, agency, portfolio, maximalist-atm, brand-campaign]
+forbidden_sectors: [b2b-corporate-simple, klinik]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY13, TY27, TY43]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis", "splittext"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "572-584"
+    note: Hero porthole dive pin + scrub scale
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "(scroll pin pattern)"
+    note: wearebrand orijinal porthole dive
+
+variants:
+  - name: center-focus-zoom
+    visual: "Ortada bir obje, scroll ile yakınlaşıp içinden geçilir"
+  - name: text-split-sides
+    visual: "Başlık hero-t-left / hero-t-right, scroll ile yanlara kayar"
+  - name: sculpture-rotate
+    visual: "Merkezdeki heykel/ürün scale + rotate 15deg"
+
+preview_snippet: |
+  <section class="hero porthole">
+    <div class="hero-bg"></div>
+    <div class="hero-sculpture"></div>
+    <h1 class="hero-t-left">ORTAK</h1>
+    <h1 class="hero-t-right">HAKİKAT</h1>
+    <div class="hero-middle">◎</div>
+  </section>
+  <script>
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1, pin: true }});
+    tl.fromTo('.hero-bg', { scale: 1 }, { scale: 6.5 }, 0)
+      .fromTo('.hero-t-left', { x: '0vw' }, { x: '-60vw' }, 0)
+      .fromTo('.hero-t-right', { x: '0vw' }, { x: '60vw' }, 0);
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - ULTRAPLAN.md:762 (atom 24 Porthole-Dive-Scale)
+  - templates/14-ultra/index.html:572-584

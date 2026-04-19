@@ -1,0 +1,40 @@
+---
+id: wearebrand-magnetic-elastic
+name: Magnetic Hover Elastic (wearebrand/Awwwards)
+category: motion-ajans
+description: Mousemove magnetic attract + elastic.out(1, 0.3) mouseleave
+license: MIT-safe rewrite (pattern Awwwards standartı, endüstri generic)
+source: wearebrand.io + Awwwards community
+source_file: research-assets/wab/wearebrand-animations.js
+source_lines: "738-784"
+---
+
+usage_sectors: [kinetic, editorial, agency, portfolio, saas-premium]
+forbidden_sectors: [mobile-only-touch, accessibility-strict]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "738-784"
+  - file: templates/14-ultra/index.html
+    lines: "536-546"
+
+preview_snippet: |
+  document.querySelectorAll('[data-magnetic]').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - r.left - r.width/2) * 0.3;
+      const dy = (e.clientY - r.top - r.height/2) * 0.4;
+      gsap.to(el, { x: dx, y: dy, duration: 0.6, ease: 'power3.out' });
+    });
+    el.addEventListener('mouseleave', () =>
+      gsap.to(el, { x: 0, y: 0, duration: 1.2, ease: 'elastic.out(1, 0.3)' })
+    );
+  });
+
+research_refs:
+  - ULTRAPLAN.md:741 (atom 3)

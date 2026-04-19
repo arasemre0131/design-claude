@@ -1,0 +1,76 @@
+---
+id: minimal-swiss
+name: Minimal Swiss
+mood: [grid-first, whitespace, mono-accent, calm, systematic, Helvetica-tradition]
+one_liner: "International typographic style — grid-heavy, Helvetica/Sohne, tabular-nums, minimal motion."
+---
+
+typography:
+  display: [Soehne-Breit, Neue-Haas-Unica, Inter-Tight]
+  body: [Soehne, IBM-Plex-Sans, Neue-Haas-Unica]
+  mono: [Soehne-Mono, JetBrains-Mono, IBM-Plex-Mono]
+  variable_axes: [wght]
+  pair_ids: [TY18, TY39, TY40]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - pure-swiss-bw          # PL33 pure off-black + off-white
+  - cream-black            # PL34 cream + black
+  - slate-accent-single    # #F7F7F5 bg + #0A0A0A ink + tek mono accent
+  - paper-rule
+
+motion_primitives:
+  preferred: [MO3, MO7, MO10]    # CSS scroll-driven native, View Transitions, print-first
+  acceptable: [MO4]
+  forbidden: [MO1-aggressive, MO6-heavy-stagger, MO11-kinetic-opsz, MO12-3d-camera]
+
+motion_stack:
+  required: []                    # yok — CSS-first tercih
+  optional: [GSAP 3.13 (subtle), Framer Motion v12 (layout)]
+  forbidden: [Lenis-slow-dramatic, elastic, bounce, scramble]
+
+preferred_heroes: [HR11, HR6, HR1]   # brochure, newspaper, bold claim (sakin)
+preferred_layouts: [L1, L2, L5]      # 12-col standard, asymmetric, 3-col editorial
+preferred_footers: [FT1, FT4]        # minimal strip, colophon
+
+forbidden:
+  - decorative-serif-display-italic
+  - gradient-text
+  - aurora-background
+  - brutalist-hard-shadow
+  - warm-organic-tactile
+  - custom-cursor-trail
+  - parallax-everything
+  - glassmorphism
+
+reference_impls:
+  - file: templates/08-fotograf/index.html
+    score: 5/5
+    note: "IBM Plex Sans monolithic + off-black/off-white + zengin whitespace + mono label 0.18em."
+  - file: mockups/b-off-white-editorial/index.html
+    score: 4/5
+    note: "Swiss/editorial hibrit — IBM Plex ailesi + 3-col + rule lines."
+
+trends_2026:
+  bento_2_0: PARTIAL               # systematic bento OK
+  kinetic_typography: NO           # statik disiplin
+  maximalism: NO                   # anti-thesis
+  scroll_triggered_3d: NO
+  variable_fonts: PARTIAL          # wght tek axis
+  view_transitions_api: YES        # 2026 native scroll-driven tercih
+
+compatible_sectors: [kurumsal, hukuk, muhasebe, finansal, editorial-kitap, fotograf, mobilya-modernist, muze, akademi, klinik-ciddi]
+incompatible_sectors: [muzik-underground, moda-streetwear, cocuk-markalari]
+
+sample_palette:
+  bg: "#F7F7F5"
+  ink: "#0A0A0A"
+  rule: "#E5E5E3"
+  accent: "#C43D2B"              # editorial kirmizi veya #0A0A0A mono
+sample_font_pair: "IBM Plex Sans 400-600 monolithic + JetBrains Mono"
+
+tier_fit: [1, 2, 3]
+notes:
+  - "Ana kural: 12 kolon grid, 8px baseline, whitespace > decoration."
+  - "CSS scroll-driven animations + View Transitions API tercih — GSAP minimum."
+  - "prefers-reduced-motion: respect. Motion opsiyonel, strukturel degil."

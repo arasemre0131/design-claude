@@ -1,0 +1,31 @@
+---
+id: MO2
+name: Lenis Smooth Scroll + GSAP Bridge
+category: motion
+description: Lenis 1.3 + GSAP ticker bridge, smooth scroll industry standard
+---
+
+usage_sectors: [tum-sektorler-motion]
+forbidden_sectors: [native-scroll-preferred]
+
+forbidden_with: []
+
+requires:
+  libraries: ["lenis", "gsap"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "492-499"
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "707-726"
+    note: wearebrand Lenis+GSAP bridge (MIT-safe rewrite)
+
+preview_snippet: |
+  const lenis = new Lenis({ duration: 1.1, smoothWheel: true, easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e)) });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:290
+  - SCRAPED-STACKS-2026.md:165-171 (Lenis+GSAP bridge 12/14 ajans)

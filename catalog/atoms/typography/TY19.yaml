@@ -1,0 +1,31 @@
+---
+id: TY19
+name: Tiempos Headline + National 2 + Operator Mono
+category: typography
+description: NYT modern, Tiempos Headline display
+display_font: "Tiempos Headline"
+body_font: "National 2"
+mono_font: "Operator Mono"
+---
+
+usage_sectors: [editorial-news, magazine-premium, long-read, publication]
+forbidden_sectors: [dashboard, eticaret]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/nyt-modern.html
+
+google_fonts: null
+notes: "Tiempos ve National 2 premium (Klim). Alt: Fraunces + Inter Tight."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Tiempos Headline', 'Fraunces', serif; font-weight: 600; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:229

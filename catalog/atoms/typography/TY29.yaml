@@ -1,0 +1,31 @@
+---
+id: TY29
+name: Schibsted Grotesk + Space Mono
+category: typography
+description: Kuaför modern salon, Schibsted Grotesk her weight
+display_font: "Schibsted Grotesk"
+body_font: "Schibsted Grotesk"
+mono_font: "Space Mono"
+---
+
+usage_sectors: [kuafor, berber, salon, modern-atelier, beauty]
+forbidden_sectors: [mucevher-luxury-static]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/03-kuafor/style.css
+
+google_fonts: "Schibsted+Grotesk:wght@300..900&family=Space+Mono:wght@400;700"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+    body { font-family: 'Schibsted Grotesk'; font-weight: 400; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:60 (kuaför TY29)

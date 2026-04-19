@@ -1,0 +1,44 @@
+---
+id: N7
+name: Vertical Writing-Mode Rail Nav
+category: nav
+description: Sağ/sol kenarda yazı dik, bölüm listesi, editorial long-read
+---
+
+usage_sectors: [editorial, long-read, portfolio, art, fashion]
+forbidden_sectors: [dashboard, eticaret]
+
+forbidden_with: []
+
+requires:
+  typography: [TY13, TY24, TY25, TY10]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: v2-kinetic-data/vertical-nav.html
+    lines: "40-90"
+
+variants:
+  - name: right-edge
+    visual: "Sağ kenarda vertical-rl"
+  - name: with-progress-line
+    visual: "Yanında scroll progress line"
+
+preview_snippet: |
+  <nav class="v-nav">
+    <ol>
+      <li><a>01 · Intro</a></li>
+      <li><a>02 · Method</a></li>
+      <li><a>03 · Cases</a></li>
+    </ol>
+  </nav>
+  <style>
+    .v-nav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; }
+    .v-nav ol { list-style: none; display: flex; flex-direction: column; gap: 24px; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:51-51

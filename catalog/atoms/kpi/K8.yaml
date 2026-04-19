@@ -1,0 +1,43 @@
+---
+id: K8
+name: Inline Sparkline Minimal
+category: kpi
+description: Tek satır — label + value + sparkline, kart yok, finance/terminal aesthetic
+---
+
+usage_sectors: [finance, terminal, data-ops, trading, analytics-minimal]
+forbidden_sectors: [mucevher, restoran, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10, MO1]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "124-124"
+    note: Sparkline inline SVG pattern
+  - file: mockups/terminal-spark-kpi.html
+    lines: "1-60"
+
+variants:
+  - name: single-line-spark
+    visual: "Her satır: label + val + 40px sparkline"
+  - name: with-delta-percent
+    visual: "Sağda ▲ 12% delta badge"
+  - name: mono-tabular
+    visual: "JetBrains Mono + tabular-nums"
+
+preview_snippet: |
+  <div class="spark-kpi">
+    <div class="row"><span class="label">USD/TRY</span><span class="val">32.48</span><svg class="spark" viewBox="0 0 60 20"><path d="M0,15 L10,12 L20,14 L30,8 L40,10 L50,6 L60,3" stroke="currentColor" fill="none"/></svg><span class="delta up">+0.4%</span></div>
+    <div class="row"><span class="label">BIST 100</span><span class="val">10241</span><svg class="spark" viewBox="0 0 60 20"><path d="M0,10 L10,14 L20,8 L30,11 L40,6 L50,9 L60,4" stroke="currentColor" fill="none"/></svg><span class="delta up">+1.2%</span></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:90-90
+  - ULTRAPLAN.md:779 (atom 41 Sparkline-Inline-SVG)

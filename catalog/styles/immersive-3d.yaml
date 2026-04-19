@@ -1,0 +1,91 @@
+---
+id: immersive-3d
+name: Immersive 3D
+mood: [cinematic, scroll-camera, depth, atmospheric, tech-forward]
+one_liner: "R3F + drei + scroll-linked kamera + GLSL noise — Lusion-tier immersive deneyim."
+---
+
+typography:
+  display: [Monument-Extended, DM-Serif-Display, Migra-Italic]
+  body: [Inter-Tight, Inter, Hanken-Grotesk]
+  mono: [JetBrains-Mono, Berkeley-Mono]
+  variable_axes: [opsz, wght]
+  pair_ids: [TY14, TY12]
+  forbidden_pair_ids: [TY8-DM-Serif-Inter]    # 2026 kilitli klise!
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - cinematic-deep-blue    # #0B0D10 deep + cool highlight
+  - volcanic-orange        # #FF5E3A accent (Marcelo imza)
+  - aurora-space           # PL39 deep space aurora drift
+  - onyx-chrome
+
+motion_primitives:
+  preferred: [MO1, MO2, MO12]   # GSAP ScrollTrigger + Lenis + R3F scroll-linked camera (YENI)
+  acceptable: [MO6]             # SplitText stagger overlay'de
+  forbidden: [MO10-print-first, MO3-subtle-static]
+
+motion_stack:
+  required:
+    - GSAP 3.13
+    - Lenis 1.3.4
+    - Three.js r183+
+    - "@react-three/fiber@9.x"
+    - "@react-three/drei@10.x"
+    - "@react-three/postprocessing@3.x"
+  optional:
+    - "@react-three/rapier (WASM physics)"
+    - gsplat
+    - Theatre.js (keyframe editor)
+    - Spline runtime
+  forbidden: [static-photography-only, flat-2d-hero]
+
+preferred_heroes: [HR16, HR3]      # 3D scroll-camera tower (marcelo), full-bleed video atmospheric
+preferred_layouts: [L4, L6, L1]    # full-bleed rails, center single col, standard
+preferred_footers: [FT5, FT1]
+
+forbidden:
+  - flat-2d-hero
+  - static-photography-only
+  - TY8-DM-Serif-Inter      # yasakli klise pair
+  - brutalist-hard-shadow
+  - print-first-layout
+  - warm-organic-slow
+  - editorial-newspaper
+
+reference_impls:
+  - file: v2-immersive-3d/index.html
+    score: 4/5
+    note: "Three.js r163 + GSAP ScrollTrigger + DM Serif Display (ama TY8'e dikkat) + mix-blend-mode difference header."
+  - file: templates/12-immersive-3d/index.html
+    score: 4/5
+    note: "Three.js scroll camera path + 476 satir + procedural crystal/tower."
+
+trends_2026:
+  bento_2_0: NO
+  kinetic_typography: PARTIAL     # overlay typography motion
+  maximalism: PARTIAL
+  scroll_triggered_3d: YES        # imza trend
+  variable_fonts: YES             # overlay kullanim
+  webgpu_opt_in: YES              # Chrome 120+ fallback WebGL
+  gaussian_splatting: YES         # gsplat opsiyonel
+
+compatible_sectors: [mucevher-premium, otomotiv, mimari, mobilya-AR, otel-sanaltur, gayrimenkul-premium, eticaret-3d, sanat-muze]
+incompatible_sectors: [klinik, yasal, yasli-bakim, spa-sakin, editorial-print-lover]
+
+sample_palette:
+  bg: "#0B0D10"
+  bg_deep: "#050608"
+  fog: "#1A1F28"
+  ink: "#FFFFFF"
+  accent: "#FF5E3A"
+  accent_2: "#FFB347"
+  cool: "#7FD4FF"
+sample_font_pair: "Monument Extended + Inter Tight + JetBrains Mono"
+
+tier_fit: [3, 4]
+notes:
+  - "Imza: R3F Canvas + drei PresentationControls + MeshTransmissionMaterial + custom GLSL (curl/fBM)."
+  - "Mobile fallback zorunlu: frameloop='demand' + low-quality GLB + AdaptiveDpr."
+  - "Bundle < 2MB (Draco + Meshopt + KTX2). 60fps desktop / 30fps mobile."
+  - "TY8 (DM Serif + Inter) Emre'nin tarihi klise hatasi — kullanma."

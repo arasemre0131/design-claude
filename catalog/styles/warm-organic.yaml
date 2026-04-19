@@ -1,0 +1,82 @@
+---
+id: warm-organic
+name: Warm Organic
+mood: [clay, mist, sand, seafoam, nefes-alan, tactile, natural, unhurried]
+one_liner: "Clay+mist+sand+seafoam dokular, slow Lenis, yumusak Fraunces/Recoleta, spa/botanik/zanaat."
+---
+
+typography:
+  display: [Recoleta, Cormorant-Infant, Fraunces-SC]
+  body: [Schibsted-Grotesk, Hanken-Grotesk, Lato, Mulish]
+  mono: [Space-Mono, IBM-Plex-Mono]
+  variable_axes: [opsz, wght, SOFT]
+  pair_ids: [TY29, TY37, TY21]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - clay-mist             # PL31 clay + mist (spa A)
+  - pearl-seafoam         # PL32 pearl + seafoam (spa B)
+  - sand-ocean            # PL35 sand + ocean (gayrimenkul)
+  - cream-forest          # PL28 (klinik sakin)
+  - warm-dark-espresso    # mockup-a (dark variant warm-organic)
+
+motion_primitives:
+  preferred: [MO2, MO3, MO10]    # Lenis COK yavas (lerp 0.06-0.08), CSS scroll subtle, print-first
+  acceptable: [MO4]
+  forbidden: [MO1-aggressive-scrub, MO11-kinetic-opsz, MO12-3d, MO9-popover-bounce]
+
+motion_stack:
+  required: [Lenis 1.3.4]
+  optional: [GSAP 3.13 (subtle-only), CSS scroll-driven]
+  forbidden: [scramble, elastic, back.out, bounce, harsh-neon-pulse]
+
+preferred_heroes: [HR3, HR11, HR6]    # slow-mo su/bitki, brochure cover, newspaper soft
+preferred_layouts: [L6, L2, L8]       # meditative single col, asymmetric editorial, masonry
+preferred_footers: [FT4, FT6]         # colophon, signature
+
+forbidden:
+  - harsh-neon
+  - aggressive-bounce
+  - industrial-gray
+  - hazard-stripe
+  - brutalist-hard-shadow
+  - PL1-dark-gold
+  - cold-metallic
+  - scramble-fast-text
+
+reference_impls:
+  - file: templates/07-spa/index.html
+    score: 4/5
+    note: "Spa palette B (pearl+seafoam) + Cormorant Infant + Lenis slow + meditative single col."
+  - file: templates/05-klinik/index.html
+    score: 4/5
+    note: "Cream+forest + Fraunces + IBM Plex Sans — sakin klinik warm variant."
+  - file: mockups/a-warm-dark/index.html
+    score: 4/5
+    note: "Warm-organic DARK variant — espresso bg + warm cream ink + soft coral."
+
+trends_2026:
+  bento_2_0: PARTIAL
+  kinetic_typography: NO
+  maximalism: NO
+  scroll_triggered_3d: NO              # warm-organic + 3d UYUMSUZ (fazla cinema)
+  variable_fonts: YES                  # opsz + SOFT axis kritik
+  slow-motion-design: YES
+  tactile-grain-overlay: YES           # SVG grain opacity 0.04
+
+compatible_sectors: [spa, klinik-sakin, yasli-bakim, restoran-organic, fotograf-natural, mobilya-zanaat, mucevher-el-isi, otel-butik, yoga-meditasyon]
+incompatible_sectors: [insaat-endustriyel, fintech-tech, gaming, muzik-underground]
+
+sample_palette:
+  bg: "#F0EBE1"            # clay
+  surface: "#E5DFCE"       # mist
+  ink: "#2A2A28"
+  accent: "#8A9A8B"        # sage
+  accent_2: "#D4B896"      # sand
+sample_font_pair: "Fraunces opsz 9-144 SOFT 50-100 + Hanken Grotesk 300-500 + Space Mono"
+
+tier_fit: [1, 2, 3]
+notes:
+  - "Lenis lerp 0.06-0.08 (COK yavas) — bu stil nefes-alan hissi icin."
+  - "prefers-reduced-motion respect zorunlu — motion opsiyonel."
+  - "PL1 dark+gold yasak, industrial-workwear yasak, neon yasak."

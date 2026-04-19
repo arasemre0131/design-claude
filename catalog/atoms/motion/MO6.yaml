@@ -1,0 +1,31 @@
+---
+id: MO6
+name: SplitText + Stagger (kinetic typography)
+category: motion
+description: GSAP SplitText (3.13+ ücretsiz) + stagger char/word reveal
+---
+
+usage_sectors: [kinetic, editorial-motion, agency, hero-reveal]
+forbidden_sectors: [print-first-static]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-splittext"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "621-628"
+    note: SplitText lines+words blur reveal
+
+preview_snippet: |
+  const split = new SplitText(h, { type: 'lines,words', mask: 'lines' });
+  gsap.from(split.words, {
+    yPercent: 120, opacity: 0, filter: 'blur(20px)',
+    duration: 1.1, stagger: 0.04, ease: 'expo.out',
+    scrollTrigger: { trigger: h, start: 'top 80%', once: true }
+  });
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:294
+  - ULTRAPLAN.md:768 (atom 30 SplitText-Chars-Lines)

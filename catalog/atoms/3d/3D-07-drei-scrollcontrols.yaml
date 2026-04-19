@@ -1,0 +1,34 @@
+---
+id: 3D-07-drei-scrollcontrols
+name: drei ScrollControls + Scroll
+category: 3d
+description: Scroll-linked 3D animation, virtual scroll within Canvas
+license: MIT (drei)
+---
+
+usage_sectors: [narrative-3d, product-story-3d, immersive-landing]
+forbidden_sectors: [static-product]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/fiber", "@react-three/drei"]
+
+preview_snippet: |
+  import { ScrollControls, useScroll } from '@react-three/drei';
+  <Canvas>
+    <ScrollControls pages={4} damping={0.2}>
+      <Scene />
+    </ScrollControls>
+  </Canvas>
+  function Scene() {
+    const scroll = useScroll();
+    useFrame(() => {
+      mesh.current.position.z = scroll.offset * 10;
+      mesh.current.rotation.y = scroll.offset * Math.PI * 2;
+    });
+    return <mesh ref={mesh}>...</mesh>;
+  }
+
+research_refs:
+  - 3D-TECHSTACK.md

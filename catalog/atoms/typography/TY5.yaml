@@ -1,0 +1,31 @@
+---
+id: TY5
+name: Syne + Space Grotesk + JetBrains Mono
+category: typography
+description: Blueprint tech, Syne 800 italic display
+display_font: "Syne 800 italic"
+body_font: "Space Grotesk"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [blueprint, engineering, tech-agency, data-dense, architecture]
+forbidden_sectors: [mucevher, restoran, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: v2-blueprint/style.css
+
+google_fonts: "Syne:wght@400..800&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    :root { --font-display: 'Syne', sans-serif; --font-body: 'Space Grotesk', sans-serif; --font-mono: 'JetBrains Mono', monospace; }
+    h1 { font-family: var(--font-display); font-weight: 800; font-style: italic; letter-spacing: -0.03em; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:215

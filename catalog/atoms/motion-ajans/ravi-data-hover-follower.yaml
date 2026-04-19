@@ -1,0 +1,45 @@
+---
+id: ravi-data-hover-follower
+name: data-hover-follower Attribute System (Ravi Klaassens imza)
+category: motion-ajans
+description: Attribute-driven hover follower, gsap.quickTo custom rkHover ease
+license: MIT-safe rewrite (pattern generic, ease curve kendi custom)
+source: Ravi Klaassens (raviklaassens.com)
+---
+
+usage_sectors: [agency, portfolio, creative-case-study]
+forbidden_sectors: [mobile-only, accessibility-strict]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "184-203"
+
+preview_snippet: |
+  <a class="case-link">
+    <div data-hover-follow class="case-img-wrapper">
+      <div data-hover-follower class="case-img-hover"><img src="thumb.webp"/></div>
+      <div data-hover-bg class="case-img-inner">...</div>
+    </div>
+  </a>
+  <script>
+    CustomEase.create('rkHover', '0.16, 1, 0.3, 1');
+    items.forEach(item => {
+      const hoverEl = item.querySelector('[data-hover-follower]');
+      const quickX = gsap.quickTo(hoverEl, 'x', { duration: 0.6, ease: 'rkHover' });
+      const quickY = gsap.quickTo(hoverEl, 'y', { duration: 0.6, ease: 'rkHover' });
+      item.addEventListener('mousemove', e => {
+        const r = item.getBoundingClientRect();
+        quickX(e.clientX - r.left - hoverEl.offsetWidth / 2);
+        quickY(e.clientY - r.top - hoverEl.offsetHeight / 2);
+      });
+    });
+  </script>
+
+research_refs:
+  - ULTRAPLAN.md:759 (atom 21 Data-Hover-Follower)
+  - SCRAPED-STACKS-2026.md:184-203

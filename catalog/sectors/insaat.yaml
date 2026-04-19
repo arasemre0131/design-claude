@@ -1,0 +1,121 @@
+---
+id: insaat
+name: "İnşaat / Construction"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - sağlamlık
+  - şeffaflık
+  - zanaat
+  - hazard
+  - görünürlük
+  - güven (şantiye net, ilerleme izlenebilir)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: []  # bu sektörde PL1 dark+gold klişesi yok — inşaat zaten koyu/sarı kullanabilir
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # global yasaklı ID'ler her sektörde geçerli
+  forbidden_heroes: [HR2]  # split-hero global klişe
+  forbidden_layouts: [K1]  # bento glass K1 yasak
+  warning: "Stok fotoğraf hero YASAK (Unsplash safety-vest adamı değil — gerçek proje fotoğrafı). 'Güven' cliché: mavi dalga hero + 'biz 20 yıldır' başlığı. Safety-first: hazard stripe + concrete texture OK, ama Dribbble turuncu/siyah SaaS dashboard'u değil."
+
+# Repeat-guard context — mevcut projelerle karşılaştır
+existing_projects:
+  - name: "v2-blueprint"
+    combo: "H9 + N3 + HR13 + K12 + P2 + T3 + CH6 + FT6 + TY5 + PL5 + L5 + MO1"
+    note: "Blueprint/ozalit stilinde, TY5 Syne + PL5. İnşaat'ın editorial/print alt-koluna kayıyor."
+  - name: "mockup-C (industrial)"
+    combo: "H1 + HR5 + K3 + T3 + FT8 + TY11 Archivo Black + PL4 concrete + L1 + MO10"
+    note: "PL4 concrete + TY11 Archivo Black kullanıldı. Yeni proje PL21 ozalit blueprint'e kaymalı."
+  - name: "insaat-crm (Yıldız İnşaat Ankara)"
+    combo: "Tier 4 CRM — custom combo, B2B internal dashboard"
+    note: "Enterprise multi-tenant. Bu YAML daha çok müşteri-facing tanıtım sitesi içindir."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL4, PL21, PL19]  # Concrete / Ozalit Blueprint / Steel+Copper
+  typography: [TY11, TY26, TY5]  # Archivo Black+Stencil / Rubik Mono / Syne italic
+  heroes: [HR9, HR13]  # Interactive map (Ankara proje lokasyonları) / Blueprint title block
+  layouts: [L4, L5]  # Full-bleed rails / Newspaper
+  motion_primitives: [MO1, MO2]  # GSAP ScrollTrigger / Lenis smooth scroll
+  kpi: [K2, K3, K12]  # Band+rules / Stencil number / Blueprint stat
+  pipeline: [P2, P8]  # Blueprint step / Dense table
+  table: [T3]  # Spec sheet
+  footer: [FT6, FT8]  # Signature block / Industrial stripe
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [whatsapp, google-business, iletisim-formu]
+    delivery: "2-3 gün"
+    skip_features: [3d-viewer, crm, proje-takip]
+    suitability: "⚠"  # tek sayfa tanıtım olabilir ama inşaat güven için 3+ sayfa ister
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [proje-galerisi, referans, blog, randevu-kesif, whatsapp]
+    delivery: "3-7 gün"
+    suitability: "✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [proje-galerisi, harita, blog, admin, iletisim-crm, sertifika]
+    delivery: "2-3 hafta"
+    suitability: "✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    features: [3d-yapi-gosterimi, sanal-tur, drone-video, interactive-map, proje-timeline]
+    delivery: "3-5 hafta"
+    suitability: "✓"
+  enterprise:     # 80K+ TL, 6-12 hafta (Yıldız İnşaat CRM)
+    recipe: next-enterprise-monorepo
+    features: [crm, saha-yonetimi, saha-foto, musteri-portal, is-emri, multi-tenant, observability]
+    delivery: "6-12 hafta"
+    suitability: "✓✓"  # inşaat CRM enterprise'ın en güçlü match'i
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [proje-galerisi, referans, iletisim-formu, harita, sertifika]
+  optional: [blog, drone-video, 360-sanal-tur, hesapla-kalkulator, randevu-kesif]
+  special:
+    - name: "3D yapı gösterimi (R3F)"
+      tier: "premium"
+      research: "research/ultra-immersive-stories-research.md"
+    - name: "Proje takip CRM (saha foto + iş emri)"
+      tier: "enterprise"
+      research: "research/admin-dashboard-patterns-2026.md"
+    - name: "Interactive map (Ankara proje lokasyonları)"
+      tier: "mid+"
+      research: "research/maps-routing-geocoding-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/admin-dashboard-patterns-2026.md
+    - Mobilyacı/3d-demo/research/maps-routing-geocoding-2026.md
+    - research/design-claude/insaat-crm/  # mevcut Yıldız İnşaat projesi
+  secondary:
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/ultra-immersive-stories-research.md  # Tier 3+ 3D
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#insaat
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: partial  # başlıkta Archivo Black/Stencil animate OK, gövdede değil
+  bento_2_0: partial            # L3 kontrollü — proje kartı asymmetric OK, glass YASAK
+  maximalism: no                # güven + düzen gerekli, dense overlap ters
+  3d_spline: yes                # Tier 3+ — yapı rendering, drone sahne
+  scroll_triggered_3d: yes      # Tier 4 CRM'de shant proje progress animate
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "drone video (16:9, ≤6MB, autoplay muted loop) OR interactive map (Mapbox/MapLibre)"
+  primary_cta: "Keşif Randevusu Al"
+  secondary_cta: "Projelerimizi İncele"
+  safety_badges: "TSE, ISO 9001, OHSAS 18001 — footer veya about page"

@@ -1,0 +1,30 @@
+---
+id: L5
+name: 3-Column Newspaper
+category: layout
+description: Dense text 3-col newspaper layout
+---
+
+usage_sectors: [editorial, newspaper, magazine, long-article]
+forbidden_sectors: [mobile-first-simple]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/3-col.html
+    lines: "1-80"
+  - file: v2-blueprint/3-col-dense.html
+
+preview_snippet: |
+  <article class="newspaper-3col">
+    <p>...uzun paragraf...</p>
+  </article>
+  <style>
+    .newspaper-3col { columns: 3; column-gap: 32px; column-rule: 1px solid; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:276

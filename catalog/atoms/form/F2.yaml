@@ -1,0 +1,40 @@
+---
+id: F2
+name: Multi-Column Grid (enterprise settings)
+category: form
+description: Enterprise settings form, 2-3 col grid, dense
+---
+
+usage_sectors: [enterprise, saas-settings, admin]
+forbidden_sectors: [mobile-first, onboarding]
+
+forbidden_with: [F1]
+
+requires:
+  typography: [TY5, TY14, TY16]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/enterprise-settings.html
+    lines: "1-150"
+
+variants:
+  - name: 2-col-label-field
+    visual: "Sol label, sağ input — 2 col"
+  - name: sectioned-fieldsets
+    visual: "Fieldset'lerle gruplu"
+
+preview_snippet: |
+  <form class="multi-col">
+    <fieldset>
+      <legend>Genel</legend>
+      <div class="row"><label>Ad</label><input/></div>
+      <div class="row"><label>Email</label><input type="email"/></div>
+    </fieldset>
+  </form>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:167-167

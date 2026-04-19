@@ -1,0 +1,32 @@
+---
+id: wearebrand-figured-eight-shadow
+name: Figured-Eight Shadow (wearebrand özgün)
+category: motion-ajans
+description: Pure CSS soft long shadow (figured-eight tarzı), mücevher/otel
+license: MIT-safe rewrite (CSS pure shadow pattern)
+source: wearebrand.io
+source_file: research-assets/wab/wearebrand-custom.css
+source_lines: "CSS shadow patterns"
+---
+
+usage_sectors: [mucevher, otel, luxury-product, editorial-hero]
+forbidden_sectors: [industrial, neobrutalist]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    note: Pure CSS, JS yok
+
+preview_snippet: |
+  .product-figure {
+    box-shadow:
+      0 60px 120px -30px rgba(0,0,0,0.5),
+      0 20px 40px -10px rgba(0,0,0,0.3);
+  }
+
+research_refs:
+  - ULTRAPLAN.md:744 (atom 6)

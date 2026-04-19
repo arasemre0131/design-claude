@@ -1,0 +1,39 @@
+---
+id: fraxbit-css-var-parallax
+name: CSS Variable Parallax (fraxbit imza)
+category: motion-ajans
+description: --speed-x/y/r CSS custom properties, transform per-element
+license: MIT-safe rewrite (CSS custom property pattern)
+source: fraxbit.com
+source_file: research-assets/_fraxbit_home.html
+source_lines: "903-919"
+---
+
+usage_sectors: [kinetic, maximalist, agency, portfolio]
+forbidden_sectors: [prefers-reduced-motion]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: research-assets/_fraxbit_home.html
+    lines: "903-919"
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "42-43"
+
+preview_snippet: |
+  /* CSS */
+  .parallax-item {
+    transform: translateX(calc(var(--scroll-x, 0) * var(--speed-x, 0.5) * 1px))
+               translateY(calc(var(--scroll-y, 0) * var(--speed-y, 0.5) * 1px));
+  }
+  /* JS */
+  addEventListener('scroll', () => {
+    document.documentElement.style.setProperty('--scroll-x', window.scrollX);
+    document.documentElement.style.setProperty('--scroll-y', window.scrollY);
+  });
+
+research_refs:
+  - ULTRAPLAN.md:745 (atom 7 CSS-Var-Parallax)

@@ -1,0 +1,34 @@
+---
+id: MO11
+name: R3F + drei Scroll Controls (3D Motion)
+category: motion
+description: React Three Fiber + drei ScrollControls, 3D motion layer
+---
+
+usage_sectors: [immersive-3d, product-3d, portfolio-3d, brand-campaign]
+forbidden_sectors: [static-editorial, dashboard]
+
+forbidden_with: []
+
+requires:
+  libraries: ["three", "@react-three/fiber", "@react-three/drei"]
+
+reference_impl:
+  - file: v2-immersive-3d/r3f-scroll.jsx
+    lines: "1-120"
+
+preview_snippet: |
+  import { ScrollControls, useScroll } from '@react-three/drei';
+  <Canvas>
+    <ScrollControls pages={3}>
+      <Scene />
+    </ScrollControls>
+  </Canvas>
+  function Scene() {
+    const scroll = useScroll();
+    useFrame(() => { mesh.current.rotation.y = scroll.offset * Math.PI * 2; });
+  }
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md

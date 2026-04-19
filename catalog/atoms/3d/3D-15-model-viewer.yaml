@@ -1,0 +1,32 @@
+---
+id: 3D-15-model-viewer
+name: Google model-viewer (AR-ready)
+category: 3d
+description: Google model-viewer web component, AR/Scene Viewer iOS/Android
+license: Apache 2.0 (Google)
+---
+
+usage_sectors: [eticaret-3d, ar-product, mobilya-ar, mucevher-try-on]
+forbidden_sectors: [complex-animation-3d]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@google/model-viewer"]
+
+preview_snippet: |
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <model-viewer
+    src="/product.glb"
+    ios-src="/product.usdz"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    auto-rotate
+    shadow-intensity="1.2"
+    environment-image="neutral">
+  </model-viewer>
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/ar-integration-analiz.md

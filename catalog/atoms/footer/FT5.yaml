@@ -1,0 +1,36 @@
+---
+id: FT5
+name: Contact Card (single line, kişisel)
+category: footer
+description: Tek satır iletişim, kişisel ton
+---
+
+usage_sectors: [portfolio, freelance, small-business, personal]
+forbidden_sectors: [enterprise, corporate-dense]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: mockups/contact-card-footer.html
+    lines: "1-40"
+
+variants:
+  - name: one-liner-email
+    visual: "hello@studio.com + Twitter link"
+  - name: qr-code-corner
+    visual: "Sağ alt köşede QR"
+
+preview_snippet: |
+  <footer class="contact-card">
+    <p>Bir proje konuşalım → <a href="mailto:hello@parallel.studio">hello@parallel.studio</a> · <a>+90 212 ... ..</a></p>
+  </footer>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:198-198

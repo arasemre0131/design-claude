@@ -1,0 +1,31 @@
+---
+id: TY6
+name: Archivo Black + Space Grotesk 900 Neobrutalist
+category: typography
+description: Neobrutalist, Archivo Black ultra-bold + Space Grotesk 900
+display_font: "Archivo Black + Space Grotesk 900"
+body_font: "Space Grotesk"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [neobrutalist, bold-creative, events, gaming, maximalist]
+forbidden_sectors: [mucevher, spa, editorial-soft]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: v2-neobrutalist/style.css
+
+google_fonts: "Archivo+Black&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Archivo Black', sans-serif; letter-spacing: -0.02em; line-height: 0.9; }
+    .display-2 { font-family: 'Space Grotesk', sans-serif; font-weight: 900; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:216

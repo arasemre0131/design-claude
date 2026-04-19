@@ -1,0 +1,47 @@
+---
+id: ultra-canvas-trail
+name: Canvas2D Cursor Trail (14-ultra)
+category: motion-ajans
+description: Canvas 2D + requestAnimationFrame cursor trail, screen blend
+license: Bizim yazdığımız
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "548-570"
+---
+
+usage_sectors: [kinetic, maximalist, agency]
+forbidden_sectors: [mobile-coarse-pointer, prefers-reduced-motion]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "548-570"
+
+preview_snippet: |
+  if (matchMedia('(pointer: fine)').matches && !reducedMotion) {
+    const cvs = document.querySelector('#trail');
+    const ctx = cvs.getContext('2d');
+    const trailPts = [];
+    addEventListener('pointermove', e => trailPts.push({ x: e.clientX, y: e.clientY, life: 1 }));
+    function loop() {
+      ctx.fillStyle = 'rgba(13,14,20,0.1)';
+      ctx.fillRect(0, 0, cvs.width, cvs.height);
+      for (let i = trailPts.length - 1; i >= 0; i--) {
+        const p = trailPts[i]; p.life -= 0.025;
+        if (p.life <= 0) { trailPts.splice(i, 1); continue; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 10 * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(232, 90, 44, ${p.life * 0.35})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+research_refs:
+  - ULTRAPLAN.md:765 (atom 27 Canvas2D-Cursor-Trail)

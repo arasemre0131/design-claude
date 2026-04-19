@@ -1,0 +1,57 @@
+---
+id: HR1
+name: Kinetic Typography Mask
+category: hero
+description: Devasa başlık letter-by-letter animate, variable font weight change, kinetic reveal
+---
+
+usage_sectors: [editorial, portfolio, agency, creative, data-ops]
+forbidden_sectors: [klinik, kargo, b2b-corporate]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY11, TY13, TY14, TY27]
+  motion: [MO1, MO6]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "612-628"
+    note: SplitText chars + blur-36px reveal
+  - file: v2-kinetic-data/hero-kinetic.html
+    lines: "1-150"
+  - file: templates/14-ultra/index.html
+    lines: "586-595"
+    note: Variable font opsz scroll-linked
+
+variants:
+  - name: chars-stagger-blur
+    visual: "SplitText chars, blur(30px) → 0, stagger 0.04s"
+  - name: words-mask-y
+    visual: "Kelimeler alttan yukarı mask reveal"
+  - name: opsz-scroll
+    visual: "Scroll'a bağlı opsz 9→144 axis animation"
+  - name: scramble-text
+    visual: "GSAP ScrambleTextPlugin tek satır scramble"
+
+preview_snippet: |
+  <section class="hero">
+    <h1 id="scrubText" class="kinetic">
+      Istanbul'da tasarım <em>yeniden</em> düşünülmeli
+    </h1>
+  </section>
+  <script>
+    const split = new SplitText('#scrubText', { type: 'chars,words' });
+    gsap.from(split.chars, {
+      filter: 'blur(30px)', opacity: 0.15,
+      stagger: 0.04,
+      scrollTrigger: { trigger: '#scrubText', scrub: true }
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:62-62

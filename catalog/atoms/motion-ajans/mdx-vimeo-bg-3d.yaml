@@ -1,0 +1,41 @@
+---
+id: mdx-vimeo-bg-3d
+name: Vimeo Background "3D" Pre-Rendered (mdx.so imza)
+category: motion-ajans
+description: Blender/C4D render edilmiş video Vimeo'da, iframe bg
+license: MIT-safe rewrite (iframe pattern standart)
+source: mdx.so (Marcelo Design X)
+source_file: research-assets/_research/mdx_*.html
+source_lines: "Vimeo iframe section"
+---
+
+usage_sectors: [editorial-luxury, immersive-3d-alternative, brand-campaign]
+forbidden_sectors: [privacy-strict-no-iframe]
+
+forbidden_with: []
+
+requires:
+  libraries: ["vimeo-player-api"]
+
+reference_impl:
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "64-73"
+  - file: SCRAPED-STACKS-2026.md
+    lines: "247-254"
+
+preview_snippet: |
+  <div class="vimeo-bg" data-vimeo-bg-init
+       data-vimeo-video-id="1161504205"
+       data-vimeo-autoplay="true"
+       data-vimeo-update-size="true">
+    <div class="vimeo-bg__iframe-wrapper">
+      <iframe class="vimeo-bg__iframe"
+              src="https://player.vimeo.com/video/1161504205?background=1&autoplay=1&loop=1&muted=1"
+              allow="autoplay; encrypted-media"
+              frameborder="0"></iframe>
+    </div>
+    <img src="/poster.webp" class="vimeo-bg__placeholder" loading="lazy"/>
+  </div>
+
+research_refs:
+  - ULTRAPLAN.md:750 (atom 12 Vimeo-Background-3D)

@@ -1,0 +1,33 @@
+---
+id: adoratorio-custom-splittext
+name: Custom SplitText (Active Theory MIT)
+category: motion-ajans
+description: activetheory/split-text MIT OSS, GSAP SplitText alternatifi
+license: MIT (Active Theory OSS)
+source: Active Theory
+source_file: https://github.com/activetheory/split-text
+---
+
+usage_sectors: [tum-sektorler-motion]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["activetheory-split-text"]
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "80"
+
+preview_snippet: |
+  import SplitText from '@activetheory/split-text';
+  const split = new SplitText(el, { type: 'chars' });
+  split.chars.forEach((c, i) => {
+    c.style.transitionDelay = `${i * 30}ms`;
+    c.classList.add('in-view');
+  });
+
+research_refs:
+  - ULTRAPLAN.md:755 (atom 17 Custom-SplitText)
+  - SCRAPED-STACKS-2026.md:80

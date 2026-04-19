@@ -1,0 +1,52 @@
+---
+id: H5
+name: Marquee Ticker Top
+category: header
+description: En üstte sürekli kayan finansal/data ticker bandı, altta normal header
+---
+
+usage_sectors: [fintech, data-ops, trading, news, crypto, analytics]
+forbidden_sectors: [mucevher, spa, klinik, kuafor]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY14, TY16]
+  motion: [MO1, MO2]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-kinetic-data/ticker-header.html
+    lines: "1-60"
+    note: Kinetic data ticker marquee
+  - file: templates/14-ultra/index.html
+    lines: "454-466"
+    note: SVG textPath bend marquee (benzer mekanik)
+
+variants:
+  - name: pure-text-marquee
+    visual: "CSS @keyframes translateX animation"
+  - name: svg-textpath
+    visual: "Kavisli path üstünde kayan yazı"
+  - name: live-data-feed
+    visual: "WebSocket + gerçek fiyat/veri"
+
+preview_snippet: |
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>USD/TRY 32.48 ▲</span>
+      <span>EUR/TRY 34.12 ▼</span>
+      <span>BIST 10.241 ▲</span>
+      <span>BTC 68.340 ▲</span>
+    </div>
+  </div>
+  <style>
+    .ticker { overflow: hidden; border-bottom: 1px solid; }
+    .ticker-track { display: flex; gap: 40px; animation: slide 30s linear infinite; font-family: 'JetBrains Mono'; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:32-32

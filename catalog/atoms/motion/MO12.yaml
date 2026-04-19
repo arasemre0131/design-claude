@@ -1,0 +1,33 @@
+---
+id: MO12
+name: R3F Postprocessing (bloom, DOF, chromatic)
+category: motion
+description: "@react-three/postprocessing, 34 effect composer"
+---
+
+usage_sectors: [immersive-3d, cinematic, brand-campaign-premium]
+forbidden_sectors: [dashboard-data, static-editorial]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/postprocessing", "postprocessing"]
+
+reference_impl:
+  - file: v2-immersive-3d/postprocessing.jsx
+    lines: "1-80"
+
+preview_snippet: |
+  import { EffectComposer, Bloom, DepthOfField, ChromaticAberration } from '@react-three/postprocessing';
+  <Canvas>
+    <Scene />
+    <EffectComposer>
+      <Bloom intensity={1.2} luminanceThreshold={0.6} />
+      <DepthOfField focusDistance={0.02} focalLength={0.5} bokehScale={3} />
+      <ChromaticAberration offset={[0.002, 0.002]} />
+    </EffectComposer>
+  </Canvas>
+
+research_refs:
+  - FRONTEND-TECHSTACK.md (postprocessing 34 efekt)
+  - 3D-TECHSTACK.md

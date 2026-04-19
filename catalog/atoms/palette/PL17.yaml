@@ -1,0 +1,32 @@
+---
+id: PL17
+name: Olive + Mustard
+category: palette
+description: Pale bg + olive + mustard, outdoor earth
+bg: "#E8E4D0 pale"
+accent: "#556B2F olive"
+ikincil: "#DAA520 mustard"
+ink: "#2E2E2E"
+---
+
+usage_sectors: [outdoor, earth, farm, hunting, winery-rustic]
+forbidden_sectors: [tech, modern-dark]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #E8E4D0 × olive #556B2F = 5.1:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #E8E4D0;
+    --olive: #556B2F;
+    --mustard: #DAA520;
+    --ink: #2E2E2E;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:259

@@ -1,0 +1,32 @@
+---
+id: L8
+name: Masonry / Pinterest
+category: layout
+description: Pinterest-style masonry layout, varying heights
+---
+
+usage_sectors: [portfolio, fotograf, gallery, eticaret-visual, inspiration]
+forbidden_sectors: [data-dense-table]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/08-fotograf/masonry.html
+    lines: "1-80"
+
+preview_snippet: |
+  <div class="masonry">
+    <div class="m-item">...</div>
+    <div class="m-item">...</div>
+  </div>
+  <style>
+    .masonry { columns: 4; column-gap: 12px; }
+    .m-item { break-inside: avoid; margin-bottom: 12px; }
+    @media (max-width: 900px) { .masonry { columns: 2; } }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:279

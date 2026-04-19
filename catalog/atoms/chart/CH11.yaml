@@ -1,0 +1,42 @@
+---
+id: CH11
+name: Stacked Area Kinetic (GSAP reveal)
+category: chart
+description: GSAP reveal + scroll-linked stacked area chart, kinetic data
+---
+
+usage_sectors: [data-storytelling, editorial, kinetic, analytics-narrative]
+forbidden_sectors: [minimal-dashboard, editorial-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY14, TY20]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis", "d3"]
+
+reference_impl:
+  - file: v2-kinetic-data/stacked-area.html
+    lines: "1-120"
+
+variants:
+  - name: scroll-draw-in
+    visual: "Scroll'a bağlı path draw + fill reveal"
+  - name: layer-by-layer
+    visual: "Her layer staggered reveal"
+
+preview_snippet: |
+  <svg id="area-chart"></svg>
+  <script>
+    const paths = d3.select('#area-chart').selectAll('path');
+    gsap.from(paths.nodes(), {
+      strokeDasharray: 2000, strokeDashoffset: 2000,
+      duration: 2, stagger: 0.3, ease: 'power3.out',
+      scrollTrigger: { trigger: '#area-chart', start: 'top 70%' }
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:157-157

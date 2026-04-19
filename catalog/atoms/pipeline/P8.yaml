@@ -1,0 +1,46 @@
+---
+id: P8
+name: Dense Table Linear-Style
+category: pipeline
+description: Satır satır, kısayol odaklı, zero-padding, Linear/Airtable dense
+---
+
+usage_sectors: [saas-power, developer-tool, issue-tracker, admin-dense, data-ops]
+forbidden_sectors: [editorial, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "126-200"
+    note: Linear-style dense grid
+  - file: mockups/linear-issue-dense.html
+    lines: "1-120"
+
+variants:
+  - name: 8-column-issue-grid
+    visual: "#, title, assignee, status, priority, sprint, eta, tags"
+  - name: keyboard-nav
+    visual: "Arrow keys navigation + j/k"
+  - name: virtualized
+    visual: "React-virtual ile 10k+ row"
+
+preview_snippet: |
+  <table class="linear-dense">
+    <thead><tr><th>#</th><th>Issue</th><th>Atanan</th><th>Durum</th><th>Öncelik</th></tr></thead>
+    <tbody>
+      <tr><td>ENG-0421</td><td>Admin login hata</td><td>Emre</td><td><span class="badge todo">Todo</span></td><td>High</td></tr>
+      <tr><td>ENG-0422</td><td>Payment webhook</td><td>Aylin</td><td><span class="badge prog">In Progress</span></td><td>Urgent</td></tr>
+    </tbody>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:109-109
+  - ULTRAPLAN.md:776 (atom 38 Dense-Table-Linear)

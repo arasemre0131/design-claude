@@ -1,0 +1,42 @@
+---
+id: P7
+name: 3D Isometric Tower Pipeline
+category: pipeline
+description: Building metaphor, kat kat, immersive 3D scene
+---
+
+usage_sectors: [architecture, gayrimenkul, insaat, visual-narrative]
+forbidden_sectors: [analytics-minimal, editorial-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY8, TY14]
+  motion: [MO1, MO2]
+  libraries: ["three", "r3f", "drei", "gsap"]
+
+reference_impl:
+  - file: v2-immersive-3d/tower-pipeline.html
+    lines: "1-180"
+
+variants:
+  - name: isometric-angle
+    visual: "Isometric kamera, her kat bir stage"
+  - name: orbit-interactive
+    visual: "Orbit controls, tower dönüyor"
+  - name: scroll-build-up
+    visual: "Scroll'da alt kat üst kata inşa"
+
+preview_snippet: |
+  <Canvas camera={{ position: [8, 10, 8], fov: 35 }}>
+    <Suspense>
+      <IsometricTower stages={pipelineStages} />
+      <OrbitControls enableZoom={false} />
+    </Suspense>
+  </Canvas>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:108-108
+  - 3D-TECHSTACK.md

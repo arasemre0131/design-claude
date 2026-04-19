@@ -1,0 +1,58 @@
+---
+id: H1
+name: Plate + Hazard Strip
+category: header
+description: Endüstriyel şantiye plakası, sarı-siyah şerit bant üstü/altı, chunky wordmark ortada
+---
+
+usage_sectors: [insaat, factory, endustriyel, lojistik, construction]
+forbidden_sectors: [mucevher, spa, klinik]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY6, TY26]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "60-83"
+    note: Plate header + hazard-top/bottom strip
+  - file: templates/01-insaat/index.html
+    lines: "60-90"
+    note: Concrete palette + hazard pattern
+
+variants:
+  - name: hazard-top-only
+    visual: "Sadece ustte sari-siyah serit"
+  - name: hazard-sandwich
+    visual: "Hem ust hem alt hazard serit"
+  - name: plate-rivets
+    visual: "Metal plaka kosellerinde perçin ikonu"
+
+preview_snippet: |
+  <header class="plate">
+    <div class="hazard-top"></div>
+    <div class="plate-body">
+      <div class="brand">KAYA YAPI</div>
+      <nav>PROJELER · HAKKIMIZDA · ILETISIM</nav>
+    </div>
+    <div class="hazard-bottom"></div>
+  </header>
+  <style>
+    .hazard-top, .hazard-bottom {
+      height: 14px;
+      background: repeating-linear-gradient(45deg, #111 0 20px, #F5C400 20px 40px);
+    }
+    .plate-body { background: #D4CFC4; padding: 16px 32px; display:flex; justify-content:space-between; }
+  </style>
+
+tailwind_tokens:
+  - "bg-concrete: #D4CFC4"
+  - "hazard-yellow: #F5C400"
+  - "ink: #111"
+
+research_refs:
+  - Mobilyacı/3d-demo/research/header_navigation_analiz.md
+  - templates/SECTOR-RESEARCH.md:9-26 (inşaat sektör analizi)

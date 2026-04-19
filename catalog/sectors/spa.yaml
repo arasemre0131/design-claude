@@ -1,0 +1,103 @@
+---
+id: spa
+name: "Spa / Wellness / Beauty"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - huzur
+  - yavaşlık
+  - doğal
+  - nefes
+  - ritüel-bakım
+  - sessizlik
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # luxury spa dark gradient KLIŞE
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_motion: ["fast-scroll", "neon", "hard-snap"]
+  warning: "'Luxury spa dark gradient + gold şelale foto' klişesi YASAK — her otel-spa sitesi aynı. Framer Motion 'bouncy spring' bile spa'da fazla — Lenis çok yavaş (lerp 0.05-0.08) + CSS scroll-driven subtle tercih. Gold vurgu YASAK. Organik clay / pearl / seafoam palette zorunlu. Stok foto 'yüzü peçeli kadın + taş' klişesi YASAK."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Yok"
+    combo: "—"
+    note: "Temiz sektör — ama otel-spa combo'sunda luxury dark gradient'e kaymasın. Mücevher PL1 tekrarlamaması için de ekstra dikkat."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL31, PL32]         # Clay+Mist, Pearl+Seafoam
+  typography: [TY37, TY38]       # Cormorant Infant + Inter Tight / Fraunces SC + Hanken Grotesk
+  heroes: [HR3]                  # Slow-mo su/bitki video (tek hero)
+  layouts: [L6]                  # Center single column — meditative
+  motion_primitives: [MO2, MO3]  # Lenis çok yavaş (lerp 0.05-0.08), CSS scroll-driven subtle
+  kpi: [K2]                      # Band+rules
+  footer: [FT4]                  # Colophon editorial
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [iletisim-formu, whatsapp, google-maps, paket-liste]
+    delivery: "2-3 gün"
+    suitability: "✓"
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [randevu-sistem, paket-satis, hediye-ceki, blog, whatsapp]
+    delivery: "3-7 gün"
+    suitability: "✓✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [uye-sistem, paket-e-ticaret, hediye-kart, email-sms, sadakat, admin]
+    delivery: "2-3 hafta"
+    suitability: "✓"
+  premium:        # 25-80K TL
+    recipe: next-r3f
+    suitability: "✗"  # spa 3D render fiziksel deneyimi öldürür
+  enterprise:     # 80K+ TL
+    recipe: next-enterprise-monorepo
+    suitability: "✗"
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [randevu-sistem, paket-liste, iletisim, whatsapp, google-maps]
+  optional: [hediye-kart, paket-e-ticaret, blog, uye-sistem, sadakat-puani, email-sms]
+  special:
+    - name: "Gift card (hediye çeki) — PDF + QR kod"
+      tier: "mid"
+      research: "research/forms-validation-zod-react-hook-form-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/whatsapp-analiz.md
+  secondary:
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/email-analiz.md
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#spa
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: no          # hızlı anim spa'yı öldürür
+  bento_2_0: no                   # dense grid meditatif akışı keser
+  maximalism: no                  # sessizlik + sadelik
+  3d_spline: no                   # fiziksel deneyim, 3D render mesafe yaratır
+  scroll_triggered_3d: no
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "slow-mo video (su damlası, yaprak, buhar — 8-12s loop, ≤4MB), veya still organik bitki foto"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Paketleri İncele"
+  motion_config: "Lenis lerp: 0.05-0.08 (ultra-slow), CSS scroll-driven opacity subtle (0.3→1)"
+  contrast: "WCAG AA (organik, natural ton)"
+  schema: "HealthAndBeautyBusiness + Service + OpeningHoursSpecification JSON-LD"

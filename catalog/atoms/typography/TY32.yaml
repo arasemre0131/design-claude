@@ -1,0 +1,31 @@
+---
+id: TY32
+name: Bricolage Grotesque + Inter Tight + JetBrains Mono
+category: typography
+description: Restoran kinetic, Bricolage italic variable (olive+tomato)
+display_font: "Bricolage Grotesque italic"
+body_font: "Inter Tight"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [restoran, food-kinetic, modern-kitchen, cafe-modern]
+forbidden_sectors: [editorial-print-classic]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/04-restoran/style-b.css
+
+google_fonts: "Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter+Tight:wght@300..700&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Bricolage Grotesque', sans-serif; font-style: italic; font-variation-settings: 'opsz' 96; }
+    body { font-family: 'Inter Tight', sans-serif; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:80 (restoran TY32)

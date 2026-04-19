@@ -1,0 +1,32 @@
+---
+id: TY23
+name: Editorial Old + PP Neue Machina Maximalist
+category: typography
+description: Max maximalist, mixed editorial + geometric
+display_font: "Editorial Old + PP Neue Machina"
+body_font: "PP Neue Machina"
+mono_font: null
+---
+
+usage_sectors: [maximalist, bold-creative, agency-experimental, brand-campaign]
+forbidden_sectors: [minimalist, editorial-classic]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/maximalist-editorial.html
+
+google_fonts: null
+notes: "Editorial Old + PP Neue Machina premium. Alt: Fraunces display + JetBrains Mono."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Editorial Old', 'Fraunces', serif; font-style: italic; }
+    h2 { font-family: 'PP Neue Machina', 'JetBrains Mono', monospace; letter-spacing: -0.02em; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:233

@@ -1,0 +1,47 @@
+---
+id: K4
+name: Spec Sheet Table KPI
+category: kpi
+description: Veri tablosu gibi, id/label/value/note kolonları, engineering density
+---
+
+usage_sectors: [engineering, industrial, architecture, data-dense, technical-doc]
+forbidden_sectors: [mucevher-sade, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14, TY15, TY26]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "291-327"
+    note: Engineering BOM-style spec sheet
+  - file: v2-blueprint/spec-kpi.html
+    lines: "1-80"
+
+variants:
+  - name: 4-col-id-label-val-note
+    visual: "[#] [Label] [Value] [Note] 4 sütun tablo"
+  - name: with-status-badge
+    visual: "Her satırda ACT/PEND/CLS status badge"
+  - name: tabular-mono
+    visual: "Sayılar tabular-nums + JetBrains Mono"
+
+preview_snippet: |
+  <table class="spec-kpi">
+    <thead><tr><th>#</th><th>Parametre</th><th>Değer</th><th>Birim</th><th>Not</th></tr></thead>
+    <tbody>
+      <tr><td>K-01</td><td>Aktif Proje</td><td>47</td><td>ad</td><td>+4 bu ay</td></tr>
+      <tr><td>K-02</td><td>Teslim Oranı</td><td>98.3</td><td>%</td><td>hedef 95</td></tr>
+      <tr><td>K-03</td><td>Ortalama Süre</td><td>128</td><td>gün</td><td>−6 gün</td></tr>
+    </tbody>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:86-86
+  - ULTRAPLAN.md:777 (atom 39 Spec-Sheet-Engineering-BOM)

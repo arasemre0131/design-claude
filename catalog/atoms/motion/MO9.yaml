@@ -1,0 +1,31 @@
+---
+id: MO9
+name: WAAPI + Popover API (stateful)
+category: motion
+description: Popover API + WAAPI, native stateful UI animation
+---
+
+usage_sectors: [dialogs, menus, native-ui, progressive-enhancement]
+forbidden_sectors: [legacy-browser]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/popover-waapi.html
+    lines: "1-80"
+
+preview_snippet: |
+  <button popovertarget="menu">Menu</button>
+  <div popover id="menu">...</div>
+  <script>
+    const menu = document.getElementById('menu');
+    menu.addEventListener('beforetoggle', e => {
+      if (e.newState === 'open') menu.animate([{ opacity: 0, transform: 'translateY(-8px)' }, { opacity: 1, transform: 'translateY(0)' }], 200);
+    });
+  </script>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:297

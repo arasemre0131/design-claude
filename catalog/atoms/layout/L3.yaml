@@ -1,0 +1,33 @@
+---
+id: L3
+name: Bento Mondrian (box-in-box)
+category: layout
+description: Bento grid Mondrian style — ama "glass+gradient" değil, solid
+---
+
+usage_sectors: [portfolio, eticaret-feature, dashboard-modular, landing]
+forbidden_sectors: []
+
+forbidden_with: [K1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "227-255"
+    note: Bento asymmetric work-grid pattern
+
+preview_snippet: |
+  <div class="bento">
+    <div class="wc-1" style="grid-column: span 3; grid-row: span 2;">Lead</div>
+    <div class="wc-2" style="grid-column: span 2; grid-row: span 1;">Card B</div>
+    <div class="wc-3" style="grid-column: span 1; grid-row: span 1;">Card C</div>
+  </div>
+  <style>
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:274
+  - ULTRAPLAN.md:772 (atom 34 Bento-Asymmetric-Grid)

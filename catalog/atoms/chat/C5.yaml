@@ -1,0 +1,40 @@
+---
+id: C5
+name: Kanban-as-Inbox
+category: chat
+description: Her mesaj lead card'ına otomatik dönüşür, pipeline'a girer
+---
+
+usage_sectors: [crm, sales-ops, lead-management]
+forbidden_sectors: [email-client-standard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: mockups/kanban-inbox.html
+    lines: "1-120"
+
+variants:
+  - name: auto-categorize
+    visual: "AI otomatik stage'e yerleştirir"
+
+preview_snippet: |
+  <div class="kanban-inbox">
+    <div class="col" data-stage="new">
+      <h4>Yeni · 4</h4>
+      <div class="card">Ayşe K. · Randevu talep · 14:32</div>
+    </div>
+    <div class="col" data-stage="replied">
+      <h4>Yanıtlandı · 8</h4>
+    </div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:138-138

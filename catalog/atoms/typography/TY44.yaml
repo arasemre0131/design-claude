@@ -1,0 +1,32 @@
+---
+id: TY44
+name: Recoleta + Mulish + Space Mono (Otel B)
+category: typography
+description: Otel marble cool, Recoleta + Mulish + Space Mono
+display_font: "Recoleta"
+body_font: "Mulish"
+mono_font: "Space Mono"
+---
+
+usage_sectors: [otel, marble-luxury, hospitality-modern, resort-design]
+forbidden_sectors: [industrial]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/10-otel/style-b.css
+
+google_fonts: "Mulish:wght@300..900&family=Space+Mono:wght@400;700"
+notes: "Recoleta premium — alt Fraunces"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Recoleta', 'Fraunces', serif; font-weight: 500; }
+    body { font-family: 'Mulish'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:190 (otel TY44)

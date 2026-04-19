@@ -1,0 +1,30 @@
+---
+id: TY7
+name: Bricolage Grotesque + Space Grotesk + JetBrains Mono
+category: typography
+description: Kinetic data, Bricolage italic variable
+display_font: "Bricolage Grotesque italic"
+body_font: "Space Grotesk"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [kinetic, data-ops, tech-agency, analytics-narrative]
+forbidden_sectors: [editorial-print, luxury-static]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: v2-kinetic-data/style.css
+
+google_fonts: "Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Bricolage Grotesque', sans-serif; font-style: italic; font-variation-settings: 'opsz' 96, 'wght' 700; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:217

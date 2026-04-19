@@ -1,0 +1,33 @@
+---
+id: PL26
+name: Olive + Tomato (Restoran B)
+category: palette
+description: Cream + tomato + olive + walnut, restaurant
+bg: "#F2EEE5 cream"
+accent: "#C54B2C tomato"
+ikincil: "#556B2F olive + #4A3F35 walnut"
+ink: "#2E2822"
+---
+
+usage_sectors: [restoran, italian-bistro, pizzeria, trattoria]
+forbidden_sectors: [tech, minimal-saas]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F2EEE5 × tomato #C54B2C = 4.8:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F2EEE5;
+    --tomato: #C54B2C;
+    --olive: #556B2F;
+    --walnut: #4A3F35;
+    --ink: #2E2822;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:73 (restoran PL26)

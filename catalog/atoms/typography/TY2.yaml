@@ -1,0 +1,31 @@
+---
+id: TY2
+name: Playfair Italic + Inter Gold Luxury
+category: typography
+description: Playfair Display italic display + Inter body — mücevher/gold luxury klişe
+display_font: "Playfair Display italic"
+body_font: "Inter"
+mono_font: null
+forbidden: true
+reason: 5+ mücevher/güzellik projesinde kullanıldı — klişe "gold+italic" pattern
+---
+
+usage_sectors: []
+forbidden_sectors: [mucevher-yeni, luxury-yeni]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/bgfoto/style.css
+    note: YASAK
+
+google_fonts: "Playfair+Display:ital,wght@1,400;1,700&family=Inter:wght@400;500;600"
+
+preview_snippet: |
+  <!-- YASAK: Playfair italic + Inter gold luxury klişe -->
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:212 (TY2 YASAK)

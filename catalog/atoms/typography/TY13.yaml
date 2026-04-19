@@ -1,0 +1,31 @@
+---
+id: TY13
+name: PP Editorial New + PP Mori + Commit Mono
+category: typography
+description: Sophisticated, Pangram Pangram display + Mori
+display_font: "PP Editorial New"
+body_font: "PP Mori"
+mono_font: "Commit Mono"
+---
+
+usage_sectors: [editorial-premium, agency-top, portfolio-premium, luxury-brand]
+forbidden_sectors: [budget-saas]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/editorial-premium.html
+
+google_fonts: null
+notes: "PP Pangram Pangram ve Commit Mono premium. Google Fonts alt: Fraunces + Inter Tight + JetBrains Mono."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'PP Editorial New', serif; font-variation-settings: 'opsz' 144; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:223

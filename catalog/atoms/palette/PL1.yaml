@@ -1,0 +1,30 @@
+---
+id: PL1
+name: Dark + Gold
+category: palette
+description: "#0A0A0A + #C9A84C gold — klasik luxury klişesi"
+bg: "#0A0A0A"
+accent: "#C9A84C"
+ikincil: "#F5F1E8 cream"
+ink: "#F5F1E8"
+forbidden: true
+reason: 7+ projede kullanıldı (Freeman, BG Foto, Dagintaslı, Mayamir, Modern Alyans, Fatih Bey, v1-CONSTRUO) — yeni projede YASAK
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-yeni-projeler]
+
+forbidden_with: [TY2, TY4, TY8, TY17]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #0A0A0A × accent #C9A84C = 8.7:1 (AA+)"
+
+preview_snippet: |
+  <!-- YASAK: dark+gold 7+ projede kullanıldı -->
+  /* bg: #0A0A0A | accent: #C9A84C | YASAK */
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:243 (PL1 YASAK)

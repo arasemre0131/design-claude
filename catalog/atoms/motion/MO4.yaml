@@ -1,0 +1,30 @@
+---
+id: MO4
+name: Framer Motion v12 (React-native)
+category: motion
+description: Framer Motion v12, declarative React motion
+---
+
+usage_sectors: [react-projects, nextjs, saas-react, portfolio-react]
+forbidden_sectors: [vanilla-html-only]
+
+forbidden_with: []
+
+requires:
+  libraries: ["framer-motion"]
+
+reference_impl:
+  - file: mockups/framer-motion-examples.jsx
+    lines: "1-120"
+
+preview_snippet: |
+  import { motion } from 'framer-motion';
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
+  >...</motion.div>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:292

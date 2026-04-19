@@ -1,0 +1,108 @@
+---
+id: klinik
+name: "Klinik / Sağlık (Diş, Estetik, Fizyoterapi)"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - güven
+  - netlik
+  - huzur
+  - temizlik
+  - profesyonellik
+  - şeffaflık (tedavi süreci net)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # dark+gold tamamen ters mood — hasta tedirgin olur
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]
+  forbidden_motion: ["agresif-scroll-pin", "fast-kinetic-typography", "neon-flash"]
+  warning: "Agresif renk, hızlı motion, neon flash YASAK — hasta güven hissetmez. 'Merhaba, ben Dr. X' typeform-style overpersonal hero klişesi (HR12 Q&A iyi, ama bot hissi vermesin). Stok foto 'gülümseyen dişler' YASAK — gerçek klinik + ekip fotoğrafı. Sterilize beyaz hastane UI'sı değil, sıcak-sakin: cream + sage/forest. Öncesi-sonrası fotoğrafları Sağlık Bakanlığı reklam yasasına takılır — etik bildirim zorunlu."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Yok"
+    combo: "—"
+    note: "Temiz sektör. Ama kontrol: mücevher/kuaför'de sık görülen dark+gold klişesine DÜŞMEsin. Ankara'da tanınmış 'dental boutique' klişesi (Playfair italic + gold underline) kaçınılmalı."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL27, PL28]         # Glacier+Sage, Cream+Forest
+  typography: [TY33, TY34]       # Fraunces + IBM Plex Sans / Manrope + DM Mono
+  heroes: [HR12, HR11]           # Conversational Q&A (randevu flow), Brochure cover
+  layouts: [L6, L7]              # Center single col, Sticky sidebar (puan/referans)
+  motion_primitives: [MO10, MO4] # Print-first static, Light Framer (çok sakin)
+  kpi: [K2, K5]                  # Band+rules, Almanac editorial
+  footer: [FT3, FT4]             # Warm editorial / Colophon
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [iletisim-formu, whatsapp, randevu-telefonu, google-maps]
+    delivery: "2-3 gün"
+    suitability: "⚠"  # klinik için 1 sayfa yetersiz — tedavi sayfaları gerekli
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [tedavi-sayfalari, ekip, randevu-formu, sss, blog, whatsapp]
+    delivery: "3-7 gün"
+    suitability: "✓✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [hasta-portali, randevu-sistem, dosya-yukleme, email-sms, kvkk-onay, admin]
+    delivery: "2-3 hafta"
+    suitability: "✓✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    suitability: "⚠"  # estetik klinik (before/after 3D, saç ekim 3D scalp viewer) için
+    features: [3d-tedavi-simulasyon, ar-gulus-tasarim]
+  enterprise:     # 80K+ TL
+    recipe: next-enterprise-monorepo
+    suitability: "✗"  # zincir klinik nadir
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [randevu-formu, tedavi-sayfalari, ekip, iletisim, sss, kvkk-onay, whatsapp]
+  optional: [hasta-portali, email-sms-hatirlatma, blog, seyahat-tedavi-paket]
+  special:
+    - name: "Gülüş tasarımı AR (diş hekimliği)"
+      tier: "premium"
+      research: "research/webxr-ar-vr-2026.md"
+    - name: "Hasta portalı (dosya + randevu geçmişi, RLS zorunlu)"
+      tier: "mid"
+      research: "research/auth-clerk-supabase-nextauth-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+  secondary:
+    - Mobilyacı/3d-demo/research/yasal-uyumluluk-denetim.md  # KVKK + sağlık reklam yasası
+    - Mobilyacı/3d-demo/research/email-analiz.md
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#klinik
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: no          # dikkat dağıtıcı, klinikte yasak
+  bento_2_0: partial              # tedavi kategorileri asymmetric OK, ama minimal kalmalı
+  maximalism: no                  # klinik sade + güvenilir
+  3d_spline: partial              # sadece estetik klinik/before-after için
+  scroll_triggered_3d: no         # klinikte dikkat dağıtmasın
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "gerçek klinik iç fotoğraf (doğal ışık, sterile ama sıcak) — stok foto YASAK"
+  primary_cta: "Randevu Al"
+  secondary_cta: "Tedavileri İncele"
+  legal_critical: "KVKK onay + çerez banner + sağlık reklam yasası 'öncesi-sonrası bildirimi' zorunlu"
+  schema: "MedicalClinic + Physician + MedicalProcedure JSON-LD"
+  contrast: "WCAG AAA (klinik sade + okunabilirlik AA değil AAA)"

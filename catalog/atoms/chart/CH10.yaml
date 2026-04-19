@@ -1,0 +1,40 @@
+---
+id: CH10
+name: Sparkline-Only (minimal inline)
+category: chart
+description: Sadece sparkline, no axes/labels, inline minimal
+---
+
+usage_sectors: [finance, dashboard-minimal, terminal, data-ops]
+forbidden_sectors: [editorial-rich, luxury]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "124-124"
+
+variants:
+  - name: line-path
+    visual: "SVG path line, 60×20"
+  - name: bar-spark
+    visual: "Mini bar sparkline"
+  - name: area-fill
+    visual: "Area fill altında gradient"
+
+preview_snippet: |
+  <svg class="spark" viewBox="0 0 60 20">
+    <path d="M0,15 L10,12 L20,14 L30,8 L40,10 L50,6 L60,3"
+          stroke="currentColor" stroke-width="1.5" fill="none"/>
+  </svg>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:156-156
+  - ULTRAPLAN.md:779 (atom 41)

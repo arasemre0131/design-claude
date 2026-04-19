@@ -1,0 +1,43 @@
+---
+id: C2
+name: Messenger-Style Bubbles
+category: chat
+description: iMessage/WhatsApp bubble görünümü, alternating sender
+---
+
+usage_sectors: [messaging, customer-support, mobile-first, chatbot]
+forbidden_sectors: [admin-dense, data-ops]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: v2-neobrutalist/chat-bubble.html
+    lines: "1-100"
+  - file: mockups/imessage-clone.html
+    lines: "1-80"
+
+variants:
+  - name: imessage-gradient
+    visual: "Blue→purple gradient bubble (iMessage)"
+  - name: flat-mono-bubble
+    visual: "Tek renk flat bubble, pastel"
+  - name: typing-indicator
+    visual: "Karşı taraf yazıyor... animation"
+
+preview_snippet: |
+  <div class="chat-bubbles">
+    <div class="msg in">Merhaba, hangi saatlerde müsaitsiniz?</div>
+    <div class="msg out">Yarın 14:00-16:00 arası. ☺</div>
+    <div class="msg out">Ayrıntıyı maile atayım?</div>
+    <div class="typing"><span></span><span></span><span></span></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:135-135

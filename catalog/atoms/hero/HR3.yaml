@@ -1,0 +1,57 @@
+---
+id: HR3
+name: Full-Bleed Video Background
+category: hero
+description: Video arkaplanı, text overlay + gradient scrim + mute/play control
+---
+
+usage_sectors: [otel, spa, restoran, fotograf, kuafor, eticaret-premium, luxury]
+forbidden_sectors: [dashboard, b2b-corporate]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY12, TY13, TY27, TY43]
+  motion: [MO1, MO2]
+  libraries: ["vimeo-player", "gsap"]
+
+reference_impl:
+  - file: templates/10-otel/index.html
+    lines: "70-130"
+    note: Video bg + gradient scrim
+  - file: templates/07-spa/index.html
+    lines: "60-110"
+  - file: templates/03-kuafor/index.html
+    lines: "60-120"
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "60-88"
+    note: Vimeo pre-rendered 3D video pattern (mdx.so imza)
+
+variants:
+  - name: vimeo-prerendered
+    visual: "Blender/C4D rendered video, Vimeo iframe bg"
+  - name: live-loop-mp4
+    visual: "Kendi çekilmiş 10-15s loop video"
+  - name: webm-transparent
+    visual: "Transparent video + CSS bg altında"
+
+preview_snippet: |
+  <section class="hero-video">
+    <div class="vimeo-bg" data-vimeo-bg-init data-vimeo-video-id="1161504205" data-vimeo-autoplay="true">
+      <div class="vimeo-bg__iframe-wrapper">
+        <iframe class="vimeo-bg__iframe" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      </div>
+      <img src="/poster.webp" class="vimeo-bg__placeholder" loading="lazy"/>
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-copy">
+      <h1>Kaçış başlıyor</h1>
+      <p>Boğaz manzaralı butik otel · Rumeli Hisarı</p>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:178-192 (otel sektör)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:64-64

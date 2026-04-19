@@ -1,0 +1,51 @@
+---
+id: HR13
+name: Blueprint Title Block
+category: hero
+description: Teknik çizim title block corner format, architecture / engineering docket
+---
+
+usage_sectors: [architecture, engineering, insaat, industrial, technical-doc]
+forbidden_sectors: [mucevher, spa, restoran-casual]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY15, TY26]
+  motion: [MO10, MO1]
+  libraries: []
+
+reference_impl:
+  - file: v2-blueprint/index.html
+    lines: "60-140"
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "53-140"
+    note: Blueprint title block + corner brackets
+  - file: templates/01-insaat/index.html
+    lines: "100-180"
+
+variants:
+  - name: drafting-title-block
+    visual: "Sağ alt köşede DESIGNED BY / DATE / PROJ# tablo"
+  - name: stamp-approved
+    visual: "Hero'da büyük APPROVED ⊡ stamp"
+  - name: grid-blueprint
+    visual: "Arkaplan blueprint grid (CSS grid lines)"
+
+preview_snippet: |
+  <section class="hero-blueprint">
+    <div class="grid-bg"></div>
+    <h1 class="title">Kadıköy Residence</h1>
+    <div class="title-block">
+      <div class="cell"><span>PROJ #</span><strong>KYR-2026-047</strong></div>
+      <div class="cell"><span>SCALE</span><strong>1:200</strong></div>
+      <div class="cell"><span>DATE</span><strong>2026.04.19</strong></div>
+      <div class="cell"><span>DRWN BY</span><strong>KAYA Y.</strong></div>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - ULTRAPLAN.md:784 (atom 46 Blueprint-Title-Block)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:74-74

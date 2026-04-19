@@ -1,0 +1,31 @@
+---
+id: TY28
+name: Cormorant Garamond + Mulish + JetBrains Mono
+category: typography
+description: Mücevher romantic, Cormorant italic (PL1 olmadan)
+display_font: "Cormorant Garamond italic"
+body_font: "Mulish"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [mucevher, romantic, wedding, florist]
+forbidden_sectors: []
+
+forbidden_with: [PL1, PL10]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/02-mucevher/style-b.css
+
+google_fonts: "Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Mulish:wght@300..900&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; }
+    body { font-family: 'Mulish', sans-serif; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:42 (mücevher TY28)

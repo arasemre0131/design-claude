@@ -1,0 +1,31 @@
+---
+id: PL13
+name: Mist + Ink (Japandi)
+category: palette
+description: Mist açık + ink + tatami
+bg: "#EEEBE4 mist"
+accent: "#1A1A1A ink"
+ikincil: "#8B6F47 tatami"
+ink: "#1A1A1A"
+---
+
+usage_sectors: [minimalist, japandi, zen-cafe, tatami-studio, scandinavian]
+forbidden_sectors: [neobrutalist, bold-maximalist]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #EEEBE4 × ink #1A1A1A = 14.8:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #EEEBE4;
+    --ink: #1A1A1A;
+    --tatami: #8B6F47;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:255

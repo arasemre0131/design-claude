@@ -1,0 +1,41 @@
+---
+id: P3
+name: Funnel Stages
+category: pipeline
+description: Huni, her stage daralır, clip-path trapezoid — sales funnel classic
+---
+
+usage_sectors: [sales, marketing, analytics, crm-funnel, lead-gen]
+forbidden_sectors: [editorial, luxury-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY11, TY14]
+  motion: [MO1, MO4]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-kinetic-data/funnel.html
+    lines: "1-100"
+
+variants:
+  - name: solid-trapezoid
+    visual: "Each stage solid color, tapering"
+  - name: conversion-badge
+    visual: "Her aşamada %X konversiyon badge"
+  - name: animated-drop-off
+    visual: "Scroll-linked drop-off GSAP scrub"
+
+preview_snippet: |
+  <div class="funnel">
+    <div class="stage s1" style="--w: 100%;">Ziyaret · 10.000</div>
+    <div class="stage s2" style="--w: 68%;">Kayıt · 6.800</div>
+    <div class="stage s3" style="--w: 24%;">Demo · 2.400</div>
+    <div class="stage s4" style="--w: 7%;">Satın · 700</div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:104-104

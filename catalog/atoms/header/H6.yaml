@@ -1,0 +1,48 @@
+---
+id: H6
+name: Icon Dock (Mobile-First)
+category: header
+description: Alt sabit dock, iOS/macOS dock tarzı, 4-6 ikon + label
+---
+
+usage_sectors: [mobile-first, pwa, mobil-app, tablet, haberci]
+forbidden_sectors: [dashboard, b2b, editorial]
+
+forbidden_with: [H1, H3, H9]
+
+requires:
+  typography: [TY14, TY16, TY20]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: mockups/mobile-dock-apple.html
+    lines: "1-60"
+    note: iOS dock mimetic
+
+variants:
+  - name: icon-only
+    visual: "Sadece icon, label hover/tap'te"
+  - name: icon-label-bottom
+    visual: "Icon + kısa label (4-5 karakter)"
+  - name: fluid-morphing
+    visual: "Aktif icon'da morph halo (macOS tarzı)"
+
+preview_snippet: |
+  <nav class="dock" role="navigation" aria-label="Primary">
+    <a class="dock-item active"><span class="ico">⌂</span><span class="lbl">Home</span></a>
+    <a class="dock-item"><span class="ico">◉</span><span class="lbl">Ara</span></a>
+    <a class="dock-item"><span class="ico">♡</span><span class="lbl">Fav</span></a>
+    <a class="dock-item"><span class="ico">⚙</span><span class="lbl">Ayar</span></a>
+  </nav>
+  <style>
+    .dock { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; padding: 8px; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border-radius: 16px; }
+    .dock-item { display: flex; flex-direction: column; align-items: center; padding: 8px 12px; font-size: 11px; }
+    .dock-item.active { background: currentColor; color: white; border-radius: 10px; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - Mobilyacı/3d-demo/research/mobil_ux_analiz.md
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:33-33

@@ -1,0 +1,31 @@
+---
+id: TY16
+name: Unbounded + Manrope + DM Mono
+category: typography
+description: Rounded SaaS, Unbounded display (warm geometric)
+display_font: "Unbounded"
+body_font: "Manrope"
+mono_font: "DM Mono"
+---
+
+usage_sectors: [saas-friendly, startup, rounded-brand, eticaret-modern]
+forbidden_sectors: [editorial-print, industrial-hard]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/rounded-saas.html
+
+google_fonts: "Unbounded:wght@300..800&family=Manrope:wght@300..800&family=DM+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+    body { font-family: 'Manrope', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:226

@@ -1,0 +1,124 @@
+---
+id: shopify-hydrogen
+name: Shopify Hydrogen (React Storefront, Premium E-commerce)
+tier: 3
+description: |
+  Shopify Hydrogen (React storefront) + Oxygen hosting + Remix + GSAP + R3F (3D urun
+  viewer) + GraphQL Storefront API. Mucevher/mobilya e-ticaret premium — Shopify
+  Plus backend + custom React frontend. Evolve Studio/Madein.co kanitli.
+---
+
+evidence:
+  - url: https://madeinevolve.com
+    studio: Evolve Studio
+    stack: "Webflow framing + Three.js + Barba + Shopify Plus backend"
+    note: "Shopify Plus luxury brand case study — 3D product viewer + persistent canvas."
+  - url: https://hydrogen.shop
+    platform: Shopify
+    note: "Hydrogen resmi showcase — React storefront official template."
+  - url: https://hydrogen.new
+    platform: Shopify
+    note: "Hydrogen v2 starter + Remix framework."
+  - url: https://shopify.dev/docs/storefronts/headless
+    note: "Headless commerce + Storefront API GraphQL docs."
+
+budget_tier: premium
+budget_try: [35000, 80000]
+delivery_weeks: [4, 6]
+maintenance_monthly_try: [3000, 8000]
+profit_margin: "%40-50"
+
+core:
+  framework:
+    name: Shopify Hydrogen
+    version: "2025.x (Remix temelli)"
+    features: [SSR, React Server Components, streaming, Oxygen hosting]
+  runtime:
+    node: "22 LTS"
+  language:
+    name: TypeScript
+    version: "5.9+"
+  meta_framework: "Remix (Hydrogen underlying)"
+
+frontend_libs:
+  styling:
+    - tailwindcss@4.x
+    - "@radix-ui/react-*"
+  animation:
+    - gsap@3.13.0
+    - "@gsap/react@latest"
+    - lenis@1.3.4
+    - framer-motion@12.x
+  3d:
+    - three@r183
+    - "@react-three/fiber@9.x"
+    - "@react-three/drei@10.x"
+    - "@react-three/postprocessing@3.x"
+  ui:
+    - "@shopify/hydrogen-react@2025.x"
+    - shadcn/ui (manuel entegre)
+    - cmdk
+    - sonner
+  state:
+    - zustand@5.x
+    - "@tanstack/react-query@5.x"
+
+backend:
+  commerce_engine: "Shopify (Plus plan gerekli ust-tier icin)"
+  api: "Shopify Storefront API (GraphQL)"
+  admin_api: "Shopify Admin API (GraphQL/REST)"
+  cms: "Shopify Metaobjects + Metafields (native headless CMS)"
+  payment: "Shopify Payments (TR'de sinirli) + iyzipay (3rd party app)"
+  inventory: "Shopify Locations + stock sync"
+
+payment:
+  primary: "Shopify Payments + iyzipay Turkiye partner app"
+  alternative: "PayTR Shopify app"
+  international: "Shopify Payments (Stripe/PayPal native)"
+
+seo:
+  metadata: "Hydrogen SEO component + Remix meta export"
+  schema: "shopify-automatic Product + Organization JSON-LD"
+  sitemap: "Shopify native sitemap.xml (admin otomatik)"
+  i18n: "Hydrogen i18n routing (/tr, /en)"
+  structured_data: "Product schema zorunlu (3D model support)"
+
+deploy:
+  target: "Shopify Oxygen (edge hosting, Shopify'a bagli)"
+  alternatives: ["Cloudflare Pages (Hydrogen custom)", "Vercel (Remix adapter)"]
+  cdn: "Shopify CDN native + Cloudflare R2 (3D asset)"
+
+scaffold_command: |
+  npm create @shopify/hydrogen@latest
+  cd <project-name>
+  npm install
+  npm run dev  # Oxygen local
+  # Storefront API token Shopify Admin'den al
+  # Tailwind v4 + shadcn/ui manual entegre (Hydrogen React-native degil)
+  npm install three @react-three/fiber @react-three/drei
+  npm install gsap @gsap/react lenis framer-motion
+
+constraints:
+  - "Shopify Plus plan aylik $2000+ — sadece ciddi butceli musteri"
+  - "Turkce lokalizasyon: Shopify native limited — Hydrogen i18n manuel"
+  - "Core Web Vitals: LCP < 2.5s, CLS < 0.05, INP < 200ms"
+  - "Mobile Lighthouse >= 90"
+  - "3D product viewer: R3F Canvas + MeshTransmissionMaterial"
+  - "Draco + Meshopt + KTX2 compress 3D model < 2MB"
+  - "iyzipay Shopify integration 3rd party app (manuel onay 2-3 gun)"
+
+signature_patterns:
+  - "Pattern D: Scroll-linked camera (3D product viewer)"
+  - "Pattern G: Persistent canvas across page transitions (product detail -> product detail)"
+  - "Pattern A: Lenis + GSAP bridge (React useEffect)"
+
+research_refs:
+  - research/shopify-hydrogen-r3f-integration.md
+  - research/shopify-iyzipay-turkey-integration.md
+  - FRONTEND-TECHSTACK.md (E-commerce section)
+
+red_line:
+  - "Shopify plan olmayan musteri -> next-premium + Supabase custom store"
+  - "Turkiye-only micro-business (< 50K TL ciro/ay) -> WooCommerce veya next-premium"
+  - "Hydrogen ~6-8 ay stabilite curve var, acil teslim icin uygunsuz"
+  - "Oxygen hosting Turkiye'de edge coverage yok (fra1 en yakin)"

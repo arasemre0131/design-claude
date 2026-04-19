@@ -1,0 +1,50 @@
+---
+id: K2
+name: Band with Horizontal Rules
+category: kpi
+description: Tek satır 3-4 metric, aralarında hairline rule, editorial density
+---
+
+usage_sectors: [editorial, mucevher, restoran, otel, agency, case-study]
+forbidden_sectors: [dashboard-dense-data]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY19, TY27]
+  motion: [MO10, MO4]
+  libraries: []
+
+reference_impl:
+  - file: mockups/a-warm-dark/index.html
+    lines: "220-260"
+    note: Hairline rule band KPI
+  - file: templates/10-otel/index.html
+    lines: "220-260"
+
+variants:
+  - name: 3-metric-row
+    visual: "3 KPI yan yana, arada 1px rule"
+  - name: 4-metric-row
+    visual: "4 KPI daha dar"
+  - name: with-kicker-labels
+    visual: "Her metric üstünde kicker label"
+
+preview_snippet: |
+  <section class="kpi-band">
+    <div class="kpi"><span class="label">Projeler</span><span class="value">47</span></div>
+    <hr class="hairline"/>
+    <div class="kpi"><span class="label">Yıl</span><span class="value">12</span></div>
+    <hr class="hairline"/>
+    <div class="kpi"><span class="label">Ödül</span><span class="value">8</span></div>
+  </section>
+  <style>
+    .kpi-band { display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; gap: 24px; align-items: center; padding: 48px 0; }
+    .hairline { border: 0; border-left: 1px solid currentColor; height: 60px; opacity: 0.3; }
+    .value { font-family: 'Fraunces'; font-size: 96px; font-variation-settings: 'opsz' 144; display: block; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:84-84

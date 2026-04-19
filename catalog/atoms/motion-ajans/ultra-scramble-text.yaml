@@ -1,0 +1,42 @@
+---
+id: ultra-scramble-text
+name: ScrambleText Free Plugin (GSAP 3.13, 14-ultra)
+category: motion-ajans
+description: GSAP 3.13 ScrambleTextPlugin artık ücretsiz
+license: GSAP (Webflow 2024'ten ücretsiz)
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "597-610"
+---
+
+usage_sectors: [kinetic, data-ops, tech-agency, ai-product, hero-reveal]
+forbidden_sectors: [mucevher-soft, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "ScrambleTextPlugin"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "597-610"
+
+preview_snippet: |
+  ScrollTrigger.create({
+    trigger: '#scrambleSub', start: 'top 90%', once: true,
+    onEnter: () => {
+      gsap.to('#scrambleSub', {
+        duration: 2.5,
+        scrambleText: {
+          text: 'Istanbul merkezli design + build + grow studio.',
+          chars: 'upperAndLowerCase',
+          revealDelay: 0.3,
+          speed: 0.6
+        },
+        ease: 'none'
+      });
+    }
+  });
+
+research_refs:
+  - ULTRAPLAN.md:764 (atom 26 ScrambleText-Free)

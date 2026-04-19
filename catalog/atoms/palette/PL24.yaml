@@ -1,0 +1,34 @@
+---
+id: PL24
+name: Salt + Peach (Kuaför A)
+category: palette
+description: Salt warm + peach + tobacco + rust, kuaför warm
+bg: "#FAF7F2 salt"
+accent: "#E89B7C peach"
+ikincil: "#5C4D3C tobacco + #A0522D rust"
+ink: "#2A2420"
+---
+
+usage_sectors: [kuafor, berber, salon, beauty-salon]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #FAF7F2 × peach #E89B7C = 3.6:1 (AA Large)"
+  - "bg #FAF7F2 × ink #2A2420 = 14.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #FAF7F2;
+    --peach: #E89B7C;
+    --tobacco: #5C4D3C;
+    --rust: #A0522D;
+    --ink: #2A2420;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:53 (kuaför PL24)

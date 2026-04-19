@@ -1,0 +1,88 @@
+---
+id: industrial-workwear
+name: Industrial Workwear
+mood: [concrete-texture, hazard-stripe, blueprint, stencil, worksite-signage, utilitarian]
+one_liner: "Santiye/atolye tarzi: concrete bg + hazard sariah-siyah + stencil font + sitecil-plaka."
+---
+
+typography:
+  display: [Archivo-Black, Archivo-Narrow, Rubik-Mono-One, Syne-800-Italic]
+  body: [Geist-Sans, Manrope, Space-Grotesk]
+  mono: [Geist-Mono, JetBrains-Mono]
+  stencil: [Stardos-Stencil]
+  variable_axes: [wght]
+  pair_ids: [TY11, TY5, TY26]
+  turkish_support: ["i", "Ii", "gIeth", "S", "c", "Oe", "Ue"]
+
+palette_families:
+  - concrete-industrial      # PL4 concrete #D4CFC4 + orange #E85D04 + hazard #F5C400
+  - ozalit-blueprint         # PL21 ozalit mavi + beyaz cizgi
+  - stencil-black-yellow     # siyah bg + hazard sari slab
+  - rust-steel               # oksit kirmizi + celik gri
+
+motion_primitives:
+  preferred: [MO1, MO2, MO3]    # GSAP ScrollTrigger (mechanic), Lenis normal, CSS scroll
+  acceptable: [MO9]             # WAAPI popover (stateful ama saglam)
+  forbidden: [MO10-print-first-sakin, MO11-kinetic-opsz, MO12-3d-cinema]
+
+motion_stack:
+  required: [GSAP 3.13]
+  optional: [Lenis 1.3.4, ScrollTrigger scrub, Framer Motion v12]
+  forbidden: [elastic, blur-reveal, aurora-drift, warm-fade]
+
+preferred_heroes: [HR9, HR13, HR1]    # interactive map (insaat), blueprint title block, bold claim
+preferred_layouts: [L1, L3, L7]       # standard 12-col, bento-no-glass, sticky sidebar
+preferred_footers: [FT2, FT3]         # sitemap block, chunky contact
+
+forbidden:
+  - luxury-gold-gradient
+  - glassmorphism
+  - warm-organic-clay
+  - soft-coral-pink
+  - pastel-palette
+  - editorial-print-red-only
+  - kinetic-opsz-scroll
+  - radial-aurora
+
+reference_impls:
+  - file: mockups/c-concrete-industrial/index.html
+    score: 5/5
+    note: "Concrete bg #D4CFC4 + Archivo Narrow Black + Stardos Stencil + hazard stripe + orange #E85D04 + plate (siyah-hazard) + radial speckle (SVG turbulence DEGIL)."
+  - file: v2-blueprint/index.html
+    score: 4/5
+    note: "Ozalit blueprint varyanti + santiye teknik cizim estetigi."
+  - file: insaat-crm/b-edge/index.html
+    score: 4/5
+    note: "Industrial hazard stripe + insaat-crm edge varyant."
+  - file: v2-neobrutalist/index.html
+    score: 2/5
+    note: "Brutalist ile karismis — industrial raw ama neon renk degil. Orange/hazard var."
+
+trends_2026:
+  bento_2_0: PARTIAL
+  kinetic_typography: PARTIAL       # stencil + narrow display bold motion
+  maximalism: NO
+  scroll_triggered_3d: NO
+  variable_fonts: NO                # display statik
+  hazard-stripe-utility: YES        # imza
+  concrete-speckle-bg: YES          # imza
+
+compatible_sectors: [insaat, mimar-ofis, endustriyel-imalat, lojistik, muhendislik-hizmetleri, otomotiv-tamirhane, demirci-atolye, mobilya-atolyesi, toptan-malzeme]
+incompatible_sectors: [mucevher-premium, spa, klinik-premium, otel-luxury, moda-high-end, restoran-fine-dining]
+
+sample_palette:
+  concrete: "#D4CFC4"
+  concrete_deep: "#C0BBAE"
+  concrete_shadow: "#ADA799"
+  ink: "#111111"
+  orange: "#E85D04"            # safety orange
+  hazard: "#F5C400"            # hazard sarisi
+  slab: "#1E1E1E"
+sample_font_pair: "Archivo Narrow Black + Geist Sans 400-600 + Geist Mono + Stardos Stencil (hazard label)"
+
+tier_fit: [1, 2, 3, 4]
+notes:
+  - "Imza: hazard stripe (repeating-linear-gradient 45deg, hazard 18px + ink 18px)."
+  - "Rounded corners KESIN YASAK — border-radius: 0."
+  - "Concrete speckle bg (radial-gradient layer) tercih, SVG turbulence DEGIL."
+  - "Mucevher/spa/otel-luxury sektorde UYGUN DEGIL — ciddi ciddi kaliteyi asagi cekiyor."

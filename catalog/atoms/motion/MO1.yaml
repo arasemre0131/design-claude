@@ -1,0 +1,29 @@
+---
+id: MO1
+name: GSAP + ScrollTrigger (pin, scrub)
+category: motion
+description: GSAP 3.13 + ScrollTrigger, pin/scrub scroll-linked animation
+---
+
+usage_sectors: [tum-sektorler-motion]
+forbidden_sectors: [print-first-static]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "572-595"
+    note: GSAP + ScrollTrigger pin scrub pattern
+
+preview_snippet: |
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.timeline({
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1, pin: true }
+  }).fromTo('.hero-bg', { scale: 1 }, { scale: 6.5 });
+
+research_refs:
+  - Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:289

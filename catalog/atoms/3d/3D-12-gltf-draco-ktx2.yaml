@@ -1,0 +1,28 @@
+---
+id: 3D-12-gltf-draco-ktx2
+name: gltf-transform Pipeline (Draco + Meshopt + KTX2)
+category: 3d
+description: GLB compression pipeline, 10x size reduction
+license: MIT (gltf-transform)
+---
+
+usage_sectors: [product-3d, mobilya-3d, bandwidth-critical-3d]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["@gltf-transform/cli", "@gltf-transform/core"]
+
+preview_snippet: |
+  # CLI pipeline
+  gltf-transform optimize input.glb output.glb \
+    --simplify 0.5 \
+    --compress meshopt \
+    --texture-compress ktx2
+  # veya Draco:
+  gltf-transform draco input.glb output-draco.glb
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/gltf-transform-pipeline.md

@@ -1,0 +1,33 @@
+---
+id: P1
+name: Kanban Columns
+category: pipeline
+description: 5 kolon drag-drop klasik — CRM standart default
+forbidden: true
+reason: CRM default 5+ projede tekrar — sıkıcı, yeni projede alternatif tercih et
+---
+
+usage_sectors: []
+forbidden_sectors: [default-crm-aesthetic]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: v1-CONSTRUO/kanban.html
+    lines: "1-120"
+    note: YASAK — tekrar edilemez default
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: default kanban 5+ projede kullanıldı. P2, P3, P5, P8 tercih et. -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:102-102 (P1)

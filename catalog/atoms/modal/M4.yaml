@@ -1,0 +1,38 @@
+---
+id: M4
+name: Full-Screen Takeover
+category: modal
+description: Full-screen overlay, immersive detail view
+---
+
+usage_sectors: [portfolio, case-study, media-viewer, lightbox]
+forbidden_sectors: [admin-dense, form-simple]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY14]
+  motion: [MO1, MO4, MO7]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v2-immersive-3d/fullscreen-takeover.html
+    lines: "1-100"
+
+variants:
+  - name: fade-in-scale
+    visual: "Fade + scale 0.9 → 1"
+  - name: view-transitions-api
+    visual: "CSS View Transitions (image → detail)"
+
+preview_snippet: |
+  <dialog class="fullscreen-takeover">
+    <button class="close">×</button>
+    <div class="hero-media">...</div>
+    <div class="hero-copy">...</div>
+  </dialog>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:184-184

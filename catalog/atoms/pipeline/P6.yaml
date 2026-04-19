@@ -1,0 +1,37 @@
+---
+id: P6
+name: Stacked Bars Chart Pipeline
+category: pipeline
+description: Her aşama bar yığın, oran göster, analytics-heavy
+---
+
+usage_sectors: [analytics, sales, marketing, data-dense]
+forbidden_sectors: [editorial-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14]
+  motion: [MO1, MO4]
+  libraries: ["recharts", "echarts", "gsap"]
+
+reference_impl:
+  - file: v2-kinetic-data/stacked-bars.html
+    lines: "1-80"
+
+variants:
+  - name: per-period-stack
+    visual: "Her bar bir dönem, stack segmentleri aşama"
+  - name: normalized-100-percent
+    visual: "Normalized 100%, her bar oran göster"
+
+preview_snippet: |
+  <div class="stacked-bars">
+    <div class="bar" data-q="Q1"><span class="seg s1" style="--p:0.3"></span><span class="seg s2" style="--p:0.5"></span><span class="seg s3" style="--p:0.2"></span></div>
+    <div class="bar" data-q="Q2"><span class="seg s1" style="--p:0.2"></span><span class="seg s2" style="--p:0.6"></span><span class="seg s3" style="--p:0.2"></span></div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:107-107

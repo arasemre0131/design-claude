@@ -1,0 +1,32 @@
+---
+id: PL9
+name: Botanic / Solarpunk
+category: palette
+description: Botanic light + forest + warm ochre
+bg: "#E8EDE3"
+accent: "#3A5A40 forest"
+ikincil: "#C9A46B warm ochre"
+ink: "#1E2420"
+---
+
+usage_sectors: [vitanatur, natural, solarpunk, herbal, botanical, eco-friendly, cafe-organic]
+forbidden_sectors: [industrial-hard, neon]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #E8EDE3 × forest #3A5A40 = 7.1:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #E8EDE3;
+    --forest: #3A5A40;
+    --ochre: #C9A46B;
+    --ink: #1E2420;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:251

@@ -1,0 +1,44 @@
+---
+id: N3
+name: Breadcrumb-Only
+category: nav
+description: Sadece yol, menü yok (deep link first) — docs tree, file browser
+---
+
+usage_sectors: [docs, file-browser, cms, knowledge-base, deep-tree]
+forbidden_sectors: [eticaret, marketing, portfolio]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY20]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "105-114"
+  - file: v2-blueprint/index.html
+    lines: "90-120"
+
+variants:
+  - name: simple-slash
+    visual: "Home / Section / Page"
+  - name: chevron-separator
+    visual: "Home › Section › Page"
+  - name: breadcrumb-cmdk
+    visual: "Her segment clickable dropdown"
+
+preview_snippet: |
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol>
+      <li><a href="/">Ana</a></li>
+      <li><a href="/projects">Projeler</a></li>
+      <li aria-current="page">Kadıköy Rezidans</li>
+    </ol>
+  </nav>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:47-47

@@ -1,0 +1,50 @@
+---
+id: HR12
+name: Conversational Q&A Hero
+category: hero
+description: 'Ne arıyorsun? → şunu mu kastediyorsun? akışı, onboarding interactive'
+---
+
+usage_sectors: [klinik, onboarding, saas-signup, lead-gen, randevu]
+forbidden_sectors: [mucevher, editorial, luxury-static]
+
+forbidden_with: []
+
+requires:
+  typography: [TY16, TY20, TY33, TY34]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: templates/05-klinik/index.html
+    lines: "60-180"
+  - file: mockups/q-a-onboarding.html
+    lines: "1-100"
+
+variants:
+  - name: step-by-step
+    visual: "Soru > seçenek > sonraki soru, progress bar"
+  - name: typeform-tall
+    visual: "Full-height tek soru, scroll spiral"
+  - name: chat-form-hybrid
+    visual: "Chat bubble ama form gibi"
+
+preview_snippet: |
+  <section class="hero-qa">
+    <div class="q-step active">
+      <div class="q-num">01 / 04</div>
+      <h1 class="q-text">Hangi tedaviyi arıyorsun?</h1>
+      <div class="q-options">
+        <button>Estetik diş hekimliği</button>
+        <button>İmplant</button>
+        <button>Ortodonti</button>
+        <button>Diğer</button>
+      </div>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:86-100 (klinik)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:73-73

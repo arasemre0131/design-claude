@@ -1,0 +1,32 @@
+---
+id: 3D-08-drei-meshtransmission
+name: drei MeshTransmissionMaterial (glass, liquid)
+category: 3d
+description: Glass/liquid refraction material, real-time transmission
+license: MIT (drei)
+---
+
+usage_sectors: [mucevher-3d, product-glass, luxury-3d, jewelry-showcase]
+forbidden_sectors: [low-end-gpu]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/fiber", "@react-three/drei"]
+
+preview_snippet: |
+  import { MeshTransmissionMaterial } from '@react-three/drei';
+  <mesh>
+    <sphereGeometry args={[1, 64, 64]} />
+    <MeshTransmissionMaterial
+      thickness={0.5}
+      roughness={0.05}
+      transmission={1}
+      ior={1.5}
+      chromaticAberration={0.03}
+    />
+  </mesh>
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md

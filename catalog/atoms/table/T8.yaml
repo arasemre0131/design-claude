@@ -1,0 +1,37 @@
+---
+id: T8
+name: Timeline Rows (her satır bir date badge ile)
+category: table
+description: Her row date badge + content, activity/audit log
+---
+
+usage_sectors: [activity-log, audit, blog, content-feed, crm-activity]
+forbidden_sectors: [luxury-static, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/timeline-rows.html
+    lines: "1-80"
+
+variants:
+  - name: left-date-badge
+    visual: "Sol kenarda date badge, sağda content"
+  - name: today-divider
+    visual: "Bugün / Dün / Bu Hafta section divider"
+
+preview_snippet: |
+  <ol class="tl-rows">
+    <li><time>2026-04-19</time><p>Kadıköy Rezidans · ruhsat verildi</p></li>
+    <li><time>2026-04-18</time><p>Yeni müşteri eklendi · Ayşe K.</p></li>
+  </ol>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:126-126

@@ -1,0 +1,41 @@
+---
+id: T3
+name: Spec Sheet (engineering BOM)
+category: table
+description: Bill of materials, id/part/qty/note columns, engineering precision
+---
+
+usage_sectors: [engineering, industrial, manufacturing, architecture, insaat]
+forbidden_sectors: [editorial, luxury, spa]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14, TY15]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "291-327"
+
+variants:
+  - name: full-bom-5col
+    visual: "# / Part / Qty / Unit / Note"
+  - name: with-sku-image
+    visual: "SKU + küçük thumbnail"
+
+preview_snippet: |
+  <table class="bom">
+    <thead><tr><th>ID</th><th>Parça</th><th>Adet</th><th>Birim</th><th>Not</th></tr></thead>
+    <tbody>
+      <tr><td>001</td><td>Kiriş 20×30</td><td>42</td><td>m</td><td>S235</td></tr>
+      <tr><td>002</td><td>Cıvata M20×80</td><td>128</td><td>ad</td><td>8.8</td></tr>
+    </tbody>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:121-121
+  - ULTRAPLAN.md:777 (atom 39)

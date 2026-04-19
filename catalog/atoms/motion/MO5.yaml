@@ -1,0 +1,27 @@
+---
+id: MO5
+name: Theatre.js Scripted (keyframe editor)
+category: motion
+description: Theatre.js, UI keyframe editor for complex animations
+---
+
+usage_sectors: [complex-3d-animation, brand-campaign-premium, interactive-showcase]
+forbidden_sectors: [simple-motion]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@theatre/core", "@theatre/studio"]
+
+reference_impl:
+  - file: v2-immersive-3d/theatre-demo.jsx
+    lines: "1-100"
+
+preview_snippet: |
+  import { getProject } from '@theatre/core';
+  const sheet = getProject('Hero').sheet('Sheet');
+  const obj = sheet.object('mesh', { x: 0, y: 0, z: 0 });
+  obj.onValuesChange((v) => { mesh.position.set(v.x, v.y, v.z); });
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:293

@@ -1,0 +1,26 @@
+---
+id: MO10
+name: No Motion / Static (print-first editorial)
+category: motion
+description: Statik print-first editorial, motion yok
+---
+
+usage_sectors: [editorial-print, newspaper, book-first, accessibility-priority, prefers-reduced-motion]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/index.html
+    note: Zero motion, print-first
+
+preview_snippet: |
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:298

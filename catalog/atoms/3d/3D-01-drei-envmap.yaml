@@ -1,0 +1,28 @@
+---
+id: 3D-01-drei-envmap
+name: drei Environment (HDRI/preset)
+category: 3d
+description: drei Environment component, HDRI IBL lighting
+license: MIT (drei)
+---
+
+usage_sectors: [immersive-3d, product-3d, mucevher-3d, mobilya-3d, automotive-3d]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/fiber", "@react-three/drei"]
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md
+
+preview_snippet: |
+  import { Environment } from '@react-three/drei';
+  <Environment preset="warehouse" background blur={0.8} />
+  // or custom HDR:
+  <Environment files="/hdr/studio.hdr" />
+
+research_refs:
+  - 3D-TECHSTACK.md
+  - Mobilyacı/3d-demo/research/drei-advanced-visual-components-research.md

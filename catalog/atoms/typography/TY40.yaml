@@ -1,0 +1,31 @@
+---
+id: TY40
+name: Inter Tight + JetBrains Mono (Minimal Image-First)
+category: typography
+description: Fotoğraf minimal, image-first, Inter Tight + mono
+display_font: "Inter Tight"
+body_font: "Inter Tight"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [fotograf, portfolio-photography, gallery-minimal, editorial-image]
+forbidden_sectors: [ornate, maximalist]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/08-fotograf/style-b.css
+
+google_fonts: "Inter+Tight:wght@200..700&family=JetBrains+Mono:wght@400;500"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Inter Tight', sans-serif; font-weight: 500; letter-spacing: -0.04em; }
+    body { font-family: 'Inter Tight'; font-weight: 300; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:154 (fotograf TY40)

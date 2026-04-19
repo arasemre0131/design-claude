@@ -1,0 +1,41 @@
+---
+id: mdx-data-fade-json
+name: data-fade-clip JSON Attribute (mdx.so özgün)
+category: motion-ajans
+description: data-reveal-clip JSON polygon config attribute-driven reveal
+license: MIT-safe rewrite (attribute pattern, JSON config yeniden yazıldı — "data-reveal-clip")
+source: mdx.so
+source_file: mdx.so JS bundle
+source_lines: "data-fade-clip handler"
+---
+
+usage_sectors: [editorial-print, attribute-driven, data-declarative]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "84-85"
+
+preview_snippet: |
+  <!-- Attribute: data-reveal-clip (mdx data-fade-clip rewrite) -->
+  <div data-reveal-clip='{"from":"polygon(40% 0, 60% 0, 60% 100%, 40% 100%)","to":"polygon(0 0, 100% 0, 100% 100%, 0 100%)"}'>
+    ...
+  </div>
+  <script>
+    document.querySelectorAll('[data-reveal-clip]').forEach(el => {
+      const cfg = JSON.parse(el.dataset.revealClip);
+      el.style.clipPath = cfg.from;
+      ScrollTrigger.create({
+        trigger: el, start: 'top 80%', once: true,
+        onEnter: () => gsap.to(el, { clipPath: cfg.to, duration: 1.2, ease: 'power3.out' })
+      });
+    });
+  </script>
+
+research_refs:
+  - ULTRAPLAN.md:751 (atom 13 Data-Fade-JSON)

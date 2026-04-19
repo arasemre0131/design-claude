@@ -1,0 +1,28 @@
+---
+id: 3D-04-drei-contactshadows
+name: drei ContactShadows
+category: 3d
+description: Fake contact shadow projection, ürünün altında soft shadow
+license: MIT (drei)
+---
+
+usage_sectors: [product-3d, mobilya-3d, mucevher-3d]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/fiber", "@react-three/drei"]
+
+preview_snippet: |
+  import { ContactShadows } from '@react-three/drei';
+  <ContactShadows
+    position={[0, -0.5, 0]}
+    opacity={0.55}
+    scale={10}
+    blur={2.4}
+    far={4}
+  />
+
+research_refs:
+  - 3D-TECHSTACK.md

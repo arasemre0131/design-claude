@@ -1,0 +1,28 @@
+---
+id: 3D-10-postprocessing-dof
+name: postprocessing DepthOfField
+category: 3d
+description: Gerçekçi tilt-shift / bokeh, focus distance ile
+license: MIT (@react-three/postprocessing)
+---
+
+usage_sectors: [cinematic, product-macro, jewelry-close-up, luxury-3d]
+forbidden_sectors: [low-end-device]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@react-three/postprocessing", "postprocessing"]
+
+preview_snippet: |
+  import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
+  <EffectComposer>
+    <DepthOfField
+      focusDistance={0.02}
+      focalLength={0.5}
+      bokehScale={3}
+    />
+  </EffectComposer>
+
+research_refs:
+  - 3D-TECHSTACK.md

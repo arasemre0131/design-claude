@@ -1,0 +1,45 @@
+---
+id: CH12
+name: 3D Chart R3F (extruded bar geometry)
+category: chart
+description: React Three Fiber ile 3D extruded bar chart, immersive
+---
+
+usage_sectors: [immersive-3d, data-storytelling-premium, portfolio-tech, brand-campaign]
+forbidden_sectors: [dashboard-standard, mucevher]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY8, TY14]
+  motion: [MO1, MO2]
+  libraries: ["three", "r3f", "drei"]
+
+reference_impl:
+  - file: v2-immersive-3d/3d-chart.html
+    lines: "1-150"
+
+variants:
+  - name: isometric-bars
+    visual: "Isometric kamera + extruded bar geometry"
+  - name: animated-growth
+    visual: "Scroll ile bar'lar büyüyor"
+
+preview_snippet: |
+  <Canvas camera={{ position: [6, 8, 6], fov: 35 }}>
+    <Suspense>
+      {barData.map((d, i) => (
+        <mesh key={i} position={[i * 1.2, d.value / 2, 0]}>
+          <boxGeometry args={[0.8, d.value, 0.8]} />
+          <meshStandardMaterial color={d.color} />
+        </mesh>
+      ))}
+      <OrbitControls enableZoom={false} />
+    </Suspense>
+  </Canvas>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:158-158
+  - 3D-TECHSTACK.md

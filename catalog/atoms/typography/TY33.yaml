@@ -1,0 +1,31 @@
+---
+id: TY33
+name: Fraunces + IBM Plex Sans (Klinik)
+category: typography
+description: Klinik güven, Fraunces warm + IBM Plex Sans klinik clean
+display_font: "Fraunces"
+body_font: "IBM Plex Sans"
+mono_font: null
+---
+
+usage_sectors: [klinik, estetik, dis-hekimi, fizyoterapi, diagnostic-center]
+forbidden_sectors: [aggressive-motion, neon]
+
+forbidden_with: [PL6]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/05-klinik/style.css
+
+google_fonts: "Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@300..600"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-weight: 600; font-variation-settings: 'opsz' 144; letter-spacing: -0.02em; }
+    body { font-family: 'IBM Plex Sans'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:97 (klinik TY33)

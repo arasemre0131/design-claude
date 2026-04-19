@@ -1,0 +1,33 @@
+---
+id: TY3
+name: Poppins Clean Friendly
+category: typography
+description: Poppins display + body, clean friendly, approachable
+display_font: "Poppins"
+body_font: "Poppins"
+mono_font: null
+---
+
+usage_sectors: [saas-friendly, education, startup, healthcare-light]
+forbidden_sectors: [editorial, luxury, industrial]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/fatih/style.css
+    note: Fatih Bey mucevher kullanımı (mevcut — yeni projede risk)
+
+google_fonts: "Poppins:wght@300;400;500;600;700"
+
+preview_snippet: |
+  <style>
+    :root { --font-display: 'Poppins', sans-serif; --font-body: 'Poppins', sans-serif; }
+    h1 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; }
+    body { font-family: var(--font-body); font-weight: 400; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:213

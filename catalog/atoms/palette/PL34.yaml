@@ -1,0 +1,31 @@
+---
+id: PL34
+name: Cream + Black (Fotograf B)
+category: palette
+description: Cream + tatami warm + true black, warm image-first
+bg: "#F5F1E8 cream"
+accent: "#8B6F47 tatami"
+ikincil: "#111"
+ink: "#111"
+---
+
+usage_sectors: [fotograf-warm, wedding-photography, editorial-photo]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5F1E8 × ink #111 = 17.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5F1E8;
+    --tatami: #8B6F47;
+    --ink: #111;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:147 (fotograf PL34)

@@ -1,0 +1,52 @@
+---
+id: H10
+name: Receipt / Docket Strip
+category: header
+description: Dar, perforated kenarlı makbuz şeridi üstte, retail POS / order tracking
+---
+
+usage_sectors: [retail-pos, order-tracking, kargo, eticaret-minimal, restoran-menu]
+forbidden_sectors: [mucevher, luxury]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY14, TY15]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "254-291"
+    note: Receipt-strip dashed border pattern
+  - file: mockups/receipt-docket-demo.html
+    lines: "1-50"
+    note: Perforated edge aesthetic
+
+variants:
+  - name: dashed-perforated
+    visual: "border-top dashed + small tear marks"
+  - name: barcode-strip
+    visual: "CSS code39 barcode görünüm"
+  - name: order-number-strip
+    visual: "Sipariş #, tarih, 1-liner status"
+
+preview_snippet: |
+  <header class="receipt">
+    <div class="receipt-inner">
+      <span>SIPARIS #00421</span>
+      <span>2026-04-19 14:32</span>
+      <span class="status">HAZIRLANIYOR</span>
+    </div>
+  </header>
+  <style>
+    .receipt { border-top: 2px dashed; border-bottom: 2px dashed; padding: 8px 0; font-family: 'JetBrains Mono'; font-size: 12px; }
+    .receipt-inner { display: flex; justify-content: space-between; padding: 0 32px; }
+    .status { color: var(--accent); font-weight: 500; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - ULTRAPLAN.md:773 (atom 35 Dashboard-Receipt-Strip)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:37-37

@@ -1,0 +1,31 @@
+---
+id: TY41
+name: Fraunces + IBM Plex Sans (Gayrimenkul A)
+category: typography
+description: Gayrimenkul güven, Fraunces warm + IBM Plex Sans
+display_font: "Fraunces"
+body_font: "IBM Plex Sans"
+mono_font: null
+---
+
+usage_sectors: [gayrimenkul, real-estate, residential, construction-sales]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/09-gayrimenkul/style.css
+
+google_fonts: "Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@300..600"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144; font-weight: 500; }
+    body { font-family: 'IBM Plex Sans'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:171 (gayrimenkul TY41)

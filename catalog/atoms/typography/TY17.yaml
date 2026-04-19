@@ -1,0 +1,31 @@
+---
+id: TY17
+name: Cormorant Garamond Italic + Montserrat
+category: typography
+description: Romantic luxury, Cormorant Garamond italic — mücevher klişesi riski
+display_font: "Cormorant Garamond italic"
+body_font: "Montserrat"
+mono_font: null
+---
+
+usage_sectors: [weddings, florist, boutique]
+forbidden_sectors: [mucevher-yeni (klişe)]
+
+forbidden_with: [PL1, PL10]
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/romantic-luxury.html
+
+google_fonts: "Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300..700"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; }
+    body { font-family: 'Montserrat', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:227 (mücevher klişesi uyarı)

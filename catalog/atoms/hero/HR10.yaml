@@ -1,0 +1,46 @@
+---
+id: HR10
+name: Scroll Timeline Hero
+category: hero
+description: Scroll ilerledikçe timeline ilerler, agency / portfolio narrative
+---
+
+usage_sectors: [agency, portfolio, narrative, case-study, product-story]
+forbidden_sectors: [eticaret-standard, dashboard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY11, TY14, TY20]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "572-584"
+    note: Hero porthole dive scroll-linked
+  - file: v2-kinetic-data/scroll-timeline.html
+    lines: "1-120"
+
+variants:
+  - name: horizontal-scrub
+    visual: "Horizontal scroll-linked timeline"
+  - name: vertical-progress
+    visual: "Dikey scroll + progress bar"
+  - name: year-milestones
+    visual: "Her scroll adımı bir yıl/milestone"
+
+preview_snippet: |
+  <section class="hero-timeline">
+    <div class="tl-progress"><div class="tl-fill"></div></div>
+    <div class="tl-items">
+      <div class="tl-item" data-year="2019">Kuruluş</div>
+      <div class="tl-item" data-year="2022">İlk 10 brand</div>
+      <div class="tl-item" data-year="2026">Global</div>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:71-71

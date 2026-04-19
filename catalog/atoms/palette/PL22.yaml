@@ -1,0 +1,33 @@
+---
+id: PL22
+name: Tobacco + Pearl (Mücevher A)
+category: palette
+description: Pearl bg + tobacco + clay + tan, mücevher (PL1 yerine)
+bg: "#F5F0E8 pearl"
+accent: "#2A1F14 tobacco"
+ikincil: "#A0522D clay + #D4A574 tan"
+ink: "#2A1F14"
+---
+
+usage_sectors: [mucevher, jewelry, artisan-craft, boutique-luxury]
+forbidden_sectors: []
+
+forbidden_with: [TY2]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5F0E8 × tobacco #2A1F14 = 13.8:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5F0E8;
+    --tobacco: #2A1F14;
+    --clay: #A0522D;
+    --tan: #D4A574;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:34 (mücevher PL22)

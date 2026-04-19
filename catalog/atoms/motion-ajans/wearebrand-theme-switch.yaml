@@ -1,0 +1,37 @@
+---
+id: wearebrand-theme-switch
+name: Theme Switch on Scroll Zone (wearebrand)
+category: motion-ajans
+description: ScrollTrigger onEnter/onLeave ile section'a girince dark→light theme
+license: MIT-safe rewrite (ScrollTrigger pattern generic)
+source: wearebrand.io
+source_file: research-assets/wab/wearebrand-animations.js
+source_lines: "276-297"
+---
+
+usage_sectors: [editorial, maximalist, narrative-sections, brand-story]
+forbidden_sectors: [single-theme-only]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "276-297"
+  - file: templates/14-ultra/index.html
+    lines: "637-645"
+
+preview_snippet: |
+  ScrollTrigger.create({
+    trigger: '[data-theme="light"]',
+    start: 'top 50%', end: 'bottom 50%',
+    onEnter: () => document.body.classList.add('light'),
+    onLeave: () => document.body.classList.remove('light'),
+    onEnterBack: () => document.body.classList.add('light'),
+    onLeaveBack: () => document.body.classList.remove('light')
+  });
+
+research_refs:
+  - ULTRAPLAN.md:743 (atom 5 Theme-Switch-Scroll)

@@ -1,0 +1,33 @@
+---
+id: PL3
+name: Off-White Editorial
+category: palette
+description: Off-white editorial, red accent, ink
+bg: "#F5F1E8"
+accent: "#C43D2B red"
+ikincil: "#131313 ink"
+ink: "#131313"
+---
+
+usage_sectors: [editorial, newspaper, magazine, kitap, print-first]
+forbidden_sectors: [dark-dashboard, industrial]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F5F1E8 × accent #C43D2B = 5.2:1 (AA)"
+  - "bg #F5F1E8 × ink #131313 = 17.2:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F5F1E8;
+    --accent: #C43D2B;
+    --ink: #131313;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:245
+  - mockups/b-editorial

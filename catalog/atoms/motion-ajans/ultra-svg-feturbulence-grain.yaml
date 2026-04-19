@@ -1,0 +1,37 @@
+---
+id: ultra-svg-feturbulence-grain
+name: SVG feTurbulence Grain Overlay (14-ultra, 2026 standard)
+category: motion-ajans
+description: SVG filter feTurbulence + displacement, %7 opacity overlay grain
+license: Bizim yazdığımız (SVG filter standart)
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "62-63 + 321-326"
+---
+
+usage_sectors: [editorial-luxury, maximalist-atm, industrial, print-feel]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "62-63 + 321-326"
+
+preview_snippet: |
+  <svg class="grain-svg" xmlns="http://www.w3.org/2000/svg">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grain)"/>
+  </svg>
+  <style>
+    .grain-svg { position: fixed; inset: 0; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay; z-index: 98; }
+  </style>
+
+research_refs:
+  - ULTRAPLAN.md:767 (atom 29 SVG-feTurbulence-Grain)

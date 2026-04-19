@@ -1,0 +1,35 @@
+---
+id: PL5
+name: Blueprint Paper
+category: palette
+description: Blueprint paper açık blue-grey + deep blueprint blue
+bg: "#E6EDF2"
+accent: "#0F4C75 blue"
+ikincil: "#BF360C warn + #8B2E3F stamp"
+ink: "#0D2A3A"
+---
+
+usage_sectors: [blueprint, architecture, engineering, insaat-editorial, technical-doc]
+forbidden_sectors: [mucevher, spa, restoran-casual]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #E6EDF2 × accent #0F4C75 = 8.4:1 (AAA)"
+  - "bg #E6EDF2 × ink #0D2A3A = 13.7:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #E6EDF2;
+    --accent: #0F4C75;
+    --warn: #BF360C;
+    --stamp: #8B2E3F;
+    --ink: #0D2A3A;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:247
+  - v2-blueprint

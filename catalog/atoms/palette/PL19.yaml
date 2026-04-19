@@ -1,0 +1,32 @@
+---
+id: PL19
+name: Steel + Copper
+category: palette
+description: Steel cool + copper + slate, industrial-chic
+bg: "#E0E2E5"
+accent: "#B87333 copper"
+ikincil: "#5F6C7B steel"
+ink: "#1A1D21"
+---
+
+usage_sectors: [industrial-chic, metal-workshop, automotive-refined, mechanical]
+forbidden_sectors: [luxury-soft, mucevher]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #E0E2E5 × copper #B87333 = 4.8:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #E0E2E5;
+    --copper: #B87333;
+    --steel: #5F6C7B;
+    --ink: #1A1D21;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:261

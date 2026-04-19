@@ -1,0 +1,31 @@
+---
+id: TY26
+name: Rubik Mono One + Manrope + JetBrains Mono
+category: typography
+description: İnşaat ozalit blueprint, Rubik Mono One chunky
+display_font: "Rubik Mono One"
+body_font: "Manrope"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [insaat, industrial, blueprint, engineering]
+forbidden_sectors: [mucevher, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/01-insaat/index.html (Palette B TY26)
+
+google_fonts: "Rubik+Mono+One&family=Manrope:wght@300..800&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Rubik Mono One', monospace; letter-spacing: -0.02em; }
+    body { font-family: 'Manrope', sans-serif; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:23 (inşaat TY26)

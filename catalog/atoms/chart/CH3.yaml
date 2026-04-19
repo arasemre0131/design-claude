@@ -1,0 +1,43 @@
+---
+id: CH3
+name: Nivo Geometric (colorful, generous)
+category: chart
+description: Nivo responsive chart library, rich color palette, motion built-in
+---
+
+usage_sectors: [data-storytelling, analytics, editorial-data]
+forbidden_sectors: [mucevher-static, editorial-print]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4]
+  libraries: ["@nivo/core", "@nivo/bar", "@nivo/line", "@nivo/pie"]
+
+reference_impl:
+  - file: v2-neobrutalist/nivo-charts.html
+    lines: "1-80"
+
+variants:
+  - name: responsive-bar
+    visual: "Nivo ResponsiveBar + custom colors"
+  - name: stream-chart
+    visual: "Stream chart time-series"
+  - name: treemap
+    visual: "Nivo treemap hierarchy"
+
+preview_snippet: |
+  <div style="height: 400px;">
+    <ResponsiveBar
+      data={data}
+      keys={['q1','q2','q3','q4']}
+      indexBy="year"
+      colors={{ scheme: 'paired' }}
+    />
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:149-149

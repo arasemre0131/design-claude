@@ -1,0 +1,39 @@
+---
+id: T1
+name: Airbnb List (sparse, image-first)
+category: table
+description: Sparse list, görsel öncelikli, geniş padding, hero image her row
+---
+
+usage_sectors: [travel, eticaret, hospitality, marketplace, gayrimenkul]
+forbidden_sectors: [dashboard-dense, issue-tracker]
+
+forbidden_with: [T6]
+
+requires:
+  typography: [TY9, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: templates/09-gayrimenkul/index.html
+    lines: "250-320"
+  - file: mockups/airbnb-list.html
+    lines: "1-100"
+
+variants:
+  - name: image-left-text-right
+    visual: "320px image + 1fr text"
+  - name: wide-gallery-thumbs
+    visual: "Her row 4-5 thumbnail + expand"
+
+preview_snippet: |
+  <ul class="t-airbnb">
+    <li><img src="/l1.webp"/><div><strong>Arnavutköy Yalı</strong><span>₺4.200/gece · 4 misafir</span></div></li>
+    <li><img src="/l2.webp"/><div><strong>Bebek Manzaralı</strong><span>₺3.800/gece · 3 misafir</span></div></li>
+  </ul>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:119-119

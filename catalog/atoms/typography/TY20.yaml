@@ -1,0 +1,31 @@
+---
+id: TY20
+name: Degular Display + Degular Text + Degular Mono
+category: typography
+description: Geometric contemporary, Degular unified family
+display_font: "Degular Display"
+body_font: "Degular Text"
+mono_font: "Degular Mono"
+---
+
+usage_sectors: [contemporary, tech-brand, dashboard-modern, portfolio]
+forbidden_sectors: [editorial-print-classic]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/geometric-contemporary.html
+
+google_fonts: null
+notes: "Degular premium (OH no Type). Google Fonts alt: DM Sans + Inter Tight."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Degular Display', 'DM Sans', sans-serif; font-weight: 700; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:230

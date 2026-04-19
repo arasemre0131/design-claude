@@ -1,0 +1,39 @@
+---
+id: fraxbit-dual-cursor
+name: Dual Custom Cursor (fraxbit)
+category: motion-ajans
+description: İki cursor (dot + halo), back.out(1.7) easing hover scale
+license: MIT-safe rewrite (pattern generic)
+source: fraxbit.com
+source_file: research-assets/_fraxbit_home.html
+source_lines: "JS cursor section"
+---
+
+usage_sectors: [kinetic, agency, portfolio-tech]
+forbidden_sectors: [mobile-only, accessibility-strict]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: 2026-ADVANCED-TECHNIQUES.md
+    lines: "30-38"
+  - file: templates/14-ultra/index.html
+    lines: "520-546"
+
+preview_snippet: |
+  <div class="cursor"></div>
+  <div class="cursor-big"></div>
+  <style>
+    .cursor { width: 6px; height: 6px; background: var(--accent); position: fixed; }
+    .cursor-big { width: 44px; height: 44px; border: 1px solid; }
+  </style>
+  <script>
+    addEventListener('mousemove', e => { cur.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; });
+    gsap.ticker.add(() => { bx += (mx-bx)*0.14; by += (my-by)*0.14; curBig.style.transform = `translate(${bx}px, ${by}px)`; });
+  </script>
+
+research_refs:
+  - ULTRAPLAN.md:747 (atom 9 Dual-Cursor)

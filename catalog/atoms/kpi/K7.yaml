@@ -1,0 +1,46 @@
+---
+id: K7
+name: Tower Vertical Stack
+category: kpi
+description: Dikey stack, her metric bir "kat", building metaphor, architecture vibe
+---
+
+usage_sectors: [insaat, architecture, gayrimenkul, industrial, vertical-narrative]
+forbidden_sectors: [mucevher-compact, ecommerce-horizontal]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY26]
+  motion: [MO1, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: v2-immersive-3d/tower-kpi.html
+    lines: "1-100"
+  - file: templates/01-insaat/index.html
+    lines: "380-450"
+
+variants:
+  - name: brick-stacked-floors
+    visual: "Her KPI bir bina katı, alt → üst inşa"
+  - name: 3d-isometric-tower
+    visual: "R3F ile isometric tower, hover'da kat aç"
+
+preview_snippet: |
+  <div class="tower-kpi">
+    <div class="floor" data-n="5"><strong>47</strong> Aktif Proje</div>
+    <div class="floor" data-n="4"><strong>12y</strong> Tecrübe</div>
+    <div class="floor" data-n="3"><strong>98%</strong> Teslim</div>
+    <div class="floor" data-n="2"><strong>1.2M</strong> m² Yapı</div>
+    <div class="floor" data-n="1"><strong>24/7</strong> Saha</div>
+  </div>
+  <style>
+    .tower-kpi { display: flex; flex-direction: column-reverse; border-left: 2px solid currentColor; }
+    .floor { padding: 24px; border-bottom: 1px solid; display: flex; justify-content: space-between; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:89-89

@@ -1,0 +1,43 @@
+---
+id: N8
+name: Accordion Grouped Sidebar
+category: nav
+description: Sidebar gibi ama gruplar accordion açılır, deeply nested nav
+---
+
+usage_sectors: [docs, cms, admin-deep, nested-content]
+forbidden_sectors: [portfolio, landing, marketing]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/accordion-sidebar.html
+    lines: "1-80"
+
+variants:
+  - name: chevron-icon
+    visual: "▸ ikonu dönerek ▾ olur"
+  - name: no-icon-indent
+    visual: "Sadece indent ile hierarchy"
+
+preview_snippet: |
+  <aside class="acc-nav">
+    <details open>
+      <summary>Projeler</summary>
+      <a>Aktif</a><a>Arşiv</a>
+    </details>
+    <details>
+      <summary>Müşteriler</summary>
+      <a>Tümü</a><a>VIP</a>
+    </details>
+  </aside>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:52-52

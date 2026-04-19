@@ -1,0 +1,107 @@
+---
+id: nuxt-ogl-editorial
+name: Nuxt 3 + TypeScript + OGL (Editorial WebGL Alternative)
+tier: 2
+description: |
+  Nuxt 3 + TypeScript + OGL (8KB WebGL, Three.js alternatifi) + GSAP 3.13 + Lenis
+  + Prismic CMS + Vercel. Editorial storytelling, content-heavy site, tek dev ekip.
+  Fiddle.Digital + REJOUICE kanitli — lightweight WebGL + SSR SEO.
+---
+
+evidence:
+  - url: https://obsidianassembly.com
+    studio: Fiddle.Digital
+    stack: "Nuxt 3 + TypeScript + OGL + Lenis + Prismic + Vercel + @fiddle-digital/string-tune"
+    note: "Text-on-path circle carousel + StringTune declarative data-st-* attributes."
+  - url: https://rejouice.com
+    studio: REJOUICE
+    stack: "Nuxt 3 + Vue 3 + Lenis + Prismic CMS + Next.js transitions"
+    note: "mix-blend-mode difference header + cubic-bezier(.645,.045,.355,1) imza."
+  - url: https://icomat.com
+    studio: ICOMAT (REJOUICE yapisi)
+    stack: "Next.js (ama etikette 'Vue.js' yanlis!) + Lenis + Prismic"
+    note: "Awwwards etiketleri bazen yanlis — gercek stack inspection lazim."
+
+budget_tier: mid
+budget_try: [15000, 25000]
+delivery_weeks: [2, 3]
+maintenance_monthly_try: [1500, 3000]
+profit_margin: "%50-60"
+
+core:
+  framework:
+    name: Nuxt
+    version: "3.x (Vue 3.5+)"
+    features: [SSR, Nitro server, auto-imports, file-based routing, hybrid rendering]
+  runtime:
+    node: "22 LTS"
+  language:
+    name: TypeScript
+    version: "5.9+"
+
+frontend_libs:
+  styling:
+    - "@nuxtjs/tailwindcss@6.x (Tailwind v4 uyumlu)"
+    - unocss@latest                  # alternatif, Vue-friendly
+  animation:
+    - gsap@3.13.0
+    - lenis@1.3.4
+    - "@vueuse/motion@2.x"           # Framer Motion Vue karsiliği
+  webgl:
+    - ogl@1.x                        # 8KB, Three.js alternatifi (Fiddle imza)
+    - "three@r183 (opsiyonel, agir)"
+    - tresjs@4.x                     # Vue + Three.js wrapper (Malvah kaniti)
+  ui:
+    - "@nuxt/ui@3.x"                 # Nuxt resmi UI
+    - "radix-vue (Radix Vue port)"
+  state:
+    - pinia@3.x                      # Vue state (Zustand muadili)
+    - "@tanstack/vue-query@5.x"
+
+backend:
+  cms: "Prismic Headless CMS (Nuxt Prismic module)"
+  alternative_cms: [Sanity, Strapi 5, Payload CMS]
+  database: "PostgreSQL (opsiyonel — Prismic yeterli cogu editorial icin)"
+  auth: "Nuxt Auth Utils (Auth.js Vue muadili)"
+  email: "Resend + Vue Email"
+
+seo:
+  metadata: "Nuxt useHead + useSeoMeta"
+  schema: "schema-dts (manuel JSON-LD)"
+  sitemap: "@nuxtjs/sitemap@5.x"
+  i18n: "@nuxtjs/i18n@9.x"
+  og_image: "@nuxtjs/og-image (dynamic)"
+
+deploy:
+  target: "Vercel (Nitro serverless preset)"
+  alternatives: [Netlify, Cloudflare Pages (Nitro cloudflare preset)]
+  edge: "Cloudflare Workers (Nitro cloudflare-pages)"
+
+scaffold_command: |
+  pnpm create nuxt@latest <project-name>
+  cd <project-name>
+  pnpm add -D @nuxtjs/tailwindcss @nuxt/ui @nuxtjs/sitemap @nuxtjs/og-image
+  pnpm add gsap lenis @vueuse/motion pinia
+  pnpm add ogl  # 8KB WebGL
+  pnpm add @nuxtjs/prismic  # veya sanity/strapi
+
+constraints:
+  - "Bundle ~400KB target (SSR + hafif WebGL)"
+  - "LCP < 2.0s (SSR ile Astro-benzeri hiz)"
+  - "OGL 8KB, three.js 600KB — tercih OGL"
+  - "prefers-reduced-motion: respect"
+  - "WCAG AA"
+
+signature_patterns:
+  - "Pattern A: Lenis + GSAP bridge (Vue onMounted lifecycle)"
+  - "Pattern M: Text-on-path circle carousel (Fiddle imza)"
+  - "Pattern F: mix-blend-mode difference header (REJOUICE imza)"
+
+research_refs:
+  - templates/SCRAPED-STACKS-2026.md (Fiddle + REJOUICE derin analiz)
+  - FRONTEND-TECHSTACK.md (Nuxt alternatif bolum)
+
+red_line:
+  - "Turkce ecosystem Nuxt'ta daha dar — Next.js tercih Turkiye'de"
+  - "Heavy 3D (R3F 156 drei component) -> next-r3f tercih, TresJS cok yeni"
+  - "Enterprise SaaS multi-tenant -> next-enterprise-monorepo"

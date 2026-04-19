@@ -1,0 +1,51 @@
+---
+id: HR6
+name: Newspaper Hed + Deck + Byline
+category: hero
+description: Centered hed, italic deck, byline row — editorial serious tone
+---
+
+usage_sectors: [editorial, kitap, news, magazine, restoran-editorial, kultur]
+forbidden_sectors: [dashboard, b2b-corporate-modern]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY10, TY19, TY24]
+  motion: [MO10, MO6]
+  libraries: []
+
+reference_impl:
+  - file: mockups/b-editorial/index.html
+    lines: "80-160"
+  - file: templates/04-restoran/index.html
+    lines: "76-140"
+
+variants:
+  - name: hed-only-large
+    visual: "Sadece devasa hed, deck küçük"
+  - name: hed-deck-byline
+    visual: "Üç kademeli editorial hierarchy"
+  - name: with-drop-cap
+    visual: "İlk paragraph büyük drop cap harf"
+
+preview_snippet: |
+  <section class="hero-editorial">
+    <div class="hed-wrap">
+      <div class="kicker">§ 01 · Editorial</div>
+      <h1 class="hed">El Emeği, Her Izde Hikâye</h1>
+      <p class="deck"><em>Ankara 2026 Koleksiyonu — 47 parça, her biri tek çift</em></p>
+      <div class="byline">by Selin Arat · 18 Nisan 2026</div>
+    </div>
+  </section>
+  <style>
+    .hero-editorial { text-align: center; max-width: 780px; margin: 120px auto; }
+    .hed { font-family: 'Fraunces', serif; font-size: clamp(48px, 8vw, 120px); line-height: 0.95; letter-spacing: -0.035em; font-variation-settings: 'opsz' 144; }
+    .deck { font-family: 'IBM Plex Serif'; font-style: italic; font-size: 20px; margin-top: 16px; }
+    .byline { font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 24px; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:67-67

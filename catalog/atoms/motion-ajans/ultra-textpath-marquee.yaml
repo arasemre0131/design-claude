@@ -1,0 +1,40 @@
+---
+id: ultra-textpath-marquee
+name: SVG TextPath Bend Marquee (14-ultra)
+category: motion-ajans
+description: SVG kavisli path üstünde sonsuz kayan marquee (animate startOffset)
+license: Bizim yazdığımız (SVG standart)
+source: templates/14-ultra
+source_file: templates/14-ultra/index.html
+source_lines: "454-466"
+---
+
+usage_sectors: [kinetic, agency, brand-chrome, decorative]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "454-466"
+
+preview_snippet: |
+  <section class="bend-marquee">
+    <svg viewBox="0 0 1600 260" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <path id="bendCurve" d="M 0 200 Q 800 -40 1600 200" fill="none"/>
+      </defs>
+      <text>
+        <textPath href="#bendCurve" startOffset="0%">
+          <animate attributeName="startOffset" from="100%" to="-100%" dur="26s" repeatCount="indefinite"/>
+          DESIGN · <tspan class="ac">BUILD</tspan> · GROW ·
+        </textPath>
+      </text>
+    </svg>
+  </section>
+
+research_refs:
+  - ULTRAPLAN.md:766 (atom 28 SVG-TextPath-Bend-Marquee)

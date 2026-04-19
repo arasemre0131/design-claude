@@ -1,0 +1,40 @@
+---
+id: F8
+name: Calculator Input (retro digits)
+category: form
+description: Retro calculator, big digit display, pad buttons
+---
+
+usage_sectors: [pricing-calc, mortgage, fitness-calculator, retro-ui]
+forbidden_sectors: [enterprise-settings]
+
+forbidden_with: []
+
+requires:
+  typography: [TY11, TY14, TY15]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: mockups/calculator-retro.html
+    lines: "1-100"
+
+variants:
+  - name: 7-segment-display
+    visual: "Digital 7-segment tarzı sayı ekranı"
+  - name: mechanical-keys
+    visual: "Chunky mechanical key pad"
+
+preview_snippet: |
+  <div class="calc">
+    <div class="display">1.240,00</div>
+    <div class="pad">
+      <button>7</button><button>8</button><button>9</button><button>÷</button>
+      <button>4</button><button>5</button><button>6</button><button>×</button>
+    </div>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:173-173

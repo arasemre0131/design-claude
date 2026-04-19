@@ -1,0 +1,43 @@
+---
+id: FT8
+name: Slab Dark Info-Strip
+category: footer
+description: Koyu slab info strip, KPI summary + contact
+---
+
+usage_sectors: [industrial, insaat, b2b, factory, manufacturing]
+forbidden_sectors: [luxury-light, editorial-print]
+
+forbidden_with: []
+
+requires:
+  typography: [TY6, TY11, TY14, TY26]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/c-concrete/footer-slab.html
+    lines: "1-80"
+  - file: templates/01-insaat/index.html
+    lines: "700-780"
+
+variants:
+  - name: 3-col-slab
+    visual: "3 col: address, contact, certs"
+  - name: with-hazard-top
+    visual: "Üstte hazard stripe"
+
+preview_snippet: |
+  <footer class="slab-dark">
+    <div class="col"><h5>ADRES</h5><p>Kadıköy · İstanbul</p></div>
+    <div class="col"><h5>ILETISIM</h5><p>+90 212 ... ..</p></div>
+    <div class="col"><h5>SERTIFIKA</h5><p>ISO 9001 · ISO 14001</p></div>
+  </footer>
+  <style>
+    .slab-dark { background: #111; color: #F5C400; padding: 48px 32px; border-top: 4px solid #F5C400; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:201-201

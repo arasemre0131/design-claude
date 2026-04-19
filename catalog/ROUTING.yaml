@@ -1,0 +1,1506 @@
+version: "1.0"
+last_updated: "2026-04-19"
+description: "Feature -> research dosyasi tam mapping. Claude her feature'da buraya bakip ilgili research dosyasina gider. TECHSTACK-LOOKUP.md'nin tam versiyonu (82/82 frontend + 98/98 3D)."
+replaces: "mevcut pipeline ve techstack/TECHSTACK-LOOKUP.md (incomplete 50/82 frontend + 18/98 3D)"
+total_feature_entries: 144
+total_research_mapped: 180
+research_paths:
+  frontend_root: "Mobilyacı/3d-demo/research/"
+  threed_root: "Mobilyacı/3d-demo/research/"
+  fatih_bey_root: "Fatih Bey Mücevher Sitesi/research/"
+  mobilyaci_root: "Mobilyacı/"
+
+# ============================================================
+# FRONTEND FEATURE MAPPINGS (82 research, 85+ feature entry)
+# ============================================================
+frontend_features:
+
+  # --- Navigasyon & Header ---
+  navigation-header:
+    primary: Fatih Bey Mücevher Sitesi/research/header_navigation_analiz.md
+    secondary: Mobilyacı/3d-demo/research/navigation-menu-sidebar-patterns-2026.md
+    atoms: [H1, H2, H3, H4, H5, H6, H7, H8, H9, H10, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10]
+    linked_skills: [frontend-design, design-council]
+    triggers: [header, menu, navigasyon, nav, mega-menu, sidebar, sticky-header]
+
+  mega-menu:
+    primary: Mobilyacı/3d-demo/research/navigation-menu-sidebar-patterns-2026.md
+    secondary: Fatih Bey Mücevher Sitesi/research/header_navigation_analiz.md
+    atoms: [H3, N3]
+    linked_skills: [frontend-design]
+    triggers: [mega-menu, dropdown-menu, multi-level-menu]
+
+  command-palette:
+    primary: Mobilyacı/3d-demo/research/navigation-menu-sidebar-patterns-2026.md
+    secondary: Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [command-palette, cmdk, cmd-k, quick-search]
+
+  # --- Footer ---
+  footer:
+    primary: Fatih Bey Mücevher Sitesi/research/footer_analiz.md
+    atoms: [FT1, FT2, FT3, FT4, FT5, FT6, FT7, FT8]
+    linked_skills: [frontend-design, design-council]
+    triggers: [footer, alt-bilgi, site-footer]
+
+  # --- Anasayfa / Hero ---
+  anasayfa-hero:
+    primary: Fatih Bey Mücevher Sitesi/research/anasayfa_redesign.md
+    secondary: Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+    atoms: [HR1, HR2, HR3, HR4, HR5]
+    linked_skills: [frontend-design, design-council, launch-strategy]
+    triggers: [anasayfa, hero, landing, homepage, above-fold, hero-section]
+
+  landing-conversion:
+    primary: Mobilyacı/3d-demo/research/landing-page-conversion-patterns-2026.md
+    atoms: [HR1, HR2, HR3, HR4, HR5]
+    linked_skills: [frontend-design, launch-strategy, design-council]
+    triggers: [landing-page, conversion, cta, social-proof]
+
+  # --- Urun Sayfasi ---
+  product-page:
+    primary: Fatih Bey Mücevher Sitesi/research/urun_sayfasi_analiz.md
+    secondary: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+    triggers: [urun-sayfasi, product-detail, pdp, product-page]
+
+  product-configurator:
+    primary: Fatih Bey Mücevher Sitesi/research/configurator_analiz.md
+    secondary: Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+    atoms: [HR4]
+    linked_skills: [e-commerce-builder, 3d-site-builder]
+    triggers: [configurator, customize, variant, option]
+
+  # --- Urun Listesi / Filtreleme ---
+  product-list-filter:
+    primary: Fatih Bey Mücevher Sitesi/research/urun_listesi_analiz.md
+    secondary: Mobilyacı/3d-demo/research/search-autocomplete-filter-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder, frontend-design]
+    triggers: [urun-listesi, product-list, filter, grid, category-page]
+
+  faceted-search:
+    primary: Mobilyacı/3d-demo/research/search-autocomplete-filter-2026.md
+    secondary: Mobilyacı/3d-demo/research/search-autocomplete-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [faceted, filter-sidebar, sort, search-filter]
+
+  # --- Sepet / Checkout ---
+  cart-checkout:
+    primary: Fatih Bey Mücevher Sitesi/research/checkout_analiz.md
+    secondary: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    tertiary: Fatih Bey Mücevher Sitesi/research/iyzico_analiz.md
+    atoms: []
+    linked_skills: [e-commerce-builder, code-reviewer]
+    triggers: [cart, sepet, checkout, kasa, odeme-ekrani]
+
+  payment-gateway-tr:
+    primary: Mobilyacı/3d-demo/research/payment-gateways-turkey-2026.md
+    secondary: Mobilyacı/3d-demo/research/payment-integration-turkey.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [iyzico, paytr, taksit, 3d-secure, odeme, payment]
+
+  stripe-subscription:
+    primary: Mobilyacı/3d-demo/research/stripe-subscription-recurring-billing-2026.md
+    atoms: []
+    linked_skills: [pricing-strategy, e-commerce-builder]
+    triggers: [stripe, subscription, abonelik, recurring, saas-billing]
+
+  # --- Admin Panel ---
+  admin-panel:
+    primary: Fatih Bey Mücevher Sitesi/research/admin_panel_analiz.md
+    secondary: Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+    atoms: []
+    linked_skills: [frontend-design, e-commerce-builder, code-reviewer]
+    triggers: [admin, dashboard, backend-ui, crud, rbac]
+
+  dashboard-charts:
+    primary: Mobilyacı/3d-demo/research/charts-dataviz-recharts-nivo-2026.md
+    secondary: Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [chart, dashboard, kpi, dataviz, analytics-ui]
+
+  datatable:
+    primary: Mobilyacı/3d-demo/research/form-datatable-dashboard-2026.md
+    secondary: Mobilyacı/3d-demo/research/responsive-tables-data-display-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [datatable, table, tanstack-table, data-grid]
+
+  # --- Form & Input ---
+  form-input:
+    primary: Mobilyacı/3d-demo/research/react-hook-form-zod-2026.md
+    secondary: Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+    triggers: [form, input, field, validation, react-hook-form]
+
+  # --- Responsive / Mobil ---
+  mobile-responsive:
+    primary: Fatih Bey Mücevher Sitesi/research/mobil_ux_analiz.md
+    secondary: Mobilyacı/3d-demo/research/mobile-responsive-pwa-touch-2026.md
+    atoms: []
+    linked_skills: [frontend-design, launch-strategy]
+    triggers: [mobil, mobile, responsive, touch, pwa, breakpoint]
+
+  # --- Dark Mode / Theming ---
+  dark-mode:
+    primary: Fatih Bey Mücevher Sitesi/research/dark_mode_analiz.md
+    secondary: Mobilyacı/3d-demo/research/dark-mode-theming-design-tokens-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [dark-mode, light-mode, theme, theming, next-themes, tokens]
+
+  # --- Animasyon ---
+  animation-general:
+    primary: Fatih Bey Mücevher Sitesi/research/micro_animation_tasarim.md
+    secondary: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    atoms: [MO1, MO2, MO6]
+    linked_skills: [frontend-design, design-council]
+    triggers: [animasyon, animation, micro-animation, effect]
+
+  ux-animation:
+    primary: Fatih Bey Mücevher Sitesi/research/ux_animasyon_arastirma.md
+    secondary: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    atoms: [MO1, MO2, MO6]
+    linked_skills: [frontend-design, design-council]
+    triggers: [ux-animation, scroll-animation, reveal, hover]
+
+  gsap-masterclass:
+    primary: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    secondary: Mobilyacı/3d-demo/research/gsap-free-plugins-deep-dive.md
+    atoms: [MO1, MO2, MO6]
+    linked_skills: [frontend-design]
+    triggers: [gsap, scrolltrigger, splittext, timeline]
+
+  gsap-plugins:
+    primary: Mobilyacı/3d-demo/research/gsap-free-plugins-deep-dive.md
+    atoms: [MO1]
+    linked_skills: [frontend-design]
+    triggers: [gsap-plugin, flip, observer, morph-svg, draw-svg, scramble-text]
+
+  scroll-driven-animation:
+    primary: Mobilyacı/3d-demo/research/css-scroll-driven-view-transitions-2026.md
+    atoms: [MO2, MO6]
+    linked_skills: [frontend-design]
+    triggers: [scroll-driven, css-scroll-timeline, view-transitions]
+
+  view-transitions:
+    primary: Mobilyacı/3d-demo/research/css-scroll-driven-view-transitions-2026.md
+    secondary: Mobilyacı/3d-demo/research/view-transitions-api-research.md
+    atoms: [MO6]
+    linked_skills: [frontend-design]
+    triggers: [view-transitions, startviewtransition, page-morph]
+
+  page-transitions:
+    primary: Mobilyacı/3d-demo/research/page-transitions-nextjs-2026.md
+    secondary: Mobilyacı/3d-demo/research/view-transitions-api-research.md
+    atoms: [MO6]
+    linked_skills: [frontend-design, design-council]
+    triggers: [page-transition, route-animation, barba, taxi]
+
+  micro-interactions:
+    primary: Mobilyacı/3d-demo/research/micro-interactions-hover-cursor-2026.md
+    secondary: Fatih Bey Mücevher Sitesi/research/micro_animation_tasarim.md
+    atoms: [MO1, MO6]
+    linked_skills: [frontend-design, design-council]
+    triggers: [micro-interaction, hover, cursor, magnetic, ripple]
+
+  svg-lottie-rive:
+    primary: Mobilyacı/3d-demo/research/svg-lottie-rive-animation-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [svg-animation, lottie, rive, motion-design]
+
+  typography-animation:
+    primary: Mobilyacı/3d-demo/research/typography-font-text-animation-2026.md
+    atoms: [MO1]
+    linked_skills: [frontend-design, design-council]
+    triggers: [typography, font, text-animation, kinetic-type]
+
+  web-animation-trends:
+    primary: Mobilyacı/3d-demo/research/web-animation-trends-2025-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [animation-trends, 2026-trends, modern-animation]
+
+  gradient-glassmorphism:
+    primary: Mobilyacı/3d-demo/research/gradient-glass-visual-effects-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [gradient, glassmorphism, glass-card, aurora-bg, neomorphism]
+
+  webgl-shader-frontend:
+    primary: Mobilyacı/3d-demo/research/webgl-shader-effects-frontend-2026.md
+    atoms: []
+    linked_skills: [frontend-design, 3d-site-builder]
+    triggers: [webgl-shader, distortion-bg, liquid-bg, shader-background]
+
+  # --- Smooth Scroll + Cursor ---
+  lenis-smooth-scroll:
+    primary: Mobilyacı/lenis-research.md
+    secondary: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    atoms: [MO2]
+    linked_skills: [frontend-design]
+    triggers: [lenis, smooth-scroll, momentum-scroll]
+
+  custom-cursor:
+    primary: Mobilyacı/cursor-mouse-interactions-research.md
+    atoms: [MO6, ultra-dual-cursor-back-out]
+    linked_skills: [frontend-design]
+    triggers: [custom-cursor, cursor, magnetic-cursor, trail-cursor]
+
+  # --- Email ---
+  email-system:
+    primary: Fatih Bey Mücevher Sitesi/research/email_analiz.md
+    secondary: Mobilyacı/3d-demo/research/email-notification-react-email-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [email, mail, smtp, react-email, resend]
+
+  email-marketing:
+    primary: Mobilyacı/3d-demo/research/advanced-email-templates-flows-2026.md
+    secondary: Mobilyacı/3d-demo/research/email-notification-react-email-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder, launch-strategy]
+    triggers: [email-marketing, drip-campaign, abandoned-cart, nurture]
+
+  # --- Blog / Icerik ---
+  blog-content:
+    primary: Fatih Bey Mücevher Sitesi/research/blog_icerik_analiz.md
+    secondary: Mobilyacı/3d-demo/research/mdx-blog-documentation-2026.md
+    atoms: []
+    linked_skills: [content-strategy, programmatic-seo]
+    triggers: [blog, icerik, mdx, documentation]
+
+  mdx-blog:
+    primary: Mobilyacı/3d-demo/research/mdx-blog-documentation-2026.md
+    atoms: []
+    linked_skills: [content-strategy]
+    triggers: [mdx, blog-mdx, docs-site]
+
+  headless-cms:
+    primary: Mobilyacı/3d-demo/research/headless-cms-sanity-payload-2026.md
+    atoms: []
+    linked_skills: [content-strategy, e-commerce-builder]
+    triggers: [headless-cms, sanity, payload, keystatic]
+
+  # --- WhatsApp / Messaging ---
+  whatsapp-integration:
+    primary: Fatih Bey Mücevher Sitesi/research/whatsapp_analiz.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [whatsapp, whatsapp-business, chat-widget]
+
+  realtime-chat:
+    primary: Mobilyacı/3d-demo/research/realtime-chat-full-implementation-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [chat, realtime-chat, customer-support, typing-indicator]
+
+  realtime-websocket:
+    primary: Mobilyacı/3d-demo/research/realtime-websocket-sse-collab-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [websocket, sse, supabase-realtime, liveblocks, collab]
+
+  # --- Bildirim ---
+  notification-system:
+    primary: Fatih Bey Mücevher Sitesi/research/bildirim_sistemi_tasarim.md
+    secondary: Mobilyacı/3d-demo/research/notification-system-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [bildirim, notification, push, in-app-notification]
+
+  notification-ui:
+    primary: Mobilyacı/3d-demo/research/notification-toast-badge-alert-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [toast, snackbar, banner, badge, alert, sonner]
+
+  # --- Favori / Karsilastirma ---
+  favorites-wishlist:
+    primary: Fatih Bey Mücevher Sitesi/research/favori_sistem_tasarim.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [favori, wishlist, favorites, begeni]
+
+  product-comparison:
+    primary: Fatih Bey Mücevher Sitesi/research/karsilastirma_tasarim.md
+    atoms: []
+    linked_skills: [e-commerce-builder, frontend-design]
+    triggers: [karsilastirma, comparison, compare, yan-yana]
+
+  # --- PWA ---
+  pwa:
+    primary: Fatih Bey Mücevher Sitesi/research/pwa_analiz.md
+    secondary: Mobilyacı/3d-demo/research/mobile-responsive-pwa-touch-2026.md
+    atoms: []
+    linked_skills: [frontend-design, launch-strategy]
+    triggers: [pwa, service-worker, manifest, installable]
+
+  # --- Kampanya / Stok ---
+  kampanya-indirim:
+    primary: Fatih Bey Mücevher Sitesi/research/kampanya_analiz.md
+    atoms: []
+    linked_skills: [e-commerce-builder, content-strategy]
+    triggers: [kampanya, indirim, kupon, countdown, black-friday]
+
+  stock-inventory:
+    primary: Fatih Bey Mücevher Sitesi/research/stok_yonetimi_analiz.md
+    secondary: Mobilyacı/3d-demo/research/inventory-stock-management-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [stok, inventory, stock, variant, low-stock]
+
+  # --- Siparis / Kargo ---
+  order-logistics:
+    primary: Fatih Bey Mücevher Sitesi/research/siparis_lojistik_analiz.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [siparis, kargo, order, shipping, tracking]
+
+  # --- Fiyatlama ---
+  pricing:
+    primary: Fatih Bey Mücevher Sitesi/research/fiyatlama_analiz.md
+    atoms: []
+    linked_skills: [pricing-strategy, e-commerce-builder]
+    triggers: [fiyat, pricing, taksit, dynamic-pricing]
+
+  # --- i18n ---
+  i18n-multilingual:
+    primary: Mobilyacı/3d-demo/research/advanced-i18n-routing-localization-2026.md
+    secondary: Mobilyacı/3d-demo/research/i18n-seo-meta-turkish-web-2026.md
+    atoms: []
+    linked_skills: [frontend-design, seo-audit]
+    triggers: [i18n, coklu-dil, locale, next-intl, rtl]
+
+  # --- SEO ---
+  seo-technical:
+    primary: Fatih Bey Mücevher Sitesi/research/seo_audit_v2.md
+    secondary: Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+    atoms: []
+    linked_skills: [seo-audit, schema-markup]
+    triggers: [seo, teknik-seo, on-page, meta]
+
+  seo-schema:
+    primary: Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+    atoms: []
+    linked_skills: [seo-audit, schema-markup]
+    triggers: [schema, json-ld, structured-data, rich-results]
+
+  seo-tr:
+    primary: Mobilyacı/3d-demo/research/i18n-seo-meta-turkish-web-2026.md
+    atoms: []
+    linked_skills: [seo-audit, content-strategy]
+    triggers: [turkiye-seo, tr-seo, turkish-web]
+
+  # --- Analytics ---
+  analytics:
+    primary: Fatih Bey Mücevher Sitesi/research/analytics_donusum_plan.md
+    secondary: Mobilyacı/3d-demo/research/analytics-tracking-ab-testing-2026.md
+    atoms: []
+    linked_skills: [launch-strategy]
+    triggers: [analytics, ga4, meta-pixel, event-tracking, donusum]
+
+  ab-testing:
+    primary: Mobilyacı/3d-demo/research/analytics-tracking-ab-testing-2026.md
+    atoms: []
+    linked_skills: [launch-strategy]
+    triggers: [a-b-test, ab-test, experiment, funnel]
+
+  # --- Performance ---
+  performance-audit:
+    primary: Fatih Bey Mücevher Sitesi/research/performans_analiz.md
+    secondary: Mobilyacı/3d-demo/research/caching-redis-edge-strategies-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+    triggers: [performans, performance, lighthouse, cwv, core-web-vitals]
+
+  caching-edge:
+    primary: Mobilyacı/3d-demo/research/caching-redis-edge-strategies-2026.md
+    atoms: []
+    linked_skills: [code-reviewer]
+    triggers: [cache, redis, edge, isr, swr]
+
+  virtualization:
+    primary: Mobilyacı/3d-demo/research/virtualization-infinite-list-perf-2026.md
+    atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+    triggers: [virtualization, infinite-scroll, tanstack-virtual, large-list]
+
+  # --- Test / DB ---
+  testing:
+    primary: Fatih Bey Mücevher Sitesi/research/test_stratejisi.md
+    secondary: Mobilyacı/3d-demo/research/testing-vitest-playwright-2026.md
+    tertiary: Mobilyacı/3d-demo/research/testing-vitest-playwright-ci-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+    triggers: [test, vitest, playwright, e2e, msw]
+
+  database-layer:
+    primary: Fatih Bey Mücevher Sitesi/research/db_analiz.md
+    secondary: Mobilyacı/3d-demo/research/database-drizzle-prisma-supabase-2026.md
+    tertiary: Mobilyacı/3d-demo/research/drizzle-vs-prisma-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, e-commerce-builder]
+    triggers: [db, database, drizzle, prisma, supabase, migration]
+
+  # --- Deploy / Guvenlik ---
+  deployment:
+    primary: Fatih Bey Mücevher Sitesi/research/deploy_checklist.md
+    secondary: Fatih Bey Mücevher Sitesi/research/lansman_stratejisi.md
+    tertiary: Mobilyacı/3d-demo/research/deployment-cicd-docker-devops-2026.md
+    atoms: []
+    linked_skills: [launch-strategy, docker-development]
+    triggers: [deploy, deployment, vercel, docker, ci-cd, lansman]
+
+  security-audit:
+    primary: Fatih Bey Mücevher Sitesi/research/site_audit_v2.md
+    secondary: Mobilyacı/3d-demo/research/web-security-headers-owasp-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+    triggers: [guvenlik, security, xss, csrf, idor, owasp]
+
+  auth-system:
+    primary: Mobilyacı/3d-demo/research/auth-patterns-supabase-nextauth-2026.md
+    secondary: Mobilyacı/3d-demo/research/auth-nextauth-supabase-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, e-commerce-builder]
+    triggers: [auth, login, register, oauth, nextauth, supabase-auth, clerk]
+
+  # --- Yasal / KVKK ---
+  legal-compliance:
+    primary: Fatih Bey Mücevher Sitesi/research/yasal_uyumluluk_denetim.md
+    secondary: Mobilyacı/3d-demo/research/cookie-consent-gdpr-kvkk-privacy-2026.md
+    atoms: []
+    linked_skills: [launch-strategy]
+    triggers: [kvkk, gdpr, yasal, cookie-consent, privacy, mesafeli-satis]
+
+  # --- Musteri Profili ---
+  customer-profile:
+    primary: Fatih Bey Mücevher Sitesi/research/musteri_profil_analiz.md
+    atoms: []
+    linked_skills: [e-commerce-builder, frontend-design]
+    triggers: [musteri-profil, customer-profile, crm, segment]
+
+  multi-tenant-saas:
+    primary: Mobilyacı/3d-demo/research/multi-tenant-whitelabel-saas-2026.md
+    atoms: []
+    linked_skills: [pricing-strategy, code-reviewer]
+    triggers: [multi-tenant, white-label, saas, subdomain, tenant-isolation]
+
+  # --- Gorsel / Fotograf ---
+  image-requirements:
+    primary: Fatih Bey Mücevher Sitesi/research/gorsel_gereksinimleri.md
+    secondary: Mobilyacı/3d-demo/research/image-media-video-optimization-2026.md
+    atoms: []
+    linked_skills: [frontend-design, launch-strategy]
+    triggers: [gorsel, fotograf, webp, avif, next-image]
+
+  image-optimization:
+    primary: Mobilyacı/3d-demo/research/image-media-video-optimization-2026.md
+    secondary: Mobilyacı/3d-demo/research/image-optimization-cdn-2026.md
+    atoms: []
+    linked_skills: [launch-strategy, e-commerce-builder]
+    triggers: [image-optimize, next-image, lazy-load, cdn-image]
+
+  image-editor:
+    primary: Mobilyacı/3d-demo/research/image-editor-crop-filter-canvas-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [image-editor, crop, filter, canvas-edit]
+
+  video-player-streaming:
+    primary: Mobilyacı/3d-demo/research/video-player-streaming-hls-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [video-player, hls, mux, video-streaming]
+
+  file-upload:
+    primary: Mobilyacı/3d-demo/research/file-upload-storage-cdn-2026.md
+    atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+    triggers: [file-upload, storage, r2, supabase-storage, signed-url]
+
+  # --- UI Patterns ---
+  ui-component-ecosystem:
+    primary: Mobilyacı/3d-demo/research/ui-component-ecosystem-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [shadcn, radix, aceternity, magic-ui, heroui, component-library]
+
+  modal-dialog-drawer:
+    primary: Mobilyacı/3d-demo/research/modal-dialog-sheet-drawer-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [modal, dialog, sheet, drawer, overlay, vaul]
+
+  tabs-accordion:
+    primary: Mobilyacı/3d-demo/research/tabs-accordion-collapsible-panels-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [tabs, accordion, collapsible, faq]
+
+  tooltip-popover:
+    primary: Mobilyacı/3d-demo/research/tooltip-popover-dropdown-floating-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [tooltip, popover, dropdown, context-menu, floating-ui]
+
+  stepper-wizard:
+    primary: Mobilyacı/3d-demo/research/stepper-wizard-multistep-onboarding-2026.md
+    atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+    triggers: [stepper, wizard, multi-step, onboarding]
+
+  drag-drop:
+    primary: Mobilyacı/3d-demo/research/drag-drop-dndkit-sortable-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [drag-drop, dnd, sortable, kanban, reorder]
+
+  loading-skeleton:
+    primary: Mobilyacı/3d-demo/research/loading-skeleton-shimmer-states-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [loading, skeleton, shimmer, spinner, suspense]
+
+  responsive-tables:
+    primary: Mobilyacı/3d-demo/research/responsive-tables-data-display-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [responsive-table, data-display, table-mobile]
+
+  # --- State Management ---
+  state-management:
+    primary: Mobilyacı/3d-demo/research/state-management-patterns-2026.md
+    atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+    triggers: [state, zustand, jotai, tanstack-query, nuqs, url-state]
+
+  tanstack-query:
+    primary: Mobilyacı/3d-demo/research/tanstack-query-2026.md
+    secondary: Mobilyacı/3d-demo/research/state-management-patterns-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [tanstack-query, react-query, data-fetching, server-state]
+
+  xstate-workflow:
+    primary: Mobilyacı/3d-demo/research/state-machines-xstate-workflows-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [xstate, state-machine, workflow, fsm]
+
+  # --- Framework / Arch ---
+  nextjs-16:
+    primary: Mobilyacı/3d-demo/research/nextjs-16-advanced-patterns-2026.md
+    atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+    triggers: [nextjs, next, rsc, turbopack, app-router, server-actions]
+
+  react-19:
+    primary: Mobilyacı/3d-demo/research/react-19-complete-guide-2026.md
+    secondary: Mobilyacı/3d-demo/research/react-19-features-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [react-19, use-hook, actions, useoptimistic, compiler]
+
+  typescript-patterns:
+    primary: Mobilyacı/3d-demo/research/typescript-advanced-patterns-2026.md
+    atoms: []
+    linked_skills: [code-reviewer]
+    triggers: [typescript, generics, branded-types, type-safe]
+
+  tailwind-v4:
+    primary: Mobilyacı/3d-demo/research/tailwind-v4-advanced-design-system-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [tailwind, tailwind-v4, design-system, theme-directive]
+
+  monorepo:
+    primary: Mobilyacı/3d-demo/research/monorepo-turborepo-pnpm-2026.md
+    secondary: Mobilyacı/3d-demo/research/turborepo-monorepo-2026.md
+    atoms: []
+    linked_skills: [frontend-design, code-reviewer]
+    triggers: [monorepo, turborepo, pnpm-workspace]
+
+  component-library-storybook:
+    primary: Mobilyacı/3d-demo/research/component-library-storybook-docs-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [storybook, component-library, design-system-publish]
+
+  # --- Search / Data ---
+  search-autocomplete:
+    primary: Mobilyacı/3d-demo/research/search-autocomplete-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [search, autocomplete, fuzzy-search, meilisearch, algolia]
+
+  # --- Special / Other ---
+  accessibility:
+    primary: Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, frontend-design, design-council]
+    triggers: [a11y, accessibility, wcag, aria, focus-trap, screen-reader]
+
+  error-handling-logging:
+    primary: Mobilyacı/3d-demo/research/error-handling-logging-monitoring-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, launch-strategy]
+    triggers: [error-handling, sentry, logging, monitoring]
+
+  webhook-background-jobs:
+    primary: Mobilyacı/3d-demo/research/webhook-queue-background-jobs-2026.md
+    atoms: []
+    linked_skills: [code-reviewer, e-commerce-builder]
+    triggers: [webhook, queue, background-jobs, inngest, trigger-dev, qstash]
+
+  calendar-scheduling:
+    primary: Mobilyacı/3d-demo/research/date-time-calendar-scheduling-2026.md
+    atoms: []
+    linked_skills: [frontend-design, e-commerce-builder]
+    triggers: [calendar, scheduling, booking, date-picker, time-picker]
+
+  geolocation-address:
+    primary: Mobilyacı/3d-demo/research/geolocation-address-autocomplete-2026.md
+    atoms: []
+    linked_skills: [e-commerce-builder]
+    triggers: [geolocation, address-autocomplete, google-places, geocoding]
+
+  maps-location:
+    primary: Mobilyacı/3d-demo/research/maps-location-contact-2026.md
+    atoms: []
+    linked_skills: [frontend-design, seo-audit]
+    triggers: [maps, google-maps, mapbox, store-locator, contact]
+
+  clipboard-share:
+    primary: Mobilyacı/3d-demo/research/clipboard-share-social-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [clipboard, copy-paste, share-api, social-share]
+
+  keyboard-shortcuts:
+    primary: Mobilyacı/3d-demo/research/keyboard-shortcuts-hotkeys-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [keyboard-shortcut, hotkey, cmdk, keyboard-first]
+
+  print-pdf-export:
+    primary: Mobilyacı/3d-demo/research/print-pdf-export-screenshot-2026.md
+    atoms: []
+    linked_skills: [frontend-design]
+    triggers: [print, pdf-export, screenshot, html2canvas, jspdf]
+
+  portfolio-creative:
+    primary: Mobilyacı/3d-demo/research/portfolio-showcase-creative-2026.md
+    atoms: []
+    linked_skills: [frontend-design, design-council]
+    triggers: [portfolio, creative, agency-style, awwwards-style]
+
+  # --- AI ---
+  ai-integration:
+    primary: Mobilyacı/3d-demo/research/ai-integration-vercel-sdk-claude-2026.md
+    secondary: Mobilyacı/3d-demo/research/vercel-ai-sdk-2026.md
+    atoms: []
+    linked_skills: [claude-api, rag-architect, senior-prompt-engineer]
+    triggers: [ai, claude-api, openai, vercel-ai-sdk, langchain]
+
+  vercel-ai-sdk:
+    primary: Mobilyacı/3d-demo/research/vercel-ai-sdk-2026.md
+    atoms: []
+    linked_skills: [claude-api, rag-architect]
+    triggers: [vercel-ai-sdk, streaming, tool-calling, rag]
+
+
+# ============================================================
+# 3D / WEBGL FEATURE MAPPINGS (98 research, 60+ feature entry)
+# ============================================================
+threed_features:
+
+  # --- 3D Urun Viewer / Configurator ---
+  3d-product-viewer:
+    primary: Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+    secondary: Mobilyacı/3d-demo/research/furniture-3d-web-experience-research.md
+    atoms: [HR4, ultra-porthole-dive]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [3d-product, 3d-viewer, product-configurator, r3f-product]
+    sektor: [mucevher, mobilya, otomotiv]
+
+  3d-jewelry:
+    primary: Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+    atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [mucevher-3d, jewelry, watch, gemstone, yuzuk, saat]
+    sektor: [mucevher, saat]
+
+  3d-furniture:
+    primary: Mobilyacı/3d-demo/research/furniture-3d-web-experience-research.md
+    secondary: Mobilyacı/3d-demo/research/3d-room-builder-editor.md
+    atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [mobilya-3d, furniture, koltuk-3d, room-builder]
+    sektor: [mobilya, mimari]
+
+  3d-automotive:
+    primary: Mobilyacı/3d-demo/research/automotive-3d-configurator.md
+    atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [oto-3d, car-configurator, araba-3d, car-paint]
+    sektor: [otomotiv]
+
+  3d-fashion:
+    primary: Mobilyacı/3d-demo/research/fashion-clothing-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [moda-3d, fashion, virtual-try-on, cloth-draping]
+    sektor: [moda]
+
+  3d-ecommerce:
+    primary: Mobilyacı/3d-demo/research/ecommerce-3d-product-pages.md
+    atoms: [HR4]
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [3d-ecommerce, 3d-urun-sayfasi, shopify-3d]
+    sektor: [e-ticaret]
+
+  # --- 360 / AR ---
+  360-spin:
+    primary: Fatih Bey Mücevher Sitesi/jewelry-photography-web.md
+    secondary: Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+    atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [360-spin, 360-view, turntable, urun-donmesi]
+    sektor: [mucevher, mobilya, e-ticaret]
+
+  ar-webxr:
+    primary: Mobilyacı/ar-furniture-ecommerce-research.md
+    secondary: Mobilyacı/3d-demo/research/furniture-3d-web-experience-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [ar, webxr, model-viewer, augmented-reality]
+    sektor: [mobilya, moda, e-ticaret]
+
+  # --- 3D Scene Types ---
+  3d-portfolio:
+    primary: Mobilyacı/3d-demo/research/3d-portfolio-patterns.md
+    atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [3d-portfolio, portal-gallery, floating-cards]
+    sektor: [portfolio, creative]
+
+  3d-timeline-history:
+    primary: Mobilyacı/3d-demo/research/3d-timeline-history.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [3d-timeline, hikayemiz, brand-story, heritage]
+    sektor: [muze, brand]
+
+  3d-museum-gallery:
+    primary: Mobilyacı/3d-demo/research/museum-gallery-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [muze, gallery, exhibition, virtual-gallery]
+    sektor: [muze, art]
+
+  3d-education:
+    primary: Mobilyacı/3d-demo/research/education-science-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [egitim-3d, education, anatomy, molecular, solar-system]
+    sektor: [egitim, bilim]
+
+  3d-healthcare:
+    primary: Mobilyacı/3d-demo/research/healthcare-medical-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [saglik-3d, dental, medical, anatomy]
+    sektor: [saglik, dis]
+
+  3d-food:
+    primary: Mobilyacı/3d-demo/research/food-beverage-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [gida-3d, beverage, menu-3d, icecek]
+    sektor: [gida]
+
+  3d-sports:
+    primary: Mobilyacı/3d-demo/research/sports-fitness-3d.md
+    atoms: [HR4]
+    linked_skills: [3d-site-builder]
+    triggers: [spor-3d, sneaker, fitness, sports-equipment]
+    sektor: [spor]
+
+  3d-real-estate:
+    primary: Mobilyacı/3d-demo/research/real-estate-virtual-tour.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [emlak-3d, virtual-tour, 360-panorama, property-tour]
+    sektor: [gayrimenkul]
+
+  3d-architecture-bim:
+    primary: Mobilyacı/3d-demo/research/architecture-bim-visualization.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [mimari-3d, bim, ifc, building-viz]
+    sektor: [mimari, insaat]
+
+  # --- Text / Typography 3D ---
+  3d-typography:
+    primary: Mobilyacı/3d-demo/research/3d-typography-r3f.md
+    atoms: [MO1]
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [3d-text, kinetic-3d, text-3d, physics-text]
+    sektor: [creative]
+
+  # --- AI 3D ---
+  3d-ai-avatar:
+    primary: Mobilyacı/3d-demo/research/ai-chatbot-3d-avatar.md
+    atoms: []
+    linked_skills: [3d-site-builder, claude-api]
+    triggers: [3d-avatar, ai-avatar, ready-player-me, lip-sync]
+    sektor: [support, retail]
+
+  ai-3d-textures:
+    primary: Mobilyacı/3d-demo/research/ai-textures-materials-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [ai-texture, meshy, procedural-material]
+
+  # --- Animation / Motion 3D ---
+  r3f-animation-libs:
+    primary: Mobilyacı/3d-demo/research/r3f-animation-libraries.md
+    secondary: Mobilyacı/3d-demo/research/react-spring-three-deep-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [r3f-animation, theatre-js, leva, maath]
+
+  react-spring-3d:
+    primary: Mobilyacı/3d-demo/research/react-spring-three-deep-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [react-spring, spring-physics-3d]
+
+  framer-motion-r3f:
+    primary: Mobilyacı/3d-demo/research/framer-motion-r3f-hybrid.md
+    atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [framer-motion-r3f, motion-r3f-hybrid]
+
+  scroll-animation-3d:
+    primary: Mobilyacı/scroll-animation-patterns.md
+    secondary: Mobilyacı/3d-demo/research/animation-gsap-framer-lenis-masterclass-2026.md
+    atoms: [MO2]
+    linked_skills: [3d-site-builder]
+    triggers: [scroll-3d, scrolltrigger-3d, scroll-canvas]
+
+  motion-principles:
+    primary: Mobilyacı/3d-demo/research/motion-design-principles-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder, design-council]
+    triggers: [motion-principles, disney-12, timing-staging]
+
+  morph-targets:
+    primary: Mobilyacı/3d-demo/research/morph-targets-research.md
+    atoms: [MO2]
+    linked_skills: [3d-site-builder]
+    triggers: [morph-target, blend-shape, scroll-morph, face-controller]
+
+  skeletal-animation:
+    primary: Mobilyacı/3d-demo/research/skeletal-animation-mixamo-ik.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [skeletal, mixamo, ik, animation-mixer, character-rig]
+
+  procedural-animation:
+    primary: Mobilyacı/3d-demo/research/procedural-animation.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [procedural-animation, walk-cycle, breathing, idle]
+
+  time-manipulation:
+    primary: Mobilyacı/3d-demo/research/time-manipulation-slowmo.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [slow-mo, bullet-time, time-reverse, speed-ramp]
+
+  # --- VFX / Particles / Fluid ---
+  particle-systems:
+    primary: Mobilyacı/3d-demo/research/particle-systems-deep-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [particle, parcacik, gpgpu, wawa-vfx, three-quarks]
+
+  fire-smoke-vfx:
+    primary: Mobilyacı/3d-demo/research/fire-smoke-explosion-vfx.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [fire, smoke, explosion, vfx]
+
+  weather-effects:
+    primary: Mobilyacı/3d-demo/research/weather-effects-snow-rain.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [rain, snow, weather, wet-shader, lightning]
+
+  ocean-water:
+    primary: Mobilyacı/3d-demo/research/ocean-water-fft-gerstner.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [ocean, water, gerstner, fft-tessendorf, foam]
+
+  organic-nature:
+    primary: Mobilyacı/3d-demo/research/organic-nature-simulation.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [plant-growth, grass, organic-nature, erosion]
+
+  soft-body-cloth:
+    primary: Mobilyacı/3d-demo/research/soft-body-cloth-rope-jelly.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [cloth, rope, jelly, soft-body, verlet]
+
+  hair-fur:
+    primary: Mobilyacı/3d-demo/research/hair-fur-rendering.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [hair, fur, shell-texturing, kajiya-kay]
+
+  # --- Shader / Style ---
+  glsl-shaders:
+    primary: Mobilyacı/3d-demo/research/glsl-shaders-r3f.md
+    secondary: Mobilyacı/procedural-noise-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [glsl, shader-material, fresnel, noise]
+
+  procedural-noise:
+    primary: Mobilyacı/procedural-noise-research.md
+    secondary: Mobilyacı/3d-demo/research/glsl-shaders-r3f.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [simplex, curl-noise, fbm, perlin]
+
+  shader-effects-catalog:
+    primary: Mobilyacı/3d-demo/research/shader-effects-catalog.md
+    secondary: Mobilyacı/3d-demo/research/postprocessing-effects-catalog.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [postprocessing, bloom, chromatic-aberration, depth-of-field]
+
+  shadertoy-conversion:
+    primary: Mobilyacı/3d-demo/research/shadertoy-to-r3f-conversion.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [shadertoy, shader-port, universal-wrapper]
+
+  raymarching-sdf:
+    primary: Mobilyacı/3d-demo/research/raymarching-sdf-shapes.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [raymarching, sdf, metaball, boolean-ops]
+
+  fractal-rendering:
+    primary: Mobilyacı/3d-demo/research/fractal-rendering-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [mandelbrot, julia, mandelbulb, fractal]
+
+  toon-npr:
+    primary: Mobilyacı/3d-demo/research/toon-cel-shading-npr.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [toon, cel-shading, npr, outline, cartoon]
+
+  hand-drawn:
+    primary: Mobilyacı/3d-demo/research/hand-drawn-sketch-shader.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [sketch, pencil, watercolor, charcoal, hand-drawn]
+
+  glitch-databending:
+    primary: Mobilyacı/3d-demo/research/glitch-art-databending.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [glitch, vhs, channel-split, pixel-sort]
+
+  retro-synthwave:
+    primary: Mobilyacı/3d-demo/research/retro-synthwave-vaporwave.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [synthwave, vaporwave, neon-grid, retro]
+
+  # --- Lighting / Environment ---
+  environment-lighting:
+    primary: Mobilyacı/3d-demo/research/environment-lighting-r3f.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [hdr, env, lightformer, sky, lighting]
+
+  sky-atmosphere:
+    primary: Mobilyacı/3d-demo/research/sky-atmosphere-scattering.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [sky, atmosphere, rayleigh, mie-scattering, time-of-day]
+
+  shadow-techniques:
+    primary: Mobilyacı/3d-demo/research/shadow-techniques-deep.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [shadow, csm, vsm, pcss, contact-shadows]
+
+  global-illumination:
+    primary: Mobilyacı/3d-demo/research/global-illumination-techniques.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [gi, baked-gi, ssgi, light-probe, path-tracing]
+
+  volumetric-fog:
+    primary: Mobilyacı/3d-demo/research/volumetric-fog-godrays.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [fog, god-rays, volumetric, light-shaft]
+
+  lens-effects:
+    primary: Mobilyacı/3d-demo/research/lens-effects-bokeh-flare.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [bokeh, lens-flare, film-grain, light-leak]
+
+  # --- Material / PBR ---
+  pbr-materials:
+    primary: Mobilyacı/3d-demo/research/pbr-materials-realistic-rendering.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [pbr, clearcoat, sheen, iridescence, dispersion]
+
+  transmission-glass:
+    primary: Mobilyacı/drei-MeshTransmissionMaterial-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [transmission, glass, mesh-transmission, refraction, cam]
+
+  texture-synthesis:
+    primary: Mobilyacı/3d-demo/research/texture-synthesis-procedural.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [procedural-texture, marble, wood, brick, canvas-texture]
+
+  mirror-reflection:
+    primary: Mobilyacı/3d-demo/research/mirror-reflection-techniques.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [mirror, reflection, cubemap, ssr, mesh-reflector]
+
+  # --- Camera ---
+  camera-rigs:
+    primary: Mobilyacı/3d-demo/research/camera-rigs-cinematography.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [camera, dolly, jib, steadicam, rack-focus, cinematography]
+
+  # --- Physics ---
+  physics-rapier:
+    primary: Mobilyacı/3d-demo/research/rapier-character-controllers-walkthrough.md
+    secondary: Mobilyacı/physics-rapier-complete.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [rapier, physics, rigid-body, fps-walkthrough, vehicle-physics]
+
+  ragdoll-destruction:
+    primary: Mobilyacı/3d-demo/research/ragdoll-destruction-physics.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [ragdoll, voronoi-fracture, destruction]
+
+  # --- Infinite / Tunnel / Warp ---
+  infinite-tunnel:
+    primary: Mobilyacı/3d-demo/research/infinite-tunnel-warp-effects.md
+    atoms: [ultra-porthole-dive]
+    linked_skills: [3d-site-builder]
+    triggers: [tunnel, warp, hyperspace, dna-helix, vortex]
+
+  # --- Data Visualization 3D ---
+  3d-dataviz:
+    primary: Mobilyacı/3d-demo/research/3d-data-visualization.md
+    atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [3d-globe, 3d-chart, network-graph, scatter-3d]
+
+  maps-globe-3d:
+    primary: Mobilyacı/3d-demo/research/interactive-3d-maps-globe.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [globe, flight-routes, heatmap, cesium, mapbox]
+
+  # --- Audio / Sound ---
+  3d-audio:
+    primary: Mobilyacı/3d-demo/research/audio-integration.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [howler, tone-js, positional-audio, fft]
+
+  generative-music:
+    primary: Mobilyacı/3d-demo/research/generative-music-3d-viz.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [music-viz, audio-reactive, tone-js, algorithmic-music]
+
+  # --- Interactive / UX ---
+  3d-annotation-hotspot:
+    primary: Mobilyacı/3d-demo/research/3d-annotation-hotspot-system.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [hotspot, annotation, info-panel, guided-tour]
+
+  3d-room-builder:
+    primary: Mobilyacı/3d-demo/research/3d-room-builder-editor.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [room-builder, drag-drop-3d, wall-placement, snap-grid]
+
+  interactive-storytelling:
+    primary: Mobilyacı/3d-demo/research/interactive-storytelling-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [branching-narrative, dialogue, ink, twine]
+
+  gamification:
+    primary: Mobilyacı/3d-demo/research/gamification-3d-web.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [achievement, leaderboard, mini-game, collectible]
+
+  generative-art:
+    primary: Mobilyacı/3d-demo/research/generative-art-creative-coding.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [generative-art, flow-field, attractor, nft, creative-coding]
+
+  # --- CMS / Integration ---
+  cms-dynamic-3d:
+    primary: Mobilyacı/3d-demo/research/cms-integration-dynamic-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [sanity-3d, contentful-3d, dynamic-3d, cms-driven-3d]
+
+  micro-frontends-3d:
+    primary: Mobilyacı/3d-demo/research/micro-frontends-3d-widget.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [module-federation, embeddable-3d, 3d-widget]
+
+  multi-user-3d:
+    primary: Mobilyacı/3d-demo/research/multi-user-3d-websocket.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [multi-user-3d, liveblocks-3d, partykit, crdt-3d]
+
+  # --- Loading / Transition 3D ---
+  3d-loading-transitions:
+    primary: Mobilyacı/3d-demo/research/loading-transitions-r3f.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [3d-loading, use-progress, frozen-router, shader-transition]
+
+  # --- Capture / NeRF ---
+  nerf-gaussian-splat:
+    primary: Mobilyacı/3d-demo/research/nerf-web-viewer.md
+    atoms: [premium-gaussian-splat]
+    linked_skills: [3d-site-builder]
+    triggers: [nerf, gaussian-splat, 3dgs, luma-ai, real-capture]
+
+  photogrammetry:
+    primary: Mobilyacı/3d-demo/research/photogrammetry-pipeline.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [photogrammetry, sfm, meshroom, reality-capture]
+
+  # --- Procedural / Massive ---
+  procedural-terrain-city:
+    primary: Mobilyacı/3d-demo/research/procedural-generation-terrain-city.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [procedural-terrain, city-gen, l-system, wfc]
+
+  massive-scene-instancing:
+    primary: Mobilyacı/3d-demo/research/massive-scene-instancing-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [instanced-mesh, lod, frustum-culling, object-pool]
+
+  mesh-optimization:
+    primary: Mobilyacı/3d-demo/research/mesh-optimization-retopology.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [decimate, meshoptimizer, retopo, lod-gen]
+
+  # --- Rendering / WebGPU ---
+  deferred-rendering:
+    primary: Mobilyacı/3d-demo/research/deferred-rendering-gbuffer.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [deferred, g-buffer, mrt, webgpu-deferred]
+
+  anti-aliasing:
+    primary: Mobilyacı/3d-demo/research/anti-aliasing-comparison.md
+    atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    triggers: [msaa, fxaa, smaa, taa, anti-aliasing]
+
+  # --- Mobile / Performance 3D ---
+  responsive-mobile-3d:
+    primary: Mobilyacı/3d-demo/research/responsive-mobile-optimization-r3f.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [mobile-3d, adaptive-dpr, gpu-tier, battery-api]
+
+  profiling-debugging-3d:
+    primary: Mobilyacı/3d-demo/research/profiling-debugging-threejs.md
+    atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    triggers: [spector-js, memory-leak, profiling-3d, renderer-info]
+
+  web-workers-offscreen:
+    primary: Mobilyacı/3d-demo/research/web-workers-offscreencanvas.md
+    atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    triggers: [offscreen-canvas, web-worker, shared-array-buffer, comlink]
+
+  pwa-offline-3d:
+    primary: Mobilyacı/3d-demo/research/pwa-offline-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [pwa-3d, offline-3d, service-worker-3d]
+
+  # --- Server / SSR 3D ---
+  server-side-3d:
+    primary: Mobilyacı/3d-demo/research/server-side-3d-rendering.md
+    atoms: []
+    linked_skills: [3d-site-builder, seo-audit]
+    triggers: [headless-gl, og-image-3d, thumbnail-3d, puppeteer-3d]
+
+  # --- Voxel / Sprite ---
+  voxel-pixel-art:
+    primary: Mobilyacı/3d-demo/research/voxel-rendering-pixel-art.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [voxel, magica-voxel, greedy-mesh, pixel-art-3d]
+
+  sprite-billboard:
+    primary: Mobilyacı/3d-demo/research/sprite-animation-billboard.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [sprite-sheet, billboard, health-bar, 2d-in-3d]
+
+  # --- CSS3D Hybrid ---
+  css3d-html-in-3d:
+    primary: Mobilyacı/3d-demo/research/css3d-html-in-3d-space.md
+    atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [css3d, drei-html, billboard, hud, screenspace]
+
+  tailwind-3d-overlay:
+    primary: Mobilyacı/3d-demo/research/tailwind-v4-3d-overlay-patterns.md
+    atoms: []
+    linked_skills: [3d-site-builder, frontend-design]
+    triggers: [tailwind-3d, 3d-overlay, glass-hud, text-3d-overlay]
+
+  # --- Dark Mode 3D ---
+  dark-mode-3d:
+    primary: Mobilyacı/3d-demo/research/dark-light-mode-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [dark-mode-3d, theme-switch-3d, env-swap]
+
+  # --- i18n 3D ---
+  i18n-3d:
+    primary: Mobilyacı/3d-demo/research/i18n-3d-multilingual.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [3d-i18n, rtl-3d, cjk-3d, multilingual-3d]
+
+  # --- Asset / Pipeline ---
+  free-3d-assets:
+    primary: Mobilyacı/3d-demo/research/free-3d-asset-directory.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [pmndrs-market, poly-haven, sketchfab, 3d-asset]
+
+  blender-r3f-pipeline:
+    primary: Mobilyacı/blender-to-r3f-pipeline.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [blender, gltf-transform, draco, meshopt, ktx2]
+
+  drei-components:
+    primary: Mobilyacı/drei-advanced-visual-components-research.md
+    secondary: Mobilyacı/3d-demo/research/drei-catalog-v10.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [drei, drei-catalog, drei-component, pmndrs-drei]
+
+  r3f-architecture:
+    primary: Mobilyacı/nextjs-r3f-architecture-guide.md
+    atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    triggers: [r3f-architecture, nextjs-r3f, suspense, dynamic-import]
+
+  r3f-state-management:
+    primary: Mobilyacı/r3f-state-management-patterns.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [r3f-state, zustand-r3f, refs-r3f]
+
+  css-3d-effects:
+    primary: Mobilyacı/css-3d-effects-research.md
+    atoms: []
+    linked_skills: [frontend-design, 3d-site-builder]
+    triggers: [css-3d, perspective, transform-3d, css-perspective]
+
+  sharing-export-3d:
+    primary: Mobilyacı/3d-demo/research/sharing-export-3d.md
+    atoms: []
+    linked_skills: [3d-site-builder, e-commerce-builder]
+    triggers: [screenshot-3d, video-record, gif-export, social-share-3d]
+
+  version-control-3d:
+    primary: Mobilyacı/3d-demo/research/version-control-3d-assets.md
+    atoms: []
+    linked_skills: [3d-site-builder, code-reviewer]
+    triggers: [git-lfs, dvc, visual-regression, 3d-ci-cd]
+
+  awwwards-analysis:
+    primary: Mobilyacı/3d-demo/research/awwwards-analysis.md
+    atoms: []
+    linked_skills: [design-council]
+    triggers: [awwwards, top-studio, agency-reference]
+
+  threejs-release-notes:
+    primary: Mobilyacı/3d-demo/research/threejs-r170-r183-research.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [three-r170, three-r183, threejs-changelog]
+
+  future-web-3d:
+    primary: Mobilyacı/3d-demo/research/future-web-3d-2028.md
+    atoms: []
+    linked_skills: [3d-site-builder]
+    triggers: [webnn, wasm-gc, webtransport, webgpu-future]
+
+  webgl-image-effects:
+    primary: Mobilyacı/3d-demo/research/webgl-image-effects.md
+    atoms: []
+    linked_skills: [frontend-design, 3d-site-builder]
+    triggers: [webgl-image, fake-3d-depth, liquid-hover, reveal-effect]
+
+
+# ============================================================
+# SEKTOR BAZLI QUICK-START (sektörde proje basladiginda ilk okunacaklar)
+# ============================================================
+sector_starters:
+
+  mucevher_kuyumcu:
+    priority_1: Mobilyacı/3d-demo/research/jewelry-watch-3d-showcase.md
+    priority_2: Fatih Bey Mücevher Sitesi/research/anasayfa_redesign.md
+    priority_3: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    optional:
+      - Fatih Bey Mücevher Sitesi/research/yasal_uyumluluk_denetim.md
+      - Mobilyacı/3d-demo/research/pbr-materials-realistic-rendering.md
+      - Mobilyacı/3d-demo/research/mirror-reflection-techniques.md
+
+  mobilya:
+    priority_1: Mobilyacı/3d-demo/research/furniture-3d-web-experience-research.md
+    priority_2: Mobilyacı/ar-furniture-ecommerce-research.md
+    priority_3: Mobilyacı/3d-demo/research/3d-room-builder-editor.md
+    optional:
+      - Mobilyacı/3d-demo/research/ecommerce-3d-product-pages.md
+
+  otomotiv:
+    priority_1: Mobilyacı/3d-demo/research/automotive-3d-configurator.md
+    priority_2: Mobilyacı/3d-demo/research/pbr-materials-realistic-rendering.md
+    priority_3: Mobilyacı/3d-demo/research/environment-lighting-r3f.md
+
+  gayrimenkul:
+    priority_1: Mobilyacı/3d-demo/research/real-estate-virtual-tour.md
+    priority_2: Mobilyacı/3d-demo/research/rapier-character-controllers-walkthrough.md
+    priority_3: Mobilyacı/3d-demo/research/architecture-bim-visualization.md
+
+  saglik_klinik:
+    priority_1: Fatih Bey Mücevher Sitesi/research/mobil_ux_analiz.md
+    priority_2: Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    priority_3: Mobilyacı/3d-demo/research/healthcare-medical-3d.md
+    optional:
+      - Fatih Bey Mücevher Sitesi/research/yasal_uyumluluk_denetim.md
+
+  guzellik_spa:
+    priority_1: Fatih Bey Mücevher Sitesi/research/anasayfa_redesign.md
+    priority_2: Fatih Bey Mücevher Sitesi/research/kampanya_analiz.md
+    priority_3: Fatih Bey Mücevher Sitesi/research/whatsapp_analiz.md
+
+  fotograf:
+    priority_1: Fatih Bey Mücevher Sitesi/research/gorsel_gereksinimleri.md
+    priority_2: Fatih Bey Mücevher Sitesi/research/performans_analiz.md
+    priority_3: Mobilyacı/3d-demo/research/portfolio-showcase-creative-2026.md
+
+  moda_giyim:
+    priority_1: Mobilyacı/3d-demo/research/fashion-clothing-3d.md
+    priority_2: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    priority_3: Mobilyacı/3d-demo/research/soft-body-cloth-rope-jelly.md
+
+  e_pin_dijital:
+    priority_1: Fatih Bey Mücevher Sitesi/research/checkout_analiz.md
+    priority_2: Fatih Bey Mücevher Sitesi/research/stok_yonetimi_analiz.md
+    priority_3: Fatih Bey Mücevher Sitesi/research/analytics_donusum_plan.md
+
+  egitim:
+    priority_1: Mobilyacı/3d-demo/research/education-science-3d.md
+    priority_2: Mobilyacı/3d-demo/research/interactive-storytelling-3d.md
+    priority_3: Mobilyacı/3d-demo/research/gamification-3d-web.md
+
+  muze_art:
+    priority_1: Mobilyacı/3d-demo/research/museum-gallery-3d.md
+    priority_2: Mobilyacı/3d-demo/research/3d-annotation-hotspot-system.md
+    priority_3: Mobilyacı/3d-demo/research/3d-timeline-history.md
+
+  gida_icecek:
+    priority_1: Mobilyacı/3d-demo/research/food-beverage-3d.md
+    priority_2: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+
+  spor:
+    priority_1: Mobilyacı/3d-demo/research/sports-fitness-3d.md
+    priority_2: Mobilyacı/3d-demo/research/3d-product-configurator-research.md
+
+  portfolio_creative:
+    priority_1: Mobilyacı/3d-demo/research/portfolio-showcase-creative-2026.md
+    priority_2: Mobilyacı/3d-demo/research/3d-portfolio-patterns.md
+    priority_3: Mobilyacı/3d-demo/research/micro-interactions-hover-cursor-2026.md
+
+  e_ticaret_generic:
+    priority_1: Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    priority_2: Mobilyacı/3d-demo/research/payment-gateways-turkey-2026.md
+    priority_3: Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+
+  saas_subscription:
+    priority_1: Mobilyacı/3d-demo/research/stripe-subscription-recurring-billing-2026.md
+    priority_2: Mobilyacı/3d-demo/research/multi-tenant-whitelabel-saas-2026.md
+    priority_3: Mobilyacı/3d-demo/research/auth-patterns-supabase-nextauth-2026.md
+
+
+# ============================================================
+# USAGE RULES
+# ============================================================
+usage_rules:
+  - "Feature bulunca primary research'u oku (offset/limit ile sadece ilgili section)"
+  - "Primary yetmiyorsa secondary, sonra tertiary"
+  - "Atoms listesi varsa combo.md'de kullanilan atom ID'leri"
+  - "Sektor baslangicinda sector_starters'a bak, ilk 3 dosyayi oku"
+  - "linked_skills ilgili skill'ler — calistirilacak sirada"
+  - "Triggers: kullanici bu kelimeyi yazdiginda bu feature mapping aktif olur"
+  - "Research dosyalarini KOPYALAMA — referans al, guncel bilginle birlestirir"

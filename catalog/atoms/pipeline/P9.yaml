@@ -1,0 +1,46 @@
+---
+id: P9
+name: Card Grid Horizontal Scroll
+category: pipeline
+description: Kartlar yatay scroll, Netflix carousel — media / marketplace
+---
+
+usage_sectors: [media, marketplace, eticaret, portfolio, content-discovery]
+forbidden_sectors: [dashboard-dense, analytics]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY14, TY16]
+  motion: [MO4, MO2]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: templates/06-eticaret/index.html
+    lines: "300-380"
+  - file: mockups/netflix-carousel.html
+    lines: "1-80"
+
+variants:
+  - name: snap-scroll
+    visual: "scroll-snap-type: x mandatory"
+  - name: drag-inertia
+    visual: "GSAP Draggable + inertia"
+  - name: arrow-controls
+    visual: "Sol/sağ ok butonları"
+
+preview_snippet: |
+  <div class="h-carousel">
+    <button class="nav-prev">←</button>
+    <div class="cards scroll-snap">
+      <div class="card"><img src="/p1.webp"/><span>Ürün 1</span></div>
+      <div class="card"><img src="/p2.webp"/><span>Ürün 2</span></div>
+      <div class="card"><img src="/p3.webp"/><span>Ürün 3</span></div>
+    </div>
+    <button class="nav-next">→</button>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:110-110

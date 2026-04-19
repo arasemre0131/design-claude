@@ -1,0 +1,33 @@
+---
+id: fraxbit-clip-path-reveal
+name: Clip-Path 4-Direction Reveal (fraxbit imza)
+category: motion-ajans
+description: clip-path polygon 4 yönlü reveal (up/down/left/right)
+license: MIT-safe rewrite (CSS clip-path pattern standart)
+source: fraxbit.com
+source_file: research-assets/_fraxbit_home.html
+source_lines: "931-955"
+---
+
+usage_sectors: [kinetic, minimal-swiss, portfolio, agency]
+forbidden_sectors: [legacy-browser]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: research-assets/_fraxbit_home.html
+    lines: "931-955"
+  - file: templates/14-ultra/index.html
+    lines: "314-315"
+
+preview_snippet: |
+  .reveal-up { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 1.4s cubic-bezier(.2,.8,.2,1); }
+  .reveal-up.in-view { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  .reveal-right { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  .reveal-right.in-view { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+research_refs:
+  - ULTRAPLAN.md:746 (atom 8 Clip-Path-Reveal-4dir)

@@ -1,0 +1,37 @@
+---
+id: wearebrand-blur-36px-reveal
+name: Blur-36px to 0 Text Reveal (wearebrand imza)
+category: motion-ajans
+description: SplitText chars + filter blur(36px) → 0 stagger reveal
+license: MIT-safe rewrite (pattern generic, GSAP 3.13 SplitText ücretsiz)
+source: wearebrand.io
+source_file: research-assets/wab/wearebrand-animations.js
+source_lines: "148-194"
+---
+
+usage_sectors: [editorial-luxury, maximalist-atm, kinetic, agency, portfolio]
+forbidden_sectors: [prefers-reduced-motion]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "gsap-splittext", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "148-194"
+  - file: templates/14-ultra/index.html
+    lines: "612-618"
+
+preview_snippet: |
+  // MIT-safe rewrite — SplitText pattern endüstri standartı
+  const split = new SplitText('#scrubText', { type: 'chars,words' });
+  gsap.from(split.chars, {
+    filter: 'blur(30px)', opacity: 0.15,
+    duration: 0.6, stagger: { each: 0.02 },
+    scrollTrigger: { trigger: '#scrubText', start: 'top 85%', end: 'bottom 60%', scrub: true }
+  });
+
+research_refs:
+  - ULTRAPLAN.md:740 (atom 2 Blur-36px-Reveal)
+  - SCRAPED-STACKS-2026.md:255-262

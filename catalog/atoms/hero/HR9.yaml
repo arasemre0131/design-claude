@@ -1,0 +1,46 @@
+---
+id: HR9
+name: Interactive Map Hero
+category: hero
+description: Tıklanabilir harita + overlay noktalar, real-estate / travel storytelling
+---
+
+usage_sectors: [gayrimenkul, otel, travel, insaat, lojistik, restoran-bulucu]
+forbidden_sectors: [mucevher, spa-tek-lokasyon]
+
+forbidden_with: []
+
+requires:
+  typography: [TY9, TY11, TY14, TY26]
+  motion: [MO1, MO4]
+  libraries: ["mapbox", "leaflet", "gsap"]
+
+reference_impl:
+  - file: templates/09-gayrimenkul/index.html
+    lines: "70-180"
+  - file: templates/01-insaat/index.html
+    lines: "180-260"
+    note: Site haritası / proje lokasyon
+
+variants:
+  - name: mapbox-custom-style
+    visual: "Mapbox + custom beige/mono tile style"
+  - name: svg-illustrated-map
+    visual: "İllustrasyon SVG harita + interactive"
+  - name: isometric-3d-map
+    visual: "R3F + isometric şehir 3D"
+
+preview_snippet: |
+  <section class="hero-map">
+    <div id="map" class="map-canvas"></div>
+    <div class="map-overlay">
+      <h1>Istanbul'da <em>24</em> premium lokasyon</h1>
+      <button class="cta">Keşfet</button>
+    </div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:160-174 (gayrimenkul)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:70-70

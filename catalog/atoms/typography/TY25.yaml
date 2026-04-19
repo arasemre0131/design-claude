@@ -1,0 +1,32 @@
+---
+id: TY25
+name: Marfa + Neue Haas Unica
+category: typography
+description: Art book, Marfa serif + Neue Haas Unica sans
+display_font: "Marfa"
+body_font: "Neue Haas Unica"
+mono_font: null
+---
+
+usage_sectors: [art-book, gallery, museum, portfolio-art, publishing]
+forbidden_sectors: [eticaret, dashboard]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/art-book.html
+
+google_fonts: null
+notes: "Marfa + Neue Haas Unica premium. Alt: Libre Caslon Text + Inter Tight."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Marfa', 'Libre Caslon Text', serif; }
+    body { font-family: 'Neue Haas Unica', 'Inter Tight', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:235

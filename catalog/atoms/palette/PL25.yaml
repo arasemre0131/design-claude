@@ -1,0 +1,33 @@
+---
+id: PL25
+name: Slate + Olive (Kuaför B)
+category: palette
+description: Pale bg + olive + slate + wheat, cool kuaför
+bg: "#EDEAE3 pale"
+accent: "#556B2F olive"
+ikincil: "#3A3D3F slate + #D4A574 wheat"
+ink: "#2E2E2E"
+---
+
+usage_sectors: [kuafor, modern-barber, atelier-masculine]
+forbidden_sectors: []
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #EDEAE3 × olive #556B2F = 5.5:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #EDEAE3;
+    --olive: #556B2F;
+    --slate: #3A3D3F;
+    --wheat: #D4A574;
+    --ink: #2E2E2E;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:54 (kuaför PL25)

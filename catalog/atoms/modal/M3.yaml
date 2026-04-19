@@ -1,0 +1,37 @@
+---
+id: M3
+name: Bottom Sheet (mobile)
+category: modal
+description: Alttan kayarak açılan sheet, mobile-first
+---
+
+usage_sectors: [mobile-first, pwa, mobile-app, detail-mobile]
+forbidden_sectors: [desktop-only-enterprise]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/bottom-sheet-mobile.html
+    lines: "1-80"
+
+variants:
+  - name: drag-handle
+    visual: "Üstte drag handle bar"
+  - name: snap-points
+    visual: "30%/60%/100% snap"
+
+preview_snippet: |
+  <dialog class="bottom-sheet">
+    <div class="handle"></div>
+    <section>...</section>
+  </dialog>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:183-183

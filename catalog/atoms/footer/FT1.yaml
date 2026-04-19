@@ -1,0 +1,42 @@
+---
+id: FT1
+name: Huge Wordmark (brand-name dev font)
+category: footer
+description: Devasa wordmark, overflow, brand-name impact
+---
+
+usage_sectors: [portfolio, agency, creative, brand-campaign, editorial-bold]
+forbidden_sectors: [eticaret-classic, dashboard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY6, TY11, TY13, TY14, TY23]
+  motion: [MO1, MO6]
+  libraries: ["gsap"]
+
+reference_impl:
+  - file: v1-CONSTRUO/footer-huge.html
+    lines: "1-80"
+  - file: v2-neobrutalist/footer.html
+    lines: "1-60"
+
+variants:
+  - name: wordmark-overflow-edge
+    visual: "Viewport dışına taşan devasa wordmark"
+  - name: scroll-marquee-wordmark
+    visual: "Scroll'da horizontal kayan brand"
+
+preview_snippet: |
+  <footer class="huge-wordmark">
+    <h1 class="brand-mega">PARALLEL</h1>
+    <p class="tiny">est. 2019 · istanbul · kadıköy · 2026</p>
+  </footer>
+  <style>
+    .brand-mega { font-family: 'Archivo Black'; font-size: clamp(120px, 20vw, 320px); letter-spacing: -0.04em; line-height: 0.85; white-space: nowrap; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:194-194

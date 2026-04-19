@@ -1,0 +1,59 @@
+---
+id: H9
+name: Corner Brackets + Timestamp
+category: header
+description: 4 köşede ince bracket (⌐¬└┘) + merkezde tarih/saat, teknik/observatory görünüm
+---
+
+usage_sectors: [technical, observatory, monitoring, telemetry, industrial, engineering]
+forbidden_sectors: [mucevher, spa, restoran]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14, TY26]
+  motion: optional
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/index.html
+    lines: "70-82"
+    note: Corner bracket pseudo-element pattern
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "53-71"
+    note: Blueprint corner + title block
+  - file: templates/01-insaat/index.html
+    lines: "40-72"
+    note: SpaceX telemetry feel
+
+variants:
+  - name: brackets-fixed
+    visual: "4 köşede 20px bracket"
+  - name: brackets-with-time
+    visual: "Üst-sağ köşede live UTC saat"
+  - name: brackets-frame
+    visual: "Tüm viewport'u kapsayan ince bracket frame"
+
+preview_snippet: |
+  <div class="bracket-frame">
+    <div class="bracket tl"></div>
+    <div class="bracket tr"></div>
+    <div class="bracket bl"></div>
+    <div class="bracket br"></div>
+    <div class="timestamp">2026.04.19 · 14:32:07 UTC</div>
+  </div>
+  <style>
+    .bracket-frame { position: fixed; inset: 24px; pointer-events: none; }
+    .bracket { position: absolute; width: 20px; height: 20px; border: 2px solid currentColor; }
+    .bracket.tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+    .bracket.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+    .bracket.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+    .bracket.br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+    .timestamp { position: absolute; top: -10px; right: 32px; font-family: 'JetBrains Mono'; font-size: 11px; background: var(--bg); padding: 0 8px; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:36-36
+  - ULTRAPLAN.md:780 (atom 42 Corner-Bracket-4dir)

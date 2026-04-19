@@ -1,0 +1,106 @@
+---
+id: restoran
+name: "Restoran / Food & Beverage"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - sıcaklık
+  - hazine (bulduğun yer)
+  - yerel-üretim
+  - zanaat
+  - mevsim (menü mevsimsel)
+  - davet (masaya çağrılma)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # dark menü + gold italic klişesi (jenerik bistro)
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # Playfair italic + beyaz serif başlık 5+ restoran
+  forbidden_heroes: [HR2]
+  warning: "Generic dark menü + Playfair italic başlık + gold underline — 'fine dining' klişesi. Ramen-ya, Ezogelin tarzı street food için aşırı şık kaçar. Sıcaklık için salmon/burgundy ve olive/tomato palette tercih edilir. Menü sayfasında kart grid T6 yasak — menü editorial list olmalı (L5 3-col), yemek fotoğrafı üstünde gold italic başlık klişesi de kaçınılmalı."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Genel varsayım"
+    combo: "Henüz restoran projesi yok; KADIKOY SATIS'ta bir iki lokanta var ama tier 0"
+    note: "Temiz sektör — ama mücevher/kuaför'deki dark+gold klişesi buraya sıçramasın. Fine dining 'ambiance' foto hero popüler ama clichéd."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL14, PL26]        # Salmon+Burgundy, Olive+Tomato
+  typography: [TY31, TY32]      # Fraunces SC + Work Sans / Bricolage Grotesque + Inter Tight
+  heroes: [HR3, HR11]           # Yemek hazırlama video, Menü cover grid
+  layouts: [L5, L6]             # Newspaper 3-col menu, Center single col
+  motion_primitives: [MO4, MO6] # Framer transitions, SplitText (dish name reveal)
+  kpi: [K2, K5]                 # Band / Almanac editorial ("bugün taze")
+  footer: [FT3, FT4]            # Warm editorial / Colophon
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [menu-pdf, whatsapp, google-maps, iletisim]
+    delivery: "2-3 gün"
+    suitability: "✓"
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [menu-sayfasi, rezervasyon-iframe, galeri, blog, whatsapp, opentable-embed]
+    delivery: "3-7 gün"
+    suitability: "✓✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [online-siparis, getir-yemeksepeti-link, admin, loyalty, email]
+    delivery: "2-3 hafta"
+    suitability: "✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    suitability: "⚠"  # 3D yemek render yapay; sadece moleküler gastronomi / tasting menu
+    features: [scroll-storytelling, chef-introduction]
+  enterprise:     # 80K+ TL
+    recipe: next-enterprise-monorepo
+    suitability: "⚠"  # zincir restoran (20+ şube) için
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [menu, rezervasyon, galeri, whatsapp, google-maps]
+  optional: [online-siparis, getir-yemeksepeti-link, blog, email-newsletter, sadakat]
+  special:
+    - name: "Mevsimsel menü editor (admin, Markdown)"
+      tier: "mid"
+      research: "research/admin-dashboard-patterns-2026.md"
+    - name: "Masa rezervasyon (Supabase + slot-based)"
+      tier: "mid"
+      research: "research/forms-validation-zod-react-hook-form-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/forms-validation-zod-react-hook-form-2026.md
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md  # local SEO + Restaurant JSON-LD
+  secondary:
+    - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/email-analiz.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#restoran
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: yes      # dish name SplitText reveal (MO6)
+  bento_2_0: yes               # menü kategorileri asymmetric grid
+  maximalism: partial          # warm palette + dense menü mümkün ama ferahlık kritik
+  3d_spline: no                # 2D food photography daha iştah açıcı
+  scroll_triggered_3d: no
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  hero_assets: "yemek hazırlama video (chef kesim, plate'in üstü, 10-15s loop, ≤6MB)"
+  menu_layout: "L5 3-col desktop (öğün/ara sıcak/ana/tatlı), 1-col accordion mobile"
+  primary_cta: "Masa Rezerve Et"
+  secondary_cta: "Menüyü Gör"
+  local_seo: "Restaurant + MenuItem + OpeningHoursSpecification JSON-LD zorunlu"
+  mobile_critical: "Sticky 'Menü' + 'Rezervasyon' + 'Ara' bottom bar"

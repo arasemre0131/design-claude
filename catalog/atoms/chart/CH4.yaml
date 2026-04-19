@@ -1,0 +1,40 @@
+---
+id: CH4
+name: D3 Custom (force / tree / sankey)
+category: chart
+description: D3.js ile custom visualization — data story editorial
+---
+
+usage_sectors: [data-storytelling, editorial, analytics-custom, research-report]
+forbidden_sectors: [simple-dashboard]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY14]
+  motion: [MO1]
+  libraries: ["d3"]
+
+reference_impl:
+  - file: v2-kinetic-data/d3-custom.html
+    lines: "1-150"
+
+variants:
+  - name: sankey-flow
+    visual: "Sankey diagram, flow volumes"
+  - name: tree-hierarchy
+    visual: "Cluster/tree hierarchy"
+  - name: force-network
+    visual: "Force-directed network"
+
+preview_snippet: |
+  <svg id="d3-chart" viewBox="0 0 800 600"></svg>
+  <script>
+    const sankey = d3.sankey().nodeWidth(15).nodePadding(10).size([800, 600]);
+    // ...
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:150-150

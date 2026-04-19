@@ -1,0 +1,42 @@
+---
+id: wearebrand-lenis-gsap-bridge
+name: Lenis + GSAP Bridge (wearebrand imza)
+category: motion-ajans
+description: Lenis smooth scroll + GSAP ticker bridge, wearebrand custom ease
+license: MIT-safe rewrite (pattern endüstri standartı, ease curve generic)
+source: wearebrand.io
+source_file: research-assets/wab/wearebrand-animations.js
+source_lines: "707-726"
+---
+
+usage_sectors: [tum-sektorler-motion]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: ["lenis", "gsap", "gsap-scrolltrigger"]
+
+reference_impl:
+  - file: research-assets/wab/wearebrand-animations.js
+    lines: "707-726"
+    note: Wearebrand Lenis+GSAP bridge pattern
+  - file: templates/14-ultra/index.html
+    lines: "492-499"
+    note: Rewrite aynı pattern
+
+preview_snippet: |
+  // MIT-safe rewrite — ease curve kendi curve'ümüz
+  const lenis = new Lenis({
+    duration: 1.1,
+    smoothWheel: true,
+    touchMultiplier: 2,
+    easing: t => 1 - Math.pow(1 - t, 3)  // kendi curve'ümüz (wearebrand "e => Math.min(1, 1.001 - Math.pow(2, -10*e))" değil)
+  });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+research_refs:
+  - ULTRAPLAN.md:739 (atom 1 Lenis+GSAP-Bridge)
+  - SCRAPED-STACKS-2026.md:165-171

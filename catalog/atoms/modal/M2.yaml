@@ -1,0 +1,37 @@
+---
+id: M2
+name: Right Sheet Drawer
+category: modal
+description: Sağdan kayarak açılan drawer, detail view
+---
+
+usage_sectors: [crm, saas, detail-view, filter-panel]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/a-safe/drawer.html
+    lines: "1-100"
+
+variants:
+  - name: 400-width-detail
+    visual: "400px drawer, detail"
+  - name: full-height-narrow
+    visual: "Dar 320px full height"
+
+preview_snippet: |
+  <dialog class="drawer-right">
+    <header><button class="close">×</button><h4>Ayşe Kaya · Müşteri</h4></header>
+    <section>...</section>
+  </dialog>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:182-182

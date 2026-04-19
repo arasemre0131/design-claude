@@ -1,0 +1,53 @@
+---
+id: HR17
+name: Scramble-Text Tagline Hero
+category: hero
+description: GSAP ScrambleTextPlugin ile tagline scramble reveal, "cipher decode" aesthetic
+---
+
+usage_sectors: [kinetic, data-ops, tech-agency, cyber, ai-product]
+forbidden_sectors: [mucevher, spa, klinik, restoran-editorial]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY7, TY14, TY15]
+  motion: [MO1, MO6]
+  libraries: ["gsap", "ScrambleTextPlugin"]
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "597-610"
+    note: ScrambleText GSAP 3.13 free plugin usage
+  - file: ULTRAPLAN.md
+    lines: "764"
+    note: atom 26 ScrambleText-Free
+
+variants:
+  - name: scramble-once
+    visual: "Tek seferlik 2.5s decode animation"
+  - name: scramble-hover
+    visual: "Her hover'da scramble tetiklenir"
+  - name: scramble-cycle
+    visual: "3 farklı tagline arasında geçiş"
+
+preview_snippet: |
+  <section class="hero-scramble">
+    <h1 class="brand">PARALLEL</h1>
+    <p id="scrambleSub" class="sub">...</p>
+  </section>
+  <script>
+    ScrollTrigger.create({
+      trigger: '#scrambleSub', start: 'top 90%', once: true,
+      onEnter: () => gsap.to('#scrambleSub', {
+        duration: 2.5,
+        scrambleText: { text: 'Istanbul merkezli design + build + grow studio.', chars: 'upperAndLowerCase', revealDelay: 0.3 }
+      })
+    });
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - ULTRAPLAN.md:764 (atom 26 ScrambleText-Free)
+  - templates/14-ultra/index.html:597-610

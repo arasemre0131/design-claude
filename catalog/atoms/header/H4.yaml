@@ -1,0 +1,48 @@
+---
+id: H4
+name: Floating Command Palette Only
+category: header
+description: Hiç sabit header yok; ⌘K ile açılan overlay panel tek giriş noktası
+---
+
+usage_sectors: [developer-tool, power-user, terminal, cli-app, internal-tool]
+forbidden_sectors: [eticaret, mucevher, restoran, kuafor, spa, otel]
+
+forbidden_with: [H1, H2, H9, H10]
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO4, MO9]
+  libraries: ["cmdk"]
+
+reference_impl:
+  - file: mockups/raycast-style-cmdk.html
+    lines: "1-80"
+    note: Raycast/Warp-style overlay
+
+variants:
+  - name: centered-dialog
+    visual: "Ortada dialog, arka blur"
+  - name: top-anchored
+    visual: "Üstte 40px'den aşağı doğru, full width"
+
+preview_snippet: |
+  <body>
+    <button class="cmdk-trigger" aria-label="Open command palette">⌘K</button>
+    <dialog class="cmdk" role="dialog">
+      <input type="text" placeholder="Ara veya komut yaz..." />
+      <ul class="results">
+        <li><kbd>↵</kbd> Yeni proje</li>
+        <li><kbd>G</kbd> Müşterilere git</li>
+      </ul>
+    </dialog>
+  </body>
+  <style>
+    .cmdk { top: 15%; border: 1px solid; border-radius: 12px; }
+    .cmdk::backdrop { backdrop-filter: blur(14px); background: rgba(0,0,0,0.4); }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:31-31

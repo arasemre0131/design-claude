@@ -1,0 +1,33 @@
+---
+id: K1
+name: Bento Grid Glass
+category: kpi
+description: Karışık boyutlu glass kartlar, backdrop-blur + gradient — klişe default
+forbidden: true
+reason: Bento+glass+gradient 5+ projede default oldu (vibe coded aesthetic) — yeni projede kaçın
+---
+
+usage_sectors: []
+forbidden_sectors: [tum-mevcut-projeler]
+
+forbidden_with: []
+
+requires:
+  typography: []
+  motion: []
+  libraries: []
+
+reference_impl:
+  - file: Mobilyacı/3d-demo/templates/bgfoto/kpi-bento.html
+    lines: "1-80"
+    note: YASAK — tekrar edilemez
+
+variants: []
+
+preview_snippet: |
+  <!-- YASAK: bento+glass default kaçınılacak. K2, K3, K4, K5 tercih et. -->
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:83-83 (K1 = YASAK default)

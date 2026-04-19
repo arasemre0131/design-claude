@@ -1,0 +1,32 @@
+---
+id: PL12
+name: Slate Mono + Acid
+category: palette
+description: Slate gri + acid lime, developer tool
+bg: "#1A1D21 slate"
+accent: "#D4FF00 acid"
+ikincil: "#FFFFFF pure white"
+ink: "#E5E7EB"
+---
+
+usage_sectors: [developer-tool, terminal, data-ops, tech-minimal, dev-dashboard]
+forbidden_sectors: [mucevher, spa, restoran]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #1A1D21 × acid #D4FF00 = 11.8:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #1A1D21;
+    --acid: #D4FF00;
+    --white: #FFFFFF;
+    --ink: #E5E7EB;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:254

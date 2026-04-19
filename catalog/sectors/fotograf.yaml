@@ -1,0 +1,106 @@
+---
+id: fotograf
+name: "Fotoğraf / Medya / Creative"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - görsel-öncelik (typo ikinci plan)
+  - sessiz-tipografi
+  - kare-grid (IG muhtemel)
+  - portfolyo-akışı
+  - anlık-karar (görsel → ikna 2 saniye)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]  # BG Foto'nun dark+gold kanıtlı klişe
+  forbidden_typography: [TY1, TY2, TY4, TY8]  # özellikle TY2 Playfair+Inter BG Foto'da kullanıldı
+  forbidden_heroes: [HR2]    # split-hero klişesi
+  warning: "BG Foto projesinde TY2 Playfair+Inter + PL1 dark+gold + HR2 split kullanıldı — tam yasak combo örneği. Fotoğrafçı portfolyosu görsel-öncelikli olmalı: tipografi sessiz (monolithic IBM Plex veya Inter Tight), renk minimal (off-black veya cream+black). Italic gradient başlık YASAK. 'Modern fotoğrafçı' denilince aksine: resim kahraman, font kürsüsü boş."
+
+# Repeat-guard context
+existing_projects:
+  - name: "BG Foto"
+    combo: "H8 + N2 + HR2 + K1 + F1 + M1 + FT1 + TY2 YASAK + PL1 YASAK + L1 + MO4"
+    note: "Tipik fotoğraf klişe combo'su. Tekrar edilemez — her alan yasaklı."
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL33, PL34]         # Pure Off-Black, Cream+Black
+  typography: [TY39, TY40]       # IBM Plex Sans all-weights / Inter Tight + JetBrains Mono
+  heroes: [HR3, HR11]            # Slideshow hero, Brochure cover grid
+  layouts: [L8, L9]              # Masonry, Card deck
+  motion_primitives: [MO7, MO4]  # View Transitions (image→detail morph), Framer Motion
+  kpi: [K2]                      # Band+rules (opsiyonel)
+  footer: [FT4]                  # Colophon editorial
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    features: [portfolyo-grid, iletisim, whatsapp, instagram]
+    delivery: "2-3 gün"
+    suitability: "✓✓"  # fotoğrafçı portfolyo template swap'a en uygun tier
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [portfolyo-kategori, blog, booking-form, cloudinary-cdn, instagram-feed]
+    delivery: "3-7 gün"
+    suitability: "✓✓"
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [client-galeri, password-protected, download-kontrol, booking, admin, email]
+    delivery: "2-3 hafta"
+    suitability: "✓"
+  premium:        # 25-80K TL
+    recipe: next-r3f
+    suitability: "⚠"  # sadece 360/VR fotoğrafçılar (dugun, mimari)
+    features: [360-vr-galeri, gaussian-splat-scene]
+  enterprise:     # 80K+ TL
+    recipe: next-enterprise-monorepo
+    suitability: "✗"  # ajans için olabilir ama nadir
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [portfolyo-grid, iletisim-booking, whatsapp, instagram, about]
+  optional: [client-galeri, password-protected, blog, download-kontrol, cloudinary-cdn]
+  special:
+    - name: "360/VR foto galeri (düğün, mimari)"
+      tier: "premium"
+      research: "research/webxr-ar-vr-2026.md"
+    - name: "Gaussian Splat scene (mekan scanning)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/gaussian-splatting-research.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/image-optimization-cdn-cloudinary-2026.md
+    - Mobilyacı/3d-demo/research/view-transitions-api-2026.md  # image→detail morph
+  secondary:
+    - Mobilyacı/3d-demo/research/accessibility-wcag-aria-2026.md
+    - Mobilyacı/3d-demo/research/auth-clerk-supabase-nextauth-2026.md  # client galeri
+    - Mobilyacı/3d-demo/research/seo-teknik-2026.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#fotograf
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: partial    # başlık italic reveal OK, gövdede asla
+  bento_2_0: yes                 # L8 masonry — fotoğrafçı için doğal
+  maximalism: partial            # dense resim OK, type dense YASAK
+  3d_spline: partial             # Tier 3+ 360 için
+  scroll_triggered_3d: partial
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  image_optimization: "Cloudinary CDN + next/image + AVIF/WebP, lazy-load, blur placeholder (LQIP)"
+  gallery_layout: "L8 masonry 3-col desktop, 2-col tablet, 1-col mobile"
+  primary_cta: "Portfolyoyu Gör"
+  secondary_cta: "Rezervasyon"
+  performance_critical: "LCP < 2.5s (featured image), CLS < 0.05 (masonry preset)"
+  schema: "ImageGallery + Photograph + Person (photographer) JSON-LD"
+  view_transitions: "Image → detail sayfa morph animate (MO7 kritik)"

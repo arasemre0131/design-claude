@@ -1,0 +1,33 @@
+---
+id: TY12
+name: Migra Italic + IBM Plex Sans + Berkeley Mono
+category: typography
+description: Fashion editorial, Migra italic (premium) display
+display_font: "Migra Italic"
+body_font: "IBM Plex Sans"
+mono_font: "Berkeley Mono"
+---
+
+usage_sectors: [fashion, editorial, magazine, agency-premium, portfolio-fashion]
+forbidden_sectors: [dashboard, data-ops]
+
+forbidden_with: []
+
+requires:
+  libraries: ["pangram-pangram-licensed-or-similar-open-alt"]
+
+reference_impl:
+  - file: mockups/fashion-editorial.html
+    note: Migra premium — alt olarak Marcellus kullanılabilir
+
+google_fonts: null
+notes: "Migra premium font. Alt: Marcellus (Google Fonts open) veya Playfair Display italic ama TY2'den kaçın."
+
+preview_snippet: |
+  <style>
+    /* Premium font - alt: Marcellus for open */
+    h1 { font-family: 'Migra', serif; font-style: italic; letter-spacing: -0.03em; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:222

@@ -1,0 +1,36 @@
+---
+id: F5
+name: Table Cell Edit (spreadsheet-like)
+category: form
+description: Excel/Google Sheets inline cell edit
+---
+
+usage_sectors: [spreadsheet, admin, data-entry, finance]
+forbidden_sectors: [mobile-first-simple]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: mockups/spreadsheet-cell-edit.html
+    lines: "1-100"
+
+variants:
+  - name: arrow-nav-cells
+    visual: "Ok tuşları ile navigate"
+  - name: formula-bar
+    visual: "Üstte formula bar"
+
+preview_snippet: |
+  <table class="sheet">
+    <tr><td tabindex="0" contenteditable>12.480</td><td tabindex="0" contenteditable>Ocak</td></tr>
+  </table>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:170-170

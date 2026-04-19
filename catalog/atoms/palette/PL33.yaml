@@ -1,0 +1,31 @@
+---
+id: PL33
+name: Pure Off-Black (Fotograf A)
+category: palette
+description: Pure off-white + orange + off-black, fotoğraf minimal
+bg: "#FAFAFA"
+accent: "#FF5E3A"
+ikincil: "#1C1C1E"
+ink: "#1C1C1E"
+---
+
+usage_sectors: [fotograf, portfolio-photography, gallery, minimalist-visual]
+forbidden_sectors: [ornate, luxury-warm]
+
+forbidden_with: [PL1]
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #FAFAFA × black #1C1C1E = 16.2:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #FAFAFA;
+    --accent: #FF5E3A;
+    --ink: #1C1C1E;
+  }
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:146 (fotograf PL33)

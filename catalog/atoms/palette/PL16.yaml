@@ -1,0 +1,32 @@
+---
+id: PL16
+name: Terracotta + Ochre
+category: palette
+description: Sand + terra + ochre, Mediterranean
+bg: "#F2E3D1 sand"
+accent: "#B34F1B terra"
+ikincil: "#D4A04C ochre"
+ink: "#2A1F14"
+---
+
+usage_sectors: [mediterranean, tuscany, pottery, artisan-tile, boutique-hotel]
+forbidden_sectors: [tech, dark-saas]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #F2E3D1 × terra #B34F1B = 5.4:1 (AA)"
+
+preview_snippet: |
+  :root {
+    --bg: #F2E3D1;
+    --terra: #B34F1B;
+    --ochre: #D4A04C;
+    --ink: #2A1F14;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:258

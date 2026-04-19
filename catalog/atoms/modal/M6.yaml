@@ -1,0 +1,37 @@
+---
+id: M6
+name: Popover Tethered Anchor
+category: modal
+description: Trigger butonuna anchored popover, Popover API native
+---
+
+usage_sectors: [dashboard, saas, tooltip-rich, filter-dropdown]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/popover-anchor.html
+    lines: "1-80"
+
+variants:
+  - name: popover-api-native
+    visual: "CSS popover='auto' native HTML"
+  - name: floating-ui-tooltip
+    visual: "Floating UI library tether"
+
+preview_snippet: |
+  <button popovertarget="pop-menu">Dışa Aktar ▾</button>
+  <div popover id="pop-menu" class="popover">
+    <button>CSV</button><button>PDF</button><button>Excel</button>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:186-186

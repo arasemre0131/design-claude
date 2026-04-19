@@ -1,0 +1,37 @@
+---
+id: N5
+name: Command Palette Only
+category: nav
+description: Tek giriş ⌘K, visible nav yok — power tool aesthetic
+---
+
+usage_sectors: [power-tool, developer, internal-dashboard, terminal]
+forbidden_sectors: [eticaret, restoran, mucevher, kuafor]
+
+forbidden_with: [N1, N4]
+
+requires:
+  typography: [TY14, TY15]
+  motion: [MO9]
+  libraries: ["cmdk"]
+
+reference_impl:
+  - file: mockups/raycast-cmdk-only.html
+    lines: "1-80"
+
+variants:
+  - name: trigger-floating
+    visual: "Sağ altta floating ⌘K ikonu"
+  - name: shortcut-hint-corner
+    visual: "Ekranın altında hafif ⌘K ipucu"
+
+preview_snippet: |
+  <button class="cmdk-trigger" id="cmdk">⌘K</button>
+  <dialog class="cmdk-dialog">
+    <input placeholder="Ara..."/>
+  </dialog>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:49-49

@@ -1,0 +1,28 @@
+---
+id: L10
+name: Zine / Poster Scroll
+category: layout
+description: Vertical scrolling zine, büyük tipografi + illüstrasyon
+---
+
+usage_sectors: [zine, art, brand-campaign, portfolio-maximalist]
+forbidden_sectors: [dashboard, admin]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: mockups/zine-scroll.html
+    lines: "1-120"
+
+preview_snippet: |
+  <main class="zine">
+    <section class="page-a">Huge Cover</section>
+    <section class="page-b">Section B</section>
+    <section class="page-c">Section C</section>
+  </main>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:281

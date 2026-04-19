@@ -1,0 +1,29 @@
+---
+id: L4
+name: Full-Bleed Horizontal Rails
+category: layout
+description: Cinematic full-width rails, horizontal scroll narrative
+---
+
+usage_sectors: [cinematic, brand-story, immersive, otel, gayrimenkul]
+forbidden_sectors: [admin-dense]
+
+forbidden_with: []
+
+requires:
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: v2-immersive-3d/rails-full-bleed.html
+    lines: "1-100"
+
+preview_snippet: |
+  <section class="rail" style="height: 100vh; overflow: hidden;">
+    <div class="rail-track" style="display: flex; height: 100%;">
+      <div class="rail-panel" style="min-width: 100vw;">...</div>
+      <div class="rail-panel" style="min-width: 100vw;">...</div>
+    </div>
+  </section>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:275

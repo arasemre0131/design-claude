@@ -1,0 +1,31 @@
+---
+id: TY42
+name: Big Shoulders Display + Inter Tight + JetBrains Mono
+category: typography
+description: Gayrimenkul bold, Big Shoulders condensed + Inter Tight
+display_font: "Big Shoulders Display"
+body_font: "Inter Tight"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [gayrimenkul, real-estate-urban, metropolis, urban-development]
+forbidden_sectors: [luxury-soft, spa]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: templates/09-gayrimenkul/style-b.css
+
+google_fonts: "Big+Shoulders+Display:wght@400..900&family=Inter+Tight:wght@300..700&family=JetBrains+Mono"
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; letter-spacing: -0.01em; }
+    body { font-family: 'Inter Tight'; }
+  </style>
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:172 (gayrimenkul TY42)

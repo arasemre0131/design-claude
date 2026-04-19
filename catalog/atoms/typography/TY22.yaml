@@ -1,0 +1,32 @@
+---
+id: TY22
+name: Basteleur Moonlight + Satoshi + JetBrains Mono
+category: typography
+description: Quirky display, Basteleur Moonlight serif
+display_font: "Basteleur Moonlight"
+body_font: "Satoshi"
+mono_font: "JetBrains Mono"
+---
+
+usage_sectors: [quirky, creative-agency, portfolio-playful, independent-brand]
+forbidden_sectors: [corporate, b2b-serious]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/quirky-display.html
+
+google_fonts: null
+notes: "Basteleur (Velvetyne OSS!) + Satoshi (Fontshare free). Google Fonts alt: Pirata One + DM Sans."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Basteleur Moonlight', serif; }
+    body { font-family: 'Satoshi', sans-serif; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:232

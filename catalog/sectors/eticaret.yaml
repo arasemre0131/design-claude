@@ -1,0 +1,121 @@
+---
+id: eticaret
+name: "E-Ticaret / Retail / Mobilya / Hediyelik"
+version: "1.0"
+updated: "2026-04-19"
+---
+
+# Sektör psikolojisi — Claude design card için
+psychology:
+  - hızlı-keşif
+  - karşılaştırma
+  - güven (ödeme, iade)
+  - sale-urgency
+  - sosyal-kanıt (yorum, yıldız)
+  - akıcı-flow (sepet → checkout friction ↓)
+
+# Kaçınılması gereken (anti-cliché)
+anti_cliche:
+  forbidden_palettes: [PL1]
+  forbidden_typography: [TY1, TY2, TY4, TY8]
+  forbidden_heroes: [HR2]  # split-hero carousel "5-slide" — conversion düşük
+  forbidden_layouts: [K1]  # bento glass morphism — kart okunaklılığı azalır
+  forbidden_patterns: ["hero-carousel-5s-autoplay", "glass-morphism-card", "countdown-timer-fake-urgency"]
+  warning: "Hero carousel 5-slide autoplay CTR < %1 — tek güçlü statik hero daha iyi. Glass morphism kartlarda ürün okunaklılığı azalır, kontrast AA kalmaz. Fake countdown timer (sıfırlanan 'son 2 saat!') güven kırıcı. 'Ürün kartı gridi' T6 yasak — editorial masonry veya bento-no-glass (L3 glass'sız) kullan."
+
+# Repeat-guard context
+existing_projects:
+  - name: "Fatih Bey Mücevher"
+    combo: "H8 + N2 + HR2 + K1 + T6 + ... + TY3 + PL10"
+    note: "E-ticaret ama mücevher sektörüne özel. Genel e-ticarette bu combo kullanılmaz (PL10 cobalt mücevhere özgü)."
+  - name: "ContentFlow AI"
+    combo: "SaaS product, e-ticaret değil"
+    note: "Referans dışı"
+
+# Önerilen pathway ID'leri
+recommended:
+  palettes: [PL29, PL30]        # Slate+Acid neon, Kraft+Burst
+  typography: [TY35, TY36]      # Unbounded + Manrope / Big Shoulders + Public Sans
+  heroes: [HR11, HR14]          # Brochure cover koleksiyon, Feed-style (IG benzeri)
+  layouts: [L8, L3]             # Masonry, Bento-no-glass
+  motion_primitives: [MO4, MO7] # Framer hover morph, View Transitions API
+  kpi: [K2, K3]                 # Band+rules, Stencil stat
+  footer: [FT4, FT7]            # Colophon / Link-heavy mega footer
+
+# 5 Tier bütçe mapping
+budget_tiers:
+  ultra-budget:   # 5-7K TL, 2-3 gün
+    recipe: nextjs-template-swap
+    suitability: "✗"  # e-ticaret 2 gün yetmez — min 10 ürün + ödeme entegre
+  budget:         # 7.5-15K TL, 3-7 gün
+    recipe: wordpress-elementor-motion
+    features: [woocommerce, iyzico, 20-urun, blog, whatsapp]
+    delivery: "3-7 gün"
+    suitability: "⚠"  # WooCommerce mümkün ama yavaş; Shopify daha iyi
+  mid:            # 15-25K TL, 2-3 hafta
+    recipe: next-premium
+    features: [100-urun, admin, iyzico, kampanya, email, stok-yonetimi, wishlist, karsilastirma]
+    delivery: "2-3 hafta"
+    suitability: "✓✓"
+  premium:        # 25-80K TL, 3-5 hafta
+    recipe: next-r3f
+    features: [3d-viewer, ar-try, konfigurator, gaussian-splat, scroll-storytelling]
+    delivery: "3-5 hafta"
+    suitability: "✓✓"  # mobilya / mücevher / otomotiv için ideal
+  enterprise:     # 80K+ TL, 6-12 hafta
+    recipe: next-enterprise-monorepo
+    features: [multi-tenant, b2b-portal, marketplace, wms, erp-entegre, multi-para]
+    delivery: "6-12 hafta"
+    suitability: "✓"  # marketplace (Trendyol tarzı alt-admin) için
+
+# Sektör-spesifik feature katalogu
+feature_modules:
+  core: [urun-katalogu, sepet, checkout, iyzico, admin, stok, kargo-entegre]
+  optional: [wishlist, karsilastirma, kampanya, kupon, loyalty, review, email-newsletter, push]
+  special:
+    - name: "3D ürün viewer (mobilya, ayakkabı, çanta)"
+      tier: "premium"
+      research: "Mobilyacı/3d-demo/research/furniture-3d-ecommerce.md"
+    - name: "AR try (WebXR + Quick Look + Scene Viewer)"
+      tier: "premium"
+      research: "research/webxr-ar-vr-2026.md"
+    - name: "Headless CMS (Sanity / Strapi / Payload)"
+      tier: "mid+"
+      research: "research/headless-cms-payload-sanity-strapi-2026.md"
+
+# Research dosyası pointer
+research_refs:
+  primary:
+    - Mobilyacı/3d-demo/research/ecommerce-supabase-payment-turkey-2026.md
+    - Mobilyacı/3d-demo/research/iyzico-analiz.md
+    - Mobilyacı/3d-demo/research/checkout-analiz.md
+  secondary:
+    - Mobilyacı/3d-demo/research/sitemap-robots-structured-data-seo-2026.md  # Product JSON-LD
+    - Mobilyacı/3d-demo/research/kampanya-analiz.md
+    - Mobilyacı/3d-demo/research/stok-yonetimi-analiz.md
+    - Mobilyacı/3d-demo/research/favori-sistem-tasarim.md
+    - Mobilyacı/3d-demo/research/karsilastirma-tasarim.md
+    - Mobilyacı/3d-demo/research/email-analiz.md
+  templates:
+    - research/design-claude/templates/SECTOR-RESEARCH.md#eticaret
+
+# 2026 trend uyumu
+trends_2026:
+  kinetic_typography: yes        # sale/campaign CTA'larda OK
+  bento_2_0: yes                 # kategori + featured ürün asymmetric
+  maximalism: yes                # Liquid Death, Spotify Wrapped tarzı — genç markalar
+  3d_spline: yes                 # Tier 3+ çok değerli
+  scroll_triggered_3d: yes
+
+# Scaffolder için çıktı notları
+scaffold_hints:
+  font_test_required: ["ı", "İ", "ğ", "ş", "ç", "ö", "ü", "Ç", "Ö", "Ü", "Ş"]
+  mobile_breakpoint: [375, 768, 1280]
+  product_card: "1:1 kare, hover alternate angle, quick-add cart, favorile kalp"
+  product_gallery: "L8 masonry 3-col desktop, 2-col mobile (tap-to-expand)"
+  primary_cta: "Sepete Ekle"
+  secondary_cta: "Favorilere Ekle"
+  checkout_flow: "Sepet → bilgi → ödeme → onay (4 adım, progress bar, guest checkout)"
+  performance_critical: "LCP < 2.5s (product page hero), INP < 200ms (add-to-cart)"
+  schema: "Product + Offer + AggregateRating + BreadcrumbList JSON-LD"
+  mobile_critical: "Sticky 'Sepete Ekle' bottom bar (ürün detay)"

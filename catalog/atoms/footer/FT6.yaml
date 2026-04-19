@@ -1,0 +1,42 @@
+---
+id: FT6
+name: Signature Block (engineering title block)
+category: footer
+description: Engineering title block, DESIGNED BY / PROJ# / DATE
+---
+
+usage_sectors: [engineering, architecture, industrial, insaat, technical]
+forbidden_sectors: [eticaret, spa, mucevher-soft]
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY11, TY15, TY26]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/c-hybrid/index.html
+    lines: "381-395"
+  - file: v2-blueprint/footer-sig.html
+    lines: "1-60"
+
+variants:
+  - name: 4-cell-titleblock
+    visual: "DESIGNED BY · DATE · SCALE · PROJ# 4 hücre"
+  - name: approved-stamp
+    visual: "Sağ alt köşede APPROVED ⊡ stamp"
+
+preview_snippet: |
+  <footer class="sig-block">
+    <div class="cell"><span>DESIGNED BY</span><strong>PARALLEL STUDIO</strong></div>
+    <div class="cell"><span>PROJECT</span><strong>KYR-2026-047</strong></div>
+    <div class="cell"><span>DATE</span><strong>2026.04.19</strong></div>
+    <div class="cell"><span>SCALE</span><strong>1:200</strong></div>
+  </footer>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:199-199
+  - ULTRAPLAN.md:785 (atom 47 Signature-Block-FT6)

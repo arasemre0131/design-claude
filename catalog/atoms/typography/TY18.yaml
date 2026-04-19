@@ -1,0 +1,31 @@
+---
+id: TY18
+name: Söhne Breit + Söhne + Söhne Mono
+category: typography
+description: Swiss modern, Söhne family (Klim Type Foundry premium)
+display_font: "Söhne Breit"
+body_font: "Söhne"
+mono_font: "Söhne Mono"
+---
+
+usage_sectors: [swiss-modern, agency-premium, editorial, publishing]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: mockups/swiss-modern.html
+
+google_fonts: null
+notes: "Söhne premium (Klim). Google Fonts alt: Inter Tight (yakın ruh)."
+
+preview_snippet: |
+  <style>
+    h1 { font-family: 'Söhne Breit', 'Inter Tight', sans-serif; font-weight: 700; }
+  </style>
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:228

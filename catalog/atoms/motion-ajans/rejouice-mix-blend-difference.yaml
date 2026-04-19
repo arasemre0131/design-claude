@@ -1,0 +1,35 @@
+---
+id: rejouice-mix-blend-difference
+name: mix-blend-mode difference Header (REJOUICE imza)
+category: motion-ajans
+description: Sticky header mix-blend-mode:difference auto contrast
+license: MIT-safe rewrite (CSS pattern pure, özgün değil)
+source: REJOUICE (rejouice.com)
+source_file: rejouice CSS
+---
+
+usage_sectors: [brutalist, agency, maximalist, editorial-bold]
+forbidden_sectors: [fine-typography-small]
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+reference_impl:
+  - file: SCRAPED-STACKS-2026.md
+    lines: "228-234"
+  - file: templates/14-ultra/index.html
+    lines: "104-108"
+
+preview_snippet: |
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    mix-blend-mode: difference;
+    color: white;  /* dark section'da beyaz kalır, light section'da siyah olur */
+  }
+
+research_refs:
+  - ULTRAPLAN.md:756 (atom 18 Blend-Mode-Difference-Header)

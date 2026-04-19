@@ -1,0 +1,32 @@
+---
+id: PL11
+name: Tobacco + Clay
+category: palette
+description: Tobacco dark + tan + sienna, leather goods
+bg: "#2A1F14"
+accent: "#D9A066 tan"
+ikincil: "#A0522D sienna"
+ink: "#F5F1E8"
+---
+
+usage_sectors: [leather-goods, luxury-craft, artisan-workshop, atelier-rustic]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  libraries: []
+
+wcag_pairs:
+  - "bg #2A1F14 × tan #D9A066 = 7.4:1 (AAA)"
+
+preview_snippet: |
+  :root {
+    --bg: #2A1F14;
+    --tan: #D9A066;
+    --sienna: #A0522D;
+    --ink: #F5F1E8;
+  }
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:253

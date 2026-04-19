@@ -1,0 +1,45 @@
+---
+id: N2
+name: Horizontal Tabs Underline
+category: nav
+description: Üstte yatay, aktif underline kayan (FLIP animation)
+---
+
+usage_sectors: [docs, content-site, blog, portfolio, marketing]
+forbidden_sectors: []
+
+forbidden_with: []
+
+requires:
+  typography: [TY5, TY7, TY9, TY14]
+  motion: [MO4, MO7]
+  libraries: []
+
+reference_impl:
+  - file: templates/14-ultra/index.html
+    lines: "116-118"
+    note: nav a underline hover pattern
+  - file: mockups/b-editorial/index.html
+    lines: "80-110"
+
+variants:
+  - name: underline-fill
+    visual: "Aktif sekme altında solid bar"
+  - name: underline-slide-flip
+    visual: "GSAP Flip ile bar kayıyor"
+  - name: dot-indicator
+    visual: "Underline yerine ortada küçük ● dot"
+
+preview_snippet: |
+  <nav class="tabs">
+    <a class="active" data-tab>Ana Sayfa</a>
+    <a data-tab>Projeler</a>
+    <a data-tab>Ekip</a>
+    <a data-tab>Iletisim</a>
+    <span class="underline-bar"></span>
+  </nav>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:46-46

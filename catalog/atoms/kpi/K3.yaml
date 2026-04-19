@@ -1,0 +1,50 @@
+---
+id: K3
+name: Chip Row Colored Blocks
+category: kpi
+description: Renkli blok şerit yan yana (hazard ton + ink + cream) — industrial stripe
+---
+
+usage_sectors: [insaat, industrial, neobrutalist, bold-retail, data-ops]
+forbidden_sectors: [mucevher, spa, klinik]
+
+forbidden_with: []
+
+requires:
+  typography: [TY6, TY11, TY26]
+  motion: [MO4, MO10]
+  libraries: []
+
+reference_impl:
+  - file: templates/01-insaat/index.html
+    lines: "260-320"
+    note: Hazard chip row
+  - file: v2-neobrutalist/chip-kpi.html
+    lines: "1-80"
+
+variants:
+  - name: 3-block-split
+    visual: "3 büyük renkli blok, her biri %33"
+  - name: 4-block-chips
+    visual: "4 küçük chip"
+  - name: hazard-accent-one
+    visual: "Sadece 1 tanesi hazard sarı accent"
+
+preview_snippet: |
+  <div class="chip-row">
+    <div class="chip c-hazard"><strong>1247</strong><span>Aktif Proje</span></div>
+    <div class="chip c-ink"><strong>98%</strong><span>Teslim Oranı</span></div>
+    <div class="chip c-cream"><strong>24/7</strong><span>Saha Destek</span></div>
+  </div>
+  <style>
+    .chip-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .chip { padding: 32px; }
+    .c-hazard { background: #F5C400; color: #111; }
+    .c-ink { background: #111; color: #F5F1E8; }
+    .c-cream { background: #F5F1E8; color: #111; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:85-85

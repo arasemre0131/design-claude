@@ -1,0 +1,48 @@
+---
+id: HR5
+name: Sign Board / Poster Rotated
+category: hero
+description: Hazard/construction sign, hafif rotate, chunky typography
+---
+
+usage_sectors: [insaat, construction, events, neobrutalist, industrial]
+forbidden_sectors: [mucevher, spa, klinik]
+
+forbidden_with: []
+
+requires:
+  typography: [TY6, TY11, TY26]
+  motion: [MO10, MO4]
+  libraries: []
+
+reference_impl:
+  - file: templates/01-insaat/index.html
+    lines: "90-180"
+  - file: v2-neobrutalist/hero-sign.html
+    lines: "1-100"
+
+variants:
+  - name: tilted-2deg
+    visual: "Hafif -2deg rotate, yolunmuş sticker feel"
+  - name: yellow-hazard-frame
+    visual: "Siyah-sarı hazard border"
+  - name: stencil-spray
+    visual: "Stardos Stencil font + spray texture"
+
+preview_snippet: |
+  <section class="hero-sign">
+    <div class="sign-board">
+      <div class="sign-head">⚠ ACTIVE SITE</div>
+      <h1>KAYA YAPI</h1>
+      <div class="sign-sub">Since 1987 · Licence No: 47-129</div>
+    </div>
+  </section>
+  <style>
+    .sign-board { transform: rotate(-1.5deg); border: 8px solid #111; background: #F5C400; padding: 40px 60px; font-family: 'Archivo Black'; }
+  </style>
+
+tailwind_tokens: []
+
+research_refs:
+  - templates/SECTOR-RESEARCH.md:9-26 (inşaat)
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:66-66

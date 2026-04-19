@@ -1,0 +1,38 @@
+---
+id: C3
+name: Email Inline Threaded
+category: chat
+description: Gmail conversation view, nested thread, collapsed prior messages
+---
+
+usage_sectors: [email-client, crm, helpdesk]
+forbidden_sectors: [fast-chat, gaming]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4, MO9]
+  libraries: []
+
+reference_impl:
+  - file: mockups/gmail-thread.html
+    lines: "1-120"
+
+variants:
+  - name: collapsed-prior
+    visual: "Eski mesajlar collapsed, son 2 open"
+  - name: quoted-reply
+    visual: "Quoted reply > indent"
+
+preview_snippet: |
+  <article class="email-thread">
+    <header><strong>Re: Teklif</strong><span>3 mesaj</span></header>
+    <details><summary>Fatih B. · 15 Nis 10:32</summary><p>Teklifi gördüm...</p></details>
+    <details open><summary>Emre A. · 15 Nis 14:18</summary><p>Detayları maile iliştirdim...</p></details>
+  </article>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:136-136

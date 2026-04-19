@@ -1,0 +1,41 @@
+---
+id: HR14
+name: Receipt-Strip Zero-Hero
+category: hero
+description: Hero yok, direkt dense list/feed (zero-scroll), inbox/activity first
+---
+
+usage_sectors: [inbox, activity-feed, eticaret-power, admin-ops, log-viewer]
+forbidden_sectors: [mucevher, restoran, spa, otel]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY15, TY20]
+  motion: [MO10]
+  libraries: []
+
+reference_impl:
+  - file: insaat-crm/b-edge/index.html
+    lines: "254-291"
+    note: Receipt-strip dashed feed
+  - file: mockups/superhuman-zero-hero.html
+    lines: "1-80"
+
+variants:
+  - name: dense-receipt-list
+    visual: "10+ satır dashed row, ink mono"
+  - name: virtualized-feed
+    visual: "Scroll to load, virtualized, 60fps"
+
+preview_snippet: |
+  <section class="hero-feed">
+    <div class="feed-line"><span>14:32</span><span>KADIKOY #047</span><span class="status">HAZIR</span></div>
+    <div class="feed-line"><span>14:21</span><span>USKUDAR #046</span><span class="status ok">TESLIM</span></div>
+    <div class="feed-line"><span>14:08</span><span>BESIKTAS #045</span><span class="status warn">GECIKTI</span></div>
+  </section>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:75-75

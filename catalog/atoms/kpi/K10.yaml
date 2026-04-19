@@ -1,0 +1,44 @@
+---
+id: K10
+name: Kinetic Counter Marquee
+category: kpi
+description: Sürekli kayan büyük sayılar, live feed, data-ops/trading
+---
+
+usage_sectors: [data-ops, trading, live-dashboard, news, crypto]
+forbidden_sectors: [mucevher-static, spa, editorial-print]
+
+forbidden_with: []
+
+requires:
+  typography: [TY7, TY11, TY14]
+  motion: [MO1, MO2, MO6]
+  libraries: ["gsap", "lenis"]
+
+reference_impl:
+  - file: v2-kinetic-data/index.html
+    lines: "180-280"
+    note: Kinetic counter marquee + live feed
+
+variants:
+  - name: large-counting-number
+    visual: "Büyük sayı sürekli +1 sayıyor"
+  - name: marquee-stream
+    visual: "Horizontal scrolling live value stream"
+  - name: flip-odometer
+    visual: "Odometre tarzı per-digit flip animation"
+
+preview_snippet: |
+  <div class="kpi-kinetic">
+    <div class="counter" data-target="47283">00000</div>
+    <div class="lbl">Aktif işlem — son 24 saat</div>
+    <div class="stream">▲ 127 ▲ 298 ▲ 412 ▼ 88 ▲ 541 ▲ 672</div>
+  </div>
+  <script>
+    // gsap counter animate to data-target
+  </script>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:92-92

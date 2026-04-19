@@ -1,0 +1,37 @@
+---
+id: F4
+name: Inline Edit (click-to-edit)
+category: form
+description: Click-to-edit, form yok, direct field edit
+---
+
+usage_sectors: [admin-dense, spreadsheet, cms, content-editor]
+forbidden_sectors: [complex-validation-form]
+
+forbidden_with: []
+
+requires:
+  typography: [TY14, TY16]
+  motion: [MO4]
+  libraries: []
+
+reference_impl:
+  - file: mockups/inline-edit-linear.html
+    lines: "1-80"
+
+variants:
+  - name: hover-reveal-icon
+    visual: "Hover'da ✎ icon görünür"
+  - name: keyboard-escape-blur
+    visual: "Esc cancel, Enter/blur save"
+
+preview_snippet: |
+  <div class="row">
+    <span class="label">Ad</span>
+    <span class="field" contenteditable data-save="/api/client/47/name">Ayşe Kaya</span>
+  </div>
+
+tailwind_tokens: []
+
+research_refs:
+  - mevcut pipeline ve techstack/DESIGN-PATHWAYS.md:169-169

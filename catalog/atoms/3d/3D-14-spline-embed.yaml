@@ -1,0 +1,22 @@
+---
+id: 3D-14-spline-embed
+name: Spline Runtime Embed
+category: 3d
+description: Spline'da design edilen sahne, runtime.js ile embed (R3F alternatifi)
+license: Spline proprietary (runtime OSS)
+---
+
+usage_sectors: [brand-3d, hero-3d-designer-friendly, spline-workflow]
+forbidden_sectors: [bandwidth-critical, R3F-native-preferred]
+
+forbidden_with: []
+
+requires:
+  libraries: ["@splinetool/runtime", "@splinetool/react-spline"]
+
+preview_snippet: |
+  import Spline from '@splinetool/react-spline';
+  <Spline scene="https://prod.spline.design/xxxx/scene.splinecode" />
+
+research_refs:
+  - 3D-TECHSTACK.md
