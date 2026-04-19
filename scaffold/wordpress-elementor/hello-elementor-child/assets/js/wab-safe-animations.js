@@ -77,7 +77,8 @@
       smoothTouch: opts.smoothTouch || false,
       touchMultiplier: opts.touchMultiplier || 2,
       easing: opts.easing || function (t) {
-        return Math.min(1, 1.001 - Math.pow(2, -10 * t));
+        // MIT-safe cubic-out easing — NOT wearebrand's exponential signature
+        return 1 - Math.pow(1 - t, 3);
       }
     });
 

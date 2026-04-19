@@ -1,0 +1,3811 @@
+{
+  "directory": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src",
+  "files_analyzed": 68,
+  "average_score": 92.8,
+  "overall_grade": "A",
+  "total_code_smells": 242,
+  "total_solid_violations": 1,
+  "files": [
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\interaction\\FavoriteList.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 182,
+          "code": 145,
+          "blank": 23,
+          "comment": 14
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 4.7
+      },
+      "quality_score": 60,
+      "grade": "D",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'useFavorites' has 58 lines (max: 50)",
+          "location": "useFavorites"
+        },
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'FavoriteList' has 56 lines (max: 50)",
+          "location": "FavoriteList"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 91"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 92"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 93"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 94"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 100"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 131"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 136"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 600 should be a named constant",
+          "location": "line 139"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 140"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 152"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 162"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 165"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 166"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 168"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 172"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useFavorites",
+          "parameters": 0,
+          "lines": 58,
+          "complexity": 6
+        },
+        {
+          "name": "FavoriteButton",
+          "parameters": 0,
+          "lines": 43,
+          "complexity": 5
+        },
+        {
+          "name": "FavoriteList",
+          "parameters": 0,
+          "lines": 56,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\interaction\\EmailThreaded.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 167,
+          "code": 138,
+          "blank": 17,
+          "comment": 12
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 67,
+      "grade": "D",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'EmailThreaded' has 75 lines (max: 50)",
+          "location": "EmailThreaded"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 68"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 73"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 76"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 84"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 96"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 97"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 111"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 135"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 140"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 142"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 147"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 153"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 160"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 161"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "EmailThreaded",
+          "parameters": 0,
+          "lines": 75,
+          "complexity": 2
+        },
+        {
+          "name": "ThreadedItem",
+          "parameters": 0,
+          "lines": 45,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\interaction\\WizardSteps.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 173,
+          "code": 146,
+          "blank": 14,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 9.0
+      },
+      "quality_score": 67,
+      "grade": "D",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'WizardSteps' has 62 lines (max: 50)",
+          "location": "WizardSteps"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 73"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 94"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 95"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 700 should be a named constant",
+          "location": "line 96"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 105"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 113"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 123"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 129"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 131"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 141"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 147"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 700 should be a named constant",
+          "location": "line 153"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 154"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 164"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "WizardSteps",
+          "parameters": 0,
+          "lines": 62,
+          "complexity": 9
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\wab-safe-animations.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 392,
+          "code": 304,
+          "blank": 36,
+          "comment": 52
+        },
+        "functions": 7,
+        "classes": 0,
+        "avg_complexity": 5.4
+      },
+      "quality_score": 71,
+      "grade": "C",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'blurReveal' has 51 lines (max: 50)",
+          "location": "blurReveal"
+        },
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'magneticHover' has 66 lines (max: 50)",
+          "location": "magneticHover"
+        },
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'wabSplit' has 61 lines (max: 50)",
+          "location": "wabSplit"
+        },
+        {
+          "type": "high_complexity",
+          "severity": "medium",
+          "message": "Function 'wabSplit' has complexity 17 (max: 10)",
+          "location": "wabSplit"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 707 should be a named constant",
+          "location": "line 77"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1000 should be a named constant",
+          "location": "line 104"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 148 should be a named constant",
+          "location": "line 122"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 738 should be a named constant",
+          "location": "line 174"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 991 should be a named constant",
+          "location": "line 200"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 000 should be a named constant",
+          "location": "line 243"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 276 should be a named constant",
+          "location": "line 263"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "createLenisGsapBridge",
+          "parameters": 0,
+          "lines": 43,
+          "complexity": 3
+        },
+        {
+          "name": "blurReveal",
+          "parameters": 0,
+          "lines": 51,
+          "complexity": 3
+        },
+        {
+          "name": "that",
+          "parameters": 0,
+          "lines": 3,
+          "complexity": 1
+        },
+        {
+          "name": "magneticHover",
+          "parameters": 0,
+          "lines": 66,
+          "complexity": 6
+        },
+        {
+          "name": "maskYReveal",
+          "parameters": 0,
+          "lines": 23,
+          "complexity": 2
+        },
+        {
+          "name": "themeScrollSwitch",
+          "parameters": 0,
+          "lines": 39,
+          "complexity": 6
+        },
+        {
+          "name": "wabSplit",
+          "parameters": 0,
+          "lines": 61,
+          "complexity": 17
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroInteractiveMap.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 168,
+          "code": 153,
+          "blank": 14,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 71,
+      "grade": "C",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroInteractiveMap' has 68 lines (max: 50)",
+          "location": "HeroInteractiveMap"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 180 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 20"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 21"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 92"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 101"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 102"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 106"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 118"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 300 should be a named constant",
+          "location": "line 143"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 125 should be a named constant",
+          "location": "line 145"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 154"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 155"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroInteractiveMap",
+          "parameters": 0,
+          "lines": 68,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroVideoFullBleed.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 169,
+          "code": 155,
+          "blank": 11,
+          "comment": 3
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 77,
+      "grade": "C",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroVideoFullBleed' has 78 lines (max: 50)",
+          "location": "HeroVideoFullBleed"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 130 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2026 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1000 should be a named constant",
+          "location": "line 96"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 97"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1000 should be a named constant",
+          "location": "line 110"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 111"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 124"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 125"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 157"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroVideoFullBleed",
+          "parameters": 0,
+          "lines": 78,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\ClipPathReveal.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 114,
+          "code": 88,
+          "blank": 12,
+          "comment": 14
+        },
+        "functions": 1,
+        "classes": 1,
+        "avg_complexity": 7.0
+      },
+      "quality_score": 82,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'ClipPathReveal' has 58 lines (max: 50)",
+          "location": "ClipPathReveal"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 40"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 41"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 44"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 45"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 48"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 49"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 52"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 53"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1400 should be a named constant",
+          "location": "line 62"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ClipPathReveal",
+          "parameters": 0,
+          "lines": 58,
+          "complexity": 7
+        }
+      ],
+      "class_details": [
+        {
+          "name": "toggle",
+          "methods": 4,
+          "lines": 106
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroZeroReceipt.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 116,
+          "code": 106,
+          "blank": 9,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 83,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroZeroReceipt' has 55 lines (max: 50)",
+          "location": "HeroZeroReceipt"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 254 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 047 should be a named constant",
+          "location": "line 20"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 42"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 43"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 44"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 71"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroZeroReceipt",
+          "parameters": 0,
+          "lines": 55,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\DenseTable.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 291,
+          "code": 246,
+          "blank": 17,
+          "comment": 28
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 16.0
+      },
+      "quality_score": 84,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'DenseTable' has 66 lines (max: 50)",
+          "location": "DenseTable"
+        },
+        {
+          "type": "high_complexity",
+          "severity": "medium",
+          "message": "Function 'DenseTable' has complexity 16 (max: 10)",
+          "location": "DenseTable"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 480 should be a named constant",
+          "location": "line 47"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 480 should be a named constant",
+          "location": "line 62"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 206"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "DenseTable",
+          "parameters": 0,
+          "lines": 66,
+          "complexity": 16
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\interaction\\InlineExpand.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 100,
+          "code": 80,
+          "blank": 9,
+          "comment": 11
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 84,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'InlineExpand' has 58 lines (max: 50)",
+          "location": "InlineExpand"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 54"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 900 should be a named constant",
+          "location": "line 66"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 67"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 74"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 180 should be a named constant",
+          "location": "line 75"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 86"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 87"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 300 should be a named constant",
+          "location": "line 91"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "InlineExpand",
+          "parameters": 0,
+          "lines": 58,
+          "complexity": 4
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\MagneticButton.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 112,
+          "code": 96,
+          "blank": 13,
+          "comment": 3
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 12.0
+      },
+      "quality_score": 84,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'MagneticButton' has 67 lines (max: 50)",
+          "location": "MagneticButton"
+        },
+        {
+          "type": "high_complexity",
+          "severity": "medium",
+          "message": "Function 'MagneticButton' has complexity 12 (max: 10)",
+          "location": "MagneticButton"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 738 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 536 should be a named constant",
+          "location": "line 7"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 120 should be a named constant",
+          "location": "line 31"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "MagneticButton",
+          "parameters": 0,
+          "lines": 67,
+          "complexity": 12
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroKineticSerif.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 139,
+          "code": 123,
+          "blank": 13,
+          "comment": 3
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 8.0
+      },
+      "quality_score": 85,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroKineticSerif' has 65 lines (max: 50)",
+          "location": "HeroKineticSerif"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 612 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 150 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 110 should be a named constant",
+          "location": "line 10"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2016 should be a named constant",
+          "location": "line 29"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 110 should be a named constant",
+          "location": "line 64"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroKineticSerif",
+          "parameters": 0,
+          "lines": 65,
+          "complexity": 8
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroMaximalistOverlap.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 137,
+          "code": 126,
+          "blank": 10,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 85,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroMaximalistOverlap' has 64 lines (max: 50)",
+          "location": "HeroMaximalistOverlap"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 572 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2026 should be a named constant",
+          "location": "line 33"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 81"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111 should be a named constant",
+          "location": "line 84"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111 should be a named constant",
+          "location": "line 108"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroMaximalistOverlap",
+          "parameters": 0,
+          "lines": 64,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroQAConversational.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 130,
+          "code": 116,
+          "blank": 13,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 3.0
+      },
+      "quality_score": 87,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroQAConversational' has 65 lines (max: 50)",
+          "location": "HeroQAConversational"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 180 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 69"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 84"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 100"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroQAConversational",
+          "parameters": 0,
+          "lines": 65,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroSignBoardRotated.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 113,
+          "code": 103,
+          "blank": 9,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 8.0
+      },
+      "quality_score": 87,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroSignBoardRotated' has 64 lines (max: 50)",
+          "location": "HeroSignBoardRotated"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 180 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111 should be a named constant",
+          "location": "line 49"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111 should be a named constant",
+          "location": "line 57"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111 should be a named constant",
+          "location": "line 70"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroSignBoardRotated",
+          "parameters": 0,
+          "lines": 64,
+          "complexity": 8
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\VariableFontOpsz.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 100,
+          "code": 85,
+          "blank": 11,
+          "comment": 4
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 87,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'VariableFontOpsz' has 70 lines (max: 50)",
+          "location": "VariableFontOpsz"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 586 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 144 should be a named constant",
+          "location": "line 8"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 144 should be a named constant",
+          "location": "line 35"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 37"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "VariableFontOpsz",
+          "parameters": 0,
+          "lines": 70,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\PresetRenderer.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 383,
+          "code": 334,
+          "blank": 24,
+          "comment": 25
+        },
+        "functions": 5,
+        "classes": 0,
+        "avg_complexity": 3.6
+      },
+      "quality_score": 88,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'PresetRenderer' has 93 lines (max: 50)",
+          "location": "PresetRenderer"
+        },
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'DebugGallery' has 159 lines (max: 50)",
+          "location": "DebugGallery"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 600 should be a named constant",
+          "location": "line 101"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "PresetRenderer",
+          "parameters": 0,
+          "lines": 93,
+          "complexity": 8
+        },
+        {
+          "name": "DebugGallery",
+          "parameters": 0,
+          "lines": 159,
+          "complexity": 1
+        },
+        {
+          "name": "safeLoad",
+          "parameters": 0,
+          "lines": 9,
+          "complexity": 2
+        },
+        {
+          "name": "firstOf",
+          "parameters": 0,
+          "lines": 6,
+          "complexity": 2
+        },
+        {
+          "name": "expandAtomEntries",
+          "parameters": 0,
+          "lines": 30,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\TextPathBendMarquee.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 92,
+          "code": 67,
+          "blank": 6,
+          "comment": 19
+        },
+        "functions": 1,
+        "classes": 1,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 88,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'TextPathBendMarquee' has 57 lines (max: 50)",
+          "location": "TextPathBendMarquee"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 22"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 40"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 120 should be a named constant",
+          "location": "line 41"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1600 should be a named constant",
+          "location": "line 44"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 700 should be a named constant",
+          "location": "line 68"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 77"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "TextPathBendMarquee",
+          "parameters": 0,
+          "lines": 57,
+          "complexity": 1
+        }
+      ],
+      "class_details": [
+        {
+          "name": "ile",
+          "methods": 1,
+          "lines": 83
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroImmersive3D.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 152,
+          "code": 140,
+          "blank": 10,
+          "comment": 2
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 89,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroImmersive3D' has 62 lines (max: 50)",
+          "location": "HeroImmersive3D"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2026 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 180 should be a named constant",
+          "location": "line 70"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ScrollCamera",
+          "parameters": 0,
+          "lines": 24,
+          "complexity": 2
+        },
+        {
+          "name": "DefaultScene",
+          "parameters": 0,
+          "lines": 18,
+          "complexity": 2
+        },
+        {
+          "name": "HeroImmersive3D",
+          "parameters": 0,
+          "lines": 62,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\LenisProvider.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 127,
+          "code": 105,
+          "blank": 15,
+          "comment": 7
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 89,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'LenisProvider' has 71 lines (max: 50)",
+          "location": "LenisProvider"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 707 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 492 should be a named constant",
+          "location": "line 7"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1000 should be a named constant",
+          "location": "line 92"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "LenisProvider",
+          "parameters": 0,
+          "lines": 71,
+          "complexity": 9
+        },
+        {
+          "name": "useLenis",
+          "parameters": 0,
+          "lines": 4,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\ScrollTriggerProvider.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 104,
+          "code": 83,
+          "blank": 12,
+          "comment": 9
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 9.0
+      },
+      "quality_score": 89,
+      "grade": "B",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'ScrollTriggerProvider' has 69 lines (max: 50)",
+          "location": "ScrollTriggerProvider"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 488 should be a named constant",
+          "location": "line 5"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 35"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 120 should be a named constant",
+          "location": "line 92"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ScrollTriggerProvider",
+          "parameters": 0,
+          "lines": 69,
+          "complexity": 9
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\SidebarRail.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 117,
+          "code": 96,
+          "blank": 8,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 90,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'SidebarRail' has 55 lines (max: 50)",
+          "location": "SidebarRail"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 240 should be a named constant",
+          "location": "line 37"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 240 should be a named constant",
+          "location": "line 46"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 86"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 87"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 98"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "SidebarRail",
+          "parameters": 0,
+          "lines": 55,
+          "complexity": 4
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\MegaNav.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 111,
+          "code": 93,
+          "blank": 9,
+          "comment": 9
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 3.0
+      },
+      "quality_score": 91,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'MegaNav' has 55 lines (max: 50)",
+          "location": "MegaNav"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 61"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 90"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "MegaNav",
+          "parameters": 0,
+          "lines": 55,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\hero\\HeroBrochure.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 105,
+          "code": 96,
+          "blank": 8,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 91,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'HeroBrochure' has 68 lines (max: 50)",
+          "location": "HeroBrochure"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2026 should be a named constant",
+          "location": "line 29"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 500 should be a named constant",
+          "location": "line 76"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HeroBrochure",
+          "parameters": 0,
+          "lines": 68,
+          "complexity": 4
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\BlurReveal.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 112,
+          "code": 97,
+          "blank": 13,
+          "comment": 2
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 6.0
+      },
+      "quality_score": 91,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'BlurReveal' has 67 lines (max: 50)",
+          "location": "BlurReveal"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 148 should be a named constant",
+          "location": "line 6"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 612 should be a named constant",
+          "location": "line 7"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "BlurReveal",
+          "parameters": 0,
+          "lines": 67,
+          "complexity": 6
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\motion\\ScrambleText.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 119,
+          "code": 103,
+          "blank": 15,
+          "comment": 1
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 9.0
+      },
+      "quality_score": 91,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'ScrambleText' has 64 lines (max: 50)",
+          "location": "ScrambleText"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2024 should be a named constant",
+          "location": "line 2"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 597 should be a named constant",
+          "location": "line 5"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ScrambleText",
+          "parameters": 0,
+          "lines": 64,
+          "complexity": 9
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\Gallery\\PresetCard.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 80,
+          "code": 73,
+          "blank": 7,
+          "comment": 0
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 93,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'PresetCard' has 58 lines (max: 50)",
+          "location": "PresetCard"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 300 should be a named constant",
+          "location": "line 20"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "PresetCard",
+          "parameters": 0,
+          "lines": 58,
+          "complexity": 4
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\3d\\MeshTransmissionViewer.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 116,
+          "code": 88,
+          "blank": 11,
+          "comment": 17
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 3.0
+      },
+      "quality_score": 94,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'MeshTransmissionViewer' has 62 lines (max: 50)",
+          "location": "MeshTransmissionViewer"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 83"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 300 should be a named constant",
+          "location": "line 84"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 512 should be a named constant",
+          "location": "line 98"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "MeshTransmissionViewer",
+          "parameters": 0,
+          "lines": 62,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\MasonryGallery.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 85,
+          "code": 70,
+          "blank": 7,
+          "comment": 8
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 3.0
+      },
+      "quality_score": 95,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'MasonryGallery' has 55 lines (max: 50)",
+          "location": "MasonryGallery"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "MasonryGallery",
+          "parameters": 0,
+          "lines": 55,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\3d\\CrystalScene.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 163,
+          "code": 127,
+          "blank": 14,
+          "comment": 22
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 9.0
+      },
+      "quality_score": 96,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'CrystalScene' has 62 lines (max: 50)",
+          "location": "CrystalScene"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 31"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 44"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "CrystalScene",
+          "parameters": 0,
+          "lines": 62,
+          "complexity": 9
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\MastheadCentered.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 100,
+          "code": 79,
+          "blank": 11,
+          "comment": 10
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 96,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'MastheadCentered' has 64 lines (max: 50)",
+          "location": "MastheadCentered"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 144 should be a named constant",
+          "location": "line 63"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 90"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "MastheadCentered",
+          "parameters": 0,
+          "lines": 64,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\PlateHeader.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 113,
+          "code": 90,
+          "blank": 10,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 8.0
+      },
+      "quality_score": 96,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'PlateHeader' has 63 lines (max: 50)",
+          "location": "PlateHeader"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111111 should be a named constant",
+          "location": "line 58"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 111111 should be a named constant",
+          "location": "line 60"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "PlateHeader",
+          "parameters": 0,
+          "lines": 63,
+          "complexity": 8
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\Sparkline.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 132,
+          "code": 103,
+          "blank": 13,
+          "comment": 16
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 96,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'Sparkline' has 78 lines (max: 50)",
+          "location": "Sparkline"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 16"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 120 should be a named constant",
+          "location": "line 60"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "normalize",
+          "parameters": 0,
+          "lines": 15,
+          "complexity": 3
+        },
+        {
+          "name": "Sparkline",
+          "parameters": 0,
+          "lines": 78,
+          "complexity": 7
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\TerminalLog.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 110,
+          "code": 89,
+          "blank": 9,
+          "comment": 12
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 96,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'resolveColor' has 52 lines (max: 50)",
+          "location": "resolveColor"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 320 should be a named constant",
+          "location": "line 33"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 320 should be a named constant",
+          "location": "line 54"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "TerminalLog",
+          "parameters": 0,
+          "lines": 8,
+          "complexity": 1
+        },
+        {
+          "name": "resolveColor",
+          "parameters": 1,
+          "lines": 52,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\interaction\\BottomSheet.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 78,
+          "code": 60,
+          "blank": 7,
+          "comment": 11
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 97,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 950 should be a named constant",
+          "location": "line 49"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 800 should be a named constant",
+          "location": "line 51"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 700 should be a named constant",
+          "location": "line 56"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 66"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "BottomSheet",
+          "parameters": 0,
+          "lines": 48,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\StickySidebarFeed.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 78,
+          "code": 58,
+          "blank": 7,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 97,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 240 should be a named constant",
+          "location": "line 17"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 360 should be a named constant",
+          "location": "line 19"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 240 should be a named constant",
+          "location": "line 34"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 360 should be a named constant",
+          "location": "line 35"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "StickySidebarFeed",
+          "parameters": 0,
+          "lines": 49,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useGSAP.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 84,
+          "code": 56,
+          "blank": 13,
+          "comment": 15
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 14.0
+      },
+      "quality_score": 98,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "high_complexity",
+          "severity": "medium",
+          "message": "Function 'useGSAP' has complexity 14 (max: 10)",
+          "location": "useGSAP"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 34"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useGSAP",
+          "parameters": 0,
+          "lines": 48,
+          "complexity": 14
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\ReceiptStrip.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 118,
+          "code": 97,
+          "blank": 8,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 7.0
+      },
+      "quality_score": 98,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'ReceiptStrip' has 58 lines (max: 50)",
+          "location": "ReceiptStrip"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 047 should be a named constant",
+          "location": "line 14"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ReceiptStrip",
+          "parameters": 0,
+          "lines": 58,
+          "complexity": 7
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useLenis.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 61,
+          "code": 38,
+          "blank": 9,
+          "comment": 14
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useLenis",
+          "parameters": 0,
+          "lines": 32,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useMagneticHover.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 44,
+          "code": 29,
+          "blank": 7,
+          "comment": 8
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useMagneticHover",
+          "parameters": 0,
+          "lines": 19,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useReducedMotion.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 41,
+          "code": 24,
+          "blank": 9,
+          "comment": 8
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useReducedMotion",
+          "parameters": 0,
+          "lines": 27,
+          "complexity": 4
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useScrollTrigger.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 65,
+          "code": 43,
+          "blank": 12,
+          "comment": 10
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 3.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [
+        {
+          "principle": "OCP",
+          "name": "Open/Closed Principle",
+          "severity": "medium",
+          "message": "Found 3 type checks - consider using polymorphism"
+        }
+      ],
+      "function_details": [
+        {
+          "name": "useScrollTrigger",
+          "parameters": 0,
+          "lines": 31,
+          "complexity": 4
+        },
+        {
+          "name": "refreshScrollTrigger",
+          "parameters": 0,
+          "lines": 5,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\hooks\\useWabSplit.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 67,
+          "code": 41,
+          "blank": 12,
+          "comment": 14
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 7.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "useWabSplit",
+          "parameters": 0,
+          "lines": 34,
+          "complexity": 7
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\atom-resolver.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 479,
+          "code": 389,
+          "blank": 44,
+          "comment": 46
+        },
+        "functions": 7,
+        "classes": 0,
+        "avg_complexity": 1.3
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "resolveAtomId",
+          "parameters": 0,
+          "lines": 5,
+          "complexity": 1
+        },
+        {
+          "name": "componentNameForAtom",
+          "parameters": 0,
+          "lines": 10,
+          "complexity": 1
+        },
+        {
+          "name": "resolveAtom",
+          "parameters": 0,
+          "lines": 15,
+          "complexity": 2
+        },
+        {
+          "name": "tryResolveAtom",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 2
+        },
+        {
+          "name": "listAllAtomIds",
+          "parameters": 0,
+          "lines": 6,
+          "complexity": 1
+        },
+        {
+          "name": "registeredAtomIds",
+          "parameters": 0,
+          "lines": 5,
+          "complexity": 1
+        },
+        {
+          "name": "getAtomsByCategory",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\constants.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 170,
+          "code": 135,
+          "blank": 15,
+          "comment": 20
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 375 should be a named constant",
+          "location": "line 140"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "isForbiddenId",
+          "parameters": 0,
+          "lines": 47,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\preset-loader.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 305,
+          "code": 262,
+          "blank": 28,
+          "comment": 15
+        },
+        "functions": 14,
+        "classes": 0,
+        "avg_complexity": 2.3
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'getCatalogRoot' has 103 lines (max: 50)",
+          "location": "getCatalogRoot"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "resolveCatalogRoot",
+          "parameters": 0,
+          "lines": 21,
+          "complexity": 4
+        },
+        {
+          "name": "getCatalogRoot",
+          "parameters": 0,
+          "lines": 103,
+          "complexity": 1
+        },
+        {
+          "name": "parseYamlFrontMatter",
+          "parameters": 0,
+          "lines": 12,
+          "complexity": 2
+        },
+        {
+          "name": "readYaml",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 1
+        },
+        {
+          "name": "loadPreset",
+          "parameters": 0,
+          "lines": 9,
+          "complexity": 2
+        },
+        {
+          "name": "listPresets",
+          "parameters": 0,
+          "lines": 11,
+          "complexity": 3
+        },
+        {
+          "name": "loadAllPresets",
+          "parameters": 0,
+          "lines": 15,
+          "complexity": 2
+        },
+        {
+          "name": "loadPaletteAtom",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 2
+        },
+        {
+          "name": "loadTypographyAtom",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 2
+        },
+        {
+          "name": "loadAtom",
+          "parameters": 0,
+          "lines": 13,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\tailwind-tokens.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 120,
+          "code": 96,
+          "blank": 10,
+          "comment": 14
+        },
+        "functions": 5,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 300 should be a named constant",
+          "location": "line 106"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "generateThemeBlock",
+          "parameters": 0,
+          "lines": 29,
+          "complexity": 1
+        },
+        {
+          "name": "generateInlineTokens",
+          "parameters": 0,
+          "lines": 32,
+          "complexity": 2
+        },
+        {
+          "name": "tokensAsStyle",
+          "parameters": 0,
+          "lines": 23,
+          "complexity": 1
+        },
+        {
+          "name": "buildGoogleFontsUrl",
+          "parameters": 0,
+          "lines": 16,
+          "complexity": 5
+        },
+        {
+          "name": "tokensToCssString",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\utils.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 57,
+          "code": 38,
+          "blank": 9,
+          "comment": 10
+        },
+        "functions": 6,
+        "classes": 2,
+        "avg_complexity": 1.5
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "cn",
+          "parameters": 0,
+          "lines": 10,
+          "complexity": 1
+        },
+        {
+          "name": "prefersReducedMotion",
+          "parameters": 0,
+          "lines": 9,
+          "complexity": 3
+        },
+        {
+          "name": "isBrowser",
+          "parameters": 0,
+          "lines": 9,
+          "complexity": 2
+        },
+        {
+          "name": "hasTurkishChars",
+          "parameters": 0,
+          "lines": 8,
+          "complexity": 1
+        },
+        {
+          "name": "clamp",
+          "parameters": 0,
+          "lines": 8,
+          "complexity": 1
+        },
+        {
+          "name": "lerp",
+          "parameters": 0,
+          "lines": 4,
+          "complexity": 1
+        }
+      ],
+      "class_details": [
+        {
+          "name": "merger",
+          "methods": 0,
+          "lines": 12
+        },
+        {
+          "name": "merger",
+          "methods": 6,
+          "lines": 46
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\index.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 25,
+          "code": 16,
+          "blank": 8,
+          "comment": 1
+        },
+        "functions": 0,
+        "classes": 0,
+        "avg_complexity": 0.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\index.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 16,
+          "code": 10,
+          "blank": 5,
+          "comment": 1
+        },
+        "functions": 0,
+        "classes": 0,
+        "avg_complexity": 0.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\index.ts",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 16,
+          "code": 10,
+          "blank": 5,
+          "comment": 1
+        },
+        "functions": 0,
+        "classes": 0,
+        "avg_complexity": 0.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\lib\\atom-placeholder.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 56,
+          "code": 42,
+          "blank": 7,
+          "comment": 7
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 999 should be a named constant",
+          "location": "line 29"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 333 should be a named constant",
+          "location": "line 30"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "olarak",
+          "parameters": 0,
+          "lines": 3,
+          "complexity": 1
+        },
+        {
+          "name": "createPlaceholder",
+          "parameters": 0,
+          "lines": 7,
+          "complexity": 1
+        },
+        {
+          "name": "Placeholder",
+          "parameters": 0,
+          "lines": 32,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\3d\\GaussianSplatViewer.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 108,
+          "code": 75,
+          "blank": 10,
+          "comment": 23
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 1.5
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 400 should be a named constant",
+          "location": "line 85"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 999 should be a named constant",
+          "location": "line 93"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "GaussianSplatViewer",
+          "parameters": 0,
+          "lines": 40,
+          "complexity": 1
+        },
+        {
+          "name": "SplatLoader",
+          "parameters": 0,
+          "lines": 30,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\3d\\Immersive3DCanvas.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 100,
+          "code": 77,
+          "blank": 7,
+          "comment": 16
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 3.5
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "Immersive3DCanvas",
+          "parameters": 0,
+          "lines": 43,
+          "complexity": 1
+        },
+        {
+          "name": "GPUGate",
+          "parameters": 0,
+          "lines": 24,
+          "complexity": 6
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\3d\\ScrollCameraPath.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 116,
+          "code": 79,
+          "blank": 17,
+          "comment": 20
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ScrollCameraPath",
+          "parameters": 0,
+          "lines": 22,
+          "complexity": 2
+        },
+        {
+          "name": "cleanup",
+          "parameters": 1,
+          "lines": 11,
+          "complexity": 2
+        },
+        {
+          "name": "setCamera",
+          "parameters": 1,
+          "lines": 46,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\CommandPalette.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 132,
+          "code": 105,
+          "blank": 13,
+          "comment": 14
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 2.7
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'down' has 51 lines (max: 50)",
+          "location": "down"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 200 should be a named constant",
+          "location": "line 82"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "CommandPalette",
+          "parameters": 0,
+          "lines": 12,
+          "complexity": 1
+        },
+        {
+          "name": "setOpen",
+          "parameters": 1,
+          "lines": 7,
+          "complexity": 2
+        },
+        {
+          "name": "down",
+          "parameters": 1,
+          "lines": 51,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\ConcreteTexture.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 57,
+          "code": 41,
+          "blank": 6,
+          "comment": 10
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 255 should be a named constant",
+          "location": "line 10"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ConcreteTexture",
+          "parameters": 0,
+          "lines": 29,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\CornerBrackets.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 96,
+          "code": 80,
+          "blank": 5,
+          "comment": 11
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 5.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'CornerBrackets' has 67 lines (max: 50)",
+          "location": "CornerBrackets"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "CornerBrackets",
+          "parameters": 0,
+          "lines": 67,
+          "complexity": 5
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\chrome\\HazardStripe.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 49,
+          "code": 35,
+          "blank": 5,
+          "comment": 9
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "HazardStripe",
+          "parameters": 0,
+          "lines": 21,
+          "complexity": 2
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\Compare\\SplitView.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 45,
+          "code": 42,
+          "blank": 3,
+          "comment": 0
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "SplitView",
+          "parameters": 0,
+          "lines": 30,
+          "complexity": 1
+        },
+        {
+          "name": "EmptyHalf",
+          "parameters": 0,
+          "lines": 11,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\data\\SpecSheet.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 111,
+          "code": 89,
+          "blank": 9,
+          "comment": 13
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 8.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 001 should be a named constant",
+          "location": "line 14"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "SpecSheet",
+          "parameters": 0,
+          "lines": 44,
+          "complexity": 8
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\CanvasTrail.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 121,
+          "code": 83,
+          "blank": 17,
+          "comment": 21
+        },
+        "functions": 4,
+        "classes": 0,
+        "avg_complexity": 2.8
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 232 should be a named constant",
+          "location": "line 38"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 600 should be a named constant",
+          "location": "line 77"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "CanvasTrail",
+          "parameters": 0,
+          "lines": 25,
+          "complexity": 5
+        },
+        {
+          "name": "size",
+          "parameters": 1,
+          "lines": 14,
+          "complexity": 1
+        },
+        {
+          "name": "onMove",
+          "parameters": 1,
+          "lines": 8,
+          "complexity": 2
+        },
+        {
+          "name": "loop",
+          "parameters": 1,
+          "lines": 41,
+          "complexity": 3
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\PortholeDive.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 131,
+          "code": 89,
+          "blank": 16,
+          "comment": 26
+        },
+        "functions": 3,
+        "classes": 0,
+        "avg_complexity": 4.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "long_function",
+          "severity": "medium",
+          "message": "Function 'q' has 58 lines (max: 50)",
+          "location": "q"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1200 should be a named constant",
+          "location": "line 30"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 1200 should be a named constant",
+          "location": "line 47"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "PortholeDive",
+          "parameters": 0,
+          "lines": 23,
+          "complexity": 4
+        },
+        {
+          "name": "cleanup",
+          "parameters": 1,
+          "lines": 8,
+          "complexity": 1
+        },
+        {
+          "name": "q",
+          "parameters": 1,
+          "lines": 58,
+          "complexity": 7
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\SVGGrainOverlay.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 72,
+          "code": 49,
+          "blank": 5,
+          "comment": 18
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2026 should be a named constant",
+          "location": "line 16"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 2000 should be a named constant",
+          "location": "line 54"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "SVGGrainOverlay",
+          "parameters": 0,
+          "lines": 42,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\effects\\ThemeScrollSwitch.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 91,
+          "code": 61,
+          "blank": 13,
+          "comment": 17
+        },
+        "functions": 4,
+        "classes": 2,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "ThemeScrollZone",
+          "parameters": 0,
+          "lines": 15,
+          "complexity": 2
+        },
+        {
+          "name": "cleanup",
+          "parameters": 1,
+          "lines": 8,
+          "complexity": 1
+        },
+        {
+          "name": "add",
+          "parameters": 1,
+          "lines": 5,
+          "complexity": 2
+        },
+        {
+          "name": "remove",
+          "parameters": 1,
+          "lines": 33,
+          "complexity": 3
+        }
+      ],
+      "class_details": [
+        {
+          "name": "toggle",
+          "methods": 0,
+          "lines": 14
+        },
+        {
+          "name": "ad\u0131",
+          "methods": 2,
+          "lines": 69
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\BentoGridAsymmetric.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 92,
+          "code": 70,
+          "blank": 9,
+          "comment": 13
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 2.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 160 should be a named constant",
+          "location": "line 41"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 160 should be a named constant",
+          "location": "line 60"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "resolveSpan",
+          "parameters": 0,
+          "lines": 10,
+          "complexity": 3
+        },
+        {
+          "name": "BentoGridAsymmetric",
+          "parameters": 0,
+          "lines": 36,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\CenterColumnNarrow.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 54,
+          "code": 41,
+          "blank": 4,
+          "comment": 9
+        },
+        "functions": 1,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 780 should be a named constant",
+          "location": "line 12"
+        },
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 780 should be a named constant",
+          "location": "line 25"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "CenterColumnNarrow",
+          "parameters": 0,
+          "lines": 32,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    },
+    {
+      "file": "C:\\Users\\EAS\\Desktop\\armut\\research\\design-claude\\preview-app\\src\\components\\layout\\FullBleedRails.tsx",
+      "language": "typescript",
+      "metrics": {
+        "lines": {
+          "total": 68,
+          "code": 52,
+          "blank": 5,
+          "comment": 11
+        },
+        "functions": 2,
+        "classes": 0,
+        "avg_complexity": 1.0
+      },
+      "quality_score": 100,
+      "grade": "A",
+      "smells": [
+        {
+          "type": "magic_number",
+          "severity": "low",
+          "message": "Magic number 100 should be a named constant",
+          "location": "line 37"
+        }
+      ],
+      "solid_violations": [],
+      "function_details": [
+        {
+          "name": "FullBleedRails",
+          "parameters": 0,
+          "lines": 27,
+          "complexity": 1
+        },
+        {
+          "name": "FullBleedRailSection",
+          "parameters": 0,
+          "lines": 21,
+          "complexity": 1
+        }
+      ],
+      "class_details": []
+    }
+  ]
+}
