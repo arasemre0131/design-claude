@@ -1,0 +1,45 @@
+{
+  "name": "design-claude-preview",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live preset renderer + component gallery for design-claude catalog",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0",
+    "cmdk": "^1.0.4",
+    "@tanstack/react-virtual": "^3.13.0",
+    "lucide-react": "^0.479.0",
+    "vaul": "^1.1.2",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.4",
+    "js-yaml": "^4.1.0",
+    "three": "^0.183.0",
+    "@react-three/fiber": "^9.0.0",
+    "@react-three/drei": "^10.0.0",
+    "sonner": "^1.7.2"
+  },
+  "devDependencies": {
+    "typescript": "6.0.0-beta",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.183.0",
+    "@types/js-yaml": "^4.0.9",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
