@@ -1,0 +1,690 @@
+<!--
+  CONSTRUO · insaat-crm · COMBO C "Hybrid Blueprint + Tobacco"
+  ────────────────────────────────────────────────
+  COMBO:
+    H9 + N5 + HR13 + K12 + P5 + T3 + C3 + CH6 + F5 + M5 + FT6
+    TY14(Big Shoulders Display condensed + Inter Tight + JetBrains Mono)
+       [Monument Extended commercial olduğu için Big Shoulders Display fallback]
+    PL11(Tobacco + Clay) + L6(center single col) + MO1+MO3
+
+  LOCK / YASAK:
+    × Inter (plain) — Inter Tight farklı karakter, izinli
+    × PL1 dark+gold
+    × PL5 blueprint paper (v2-blueprint tekrar)
+    × glassmorphism
+    × italic gradient text
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONSTRUO · C · Tobacco Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;500;700;900&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #F2EADC;
+    --paper-deep: #E5D9C4;
+    --paper-shadow: #CFBF9E;
+    --tobacco: #2A1F14;
+    --tobacco-soft: #4A3826;
+    --tobacco-faint: #7A6650;
+    --clay: #A0522D;
+    --tan: #D9A066;
+    --sienna: #8B3E1B;
+    --line: rgba(42,31,20,0.18);
+    --line-dashed: rgba(42,31,20,0.35);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--paper); color: var(--tobacco); font-family: 'Inter Tight', sans-serif; font-weight: 400; }
+  ::selection { background: var(--clay); color: var(--paper); }
+
+  /* paper texture */
+  body {
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(42,31,20,0.025) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(160,82,45,0.025) 0, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(42,31,20,0.01) 0, transparent 60%);
+  }
+
+  /* H9 — CORNER BRACKETS + TIMESTAMP HEADER */
+  .sheet-container {
+    max-width: 1180px;
+    margin: 30px auto;
+    padding: 0;
+    background: var(--paper);
+    position: relative;
+  }
+  /* 4 corner brackets on whole document */
+  .sheet-container::before, .sheet-container::after {
+    content:''; position: absolute; width: 20px; height: 20px;
+    border-color: var(--tobacco); border-style: solid;
+    pointer-events: none;
+  }
+  .sheet-container::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .sheet-container::after { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .sheet-container .bl, .sheet-container .br { position: absolute; width: 20px; height: 20px; border-color: var(--tobacco); border-style: solid; }
+  .sheet-container .bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .sheet-container .br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  .top-strip {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 44px 14px;
+    font-family: 'JetBrains Mono';
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--tobacco-faint);
+    border-bottom: 1px solid var(--line);
+  }
+  .top-strip .sep { color: var(--clay); }
+  .top-strip .active { color: var(--tobacco); }
+
+  /* N5 command palette (bottom floating) */
+  .cmdk-float {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 18px;
+    background: var(--tobacco); color: var(--paper);
+    font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.12em;
+    z-index: 50; cursor: pointer;
+    box-shadow: 0 10px 40px rgba(42,31,20,0.3);
+  }
+  .cmdk-float:hover { background: var(--clay); }
+  .cmdk-float .kbd {
+    margin-left: 6px;
+    font-size: 10px; padding: 2px 6px;
+    background: var(--paper); color: var(--tobacco);
+  }
+
+  /* Document metadata block (HR13 blueprint title block) */
+  .doc-meta {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    border: 1px solid var(--tobacco);
+    margin: 20px 44px;
+    font-family: 'JetBrains Mono';
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .doc-meta > div {
+    padding: 10px 14px;
+    border-right: 1px solid var(--tobacco);
+  }
+  .doc-meta > div:last-child { border-right: none; }
+  .doc-meta .label { color: var(--tobacco-faint); font-size: 9px; margin-bottom: 3px; display: block; }
+  .doc-meta .val { font-size: 12px; color: var(--tobacco); font-weight: 500; letter-spacing: 0.05em; }
+
+  /* L6 CENTER SINGLE COLUMN */
+  .content {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 44px;
+  }
+
+  /* HEADLINE */
+  .kicker {
+    font-family: 'JetBrains Mono';
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .kicker::before { content:''; width: 36px; height: 1px; background: var(--clay); }
+
+  h1.archive-title {
+    font-family: 'Big Shoulders Display';
+    font-weight: 900;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: var(--tobacco);
+  }
+  h1.archive-title em { font-style: normal; color: var(--clay); font-weight: 700; }
+
+  .deck {
+    margin-top: 24px;
+    font-family: 'Inter Tight';
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--tobacco-soft);
+    max-width: 58ch;
+  }
+  .deck strong { color: var(--tobacco); font-weight: 500; }
+  .deck .clay { color: var(--clay); font-weight: 500; }
+
+  .byline {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 28px;
+    font-family: 'JetBrains Mono';
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--tobacco-faint);
+  }
+  .byline strong { color: var(--tobacco); font-weight: 500; }
+
+  /* K12 COLUMNS CHART AS KPI */
+  .columns-kpi {
+    margin: 60px 0 40px;
+    border-top: 2px solid var(--tobacco);
+    border-bottom: 2px solid var(--tobacco);
+    padding: 32px 0;
+  }
+  .columns-kpi-head {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono';
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--tobacco-faint);
+    margin-bottom: 22px;
+  }
+  .columns-viz {
+    display: flex; align-items: flex-end; gap: 12px; height: 200px;
+    padding: 0 12px;
+    border-bottom: 1.5px solid var(--tobacco);
+  }
+  .col-item { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; }
+  .col-bar {
+    width: 100%; background: var(--tobacco);
+    position: relative;
+    transition: all .3s;
+  }
+  .col-bar.clay { background: var(--clay); }
+  .col-bar.tan { background: var(--tan); border-top: 2px solid var(--clay); }
+  .col-bar:hover { background: var(--sienna); }
+  .col-val {
+    position: absolute; top: -26px; left: 50%; transform: translateX(-50%);
+    font-family: 'Big Shoulders Display'; font-weight: 700;
+    font-size: 18px; letter-spacing: -0.02em;
+    color: var(--tobacco); white-space: nowrap;
+  }
+  .col-label {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono'; font-size: 10px;
+    letter-spacing: 0.15em; color: var(--tobacco-faint);
+    text-transform: uppercase;
+  }
+
+  .kpi-summary {
+    margin-top: 20px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    padding: 0 12px;
+  }
+  .summary-item .label { font-family: 'JetBrains Mono'; font-size: 9px; letter-spacing: 0.25em; color: var(--tobacco-faint); text-transform: uppercase; }
+  .summary-item .value { font-family: 'Big Shoulders Display'; font-weight: 700; font-size: 36px; line-height: 1; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .summary-item .unit { font-size: 16px; color: var(--tobacco-faint); font-weight: 500; }
+  .summary-item .note { font-family: 'Inter Tight'; font-size: 11px; color: var(--tobacco-soft); margin-top: 4px; }
+
+  /* Section header */
+  .sec-mark {
+    margin-top: 60px;
+    font-family: 'JetBrains Mono';
+    font-size: 11px; letter-spacing: 0.3em; color: var(--clay);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 14px;
+  }
+  .sec-mark::before { content:''; width: 40px; height: 1px; background: var(--clay); }
+
+  h2.sec-h {
+    font-family: 'Big Shoulders Display';
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 62px);
+    line-height: 0.98;
+    letter-spacing: -0.012em;
+    text-transform: uppercase;
+  }
+  h2.sec-h em { color: var(--clay); font-style: normal; font-weight: 900; }
+
+  /* P5 HORIZONTAL TIMELINE (archive style) */
+  .timeline-v {
+    margin-top: 40px;
+    border-left: 2px solid var(--tobacco);
+    padding-left: 0;
+  }
+  .tl-node {
+    position: relative;
+    padding: 18px 0 18px 28px;
+    border-bottom: 1px dashed var(--line-dashed);
+  }
+  .tl-node::before {
+    content:''; position: absolute; left: -7px; top: 24px;
+    width: 12px; height: 12px;
+    background: var(--tobacco);
+  }
+  .tl-node.active::before { background: var(--clay); }
+  .tl-node-date {
+    font-family: 'JetBrains Mono'; font-size: 10px;
+    letter-spacing: 0.2em; color: var(--tobacco-faint);
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .tl-node-title {
+    font-family: 'Big Shoulders Display'; font-weight: 700;
+    font-size: 24px; letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .tl-node-body {
+    font-family: 'Inter Tight'; font-size: 14px;
+    color: var(--tobacco-soft); margin-top: 6px;
+    line-height: 1.5;
+  }
+  .tl-node-badge {
+    display: inline-block; margin-top: 8px;
+    padding: 3px 9px; background: var(--clay); color: var(--paper);
+    font-family: 'JetBrains Mono'; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .tl-node-badge.won { background: var(--tobacco); }
+  .tl-node-badge.lost { background: var(--paper-shadow); color: var(--tobacco); }
+
+  /* T3 SPEC SHEET */
+  .spec-sheet {
+    margin-top: 40px;
+    border: 1.5px solid var(--tobacco);
+    background: var(--paper-deep);
+  }
+  .spec-head {
+    background: var(--tobacco); color: var(--paper);
+    padding: 12px 18px;
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono'; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .spec-row {
+    display: grid; grid-template-columns: 80px 1fr 120px 80px 100px;
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: 'Inter Tight'; font-size: 13px;
+    align-items: center;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row:hover { background: var(--paper-shadow); }
+  .spec-id { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--tobacco-faint); letter-spacing: 0.1em; }
+  .spec-name { font-weight: 600; color: var(--tobacco); }
+  .spec-desc { font-size: 12px; color: var(--tobacco-soft); margin-top: 2px; }
+  .spec-tag { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.18em; color: var(--clay); text-transform: uppercase; }
+  .spec-tag.won { color: var(--tobacco); }
+  .spec-src { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--tobacco-faint); letter-spacing: 0.1em; text-transform: uppercase; }
+  .spec-val { font-family: 'Big Shoulders Display'; font-weight: 700; font-size: 16px; text-align: right; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+
+  /* F5 inline editable cell */
+  .spec-row .spec-name.editable::after {
+    content: ' ✎'; opacity: 0; margin-left: 4px; color: var(--clay); font-size: 11px;
+  }
+  .spec-row:hover .spec-name.editable::after { opacity: 1; }
+
+  /* CH6 COLUMN BAR ELEVATION CHART */
+  .chart-elevation {
+    margin-top: 40px;
+    border: 1.5px solid var(--tobacco);
+    padding: 30px 24px 20px;
+    background: var(--paper);
+  }
+  .chart-head {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono'; font-size: 11px;
+    letter-spacing: 0.2em; color: var(--tobacco-faint);
+    text-transform: uppercase; margin-bottom: 22px;
+  }
+  .chart-bars {
+    display: flex; align-items: flex-end; gap: 6px; height: 180px;
+    border-bottom: 2px solid var(--tobacco);
+  }
+  .cb { flex: 1; background: var(--tobacco); position: relative; transition: background .2s; }
+  .cb:hover { background: var(--clay); }
+  .cb.clay { background: var(--clay); }
+  .cb.tan { background: var(--tan); }
+  .cb::before {
+    content: attr(data-v);
+    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono'; font-size: 9px;
+    color: var(--tobacco); font-weight: 500;
+  }
+  .cb::after {
+    content: attr(data-l);
+    position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono'; font-size: 9px;
+    color: var(--tobacco-faint);
+  }
+
+  /* M5 INLINE EXPAND (click row for detail) */
+  .spec-row.expanded + .spec-detail {
+    display: block;
+  }
+  .spec-detail {
+    display: none;
+    padding: 18px 24px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    font-family: 'Inter Tight'; font-size: 13px;
+    color: var(--tobacco-soft); line-height: 1.55;
+    animation: expand .3s ease;
+  }
+  @keyframes expand {
+    from { max-height: 0; opacity: 0; }
+    to { max-height: 200px; opacity: 1; }
+  }
+
+  /* FT6 SIGNATURE BLOCK */
+  .signature {
+    margin: 80px 0 0;
+    border-top: 2px solid var(--tobacco);
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    font-family: 'JetBrains Mono'; font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .sig-block .label { color: var(--tobacco-faint); font-size: 9px; }
+  .sig-block .val { font-family: 'Big Shoulders Display'; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; text-transform: uppercase; color: var(--tobacco); margin-top: 4px; }
+  .sig-block .detail { color: var(--tobacco-soft); font-size: 9px; margin-top: 2px; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .9s, transform .9s cubic-bezier(.2,.8,.2,1); }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="sheet-container">
+  <div class="bl"></div><div class="br"></div>
+
+  <!-- TOP STRIP breadcrumb + timestamp -->
+  <div class="top-strip">
+    <div>
+      <span>construo</span>
+      <span class="sep"> / </span>
+      <span>yıldız inşaat</span>
+      <span class="sep"> / </span>
+      <span class="active">arşiv raporu</span>
+    </div>
+    <div>SAYFA 01 / 04 · ● ollama 14ms · 18·04·2026 10:42</div>
+  </div>
+
+  <!-- HR13 BLUEPRINT TITLE BLOCK doc meta -->
+  <div class="doc-meta reveal">
+    <div>
+      <span class="label">proje · project</span>
+      <span class="val">YILDIZ İNŞAAT · LEAD VESTİARİİ</span>
+    </div>
+    <div>
+      <span class="label">dönem</span>
+      <span class="val">NİSAN 2026</span>
+    </div>
+    <div>
+      <span class="label">rev</span>
+      <span class="val">03</span>
+    </div>
+    <div>
+      <span class="label">sınıf</span>
+      <span class="val">GİZLİ</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- HEADLINE -->
+    <div class="reveal">
+      <div class="kicker">§ 00 · arşiv kayıt 092 · kapak</div>
+      <h1 class="archive-title">
+        Her lead<br>
+        bir <em>dosya,</em><br>
+        her dosya bir <em>yol.</em>
+      </h1>
+      <p class="deck">
+        Bu sayfa, Yıldız İnşaat satış ofisinin bugünkü <strong>14 yeni potansiyel müşteri</strong> kaydını arşiv düzeninde tutar. Ollama üç mesajı otomatik yanıtladı, <span class="clay">Ayşegül Hanım'ın dosyası</span> saat 14:30'a kadar işlenip raflanacak — aksi halde rakip firma girdi.
+      </p>
+      <div class="byline">
+        <span>YAYIMLAYAN · <strong>EMRE ARAS</strong></span>
+        <span>ARŞİV · <strong>SELİN KARACA</strong></span>
+        <span>OTOMASYON · <strong>OLLAMA v2.5</strong></span>
+      </div>
+    </div>
+
+    <!-- K12 COLUMNS CHART AS KPI -->
+    <div class="columns-kpi reveal">
+      <div class="columns-kpi-head">
+        <span>§ 01 · CİRO · SON 15 GÜN · MİLYON ₺</span>
+        <span>HEDEF ₺5.0M</span>
+      </div>
+      <div class="columns-viz">
+        <div class="col-item"><div class="col-bar" style="height:25%;"><div class="col-val">1.2</div></div><div class="col-label">01</div></div>
+        <div class="col-item"><div class="col-bar" style="height:29%;"><div class="col-val">1.4</div></div><div class="col-label">03</div></div>
+        <div class="col-item"><div class="col-bar" style="height:27%;"><div class="col-val">1.3</div></div><div class="col-label">05</div></div>
+        <div class="col-item"><div class="col-bar" style="height:33%;"><div class="col-val">1.6</div></div><div class="col-label">07</div></div>
+        <div class="col-item"><div class="col-bar" style="height:37%;"><div class="col-val">1.8</div></div><div class="col-label">09</div></div>
+        <div class="col-item"><div class="col-bar clay" style="height:41%;"><div class="col-val">2.0</div></div><div class="col-label">11</div></div>
+        <div class="col-item"><div class="col-bar" style="height:40%;"><div class="col-val">1.9</div></div><div class="col-label">13</div></div>
+        <div class="col-item"><div class="col-bar" style="height:48%;"><div class="col-val">2.3</div></div><div class="col-label">15</div></div>
+        <div class="col-item"><div class="col-bar" style="height:54%;"><div class="col-val">2.6</div></div><div class="col-label">17</div></div>
+        <div class="col-item"><div class="col-bar" style="height:58%;"><div class="col-val">2.8</div></div><div class="col-label">19</div></div>
+        <div class="col-item"><div class="col-bar clay" style="height:64%;"><div class="col-val">3.1</div></div><div class="col-label">21</div></div>
+        <div class="col-item"><div class="col-bar" style="height:71%;"><div class="col-val">3.4</div></div><div class="col-label">23</div></div>
+        <div class="col-item"><div class="col-bar" style="height:79%;"><div class="col-val">3.8</div></div><div class="col-label">25</div></div>
+        <div class="col-item"><div class="col-bar" style="height:87%;"><div class="col-val">4.2</div></div><div class="col-label">27</div></div>
+        <div class="col-item"><div class="col-bar tan" style="height:100%;"><div class="col-val">4.82</div></div><div class="col-label">29</div></div>
+      </div>
+      <div class="kpi-summary">
+        <div class="summary-item"><div class="label">Yeni Lead · 24s</div><div class="value">14</div><div class="note">↗ +42% · hafta rekoru</div></div>
+        <div class="summary-item"><div class="label">Auto-Reply Oranı</div><div class="value">73<span class="unit">%</span></div><div class="note">path A 62 · ollama 11</div></div>
+        <div class="summary-item"><div class="label">Inbox · Unread</div><div class="value">22</div><div class="note">wa 18 · ig 4</div></div>
+        <div class="summary-item"><div class="label">API Tasarruf · Ay</div><div class="value">₺2.84<span class="unit">K</span></div><div class="note">yerel ollama ile</div></div>
+      </div>
+    </div>
+
+    <!-- P5 TIMELINE (archive style — vertical chronicle) -->
+    <div class="reveal">
+      <div class="sec-mark">§ 02 · Günün <em style="color:var(--tobacco);font-style:italic;">Kronolojisi</em></div>
+      <h2 class="sec-h">Saha <em>günlüğü</em></h2>
+
+      <div class="timeline-v">
+        <div class="tl-node">
+          <div class="tl-node-date">09:12 · Perşembe akşamından devralınan</div>
+          <div class="tl-node-title">Ferhat K. — dosya kapandı</div>
+          <div class="tl-node-body">"Başka firmadan aldım" geri bildirimi. 2 Nisan'dan beri görüşmede olan dosya. Arşive kalktı.</div>
+          <div class="tl-node-badge lost">Kayıp · Rakip</div>
+        </div>
+        <div class="tl-node active">
+          <div class="tl-node-date">14:02 · İlk temas</div>
+          <div class="tl-node-title">Ayşegül Hanım — Çankaya 4+1 villa</div>
+          <div class="tl-node-body">Anahtar teslim + teslim süresi sordu. Otomatik katalog gitti (path A regex #17 match). 14:06'da yerinde görme talebi, human handoff tetiklendi. Selin Karaca'nın görev listesinde şu an 01. sırada.</div>
+          <div class="tl-node-badge">Teklif · 72% ilerleme</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-node-date">12:47 · Ziyaret öncesi</div>
+          <div class="tl-node-title">Serkan B. — Bilkent 3+1</div>
+          <div class="tl-node-body">Cumartesi 15:00 şantiye ziyareti onaylandı. Ollama tarafından yanıtlandı, confidence 0.84.</div>
+          <div class="tl-node-badge">Kalifiye</div>
+        </div>
+        <div class="tl-node">
+          <div class="tl-node-date">10:31 · Kapanış</div>
+          <div class="tl-node-title">Gökhan E. — Ümitköy 2+1</div>
+          <div class="tl-node-body">11 Nisan'da sözleşme imzalandı. Ödeme planı anlaşıldı, ek nakit 30 gün içinde.</div>
+          <div class="tl-node-badge won">Kazanıldı · ₺580K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T3 SPEC SHEET -->
+    <div class="reveal">
+      <div class="sec-mark">§ 03 · Kayıt <em style="color:var(--tobacco);font-style:italic;">Envanteri</em></div>
+      <h2 class="sec-h">Lead <em>dosyaları</em></h2>
+
+      <div class="spec-sheet">
+        <div class="spec-head">
+          <span>KAYIT · LEAD-0193 → LEAD-0206</span>
+          <span>TOPLAM ₺8.21M POTANSİYEL</span>
+        </div>
+        <div class="spec-row expanded" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0193</div>
+          <div><div class="spec-name editable">Ayşegül Hanım</div><div class="spec-desc">4+1 villa · Çankaya · anahtar teslim</div></div>
+          <div class="spec-tag">Teklif · 72%</div>
+          <div class="spec-src">WA · 3dk</div>
+          <div class="spec-val">₺1.20M</div>
+        </div>
+        <div class="spec-detail">
+          <strong style="color:var(--tobacco);">Son 5 mesaj:</strong> Villa bilgisi istedi → otomatik katalog → ziyaret talebi → Selin K. handoff → teklif bekliyor. <strong>Bir sonraki adım:</strong> 14:30'a teklifi yetiştirmek; Cumartesi 11:00'a randevu ver.
+        </div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0185</div>
+          <div><div class="spec-name editable">Elif Kaya</div><div class="spec-desc">ofis blok · Çukurambar · yatırımcı segment</div></div>
+          <div class="spec-tag">Görüşme</div>
+          <div class="spec-src">IG · 44dk</div>
+          <div class="spec-val">₺2.40M</div>
+        </div>
+        <div class="spec-detail"></div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0188</div>
+          <div><div class="spec-name editable">Serkan B.</div><div class="spec-desc">3+1 · Bilkent · cumartesi ziyaret</div></div>
+          <div class="spec-tag">Kalifiye</div>
+          <div class="spec-src">WA · ollama</div>
+          <div class="spec-val">₺750K</div>
+        </div>
+        <div class="spec-detail"></div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0172</div>
+          <div><div class="spec-name editable">Burak Arslan</div><div class="spec-desc">rezidans · İncek · ziyaret sonrası</div></div>
+          <div class="spec-tag">Görüşme</div>
+          <div class="spec-src">WA · 2s</div>
+          <div class="spec-val">₺890K</div>
+        </div>
+        <div class="spec-detail"></div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0194</div>
+          <div><div class="spec-name editable">Mehmet Özer</div><div class="spec-desc">dükkan · Kızılay · kira getirisi hesabı</div></div>
+          <div class="spec-tag">Yeni</div>
+          <div class="spec-src">IG · 27dk</div>
+          <div class="spec-val">₺680K</div>
+        </div>
+        <div class="spec-detail"></div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0166</div>
+          <div><div class="spec-name editable">Gökhan E.</div><div class="spec-desc">2+1 · Ümitköy · 11 nisan kapandı</div></div>
+          <div class="spec-tag won">Kazanıldı ✓</div>
+          <div class="spec-src">WA</div>
+          <div class="spec-val">₺580K</div>
+        </div>
+        <div class="spec-detail"></div>
+
+        <div class="spec-row" onclick="this.classList.toggle('expanded')">
+          <div class="spec-id">/L·0158</div>
+          <div><div class="spec-name editable">Hande D.</div><div class="spec-desc">villa · GOP · 08 nisan kapandı</div></div>
+          <div class="spec-tag won">Kazanıldı ✓</div>
+          <div class="spec-src">IG</div>
+          <div class="spec-val">₺1.45M</div>
+        </div>
+        <div class="spec-detail"></div>
+      </div>
+    </div>
+
+    <!-- CH6 COLUMN BAR ELEVATION (lead source distribution) -->
+    <div class="reveal">
+      <div class="sec-mark">§ 04 · Kanal <em style="color:var(--tobacco);font-style:italic;">Yükseltisi</em></div>
+      <h2 class="sec-h">Lead <em>kaynağı</em></h2>
+
+      <div class="chart-elevation">
+        <div class="chart-head">
+          <span>KANAL DAĞILIMI · SON 30 GÜN · LEAD SAYISI</span>
+          <span>TOPLAM · 132</span>
+        </div>
+        <div class="chart-bars">
+          <div class="cb" style="height:92%;" data-v="58" data-l="WA"></div>
+          <div class="cb clay" style="height:56%;" data-v="35" data-l="IG"></div>
+          <div class="cb tan" style="height:38%;" data-v="24" data-l="WEB"></div>
+          <div class="cb" style="height:22%;" data-v="14" data-l="REF"></div>
+          <div class="cb clay" style="height:14%;" data-v="9" data-l="DIR"></div>
+          <div class="cb" style="height:12%;" data-v="7" data-l="ARA"></div>
+          <div class="cb tan" style="height:10%;" data-v="6" data-l="EMAIL"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FT6 SIGNATURE BLOCK -->
+    <div class="signature">
+      <div class="sig-block">
+        <div class="label">çizen · drawn by</div>
+        <div class="val">emre aras</div>
+        <div class="detail">2026-04-18 · 18:42</div>
+      </div>
+      <div class="sig-block">
+        <div class="label">kontrol · checked</div>
+        <div class="val">fatih bey</div>
+        <div class="detail">beklemede · pending</div>
+      </div>
+      <div class="sig-block">
+        <div class="label">arşiv · archive</div>
+        <div class="val">cilt III · sayı 092</div>
+        <div class="detail">yıldız inşaat a.ş.</div>
+      </div>
+      <div class="sig-block">
+        <div class="label">rev · revision</div>
+        <div class="val">03 · gizli</div>
+        <div class="detail">iç kullanım</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- N5 command palette floating -->
+<div class="cmdk-float">
+  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M14 14l-3-3"/></svg>
+  <span>komut · ara · dosya aç</span>
+  <span class="kbd">⌘K</span>
+</div>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // reveal
+  gsap.utils.toArray('.reveal').forEach(el => {
+    ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => el.classList.add('on') });
+  });
+
+  // col bar grow
+  gsap.from('.col-bar', { height: 0, duration: 1.2, ease: 'power3.out', stagger: 0.05,
+    scrollTrigger: { trigger: '.columns-viz', start: 'top 80%' }
+  });
+
+  gsap.from('.cb', { height: 0, duration: 1, ease: 'power3.out', stagger: 0.04,
+    scrollTrigger: { trigger: '.chart-bars', start: 'top 80%' }
+  });
+
+  // kpi count up
+  gsap.utils.toArray('.summary-item .value').forEach(el => {
+    const m = el.textContent.match(/(\d+\.?\d*)/);
+    if (!m) return;
+    const target = parseFloat(m[1]);
+    const orig = el.innerHTML;
+    const obj = { v: 0 };
+    gsap.to(obj, { v: target, duration: 1.6, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 92%' },
+      onUpdate: () => {
+        const n = target < 10 ? obj.v.toFixed(2) : Math.round(obj.v);
+        el.innerHTML = orig.replace(/(\d+\.?\d*)/, n);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

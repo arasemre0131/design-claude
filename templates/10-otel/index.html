@@ -1,0 +1,322 @@
+<!--
+  TEMPLATE 10 · OTEL / TURİZM
+  Palette A: PL37 Terracotta + Sky · Palette B: PL38 Cool Marble
+  Typo A: TY43 Fraunces italic + Inter Tight · Typo B: TY44 Recoleta + Mulish
+  Hero: HR3 video bg · Layout: L4 full-bleed rails + L8 masonry · Motion: MO2 Lenis + MO7 View Transitions
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 10 · Otel</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter+Tight:wght@300;400;500;600;700&family=Recoleta+Alt:wght@400;500;700&family=Mulish:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Terracotta + Sky */
+    --bg: #F2E3D1;
+    --surface: #E8D8C0;
+    --ink: #2A1F14;
+    --ink-soft: #5C4A38;
+    --ink-faint: #8A7A64;
+    --accent: #B34F1B;
+    --accent-2: #8EC5D6;
+    --accent-3: #D4A04C;
+    --line: rgba(42,31,20,0.12);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Cool Marble */
+    --bg: #F0F2F5;
+    --surface: #E3E8ED;
+    --ink: #0D2A3A;
+    --ink-soft: #355464;
+    --ink-faint: #7A8A9A;
+    --accent: #1B3A4B;
+    --accent-2: #9CAF88;
+    --accent-3: #C9A46B;
+    --line: rgba(13,42,58,0.1);
+    --font-display: 'Recoleta Alt', serif;
+    --font-body: 'Mulish', sans-serif;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-weight: 400; transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  header { position: absolute; top: 0; left: 0; right: 0; z-index: 20; padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; color: var(--bg); }
+  .brand { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 32px; letter-spacing: -0.025em; color: var(--bg); font-variation-settings: 'opsz' 144; }
+  body.p-b .brand { font-style: normal; font-weight: 500; letter-spacing: -0.015em; }
+  nav { display: flex; gap: 32px; font-size: 13px; letter-spacing: 0.12em; font-weight: 400; text-transform: uppercase; }
+  nav a { color: rgba(255,255,255,0.85); text-decoration: none; cursor: pointer; padding-bottom: 3px; border-bottom: 1px solid transparent; }
+  nav a.active { color: var(--bg); border-color: var(--accent-3); }
+  .lang-tag { font-family: var(--font-mono); font-size: 12px; color: var(--bg); letter-spacing: 0.2em; opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; min-height: 620px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6B3A1B 0%, #B34F1B 50%, #8EC5D6 100%);
+  }
+  body.p-b .hero { background: linear-gradient(135deg, #0D2A3A 0%, #355464 50%, #9CAF88 100%); }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 40%, transparent 0%, rgba(42,31,20,0.5) 80%);
+    z-index: 1;
+  }
+  body.p-b .hero-overlay { background: radial-gradient(circle at 30% 40%, transparent 0%, rgba(13,42,58,0.55) 80%); }
+
+  .hero-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 48px; max-width: 900px; color: var(--bg); }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent-3); margin-bottom: 26px; display: flex; gap: 14px; align-items: center; }
+  .eyebrow::before { content:''; width: 40px; height: 1px; background: var(--accent-3); }
+  h1.hero-h {
+    font-family: var(--font-display); font-weight: 300; font-style: italic;
+    font-size: clamp(64px, 10vw, 140px); line-height: 0.92; letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 144;
+  }
+  body.p-b h1.hero-h { font-style: normal; font-weight: 400; letter-spacing: -0.025em; }
+  h1.hero-h em { color: var(--accent-3); font-style: italic; }
+  .hero-sub { margin-top: 28px; font-size: 20px; line-height: 1.55; max-width: 56ch; color: rgba(255,255,255,0.9); }
+
+  /* BOOKING BAR */
+  .book-bar {
+    position: absolute; bottom: 40px; left: 48px; right: 48px;
+    z-index: 3;
+    background: var(--bg); padding: 20px 24px;
+    display: grid; grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr auto;
+    gap: 20px; align-items: end;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.3);
+  }
+  .bb-field label { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; }
+  .bb-field input, .bb-field select { width: 100%; padding: 8px 0; background: transparent; border: none; border-bottom: 1px solid var(--line); font-family: var(--font-body); font-size: 15px; color: var(--ink); outline: none; }
+  .bb-field input:focus, .bb-field select:focus { border-color: var(--accent); }
+  .bb-btn { padding: 16px 28px; background: var(--accent); color: var(--bg); border: none; font-family: var(--font-body); font-weight: 600; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; }
+
+  /* ROOMS */
+  .rooms { padding: 100px 48px; }
+  .sec-inner { max-width: 1400px; margin: 0 auto; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 48px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .sec-title { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(48px, 7vw, 92px); line-height: 1; letter-spacing: -0.025em; font-variation-settings: 'opsz' 144; }
+  body.p-b .sec-title { font-style: normal; font-weight: 400; }
+  .sec-title em { color: var(--accent); font-style: italic; }
+
+  .room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .room-card { cursor: pointer; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); }
+  .room-card:hover { transform: translateY(-6px); }
+  .room-img {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--ink); display: flex; align-items: center; justify-content: center;
+    color: var(--accent-3); font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 160px;
+    position: relative; overflow: hidden;
+  }
+  body.p-b .room-img { font-style: normal; }
+  .room-img.c1 { background: linear-gradient(135deg, #6B3A1B, #B34F1B); }
+  .room-img.c2 { background: linear-gradient(135deg, #0D2A3A, #355464); }
+  .room-img.c3 { background: linear-gradient(135deg, #355464, #8EC5D6); color: var(--bg); }
+  .room-tag {
+    position: absolute; top: 16px; left: 16px; background: var(--bg); color: var(--ink);
+    padding: 6px 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .room-body { padding: 20px 4px 0; }
+  .room-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; }
+  .room-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 26px; letter-spacing: -0.015em; margin-top: 10px; }
+  body.p-b .room-card h3 { font-weight: 500; }
+  .room-desc { margin-top: 12px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .room-price-row { margin-top: 18px; display: flex; align-items: baseline; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--line); }
+  .room-price { font-family: var(--font-display); font-weight: 400; font-size: 26px; color: var(--accent); letter-spacing: -0.02em; }
+  body.p-b .room-price { font-weight: 500; }
+  .room-price-n { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* AMENITIES */
+  .amenities { padding: 100px 48px; background: var(--surface); }
+  .amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--line); border: 1px solid var(--line); }
+  .amenity { background: var(--surface); padding: 32px 24px; text-align: center; }
+  .amenity-icon { font-family: var(--font-display); font-weight: 300; font-size: 48px; color: var(--accent); font-style: italic; font-variation-settings: 'opsz' 72; }
+  body.p-b .amenity-icon { font-style: normal; font-weight: 400; }
+  .amenity h4 { font-family: var(--font-display); font-weight: 400; font-size: 20px; margin-top: 14px; letter-spacing: -0.01em; }
+  body.p-b .amenity h4 { font-weight: 500; }
+  .amenity p { margin-top: 8px; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* LOCATION / LAST CALL */
+  .last-call { padding: 100px 48px; text-align: center; }
+  .last-call h2 { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(56px, 8vw, 104px); line-height: 1; letter-spacing: -0.025em; font-variation-settings: 'opsz' 144; }
+  body.p-b .last-call h2 { font-style: normal; }
+  .last-call h2 em { color: var(--accent); }
+  .last-call p { margin: 32px auto 0; max-width: 48ch; font-size: 18px; line-height: 1.65; color: var(--ink-soft); }
+  .last-cta { margin-top: 48px; padding: 18px 40px; background: var(--ink); color: var(--bg); border: none; font-family: var(--font-body); font-weight: 600; font-size: 14px; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
+
+  footer { padding: 40px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · COOL MARBLE' : 'A · TERRACOTTA + SKY';">A · TERRACOTTA + SKY</button>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <header>
+    <div class="brand">Alaçatı · 1829</div>
+    <nav>
+      <a class="active">Ana Sayfa</a>
+      <a>Odalar</a>
+      <a>Restoran</a>
+      <a>Deneyimler</a>
+      <a>İletişim</a>
+    </nav>
+    <div class="lang-tag">TR · EN · DE</div>
+  </header>
+
+  <div class="hero-content">
+    <div class="eyebrow">ALAÇATI · ÇEŞME · EGE · 1829'DAN BERİ</div>
+    <h1 class="hero-h">Denizin <em>sesini</em><br>yastığın <em>altından</em><br>duyuyorsun.</h1>
+    <p class="hero-sub">
+      1829 yılında yapılmış bir taş ev, bugün 14 odalı butik bir otel. Her oda farklı, her balkon ayrı manzara, her sabah aynı deniz.
+    </p>
+  </div>
+
+  <!-- BOOKING BAR -->
+  <div class="book-bar">
+    <div class="bb-field">
+      <label>Giriş</label>
+      <input type="date" value="2026-05-15">
+    </div>
+    <div class="bb-field">
+      <label>Çıkış</label>
+      <input type="date" value="2026-05-18">
+    </div>
+    <div class="bb-field">
+      <label>Yetişkin</label>
+      <select><option>1</option><option selected>2</option><option>3</option></select>
+    </div>
+    <div class="bb-field">
+      <label>Çocuk</label>
+      <select><option selected>0</option><option>1</option><option>2</option></select>
+    </div>
+    <div class="bb-field">
+      <label>Oda</label>
+      <select><option selected>1</option><option>2</option></select>
+    </div>
+    <button class="bb-btn">Uygunluk Ara</button>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 02 · ODALAR</div>
+        <h2 class="sec-title">14 oda, <em>14 hikaye.</em></h2>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.18em;text-transform:uppercase;">Mayıs–Eylül · tam sezon</div>
+    </div>
+
+    <div class="room-grid">
+      <div class="room-card">
+        <div class="room-img c1">
+          <span class="room-tag">DENIZE SIFIR</span>
+          A
+        </div>
+        <div class="room-body">
+          <div class="room-meta">3 KİŞİLİK · 48m² · TERAS</div>
+          <h3>Karayel Süit</h3>
+          <p class="room-desc">Eski taş duvarlı ana oda, cumbalı pencere, özel teras. Sabah kahvaltısı odanızda servis edilir.</p>
+          <div class="room-price-row">
+            <div class="room-price">₺8,400</div>
+            <div class="room-price-n">/ gece · tam sezon</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-img c2">
+          <span class="room-tag">BAHÇE</span>
+          B
+        </div>
+        <div class="room-body">
+          <div class="room-meta">2 KİŞİLİK · 32m² · ZEMIN</div>
+          <h3>Limonluk</h3>
+          <p class="room-desc">Otelin arka bahçesine bakan zemin kat odası. Kendi özel limon ağacı, okuma koltuğu.</p>
+          <div class="room-price-row">
+            <div class="room-price">₺5,800</div>
+            <div class="room-price-n">/ gece · bahar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-img c3">
+          <span class="room-tag">PANORAMIK</span>
+          C
+        </div>
+        <div class="room-body">
+          <div class="room-meta">2 KİŞİLİK · 42m² · ÜST KAT</div>
+          <h3>Çatı Odası</h3>
+          <p class="room-desc">Çatı arasının tamamını kaplayan, tavan pencereli oda. Gece yıldızları, sabah martılar.</p>
+          <div class="room-price-row">
+            <div class="room-price">₺7,200</div>
+            <div class="room-price-n">/ gece</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 03 · OLANAKLAR</div>
+        <h2 class="sec-title">Her <em>konuğa özel.</em></h2>
+      </div>
+    </div>
+
+    <div class="amenities-grid">
+      <div class="amenity">
+        <div class="amenity-icon">◎</div>
+        <h4>Özel Plaj</h4>
+        <p>500m yürüyüş mesafesinde, misafirlere ayrılmış 12 şezlong + 4 kabana.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">♨</div>
+        <h4>Hammam</h4>
+        <p>Geleneksel Türk hamamı, misafirlere ücretsiz erişim, rezervasyonlu.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">✻</div>
+        <h4>Organik Bahçe</h4>
+        <p>Kahvaltınızda ve akşam yemeğinizde yer alan sebzeler kendi bahçemizden.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">♪</div>
+        <h4>Canlı Müzik</h4>
+        <p>Cuma akşamları bahçede klasik gitar, cumartesi akşamları jaz üçlü.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAST CALL -->
+<section class="last-call">
+  <h2>Bu yaz <em>burada</em><br>olmaya hazır mısın?</h2>
+  <p>Mayıs-Eylül arası %78 doluluk. Yaz tatilinizi son anda planlamamak için, birkaç hafta önceden ayarlayalım.</p>
+  <button class="last-cta">Rezervasyon Yap</button>
+</section>
+
+<footer>
+  ALAÇATI 1829 · TEMPLATE 10 · OTEL<br>
+  ALAÇATI · ÇEŞME · EGE · 14 ODA · 1829 — BUGÜN<br>
+  COMBO: HR3+L4+L8+TY43/44+PL37/38+MO2/7
+</footer>
+
+</body>
+</html>

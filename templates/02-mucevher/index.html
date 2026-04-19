@@ -1,0 +1,257 @@
+<!--
+  TEMPLATE 02 · MÜCEVHER
+  Palette A: PL22 Tobacco + Pearl · Palette B: PL23 Plum + Champagne
+  Typo A: TY27 Fraunces + IBM Plex Sans · Typo B: TY28 Cormorant Garamond + Mulish
+  Hero: HR11 brochure cover · Layout: L6 + L8 · Motion: MO4 Framer layoutId + MO10 print-first
+  YASAK: Playfair italic + gold gradient + dark #0A0A0A
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 02 · Mücevher</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Tobacco + Pearl */
+    --bg: #F5F0E8;
+    --surface: #ECE4D3;
+    --ink: #2A1F14;
+    --ink-soft: #4A3826;
+    --ink-faint: #7A6650;
+    --accent: #A0522D;
+    --accent-2: #D4A574;
+    --line: rgba(42,31,20,0.18);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-italic: 'Fraunces', serif;
+  }
+  body.p-b {
+    /* Palette B — Plum + Champagne */
+    --bg: #F5EFE8;
+    --surface: #EDE4DC;
+    --ink: #2A1F24;
+    --ink-soft: #4A3844;
+    --ink-faint: #7A667A;
+    --accent: #5B2A4A;
+    --accent-2: #D4B896;
+    --line: rgba(42,31,36,0.18);
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Mulish', sans-serif;
+    --font-italic: 'Cormorant Garamond', serif;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-weight: 400; transition: background 0.5s, color 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch {
+    position: fixed; top: 24px; right: 24px; z-index: 100;
+    padding: 10px 16px; background: var(--ink); color: var(--bg);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all .3s;
+  }
+  .palette-switch:hover { background: var(--accent); }
+
+  /* minimal header — editorial masthead */
+  header { border-bottom: 1px solid var(--line); padding: 28px 0 16px; }
+  .masthead-row { max-width: 1280px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); }
+  .paper-title { text-align: center; font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 56px; line-height: 1; letter-spacing: -0.025em; margin: 18px 0 8px; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  body.p-b .paper-title { font-style: italic; font-weight: 400; letter-spacing: -0.015em; }
+  .paper-sub { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink-faint); }
+
+  nav.editorial-nav { display: flex; justify-content: center; gap: 32px; margin: 20px 0 0; font-family: var(--font-body); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  nav.editorial-nav a { color: inherit; text-decoration: none; cursor: pointer; padding-bottom: 3px; border-bottom: 1px solid transparent; }
+  nav.editorial-nav a.active { border-color: var(--accent); color: var(--ink); }
+  nav.editorial-nav a:hover { color: var(--ink); }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  /* HERO: brochure cover */
+  .cover { padding: 80px 0 60px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; border-bottom: 1px solid var(--line); }
+  .cover-text h1 {
+    font-family: var(--font-display);
+    font-weight: 300; font-style: italic;
+    font-size: clamp(72px, 10vw, 132px);
+    line-height: 0.94; letter-spacing: -0.03em;
+    color: var(--ink); font-variation-settings: 'opsz' 144;
+  }
+  body.p-b .cover-text h1 { font-weight: 400; font-style: italic; }
+  .cover-text h1 em { font-style: normal; color: var(--accent); }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
+  .eyebrow::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+  .cover-text p { margin-top: 30px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+  .cover-text .price { margin-top: 36px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; }
+  .cover-text .price strong { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 48px; letter-spacing: -0.03em; color: var(--accent); display: block; margin-top: 6px; text-transform: none; }
+
+  .cover-visual {
+    aspect-ratio: 3/4;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cover-visual::before { content: '◎'; font-family: var(--font-display); font-size: 220px; color: var(--accent); opacity: 0.5; font-variation-settings: 'opsz' 144; }
+  body.p-b .cover-visual::before { content: '◈'; }
+  .cover-visual::after { content: 'ATELIER'; position: absolute; bottom: 20px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.4em; color: var(--ink-faint); text-transform: uppercase; }
+
+  /* Collection grid — L8 masonry hint */
+  .collection { padding: 60px 0; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 14px; }
+  .sec-label::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+  .sec-title { font-family: var(--font-display); font-weight: 300; font-size: 52px; line-height: 1; letter-spacing: -0.025em; color: var(--ink); font-variation-settings: 'opsz' 96; }
+  .sec-title em { color: var(--accent); font-weight: 400; }
+
+  .pieces { margin-top: 40px; column-count: 3; column-gap: 24px; }
+  .piece { break-inside: avoid; margin-bottom: 24px; cursor: pointer; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .piece:hover { transform: translateY(-4px); }
+  .piece-img {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 120px; color: var(--accent); opacity: 0.4;
+    position: relative; overflow: hidden;
+  }
+  .piece.tall .piece-img { aspect-ratio: 2/3; }
+  .piece.short .piece-img { aspect-ratio: 4/3; font-size: 80px; }
+  .piece-name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 21px; letter-spacing: -0.01em; margin-top: 14px; color: var(--ink); }
+  .piece-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin-top: 4px; }
+  .piece-price { font-family: var(--font-display); font-weight: 400; font-size: 17px; color: var(--accent); margin-top: 2px; }
+
+  /* Story section */
+  .story { padding: 80px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
+  .story-img { aspect-ratio: 4/5; background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 160px; color: var(--accent); opacity: 0.4; }
+  .story-img::before { content: '✶'; }
+  .story-body h2 { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(40px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 24px; font-variation-settings: 'opsz' 96; }
+  .story-body p { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; max-width: 58ch; }
+  .story-body p::first-letter { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 68px; line-height: 0.8; float: left; margin: 8px 8px 0 0; color: var(--accent); }
+  .story-meta { margin-top: 30px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; padding-top: 20px; border-top: 1px solid var(--line); }
+
+  footer { border-top: 2px solid var(--line); padding: 32px 48px; margin-top: 40px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; }
+  footer .brand { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 24px; letter-spacing: -0.015em; color: var(--ink); text-transform: none; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · PLUM + CHAMPAGNE' : 'A · TOBACCO + PEARL';">A · TOBACCO + PEARL</button>
+
+<header>
+  <div class="masthead-row">
+    <span>CILT VII · NO 092</span>
+    <span>ATÖLYE · AL EMEĞİ · TEK TAŞ</span>
+    <span>NİSAN · 2026</span>
+  </div>
+  <h1 class="paper-title">Savana</h1>
+  <div class="paper-sub">— El yapımı mücevher · Ankara atölye —</div>
+  <nav class="editorial-nav">
+    <a class="active">Koleksiyon</a>
+    <a>Hikaye</a>
+    <a>Atölye</a>
+    <a>Sipariş</a>
+    <a>İletişim</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO: Brochure Cover -->
+  <section class="cover">
+    <div class="cover-text">
+      <div class="eyebrow">Bahar 2026 · 24 Parça · Tek Üretim</div>
+      <h1>Taşın <em>sesini</em><br>dinleyen <em>ateş.</em></h1>
+      <p>Her parçamız tek üretim. Aynı yüzüğü iki kez yapmayız — çünkü aynı taş iki kez bulunmaz. Bu koleksiyon, Anadolu'nun üç bölgesinden getirdiğimiz taşlarla, üç ustanın elinden çıktı.</p>
+      <div class="price">
+        12 yüzük · 6 küpe · 4 kolye · 2 bilezik
+        <strong>₺4,500 – ₺28,000</strong>
+      </div>
+    </div>
+    <div class="cover-visual"></div>
+  </section>
+
+  <!-- Collection Pieces -->
+  <section class="collection">
+    <div class="sec-label">§ 02 · Koleksiyon</div>
+    <h2 class="sec-title">Bahar'ın <em>24 Parçası.</em></h2>
+
+    <div class="pieces">
+      <div class="piece tall">
+        <div class="piece-img">◉</div>
+        <div class="piece-name">Damla · Tektaş</div>
+        <div class="piece-meta">0.87ct · PIRLANTA · 18K</div>
+        <div class="piece-price">₺28,000</div>
+      </div>
+      <div class="piece">
+        <div class="piece-img">◈</div>
+        <div class="piece-name">Mısra Küpe</div>
+        <div class="piece-meta">SMARAGD · GÜMÜŞ</div>
+        <div class="piece-price">₺6,200</div>
+      </div>
+      <div class="piece short">
+        <div class="piece-img">✧</div>
+        <div class="piece-name">Çınar Bilezik</div>
+        <div class="piece-meta">AKİK · 925</div>
+        <div class="piece-price">₺4,800</div>
+      </div>
+      <div class="piece">
+        <div class="piece-img">◎</div>
+        <div class="piece-name">Gölge Yüzük</div>
+        <div class="piece-meta">SAFİR · PLATİN</div>
+        <div class="piece-price">₺14,500</div>
+      </div>
+      <div class="piece tall">
+        <div class="piece-img">◆</div>
+        <div class="piece-name">Firuze Kolye</div>
+        <div class="piece-meta">FİRUZE · 18K ROZ</div>
+        <div class="piece-price">₺8,900</div>
+      </div>
+      <div class="piece">
+        <div class="piece-img">✶</div>
+        <div class="piece-name">Şafak Küpe</div>
+        <div class="piece-meta">MORGANIT · GÜMÜŞ</div>
+        <div class="piece-price">₺5,400</div>
+      </div>
+      <div class="piece">
+        <div class="piece-img">◦</div>
+        <div class="piece-name">Sade Alyans</div>
+        <div class="piece-meta">18K · MAT</div>
+        <div class="piece-price">₺11,200</div>
+      </div>
+      <div class="piece short">
+        <div class="piece-img">◐</div>
+        <div class="piece-name">Yarım Ay Yüzük</div>
+        <div class="piece-meta">AYTAŞI · GÜMÜŞ</div>
+        <div class="piece-price">₺3,800</div>
+      </div>
+      <div class="piece tall">
+        <div class="piece-img">◇</div>
+        <div class="piece-name">Buz Kolye</div>
+        <div class="piece-meta">AQUAMARIN · PLATİN</div>
+        <div class="piece-price">₺18,600</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="story">
+    <div class="story-img"></div>
+    <div class="story-body">
+      <h2>1952'den bu yana <em style="font-style:italic;color:var(--accent);">aynı masada.</em></h2>
+      <p>Dedem Hasan Usta, savaş sonrası Ankara'nın eski çarşısında küçük bir tezgah açtı. Bir cımbız, bir çekiç, bir örs. O masayı bugün oğlum Ali kullanıyor — aynı çekiç, yeni ısı, yeni ateş. Üç kuşak boyunca biz sadece üç şey yaptık: dinledik, çizdik, dövdük.</p>
+      <p>Bu koleksiyon, o masanın 73. yıldönümü için. Her parça, Anadolu'nun üç ayrı bölgesinden gelen taşlarla, üç ayrı ustanın elinden çıktı — ama hep aynı masada bitti. Savana'nın her parçası, bu üçüncü kuşağın ilk sözüdür.</p>
+      <div class="story-meta">YAZDI · ALİ SAVAŞ · 18 NİSAN 2026 · ANKARA</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="brand">Savana · Atölye</div>
+  SAVANA · TEMPLATE 02 · MÜCEVHER<br>
+  COMBO: H2+HR11+L6+L8+TY27/28+PL22/23+MO4/10<br>
+  ULUS · ÇARŞI · 1952 — BUGÜN
+</footer>
+
+</body>
+</html>

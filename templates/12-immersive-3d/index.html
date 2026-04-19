@@ -1,0 +1,476 @@
+<!--
+  TEMPLATE 12 · 3D IMMERSIVE PRODUCT (marcelo-style)
+  Referans: marcelodesignx · Cirus Web3 / Fedorgost / DMB / Drip · 3D-heavy / immersive
+  Techniques: Three.js procedural crystal (IcosahedronGeometry + distortion material),
+              Scroll-linked camera path, GSAP ScrollTrigger, emissive material,
+              neon accent on dark atmospheric bg
+  Trend: 3D + Scroll-triggered real-time + Spline-alternative
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 12 · 3D Immersive</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;500;700&family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.163.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.163.0/examples/jsm/"
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --bg: #05060A;
+    --bg-mid: #0A0D14;
+    --surface: #12151E;
+    --ink: #F5F5F7;
+    --ink-soft: #A5A8B0;
+    --ink-faint: #5A5D68;
+    --neon: #D4FF00;
+    --neon-soft: #9FC200;
+    --magenta: #FF3DA8;
+    --cyan: #4DE6FF;
+    --line: rgba(245,245,247,0.1);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html { background: var(--bg); }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter Tight', sans-serif; font-weight: 300; overflow-x: hidden; }
+  ::selection { background: var(--neon); color: var(--bg); }
+
+  /* scan line overlay */
+  body::after {
+    content:''; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  /* three.js canvas fixed bg */
+  #canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+
+  /* header */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 24px 40px; display: flex; align-items: center; justify-content: space-between;
+    mix-blend-mode: difference;
+  }
+  .brand { font-family: 'Unbounded'; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; color: var(--ink); }
+  .brand .dot { color: var(--neon); }
+  nav { display: flex; gap: 32px; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); }
+  nav a { color: inherit; text-decoration: none; opacity: 0.7; cursor: pointer; transition: color 0.2s; }
+  nav a:hover { color: var(--neon); opacity: 1; }
+
+  .cta-wallet {
+    padding: 10px 16px; border: 1px solid var(--neon); color: var(--neon);
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .cta-wallet:hover { background: var(--neon); color: var(--bg); }
+
+  .wrap { position: relative; z-index: 1; }
+
+  section { min-height: 100vh; padding: 140px 40px 80px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+
+  /* HERO */
+  .hero-mark { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--neon); margin-bottom: 30px; display: flex; align-items: center; gap: 16px; }
+  .hero-mark::before { content:''; width: 50px; height: 1px; background: var(--neon); }
+
+  h1.h-hero {
+    font-family: 'Unbounded'; font-weight: 200;
+    font-size: clamp(64px, 11vw, 168px);
+    line-height: 0.9; letter-spacing: -0.045em;
+    color: var(--ink);
+  }
+  h1.h-hero em {
+    font-style: italic; font-weight: 300;
+    background: linear-gradient(135deg, var(--neon) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  h1.h-hero .mono { font-family: 'JetBrains Mono'; font-size: 0.7em; color: var(--neon); font-weight: 500; }
+
+  .hero-desc { margin-top: 40px; max-width: 52ch; font-size: 18px; line-height: 1.55; color: var(--ink-soft); }
+  .hero-desc strong { color: var(--ink); font-weight: 500; }
+  .hero-desc .neon { color: var(--neon); }
+
+  .hero-stats { margin-top: 60px; display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid var(--line); max-width: 720px; }
+  .stat-v { font-family: 'Unbounded'; font-weight: 300; font-size: 48px; line-height: 1; letter-spacing: -0.03em; }
+  .stat-v .unit { font-size: 20px; color: var(--ink-faint); }
+  .stat-l { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; margin-top: 8px; }
+
+  .hero-cta { margin-top: 40px; display: flex; gap: 14px; align-items: center; }
+  .btn-neon {
+    padding: 16px 32px; background: var(--neon); color: var(--bg); border: none;
+    font-family: 'Unbounded'; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-neon::after { content: ' →'; }
+  .btn-neon:hover { background: var(--cyan); }
+  .btn-ghost {
+    padding: 16px 32px; background: transparent; color: var(--ink); border: 1px solid var(--ink);
+    font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* SECTION LABEL */
+  .sec-label { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--neon); display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .sec-label::before { content:''; width: 40px; height: 1px; background: var(--neon); }
+  .sec-h { font-family: 'Unbounded'; font-weight: 300; font-size: clamp(48px, 7vw, 108px); line-height: 0.95; letter-spacing: -0.04em; color: var(--ink); }
+  .sec-h em { background: linear-gradient(135deg, var(--neon), var(--magenta)); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; font-weight: 500; }
+
+  /* FEATURES — bento 2.0 on dark */
+  .features-grid {
+    margin-top: 60px; max-width: 1400px; margin-left: auto; margin-right: auto;
+    display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 200px; gap: 14px;
+  }
+  .feat {
+    background: rgba(18,21,30,0.75); backdrop-filter: blur(20px);
+    border: 1px solid var(--line);
+    padding: 28px; color: var(--ink);
+    cursor: pointer; transition: transform 0.4s, border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .feat:hover { transform: translateY(-4px); border-color: var(--neon); }
+  .feat::before { content:''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--neon); opacity: 0; transition: opacity 0.3s; }
+  .feat:hover::before { opacity: 1; }
+
+  .feat-1 { grid-column: span 3; grid-row: span 2; }
+  .feat-2 { grid-column: span 3; grid-row: span 1; }
+  .feat-3 { grid-column: span 2; grid-row: span 1; }
+  .feat-4 { grid-column: span 1; grid-row: span 1; background: var(--neon); color: var(--bg); }
+  .feat-5 { grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, var(--bg-mid), var(--surface)); }
+  .feat-6 { grid-column: span 4; grid-row: span 1; }
+
+  .feat-num { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; color: var(--neon); text-transform: uppercase; }
+  .feat-4 .feat-num { color: var(--bg); }
+  .feat-title { font-family: 'Unbounded'; font-weight: 300; font-size: 32px; letter-spacing: -0.02em; margin-top: 14px; }
+  .feat-1 .feat-title { font-size: 64px; }
+  .feat-desc { margin-top: 14px; font-size: 13px; line-height: 1.55; color: var(--ink-soft); max-width: 36ch; }
+  .feat-4 .feat-desc { color: var(--bg); opacity: 0.8; }
+  .feat-meta { margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.22em; color: var(--neon); text-transform: uppercase; }
+
+  /* TOKENOMICS chart strip */
+  .tokenomics { padding: 120px 40px; border-top: 1px solid var(--line); }
+  .tk-row { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+  .tk-bars { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+  .tk-bar-item { display: grid; grid-template-columns: 160px 1fr 100px; gap: 20px; align-items: center; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .tk-label { color: var(--ink-soft); }
+  .tk-bar-outer { height: 6px; background: var(--surface); border: 1px solid var(--line); position: relative; }
+  .tk-bar-inner { position: absolute; top: 0; bottom: 0; left: 0; }
+  .tk-bar-inner.n { background: linear-gradient(90deg, var(--neon), var(--cyan)); }
+  .tk-bar-inner.m { background: linear-gradient(90deg, var(--magenta), var(--neon)); }
+  .tk-bar-inner.c { background: var(--cyan); }
+  .tk-val { color: var(--ink); font-family: 'Unbounded'; font-weight: 500; font-size: 16px; text-align: right; }
+
+  /* footer hero */
+  .foot-hero { min-height: 60vh; padding: 160px 40px 80px; border-top: 1px solid var(--line); }
+  .foot-hero h2 { font-family: 'Unbounded'; font-weight: 200; font-size: clamp(72px, 12vw, 184px); line-height: 0.9; letter-spacing: -0.05em; max-width: 14ch; }
+  .foot-hero h2 em { background: linear-gradient(135deg, var(--neon), var(--magenta), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; font-weight: 500; }
+  .foot-cta { margin-top: 48px; display: flex; gap: 16px; align-items: center; }
+  .foot-bottom { margin-top: 80px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; }
+
+  /* loader */
+  #loader { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; color: var(--neon); text-transform: uppercase; }
+  #loader.done { opacity: 0; pointer-events: none; transition: opacity 0.8s ease 0.3s; }
+</style>
+</head>
+<body>
+
+<div id="loader">rendering · 3d scene · initializing webgl</div>
+
+<canvas id="canvas"></canvas>
+
+<header>
+  <div class="brand">OBSIDIAN<span class="dot">.</span></div>
+  <nav>
+    <a class="active">Product</a>
+    <a>Token</a>
+    <a>Roadmap</a>
+    <a>Docs</a>
+  </nav>
+  <button class="cta-wallet">Connect Wallet</button>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section>
+    <div class="hero-mark">◉ $OBS TESTNET LIVE · 84,220 WALLETS</div>
+    <h1 class="h-hero">
+      The <em>chain</em> is not<br>
+      the <em>product.</em><br>
+      <span class="mono">The_experience</span> is.
+    </h1>
+    <p class="hero-desc">
+      Obsidian is a <strong>3D-first</strong> wallet for the next billion users. We don't show you transaction hashes — we show you <span class="neon">where your money lives</span>. Rotate it, zoom it, hold it.
+    </p>
+    <div class="hero-stats">
+      <div><div class="stat-v">84.2<span class="unit">K</span></div><div class="stat-l">Testnet Wallets</div></div>
+      <div><div class="stat-v">$12.4<span class="unit">M</span></div><div class="stat-l">TVL</div></div>
+      <div><div class="stat-v">0.004<span class="unit">$</span></div><div class="stat-l">Avg Fee</div></div>
+      <div><div class="stat-v">200<span class="unit">ms</span></div><div class="stat-l">Finality</div></div>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-neon">Get Early Access</button>
+      <button class="btn-ghost">Read Litepaper</button>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="sec-label">§ 01 · CORE</div>
+    <h2 class="sec-h">Built for <em>humans,</em><br>priced for <em>machines.</em></h2>
+
+    <div class="features-grid">
+      <div class="feat feat-1">
+        <div class="feat-num">/ 001 · FLAGSHIP</div>
+        <div class="feat-title">3D Wallet Canvas</div>
+        <div class="feat-desc">Every asset you own becomes a tangible, spatial object. Rotate, inspect, arrange. Your portfolio finally feels like yours — not a spreadsheet.</div>
+        <div class="feat-meta">THREE.JS · R3F · DREI · KTX2</div>
+      </div>
+      <div class="feat feat-2">
+        <div class="feat-num">/ 002</div>
+        <div class="feat-title">Gasless swaps</div>
+        <div class="feat-desc">Meta-transactions via relayer, fee abstraction built into the session key.</div>
+      </div>
+      <div class="feat feat-3">
+        <div class="feat-num">/ 003</div>
+        <div class="feat-title">Biometric keys</div>
+        <div class="feat-desc">Passkeys via WebAuthn. No seed phrase.</div>
+      </div>
+      <div class="feat feat-4">
+        <div class="feat-num">/ 004</div>
+        <div class="feat-title">Sub 200ms</div>
+        <div class="feat-desc">Finality target.</div>
+      </div>
+      <div class="feat feat-5">
+        <div class="feat-num">/ 005 · EMBEDDED</div>
+        <div class="feat-title">DeFi Studio</div>
+        <div class="feat-desc">Lending, staking, perps — all in a single spatial view. Drag assets between pools.</div>
+        <div class="feat-meta">VIEM · WAGMI · R3F</div>
+      </div>
+      <div class="feat feat-6">
+        <div class="feat-num">/ 006 · DEV</div>
+        <div class="feat-title">SDK · Open source</div>
+        <div class="feat-desc">TypeScript SDK + React hooks. Embed the 3D canvas in your own dApp.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="tokenomics">
+    <div class="tk-row">
+      <div>
+        <div class="sec-label">§ 02 · TOKEN</div>
+        <h2 class="sec-h">$OBS <em>allocation.</em></h2>
+        <p style="margin-top:24px;font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:40ch;">
+          Vesting başlar mainnet lansmanda. Team + investor cliff 12 ay, lineer 36 ay. Ecosystem grant treasury public multisig ile yönetilir.
+        </p>
+      </div>
+      <div class="tk-bars">
+        <div class="tk-bar-item"><span class="tk-label">Community · Airdrop</span><div class="tk-bar-outer"><div class="tk-bar-inner n" style="width:35%"></div></div><span class="tk-val">35%</span></div>
+        <div class="tk-bar-item"><span class="tk-label">Ecosystem · Grants</span><div class="tk-bar-outer"><div class="tk-bar-inner m" style="width:22%"></div></div><span class="tk-val">22%</span></div>
+        <div class="tk-bar-item"><span class="tk-label">Team · 4yr vest</span><div class="tk-bar-outer"><div class="tk-bar-inner c" style="width:18%"></div></div><span class="tk-val">18%</span></div>
+        <div class="tk-bar-item"><span class="tk-label">Treasury</span><div class="tk-bar-outer"><div class="tk-bar-inner n" style="width:15%"></div></div><span class="tk-val">15%</span></div>
+        <div class="tk-bar-item"><span class="tk-label">Investors · 3yr vest</span><div class="tk-bar-outer"><div class="tk-bar-inner m" style="width:10%"></div></div><span class="tk-val">10%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER HERO -->
+  <section class="foot-hero">
+    <div class="sec-label">§ 03 · STEP IN</div>
+    <h2>We're not <em>early.</em><br>We're <em>building</em> it.</h2>
+    <div class="foot-cta">
+      <button class="btn-neon">Claim Early Access</button>
+      <span style="font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.22em;color:var(--ink-faint);text-transform:uppercase;">@obsidian.fi · docs.obsidian.fi</span>
+    </div>
+    <div class="foot-bottom">
+      <span>OBSIDIAN · 2025 — 2026</span>
+      <span>TEMPLATE 12 · 3D IMMERSIVE · marcelo-style</span>
+      <span>THREE.JS · GSAP · UNBOUNDED · NEON LIME</span>
+    </div>
+  </section>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ========= THREE.JS SCENE =========
+const canvas = document.getElementById('canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x05060A, 15, 80);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500);
+camera.position.set(0, 0, 18);
+
+// lights
+scene.add(new THREE.AmbientLight(0x404050, 0.5));
+const keyLight = new THREE.DirectionalLight(0xFFFFFF, 2);
+keyLight.position.set(15, 10, 20);
+scene.add(keyLight);
+
+const neonLight = new THREE.PointLight(0xD4FF00, 8, 40);
+neonLight.position.set(-8, 2, 10);
+scene.add(neonLight);
+
+const magentaLight = new THREE.PointLight(0xFF3DA8, 5, 30);
+magentaLight.position.set(10, -4, 8);
+scene.add(magentaLight);
+
+// ==== PROCEDURAL CRYSTAL (icosahedron with emissive) ====
+const crystalGeo = new THREE.IcosahedronGeometry(4, 1);
+const crystalMat = new THREE.MeshPhysicalMaterial({
+  color: 0x1A1D24,
+  metalness: 0.85,
+  roughness: 0.15,
+  clearcoat: 1.0,
+  clearcoatRoughness: 0.1,
+  emissive: 0x4DE6FF,
+  emissiveIntensity: 0.08,
+  flatShading: true
+});
+const crystal = new THREE.Mesh(crystalGeo, crystalMat);
+scene.add(crystal);
+
+// wireframe overlay
+const wireGeo = new THREE.IcosahedronGeometry(4.05, 1);
+const wireMat = new THREE.LineBasicMaterial({ color: 0xD4FF00, transparent: true, opacity: 0.25 });
+const wire = new THREE.LineSegments(new THREE.EdgesGeometry(wireGeo), wireMat);
+scene.add(wire);
+
+// Orbiting small crystals
+const orbitGroup = new THREE.Group();
+for (let i = 0; i < 8; i++) {
+  const g = new THREE.IcosahedronGeometry(0.4 + Math.random() * 0.3, 0);
+  const m = new THREE.MeshPhysicalMaterial({
+    color: i % 2 === 0 ? 0xD4FF00 : 0xFF3DA8,
+    metalness: 0.6, roughness: 0.3,
+    emissive: i % 2 === 0 ? 0xD4FF00 : 0xFF3DA8,
+    emissiveIntensity: 0.4,
+    flatShading: true
+  });
+  const small = new THREE.Mesh(g, m);
+  const angle = (i / 8) * Math.PI * 2;
+  const r = 8 + Math.random() * 2;
+  small.position.set(Math.cos(angle) * r, (Math.random() - 0.5) * 4, Math.sin(angle) * r - 2);
+  small.userData = { angle, radius: r, speed: 0.3 + Math.random() * 0.4, bob: Math.random() * Math.PI };
+  orbitGroup.add(small);
+}
+scene.add(orbitGroup);
+
+// particles
+const pCount = 800;
+const pGeo = new THREE.BufferGeometry();
+const pPos = new Float32Array(pCount * 3);
+for (let i = 0; i < pCount; i++) {
+  pPos[i*3] = (Math.random() - 0.5) * 60;
+  pPos[i*3+1] = (Math.random() - 0.5) * 40;
+  pPos[i*3+2] = (Math.random() - 0.5) * 40 - 5;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+const pMat = new THREE.PointsMaterial({
+  color: 0xD4FF00, size: 0.06, transparent: true, opacity: 0.5,
+  depthWrite: false, blending: THREE.AdditiveBlending
+});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// ==== SCROLL-LINKED CAMERA ====
+gsap.registerPlugin(ScrollTrigger);
+
+const camPath = [
+  { x: 0, y: 0, z: 18, lx: 0, ly: 0, lz: 0 },
+  { x: 8, y: 3, z: 14, lx: 2, ly: 0, lz: 0 },
+  { x: -6, y: -2, z: 16, lx: -2, ly: 0, lz: 0 },
+  { x: 12, y: 8, z: 22, lx: 0, ly: 2, lz: 0 }
+];
+const camTarget = new THREE.Vector3(0, 0, 0);
+
+const sections = document.querySelectorAll('section');
+sections.forEach((sec, i) => {
+  ScrollTrigger.create({
+    trigger: sec, start: 'top 60%', end: 'bottom 40%',
+    onEnter: () => setCamera(Math.min(i, camPath.length - 1)),
+    onEnterBack: () => setCamera(Math.min(i, camPath.length - 1))
+  });
+});
+
+function setCamera(i) {
+  const p = camPath[i];
+  gsap.to(camera.position, { x: p.x, y: p.y, z: p.z, duration: 2, ease: 'power2.inOut' });
+  gsap.to(camTarget, { x: p.lx, y: p.ly, z: p.lz, duration: 2, ease: 'power2.inOut' });
+}
+
+// mouse parallax
+let mx = 0, my = 0;
+window.addEventListener('mousemove', e => {
+  mx = (e.clientX / window.innerWidth - 0.5);
+  my = (e.clientY / window.innerHeight - 0.5);
+});
+
+// resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+let t = 0;
+function loop() {
+  t += 0.008;
+  crystal.rotation.x += 0.002;
+  crystal.rotation.y += 0.003;
+  wire.rotation.copy(crystal.rotation);
+  wire.rotation.y += 0.0015;
+
+  orbitGroup.children.forEach(o => {
+    o.userData.angle += o.userData.speed * 0.01;
+    o.position.x = Math.cos(o.userData.angle) * o.userData.radius;
+    o.position.z = Math.sin(o.userData.angle) * o.userData.radius - 2;
+    o.position.y = Math.sin(t * 0.6 + o.userData.bob) * 1.5;
+    o.rotation.x += 0.02;
+    o.rotation.y += 0.015;
+  });
+
+  particles.rotation.y += 0.0006;
+
+  // subtle mouse parallax on camera
+  camera.position.x += (mx * 2 - (camera.position.x - camTarget.x)) * 0.01;
+  camera.lookAt(camTarget);
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+loop();
+
+setTimeout(() => document.getElementById('loader').classList.add('done'), 600);
+
+// reveal kinetic
+gsap.from('.h-hero', { opacity: 0, y: 60, duration: 1.4, ease: 'expo.out' });
+gsap.from('.hero-desc, .hero-stats, .hero-cta', { opacity: 0, y: 30, duration: 1, stagger: 0.15, delay: 0.3 });
+
+gsap.from('.feat', {
+  y: 80, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.08,
+  scrollTrigger: { trigger: '.features-grid', start: 'top 80%' }
+});
+
+gsap.from('.tk-bar-inner', {
+  width: 0, duration: 1.4, ease: 'power3.out', stagger: 0.1,
+  scrollTrigger: { trigger: '.tk-bars', start: 'top 80%' }
+});
+</script>
+
+</body>
+</html>

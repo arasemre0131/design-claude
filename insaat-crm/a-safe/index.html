@@ -1,0 +1,461 @@
+<!--
+  CONSTRUO · insaat-crm · COMBO A "Safe & Proven"
+  ────────────────────────────────────────────────
+  DESIGN-COUNCIL COMBO:
+    H9 + N5 + HR14 + K2 + P8 + T2 + C3 + CH10 + F4 + M5 + FT5
+    TY12(Bricolage italic + IBM Plex Sans + IBM Plex Mono fallback)
+    PL19(Steel + Copper) + L7(sticky sidebar + feed) + MO3+MO4
+
+  LOCK / YASAK:
+    × Dark #0A0A0A bg (PL1 yasak)
+    × Gold #C9A84C
+    × Inter (Inter Tight izinli AMA bu combo'da IBM Plex Sans kullanılıyor)
+    × backdrop-filter:blur glassmorphism
+    × SVG feTurbulence noise overlay
+    × Italic gradient title
+    × Custom cursor difference
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONSTRUO · A · Steel + Copper</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..600;1,12..96,300..600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #E8EAEC;
+    --paper: #FBFBFC;
+    --surface: #FFFFFF;
+    --surface-hi: #F1F3F5;
+    --ink: #1C1E22;
+    --ink-soft: #4A5562;
+    --ink-faint: #8A95A3;
+    --line: rgba(28,30,34,0.08);
+    --line-strong: rgba(28,30,34,0.16);
+    --steel: #5F6C7B;
+    --copper: #B87333;
+    --copper-deep: #8A561F;
+    --ok: #3D7A5A;
+    --warn: #9B6A1F;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; font-size: 14px; }
+  ::selection { background: var(--copper); color: var(--paper); }
+
+  /* ===== APP SHELL — L7 sticky sidebar + feed ===== */
+  .app { display: grid; grid-template-columns: 240px 1fr 360px; min-height: 100vh; gap: 1px; background: var(--line-strong); }
+  aside, main, .context { background: var(--paper); }
+
+  /* ===== SIDEBAR ===== */
+  aside { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 22px 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; padding: 6px 6px 22px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+  .brand-mark { width: 28px; height: 28px; background: var(--copper); position: relative; }
+  .brand-mark::after { content:''; position: absolute; inset: 6px; background: var(--paper); }
+  .brand-name { font-family: 'Bricolage Grotesque'; font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: -0.015em; font-variation-settings: 'opsz' 48; }
+
+  .nav-section { margin-bottom: 18px; }
+  .nav-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); padding: 0 6px 8px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 7px 8px; font-size: 13px; color: var(--ink-soft); cursor: pointer; border-radius: 1px; }
+  .nav-item:hover { background: var(--surface-hi); color: var(--ink); }
+  .nav-item.active { background: var(--copper); color: var(--paper); }
+  .nav-item.active .kbd { background: rgba(255,255,255,0.2); color: var(--paper); }
+  .nav-icon { width: 14px; height: 14px; opacity: 0.7; }
+  .kbd { margin-left: auto; font-family: 'IBM Plex Mono'; font-size: 10px; padding: 1px 5px; background: var(--surface-hi); border: 1px solid var(--line); color: var(--ink-faint); letter-spacing: 0.05em; }
+
+  /* ===== MAIN CENTER ===== */
+  main { padding: 0; position: relative; }
+
+  /* H9 corner brackets + timestamp header */
+  .topbar { position: sticky; top: 0; z-index: 10; background: var(--paper); padding: 16px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 20px; }
+  .corner-frame { position: relative; padding: 6px 14px; font-family: 'IBM Plex Mono'; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
+  .corner-frame::before, .corner-frame::after { content:''; position: absolute; width: 10px; height: 10px; border-color: var(--copper); border-style: solid; }
+  .corner-frame::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .corner-frame::after { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+  .breadcrumb { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; display: flex; gap: 6px; }
+  .breadcrumb .sep { color: var(--line-strong); }
+  .breadcrumb .active { color: var(--copper); }
+
+  .timestamp { margin-left: auto; font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .timestamp .dot { color: var(--ok); }
+
+  /* N5 command palette — tek giriş ⌘K */
+  .cmdk { display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: var(--surface-hi); border: 1px solid var(--line); width: 280px; font-size: 13px; color: var(--ink-faint); cursor: pointer; }
+  .cmdk:hover { border-color: var(--copper); color: var(--ink); }
+
+  /* HR14 receipt-strip zero-hero — direkt feed */
+  .feed-strip { padding: 28px; }
+  .strip-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+  .strip-head h1 {
+    font-family: 'Bricolage Grotesque';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 72;
+  }
+  .strip-head .meta { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; margin-left: auto; }
+
+  /* K2 band with horizontal rules */
+  .kpi-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 32px; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); padding: 20px 0; }
+  .kpi { padding: 0 22px; border-right: 1px solid var(--line); }
+  .kpi:first-child { padding-left: 0; }
+  .kpi:last-child { border-right: none; padding-right: 0; }
+  .kpi-label { font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); }
+  .kpi-value {
+    font-family: 'Bricolage Grotesque';
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 96;
+  }
+  .kpi-unit { font-size: 20px; color: var(--ink-faint); }
+  .kpi-delta { margin-top: 6px; font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--ok); letter-spacing: 0.05em; }
+  .kpi-delta.down { color: var(--warn); }
+
+  /* CH10 sparkline — inline under KPI */
+  .spark { margin-top: 10px; height: 28px; width: 100%; }
+
+  /* P8 dense table — Linear-style */
+  .table-wrap { border-top: 1px solid var(--line-strong); }
+  .table-head { display: grid; grid-template-columns: 28px 2fr 1fr 1fr 90px 90px; gap: 0; padding: 10px 0; font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 28px 2fr 1fr 1fr 90px 90px; gap: 0; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; cursor: pointer; align-items: center; }
+  .row:hover { background: var(--surface-hi); }
+  .row .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 4px; }
+  .d-new { background: var(--copper); } .d-qual { background: var(--steel); } .d-prop { background: var(--ok); } .d-won { background: var(--ok); opacity: 0.7; } .d-lost { background: var(--ink-faint); }
+  .row .name { font-weight: 500; color: var(--ink); }
+  .row .meta-txt { color: var(--ink-soft); font-size: 12px; }
+  .row .stage { font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+  .row .src { font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase; }
+  .row .val { font-family: 'Bricolage Grotesque'; font-style: italic; font-size: 15px; color: var(--copper); text-align: right; letter-spacing: -0.01em; }
+  .row .assigned { font-size: 12px; color: var(--ink-soft); text-align: right; }
+
+  /* inline edit indication */
+  .editable { border-bottom: 1px dashed transparent; }
+  .row:hover .editable { border-bottom-color: var(--line-strong); }
+
+  /* ===== CONTEXT RAIL (right) — C3 email threaded ===== */
+  .context { padding: 0; display: flex; flex-direction: column; }
+  .ctx-head { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+  .ctx-avatar { width: 36px; height: 36px; background: var(--copper); color: var(--paper); display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque'; font-style: italic; font-size: 16px; }
+  .ctx-head .who h3 { font-family: 'Bricolage Grotesque'; font-style: italic; font-weight: 400; font-size: 17px; letter-spacing: -0.01em; }
+  .ctx-head .who .sub { font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; margin-top: 2px; }
+
+  .thread-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); padding: 0 22px; }
+  .thread-tab { padding: 10px 0; margin-right: 18px; font-family: 'IBM Plex Mono'; font-size: 11px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; cursor: pointer; border-bottom: 1px solid transparent; }
+  .thread-tab.active { color: var(--copper); border-bottom-color: var(--copper); }
+
+  .thread { flex: 1; overflow-y: auto; padding: 18px 22px; }
+  .msg { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .msg-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .msg-from { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .msg-channel { font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase; }
+  .msg-time { margin-left: auto; font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .msg-body { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
+  .msg-auto { margin-top: 8px; padding: 8px 10px; background: var(--surface-hi); border-left: 2px solid var(--copper); font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.02em; }
+
+  .composer { border-top: 1px solid var(--line); padding: 14px 22px; display: flex; gap: 10px; align-items: center; }
+  .composer input { flex: 1; padding: 10px 12px; background: var(--surface-hi); border: 1px solid var(--line); font-family: 'IBM Plex Sans'; font-size: 13px; outline: none; }
+  .composer input:focus { border-color: var(--copper); }
+  .btn-send { padding: 10px 16px; background: var(--ink); color: var(--paper); border: none; font-family: 'IBM Plex Mono'; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; }
+  .btn-send:hover { background: var(--copper); }
+
+  /* FT5 contact card footer (tek satır) */
+  .foot { grid-column: 1 / -1; padding: 14px 28px; background: var(--paper); border-top: 1px solid var(--line-strong); display: flex; justify-content: space-between; font-family: 'IBM Plex Mono'; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; }
+  .foot .c { color: var(--copper); }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside>
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="brand-name">Construo</div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;margin-top:2px;">a · steel + copper</div>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Çalışma</div>
+      <div class="nav-item active">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="2" width="5" height="5"/><rect x="9" y="2" width="5" height="5"/><rect x="2" y="9" width="5" height="5"/><rect x="9" y="9" width="5" height="5"/></svg>
+        Dashboard
+        <span class="kbd">⌘1</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+        Pipeline
+        <span class="kbd">⌘2</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M14 10c0 .5-.4 1-1 1H5l-3 3V4c0-.5.4-1 1-1h10c.5 0 1 .5 1 1z"/></svg>
+        Inbox
+        <span class="kbd">⌘3</span>
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 1l2 4 5 1-4 4 1 5-4-2-4 2 1-5-4-4 5-1z"/></svg>
+        Automation
+        <span class="kbd">⌘4</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Analiz</div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 14V2"/><path d="M2 14h12"/><path d="M5 10l3-3 3 2 3-5"/></svg>
+        Analytics
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 015 3"/></svg>
+        Ollama Engine
+      </div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="2"/><circle cx="8" cy="8" r="5"/></svg>
+        Ayarlar
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Ekip</div>
+      <div class="nav-item"><div style="width:14px;height:14px;background:var(--copper);"></div>Selin Karaca</div>
+      <div class="nav-item"><div style="width:14px;height:14px;background:var(--steel);"></div>Murat Toprak</div>
+      <div class="nav-item"><div style="width:14px;height:14px;background:var(--steel);"></div>Ece Yıldız</div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <div class="topbar">
+      <div class="corner-frame">lead · 18·04·2026</div>
+      <div class="breadcrumb">
+        <span>construo</span><span class="sep">/</span>
+        <span>yıldız inşaat</span><span class="sep">/</span>
+        <span class="active">dashboard</span>
+      </div>
+      <div class="cmdk">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M14 14l-3-3"/></svg>
+        <span>ara veya komut</span>
+        <span style="margin-left:auto;font-family:'IBM Plex Mono';font-size:10px;padding:1px 5px;background:var(--paper);border:1px solid var(--line);">⌘K</span>
+      </div>
+      <div class="timestamp"><span class="dot">●</span> ollama · 14ms · canlı</div>
+    </div>
+
+    <div class="feed-strip">
+      <div class="strip-head">
+        <h1>Lead <em>akışı.</em></h1>
+        <div class="meta">sayfa 01 · kayıt 14 · cuma</div>
+      </div>
+
+      <!-- K2 band with horizontal rules -->
+      <div class="kpi-band">
+        <div class="kpi">
+          <div class="kpi-label">lead · 24s</div>
+          <div class="kpi-value">14</div>
+          <div class="kpi-delta">↗ +42% · hafta rekoru</div>
+          <svg class="spark" viewBox="0 0 200 28" preserveAspectRatio="none"><polyline points="0,22 20,20 40,15 60,17 80,12 100,14 120,8 140,11 160,5 180,7 200,3" fill="none" stroke="#B87333" stroke-width="1.5"/></svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">auto-reply</div>
+          <div class="kpi-value">73<span class="kpi-unit">%</span></div>
+          <div class="kpi-delta">↗ +8pt · path A 62</div>
+          <svg class="spark" viewBox="0 0 200 28" preserveAspectRatio="none"><polyline points="0,15 40,13 80,10 120,8 160,6 200,5" fill="none" stroke="#5F6C7B" stroke-width="1.5"/></svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">potansiyel · 30g</div>
+          <div class="kpi-value">₺4.82<span class="kpi-unit">m</span></div>
+          <div class="kpi-delta">↗ 31% · prev ₺3.68M</div>
+          <svg class="spark" viewBox="0 0 200 28" preserveAspectRatio="none"><polyline points="0,25 30,22 60,20 90,18 120,15 150,12 180,8 200,5" fill="none" stroke="#B87333" stroke-width="1.5"/></svg>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">inbox · unread</div>
+          <div class="kpi-value">22</div>
+          <div class="kpi-delta">wa 18 · ig 4</div>
+          <svg class="spark" viewBox="0 0 200 28" preserveAspectRatio="none"><polyline points="0,18 30,20 60,14 90,22 120,16 150,18 180,12 200,14" fill="none" stroke="#3D7A5A" stroke-width="1.5"/></svg>
+        </div>
+      </div>
+
+      <!-- P8 dense Linear-style table -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <div></div>
+          <div>İsim / Proje</div>
+          <div>Aşama</div>
+          <div>Atanan</div>
+          <div>Kanal</div>
+          <div style="text-align:right;">Değer</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-prop"></span></div>
+          <div><span class="name editable">Ayşegül Hanım</span><div class="meta-txt">4+1 villa · Çankaya · anahtar teslim arıyor</div></div>
+          <div class="stage">teklif · 72%</div>
+          <div class="assigned">Selin K.</div>
+          <div class="src">wa · 3dk</div>
+          <div class="val">₺1.20M</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-qual"></span></div>
+          <div><span class="name editable">Serkan B.</span><div class="meta-txt">3+1 · Bilkent · şantiye ziyareti onaylı</div></div>
+          <div class="stage">kalifiye</div>
+          <div class="assigned">Selin K.</div>
+          <div class="src">wa · ollama</div>
+          <div class="val">₺750K</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-qual"></span></div>
+          <div><span class="name editable">Elif Kaya</span><div class="meta-txt">ofis blok · Çukurambar · yatırımcı</div></div>
+          <div class="stage">kalifiye</div>
+          <div class="assigned">Murat T.</div>
+          <div class="src">ig · 44dk</div>
+          <div class="val">₺2.40M</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-new"></span></div>
+          <div><span class="name editable">Mehmet Özer</span><div class="meta-txt">dükkan · Kızılay · kira getirisi</div></div>
+          <div class="stage">yeni · ilk temas</div>
+          <div class="assigned">Murat T.</div>
+          <div class="src">ig · 27dk</div>
+          <div class="val">₺680K</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-prop"></span></div>
+          <div><span class="name editable">Burak Arslan</span><div class="meta-txt">rezidans · İncek · ziyaret sonrası</div></div>
+          <div class="stage">görüşme</div>
+          <div class="assigned">Selin K.</div>
+          <div class="src">wa · 2s</div>
+          <div class="val">₺890K</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-new"></span></div>
+          <div><span class="name editable">Can Yılmaz</span><div class="meta-txt">2+1 daire · Keçiören · ilk ev</div></div>
+          <div class="stage">yeni</div>
+          <div class="assigned">Ece Y.</div>
+          <div class="src">wa · 4s</div>
+          <div class="val">₺420K</div>
+        </div>
+        <div class="row">
+          <div><span class="status-dot d-won"></span></div>
+          <div><span class="name editable">Gökhan E.</span><div class="meta-txt">2+1 · Ümitköy · 11 Nisan kapandı</div></div>
+          <div class="stage">kazanıldı ✓</div>
+          <div class="assigned">Murat T.</div>
+          <div class="src">wa</div>
+          <div class="val">₺580K</div>
+        </div>
+        <div class="row" style="opacity:.55;">
+          <div><span class="status-dot d-lost"></span></div>
+          <div><span class="name editable" style="text-decoration:line-through;">Ferhat K.</span><div class="meta-txt">"başka firmadan aldım" · 2 Nisan</div></div>
+          <div class="stage">kayıp</div>
+          <div class="assigned">—</div>
+          <div class="src">comp</div>
+          <div class="val">₺720K</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== CONTEXT (right) — C3 email threaded ===== -->
+  <div class="context">
+    <div class="ctx-head">
+      <div class="ctx-avatar">A</div>
+      <div class="who">
+        <h3>Ayşegül Hanım</h3>
+        <div class="sub">+90 532 •••• 4521 · WA</div>
+      </div>
+    </div>
+
+    <div class="thread-tabs">
+      <div class="thread-tab active">Mesajlar · 7</div>
+      <div class="thread-tab">Notlar</div>
+      <div class="thread-tab">Görevler</div>
+    </div>
+
+    <div class="thread">
+      <div class="msg">
+        <div class="msg-head">
+          <span class="msg-from">Ayşegül H.</span>
+          <span class="msg-channel">WA</span>
+          <span class="msg-time">14:02</span>
+        </div>
+        <div class="msg-body">Merhaba, Çankaya'daki 4+1 villa projelerinizle ilgili bilgi almak istiyorum. Anahtar teslim fiyat ve teslimat süresi?</div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-head">
+          <span class="msg-from">Otomatik · Construo</span>
+          <span class="msg-channel">wa · ollama</span>
+          <span class="msg-time">14:03 · ✓✓</span>
+        </div>
+        <div class="msg-body">Merhaba, Yıldız Panorama Villa 4+1'lerimiz anahtar teslim ₺1.18M–1.34M, teslim Mart 2027. Katalogu gönderiyorum.</div>
+        <div class="msg-auto">path A · regex match "villa" + "anahtar teslim" → template #17 · 4ms</div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-head">
+          <span class="msg-from">Ayşegül H.</span>
+          <span class="msg-channel">WA</span>
+          <span class="msg-time">14:06</span>
+        </div>
+        <div class="msg-body">Teşekkürler. Yerinde görmek istiyorum — önümüzdeki hafta mümkün mü?</div>
+        <div class="msg-auto">human handoff · confidence &lt; 0.7 · Selin K.'ya bildirim</div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-head">
+          <span class="msg-from">Selin K.</span>
+          <span class="msg-channel">iç not</span>
+          <span class="msg-time">14:28</span>
+        </div>
+        <div class="msg-body">Ayşegül hanımı Cumartesi 11:00'a çağırdım, teklifi önceden göndermem lazım — 14:30'a kadar hazırlarım.</div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-head">
+          <span class="msg-from">Ayşegül H.</span>
+          <span class="msg-channel">WA</span>
+          <span class="msg-time">15:12</span>
+        </div>
+        <div class="msg-body">Teklifi bekliyorum teşekkürler...</div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <input placeholder="cevap yaz…">
+      <button class="btn-send">Gönder</button>
+    </div>
+  </div>
+
+  <!-- FT5 contact card single line footer -->
+  <div class="foot">
+    <span>CONSTRUO · COMBO A · <span class="c">STEEL + COPPER</span></span>
+    <span>bricolage grotesque italic · ibm plex sans · ibm plex mono</span>
+    <span>emre aras · 18·04·2026 · ist</span>
+  </div>
+
+</div>
+
+<script>
+  // CSS scroll-driven fallback için küçük yardımcı (MO3 native, MO4 Framer yerine vanilla)
+  document.querySelectorAll('.row').forEach(r => {
+    r.addEventListener('click', () => {
+      document.querySelectorAll('.row').forEach(rr => rr.style.background = '');
+      r.style.background = 'var(--surface-hi)';
+    });
+  });
+
+  document.querySelector('.cmdk').addEventListener('click', () => {
+    alert('Komut paleti ⌘K — gerçek proje demosu');
+  });
+</script>
+
+</body>
+</html>

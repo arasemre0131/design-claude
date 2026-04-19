@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONSTRUO / Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #E6EDF2;
+    --paper-deep: #D4DEE6;
+    --ink: #0D2A3A;
+    --ink-soft: #33546B;
+    --ink-faint: #7B96A8;
+    --blueprint: #0F4C75;
+    --warn: #BF360C;
+    --stamp: #8B2E3F;
+    --go: #2D6A4F;
+  }
+  *,*::before,*::after { box-sizing: border-box; }
+  ::selection { background: var(--blueprint); color: var(--paper); }
+
+  html, body { margin:0; padding:0; background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', sans-serif; }
+
+  /* blueprint paper background */
+  body {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(var(--ink-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-faint) 1px, transparent 1px);
+    background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+    background-attachment: fixed;
+    position: relative;
+  }
+  body::before {
+    content:''; position: fixed; inset:0; pointer-events:none; z-index:0;
+    background: radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(230,237,242,.6) 75%, var(--paper-deep) 100%);
+  }
+
+  /* paper texture speckle */
+  body::after {
+    content:''; position: fixed; inset:0; pointer-events:none; z-index:0; opacity:.08;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.16 0 0 0 0 0.22 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .wrap { position: relative; z-index:1; max-width: 1400px; margin: 0 auto; padding: 48px; }
+
+  /* title block (bottom-right corner of drawings) */
+  .title-block {
+    border: 2px solid var(--ink);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1.2fr;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--paper);
+  }
+  .title-block > div { border-right: 1px solid var(--ink); padding: 8px 12px; }
+  .title-block > div:last-child { border-right: none; }
+  .title-block .label { color: var(--ink-faint); font-size: 8px; margin-bottom: 4px; display:block; }
+  .title-block .val { font-size: 11px; color: var(--ink); font-weight: 600; }
+
+  /* drawing frame */
+  .sheet {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    position: relative;
+  }
+  .sheet-inner {
+    border: 1px dashed var(--ink-soft);
+    margin: 10px;
+    padding: 24px;
+    position: relative;
+  }
+  .sheet-header {
+    position: absolute;
+    top: -12px;
+    left: 40px;
+    background: var(--paper);
+    padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* revision cloud callout */
+  .revision {
+    border: 1.5px solid var(--warn);
+    border-radius: 50% 30% 50% 20% / 30% 50% 20% 50%;
+    padding: 4px 10px;
+    display: inline-block;
+    color: var(--warn);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: rgba(191,54,12,0.05);
+  }
+
+  /* dimension line */
+  .dim {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+  .dim::before, .dim::after { content: ''; width: 30px; height: 1px; background: var(--ink-soft); position: relative; }
+  .dim::before { box-shadow: 0 -3px 0 -1px var(--ink-soft), 0 3px 0 -1px var(--ink-soft); }
+  .dim::after { box-shadow: 0 -3px 0 -1px var(--ink-soft), 0 3px 0 -1px var(--ink-soft); }
+
+  /* stamp */
+  .stamp {
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 2px solid var(--stamp);
+    color: var(--stamp);
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transform: rotate(-7deg);
+    background: rgba(139,46,63,0.04);
+    position: relative;
+  }
+  .stamp::before {
+    content:''; position: absolute; inset: -3px; border: 1.5px dashed var(--stamp); opacity: 0.4;
+  }
+
+  /* schedule / gantt-like bar */
+  .bar { position: relative; height: 22px; background: var(--paper-deep); border: 1px solid var(--ink-soft); }
+  .bar-fill { position: absolute; top:0; bottom:0; background: repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 4px, transparent 4px, transparent 8px); border-right: 2px solid var(--ink); }
+  .bar-milestone { position: absolute; top: -3px; width: 6px; height: 28px; background: var(--warn); transform: rotate(45deg); }
+
+  /* floor-plan grid */
+  .plan-grid {
+    aspect-ratio: 16/9;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--blueprint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blueprint) 1px, transparent 1px);
+    background-size: 30px 30px;
+    position: relative;
+    border: 1.5px solid var(--ink);
+  }
+
+  /* isometric building */
+  .iso-scene {
+    perspective: 1800px;
+    perspective-origin: 50% 40%;
+    height: 380px;
+    position: relative;
+  }
+  .iso {
+    position: absolute; left: 50%; top: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateX(55deg) rotateZ(-45deg);
+  }
+  .iso .box {
+    position: absolute; left: 50%; top: 50%; transform-style: preserve-3d;
+  }
+  .face { position: absolute; border: 1.5px solid var(--ink); background: var(--paper); }
+  .face.top { background: var(--paper-deep); }
+  .face.side { background: rgba(15,76,117,0.05); }
+
+  /* pipeline "elevation" (like building cross-section) */
+  .elevation { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1.5px solid var(--ink); position: relative; }
+  .column {
+    border-right: 1px dashed var(--ink-soft);
+    padding: 16px;
+    min-height: 360px;
+    position: relative;
+  }
+  .column:last-child { border-right: none; }
+  .column-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ticket {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 3px 3px 0 var(--paper-deep);
+  }
+  .ticket::before {
+    content:''; position: absolute; top: -1px; left: -1px; width: 10px; height: 10px; background: var(--ink); clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  .ticket-id { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .ticket-name { font-size: 13px; font-weight: 600; margin: 2px 0 4px; }
+  .ticket-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-soft); }
+  .ticket-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+
+  /* kpi card (engineering datasheet style) */
+  .kpi-sheet { border: 1.5px solid var(--ink); background: var(--paper); position: relative; padding: 14px 18px 18px; }
+  .kpi-sheet-label { font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; }
+  .kpi-sheet-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.03em; color: var(--ink); margin-top: 6px; }
+  .kpi-sheet-unit { font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+
+  /* scope line (like rebar callout) */
+  .scope { display:flex; align-items: center; gap: 12px; margin: 8px 0; }
+  .scope-num { font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; white-space: nowrap; }
+  .scope-line { flex: 1; height: 1px; background: var(--ink-soft); position: relative; }
+  .scope-line::before, .scope-line::after { content:''; position: absolute; top: -4px; width: 1px; height: 9px; background: var(--ink-soft); }
+  .scope-line::before { left: 0; } .scope-line::after { right: 0; }
+  .scope-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); white-space: nowrap; }
+
+  /* north arrow */
+  .compass {
+    width: 72px; height: 72px; border: 1.5px solid var(--ink); border-radius: 50%;
+    position: relative; display: inline-block;
+  }
+  .compass::before {
+    content:'N'; position: absolute; left: 50%; top: 4px; transform: translateX(-50%);
+    font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--ink);
+  }
+  .compass-needle {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-bottom: 30px solid var(--warn);
+  }
+
+  /* section heading */
+  .sec-head {
+    display: flex; align-items: baseline; gap: 16px;
+    border-top: 2px solid var(--ink); padding-top: 14px; margin: 48px 0 20px;
+  }
+  .sec-num {
+    font-family:'Syne', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.03em;
+    color: var(--blueprint);
+  }
+  .sec-title {
+    font-family:'Syne', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em;
+  }
+  .sec-key {
+    margin-left: auto;
+    font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em;
+  }
+
+  /* hero H1 */
+  .hero-h1 {
+    font-family:'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(62px, 10vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--blueprint);
+    font-family:'Syne', sans-serif;
+    font-weight: 800;
+  }
+  .hero-sub {
+    font-size: 15px;
+    max-width: 620px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* chevron/prog button */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px;
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--warn); }
+  .btn-ghost { background: transparent; color: var(--ink); }
+
+  /* bar chart (vertical, data monument) */
+  .columns-chart { display: flex; align-items: flex-end; gap: 14px; height: 160px; border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
+  .col-bar { width: 28px; background: var(--ink); position: relative; }
+  .col-bar[data-highlight] { background: var(--blueprint); }
+  .col-bar::after {
+    content: attr(data-label);
+    position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%) rotate(0);
+    font-family:'JetBrains Mono', monospace; font-size: 9px; color: var(--ink-faint);
+  }
+  .col-bar::before {
+    content: attr(data-value);
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+    font-family:'JetBrains Mono', monospace; font-size: 10px; color: var(--ink); font-weight: 600;
+  }
+
+  /* dashed underline ornament */
+  .crosshair-before {
+    position: relative; padding-left: 20px;
+  }
+  .crosshair-before::before {
+    content:'+'; position: absolute; left: 0; color: var(--blueprint); font-family:'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER BAR -->
+  <header style="display:flex;align-items:center;gap:40px;padding-bottom:28px;border-bottom:2px solid var(--ink);">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <rect x="3" y="3" width="30" height="30" stroke="#0D2A3A" stroke-width="2"/>
+        <path d="M3 3 L33 33 M33 3 L3 33" stroke="#0D2A3A" stroke-width="1" opacity=".4"/>
+        <circle cx="18" cy="18" r="4" fill="#BF360C"/>
+      </svg>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;line-height:1;">CONSTRUO</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--ink-soft);margin-top:3px;">LEAD INTELLIGENCE · BLUEPRINT EDITION</div>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:22px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);">
+      <span>dashboard</span><span>pipeline</span><span>inbox</span><span>flow</span><span style="color:var(--blueprint);">◉ canli</span>
+    </div>
+  </header>
+
+  <!-- TITLE BLOCK (engineering drawing corner) -->
+  <div class="title-block" style="margin-top:22px;">
+    <div>
+      <span class="label">proje · project</span>
+      <span class="val">YILDIZ İNŞAAT — CRM & LEAD PIPELINE</span>
+    </div>
+    <div>
+      <span class="label">sayfa · sheet</span>
+      <span class="val">01 / 04</span>
+    </div>
+    <div>
+      <span class="label">tarih · date</span>
+      <span class="val">18 · 04 · 2026</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="margin-top:60px;display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:end;">
+    <div>
+      <div style="display:flex;gap:12px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--blueprint);margin-bottom:18px;">
+        <span>§ 00 · KAPAK / COVER SHEET</span>
+        <span style="flex:1;height:1px;background:var(--ink-soft);max-width:200px;"></span>
+        <span class="revision">rev.03</span>
+      </div>
+      <h1 class="hero-h1">Her lead<br>bir <em>projedir.</em></h1>
+      <p class="hero-sub" style="margin-top:22px;">
+        Bu sayfa, Yıldız İnşaat A.Ş. satış ofisinin potansiyel müşteri kayıt ve takip sistemini ozalit mantığıyla gösterir. Her lead, bir inşaat projesi gibi kat kat ilerler: <span class="crosshair-before" style="color:var(--ink);">keşif</span><span class="crosshair-before" style="color:var(--ink);">kalifiye</span><span class="crosshair-before" style="color:var(--ink);">teklif</span><span class="crosshair-before" style="color:var(--blueprint);">imza</span>.
+      </p>
+      <div style="margin-top:32px;display:flex;gap:14px;align-items:center;">
+        <button class="btn">pipeline'a geç →</button>
+        <button class="btn btn-ghost">PDF indir</button>
+        <span class="stamp">onaylandı</span>
+      </div>
+    </div>
+
+    <!-- isometric building -->
+    <div class="iso-scene">
+      <div class="iso">
+        <!-- 5 kat bina: her lead stage bir kat -->
+        <div class="box" style="transform:translate(-60px,-200px);">
+          <div class="face top" style="width:120px;height:120px;transform:rotateX(90deg) translateZ(-40px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(0deg) translateZ(60px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(90deg) translateZ(60px);"></div>
+        </div>
+        <div class="box" style="transform:translate(-60px,-130px);">
+          <div class="face top" style="width:120px;height:120px;transform:rotateX(90deg) translateZ(-40px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(0deg) translateZ(60px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(90deg) translateZ(60px);"></div>
+        </div>
+        <div class="box" style="transform:translate(-60px,-60px);">
+          <div class="face top" style="width:120px;height:120px;transform:rotateX(90deg) translateZ(-40px);background:rgba(15,76,117,.14);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(0deg) translateZ(60px);background:rgba(15,76,117,.1);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(90deg) translateZ(60px);background:rgba(15,76,117,.1);"></div>
+        </div>
+        <div class="box" style="transform:translate(-60px,10px);">
+          <div class="face top" style="width:120px;height:120px;transform:rotateX(90deg) translateZ(-40px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(0deg) translateZ(60px);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(90deg) translateZ(60px);"></div>
+        </div>
+        <div class="box" style="transform:translate(-60px,80px);">
+          <div class="face top" style="width:120px;height:120px;transform:rotateX(90deg) translateZ(-40px);background:var(--paper-deep);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(0deg) translateZ(60px);background:var(--paper-deep);"></div>
+          <div class="face side" style="width:120px;height:40px;transform:rotateY(90deg) translateZ(60px);background:var(--paper-deep);"></div>
+        </div>
+      </div>
+      <div style="position:absolute;top:12px;right:12px;"><div class="compass"><div class="compass-needle"></div></div></div>
+      <div class="dim" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);">LEAD → IMZA · 5 KAT</div>
+    </div>
+  </section>
+
+  <!-- KPI DATASHEET -->
+  <div class="sec-head">
+    <span class="sec-num">§ 01</span>
+    <span class="sec-title">Günlük Durum Raporu</span>
+    <span class="sec-key">18 · NİSAN · 2026 / CUMA</span>
+  </div>
+
+  <section style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+    <div class="kpi-sheet">
+      <div class="kpi-sheet-label">yeni lead / 24s</div>
+      <div class="kpi-sheet-value">14</div>
+      <div class="kpi-sheet-unit">↗ +42% · önceki gün 9</div>
+    </div>
+    <div class="kpi-sheet">
+      <div class="kpi-sheet-label">ollama otomatik yanıt</div>
+      <div class="kpi-sheet-value">73<span style="font-size:28px;color:var(--ink-soft);">%</span></div>
+      <div class="kpi-sheet-unit">path A · 62 / path B · 11</div>
+    </div>
+    <div class="kpi-sheet">
+      <div class="kpi-sheet-label">potansiyel ciro · 30g</div>
+      <div class="kpi-sheet-value">4.82<span style="font-size:28px;color:var(--ink-soft);">m</span></div>
+      <div class="kpi-sheet-unit">tl · önceki dönem 3.68m</div>
+    </div>
+    <div class="kpi-sheet">
+      <div class="kpi-sheet-label">okunmamış mesaj</div>
+      <div class="kpi-sheet-value">22</div>
+      <div class="kpi-sheet-unit">wa 18 · ig 4</div>
+    </div>
+  </section>
+
+  <!-- SCOPE / ROADMAP -->
+  <div class="sec-head">
+    <span class="sec-num">§ 02</span>
+    <span class="sec-title">Günün İnşa Listesi</span>
+    <span class="sec-key">SCOPE OF WORK</span>
+  </div>
+
+  <div class="sheet"><div class="sheet-inner">
+    <span class="sheet-header">scope · 2026-04-18</span>
+    <div class="scope"><span class="scope-num">01 · TEKLİF</span><span class="scope-line"></span><span style="flex-basis:40%;font-size:14px;">Ayşegül H. · 4+1 villa · Çankaya</span><span class="scope-line"></span><span class="scope-val">₺1.200.000</span></div>
+    <div class="scope"><span class="scope-num">02 · ZİYARET</span><span class="scope-line"></span><span style="flex-basis:40%;font-size:14px;">Serkan B. · şantiye turu · Bilkent</span><span class="scope-line"></span><span class="scope-val">₺750.000</span></div>
+    <div class="scope"><span class="scope-num">03 · ESKALASYON</span><span class="scope-line"></span><span style="flex-basis:40%;font-size:14px;">Elif Kaya · ofis blok · Çukurambar</span><span class="scope-line"></span><span class="scope-val">₺2.400.000</span></div>
+    <div class="scope"><span class="scope-num">04 · FOLLOW-UP</span><span class="scope-line"></span><span style="flex-basis:40%;font-size:14px;">Mehmet Ö. · dükkan · Kızılay</span><span class="scope-line"></span><span class="scope-val">₺680.000</span></div>
+  </div></div>
+
+  <!-- GANTT / PROGRAM -->
+  <div class="sec-head">
+    <span class="sec-num">§ 03</span>
+    <span class="sec-title">Meta App Review · Program</span>
+    <span class="sec-key">SCHEDULE / GANTT</span>
+  </div>
+
+  <div class="sheet"><div class="sheet-inner">
+    <span class="sheet-header">timeline · 15 gün</span>
+    <div style="display:grid;grid-template-columns:180px 1fr 80px;gap:14px;align-items:center;font-size:12px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;">META APP SUBMIT</div>
+      <div class="bar"><div class="bar-fill" style="width:13%"></div><div class="bar-milestone" style="left:13%;"></div></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--go);">✓ 2026-04-15</div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;">REVIEW BEKLEME</div>
+      <div class="bar"><div class="bar-fill" style="width:47%"></div></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--warn);">◉ şimdi</div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;">WA LIVE DEPLOY</div>
+      <div class="bar"><div class="bar-fill" style="width:72%;background:repeating-linear-gradient(45deg,var(--ink-faint) 0,var(--ink-faint) 4px,transparent 4px,transparent 8px);"></div></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">~ 04-25</div>
+
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;">MÜŞTERİ TESLIM</div>
+      <div class="bar"><div class="bar-fill" style="width:95%;background:repeating-linear-gradient(45deg,var(--ink-faint) 0,var(--ink-faint) 4px,transparent 4px,transparent 8px);"></div><div class="bar-milestone" style="left:95%;"></div></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">◎ 05-05</div>
+    </div>
+  </div></div>
+
+  <!-- PIPELINE "ELEVATION" -->
+  <div class="sec-head">
+    <span class="sec-num">§ 04</span>
+    <span class="sec-title">Kesit · Pipeline Elevation</span>
+    <span class="sec-key">5 KOLON · 49 LEAD</span>
+  </div>
+
+  <div class="elevation">
+    <!-- Kolon 1 -->
+    <div class="column">
+      <div class="column-header"><span>01 · yeni</span><span>23</span></div>
+      <div class="ticket"><div class="ticket-id">LEAD-0193 · WA</div><div class="ticket-name">Ayşegül Hanım</div><div class="ticket-meta">4+1 villa · Çankaya</div><div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center;"><span class="revision" style="font-size:8px;">SICAK</span><span class="ticket-price">₺1.20M</span></div></div>
+      <div class="ticket"><div class="ticket-id">LEAD-0194 · IG</div><div class="ticket-name">Mehmet Özer</div><div class="ticket-meta">dükkan · Kızılay</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price">₺680K</span></div></div>
+      <div class="ticket"><div class="ticket-id">LEAD-0195 · WA</div><div class="ticket-name">Can Yılmaz</div><div class="ticket-meta">2+1 daire · Keçiören</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price">₺420K</span></div></div>
+    </div>
+    <!-- Kolon 2 -->
+    <div class="column">
+      <div class="column-header"><span>02 · kalifiye</span><span>09</span></div>
+      <div class="ticket"><div class="ticket-id">LEAD-0188 · WA</div><div class="ticket-name">Serkan B.</div><div class="ticket-meta">3+1 · Bilkent · ollama</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price">₺750K</span></div></div>
+      <div class="ticket"><div class="ticket-id">LEAD-0185 · IG</div><div class="ticket-name">Elif Kaya</div><div class="ticket-meta">ofis blok · yatırımcı</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price">₺2.40M</span></div></div>
+    </div>
+    <!-- Kolon 3 -->
+    <div class="column">
+      <div class="column-header"><span>03 · görüşme</span><span>12</span></div>
+      <div class="ticket" style="border-width:2px;border-color:var(--blueprint);">
+        <div class="ticket-id" style="color:var(--blueprint);">LEAD-0180 · WA · TEKLIF</div>
+        <div class="ticket-name" style="font-family:'Syne';font-size:15px;">Ayşegül H.</div>
+        <div class="ticket-meta">teklif gönderilecek · 14:30</div>
+        <div style="margin-top:8px;height:3px;background:var(--paper-deep);"><div style="height:100%;background:var(--blueprint);width:72%;"></div></div>
+        <div style="margin-top:6px;text-align:right;"><span class="ticket-price" style="color:var(--blueprint);">₺1.20M</span></div>
+      </div>
+      <div class="ticket"><div class="ticket-id">LEAD-0172 · WA</div><div class="ticket-name">Burak Arslan</div><div class="ticket-meta">rezidans · İncek</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price">₺890K</span></div></div>
+    </div>
+    <!-- Kolon 4 -->
+    <div class="column" style="background:rgba(45,106,79,.04);">
+      <div class="column-header"><span>04 · kazanıldı</span><span>07</span></div>
+      <div class="ticket" style="border-color:var(--go);"><div class="ticket-id" style="color:var(--go);">LEAD-0166 ✓</div><div class="ticket-name">Gökhan E.</div><div class="ticket-meta">2+1 · Ümitköy</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price" style="color:var(--go);">₺580K</span></div></div>
+      <div class="ticket" style="border-color:var(--go);"><div class="ticket-id" style="color:var(--go);">LEAD-0158 ✓</div><div class="ticket-name">Hande D.</div><div class="ticket-meta">villa · GOP</div><div style="margin-top:6px;text-align:right;"><span class="ticket-price" style="color:var(--go);">₺1.45M</span></div></div>
+    </div>
+    <!-- Kolon 5 -->
+    <div class="column">
+      <div class="column-header"><span>05 · kayıp</span><span>05</span></div>
+      <div class="ticket" style="opacity:.5;"><div class="ticket-id">LEAD-0149 ✗</div><div class="ticket-name" style="text-decoration:line-through;">Ferhat K.</div><div class="ticket-meta">rakip firma</div></div>
+      <div class="ticket" style="opacity:.5;"><div class="ticket-id">LEAD-0142 ✗</div><div class="ticket-name" style="text-decoration:line-through;">Özlem N.</div><div class="ticket-meta">bütçe yetmedi</div></div>
+    </div>
+  </div>
+
+  <!-- ELEVATION / SECTION CUT -->
+  <div class="sec-head">
+    <span class="sec-num">§ 05</span>
+    <span class="sec-title">Ciro · Bar Elevasyonu</span>
+    <span class="sec-key">CHART / ELEVATION</span>
+  </div>
+
+  <div class="sheet"><div class="sheet-inner" style="padding:40px 24px 30px;">
+    <span class="sheet-header">ciro · 15 gün · milyon tl</span>
+    <div class="columns-chart">
+      <div class="col-bar" data-label="01" data-value="1.2" style="height:25%"></div>
+      <div class="col-bar" data-label="03" data-value="1.4" style="height:29%"></div>
+      <div class="col-bar" data-label="05" data-value="1.3" style="height:27%"></div>
+      <div class="col-bar" data-label="07" data-value="1.6" style="height:33%"></div>
+      <div class="col-bar" data-label="09" data-value="1.8" style="height:37%"></div>
+      <div class="col-bar" data-label="11" data-value="2.0" style="height:41%"></div>
+      <div class="col-bar" data-label="13" data-value="1.9" style="height:40%"></div>
+      <div class="col-bar" data-label="15" data-value="2.3" style="height:48%"></div>
+      <div class="col-bar" data-label="17" data-value="2.6" style="height:54%"></div>
+      <div class="col-bar" data-label="19" data-value="2.8" style="height:58%"></div>
+      <div class="col-bar" data-label="21" data-value="3.1" style="height:64%"></div>
+      <div class="col-bar" data-label="23" data-value="3.4" style="height:71%"></div>
+      <div class="col-bar" data-label="25" data-value="3.8" style="height:79%"></div>
+      <div class="col-bar" data-label="27" data-value="4.2" style="height:87%"></div>
+      <div class="col-bar" data-highlight data-label="29" data-value="4.82" style="height:100%"></div>
+    </div>
+  </div></div>
+
+  <!-- FOOTER / APPROVAL BLOCK -->
+  <footer style="margin-top:80px;border-top:2px solid var(--ink);padding-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.15em;text-transform:uppercase;">çizen · drawn by</div>
+      <div style="font-family:'Syne';font-weight:700;font-size:18px;margin-top:4px;">emre aras</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">2026-04-18 · 18:42</div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.15em;text-transform:uppercase;">kontrol · checked</div>
+      <div style="font-family:'Syne';font-weight:700;font-size:18px;margin-top:4px;">fatih bey</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">beklemede · pending</div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.15em;text-transform:uppercase;">ölçek · scale</div>
+      <div style="font-family:'Syne';font-weight:700;font-size:18px;margin-top:4px;">1 : 1</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">piksel = piksel</div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.15em;text-transform:uppercase;">sayfa · sheet</div>
+      <div style="font-family:'Syne';font-weight:700;font-size:18px;margin-top:4px;">01 / 04</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);">cover</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // reveal
+  gsap.utils.toArray('.sheet, .kpi-sheet, .elevation, .title-block').forEach(el => {
+    gsap.from(el, {
+      y: 30, opacity: 0, duration: .8, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%' }
+    });
+  });
+
+  // kpi count
+  gsap.utils.toArray('.kpi-sheet-value').forEach(el => {
+    const txt = el.textContent.replace(/[^\d.]/g,'');
+    const unit = el.innerHTML.match(/<span[^>]*>(.*)<\/span>/);
+    const target = parseFloat(txt);
+    const obj = { v: 0 };
+    gsap.to(obj, {
+      v: target, duration: 1.4, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%' },
+      onUpdate: () => {
+        const formatted = target < 10 ? obj.v.toFixed(2) : Math.round(obj.v);
+        el.innerHTML = formatted + (unit ? '<span style="font-size:28px;color:var(--ink-soft);">'+unit[1]+'</span>' : '');
+      }
+    });
+  });
+
+  // isometric subtle float
+  gsap.to('.iso', { y: -8, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+
+  // compass subtle rotation
+  gsap.to('.compass-needle', { rotate: 3, duration: 4, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: 'bottom center' });
+
+  // bar chart reveal
+  gsap.from('.col-bar', {
+    height: 0, duration: 1, ease: 'power3.out', stagger: 0.04,
+    scrollTrigger: { trigger: '.columns-chart', start: 'top 80%' }
+  });
+
+  // gantt bars
+  gsap.from('.bar-fill', {
+    width: 0, duration: 1.2, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.bar-fill', start: 'top 80%' }
+  });
+</script>
+</body>
+</html>

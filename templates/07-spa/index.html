@@ -1,0 +1,252 @@
+<!--
+  TEMPLATE 07 · SPA / WELLNESS
+  Palette A: PL31 Clay + Mist · Palette B: PL32 Pearl + Seafoam
+  Typo A: TY37 Cormorant Infant + Inter Tight · Typo B: TY38 Fraunces SC + Hanken Grotesk
+  Hero: HR3 slow-mo video feel · Layout: L6 center single column · Motion: MO2 Lenis çok yavaş + MO3 subtle
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 07 · Spa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter+Tight:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..700&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Clay + Mist */
+    --bg: #F5F1E8;
+    --surface: #EBE4D4;
+    --ink: #3A2E22;
+    --ink-soft: #6B5E4C;
+    --ink-faint: #9A8D7A;
+    --accent: #A0826D;
+    --accent-2: #D4B896;
+    --line: rgba(58,46,34,0.12);
+    --font-display: 'Cormorant Infant', serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Pearl + Seafoam */
+    --bg: #F8F6F1;
+    --surface: #E8E6DE;
+    --ink: #1E2E2E;
+    --ink-soft: #3A5A5A;
+    --ink-faint: #6B8080;
+    --accent: #3A5A5A;
+    --accent-2: #B4C5B8;
+    --line: rgba(30,46,46,0.12);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Hanken Grotesk', sans-serif;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-weight: 300; line-height: 1.7; transition: background 0.8s ease; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; opacity: 0.7; transition: opacity 0.3s; }
+  .palette-switch:hover { opacity: 1; }
+
+  /* minimal header */
+  header { padding: 36px 0; text-align: center; }
+  .brand { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 32px; letter-spacing: 0.03em; color: var(--ink); font-variation-settings: 'opsz' 96; }
+  body.p-b .brand { font-style: normal; font-weight: 400; letter-spacing: -0.01em; font-variation-settings: 'opsz' 144; }
+  .brand-sub { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em; color: var(--ink-faint); text-transform: uppercase; }
+  nav { margin-top: 28px; display: flex; justify-content: center; gap: 36px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding-bottom: 4px; border-bottom: 1px solid transparent; }
+  nav a.active { color: var(--ink); border-color: var(--accent); }
+
+  main { max-width: 780px; margin: 0 auto; padding: 0 48px; }
+
+  /* HERO — long, meditative */
+  .hero { padding: 120px 0 140px; text-align: center; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+  h1.hero-h {
+    font-family: var(--font-display); font-weight: 300; font-style: italic;
+    font-size: clamp(56px, 8vw, 104px);
+    line-height: 1; letter-spacing: -0.015em; color: var(--ink);
+    font-variation-settings: 'opsz' 144;
+  }
+  body.p-b h1.hero-h { font-style: normal; font-weight: 300; letter-spacing: -0.025em; }
+  h1.hero-h em { color: var(--accent); font-style: italic; }
+  body.p-b h1.hero-h em { font-style: italic; font-weight: 400; }
+  .hero-sub { margin: 48px auto 0; font-size: 19px; line-height: 1.7; color: var(--ink-soft); max-width: 44ch; }
+  .hero-sub em { font-family: var(--font-display); font-style: italic; color: var(--ink); font-weight: 400; font-size: 21px; }
+
+  .hero-visual {
+    margin: 80px auto 0; width: 200px; height: 200px; border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-family: var(--font-display); font-style: italic; font-size: 120px; font-weight: 300;
+  }
+  body.p-b .hero-visual { font-style: normal; font-weight: 400; }
+
+  /* breath / quote strip */
+  .breath { padding: 100px 0; text-align: center; max-width: 560px; margin: 0 auto; }
+  .breath blockquote { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 32px; line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); }
+  body.p-b .breath blockquote { font-style: italic; font-weight: 300; }
+  .breath .attr { margin-top: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; }
+
+  /* SECTIONS */
+  .sec { padding: 80px 0; border-top: 1px solid var(--line); }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); text-align: center; margin-bottom: 18px; }
+  .sec-title { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.018em; text-align: center; color: var(--ink); font-variation-settings: 'opsz' 96; }
+  body.p-b .sec-title { font-style: normal; font-weight: 300; }
+  .sec-title em { color: var(--accent); font-style: italic; }
+  .sec-desc { margin: 24px auto 0; max-width: 48ch; font-size: 16px; line-height: 1.65; color: var(--ink-soft); text-align: center; }
+
+  /* PACKAGES list */
+  .packages { margin-top: 60px; }
+  .pkg { padding: 32px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr 120px; gap: 32px; align-items: start; cursor: pointer; transition: padding 0.4s ease; }
+  .pkg:hover { padding-left: 20px; }
+  .pkg-head { display: flex; align-items: baseline; gap: 12px; }
+  .pkg-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; }
+  .pkg h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 30px; letter-spacing: -0.01em; color: var(--ink); }
+  body.p-b .pkg h3 { font-style: italic; font-weight: 400; }
+  .pkg-body { margin-top: 14px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); max-width: 44ch; }
+  .pkg-meta { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; }
+  .pkg-price { text-align: right; }
+  .pkg-price-v { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 34px; letter-spacing: -0.02em; color: var(--accent); font-variation-settings: 'opsz' 96; }
+  .pkg-price-l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin-top: 2px; }
+
+  /* BOOKING CTA */
+  .booking-cta { padding: 140px 0; text-align: center; border-top: 1px solid var(--line); }
+  .booking-cta h2 { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: clamp(48px, 7vw, 88px); line-height: 1.05; letter-spacing: -0.018em; font-variation-settings: 'opsz' 144; }
+  body.p-b .booking-cta h2 { font-style: italic; }
+  .booking-cta h2 em { color: var(--accent); }
+  .booking-cta p { margin: 28px auto 0; max-width: 40ch; font-size: 17px; line-height: 1.65; color: var(--ink-soft); }
+  .booking-cta .btn-book {
+    margin-top: 48px; padding: 18px 40px;
+    background: var(--ink); color: var(--bg); border: none;
+    font-family: var(--font-body); font-weight: 400; font-size: 14px;
+    letter-spacing: 0.35em; text-transform: uppercase; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .booking-cta .btn-book:hover { background: var(--accent); letter-spacing: 0.45em; }
+
+  footer { padding: 32px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · PEARL + SEAFOAM' : 'A · CLAY + MIST';">A · CLAY + MIST</button>
+
+<header>
+  <div class="brand">Kür</div>
+  <div class="brand-sub">— Yavaş · Sessiz · Uzun —</div>
+  <nav>
+    <a class="active">Ana</a>
+    <a>Paketler</a>
+    <a>Felsefe</a>
+    <a>Mekan</a>
+    <a>Randevu</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Kapadokya · Uçhisar · 2019</div>
+    <h1 class="hero-h">Nefes <em>uzundur.</em><br>Zaman <em>durur.</em></h1>
+    <p class="hero-sub">
+      <em>Kür.</em> Bir eski kelime — bugün unutulmuş. Asırlarca insanlar <em>iyileşmek için</em> bir yere giderdi.
+      Biz o kelimeyi geri aldık, taşın içine oyduk, ve kapıyı açık bıraktık.
+    </p>
+    <div class="hero-visual">◯</div>
+  </section>
+
+  <!-- BREATH QUOTE -->
+  <section class="breath">
+    <blockquote>
+      "İyi bir mola, tatilin bir özetidir. Uzun bir mola, hayatın bir özeti."
+    </blockquote>
+    <div class="attr">— Dr. Emine Kaya · Kür'ün Doktoru</div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="sec">
+    <div class="sec-label">— Paketler —</div>
+    <h2 class="sec-title">Her konuk için<br><em>farklı bir uzunluk.</em></h2>
+    <p class="sec-desc">3 gün yetmez, 14 gün çok gelebilir. Biz her paketi, geçmiş 2,800 konuğumuzun anlattıkları üzerine oturtuk.</p>
+
+    <div class="packages">
+      <div class="pkg">
+        <div>
+          <div class="pkg-head">
+            <span class="pkg-num">/ 01</span>
+            <h3>Hafta Sonu Başlangıç</h3>
+          </div>
+          <p class="pkg-body">2 gece · 3 gün. Stres sökümü için ilk paket. Taş mağara odası, 2 masaj, 1 yoga, her öğün. Kendini tartıp gel, tartmadan git.</p>
+          <div class="pkg-meta">2 GECE · 3 SEANS · TEK KİŞİ</div>
+        </div>
+        <div class="pkg-price">
+          <div class="pkg-price-v">₺12,400</div>
+          <div class="pkg-price-l">her şey dahil</div>
+        </div>
+      </div>
+
+      <div class="pkg">
+        <div>
+          <div class="pkg-head">
+            <span class="pkg-num">/ 02</span>
+            <h3>Yedi Gün</h3>
+          </div>
+          <p class="pkg-body">Klasik. Bedeniniz ve zihniniz tam burada olana dek geçen süre. 7 gün, 14 seans, özel diyet, toprak sesi.</p>
+          <div class="pkg-meta">7 GECE · 14 SEANS</div>
+        </div>
+        <div class="pkg-price">
+          <div class="pkg-price-v">₺38,000</div>
+          <div class="pkg-price-l">çift fiyat · ₺62K</div>
+        </div>
+      </div>
+
+      <div class="pkg">
+        <div>
+          <div class="pkg-head">
+            <span class="pkg-num">/ 03</span>
+            <h3>On Dört Gün Dönüşüm</h3>
+          </div>
+          <p class="pkg-body">İki hafta. Sadece gelebilen değil, gelebilir gibi hissedenlere. Doktor eşliğinde özel program, hayatı yeniden kurma.</p>
+          <div class="pkg-meta">14 GECE · DOKTOR EŞLİĞİ · REHBERLİ</div>
+        </div>
+        <div class="pkg-price">
+          <div class="pkg-price-v">₺78,000</div>
+          <div class="pkg-price-l">bireysel</div>
+        </div>
+      </div>
+
+      <div class="pkg">
+        <div>
+          <div class="pkg-head">
+            <span class="pkg-num">/ 04</span>
+            <h3>Sessiz Çekilme</h3>
+          </div>
+          <p class="pkg-body">5 gün, konuşmasız. Telefon yok, e-posta yok, not defteri ve bir kalem var. En popüler paketimiz — 3 ay bekleme listesi.</p>
+          <div class="pkg-meta">5 GECE · KONUŞMASIZ · 12 KİŞİLİK GRUP</div>
+        </div>
+        <div class="pkg-price">
+          <div class="pkg-price-v">₺28,500</div>
+          <div class="pkg-price-l">bekleme listesi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <section class="booking-cta">
+    <h2>Bir <em>randevu</em><br>için hazır mısınız?</h2>
+    <p>Müsait haftalarımız dönem dönem hızlı dolar. Tercih ettiğiniz paketi yazın, size iki alternatif tarih gönderelim.</p>
+    <button class="btn-book">Randevu Talep Et</button>
+  </section>
+
+</main>
+
+<footer>
+  KÜR · TEMPLATE 07 · SPA / WELLNESS<br>
+  KAPADOKYA · UÇHİSAR · 2019 — BUGÜN<br>
+  COMBO: HR3+L6+TY37/38+PL31/32+MO2/3
+</footer>
+
+</body>
+</html>

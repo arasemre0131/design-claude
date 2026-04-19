@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONSTRUO / Immersive 3D</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.163.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.163.0/examples/jsm/"
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --bg: #0B0D10;
+    --bg-deep: #050608;
+    --fog: #1A1F28;
+    --ink: #FFFFFF;
+    --ink-soft: rgba(255,255,255,0.65);
+    --ink-faint: rgba(255,255,255,0.3);
+    --accent: #FF5E3A;
+    --accent-2: #FFB347;
+    --cool: #7FD4FF;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg-deep); color: var(--ink); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  #three-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+
+  .wrap { position: relative; z-index: 2; }
+
+  /* section styling */
+  section {
+    min-height: 100vh;
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* glass panel */
+  .glass-panel {
+    background: rgba(11,13,16,0.55);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 32px;
+    position: relative;
+    border-radius: 2px;
+  }
+  .glass-panel::before {
+    content:''; position: absolute; top:-1px; left:20px; width:40px; height:1px;
+    background: var(--accent);
+  }
+
+  /* HEADER fixed */
+  header.top-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 20px 40px;
+    display: flex; align-items: center; gap: 24px;
+    mix-blend-mode: difference;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .brand-dot {
+    width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
+
+  nav.nav-links { display: flex; gap: 26px; margin-left: auto; font-family:'JetBrains Mono'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+  nav.nav-links a { color: inherit; text-decoration: none; transition: color .3s; }
+  nav.nav-links a:hover { color: var(--ink); }
+  nav.nav-links a.live::before { content:'● '; color: var(--accent); }
+
+  /* progress indicator */
+  .progress-ring {
+    position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
+    z-index: 50;
+    font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.2em;
+    display: flex; flex-direction: column; gap: 18px;
+    align-items: flex-end;
+    text-transform: uppercase;
+  }
+  .progress-ring .step {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--ink-faint);
+    transition: color .3s;
+    cursor: pointer;
+  }
+  .progress-ring .step::after {
+    content: ''; width: 24px; height: 1px; background: currentColor;
+  }
+  .progress-ring .step.active { color: var(--accent); }
+  .progress-ring .step.active::after { width: 48px; }
+
+  /* hero section */
+  .hero {
+    padding: 160px 80px 80px;
+    align-items: flex-start;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 36px;
+  }
+  .hero-eyebrow .chip {
+    background: var(--accent); color: var(--bg);
+    padding: 6px 12px;
+    font-weight: 700;
+  }
+
+  h1.hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(70px, 11vw, 164px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    max-width: 1200px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  h1.hero-title .muted { color: var(--ink-faint); }
+
+  .hero-sub {
+    font-size: 18px;
+    max-width: 620px;
+    line-height: 1.6;
+    margin-top: 32px;
+    color: var(--ink-soft);
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .hero-sub .accent { color: var(--accent); }
+
+  .hero-cta { margin-top: 44px; display: flex; gap: 20px; align-items: center; }
+  .btn-3d {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 28px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: 'Inter'; font-weight: 600; font-size: 13px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all .3s cubic-bezier(.2,.8,.2,1);
+    position: relative;
+  }
+  .btn-3d:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -15px rgba(255,94,58,0.4); }
+  .btn-3d.ghost {
+    background: transparent; color: var(--ink); border: 1px solid var(--ink-faint);
+  }
+  .btn-3d.ghost:hover { border-color: var(--ink); box-shadow: none; }
+
+  .hero-stats {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    max-width: 1000px;
+  }
+  .hero-stats .stat {
+    background: rgba(11,13,16,0.65);
+    backdrop-filter: blur(14px);
+    padding: 22px 24px;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-delta {
+    font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); margin-top: 6px;
+  }
+
+  /* data section */
+  .s-label {
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .s-label::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+
+  h2.s-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 6vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+    max-width: 1050px;
+  }
+  h2.s-title em { font-style: italic; color: var(--accent); }
+
+  /* pipeline cards (immersive, staggered) */
+  .pipeline-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .p-col {
+    background: rgba(11,13,16,0.6);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 18px;
+    min-height: 380px;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1), border-color .3s;
+  }
+  .p-col:hover { transform: translateY(-6px); border-color: rgba(255,94,58,0.4); }
+
+  .p-col-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 16px;
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .p-col-head .count { font-size: 22px; font-family: 'DM Serif Display'; color: var(--ink); letter-spacing: -0.02em; }
+
+  .lead-chip {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: all .3s;
+    cursor: grab;
+  }
+  .lead-chip:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); transform: translateX(3px); }
+  .lead-chip.hot { border-left: 2px solid var(--accent); }
+  .lead-chip.won { background: rgba(127,212,255,0.06); border-color: rgba(127,212,255,0.2); }
+  .lead-name { font-family: 'Inter'; font-weight: 600; font-size: 14px; color: var(--ink); }
+  .lead-meta { font-family: 'Inter'; font-size: 12px; color: var(--ink-soft); margin-top: 2px; line-height: 1.4; }
+  .lead-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .lead-src { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; }
+  .lead-val { font-family: 'DM Serif Display'; font-size: 16px; color: var(--accent); letter-spacing: -0.01em; }
+
+  /* tower labels (render floating over 3D) */
+  .floor-label {
+    position: absolute;
+    pointer-events: none;
+    font-family: 'JetBrains Mono';
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 4px 8px;
+    border-left: 1px solid var(--accent);
+  }
+
+  /* map/grid of sahibi / properties */
+  .property-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  /* footer */
+  .foot {
+    padding: 120px 80px 80px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .foot h3 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(64px, 10vw, 156px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+  }
+  .foot h3 em { font-style: italic; color: var(--accent); }
+
+  /* loader / first-frame */
+  #loader {
+    position: fixed; inset: 0; z-index: 999;
+    background: var(--bg-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; color: var(--ink-soft); text-transform: uppercase;
+  }
+  #loader.done { opacity: 0; pointer-events: none; transition: opacity .8s ease .2s; }
+
+</style>
+</head>
+<body>
+
+<div id="loader">initialising scene · loading geometry</div>
+
+<!-- THREE.JS CANVAS -->
+<canvas id="three-canvas"></canvas>
+
+<!-- HEADER -->
+<header class="top-bar">
+  <div class="brand">
+    <span class="brand-dot"></span>
+    Construo
+    <span style="font-family:'JetBrains Mono';font-size:9px;letter-spacing:.25em;color:var(--ink-faint);margin-left:6px;">/ IMM. 3D</span>
+  </div>
+  <nav class="nav-links">
+    <a>dashboard</a>
+    <a>pipeline</a>
+    <a>inbox</a>
+    <a>flow</a>
+    <a class="live">canlı</a>
+  </nav>
+</header>
+
+<!-- SCROLL PROGRESS -->
+<aside class="progress-ring">
+  <div class="step active" data-step="0">§ 00 · cover</div>
+  <div class="step" data-step="1">§ 01 · metrics</div>
+  <div class="step" data-step="2">§ 02 · tower</div>
+  <div class="step" data-step="3">§ 03 · pipeline</div>
+  <div class="step" data-step="4">§ 04 · signal</div>
+</aside>
+
+<div class="wrap">
+
+  <!-- SECTION 0: HERO -->
+  <section class="hero" data-section="0">
+    <div class="hero-eyebrow">
+      <span class="chip">18 NİSAN 2026</span>
+      <span>YILDIZ İNŞAAT · ANKARA · LEAD INTELLIGENCE</span>
+    </div>
+    <h1 class="hero-title">
+      Her lead,<br>
+      <em>bir kat</em> daha<br>
+      <span class="muted">yükseliyor.</span>
+    </h1>
+    <p class="hero-sub">
+      Satış ofisine giren her potansiyel müşteri, inşa ettiğin binanın yeni bir katı. <strong>14 yeni lead</strong> bugün giriş yaptı. <strong class="accent">Ollama 3 tanesine</strong> otomatik yanıt verdi. Kule aşağıda, scroll et — kamera katlarda dolaşacak.
+    </p>
+    <div class="hero-cta">
+      <button class="btn-3d">kuleye dal &nbsp;↓</button>
+      <button class="btn-3d ghost">sesli brief</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-label">lead · 24s</div>
+        <div class="stat-value" data-count="14">0</div>
+        <div class="stat-delta">↗ +42%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">auto-reply</div>
+        <div class="stat-value" data-count="73" data-suffix="%">0</div>
+        <div class="stat-delta">↗ +8pt</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">potansiyel · 30g</div>
+        <div class="stat-value"><span data-count="4.82" data-decimals="2">0</span>M</div>
+        <div class="stat-delta">↗ 31%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">tasarruf · ay</div>
+        <div class="stat-value">₺<span data-count="2840">0</span></div>
+        <div class="stat-delta">vs api maliyeti</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: METRICS BENTO -->
+  <section data-section="1">
+    <div class="s-label">§ 01 · günün nabzı</div>
+    <h2 class="s-title">Her metrik <em>bir kat</em> daha, kule büyüdükçe hikaye <em>yükseliyor.</em></h2>
+
+    <div style="margin-top:60px;display:grid;grid-template-columns:repeat(12,1fr);gap:14px;">
+
+      <div class="glass-panel" style="grid-column: span 5;min-height:260px;">
+        <div class="s-label" style="margin-bottom:16px;color:var(--accent);">live · ollama engine</div>
+        <div style="font-family:'DM Serif Display';font-size:72px;line-height:1;letter-spacing:-.03em;">qwen2.5<span style="font-size:32px;color:var(--ink-faint);">:7b</span></div>
+        <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+          <div><div class="stat-label">median latency</div><div style="font-family:'DM Serif Display';font-size:32px;margin-top:4px;">14<span style="font-size:16px;color:var(--ink-faint);">ms</span></div></div>
+          <div><div class="stat-label">p99</div><div style="font-family:'DM Serif Display';font-size:32px;margin-top:4px;">42<span style="font-size:16px;color:var(--ink-faint);">ms</span></div></div>
+          <div><div class="stat-label">uptime</div><div style="font-family:'DM Serif Display';font-size:32px;margin-top:4px;">99.8<span style="font-size:16px;color:var(--ink-faint);">%</span></div></div>
+        </div>
+        <div style="margin-top:24px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;">
+          <div style="height:100%;width:84%;background:linear-gradient(90deg,var(--accent),var(--accent-2));"></div>
+        </div>
+        <div class="stat-label" style="margin-top:10px;">path A hit rate · 62% of traffic</div>
+      </div>
+
+      <div class="glass-panel" style="grid-column: span 4;min-height:260px;">
+        <div class="s-label" style="margin-bottom:16px;">inbox · unread</div>
+        <div style="display:flex;align-items:baseline;gap:20px;">
+          <div style="font-family:'DM Serif Display';font-size:110px;line-height:.9;letter-spacing:-.04em;" data-count="22">0</div>
+          <div>
+            <div class="stat-label">bugün girdi</div>
+            <div style="font-family:'DM Serif Display';font-size:28px;line-height:1;" data-count="41">0</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="stat-label">● whatsapp</span>
+            <span style="font-family:'DM Serif Display';font-size:22px;">18</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="stat-label" style="color:var(--cool);">● instagram</span>
+            <span style="font-family:'DM Serif Display';font-size:22px;">4</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="stat-label" style="color:var(--accent-2);">● web form</span>
+            <span style="font-family:'DM Serif Display';font-size:22px;">2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel" style="grid-column: span 3;min-height:260px;">
+        <div class="s-label" style="margin-bottom:16px;">meta app review</div>
+        <div style="font-family:'DM Serif Display';font-size:64px;line-height:1;" data-count="3">0</div>
+        <div class="stat-label" style="margin-top:6px;">/ 8 gün · beklemede</div>
+        <div style="margin-top:30px;position:relative;">
+          <svg viewBox="0 0 120 120" style="width:120px;">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="314" stroke-dashoffset="196" transform="rotate(-90 60 60)" class="rg"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:60px;transform:translate(-50%,-50%);font-family:'DM Serif Display';font-size:26px;">38%</div>
+        </div>
+      </div>
+
+      <div class="glass-panel" style="grid-column: span 6;min-height:180px;">
+        <div class="s-label" style="margin-bottom:16px;">bugün odak</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+          <div>
+            <div style="font-family:'DM Serif Display';font-size:15px;color:var(--accent);">01 · teklif</div>
+            <div style="font-family:'DM Serif Display';font-size:22px;margin-top:4px;">Ayşegül H.</div>
+            <div class="stat-label" style="margin-top:4px;">14:30 · villa</div>
+          </div>
+          <div>
+            <div style="font-family:'DM Serif Display';font-size:15px;color:var(--accent-2);">02 · ziyaret</div>
+            <div style="font-family:'DM Serif Display';font-size:22px;margin-top:4px;">Serkan B.</div>
+            <div class="stat-label" style="margin-top:4px;">16:00 · şantiye</div>
+          </div>
+          <div>
+            <div style="font-family:'DM Serif Display';font-size:15px;color:var(--cool);">03 · follow-up</div>
+            <div style="font-family:'DM Serif Display';font-size:22px;margin-top:4px;">Elif K.</div>
+            <div class="stat-label" style="margin-top:4px;">ofis blok</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel" style="grid-column: span 6;min-height:180px;">
+        <div class="s-label" style="margin-bottom:16px;">satış liderleri · nisan</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:'DM Serif Display';font-size:36px;color:var(--accent);">1</div>
+            <div style="flex:1;">
+              <div style="font-family:'Inter';font-weight:600;">Selin Karaca</div>
+              <div class="stat-label">11 kapalı · ₺845K</div>
+            </div>
+            <div style="width:120px;height:2px;background:rgba(255,255,255,0.1);"><div style="width:100%;height:100%;background:var(--accent);"></div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:'DM Serif Display';font-size:36px;color:var(--ink-soft);">2</div>
+            <div style="flex:1;">
+              <div style="font-family:'Inter';font-weight:600;">Murat Toprak</div>
+              <div class="stat-label">8 kapalı · ₺612K</div>
+            </div>
+            <div style="width:120px;height:2px;background:rgba(255,255,255,0.1);"><div style="width:72%;height:100%;background:var(--ink-soft);"></div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-family:'DM Serif Display';font-size:36px;color:var(--ink-soft);">3</div>
+            <div style="flex:1;">
+              <div style="font-family:'Inter';font-weight:600;">Ece Yıldız</div>
+              <div class="stat-label">6 kapalı · ₺438K</div>
+            </div>
+            <div style="width:120px;height:2px;background:rgba(255,255,255,0.1);"><div style="width:52%;height:100%;background:var(--ink-soft);"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: TOWER (3D featured) -->
+  <section data-section="2" style="min-height:120vh;">
+    <div class="s-label">§ 02 · lead tower</div>
+    <h2 class="s-title">Pipeline <em>yukarı doğru</em><br>inşa edilir, tuğla tuğla.</h2>
+    <p class="hero-sub">
+      Yeni lead'ler kulenin tabanına düşer, kalifiye olurlar, görüşme odasına taşınır, en üstte <strong class="accent">imzalanan satış</strong> vardır. Kamera scroll eksenine bağlı, kat kat yükselir. Sol tarafa bak.
+    </p>
+
+    <!-- floor callouts on right -->
+    <div style="margin-top:80px;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:start;">
+      <!-- empty left: 3D tower visible -->
+      <div></div>
+
+      <!-- right: floor info -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="glass-panel">
+          <div style="font-family:'JetBrains Mono';font-size:10px;letter-spacing:.25em;color:var(--accent);">KAT 05 · ÇATI</div>
+          <div style="font-family:'DM Serif Display';font-size:36px;margin-top:4px;">İmzalandı</div>
+          <div class="stat-label" style="margin-top:8px;">7 lead · ₺2.03M · bu ay</div>
+        </div>
+        <div class="glass-panel">
+          <div style="font-family:'JetBrains Mono';font-size:10px;letter-spacing:.25em;color:var(--accent-2);">KAT 04 · TERAS</div>
+          <div style="font-family:'DM Serif Display';font-size:36px;margin-top:4px;">Görüşme</div>
+          <div class="stat-label" style="margin-top:8px;">12 lead · ₺2.10M · teklifte</div>
+        </div>
+        <div class="glass-panel">
+          <div style="font-family:'JetBrains Mono';font-size:10px;letter-spacing:.25em;color:var(--cool);">KAT 03 · ARA KAT</div>
+          <div style="font-family:'DM Serif Display';font-size:36px;margin-top:4px;">Kalifiye</div>
+          <div class="stat-label" style="margin-top:8px;">9 lead · ollama işliyor</div>
+        </div>
+        <div class="glass-panel">
+          <div style="font-family:'JetBrains Mono';font-size:10px;letter-spacing:.25em;color:var(--ink-faint);">KAT 02 · 01 · GİRİŞ</div>
+          <div style="font-family:'DM Serif Display';font-size:36px;margin-top:4px;">Yeni</div>
+          <div class="stat-label" style="margin-top:8px;">23 lead · 24 saat içinde</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PIPELINE -->
+  <section data-section="3">
+    <div class="s-label">§ 03 · detay</div>
+    <h2 class="s-title">Kat kat <em>kim,</em><br>ne aşamada.</h2>
+
+    <div class="pipeline-grid">
+
+      <div class="p-col">
+        <div class="p-col-head"><span style="color:var(--accent-2);">● yeni</span><span class="count">23</span></div>
+        <div class="lead-chip hot">
+          <div class="lead-name">Ayşegül Hanım</div>
+          <div class="lead-meta">4+1 villa · Çankaya · anahtar teslim</div>
+          <div class="lead-row"><span class="lead-src">wa · 14:02</span><span class="lead-val">₺1.20M</span></div>
+        </div>
+        <div class="lead-chip">
+          <div class="lead-name">Mehmet Özer</div>
+          <div class="lead-meta">dükkan · Kızılay</div>
+          <div class="lead-row"><span class="lead-src">ig</span><span class="lead-val">₺680K</span></div>
+        </div>
+        <div class="lead-chip">
+          <div class="lead-name">Can Yılmaz</div>
+          <div class="lead-meta">2+1 daire · Keçiören</div>
+          <div class="lead-row"><span class="lead-src">wa</span><span class="lead-val">₺420K</span></div>
+        </div>
+      </div>
+
+      <div class="p-col">
+        <div class="p-col-head"><span style="color:var(--cool);">● kalifiye</span><span class="count">09</span></div>
+        <div class="lead-chip">
+          <div class="lead-name">Serkan B.</div>
+          <div class="lead-meta">3+1 · Bilkent · ziyaret onaylı</div>
+          <div class="lead-row"><span class="lead-src">wa · ollama</span><span class="lead-val">₺750K</span></div>
+        </div>
+        <div class="lead-chip">
+          <div class="lead-name">Elif Kaya</div>
+          <div class="lead-meta">ofis blok · Çukurambar · yatırımcı</div>
+          <div class="lead-row"><span class="lead-src">ig</span><span class="lead-val">₺2.40M</span></div>
+        </div>
+      </div>
+
+      <div class="p-col">
+        <div class="p-col-head"><span style="color:var(--accent);">● görüşme</span><span class="count">12</span></div>
+        <div class="lead-chip hot" style="border-color: var(--accent); background: rgba(255,94,58,0.08);">
+          <div class="lead-name" style="font-family:'DM Serif Display';font-size:18px;">Ayşegül H.</div>
+          <div class="lead-meta">teklif hazırlanıyor · 14:30</div>
+          <div style="height:3px;background:rgba(255,255,255,0.1);margin-top:10px;border-radius:2px;overflow:hidden;">
+            <div style="width:72%;height:100%;background:var(--accent);"></div>
+          </div>
+          <div class="lead-row"><span class="lead-src">72% · selin k.</span><span class="lead-val">₺1.20M</span></div>
+        </div>
+        <div class="lead-chip">
+          <div class="lead-name">Burak Arslan</div>
+          <div class="lead-meta">rezidans · İncek · ziyaret sonrası</div>
+          <div class="lead-row"><span class="lead-src">wa · selin k.</span><span class="lead-val">₺890K</span></div>
+        </div>
+      </div>
+
+      <div class="p-col" style="background: rgba(127,212,255,0.04);">
+        <div class="p-col-head"><span style="color:var(--cool);">● kazanıldı ✓</span><span class="count">07</span></div>
+        <div class="lead-chip won">
+          <div class="lead-name">Gökhan E.</div>
+          <div class="lead-meta">2+1 · Ümitköy · 11 nisan kapandı</div>
+          <div class="lead-row"><span class="lead-src">wa</span><span class="lead-val" style="color:var(--cool);">₺580K ✓</span></div>
+        </div>
+        <div class="lead-chip won">
+          <div class="lead-name">Hande D.</div>
+          <div class="lead-meta">villa · GOP · 08 nisan kapandı</div>
+          <div class="lead-row"><span class="lead-src">ig</span><span class="lead-val" style="color:var(--cool);">₺1.45M ✓</span></div>
+        </div>
+      </div>
+
+      <div class="p-col">
+        <div class="p-col-head"><span style="color:var(--ink-faint);">● kayıp</span><span class="count">05</span></div>
+        <div class="lead-chip" style="opacity:.5;">
+          <div class="lead-name" style="text-decoration:line-through;">Ferhat K.</div>
+          <div class="lead-meta" style="font-style:italic;">"başka firmadan aldım"</div>
+          <div class="lead-row"><span class="lead-src">comp</span><span class="lead-val" style="color:var(--ink-soft);">₺720K</span></div>
+        </div>
+        <div class="lead-chip" style="opacity:.5;">
+          <div class="lead-name" style="text-decoration:line-through;">Özlem N.</div>
+          <div class="lead-meta" style="font-style:italic;">"bütçe yetmedi"</div>
+          <div class="lead-row"><span class="lead-src">budget</span><span class="lead-val" style="color:var(--ink-soft);">₺950K</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: FOOTER SIGNAL -->
+  <section class="foot" data-section="4">
+    <div class="s-label">§ 04 · signal</div>
+    <h3>
+      Kule <em>yükselirken,</em><br>
+      veri <em>ışık tutar.</em>
+    </h3>
+
+    <div style="margin-top:80px;display:flex;justify-content:space-between;align-items:end;">
+      <div class="stat-label" style="line-height:1.8;">
+        CONSTRUO · IMMERSIVE 3D EDITION · V2<br>
+        EMRE ARAS · 2026-04-18 · İSTANBUL<br>
+        THREE.JS + GSAP SCROLLTRIGGER · PROCEDURAL TOWER
+      </div>
+      <button class="btn-3d">pipeline'a tekrar dal</button>
+    </div>
+  </section>
+
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ----- SETUP -----
+const canvas = document.getElementById('three-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+
+const scene = new THREE.Scene();
+scene.background = null;
+scene.fog = new THREE.Fog(0x0B0D10, 40, 180);
+
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
+camera.position.set(30, 12, 30);
+camera.lookAt(0, 10, 0);
+
+// lights
+scene.add(new THREE.AmbientLight(0x445566, 0.6));
+const sun = new THREE.DirectionalLight(0xFFB37A, 1.8);
+sun.position.set(25, 40, 18);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.left = -40; sun.shadow.camera.right = 40;
+sun.shadow.camera.top = 40; sun.shadow.camera.bottom = -40;
+scene.add(sun);
+
+const rim = new THREE.DirectionalLight(0x7FD4FF, 0.5);
+rim.position.set(-20, 10, -10);
+scene.add(rim);
+
+const accent = new THREE.PointLight(0xFF5E3A, 2, 30);
+accent.position.set(0, 18, 0);
+scene.add(accent);
+
+// ground
+const groundGeo = new THREE.PlaneGeometry(200, 200, 40, 40);
+const groundMat = new THREE.MeshStandardMaterial({ color: 0x0B0D10, metalness: 0.3, roughness: 0.9 });
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI/2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// grid helper (subtle)
+const grid = new THREE.GridHelper(200, 80, 0x2A2F38, 0x1A1F28);
+grid.material.opacity = 0.4;
+grid.material.transparent = true;
+scene.add(grid);
+
+// ----- TOWER (procedural: 5 floors, each represents pipeline stage) -----
+const tower = new THREE.Group();
+scene.add(tower);
+
+const floorCount = 5;
+const floorHeight = 3.2;
+const floorWidth = 8;
+const floorDepth = 8;
+
+const stageColors = [
+  { c: 0xFF8C5A, label:'YENI' },       // floor 1 - new
+  { c: 0xFFB347, label:'KALIFIYE' },   // floor 2
+  { c: 0xFF5E3A, label:'GORUSME' },    // floor 3 (accent)
+  { c: 0x7FD4FF, label:'KAZANILDI' },  // floor 4
+  { c: 0xFFFFFF, label:'IMZA' }        // floor 5 (top)
+];
+
+for (let i = 0; i < floorCount; i++) {
+  const floorGroup = new THREE.Group();
+  floorGroup.position.y = i * floorHeight + floorHeight/2;
+
+  // slab
+  const slabGeo = new THREE.BoxGeometry(floorWidth, 0.4, floorDepth);
+  const slabMat = new THREE.MeshStandardMaterial({ color: 0x1A1F28, metalness: 0.6, roughness: 0.5 });
+  const slab = new THREE.Mesh(slabGeo, slabMat);
+  slab.position.y = -floorHeight/2 + 0.2;
+  slab.castShadow = true; slab.receiveShadow = true;
+  floorGroup.add(slab);
+
+  // glass walls (4 sides)
+  const wallMat = new THREE.MeshStandardMaterial({
+    color: stageColors[i].c,
+    transparent: true,
+    opacity: 0.12,
+    metalness: 0.2,
+    roughness: 0.1,
+    emissive: stageColors[i].c,
+    emissiveIntensity: 0.15
+  });
+  const wallT = 0.08;
+  // front
+  const wallF = new THREE.Mesh(new THREE.BoxGeometry(floorWidth, floorHeight*0.85, wallT), wallMat);
+  wallF.position.set(0, 0, floorDepth/2);
+  floorGroup.add(wallF);
+  const wallB = new THREE.Mesh(new THREE.BoxGeometry(floorWidth, floorHeight*0.85, wallT), wallMat);
+  wallB.position.set(0, 0, -floorDepth/2);
+  floorGroup.add(wallB);
+  const wallL = new THREE.Mesh(new THREE.BoxGeometry(wallT, floorHeight*0.85, floorDepth), wallMat);
+  wallL.position.set(-floorWidth/2, 0, 0);
+  floorGroup.add(wallL);
+  const wallR = new THREE.Mesh(new THREE.BoxGeometry(wallT, floorHeight*0.85, floorDepth), wallMat);
+  wallR.position.set(floorWidth/2, 0, 0);
+  floorGroup.add(wallR);
+
+  // columns (4 corners)
+  const colMat = new THREE.MeshStandardMaterial({ color: 0x2A2F38, metalness: 0.7, roughness: 0.3 });
+  const colGeo = new THREE.BoxGeometry(0.4, floorHeight, 0.4);
+  const corners = [
+    [floorWidth/2 - 0.2, 0, floorDepth/2 - 0.2],
+    [-floorWidth/2 + 0.2, 0, floorDepth/2 - 0.2],
+    [floorWidth/2 - 0.2, 0, -floorDepth/2 + 0.2],
+    [-floorWidth/2 + 0.2, 0, -floorDepth/2 + 0.2],
+  ];
+  corners.forEach(p => {
+    const c = new THREE.Mesh(colGeo, colMat);
+    c.position.set(p[0], p[1], p[2]);
+    c.castShadow = true;
+    floorGroup.add(c);
+  });
+
+  // floor-edge light strip
+  const stripMat = new THREE.MeshBasicMaterial({ color: stageColors[i].c });
+  const stripGeo = new THREE.BoxGeometry(floorWidth + 0.1, 0.05, 0.05);
+  for (let s = 0; s < 2; s++) {
+    const strip = new THREE.Mesh(stripGeo, stripMat);
+    strip.position.set(0, -floorHeight/2 + 0.42, (s === 0 ? 1 : -1) * (floorDepth/2));
+    floorGroup.add(strip);
+  }
+
+  // lead "bricks" on each floor (varies by stage)
+  const brickMat = new THREE.MeshStandardMaterial({
+    color: stageColors[i].c,
+    metalness: 0.4,
+    roughness: 0.6,
+    emissive: stageColors[i].c,
+    emissiveIntensity: 0.2
+  });
+  const brickCount = [23, 9, 12, 7, 3][i];
+  for (let b = 0; b < Math.min(brickCount, 20); b++) {
+    const brick = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.4, 0.5), brickMat);
+    const angle = (b / brickCount) * Math.PI * 2;
+    const radius = 2.2 + Math.random() * 0.8;
+    brick.position.set(
+      Math.cos(angle) * radius,
+      -floorHeight/2 + 0.6 + Math.random() * 0.3,
+      Math.sin(angle) * radius
+    );
+    brick.rotation.y = Math.random() * Math.PI;
+    brick.castShadow = true;
+    floorGroup.add(brick);
+  }
+
+  tower.add(floorGroup);
+}
+
+// antenna on top
+const ant = new THREE.Mesh(
+  new THREE.CylinderGeometry(0.05, 0.1, 3, 8),
+  new THREE.MeshStandardMaterial({ color: 0xFF5E3A, emissive: 0xFF5E3A, emissiveIntensity: 0.8 })
+);
+ant.position.y = floorCount * floorHeight + 1.5;
+tower.add(ant);
+
+const antBall = new THREE.Mesh(
+  new THREE.SphereGeometry(0.18, 16, 16),
+  new THREE.MeshBasicMaterial({ color: 0xFF5E3A })
+);
+antBall.position.y = floorCount * floorHeight + 3;
+tower.add(antBall);
+
+// floating particles (construction dust)
+const particleCount = 600;
+const pGeo = new THREE.BufferGeometry();
+const positions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+  positions[i*3] = (Math.random() - 0.5) * 80;
+  positions[i*3+1] = Math.random() * 30;
+  positions[i*3+2] = (Math.random() - 0.5) * 80;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const pMat = new THREE.PointsMaterial({
+  color: 0xFFB347,
+  size: 0.08,
+  transparent: true,
+  opacity: 0.5,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending
+});
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// secondary buildings (silhouettes, distant)
+for (let i = 0; i < 12; i++) {
+  const h = 4 + Math.random() * 14;
+  const w = 2 + Math.random() * 3;
+  const b = new THREE.Mesh(
+    new THREE.BoxGeometry(w, h, w),
+    new THREE.MeshStandardMaterial({ color: 0x0F1318, metalness: 0.4, roughness: 0.8 })
+  );
+  const angle = (i / 12) * Math.PI * 2;
+  const r = 35 + Math.random() * 15;
+  b.position.set(Math.cos(angle) * r, h/2, Math.sin(angle) * r);
+  b.castShadow = true; b.receiveShadow = true;
+  scene.add(b);
+}
+
+// ----- CAMERA SCROLL PATH -----
+gsap.registerPlugin(ScrollTrigger);
+
+const camPath = [
+  { sec: 0, x: 28, y: 12, z: 28, lx: 0, ly: 10, lz: 0 },  // hero
+  { sec: 1, x: 22, y: 16, z: 16, lx: 0, ly: 8, lz: 0 },   // metrics
+  { sec: 2, x: 14, y: 8, z: 14, lx: 0, ly: 10, lz: 0 },   // tower base
+  { sec: 3, x: 20, y: 20, z: 10, lx: 0, ly: 14, lz: 0 },  // pipeline - tower mid-top
+  { sec: 4, x: 28, y: 22, z: 20, lx: 0, ly: 12, lz: 0 },  // footer - pull back
+];
+
+const camTarget = new THREE.Vector3(0, 10, 0);
+
+const sections = document.querySelectorAll('[data-section]');
+sections.forEach((sec, idx) => {
+  ScrollTrigger.create({
+    trigger: sec,
+    start: 'top bottom',
+    end: 'bottom top',
+    onEnter: () => switchCam(idx),
+    onEnterBack: () => switchCam(idx),
+  });
+});
+
+function switchCam(idx) {
+  const p = camPath[idx];
+  if (!p) return;
+  gsap.to(camera.position, { x: p.x, y: p.y, z: p.z, duration: 1.8, ease: 'power2.inOut' });
+  gsap.to(camTarget, { x: p.lx, y: p.ly, z: p.lz, duration: 1.8, ease: 'power2.inOut',
+    onUpdate: () => camera.lookAt(camTarget)
+  });
+  // update progress ring
+  document.querySelectorAll('.progress-ring .step').forEach(s =>
+    s.classList.toggle('active', parseInt(s.dataset.step) === idx)
+  );
+}
+
+// resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// mouse parallax
+let mx = 0, my = 0;
+window.addEventListener('mousemove', e => {
+  mx = (e.clientX / window.innerWidth - 0.5);
+  my = (e.clientY / window.innerHeight - 0.5);
+});
+
+// animate
+let t = 0;
+function loop() {
+  t += 0.01;
+  tower.rotation.y += 0.0015;
+  particles.rotation.y += 0.0008;
+  particles.position.y = Math.sin(t * 0.4) * 0.5;
+  antBall.scale.setScalar(1 + Math.sin(t * 3) * 0.2);
+  accent.position.y = 18 + Math.sin(t * 0.7) * 3;
+
+  // subtle parallax
+  camera.position.x += (camPath.find(p => document.querySelector('.progress-ring .step.active')?.dataset.step == p.sec)?.x + mx * 3 - camera.position.x) * 0.02;
+  camera.lookAt(camTarget);
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+loop();
+
+// hide loader
+setTimeout(() => document.getElementById('loader').classList.add('done'), 400);
+
+// counters
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseFloat(el.dataset.count);
+  const decimals = parseInt(el.dataset.decimals || 0);
+  const suffix = el.dataset.suffix || '';
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 92%',
+    once: true,
+    onEnter: () => {
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target, duration: 1.6, ease: 'power2.out',
+        onUpdate: () => {
+          el.textContent = obj.v.toLocaleString('tr-TR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+        }
+      });
+    }
+  });
+});
+
+// progress ring step click to scroll
+document.querySelectorAll('.progress-ring .step').forEach(step => {
+  step.addEventListener('click', () => {
+    const idx = parseInt(step.dataset.step);
+    const target = document.querySelector(`[data-section="${idx}"]`);
+    if (target) window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+  });
+});
+
+// rg circle offset animate
+const rg = document.querySelector('.rg');
+if (rg) {
+  ScrollTrigger.create({
+    trigger: rg,
+    start: 'top 90%',
+    once: true,
+    onEnter: () => {
+      rg.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)';
+      rg.style.strokeDashoffset = '196';
+    }
+  });
+}
+</script>
+
+</body>
+</html>

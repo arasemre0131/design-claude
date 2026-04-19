@@ -1,0 +1,422 @@
+<!--
+  MOCKUP B — OFF-WHITE EDITORIAL / PRINT
+  ─────────────────────────────────────────────────────
+  LOCK:
+    bg        : #F5F1E8  (newsprint krem)
+    ink       : #131313  (pure black-ish)
+    accent    : #C43D2B  (editorial kırmızı — gold DEĞİL, orange değil)
+    tint      : #E5DFCE  (aged paper shadow)
+  FONT LOCK:
+    display   : Instrument Serif italic  (sadece başlıkta; mücevher projeleri Playfair Italic kullanıyor, bu farklı karakter)
+    drop cap  : PP Editorial New · fallback Instrument Serif (bold, kalın dropcap)
+    body      : IBM Plex Serif   (body serif — sans body'den farklı)
+    mono      : IBM Plex Mono
+    sans-tag  : IBM Plex Sans (sadece küçük etiket)
+  YASAK:
+    × Dark bg (herhangi bir)
+    × Any gold / orange / coral
+    × Inter, Space Grotesk, Hanken, Fraunces, Poppins, Outfit, Playfair
+    × backdrop-filter
+    × Gradient text, gradient bg
+    × Custom cursor, noise overlay
+    × KPI bento card / box-shadow
+  NOT: Tüm layout gazete kolonu gibi · body justify · drop cap · by-line
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup B · Editorial Newsprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F1E8;
+    --paper-dark: #E5DFCE;
+    --ink: #131313;
+    --ink-soft: #4A4A48;
+    --ink-faint: #8A8880;
+    --rule: #131313;
+    --red: #C43D2B;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--paper); color: var(--ink); font-family: 'IBM Plex Serif', serif; font-weight: 400; }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* masthead */
+  .masthead {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 32px 48px 18px;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+  }
+  .masthead::after {
+    content:''; position:absolute; left:48px; right:48px; bottom:-7px;
+    height: 1px; background: var(--ink);
+  }
+  .masthead-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .paper-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 76px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 14px 0 8px;
+    text-align: center;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .paper-subtitle {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* main content */
+  .paper {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 48px;
+  }
+
+  /* byline bar */
+  .byline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--ink);
+    padding: 0;
+    margin-bottom: 32px;
+  }
+  .byline > div {
+    padding: 10px 14px;
+    border-right: 1px solid var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .byline > div:last-child { border-right: none; }
+  .byline strong { color: var(--ink); font-weight: 500; }
+
+  /* lead headline */
+  h1.hed {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(54px, 7.8vw, 108px);
+    line-height: 0.98;
+    letter-spacing: -0.022em;
+    text-align: center;
+    max-width: 22ch;
+    margin: 24px auto 8px;
+  }
+  h1.hed em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .deck {
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin: 0 auto;
+  }
+
+  .kicker-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--paper-dark);
+  }
+  .kicker-row .red { color: var(--red); }
+
+  /* three column body */
+  .columns {
+    margin-top: 48px;
+    column-count: 3;
+    column-gap: 36px;
+    column-rule: 1px solid var(--paper-dark);
+  }
+  .columns p {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    text-align: justify;
+    hyphens: auto;
+    margin-bottom: 12px;
+  }
+  .columns p::first-line { letter-spacing: 0.01em; }
+  .columns .dropcap {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    float: left;
+    font-size: 92px;
+    line-height: 0.82;
+    margin: 6px 8px -4px 0;
+    color: var(--ink);
+  }
+  .columns p strong { font-weight: 500; color: var(--ink); }
+  .columns p em { font-style: italic; color: var(--red); font-weight: 500; }
+
+  .pullquote {
+    break-inside: avoid;
+    margin: 24px 0 20px;
+    padding: 16px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+    text-align: left;
+  }
+  .pullquote-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  /* DATA TABLE — like an almanac  */
+  .almanac {
+    margin-top: 56px;
+    border-top: 3px double var(--ink);
+    border-bottom: 3px double var(--ink);
+    padding: 20px 0;
+  }
+  .almanac-head {
+    display: flex; justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 18px;
+  }
+  .almanac-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .almanac-grid > div {
+    padding: 0 18px;
+    border-right: 1px dashed var(--paper-dark);
+  }
+  .almanac-grid > div:first-child { padding-left: 0; }
+  .almanac-grid > div:last-child { border-right: none; padding-right: 0; }
+  .alm-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .alm-num {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 68px;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-top: 8px;
+  }
+  .alm-num .sup { font-size: 24px; color: var(--ink-soft); font-style: italic; }
+  .alm-note {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  /* weather / pipeline summary row (like newspaper weather strip) */
+  .strip {
+    margin-top: 36px;
+    padding: 14px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .strip strong { color: var(--ink); font-weight: 500; }
+  .strip .red { color: var(--red); }
+
+  /* colophon / foot */
+  .colophon {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1px solid var(--paper-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .colophon strong { color: var(--ink); font-weight: 500; }
+
+  /* subtle paper grain (no SVG turbulence) — texture via gradient repeat */
+  body::before {
+    content:''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(19,19,19,0.02) 0, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(19,19,19,0.02) 0, transparent 50%);
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-row">
+    <span>CILT III · SAYI 092</span>
+    <span>YILDIZ İNŞAAT A.Ş. · ANKARA</span>
+    <span>₺0.00 · DAHİLİ</span>
+  </div>
+  <h1 class="paper-title">Construo</h1>
+  <div class="paper-subtitle">— Günlük Lead Vestiarii · Cuma, 18 Nisan 2026 —</div>
+</header>
+
+<article class="paper">
+
+  <div class="byline">
+    <div>YAYIMLAYAN · <strong>Emre Aras</strong></div>
+    <div>BAŞ MUHABİR · <strong>Selin Karaca</strong></div>
+    <div>OTOMASYON · <strong>Ollama v2.5</strong></div>
+    <div>SAYFA · <strong>01 / 04</strong></div>
+  </div>
+
+  <h1 class="hed">
+    Pipeline'a 14 <em>yeni isim</em><br>
+    düştü, Çankaya'dan <em>bir kadın</em><br>
+    öne çıktı.
+  </h1>
+
+  <p class="deck">
+    Ayşegül Hanım saat 14:02'de ilk mesajı gönderdi; saat 14:30'a kadar teklif verilmezse — satış masasının bildiği kadarıyla — rakip iki firma daha sırada bekliyor.
+  </p>
+
+  <div class="kicker-row">
+    <span>SICAK · <span class="red">3 LEAD</span></span>
+    <span>·</span>
+    <span>OTOMATIK · 11</span>
+    <span>·</span>
+    <span>ESKALASYON · 27%</span>
+    <span>·</span>
+    <span>KAYNAK · WHATSAPP / INSTAGRAM</span>
+  </div>
+
+  <!-- columns -->
+  <div class="columns">
+    <p>
+      <span class="dropcap">S</span>atış ofisine sabahın ilk saatlerinde düşen ondört yeni kayıttan üçü, otomatik sistemin — yerel Ollama kurulumunda çalışan qwen2.5:7b modelinin — şablon <strong>havuzundan doğrudan cevap</strong> aldı. Bu cevapların ikisi kullanıcıyı tatmin etti, biri ise daha ayrıntılı bir randevuya dönüştü ve <em>insan temsilciye</em> devredildi.
+    </p>
+    <p>
+      Path A olarak adlandırılan regex tabanlı yol, bu sabah %62 hit oranıyla çalıştı; on yedi şablondan beşi, "anahtar teslim", "villa", "daire" gibi anahtar kelimeleri eşleştirerek teklif için müşteriye katalog linki gönderdi. Geri kalan %11'lik trafik, Path B üzerinden Ollama'ya düştü.
+    </p>
+    <p>
+      Günün en sıcak ismi olarak öne çıkan Ayşegül Hanım, Çankaya bölgesinde 4+1 villa arayışında. Önceki gün sosyal medyada Yıldız Panorama Villa reklamını gördüğünü kendi ifadesiyle belirten müşteri, anahtar teslim fiyat ve teslimat süresi hakkında somut bilgi istedi.
+    </p>
+
+    <div class="pullquote">
+      "Ayşegül Hanım sabah aradı, katalog elinde varmış, hemen fiyat lazım — rakip iki firma daha aynı projeyi dolaşıyor."
+      <div class="pullquote-attr">— SELİN K., SATIŞ TEMSILCISI · 09:42</div>
+    </div>
+
+    <p>
+      Teklif masası, sözleşmeli taksit tablosu ve anahtar teslim paket fiyatını öğleden önce hazırlamak üzere görevlendirildi. Selin Karaca, bu lead'in <strong>72% ilerleme</strong> bandında olduğunu, teklifin saat 14:30'a yetiştirilmesi gerektiğini paylaştı.
+    </p>
+    <p>
+      Pipeline'ın diğer katlarında, ikinci kat "kalifiye" durumundaki dokuz lead arasında Serkan Bey'in şantiye ziyaret onayının çıkması, Bilkent projesinin satış dönüşüm oranına önemli bir katkı verdi. Elif Kaya'nın ofis blok talebi, yatırımcı segmentinde yer aldığı için satış müdürü tarafından bizzat takip ediliyor.
+    </p>
+    <p>
+      <em>Kayıp sütununda</em> bu hafta beş lead yer alıyor. İkisi rakip firmayı tercih etti, ikisi bütçe yetersizliği bildirdi, biri ise proje teslim süresinden vazgeçti. Bu geri bildirimler, satış stratejisi toplantısında haftalık olarak gözden geçiriliyor.
+    </p>
+    <p>
+      Günün son notu olarak belirtmek gerekir: <strong>Meta App Review</strong> süreci üçüncü gününe girdi. WhatsApp Business API onayı beklenen tarihten önce geldiği takdirde, bu hafta sonuna kadar otomasyon canlı deploy edilebilir. Aksi durumda teslim tarihi en fazla bir hafta kayar.
+    </p>
+  </div>
+
+  <!-- data almanac -->
+  <section class="almanac">
+    <div class="almanac-head">
+      <span>ALMANAK · 24 SAAT VERİLERİ</span>
+      <span>KAYIT Nº LEAD-0193 — LEAD-0206</span>
+    </div>
+    <div class="almanac-grid">
+      <div>
+        <div class="alm-label">LEAD</div>
+        <div class="alm-num">14<span class="sup">↗</span></div>
+        <div class="alm-note">ondört yeni isim, ortalamanın üstü</div>
+      </div>
+      <div>
+        <div class="alm-label">OLLAMA TEPKİ</div>
+        <div class="alm-num">14<span class="sup">ms</span></div>
+        <div class="alm-note">medyan gecikme · p99 42 ms</div>
+      </div>
+      <div>
+        <div class="alm-label">POTANSİYEL CİRO</div>
+        <div class="alm-num">₺4.82<span class="sup">M</span></div>
+        <div class="alm-note">önceki dönem ₺3.68M</div>
+      </div>
+      <div>
+        <div class="alm-label">API MALİYET TASARRUFU</div>
+        <div class="alm-num">₺2,840</div>
+        <div class="alm-note">yerel ollama ile · bu ay</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- strip -->
+  <div class="strip">
+    <span>● OLLAMA <strong>ONLINE</strong></span>
+    <span>N8N · <strong>4 AKTIF</strong></span>
+    <span>EVOLUTION API · <strong>STABIL</strong></span>
+    <span class="red">META APP REVIEW · <strong>3 / 8 GÜN</strong></span>
+    <span>SUBSCRIBER · <strong>87</strong></span>
+  </div>
+
+  <!-- colophon -->
+  <div class="colophon">
+    <div>KOMPOZISYON · IBM Plex Serif &amp; Instrument Serif · <strong>Geist Grid</strong></div>
+    <div>BASIM · Internal Use Only · <strong>18/04/2026 · 10:14 IST</strong></div>
+    <div>NOTLAR · <strong>Mockup B</strong> · off-white editorial · no gold · no glass</div>
+  </div>
+
+</article>
+
+</body>
+</html>

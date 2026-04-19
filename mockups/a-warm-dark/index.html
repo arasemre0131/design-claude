@@ -1,0 +1,352 @@
+<!--
+  MOCKUP A — WARM-DARK ESPRESSO
+  ─────────────────────────────────────────────────────
+  LOCK (sapma yok):
+    bg        : #1C1A17  (espresso, MAVİ-SİYAH DEĞİL)
+    surface   : #26221D
+    ink       : #F5EDE0  (warm cream)
+    accent    : #E89B7C  (soft coral)
+    accent-2  : #B8875C  (molten brass — gold DEĞİL)
+  FONT LOCK:
+    display   : Fraunces (variable serif, soft curves)
+    body      : Hanken Grotesk (geometric humanist)
+    mono      : Geist Mono
+  YASAK:
+    × Inter, Space Grotesk, Playfair, Poppins, Outfit, Bricolage Grotesque
+    × #0A0A0A, mavi-siyah, #C9A84C / #D4A574 (any gold)
+    × backdrop-filter:blur (glassmorphism)
+    × rounded-2xl, rounded-xl
+    × italic gradient text
+    × custom cursor difference
+    × SVG turbulence noise overlay
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup A · Warm-Dark Espresso</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Hanken+Grotesk:wght@300;400;500;600;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1C1A17;
+    --surface: #26221D;
+    --surface-high: #302A23;
+    --ink: #F5EDE0;
+    --ink-soft: #C5B8A3;
+    --ink-faint: #7A6F5C;
+    --line: #3E3629;
+    --coral: #E89B7C;
+    --brass: #B8875C;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Hanken Grotesk', sans-serif; font-weight: 400; }
+  ::selection { background: var(--coral); color: var(--bg); }
+
+  /* NO backdrop-filter, NO noise overlay, NO custom cursor */
+
+  main { max-width: 1280px; margin: 0 auto; padding: 64px 48px; }
+
+  .brand-row {
+    display: flex; align-items: center; gap: 14px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand-mark {
+    width: 38px; height: 38px;
+    background: var(--coral);
+    position: relative;
+    /* square, NOT rounded */
+  }
+  .brand-mark::after {
+    content: ''; position: absolute; inset: 8px;
+    background: var(--bg);
+  }
+  .brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -0.015em;
+    font-variation-settings: 'opsz' 48, 'SOFT' 50;
+  }
+  .brand-tag {
+    margin-left: auto;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* HERO — typography-driven, NOT accent-driven */
+  .hero {
+    padding: 96px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-meta {
+    display: flex; gap: 28px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+  .hero-meta .dot { color: var(--coral); }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(72px, 10vw, 148px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    max-width: 11ch;
+  }
+  h1 .ink-soft { color: var(--ink-soft); }
+  /* NO gradient text. Pure color. */
+
+  .hero-desc {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .hero-desc p {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    font-weight: 400;
+  }
+  .hero-desc strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .hero-desc .coral { color: var(--coral); font-weight: 500; }
+
+  .hero-aside {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+  }
+  .aside-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .aside-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+  }
+  .aside-attr {
+    margin-top: 14px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  /* KPI TRIO — no cards, no glass, just horizontal rule separated numbers */
+  .kpi-band {
+    margin: 72px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .kpi-band .kpi {
+    padding: 28px 28px 28px 0;
+    border-right: 1px solid var(--line);
+  }
+  .kpi-band .kpi:last-child { border-right: none; padding-right: 0; }
+  .kpi-band .kpi:first-child { padding-left: 0; }
+  .kpi-band .kpi:not(:first-child) { padding-left: 32px; }
+
+  .kpi-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .kpi-value {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 84px;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-top: 10px;
+    font-variation-settings: 'opsz' 144, 'SOFT' 70;
+    color: var(--ink);
+  }
+  .kpi-value .unit {
+    font-size: 28px;
+    color: var(--ink-faint);
+    font-variation-settings: 'opsz' 48;
+  }
+  .kpi-foot {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .kpi-foot .coral { color: var(--coral); font-weight: 500; }
+
+  /* horizontal rule with seed */
+  .rule-thick {
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent 40%);
+    margin: 48px 0;
+    position: relative;
+  }
+  .rule-thick::before {
+    content: ''; position: absolute; top: -3px; left: 0;
+    width: 7px; height: 7px; background: var(--coral);
+  }
+
+  /* SIGNATURE area: large set type, not CTA */
+  .signature {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+  }
+  .sig-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: -0.012em;
+    max-width: 44ch;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 72, 'SOFT' 50;
+  }
+  .sig-text em {
+    font-style: normal;
+    color: var(--coral);
+    font-weight: 400;
+  }
+  .btn-row {
+    display: flex; gap: 14px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 22px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    /* no rounded */
+  }
+  .btn::after { content: '→'; font-family: 'Geist Mono'; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* footer strip */
+  .foot {
+    margin-top: 120px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .foot .c { color: var(--coral); }
+</style>
+</head>
+<body>
+
+<main>
+
+  <div class="brand-row">
+    <div class="brand-mark"></div>
+    <div class="brand-name">Construo</div>
+    <span class="brand-tag">mockup / a · espresso</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-meta">
+      <span><span class="dot">●</span> 18 / 04 / 2026 · CUMA</span>
+      <span>YILDIZ İNŞAAT / ANKARA</span>
+      <span>SHEET 01 · 04</span>
+    </div>
+
+    <h1>
+      Lead'ler,<br>
+      <span class="ink-soft">sabah kahvesi gibi</span><br>
+      yavaş <em style="font-style:italic;">demlenir.</em>
+    </h1>
+
+    <div class="hero-desc">
+      <p>
+        Son 24 saatte <strong>14 yeni lead</strong> sisteme düştü. Ollama <span class="coral">üç mesajı</span> kendi başına yanıtladı, biri teklife döndü, iki tanesi satış temsilcisine eskalasyon bekliyor. Ayşegül Hanım, Çankaya'da 4+1 villa için sıcak; teklifi saat <strong>14:30'a kadar</strong> göndermezsek rakip firmaya kayabilir.
+      </p>
+      <aside class="hero-aside">
+        <div class="aside-label">not · Selin K.</div>
+        <div class="aside-quote">"Ayşegül Hanım sabah aradı, katalog elinde varmış, hemen fiyat lazım."</div>
+        <div class="aside-attr">09:42 · iç mesaj</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="kpi-band">
+    <div class="kpi">
+      <div class="kpi-label">YENİ LEAD · 24s</div>
+      <div class="kpi-value">14</div>
+      <div class="kpi-foot"><span class="coral">+42%</span> önceki güne göre · hafta rekoru</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">OLLAMA AUTO-REPLY</div>
+      <div class="kpi-value">73<span class="unit">%</span></div>
+      <div class="kpi-foot">path A regex · 62 &nbsp;/&nbsp; ollama · 11 &nbsp;/&nbsp; <span class="coral">human · 27</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">POTANSİYEL CİRO · 30 GÜN</div>
+      <div class="kpi-value">₺4<span class="unit">.82M</span></div>
+      <div class="kpi-foot">önceki dönem ₺3.68M · <span class="coral">↗ 31%</span></div>
+    </div>
+  </section>
+
+  <div class="rule-thick"></div>
+
+  <div class="signature">
+    <div class="sig-text">
+      Bir mesaj, bir <em>konuşma,</em> bir anahtar. Pipeline'ın hangi katında olduğun önemli değil — önemli olan, sabah kahvesinin bittiği an orada <em>tam olarak hazır</em> olmak.
+    </div>
+    <div class="btn-row">
+      <button class="btn">pipeline'a geç</button>
+      <button class="btn btn-ghost">brief oku</button>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>CONSTRUO · MOCKUP A · WARM-DARK</span>
+    <span>FRAUNCES + HANKEN + GEIST MONO</span>
+    <span class="c">NO GOLD · NO GLASS · NO INTER</span>
+  </div>
+
+</main>
+
+</body>
+</html>

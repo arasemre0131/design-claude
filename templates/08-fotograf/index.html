@@ -1,0 +1,332 @@
+<!--
+  TEMPLATE 08 · FOTOĞRAF / MEDYA
+  Palette A: PL33 Pure Off-Black (image-first) · Palette B: PL34 Cream + Black
+  Typo A: TY39 IBM Plex Sans monolithic · Typo B: TY40 Inter Tight + JetBrains Mono minimal
+  Hero: HR3 slideshow · Layout: L8 masonry + L9 card deck · Motion: MO7 View Transitions + MO4
+  YASAK: BG Foto dark+gold klişesi
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 08 · Fotoğraf</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Inter+Tight:wght@100;200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Pure Off-Black (resim önde, tipografi sessiz) */
+    --bg: #FAFAFA;
+    --surface: #F0F0F0;
+    --ink: #1C1C1E;
+    --ink-soft: #4A4A4E;
+    --ink-faint: #9A9A9E;
+    --accent: #FF5E3A;
+    --line: rgba(28,28,30,0.08);
+    --font-display: 'IBM Plex Sans', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Cream + Black */
+    --bg: #F5F1E8;
+    --surface: #EBE6D9;
+    --ink: #111111;
+    --ink-soft: #3A3A3A;
+    --ink-faint: #8A8678;
+    --accent: #8B6F47;
+    --line: rgba(17,17,17,0.1);
+    --font-display: 'Inter Tight', sans-serif;
+    --font-body: 'Inter Tight', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-weight: 300; transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  header { padding: 26px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .brand { font-family: var(--font-display); font-weight: 200; font-size: 26px; letter-spacing: -0.03em; color: var(--ink); }
+  body.p-b .brand { font-weight: 300; }
+  .brand em { color: var(--accent); font-style: normal; font-weight: 500; }
+  nav { display: flex; gap: 32px; font-size: 13px; letter-spacing: 0.12em; font-weight: 400; text-transform: uppercase; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+  nav a.active { color: var(--ink); border-color: var(--accent); }
+  .contact-tag { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* HERO SLIDESHOW */
+  .hero { position: relative; height: 92vh; overflow: hidden; }
+  .slide {
+    position: absolute; inset: 0;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 1.5s ease;
+    color: var(--bg);
+  }
+  .slide.active { opacity: 1; }
+  .slide-1 { background: linear-gradient(135deg, #2A2420, #5C4D3C); }
+  .slide-2 { background: linear-gradient(135deg, #1C1C1E, #4A4A4E); }
+  .slide-3 { background: linear-gradient(135deg, #2E3B4E, #556B2F); }
+  .slide-4 { background: linear-gradient(135deg, #5B2A4A, #A0522D); }
+
+  .slide-content {
+    text-align: center; color: var(--bg);
+    mix-blend-mode: difference;
+  }
+  .slide-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.7; margin-bottom: 14px; }
+  .slide-title { font-family: var(--font-display); font-weight: 100; font-size: clamp(72px, 12vw, 180px); line-height: 1; letter-spacing: -0.04em; }
+  body.p-b .slide-title { font-weight: 200; }
+  .slide-meta { margin-top: 24px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; }
+
+  .hero-nav { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: center; gap: 4px; z-index: 5; }
+  .hero-nav-dot { width: 24px; height: 3px; background: var(--bg); opacity: 0.3; cursor: pointer; transition: opacity 0.3s, width 0.3s; }
+  .hero-nav-dot.active { opacity: 1; width: 48px; background: var(--accent); }
+
+  .hero-info { position: absolute; bottom: 30px; left: 40px; z-index: 5; color: var(--bg); mix-blend-mode: difference; }
+  .hero-info-row { display: flex; gap: 40px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.9; }
+
+  /* MASONRY GRID */
+  .work { padding: 80px 40px; }
+  .sec-head { max-width: 1680px; margin: 0 auto 48px; display: flex; justify-content: space-between; align-items: baseline; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.35em; color: var(--accent); text-transform: uppercase; }
+  .sec-title { font-family: var(--font-display); font-weight: 200; font-size: clamp(44px, 6vw, 88px); line-height: 1; letter-spacing: -0.035em; margin-top: 12px; }
+  body.p-b .sec-title { font-weight: 300; }
+  .sec-more { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); cursor: pointer; }
+
+  .masonry { max-width: 1680px; margin: 0 auto; column-count: 3; column-gap: 24px; }
+  .case { break-inside: avoid; margin-bottom: 24px; cursor: pointer; position: relative; }
+  .case-img {
+    width: 100%;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bg); font-family: var(--font-display); font-weight: 100; font-size: 120px; letter-spacing: -0.04em;
+    position: relative; overflow: hidden; transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+  }
+  .case.tall .case-img { aspect-ratio: 3/4; }
+  .case.square .case-img { aspect-ratio: 1/1; }
+  .case.wide .case-img { aspect-ratio: 4/3; font-size: 84px; }
+  .case:hover .case-img { transform: scale(1.02); }
+
+  .case-img.c1 { background: #2A1F14; }
+  .case-img.c2 { background: #5B2A4A; color: #D4B896; }
+  .case-img.c3 { background: #556B2F; }
+  .case-img.c4 { background: #2E3B4E; }
+  .case-img.c5 { background: #6B1B2E; }
+  .case-img.c6 { background: #A0522D; }
+  .case-img.c7 { background: #1C1C1E; color: #FF5E3A; }
+  .case-img.c8 { background: #8B6F47; }
+  .case-img.c9 { background: #3A5A5A; }
+
+  .case-body { margin-top: 14px; display: flex; justify-content: space-between; align-items: baseline; }
+  .case-title { font-family: var(--font-display); font-weight: 400; font-size: 18px; letter-spacing: -0.01em; color: var(--ink); }
+  body.p-b .case-title { font-weight: 500; }
+  .case-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; }
+
+  .case-overlay {
+    position: absolute; inset: 0; background: rgba(28,28,30,0.85); color: var(--bg);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .case:hover .case-overlay { opacity: 1; }
+  .case-overlay-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; opacity: 0.7; text-transform: uppercase; }
+  .case-overlay-title { font-family: var(--font-display); font-weight: 300; font-size: 26px; margin-top: 8px; }
+  .case-overlay-desc { font-size: 13px; line-height: 1.5; opacity: 0.8; margin-top: 10px; }
+
+  /* SERVICES */
+  .services { padding: 100px 40px; border-top: 1px solid var(--line); }
+  .services-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+  .service-item { background: var(--bg); padding: 40px 32px; text-align: left; }
+  .service-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; }
+  .service-name { font-family: var(--font-display); font-weight: 300; font-size: 28px; margin-top: 12px; letter-spacing: -0.015em; }
+  body.p-b .service-name { font-weight: 400; }
+  .service-desc { margin-top: 14px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+  .service-price { margin-top: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; }
+
+  footer { padding: 40px 40px 32px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+  footer .brand-f { font-family: var(--font-display); font-weight: 200; font-size: 32px; letter-spacing: -0.03em; color: var(--ink); text-transform: none; margin-bottom: 8px; }
+  footer .brand-f em { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · CREAM + BLACK' : 'A · OFF-BLACK';">A · OFF-BLACK</button>
+
+<header>
+  <div class="brand">Nazar<em>.</em></div>
+  <nav>
+    <a class="active">Ana</a>
+    <a>Çalışmalar</a>
+    <a>Hizmetler</a>
+    <a>Hakkında</a>
+    <a>İletişim</a>
+  </nav>
+  <div class="contact-tag">+90 553 •••• 2047</div>
+</header>
+
+<!-- HERO SLIDESHOW -->
+<section class="hero">
+  <div class="slide slide-1 active">
+    <div class="slide-content">
+      <div class="slide-num">/ 01 — 2026 · Düğün serisi</div>
+      <div class="slide-title">Sessiz an.</div>
+      <div class="slide-meta">Büyükada · Nisan 2026</div>
+    </div>
+  </div>
+  <div class="slide slide-2">
+    <div class="slide-content">
+      <div class="slide-num">/ 02 — Editorial seri</div>
+      <div class="slide-title">Şehir ışığı.</div>
+      <div class="slide-meta">İstanbul · Mart 2026</div>
+    </div>
+  </div>
+  <div class="slide slide-3">
+    <div class="slide-content">
+      <div class="slide-num">/ 03 — Doğa</div>
+      <div class="slide-title">Yeşil kat.</div>
+      <div class="slide-meta">Fırtına Vadisi · Mayıs 2025</div>
+    </div>
+  </div>
+  <div class="slide slide-4">
+    <div class="slide-content">
+      <div class="slide-num">/ 04 — Portre</div>
+      <div class="slide-title">Bir kere.</div>
+      <div class="slide-meta">Ankara · Şubat 2026</div>
+    </div>
+  </div>
+
+  <div class="hero-nav">
+    <div class="hero-nav-dot active" data-i="0"></div>
+    <div class="hero-nav-dot" data-i="1"></div>
+    <div class="hero-nav-dot" data-i="2"></div>
+    <div class="hero-nav-dot" data-i="3"></div>
+  </div>
+
+  <div class="hero-info">
+    <div class="hero-info-row">
+      <span>NAZAR STUDIO</span>
+      <span>İSTANBUL · ANKARA</span>
+      <span>DÜĞÜN · EDITORIAL · DOĞA</span>
+      <span>2012 — 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- WORK MASONRY -->
+<section class="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label">§ 02 · SEÇKİ</div>
+      <h2 class="sec-title">Geçen ay.</h2>
+    </div>
+    <span class="sec-more">→ tüm arşiv</span>
+  </div>
+
+  <div class="masonry">
+    <div class="case tall">
+      <div class="case-img c1">A</div>
+      <div class="case-overlay">
+        <div class="case-overlay-num">/ 001 · DÜĞÜN</div>
+        <div class="case-overlay-title">Ayşegül + Serkan</div>
+        <div class="case-overlay-desc">Çankaya · Villa düğünü · 380 kare · 3 saatlik hazırlık</div>
+      </div>
+      <div class="case-body"><span class="case-title">Ayşegül + Serkan</span><span class="case-meta">4 NİSAN</span></div>
+    </div>
+    <div class="case square">
+      <div class="case-img c2">B</div>
+      <div class="case-overlay">
+        <div class="case-overlay-num">/ 002 · EDITORIAL</div>
+        <div class="case-overlay-title">Vogue Türkiye</div>
+        <div class="case-overlay-desc">Bahar koleksiyonu · 12 sayfa · Demet Şener</div>
+      </div>
+      <div class="case-body"><span class="case-title">Vogue · Bahar</span><span class="case-meta">2 NİSAN</span></div>
+    </div>
+    <div class="case wide">
+      <div class="case-img c3">C</div>
+      <div class="case-overlay">
+        <div class="case-overlay-num">/ 003 · DOĞA</div>
+        <div class="case-overlay-title">Fırtına Vadisi</div>
+        <div class="case-overlay-desc">Kişisel seri · 48 kare · 4 günlük çalışma</div>
+      </div>
+      <div class="case-body"><span class="case-title">Fırtına Vadisi</span><span class="case-meta">MAYIS 2025</span></div>
+    </div>
+    <div class="case square">
+      <div class="case-img c4">D</div>
+      <div class="case-body"><span class="case-title">Bahçeşehir Rezidans</span><span class="case-meta">28 MART</span></div>
+    </div>
+    <div class="case tall">
+      <div class="case-img c5">E</div>
+      <div class="case-body"><span class="case-title">Zehra Bilir · Portre</span><span class="case-meta">2 MART</span></div>
+    </div>
+    <div class="case wide">
+      <div class="case-img c6">F</div>
+      <div class="case-body"><span class="case-title">Topkapı · Gece</span><span class="case-meta">15 ŞUBAT</span></div>
+    </div>
+    <div class="case square">
+      <div class="case-img c7">G</div>
+      <div class="case-body"><span class="case-title">Mavi · Reklam</span><span class="case-meta">18 OCAK</span></div>
+    </div>
+    <div class="case tall">
+      <div class="case-img c8">H</div>
+      <div class="case-body"><span class="case-title">Gelin hazırlık</span><span class="case-meta">20 NİSAN</span></div>
+    </div>
+    <div class="case square">
+      <div class="case-img c9">I</div>
+      <div class="case-body"><span class="case-title">Deniz · Yaza hazırlık</span><span class="case-meta">10 NİSAN</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="sec-head" style="margin: 0 auto 48px; max-width: 1120px;">
+    <div>
+      <div class="sec-label">§ 03 · HİZMET</div>
+      <h2 class="sec-title">Ne çekiyoruz.</h2>
+    </div>
+  </div>
+  <div class="services-inner">
+    <div class="service-item">
+      <div class="service-num">/ 01</div>
+      <div class="service-name">Düğün + Nikah</div>
+      <div class="service-desc">8 saatten 3 güne kadar paketler. 2 fotoğrafçı + 1 video. Raw + retouched full teslim.</div>
+      <div class="service-price">₺18,000 — ₺65,000</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">/ 02</div>
+      <div class="service-name">Editorial + Reklam</div>
+      <div class="service-desc">Marka hikayesi, ürün kataloğu, dergi editoryali. Stüdyo + mekan şart.</div>
+      <div class="service-price">₺12,000 — ₺80,000 · gün</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">/ 03</div>
+      <div class="service-name">Portre + Gebelik</div>
+      <div class="service-desc">Bireysel seans, 2 saatlik. Stüdyo + outdoor. 40+ retouched foto dijital teslim.</div>
+      <div class="service-price">₺4,500 — ₺8,500</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand-f">Nazar<em>.</em></div>
+  NAZAR STUDIO · TEMPLATE 08 · FOTOĞRAF<br>
+  COMBO: HR3+L8+L9+TY39/40+PL33/34+MO7/4 · İstanbul · Ankara · 2012
+</footer>
+
+<script>
+  // Slideshow
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.hero-nav-dot');
+  let idx = 0;
+  function showSlide(i) {
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = i;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+  }
+  dots.forEach((d, i) => d.addEventListener('click', () => showSlide(i)));
+  setInterval(() => showSlide((idx + 1) % slides.length), 5000);
+</script>
+
+</body>
+</html>

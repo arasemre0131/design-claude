@@ -1,0 +1,360 @@
+<!--
+  TEMPLATE 06 · E-TİCARET
+  Palette A: PL29 Slate + Acid · Palette B: PL30 Kraft + Burst
+  Typo A: TY35 Unbounded + Manrope · Typo B: TY36 Big Shoulders + Public Sans
+  Hero: HR11 + HR14 · Layout: L8 masonry + L3 bento-no-glass · Motion: MO4 + MO7
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 06 · E-ticaret</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Manrope:wght@300;400;500;600;700&family=Big+Shoulders+Display:wght@500;700;900&family=Public+Sans:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Slate + Acid */
+    --bg: #F5F7F8;
+    --surface: #E8ECEF;
+    --ink: #1A1D21;
+    --ink-soft: #3A4046;
+    --ink-faint: #7A8088;
+    --accent: #D4FF00;
+    --accent-2: #EA580C;
+    --line: rgba(26,29,33,0.1);
+    --font-display: 'Unbounded', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'Inter Tight', sans-serif;
+  }
+  body.p-b {
+    /* Palette B — Kraft + Burst */
+    --bg: #F0E6D2;
+    --surface: #E5D8BE;
+    --ink: #2B2520;
+    --ink-soft: #4A4138;
+    --ink-faint: #7A6F60;
+    --accent: #E85D04;
+    --accent-2: #2B2520;
+    --line: rgba(43,37,32,0.15);
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'Public Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--ink); }
+
+  .palette-switch { position: fixed; top: 22px; right: 180px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  /* TOP BAR — promo */
+  .promo { background: var(--ink); color: var(--accent); padding: 10px 48px; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  body.p-b .promo { color: var(--accent); }
+
+  header { padding: 22px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  .brand { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.03em; text-transform: uppercase; }
+  body.p-b .brand { font-weight: 900; letter-spacing: -0.04em; }
+  nav { display: flex; gap: 28px; font-size: 13px; letter-spacing: 0.08em; font-weight: 600; text-transform: uppercase; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding: 4px 0; }
+  nav a:hover, nav a.active { color: var(--ink); border-bottom: 2px solid var(--accent); }
+  .tools { display: flex; gap: 14px; align-items: center; font-family: var(--font-mono); font-size: 12px; }
+  .cart-btn { padding: 10px 16px; background: var(--ink); color: var(--bg); border: none; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: var(--font-body); font-size: 12px; }
+
+  main { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+  /* HERO — mega collection cover */
+  .hero { padding: 60px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero-text .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 20px; font-weight: 700; }
+  h1.hero-h {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(72px, 11vw, 168px); line-height: 0.85; letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  body.p-b h1.hero-h { font-weight: 900; letter-spacing: -0.06em; }
+  h1.hero-h .yell { background: var(--accent); padding: 0 10px; display: inline-block; }
+  body.p-b h1.hero-h .yell { background: var(--accent); color: var(--bg); }
+  .hero-sub { margin-top: 24px; font-size: 18px; line-height: 1.5; color: var(--ink-soft); max-width: 44ch; }
+  .hero-cta { margin-top: 32px; display: flex; gap: 14px; align-items: center; }
+  .btn-shop { padding: 16px 32px; background: var(--ink); color: var(--bg); border: none; font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
+  body.p-b .btn-shop { font-family: var(--font-display); font-weight: 900; }
+  .btn-shop:hover { background: var(--accent); color: var(--ink); }
+
+  .hero-visual { position: relative; }
+  .hero-visual .big-tile {
+    aspect-ratio: 4/5; background: var(--ink); position: relative;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-family: var(--font-display); font-weight: 900; font-size: 240px;
+    line-height: 1; letter-spacing: -0.05em;
+    overflow: hidden;
+  }
+  body.p-b .hero-visual .big-tile { background: var(--accent); color: var(--bg); }
+  .hero-visual .price-sticker {
+    position: absolute; top: 24px; right: 24px;
+    background: var(--accent); color: var(--ink); border: 3px solid var(--ink);
+    padding: 14px 20px; font-family: var(--font-display); font-weight: 800; font-size: 18px;
+    letter-spacing: -0.01em; text-transform: uppercase;
+    transform: rotate(6deg);
+  }
+  body.p-b .hero-visual .price-sticker { background: var(--bg); color: var(--accent); }
+
+  /* CATEGORY BENTO (L3 no-glass) */
+  .cats { margin: 60px 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 180px); gap: 8px; }
+  .cat {
+    background: var(--surface); padding: 24px; position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+    cursor: pointer; transition: all 0.25s;
+    overflow: hidden;
+  }
+  .cat:hover { transform: translateY(-3px); }
+  .cat-big { grid-column: span 2; grid-row: span 2; background: var(--ink); color: var(--bg); }
+  body.p-b .cat-big { background: var(--accent-2); color: var(--bg); }
+  .cat-wide { grid-column: span 2; background: var(--accent); color: var(--ink); }
+  body.p-b .cat-wide { background: var(--accent); color: var(--bg); }
+  .cat-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; }
+  .cat h3 { font-family: var(--font-display); font-weight: 800; font-size: 32px; letter-spacing: -0.025em; text-transform: uppercase; }
+  body.p-b .cat h3 { font-weight: 900; letter-spacing: -0.035em; }
+  .cat-big h3 { font-size: 72px; line-height: 0.85; }
+  body.p-b .cat-big h3 { font-size: 88px; }
+  .cat-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* FEATURED PRODUCTS */
+  .featured { padding: 60px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--accent-2); text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+  .sec-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 6vw, 72px); line-height: 1; letter-spacing: -0.035em; text-transform: uppercase; }
+  body.p-b .sec-title { font-weight: 900; letter-spacing: -0.045em; }
+  .sec-more { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); cursor: pointer; padding-bottom: 3px; border-bottom: 2px solid var(--ink); }
+
+  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .product { background: var(--surface); position: relative; cursor: pointer; transition: transform 0.25s; }
+  .product:hover { transform: translateY(-4px); }
+  .product-img {
+    width: 100%; aspect-ratio: 1/1;
+    background: var(--ink); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 900; font-size: 84px;
+    color: var(--accent); position: relative; overflow: hidden;
+  }
+  body.p-b .product-img { background: var(--bg); color: var(--accent); border: 1px solid var(--line); }
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--accent); color: var(--ink);
+    padding: 4px 10px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+  }
+  body.p-b .product-badge { background: var(--accent); color: var(--bg); }
+  .product-body { padding: 16px; }
+  .product-name { font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .product-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; margin-top: 4px; }
+  .product-price-row { margin-top: 10px; display: flex; align-items: baseline; gap: 10px; }
+  .product-price { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: -0.02em; }
+  body.p-b .product-price { font-weight: 900; color: var(--accent); }
+  .product-old { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); text-decoration: line-through; }
+
+  footer { padding: 32px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · KRAFT + BURST' : 'A · SLATE + ACID';">A · SLATE + ACID</button>
+
+<div class="promo">🔥 Bahar İndirimi · Tüm ürünlerde %25'e kadar · Kargo bedava ₺500+ · 03:47:22 kaldı</div>
+
+<header>
+  <div class="brand">BARBAR</div>
+  <nav>
+    <a class="active">Shop</a>
+    <a>Yeni</a>
+    <a>Koleksiyon</a>
+    <a>İndirim</a>
+    <a>Hakkımızda</a>
+  </nav>
+  <div class="tools">
+    <span>Ara</span>
+    <span>Hesap</span>
+    <button class="cart-btn">SEPET · 3 · ₺1,840</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">BAHAR 2026 · YENİ SEZON · 240+ PARÇA</div>
+      <h1>BAHAR<br>KOLEKSİYONU<br><span class="yell">-25%</span></h1>
+      <p class="hero-sub">
+        240 yeni parça, her hafta yenisi gelir. Kendi stüdyomuzda tasarlar, tek üretim yaparız. Her satın alma ağaç dikimine katkı.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-shop">Koleksiyona Git →</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="big-tile">B</div>
+      <div class="price-sticker">₺590'dan</div>
+    </div>
+  </section>
+
+  <!-- CATEGORY BENTO -->
+  <section class="cats">
+    <div class="cat cat-big">
+      <div>
+        <div class="cat-num">/ 01</div>
+        <h3>Giyim</h3>
+      </div>
+      <div class="cat-meta">86 parça · yeni gelenler</div>
+    </div>
+    <div class="cat">
+      <div class="cat-num">/ 02</div>
+      <h3>Ayakkabı</h3>
+      <div class="cat-meta">42 model</div>
+    </div>
+    <div class="cat">
+      <div class="cat-num">/ 03</div>
+      <h3>Çanta</h3>
+      <div class="cat-meta">28 çeşit</div>
+    </div>
+    <div class="cat cat-wide">
+      <div>
+        <div class="cat-num">/ 04</div>
+        <h3>Aksesuar</h3>
+      </div>
+      <div class="cat-meta">71 parça · takı + atkı + şapka</div>
+    </div>
+    <div class="cat">
+      <div class="cat-num">/ 05</div>
+      <h3>Erkek</h3>
+      <div class="cat-meta">128 parça</div>
+    </div>
+    <div class="cat">
+      <div class="cat-num">/ 06</div>
+      <h3>Ev</h3>
+      <div class="cat-meta">24 eşya</div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="featured">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 02 · ÖNE ÇIKAN</div>
+        <h2 class="sec-title">En çok satılanlar.</h2>
+      </div>
+      <span class="sec-more">Tümünü gör →</span>
+    </div>
+
+    <div class="product-grid">
+      <div class="product">
+        <div class="product-img">
+          <span>A</span>
+          <span class="product-badge">-25%</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Yıkanmış Keten Gömlek</div>
+          <div class="product-meta">BEYAZ · S M L XL · 4 RENK</div>
+          <div class="product-price-row">
+            <span class="product-price">₺890</span>
+            <span class="product-old">₺1,180</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>B</span>
+          <span class="product-badge">YENİ</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Organik Pamuk T-Shirt</div>
+          <div class="product-meta">GRİ MELANGE · UNİSEKS</div>
+          <div class="product-price-row">
+            <span class="product-price">₺340</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>C</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Deri Omuz Çantası</div>
+          <div class="product-meta">TAM DERİ · EL YAPIMI</div>
+          <div class="product-price-row">
+            <span class="product-price">₺2,890</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>D</span>
+          <span class="product-badge">-40%</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Klasik Sneaker</div>
+          <div class="product-meta">BEYAZ · 38-45</div>
+          <div class="product-price-row">
+            <span class="product-price">₺1,180</span>
+            <span class="product-old">₺1,980</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>E</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Yün Atkı</div>
+          <div class="product-meta">ANTRASİT · MERİNOS</div>
+          <div class="product-price-row">
+            <span class="product-price">₺680</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>F</span>
+          <span class="product-badge">SON 3</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Deri Cüzdan</div>
+          <div class="product-meta">TABA · 6 KARTLIK</div>
+          <div class="product-price-row">
+            <span class="product-price">₺890</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>G</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Bezelye Yeşili Kazak</div>
+          <div class="product-meta">PAMUK · S M L</div>
+          <div class="product-price-row">
+            <span class="product-price">₺1,240</span>
+          </div>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <span>H</span>
+          <span class="product-badge">-25%</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Geniş Paça Pantolon</div>
+          <div class="product-meta">HAKİ · 36-44</div>
+          <div class="product-price-row">
+            <span class="product-price">₺780</span>
+            <span class="product-old">₺1,040</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  BARBAR · TEMPLATE 06 · E-TİCARET<br>
+  COMBO: HR11+HR14+L8+L3+TY35/36+PL29/30+MO4/7 · shop.barbar.com
+</footer>
+
+</body>
+</html>

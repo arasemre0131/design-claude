@@ -1,0 +1,330 @@
+<!--
+  TEMPLATE 03 · KUAFÖR / BERBER
+  Palette A: PL24 Salt + Peach · Palette B: PL25 Slate + Olive
+  Typo A: TY29 Schibsted Grotesk · Typo B: TY30 Recoleta + Lato
+  Hero: HR3 full-bleed video feel · Layout: L4 + L9 card deck · Motion: MO1 GSAP + MO6 SplitText
+  YASAK: Freeman dark+gold klişesi + Inter + custom cursor difference
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 03 · Kuaför</title>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Recoleta+Alt:wght@400;500;700;900&family=Lato:wght@300;400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Salt + Peach */
+    --bg: #FAF7F2;
+    --surface: #F2ECE2;
+    --ink: #2A2420;
+    --ink-soft: #5C4D3C;
+    --ink-faint: #8A7963;
+    --accent: #E89B7C;
+    --accent-2: #A0522D;
+    --line: rgba(42,36,32,0.12);
+    --font-display: 'Schibsted Grotesk', sans-serif;
+    --font-body: 'Schibsted Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Slate + Olive */
+    --bg: #EDEAE3;
+    --surface: #E1DED5;
+    --ink: #2E2E2E;
+    --ink-soft: #4A4A48;
+    --ink-faint: #7A7A76;
+    --accent: #556B2F;
+    --accent-2: #D4A574;
+    --line: rgba(46,46,46,0.14);
+    --font-display: 'Recoleta Alt', serif;
+    --font-body: 'Lato', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+  .palette-switch:hover { background: var(--accent); }
+
+  /* nav */
+  header { padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  .brand { font-family: var(--font-display); font-weight: 900; font-size: 24px; letter-spacing: -0.03em; text-transform: uppercase; color: var(--ink); }
+  body.p-b .brand { font-family: var(--font-display); font-weight: 700; text-transform: none; font-size: 28px; letter-spacing: -0.02em; }
+  nav { display: flex; gap: 28px; font-size: 13px; letter-spacing: 0.05em; font-weight: 500; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding: 4px 0; border-bottom: 2px solid transparent; }
+  nav a.active { color: var(--ink); border-color: var(--accent); }
+
+  /* Book CTA */
+  .book-cta {
+    padding: 10px 20px; background: var(--ink); color: var(--bg);
+    font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none;
+    transition: all 0.2s;
+  }
+  .book-cta:hover { background: var(--accent); color: var(--ink); }
+
+  main { max-width: 1400px; margin: 0 auto; }
+
+  /* HERO — full bleed video feel */
+  .hero {
+    position: relative; min-height: 85vh;
+    display: flex; align-items: center; padding: 80px 48px;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content:''; position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+    width: 620px; height: 620px; border-radius: 50%;
+    background: var(--accent); opacity: 0.2;
+    filter: blur(80px);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 22px; display: flex; gap: 14px; align-items: center; }
+  .eyebrow::before { content:''; width: 40px; height: 1px; background: var(--accent-2); }
+
+  h1.hero-h {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(64px, 10vw, 132px);
+    line-height: 0.9; letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  body.p-b h1.hero-h { font-weight: 700; letter-spacing: -0.025em; font-style: italic; }
+  h1.hero-h em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+  .hero-sub { margin-top: 28px; font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 48ch; }
+  .hero-cta-row { margin-top: 36px; display: flex; gap: 16px; align-items: center; }
+  .btn-primary { padding: 14px 28px; background: var(--ink); color: var(--bg); border: none; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--accent); color: var(--ink); }
+  .btn-ghost { padding: 14px 28px; background: transparent; color: var(--ink); border: 2px solid var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
+  .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+
+  .hero-stats { position: absolute; right: 48px; bottom: 48px; z-index: 2; display: flex; gap: 40px; align-items: flex-end; }
+  .hero-stat { text-align: right; }
+  .hero-stat-v { font-family: var(--font-display); font-weight: 900; font-size: 54px; line-height: 1; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  body.p-b .hero-stat-v { font-weight: 700; font-style: italic; }
+  .hero-stat-l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; margin-top: 6px; }
+
+  /* section base */
+  .sec { padding: 80px 48px; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .sec-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em; }
+  body.p-b .sec-title { font-weight: 700; letter-spacing: -0.02em; }
+  .sec-title em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+  /* SERVICES */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); }
+  .service { background: var(--bg); padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; transition: background 0.2s; cursor: pointer; }
+  .service:hover { background: var(--surface); }
+  .service h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -0.015em; margin-bottom: 6px; }
+  body.p-b .service h3 { font-weight: 700; }
+  .service-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.5; max-width: 48ch; }
+  .service-meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase; margin-top: 10px; }
+  .service-price { text-align: right; }
+  .service-price-v { font-family: var(--font-display); font-weight: 900; font-size: 38px; letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .service-price-l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; margin-top: 2px; }
+
+  /* TEAM — card deck L9 */
+  .team { display: flex; gap: 16px; overflow-x: auto; padding: 20px 0 40px; scroll-snap-type: x mandatory; }
+  .tm-card {
+    flex: 0 0 300px; scroll-snap-align: start;
+    background: var(--surface); padding: 28px 24px;
+    border: 1px solid var(--line);
+    transition: all 0.3s;
+  }
+  .tm-card:nth-child(even) { transform: rotate(1deg); }
+  .tm-card:nth-child(odd) { transform: rotate(-0.5deg); }
+  .tm-card:hover { transform: translateY(-6px) rotate(0); background: var(--bg); }
+  .tm-avatar {
+    width: 100%; aspect-ratio: 1/1; background: var(--accent); opacity: 0.9;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 900; font-size: 72px;
+    color: var(--bg); letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+  body.p-b .tm-avatar { opacity: 0.85; }
+  .tm-name { font-family: var(--font-display); font-weight: 900; font-size: 24px; letter-spacing: -0.02em; }
+  .tm-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin-top: 4px; }
+  .tm-bio { font-size: 13px; color: var(--ink-soft); margin-top: 12px; line-height: 1.5; }
+
+  /* REZ cta banner */
+  .rez-banner { background: var(--ink); color: var(--bg); padding: 80px 48px; text-align: center; }
+  .rez-banner h2 { font-family: var(--font-display); font-weight: 900; font-size: clamp(52px, 8vw, 108px); line-height: 0.92; letter-spacing: -0.035em; }
+  body.p-b .rez-banner h2 { font-weight: 700; font-style: italic; }
+  .rez-banner h2 em { color: var(--accent); font-style: italic; }
+  .rez-banner p { margin-top: 20px; font-size: 17px; opacity: 0.8; max-width: 52ch; margin-left: auto; margin-right: auto; }
+  .rez-slots { margin-top: 40px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .slot {
+    padding: 14px 20px; background: transparent; color: var(--bg); border: 2px solid var(--bg);
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.2s;
+  }
+  .slot:hover, .slot.active { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+  footer { padding: 24px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · SLATE + OLIVE' : 'A · SALT + PEACH';">A · SALT + PEACH</button>
+
+<header>
+  <div class="brand">Atölye / Harman</div>
+  <nav>
+    <a class="active">Ana Sayfa</a>
+    <a>Hizmetler</a>
+    <a>Ekip</a>
+    <a>Galeri</a>
+    <a>Hakkında</a>
+  </nav>
+  <button class="book-cta">Randevu Al →</button>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Atölye · Kadıköy · 2016'dan beri</div>
+      <h1>Saç bir<br><em>ritüeldir,</em><br>koltuk bir<br>duraktır.</h1>
+      <p class="hero-sub">
+        İyi bir saç kesimi 40 dakika, iyi bir konuşma 40 dakika. Bizimle geçirdiğin her saat, her ikisi de.
+        Randevusuz gelme — koltuklar sessiz kalsın diye ayarlıyoruz.
+      </p>
+      <div class="hero-cta-row">
+        <button class="btn-primary">Randevu Al</button>
+        <button class="btn-ghost">Hizmetleri Gör</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-v">8<span style="color:var(--accent);">.</span></div><div class="hero-stat-l">Yıl</div></div>
+      <div class="hero-stat"><div class="hero-stat-v">4,200<span style="color:var(--accent);">+</span></div><div class="hero-stat-l">Müşteri</div></div>
+      <div class="hero-stat"><div class="hero-stat-v">5<span style="color:var(--accent);">.</span>0</div><div class="hero-stat-l">Google</div></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 01 · Hizmetler</div>
+        <h2 class="sec-title">Dokunuşun <em>adı.</em></h2>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.15em;text-transform:uppercase;">12 Hizmet · Erkek + Kadın</div>
+    </div>
+
+    <div class="services">
+      <div class="service">
+        <div>
+          <h3>Klasik Kesim</h3>
+          <div class="service-desc">Makine + makasla, erkek için klasik Amerikan kesim. Sakal şekillendirme dahil.</div>
+          <div class="service-meta">45 dakika · cumartesi dahil</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺450</div><div class="service-price-l">pazartesi-cuma</div></div>
+      </div>
+      <div class="service">
+        <div>
+          <h3>Sakal + Cilt</h3>
+          <div class="service-desc">Sıcak havlu + scrub + tıraş + aftershave. Babanın hafızasındaki kadar iyi.</div>
+          <div class="service-meta">30 dakika</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺320</div><div class="service-price-l">tek fiyat</div></div>
+      </div>
+      <div class="service">
+        <div>
+          <h3>Saç Boyama</h3>
+          <div class="service-desc">Organik boya — Elumen + Wella. Saçını yormayan uzun ömür. Ombre + balyaj.</div>
+          <div class="service-meta">2 saat · randevulu</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺1,200+</div><div class="service-price-l">uzunluğa göre</div></div>
+      </div>
+      <div class="service">
+        <div>
+          <h3>Saç Bakımı</h3>
+          <div class="service-desc">Botox + keratin. Kış sonu saçlara nefes. Kadın/erkek.</div>
+          <div class="service-meta">90 dakika</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺850</div><div class="service-price-l">tek seans</div></div>
+      </div>
+      <div class="service">
+        <div>
+          <h3>Gelin Saçı</h3>
+          <div class="service-desc">Düğün günü için ev ziyareti dahil. Prova + gün + çocuk saçı paket.</div>
+          <div class="service-meta">3 saat · ev ziyareti +</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺3,500</div><div class="service-price-l">paket</div></div>
+      </div>
+      <div class="service">
+        <div>
+          <h3>Çocuk Kesim</h3>
+          <div class="service-desc">İlk kesim hediye. Oyuncaklı koltuk + anı polaroid.</div>
+          <div class="service-meta">25 dakika</div>
+        </div>
+        <div class="service-price"><div class="service-price-v">₺250</div><div class="service-price-l">10 yaş altı</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 02 · Atölye</div>
+        <h2 class="sec-title">Elinin <em>sahibi.</em></h2>
+      </div>
+    </div>
+
+    <div class="team">
+      <div class="tm-card">
+        <div class="tm-avatar">A</div>
+        <div class="tm-name">Ali Harman</div>
+        <div class="tm-role">Master · Kurucu</div>
+        <div class="tm-bio">22 yıl, Berlin + İstanbul. Toni&Guy sertifikalı. Klasik + modern erkek kesimi uzmanı.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-avatar">D</div>
+        <div class="tm-name">Duygu K.</div>
+        <div class="tm-role">Kolorist · 8 yıl</div>
+        <div class="tm-bio">Elumen eğitmeni. Balyaj + ombre spesyalisti. Bireysel renk analizi yapar.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-avatar">M</div>
+        <div class="tm-name">Mert Ç.</div>
+        <div class="tm-role">Stilist · 5 yıl</div>
+        <div class="tm-bio">Modern erkek + unisex kesimi. Sakal şekillendirme + cilt bakımı uzmanı.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-avatar">Ş</div>
+        <div class="tm-name">Şeyma O.</div>
+        <div class="tm-role">Gelin Uzmanı</div>
+        <div class="tm-bio">Düğün saçı + makyaj paket. Ev ziyareti + prova dahil. Instagram ödüllü.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <section class="rez-banner">
+    <h2>Bu <em>cumartesi</em><br>hangi saat?</h2>
+    <p>Bugün 7 boş slot var. Saat seç, WhatsApp'tan onayla. Öğle arası 12:30-13:30 kapalı.</p>
+    <div class="rez-slots">
+      <button class="slot">09:00</button>
+      <button class="slot">10:00</button>
+      <button class="slot">11:00</button>
+      <button class="slot active">14:00</button>
+      <button class="slot">15:30</button>
+      <button class="slot">17:00</button>
+      <button class="slot">18:30</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  ATÖLYE HARMAN · TEMPLATE 03 · KUAFÖR<br>
+  COMBO: H8+N2+HR3+F1+L4+L9+TY29/30+PL24/25+MO1/MO6 · Kadıköy · 2016
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!--
+  TEMPLATE 09 · GAYRİMENKUL
+  Palette A: PL35 Sand + Ocean · Palette B: PL36 Mist + Sunset
+  Typo A: TY41 Fraunces + IBM Plex Sans · Typo B: TY42 Big Shoulders + Inter Tight
+  Hero: HR9 interactive map · Layout: L8 masonry + L3 bento-no-glass · Motion: MO1 + MO7
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 09 · Gayrimenkul</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700&family=IBM+Plex+Sans:wght@300;400;500;600&family=Big+Shoulders+Display:wght@500;700;900&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Sand + Ocean */
+    --bg: #F0EBE0;
+    --surface: #E5DDC8;
+    --ink: #0D2A3A;
+    --ink-soft: #355464;
+    --ink-faint: #8A9BA8;
+    --accent: #1B3A4B;
+    --accent-2: #B87333;
+    --line: rgba(13,42,58,0.14);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Mist + Sunset */
+    --bg: #EDE7DF;
+    --surface: #E0D8CA;
+    --ink: #2E3B4E;
+    --ink-soft: #4A5A6E;
+    --ink-faint: #8A94A4;
+    --accent: #E89B7C;
+    --accent-2: #CFB997;
+    --line: rgba(46,59,78,0.14);
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'Inter Tight', sans-serif;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  header { padding: 22px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 400; font-size: 28px; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+  body.p-b .brand { font-weight: 700; letter-spacing: -0.035em; text-transform: uppercase; }
+  .brand::before { content:''; width: 22px; height: 22px; background: var(--accent); }
+  body.p-b .brand::before { background: var(--accent); transform: rotate(45deg); }
+  nav { display: flex; gap: 26px; font-size: 13px; letter-spacing: 0.08em; font-weight: 500; text-transform: uppercase; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding: 4px 0; border-bottom: 2px solid transparent; }
+  nav a.active { color: var(--ink); border-color: var(--accent); }
+  .contact-btn { padding: 10px 20px; background: var(--accent); color: var(--bg); border: none; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+
+  main { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+
+  /* HERO MAP */
+  .hero { display: grid; grid-template-columns: 1fr 420px; gap: 0; min-height: 72vh; border-bottom: 1px solid var(--line); }
+  .hero-map-area { position: relative; background: var(--surface); overflow: hidden; }
+  .hero-map-svg { width: 100%; height: 100%; display: block; }
+  .map-pin {
+    position: absolute; pointer-events: auto; cursor: pointer;
+  }
+  .map-pin-dot { width: 16px; height: 16px; background: var(--accent); border: 3px solid var(--bg); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; }
+  .map-pin:hover .map-pin-dot { transform: scale(1.3); }
+  .map-pin-tag {
+    position: absolute; left: 22px; top: -6px;
+    background: var(--bg); border: 1px solid var(--line);
+    padding: 6px 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+    white-space: nowrap; color: var(--ink); box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .hero-panel { background: var(--bg); padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; gap: 14px; align-items: center; }
+  .eyebrow::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+  h1.hero-h { font-family: var(--font-display); font-weight: 400; font-size: clamp(44px, 5.5vw, 80px); line-height: 1; letter-spacing: -0.025em; font-variation-settings: 'opsz' 144; }
+  body.p-b h1.hero-h { font-weight: 700; letter-spacing: -0.035em; text-transform: uppercase; }
+  h1.hero-h em { color: var(--accent); font-style: italic; }
+  body.p-b h1.hero-h em { font-style: normal; color: var(--accent); }
+  .hero-sub { margin-top: 24px; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* filter chips */
+  .filters { margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 8px 14px; background: var(--surface); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-soft); text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .chip:hover, .chip.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  .hero-stats { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .stat-v { font-family: var(--font-display); font-weight: 400; font-size: 34px; letter-spacing: -0.02em; color: var(--ink); font-variation-settings: 'opsz' 96; }
+  body.p-b .stat-v { font-weight: 700; }
+  .stat-l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin-top: 4px; }
+
+  /* FEATURED LISTINGS */
+  .listings { padding: 80px 0; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .sec-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.022em; font-variation-settings: 'opsz' 96; }
+  body.p-b .sec-title { font-weight: 700; text-transform: uppercase; }
+  .sec-title em { color: var(--accent); font-style: italic; }
+  body.p-b .sec-title em { font-style: normal; }
+
+  .listing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .listing { cursor: pointer; transition: transform 0.3s cubic-bezier(.2,.8,.2,1); }
+  .listing:hover { transform: translateY(-5px); }
+  .listing.featured { grid-column: span 2; grid-row: span 2; }
+  .listing-img {
+    width: 100%; aspect-ratio: 4/3;
+    background: var(--ink); color: var(--accent-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 120px; font-weight: 400;
+    letter-spacing: -0.03em; position: relative; overflow: hidden;
+  }
+  .listing.featured .listing-img { aspect-ratio: 1/1; font-size: 220px; }
+  .listing-img.c1 { background: #0D2A3A; color: #B87333; }
+  .listing-img.c2 { background: #1B3A4B; color: #E5DDC8; }
+  .listing-img.c3 { background: #2E3B4E; color: #E89B7C; }
+  .listing-img.c4 { background: #355464; color: #CFB997; }
+  .listing-img.c5 { background: #3A2E22; color: #D4B896; }
+
+  .listing-badge { position: absolute; top: 16px; left: 16px; background: var(--bg); color: var(--ink); padding: 5px 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .listing.featured .listing-badge { background: var(--accent); color: var(--bg); }
+
+  .listing-body { padding: 20px 4px 0; }
+  .listing-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; }
+  .listing h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; margin-top: 8px; color: var(--ink); }
+  body.p-b .listing h3 { font-weight: 700; letter-spacing: -0.025em; text-transform: uppercase; }
+  .listing.featured h3 { font-size: 34px; }
+  .listing-feat-row { margin-top: 10px; display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-soft); text-transform: uppercase; }
+  .listing-price { margin-top: 14px; font-family: var(--font-display); font-weight: 500; font-size: 20px; color: var(--accent); letter-spacing: -0.02em; }
+  body.p-b .listing-price { font-weight: 700; }
+  .listing.featured .listing-price { font-size: 28px; }
+
+  footer { padding: 32px 40px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · MIST + SUNSET' : 'A · SAND + OCEAN';">A · SAND + OCEAN</button>
+
+<header>
+  <div class="brand">Limanköy</div>
+  <nav>
+    <a class="active">Emlak</a>
+    <a>Harita</a>
+    <a>Kiralık</a>
+    <a>Satılık</a>
+    <a>Danışman</a>
+  </nav>
+  <button class="contact-btn">Danışman ile Görüş</button>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-map-area">
+      <svg class="hero-map-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="900" height="600" fill="url(#grid)" color="#0D2A3A"/>
+        <path d="M50,100 Q300,140 600,120 T900,180" stroke="currentColor" color="#0D2A3A" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M50,350 Q300,330 600,380 T900,420" stroke="currentColor" color="#0D2A3A" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M200,20 L240,580" stroke="currentColor" color="#0D2A3A" stroke-width="1" stroke-dasharray="3 6" opacity="0.25"/>
+        <path d="M500,20 L520,580" stroke="currentColor" color="#0D2A3A" stroke-width="1" stroke-dasharray="3 6" opacity="0.25"/>
+        <text x="30" y="570" font-family="Fraunces" font-size="36" fill="#0D2A3A" opacity="0.2" font-style="italic">İstanbul · 34</text>
+      </svg>
+
+      <div class="map-pin" style="left: 30%; top: 28%;"><div class="map-pin-dot"></div><div class="map-pin-tag">Etiler Villa · ₺28M</div></div>
+      <div class="map-pin" style="left: 52%; top: 36%;"><div class="map-pin-dot"></div><div class="map-pin-tag">Bebek 3+1 · ₺18M</div></div>
+      <div class="map-pin" style="left: 62%; top: 52%;"><div class="map-pin-dot"></div><div class="map-pin-tag">Kadıköy 2+1 · ₺8.5M</div></div>
+      <div class="map-pin" style="left: 25%; top: 66%;"><div class="map-pin-dot"></div><div class="map-pin-tag">Beylikdüzü 3+1 · ₺6.2M</div></div>
+      <div class="map-pin" style="left: 72%; top: 70%;"><div class="map-pin-dot"></div><div class="map-pin-tag">Ataşehir rezidans · ₺12M</div></div>
+    </div>
+
+    <div class="hero-panel">
+      <div>
+        <div class="eyebrow">İstanbul · 34 Semt · 847 Emlak</div>
+        <h1 class="hero-h">Bulunduğun<br>şehirde <em>ev</em><br>yalnızca bir <em>ev</em>değildir.</h1>
+        <p class="hero-sub">
+          Her mahallenin kendi hikayesi var. Biz sadece metrekare satmıyoruz — size uyacak komşuluğu buluyoruz.
+        </p>
+
+        <div class="filters">
+          <button class="chip active">Satılık</button>
+          <button class="chip">Kiralık</button>
+          <button class="chip">Yazlık</button>
+          <button class="chip">Yatırım</button>
+          <button class="chip">Lüks</button>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div><div class="stat-v">847</div><div class="stat-l">Aktif İlan</div></div>
+        <div><div class="stat-v">34</div><div class="stat-l">Semt</div></div>
+        <div><div class="stat-v">12yıl</div><div class="stat-l">Hizmet</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section class="listings">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 02 · SEÇKİ</div>
+        <h2 class="sec-title">Bu <em>haftanın</em> öne çıkanları.</h2>
+      </div>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;">Tümünü gör · 847 →</span>
+    </div>
+
+    <div class="listing-grid">
+      <div class="listing featured">
+        <div class="listing-img c1">
+          <span class="listing-badge">ÖZEL</span>
+          ◩
+        </div>
+        <div class="listing-body">
+          <div class="listing-meta">ETİLER · İSTANBUL · MÜSTAKİL</div>
+          <h3>Boğaz Manzaralı Villa</h3>
+          <div class="listing-feat-row">
+            <span>5+2 · 480m²</span>
+            <span>HAVUZ · BAHÇE</span>
+            <span>2020 · YENİ</span>
+          </div>
+          <div class="listing-price">₺28,000,000</div>
+        </div>
+      </div>
+
+      <div class="listing">
+        <div class="listing-img c2"><span class="listing-badge">YENİ</span>B</div>
+        <div class="listing-body">
+          <div class="listing-meta">BEBEK · KİRALIK</div>
+          <h3>3+1 Boğaz Yanı</h3>
+          <div class="listing-feat-row"><span>3+1 · 180m²</span></div>
+          <div class="listing-price">₺85,000 / ay</div>
+        </div>
+      </div>
+
+      <div class="listing">
+        <div class="listing-img c3">C</div>
+        <div class="listing-body">
+          <div class="listing-meta">KADIKÖY · SATILIK</div>
+          <h3>Moda 2+1</h3>
+          <div class="listing-feat-row"><span>2+1 · 110m²</span></div>
+          <div class="listing-price">₺8,500,000</div>
+        </div>
+      </div>
+
+      <div class="listing">
+        <div class="listing-img c4">D</div>
+        <div class="listing-body">
+          <div class="listing-meta">BEYLIKDÜZÜ · SATILIK</div>
+          <h3>West Side Rezidans</h3>
+          <div class="listing-feat-row"><span>3+1 · 145m²</span></div>
+          <div class="listing-price">₺6,200,000</div>
+        </div>
+      </div>
+
+      <div class="listing">
+        <div class="listing-img c5"><span class="listing-badge">İNDİRİM</span>E</div>
+        <div class="listing-body">
+          <div class="listing-meta">ATAŞEHİR · SATILIK</div>
+          <h3>Finans Merkezi 3+1</h3>
+          <div class="listing-feat-row"><span>3+1 · 160m²</span></div>
+          <div class="listing-price">₺12,000,000</div>
+        </div>
+      </div>
+
+      <div class="listing">
+        <div class="listing-img c1">F</div>
+        <div class="listing-body">
+          <div class="listing-meta">ŞİŞLİ · KİRALIK</div>
+          <h3>Nişantaşı Loft</h3>
+          <div class="listing-feat-row"><span>1+1 · 75m²</span></div>
+          <div class="listing-price">₺42,000 / ay</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  LİMANKÖY · TEMPLATE 09 · GAYRİMENKUL<br>
+  COMBO: HR9+L8+L3+TY41/42+PL35/36+MO1/7 · İstanbul · 34 semt · 2014
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!--
+  TEMPLATE 14 · ULTRA SHOWCASE
+  Gercek kaynak analiz sonucu — fraxbit + mdx.so + wearebrand.io + Awwwards winners
+
+  UYGULANAN 11+ IMZA TEKNIGI:
+  1. Lenis + GSAP bridge (wearebrand imza)
+  2. Blur-36px → 0 text reveal (wearebrand imza — SplitText chars)
+  3. Scroll-zoom "porthole dive" scale 1→6.5 (wearebrand imza)
+  4. CSS mask --mask-y reveal (wearebrand ozgun)
+  5. Magnetic hover + elastic.out(1, 0.3) (Awwwards standart)
+  6. Scroll-scrubbed character opacity highlight (wearebrand)
+  7. Theme switch on scroll zone (wearebrand)
+  8. Dual custom cursor + back.out(1.7) (fraxbit)
+  9. SVG textPath bend marquee (Codrops-tier)
+  10. SVG grain overlay feTurbulence (2026 standart)
+  11. Canvas2D cursor trail (sadece fine pointer)
+  12. Variable font opsz axis scroll-linked
+  13. ScrambleText hero sub (GSAP 3.13 free)
+  14. Clip-path reveal 4 yon (fraxbit)
+
+  STACK: GSAP 3.13 (SplitText+ScrambleText+ScrollTrigger hepsi free) + Lenis 1.3
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 14 · ULTRA Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<style>
+  :root {
+    --bg: #0D0E14;
+    --bg-soft: #141620;
+    --paper: #F2EFE8;
+    --ink: #F2EFE8;
+    --ink-mute: #A5A2A0;
+    --ink-faint: #5C5A58;
+    --accent: #E85A2C;
+    --accent-2: #D4A574;
+    --line: rgba(242,239,232,0.12);
+  }
+  body.light {
+    --bg: #F2EFE8;
+    --bg-soft: #E8E3D7;
+    --paper: #0D0E14;
+    --ink: #0D0E14;
+    --ink-mute: #4A4744;
+    --ink-faint: #8A8680;
+    --line: rgba(13,14,20,0.12);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; overflow-x: hidden; cursor: none; transition: background 0.6s ease, color 0.6s ease; }
+  ::selection { background: var(--accent); color: var(--paper); }
+  @media (pointer: coarse) { html, body { cursor: auto; } }
+
+  /* ========= SVG GRAIN OVERLAY (2026 standart) ========= */
+  .grain-svg { position: fixed; inset: 0; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay; z-index: 98; }
+
+  /* ========= CUSTOM CURSOR (dual) ========= */
+  .cursor, .cursor-big { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100; border-radius: 50%; transform: translate(-50%, -50%); will-change: transform; }
+  .cursor { width: 6px; height: 6px; background: var(--accent); }
+  .cursor-big { width: 44px; height: 44px; border: 1px solid var(--accent-2); opacity: 0.4; transition: width 0.3s cubic-bezier(.2,.8,.2,1), height 0.3s cubic-bezier(.2,.8,.2,1), border-color 0.3s; }
+  .cursor-big.magnetic { width: 80px; height: 80px; border-color: var(--accent); opacity: 0.8; }
+  @media (pointer: coarse) { .cursor, .cursor-big, #trail { display: none; } }
+
+  /* Canvas cursor trail */
+  #trail { position: fixed; inset: 0; pointer-events: none; z-index: 1; mix-blend-mode: screen; opacity: 0.6; }
+
+  /* ========= PRELOADER ========= */
+  .preloader {
+    position: fixed; inset: 0; z-index: 999; background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .preloader-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, var(--accent) 0%, transparent 40%);
+    opacity: 0.25;
+    --mask-y: 0%;
+    mask-image: radial-gradient(circle at 50% var(--mask-y), #000 0%, #000 30%, transparent 60%);
+    -webkit-mask-image: radial-gradient(circle at 50% var(--mask-y), #000 0%, #000 30%, transparent 60%);
+  }
+  .preloader-text {
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(56px, 10vw, 128px); line-height: 0.9;
+    letter-spacing: -0.035em; color: var(--paper);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    text-align: center; position: relative; z-index: 2;
+  }
+  .preloader-text em { color: var(--accent); }
+  .preloader-counter {
+    position: absolute; bottom: 40px; right: 40px;
+    font-family: 'JetBrains Mono'; font-size: 13px; color: var(--ink-mute);
+    letter-spacing: 0.2em; font-variant-numeric: tabular-nums;
+  }
+
+  /* ========= HEADER ========= */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 24px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    mix-blend-mode: difference; color: var(--paper);
+  }
+  .brand {
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: 28px; letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  .brand em { color: var(--accent); }
+  nav { display: flex; gap: 32px; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; }
+  nav a { color: inherit; text-decoration: none; opacity: 0.7; cursor: pointer; transition: opacity 0.2s; }
+  nav a:hover, nav a.active { opacity: 1; }
+  .header-cta { padding: 8px 18px; border: 1px solid currentColor; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; cursor: none; background: transparent; color: inherit; transition: all 0.3s; }
+
+  /* ========= HERO (porthole dive scroll-zoom) ========= */
+  .hero {
+    position: relative; height: 100vh; min-height: 720px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(1000px 700px at 30% 30%, rgba(232,90,44,0.25), transparent 60%),
+      radial-gradient(800px 600px at 70% 70%, rgba(212,165,116,0.18), transparent 55%),
+      linear-gradient(180deg, var(--bg-soft), var(--bg));
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .hero-sculpture {
+    position: relative; width: min(380px, 60vw); height: min(500px, 70vh);
+    transform-origin: center center; will-change: transform;
+  }
+  .sculpture-inner {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 35% 25%, #F5F1E8 0%, #D4CEBF 25%, #9A9182 55%, #5A5248 85%, #2A2420 100%);
+    border-radius: 50% 50% 42% 42% / 60% 60% 40% 40%;
+    box-shadow:
+      inset -40px -60px 120px rgba(0,0,0,0.5),
+      inset 20px 20px 60px rgba(255,255,255,0.25),
+      0 60px 120px -30px rgba(0,0,0,0.5);
+  }
+  .sculpture-inner::before {
+    content:''; position: absolute; top: 38%; left: 30%; width: 14px; height: 22px;
+    background: rgba(10,10,8,0.45); border-radius: 50%; filter: blur(4px);
+  }
+  .sculpture-inner::after {
+    content:''; position: absolute; top: 38%; right: 30%; width: 14px; height: 22px;
+    background: rgba(10,10,8,0.45); border-radius: 50%; filter: blur(4px);
+  }
+
+  .hero-title {
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+    padding: 0 40px; z-index: 3; pointer-events: none;
+  }
+  .hero-title-row { display: flex; justify-content: space-between; align-items: center; }
+  .hero-t-left, .hero-t-right {
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(64px, 11vw, 180px); line-height: 0.88;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    will-change: transform;
+  }
+  .hero-t-left em, .hero-t-right em { color: var(--accent); }
+  .hero-middle {
+    font-family: 'Fraunces', serif; font-weight: 200; font-style: italic;
+    font-size: clamp(80px, 14vw, 240px); line-height: 0.86;
+    letter-spacing: -0.045em; text-align: center; margin: 0 -5vw;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    will-change: font-variation-settings, transform;
+  }
+  .hero-middle span {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .hero-sub {
+    position: absolute; bottom: 48px; left: 40px; right: 40px; z-index: 3;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    pointer-events: none;
+  }
+  .hero-sub-text {
+    font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.22em;
+    color: var(--ink-mute); text-transform: uppercase; max-width: 30ch;
+  }
+  .hero-sub-text em { color: var(--accent); font-style: normal; font-weight: 500; }
+  .hero-scroll-hint {
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em;
+    color: var(--ink-faint); text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-scroll-hint::after {
+    content: '↓'; animation: bounce 1.4s infinite;
+  }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+  /* ========= SECTION base ========= */
+  section { padding: 140px 40px; position: relative; }
+  .sec-kicker { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.35em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 14px; }
+  .sec-kicker::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+  .sec-h {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(52px, 7.5vw, 112px);
+    line-height: 0.98; letter-spacing: -0.028em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 80;
+    max-width: 15ch;
+  }
+  .sec-h em { color: var(--accent); font-style: italic; font-weight: 400; }
+
+  /* ========= SCROLL-SCRUBBED TEXT (char opacity) ========= */
+  .scrub-text {
+    max-width: 68ch; margin: 60px 0 0;
+    font-family: 'Instrument Sans', sans-serif; font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 42px); line-height: 1.3;
+    letter-spacing: -0.015em; color: var(--ink);
+  }
+  .scrub-text strong { color: var(--accent); font-weight: 500; }
+  .scrub-text em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; color: var(--accent-2); }
+
+  /* ========= WORK BENTO (asymmetric) ========= */
+  .work { padding: 140px 40px; }
+  .work-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px; }
+  .work-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 180px; gap: 14px; }
+  .w-case {
+    position: relative; overflow: hidden;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    cursor: none; transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+  }
+  .w-case:hover { transform: translateY(-6px); }
+  .w-case img, .w-case .w-image {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--bg) 70%);
+    transition: transform 0.7s cubic-bezier(.2,.8,.2,1), filter 0.7s;
+  }
+  .w-case:hover .w-image { transform: scale(1.06); filter: hue-rotate(-15deg); }
+  .w-case-body { position: absolute; inset: 0; padding: 28px; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; color: var(--paper); }
+  .w-case-num { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; }
+  .w-case-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 28px; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96, 'SOFT' 80; }
+  .w-case-title em { font-style: italic; color: var(--accent-2); }
+  .w-case-meta { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.75; }
+
+  .wc-1 { grid-column: span 3; grid-row: span 2; background: linear-gradient(135deg, #3A1B5E, #0D0E14); }
+  .wc-1 .w-case-title { font-size: 56px; }
+  .wc-2 { grid-column: span 3; grid-row: span 1; background: linear-gradient(135deg, #E85A2C, #6B1B2E); }
+  .wc-3 { grid-column: span 2; grid-row: span 1; background: linear-gradient(135deg, #1B3A4B, #0D0E14); }
+  .wc-4 { grid-column: span 1; grid-row: span 1; background: var(--accent); color: var(--bg); }
+  .wc-5 { grid-column: span 3; grid-row: span 2; background: linear-gradient(135deg, #9CAF88, #2A4A3A); }
+  .wc-5 .w-case-title { font-size: 44px; }
+  .wc-6 { grid-column: span 3; grid-row: span 1; background: linear-gradient(135deg, #D4A574, #5C4D3C); }
+
+  /* ========= BEND MARQUEE (SVG textPath) ========= */
+  .bend-marquee { padding: 60px 0; overflow: hidden; }
+  .bend-marquee svg { width: 100%; display: block; }
+  .bend-marquee text {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+    font-size: 68px; fill: var(--ink);
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144;
+  }
+  .bend-marquee tspan.ac { fill: var(--accent); }
+
+  /* ========= MAGNETIC CTA ========= */
+  .cta-zone {
+    padding: 180px 40px 100px; text-align: left;
+    position: relative;
+  }
+  .cta-zone h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(72px, 12vw, 220px);
+    line-height: 0.86; letter-spacing: -0.045em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    max-width: 14ch;
+  }
+  .cta-zone h2 em { color: var(--accent); font-style: italic; }
+  .cta-zone h2 .outline { -webkit-text-stroke: 1.5px var(--ink); color: transparent; font-weight: 400; }
+
+  .cta-magnetic-row { margin-top: 48px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .btn-magnetic {
+    padding: 20px 40px; background: var(--accent); color: var(--paper); border: none;
+    font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: none; font-weight: 500;
+    transition: background 0.3s;
+    will-change: transform;
+  }
+  body.light .btn-magnetic { color: var(--bg); }
+  .btn-magnetic:hover { background: var(--accent-2); color: var(--bg); }
+  .btn-ghost {
+    padding: 20px 40px; background: transparent; color: var(--ink); border: 1px solid var(--line);
+    font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: none;
+    will-change: transform;
+  }
+
+  /* ========= THEME TRIGGER ZONES ========= */
+  [data-theme="light"] {
+    background: var(--paper); color: var(--bg);
+  }
+
+  /* ========= FOOTER ========= */
+  footer {
+    padding: 40px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.25em;
+    color: var(--ink-faint); text-transform: uppercase;
+  }
+
+  /* ========= CLIP-PATH REVEAL (fraxbit) ========= */
+  .clip-reveal { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); transition: clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+  .clip-reveal.on { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+</style>
+</head>
+<body>
+
+<!-- SVG GRAIN OVERLAY -->
+<svg class="grain-svg" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain">
+    <feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" seed="2"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain)"/>
+</svg>
+
+<!-- CUSTOM CURSOR DUAL -->
+<div class="cursor"></div>
+<div class="cursor-big"></div>
+
+<!-- CANVAS CURSOR TRAIL -->
+<canvas id="trail"></canvas>
+
+<!-- PRELOADER with mask reveal -->
+<div class="preloader">
+  <div class="preloader-bg"></div>
+  <div class="preloader-text">
+    <em>look</em> premium.<br>sell <em>better.</em>
+  </div>
+  <div class="preloader-counter"><span id="preCount">00</span> / 100</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="brand">Parallel<em>.</em></div>
+  <nav>
+    <a class="active">Work</a>
+    <a>Studio</a>
+    <a>Process</a>
+    <a>Contact</a>
+  </nav>
+  <button class="header-cta">Start a project →</button>
+</header>
+
+<!-- HERO with porthole dive -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-sculpture">
+    <div class="sculpture-inner"></div>
+  </div>
+  <div class="hero-title">
+    <div class="hero-title-row">
+      <div class="hero-t-left">Look</div>
+      <div class="hero-t-right"><em>premium.</em></div>
+    </div>
+    <div class="hero-middle"><span>Sell better.</span></div>
+  </div>
+  <div class="hero-sub">
+    <div class="hero-sub-text" id="scrambleSub">
+      Istanbul merkezli <em>design + build + grow</em> studio. 2016'dan bugune 47 marka.
+    </div>
+    <div class="hero-scroll-hint">Scroll</div>
+  </div>
+</section>
+
+<!-- SCROLL-SCRUBBED STATEMENT (char opacity highlight) -->
+<section>
+  <div class="sec-kicker">§ 01 · Philosophy</div>
+  <h2 class="sec-h">Bir site <em>reklam</em> degil, <em>satista</em> calisan bir takimdir.</h2>
+  <div class="scrub-text" id="scrubText">
+    Her satir, her gecis, her buton — <strong>donusume hizmet eder.</strong> Biz sadece guzel gorunen seyler yapmayiz. Donusume hizmet eden — yani <em>para getiren</em> — seyler yapariz. Markan bir <strong>gemi</strong>, biz ona bir <em>pusula</em> koyuyoruz.
+  </div>
+</section>
+
+<!-- WORK BENTO -->
+<section class="work" data-theme="light">
+  <div class="work-head">
+    <div>
+      <div class="sec-kicker">§ 02 · Work</div>
+      <h2 class="sec-h">Son <em>carvings.</em></h2>
+    </div>
+    <div style="font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.22em;color:var(--ink-faint);text-transform:uppercase;">2025 — 2026 · 47 proje · 12 sektor</div>
+  </div>
+
+  <div class="work-grid">
+    <div class="w-case wc-1">
+      <div class="w-image"></div>
+      <div class="w-case-body">
+        <div class="w-case-num">/ 001 — FINTECH</div>
+        <div>
+          <div class="w-case-title">Nova <em>Bank.</em></div>
+          <div style="margin-top:10px;font-size:13px;opacity:0.8;max-width:28ch;">Full rebrand + transactional app. Conversions +47%.</div>
+        </div>
+        <div class="w-case-meta">FIGMA · NEXT.JS · R3F · GSAP</div>
+      </div>
+    </div>
+    <div class="w-case wc-2">
+      <div class="w-image"></div>
+      <div class="w-case-body">
+        <div class="w-case-num">/ 002 — FASHION</div>
+        <div class="w-case-title">Ayya <em>Atelier.</em></div>
+        <div class="w-case-meta">SHOPIFY · GSAP · VIMEO</div>
+      </div>
+    </div>
+    <div class="w-case wc-3">
+      <div class="w-image"></div>
+      <div class="w-case-body">
+        <div class="w-case-num">/ 003 — ARCH</div>
+        <div class="w-case-title">Kovan <em>Studio.</em></div>
+        <div class="w-case-meta">FRAMER · BLENDER</div>
+      </div>
+    </div>
+    <div class="w-case wc-4" style="color:var(--bg);">
+      <div class="w-case-body" style="color:var(--bg);">
+        <div class="w-case-num" style="opacity:0.6;color:var(--bg);">/ 004</div>
+        <div class="w-case-title" style="font-size:22px;">Circ<em>.</em></div>
+        <div class="w-case-meta" style="color:var(--bg);opacity:0.7;">AGENCY</div>
+      </div>
+    </div>
+    <div class="w-case wc-5">
+      <div class="w-image"></div>
+      <div class="w-case-body">
+        <div class="w-case-num">/ 005 — WELLNESS</div>
+        <div>
+          <div class="w-case-title">Kur <em>Retreat.</em></div>
+          <div style="margin-top:10px;font-size:13px;opacity:0.8;max-width:28ch;">Kapadokya butik spa — 14 oda, organik deneyim.</div>
+        </div>
+        <div class="w-case-meta">WEBFLOW · LENIS · BARBA</div>
+      </div>
+    </div>
+    <div class="w-case wc-6">
+      <div class="w-image"></div>
+      <div class="w-case-body">
+        <div class="w-case-num">/ 006 — EDTECH</div>
+        <div class="w-case-title">Pera <em>School.</em></div>
+        <div class="w-case-meta">REACT · STRAPI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEND MARQUEE (SVG textPath) -->
+<section class="bend-marquee">
+  <svg viewBox="0 0 1600 260" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <path id="bendCurve" d="M 0 200 Q 800 -40 1600 200" fill="none"/>
+    </defs>
+    <text>
+      <textPath href="#bendCurve" startOffset="0%">
+        <animate attributeName="startOffset" from="100%" to="-100%" dur="26s" repeatCount="indefinite"/>
+        DESIGN · <tspan class="ac">BUILD</tspan> · GROW · DESIGN · <tspan class="ac">BUILD</tspan> · GROW · DESIGN · <tspan class="ac">BUILD</tspan> · GROW ·
+      </textPath>
+    </text>
+  </svg>
+</section>
+
+<!-- CTA ZONE with magnetic buttons -->
+<section class="cta-zone">
+  <div class="sec-kicker">§ 03 · Start</div>
+  <h2>
+    Bir <em>mektup</em> yaz.<br>
+    <span class="outline">Bir carving</span> yapalim.
+  </h2>
+  <div class="cta-magnetic-row">
+    <button class="btn-magnetic" data-magnetic>Book a 30-min call →</button>
+    <button class="btn-ghost" data-magnetic>hello@parallel.studio</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>PARALLEL STUDIO · 2019 — 2026</span>
+  <span>TEMPLATE 14 · ULTRA · 14+ TEKNİK</span>
+  <span>GSAP 3.13 · LENIS · SPLITTEXT · SCRAMBLE · SVG GRAIN</span>
+</footer>
+
+<script>
+  // ========== GSAP + Lenis foundation ==========
+  gsap.registerPlugin(ScrollTrigger, SplitText, ScrambleTextPlugin);
+
+  const lenis = new Lenis({
+    duration: 1.1,
+    smoothWheel: true, touchMultiplier: 2,
+    easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e))
+  });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(e => lenis.raf(1000 * e));
+  gsap.ticker.lagSmoothing(0);
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ========== PRELOADER mask reveal + counter ==========
+  const pre = document.querySelector('.preloader');
+  const preBg = document.querySelector('.preloader-bg');
+  const preText = document.querySelector('.preloader-text');
+  const preCount = document.querySelector('#preCount');
+
+  let count = { v: 0 };
+  const preTl = gsap.timeline({ onComplete: () => {
+    gsap.to(pre, { y: "-100%", duration: 1.2, ease: "power3.inOut", onComplete: () => pre.remove() });
+  }});
+  preTl.to(count, {
+    v: 100, duration: 1.4, ease: "power2.inOut",
+    onUpdate: () => preCount.textContent = String(Math.round(count.v)).padStart(2, '0')
+  })
+  .fromTo(preBg, { '--mask-y': '0%' }, { '--mask-y': '100%', duration: 1.2, ease: 'power2.out' }, 0.2)
+  .from(preText, { opacity: 0, y: 40, duration: 1, ease: 'power3.out' }, 0);
+
+  // ========== CUSTOM CURSOR (dual with lerp) ==========
+  const cur = document.querySelector('.cursor');
+  const curBig = document.querySelector('.cursor-big');
+  let mx = 0, my = 0, bx = 0, by = 0;
+  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`; });
+  gsap.ticker.add(() => {
+    bx += (mx - bx) * 0.14;
+    by += (my - by) * 0.14;
+    curBig.style.transform = `translate(${bx}px, ${by}px) translate(-50%, -50%)`;
+  });
+
+  // Magnetic hover effect + cursor big state
+  document.querySelectorAll('[data-magnetic], .header-cta, nav a, .w-case').forEach(el => {
+    el.addEventListener('mouseenter', () => curBig.classList.add('magnetic'));
+    el.addEventListener('mouseleave', () => curBig.classList.remove('magnetic'));
+  });
+  document.querySelectorAll('[data-magnetic]').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - r.left - r.width/2) * 0.3;
+      const dy = (e.clientY - r.top - r.height/2) * 0.4;
+      gsap.to(el, { x: dx, y: dy, duration: 0.6, ease: "power3.out" });
+    });
+    el.addEventListener('mouseleave', () =>
+      gsap.to(el, { x: 0, y: 0, duration: 1.2, ease: "elastic.out(1, 0.3)" })
+    );
+  });
+
+  // ========== CANVAS CURSOR TRAIL ==========
+  if (matchMedia('(pointer: fine)').matches && !reducedMotion) {
+    const cvs = document.querySelector('#trail');
+    const ctx = cvs.getContext('2d');
+    function sizeCvs() { cvs.width = innerWidth; cvs.height = innerHeight; }
+    sizeCvs(); addEventListener('resize', sizeCvs);
+    const trailPts = [];
+    addEventListener('pointermove', e => trailPts.push({ x: e.clientX, y: e.clientY, life: 1 }));
+    function trailLoop() {
+      ctx.fillStyle = 'rgba(13,14,20,0.1)';
+      ctx.fillRect(0, 0, cvs.width, cvs.height);
+      for (let i = trailPts.length - 1; i >= 0; i--) {
+        const p = trailPts[i]; p.life -= 0.025;
+        if (p.life <= 0) { trailPts.splice(i, 1); continue; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 10 * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(232, 90, 44, ${p.life * 0.35})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(trailLoop);
+    }
+    trailLoop();
+  }
+
+  // ========== HERO PORTHOLE DIVE (scroll-zoom) ==========
+  const heroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1, pin: true
+    }
+  });
+  heroTl
+    .fromTo('.hero-bg',         { scale: 1 }, { scale: 6.5, duration: 1 }, 0)
+    .fromTo('.hero-sculpture',  { scale: 1, rotation: 0 }, { scale: 8, rotation: 15, duration: 1 }, 0)
+    .fromTo('.hero-t-left',     { x: '0vw' }, { x: '-60vw', duration: 1 }, 0)
+    .fromTo('.hero-t-right',    { x: '0vw' }, { x: '60vw', duration: 1 }, 0)
+    .fromTo('.hero-middle',     { scale: 1, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 1 }, 0)
+    .to('.hero-sub',            { opacity: 0, duration: 0.3 }, 0);
+
+  // Variable font opsz axis scroll-linked on hero-middle
+  const heroMid = document.querySelector('.hero-middle');
+  ScrollTrigger.create({
+    trigger: '.hero', start: 'top top', end: '+=1200', scrub: 1,
+    onUpdate: (s) => {
+      const opsz = 9 + (144 - 9) * (1 - s.progress);
+      const soft = 50 + 50 * (1 - s.progress);
+      heroMid.style.fontVariationSettings = `"opsz" ${opsz}, "SOFT" ${soft}`;
+    }
+  });
+
+  // ========== SCRAMBLE HERO SUB ==========
+  ScrollTrigger.create({
+    trigger: '#scrambleSub', start: 'top 90%', once: true,
+    onEnter: () => {
+      gsap.to('#scrambleSub', {
+        duration: 2.5,
+        scrambleText: {
+          text: 'Istanbul merkezli design + build + grow studio. 2016\'dan bugune 47 marka.',
+          chars: 'upperAndLowerCase', revealDelay: 0.3, speed: 0.6
+        },
+        ease: 'none'
+      });
+    }
+  });
+
+  // ========== BLUR-36px → 0 TEXT REVEAL + SplitText chars ==========
+  const scrubSplit = new SplitText('#scrubText', { type: 'chars,words' });
+  gsap.from(scrubSplit.chars, {
+    filter: 'blur(30px)', opacity: 0.15,
+    duration: 0.6, stagger: { each: 0.02 },
+    scrollTrigger: { trigger: '#scrubText', start: 'top 85%', end: 'bottom 60%', scrub: true }
+  });
+
+  // ========== SEC-H blur reveal ==========
+  document.querySelectorAll('.sec-h').forEach(h => {
+    const split = new SplitText(h, { type: 'lines,words', mask: 'lines' });
+    gsap.from(split.words, {
+      yPercent: 120, opacity: 0,
+      filter: 'blur(20px)',
+      duration: 1.1, stagger: 0.04, ease: 'expo.out',
+      scrollTrigger: { trigger: h, start: 'top 80%', once: true }
+    });
+  });
+
+  // ========== WORK BENTO reveal ==========
+  gsap.from('.w-case', {
+    y: 80, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.08,
+    scrollTrigger: { trigger: '.work-grid', start: 'top 85%' }
+  });
+
+  // ========== THEME SWITCH on scroll ==========
+  ScrollTrigger.create({
+    trigger: '[data-theme="light"]',
+    start: 'top 50%', end: 'bottom 50%',
+    onEnter: () => document.body.classList.add('light'),
+    onLeave: () => document.body.classList.remove('light'),
+    onEnterBack: () => document.body.classList.add('light'),
+    onLeaveBack: () => document.body.classList.remove('light')
+  });
+
+  // ========== CTA H2 kinetic ==========
+  const ctaH2 = document.querySelector('.cta-zone h2');
+  if (ctaH2) {
+    const split = new SplitText(ctaH2, { type: 'lines,chars', mask: 'lines' });
+    gsap.from(split.chars, {
+      yPercent: 100, opacity: 0, rotationY: 90,
+      duration: 1.2, stagger: 0.015, ease: 'expo.out',
+      scrollTrigger: { trigger: ctaH2, start: 'top 75%' }
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!--
+  TEMPLATE 11 · KINETIC AGENCY (fraxbit-style)
+  Referans: fraxbit.com · italic kinetic · GSAP heavy · marble sculpture · growth studio
+  Techniques: Variable font opsz axis (Fraunces 9-144), SplitText word reveal, GSAP ScrollTrigger pin,
+              CSS 3D marble sculpture (procedural sphere+extrude), scroll-linked text scale
+  Trend: Kinetic Typography + Bento 2.0 + scroll-triggered
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 11 · Kinetic Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+  :root {
+    --bg: #F2EFE8;
+    --surface: #E8E3D7;
+    --ink: #0A0A08;
+    --ink-soft: #3A3A36;
+    --ink-faint: #8A8680;
+    --bronze: #8C6A3F;
+    --bronze-light: #BE9C6E;
+    --line: rgba(10,10,8,0.12);
+    --accent: #C54B2C;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter Tight', sans-serif; font-weight: 400; overflow-x: hidden; }
+  ::selection { background: var(--ink); color: var(--bg); }
+
+  /* nav */
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 60; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; mix-blend-mode: difference; color: var(--bg); }
+  .brand { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 28px; letter-spacing: -0.03em; font-variation-settings: 'opsz' 144; }
+  .brand em { color: var(--accent); font-style: italic; }
+  nav { display: flex; gap: 32px; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  nav a { color: inherit; text-decoration: none; opacity: 0.7; cursor: pointer; }
+  nav a:hover, nav a.active { opacity: 1; }
+  .cta-chip { padding: 8px 16px; border: 1px solid currentColor; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; }
+
+  /* ========= KINETIC HERO ========= */
+  .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; padding: 140px 48px 80px; overflow: hidden; }
+
+  .hero-mark { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 32px; display: flex; gap: 16px; align-items: center; }
+  .hero-mark::before { content:''; width: 50px; height: 1px; background: var(--accent); }
+
+  /* KINETIC TITLE — variable font axis animate */
+  .kinetic-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(72px, 13vw, 220px);
+    line-height: 0.86;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    color: var(--ink);
+  }
+  .kinetic-title .word { display: inline-block; overflow: hidden; vertical-align: baseline; }
+  .kinetic-title .word-inner { display: inline-block; transform: translateY(110%); will-change: transform, font-variation-settings; }
+  .kinetic-title .italic {
+    font-style: italic; font-weight: 400; color: var(--accent);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+  .kinetic-title .outline {
+    -webkit-text-stroke: 1.5px var(--ink); color: transparent; font-weight: 400;
+  }
+
+  .hero-subtext { margin-top: 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: end; }
+  .hero-desc { font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 48ch; }
+  .hero-desc strong { color: var(--ink); font-weight: 500; }
+  .hero-desc em { font-family: 'Fraunces', serif; font-style: italic; color: var(--accent); font-weight: 400; font-size: 20px; }
+
+  /* Marble sculpture CSS-only */
+  .sculpture {
+    width: 280px; height: 380px;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 800px;
+  }
+  .sculpture-base {
+    position: absolute; left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: 180px; height: 30px;
+    background: linear-gradient(180deg, var(--bronze) 0%, var(--ink) 100%);
+    box-shadow: 0 20px 40px -10px rgba(10,10,8,0.3);
+  }
+  .sculpture-head {
+    position: absolute; left: 50%; top: 10%;
+    transform: translateX(-50%);
+    width: 200px; height: 260px;
+    background:
+      radial-gradient(ellipse at 35% 25%, #F5F1E8 0%, #D4CEBF 30%, #9A9182 60%, #5A5248 100%);
+    border-radius: 50% 50% 45% 45% / 55% 55% 45% 45%;
+    box-shadow:
+      inset -30px -40px 80px rgba(10,10,8,0.35),
+      inset 20px 10px 40px rgba(255,255,255,0.4),
+      0 40px 80px -20px rgba(10,10,8,0.35);
+    transform-style: preserve-3d;
+  }
+  .sculpture-head::before {
+    content:''; position: absolute; top: 35%; left: 25%; width: 15px; height: 25px;
+    background: radial-gradient(ellipse, rgba(10,10,8,0.4), transparent);
+    filter: blur(3px);
+  }
+  .sculpture-head::after {
+    content:''; position: absolute; top: 35%; right: 25%; width: 15px; height: 25px;
+    background: radial-gradient(ellipse, rgba(10,10,8,0.4), transparent);
+    filter: blur(3px);
+  }
+  .sculpture-noise {
+    position: absolute; inset: 0; border-radius: inherit;
+    background:
+      radial-gradient(circle at 50% 40%, transparent 40%, rgba(10,10,8,0.15) 100%),
+      repeating-radial-gradient(circle at 50% 50%, transparent 0, rgba(255,255,255,0.03) 2px);
+  }
+
+  /* ========= PROCESS ========= */
+  .process { padding: 140px 48px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 60px; max-width: 1400px; margin-left: auto; margin-right: auto; }
+  .sec-num { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.35em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .sec-h { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(48px, 7vw, 92px); line-height: 0.98; letter-spacing: -0.028em; font-variation-settings: 'opsz' 144, 'SOFT' 100; max-width: 14ch; }
+  .sec-h em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .sec-right { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; text-align: right; }
+
+  .process-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .step { background: var(--bg); padding: 40px 28px; position: relative; transition: background 0.4s; cursor: pointer; }
+  .step:hover { background: var(--surface); }
+  .step-num { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.3em; color: var(--ink-faint); text-transform: uppercase; }
+  .step h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 40px; letter-spacing: -0.02em; margin-top: 18px; font-variation-settings: 'opsz' 96; }
+  .step h3 em { color: var(--accent); font-style: italic; }
+  .step p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin-top: 14px; max-width: 30ch; }
+  .step-meta { margin-top: 28px; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; }
+
+  /* ========= KINETIC MARQUEE ========= */
+  .marquee { padding: 60px 0; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .marquee-track {
+    display: flex; gap: 60px; white-space: nowrap;
+    animation: slide 60s linear infinite;
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: 88px; line-height: 1; letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    color: var(--ink);
+  }
+  .marquee-track em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .marquee-track .outline { -webkit-text-stroke: 1.5px var(--ink); color: transparent; font-weight: 400; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ========= WORK (Bento 2.0 asymmetric) ========= */
+  .work { padding: 120px 48px; }
+  .work-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 160px; gap: 16px; }
+  .case {
+    background: var(--ink); position: relative; cursor: pointer; overflow: hidden;
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+  }
+  .case:hover { transform: translateY(-6px); }
+  .case::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(140,106,63,0.2), transparent 60%);
+    pointer-events: none;
+  }
+  .case-body { position: absolute; inset: 0; padding: 24px; color: var(--bg); display: flex; flex-direction: column; justify-content: space-between; z-index: 2; }
+  .case-num { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.6; }
+  .case-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 32px; line-height: 0.98; letter-spacing: -0.015em; font-variation-settings: 'opsz' 96, 'SOFT' 100; }
+  .case-title em { color: var(--bronze-light); font-style: italic; }
+  .case-meta { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.2em; opacity: 0.7; text-transform: uppercase; }
+
+  /* bento spans (asymmetric) */
+  .c-1 { grid-column: span 3; grid-row: span 2; }
+  .c-1 .case-title { font-size: 56px; }
+  .c-2 { grid-column: span 2; grid-row: span 2; background: var(--bronze); }
+  .c-2 .case-title em { color: var(--ink); }
+  .c-2 .case-body { color: var(--bg); }
+  .c-3 { grid-column: span 1; grid-row: span 1; background: var(--accent); }
+  .c-4 { grid-column: span 2; grid-row: span 1; }
+  .c-5 { grid-column: span 3; grid-row: span 1; background: var(--surface); color: var(--ink); }
+  .c-5 .case-body { color: var(--ink); }
+  .c-5 .case-title em { color: var(--accent); }
+  .c-6 { grid-column: span 3; grid-row: span 1; }
+
+  /* ========= FOOTER ========= */
+  .foot-hero {
+    padding: 180px 48px 60px;
+    text-align: left;
+    border-top: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .foot-hero::before {
+    content:''; position: absolute; right: -10%; top: 20%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, var(--bronze-light) 0%, transparent 60%);
+    opacity: 0.3;
+  }
+  .foot-hero h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(80px, 14vw, 240px);
+    line-height: 0.86; letter-spacing: -0.045em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    max-width: 14ch; position: relative; z-index: 2;
+  }
+  .foot-hero h2 em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .foot-hero h2 .outline { -webkit-text-stroke: 1.5px var(--ink); color: transparent; }
+
+  .foot-cta-row { margin-top: 40px; display: flex; gap: 16px; align-items: center; position: relative; z-index: 2; }
+  .btn-solid { padding: 18px 32px; background: var(--ink); color: var(--bg); border: none; font-family: 'JetBrains Mono'; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .btn-solid:hover { background: var(--accent); letter-spacing: 0.3em; }
+
+  .foot-bottom { margin-top: 80px; padding: 28px 0 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Parallel<em>Studio</em></div>
+  <nav>
+    <a class="active">work</a>
+    <a>studio</a>
+    <a>process</a>
+    <a>contact</a>
+  </nav>
+  <button class="cta-chip">Start a project</button>
+</header>
+
+<!-- KINETIC HERO -->
+<section class="hero">
+  <div class="hero-mark">◉ 12 MONTH WAITLIST · ACCEPTING 4 CLIENTS</div>
+
+  <h1 class="kinetic-title">
+    <div><span class="word"><span class="word-inner">We</span></span> <span class="word"><span class="word-inner italic">design</span></span> <span class="word"><span class="word-inner">it.</span></span></div>
+    <div><span class="word"><span class="word-inner">We</span></span> <span class="word"><span class="word-inner italic">build</span></span> <span class="word"><span class="word-inner">it.</span></span></div>
+    <div><span class="word"><span class="word-inner">We</span></span> <span class="word"><span class="word-inner italic">grow</span></span> <span class="word"><span class="word-inner outline">it.</span></span></div>
+  </h1>
+
+  <div class="hero-subtext">
+    <div class="hero-desc">
+      Not <em>a template</em>, not a framework flip. Every site is carved from your brand like <em>marble</em> — then polished into a growth system that sells. Strategy, design, development, ads, SEO — under one roof, one price, one deadline.
+    </div>
+    <div class="sculpture" style="justify-self: end;">
+      <div class="sculpture-base"></div>
+      <div class="sculpture-head">
+        <div class="sculpture-noise"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">§ 01 · PROCESS</div>
+      <h2 class="sec-h">From <em>sketch</em> to scale, <em>one</em> hand.</h2>
+    </div>
+    <div class="sec-right">4 STEPS · AVG 6-10 WEEKS · 1 TEAM</div>
+  </div>
+
+  <div class="process-grid">
+    <div class="step">
+      <div class="step-num">/ 01</div>
+      <h3><em>Strategy</em></h3>
+      <p>Workshop, stakeholder interview, competitive audit, positioning. Week 1-2.</p>
+      <div class="step-meta">DISCOVER · RESEARCH · POSITION</div>
+    </div>
+    <div class="step">
+      <div class="step-num">/ 02</div>
+      <h3><em>Build</em></h3>
+      <p>Wireframe → design → dev. Figma to Webflow/Framer/React. Week 3-7.</p>
+      <div class="step-meta">WIREFRAME · DESIGN · DEVELOP</div>
+    </div>
+    <div class="step">
+      <div class="step-num">/ 03</div>
+      <h3><em>Launch</em></h3>
+      <p>QA, SEO setup, analytics, migration, deploy. Press release optional. Week 8.</p>
+      <div class="step-meta">QA · SEO · DEPLOY · PRESS</div>
+    </div>
+    <div class="step">
+      <div class="step-num">/ 04</div>
+      <h3><em>Grow</em></h3>
+      <p>Ads + SEO + CRO retainer. A/B test, iterate monthly. Month 2+.</p>
+      <div class="step-meta">ADS · CRO · A/B · SCALE</div>
+    </div>
+  </div>
+</section>
+
+<!-- KINETIC MARQUEE -->
+<section class="marquee">
+  <div class="marquee-track">
+    <span>Design</span><span>&</span><span class="outline">Build</span><span>&</span><span><em>Grow</em></span><span>·</span>
+    <span>Design</span><span>&</span><span class="outline">Build</span><span>&</span><span><em>Grow</em></span><span>·</span>
+    <span>Design</span><span>&</span><span class="outline">Build</span><span>&</span><span><em>Grow</em></span><span>·</span>
+    <span>Design</span><span>&</span><span class="outline">Build</span><span>&</span><span><em>Grow</em></span><span>·</span>
+  </div>
+</section>
+
+<!-- WORK BENTO 2.0 -->
+<section class="work">
+  <div class="sec-head">
+    <div>
+      <div class="sec-num">§ 02 · WORK</div>
+      <h2 class="sec-h">Recent <em>carvings.</em></h2>
+    </div>
+    <div class="sec-right">2025 — 2026 · 14 PROJECTS</div>
+  </div>
+
+  <div class="work-grid">
+    <div class="case c-1" style="background: linear-gradient(135deg, #1B3A4B, #0A0A08);">
+      <div class="case-body">
+        <div class="case-num">/ 001 — FINTECH</div>
+        <div>
+          <div class="case-title">Nova <em>Bank</em>.</div>
+          <div style="margin-top:10px;font-size:13px;opacity:0.8;max-width:28ch;">Full rebrand + transactional app + landing. Conversions +47% post-launch.</div>
+        </div>
+        <div class="case-meta">FIGMA · R3F · NEXT.JS 16</div>
+      </div>
+    </div>
+    <div class="case c-2">
+      <div class="case-body">
+        <div class="case-num">/ 002 — FASHION</div>
+        <div>
+          <div class="case-title"><em>Ayya</em> Atelier.</div>
+          <div style="margin-top:10px;font-size:13px;opacity:0.9;max-width:22ch;">E-commerce + runway video hub.</div>
+        </div>
+        <div class="case-meta">SHOPIFY · GSAP</div>
+      </div>
+    </div>
+    <div class="case c-3">
+      <div class="case-body">
+        <div class="case-num">/ 003</div>
+        <div class="case-title">Circ<em>.</em></div>
+        <div class="case-meta">AGENCY</div>
+      </div>
+    </div>
+    <div class="case c-4" style="background: linear-gradient(135deg, #2A1F14, #5C4D3C);">
+      <div class="case-body">
+        <div class="case-num">/ 004 — WELLNESS</div>
+        <div class="case-title">Yaya <em>Spa.</em></div>
+        <div class="case-meta">WEBFLOW · LENIS</div>
+      </div>
+    </div>
+    <div class="case c-5">
+      <div class="case-body">
+        <div class="case-num">/ 005 — ARCHITECTURE</div>
+        <div class="case-title">Kovan <em>Studio.</em></div>
+        <div class="case-meta">FRAMER · BLENDER</div>
+      </div>
+    </div>
+    <div class="case c-6" style="background: linear-gradient(135deg, #5B2A4A, #2A1F14);">
+      <div class="case-body">
+        <div class="case-num">/ 006 — EDTECH</div>
+        <div class="case-title">Pera <em>School.</em></div>
+        <div class="case-meta">REACT · STRAPI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER HERO -->
+<section class="foot-hero">
+  <div class="sec-num" style="margin-bottom:18px;">§ 03 · START</div>
+  <h2>
+    Let's carve <em>yours.</em><br>
+    <span class="outline">No templates.</span>
+  </h2>
+  <div class="foot-cta-row">
+    <button class="btn-solid">Book a 30-min call →</button>
+    <span style="font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.2em;color:var(--ink-faint);text-transform:uppercase;">hello@parallel.studio</span>
+  </div>
+
+  <div class="foot-bottom">
+    <span>PARALLEL STUDIO · 2019 — 2026</span>
+    <span>TEMPLATE 11 · KINETIC AGENCY · fraxbit-style</span>
+    <span>FRAUNCES VAR · INTER TIGHT · JETBRAINS MONO</span>
+  </div>
+</section>
+
+<script>
+  // Lenis smooth scroll
+  const lenis = new Lenis({ lerp: 0.08 });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+
+  // Hero kinetic reveal
+  gsap.to('.kinetic-title .word-inner', {
+    y: 0, duration: 1.4, ease: 'expo.out', stagger: 0.08, delay: 0.2
+  });
+
+  // Variable font axis animate on scroll — Fraunces opsz 9 → 144
+  const heroTitle = document.querySelector('.kinetic-title');
+  if (heroTitle) {
+    ScrollTrigger.create({
+      trigger: heroTitle,
+      start: 'top top',
+      end: 'bottom 40%',
+      scrub: 1,
+      onUpdate: (self) => {
+        const opsz = 9 + (144 - 9) * (1 - self.progress);
+        heroTitle.style.fontVariationSettings = `"opsz" ${opsz}, "SOFT" 100`;
+      }
+    });
+  }
+
+  // Sculpture rotate on scroll
+  gsap.to('.sculpture-head', {
+    rotateY: 30, rotateX: -5,
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+  gsap.to('.sculpture', { y: -30, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+
+  // Process reveal
+  gsap.from('.step', {
+    y: 60, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: '.process-grid', start: 'top 80%' }
+  });
+
+  // Work cases reveal
+  gsap.from('.case', {
+    y: 80, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.08,
+    scrollTrigger: { trigger: '.work-grid', start: 'top 85%' }
+  });
+
+  // Footer H2 kinetic
+  gsap.from('.foot-hero h2', {
+    opacity: 0, y: 80, duration: 1.4, ease: 'expo.out',
+    scrollTrigger: { trigger: '.foot-hero', start: 'top 70%' }
+  });
+</script>
+
+</body>
+</html>

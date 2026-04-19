@@ -1,0 +1,335 @@
+<!--
+  TEMPLATE 05 · KLİNİK / SAĞLIK
+  Palette A: PL27 Glacier + Sage · Palette B: PL28 Cream + Forest
+  Typo A: TY33 Fraunces + IBM Plex Sans · Typo B: TY34 Manrope + DM Mono
+  Hero: HR12 conversational Q&A · Layout: L6 + L7 · Motion: MO10 print-first + MO4 light
+  AGRESIF MOTION + RENK YASAK
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 05 · Klinik</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Glacier + Sage */
+    --bg: #F0F4F5;
+    --surface: #E3ECEE;
+    --ink: #0D2A3A;
+    --ink-soft: #355464;
+    --ink-faint: #6B8494;
+    --accent: #2D4A4A;
+    --accent-2: #9CAF88;
+    --accent-3: #C4D5DB;
+    --line: rgba(13,42,58,0.1);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Cream + Forest */
+    --bg: #FBF9F3;
+    --surface: #F2EEE0;
+    --ink: #1E2420;
+    --ink-soft: #3A4A40;
+    --ink-faint: #7A8A80;
+    --accent: #3A5A40;
+    --accent-2: #C9A46B;
+    --accent-3: #E5DDC8;
+    --line: rgba(30,36,32,0.12);
+    --font-display: 'Manrope', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.6s ease; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  header { padding: 22px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark { width: 32px; height: 32px; border: 2px solid var(--accent); border-radius: 50%; position: relative; }
+  .brand-mark::after { content:''; position: absolute; inset: 8px; background: var(--accent); border-radius: 50%; }
+  body.p-b .brand-mark { border-radius: 4px; }
+  body.p-b .brand-mark::after { border-radius: 2px; }
+  .brand-name { font-family: var(--font-display); font-weight: 400; font-size: 22px; letter-spacing: -0.01em; font-variation-settings: 'opsz' 96; }
+  body.p-b .brand-name { font-weight: 600; }
+  nav { display: flex; gap: 28px; font-size: 14px; letter-spacing: 0.03em; font-weight: 500; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding: 4px 0; border-bottom: 2px solid transparent; }
+  nav a.active { color: var(--accent); border-color: var(--accent); }
+  .apt-btn { padding: 10px 20px; background: var(--accent); color: var(--bg); border: none; font-weight: 500; font-size: 13px; cursor: pointer; border-radius: 4px; }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  /* HERO — conversational Q&A layout */
+  .hero { padding: 100px 0 80px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
+  .hero-text .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+  h1.hero-h {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(48px, 6.5vw, 88px); line-height: 1.04; letter-spacing: -0.02em;
+    color: var(--ink); font-variation-settings: 'opsz' 144;
+  }
+  body.p-b h1.hero-h { font-weight: 600; letter-spacing: -0.025em; }
+  h1.hero-h em { color: var(--accent); font-style: italic; }
+  body.p-b h1.hero-h em { font-style: normal; text-decoration: underline; text-underline-offset: 8px; text-decoration-color: var(--accent-2); text-decoration-thickness: 3px; }
+  .hero-sub { margin-top: 30px; font-size: 18px; line-height: 1.65; color: var(--ink-soft); max-width: 52ch; }
+  .hero-cta { margin-top: 36px; display: flex; gap: 14px; align-items: center; }
+  .btn-p { padding: 14px 26px; background: var(--accent); color: var(--bg); border: none; font-weight: 500; font-size: 14px; cursor: pointer; border-radius: 4px; }
+  .btn-p:hover { background: var(--ink); }
+  .btn-g { padding: 14px 26px; background: transparent; color: var(--ink); border: 1.5px solid var(--line); font-weight: 500; font-size: 14px; cursor: pointer; border-radius: 4px; }
+
+  /* Q&A CARD */
+  .qa-card {
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 28px; border-radius: 6px;
+    box-shadow: 0 20px 60px -30px rgba(13,42,58,0.15);
+  }
+  body.p-b .qa-card { box-shadow: 0 20px 60px -30px rgba(30,36,32,0.15); }
+  .qa-step { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .qa-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .qa-step:first-child { padding-top: 0; }
+  .qa-q { font-family: var(--font-display); font-weight: 500; font-size: 17px; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 10px; }
+  .qa-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .qa-option { padding: 8px 14px; background: var(--bg); border: 1px solid var(--line); font-family: var(--font-body); font-size: 13px; color: var(--ink-soft); cursor: pointer; border-radius: 20px; transition: all 0.2s; }
+  .qa-option:hover, .qa-option.selected { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .qa-progress { display: flex; gap: 4px; margin-top: 16px; }
+  .qa-dot { width: 8px; height: 8px; background: var(--line); border-radius: 50%; }
+  .qa-dot.active { background: var(--accent); }
+
+  /* trust strip */
+  .trust-strip { padding: 40px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+  .trust-item .tv { font-family: var(--font-display); font-weight: 400; font-size: 48px; letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  body.p-b .trust-item .tv { font-weight: 600; }
+  .trust-item .tl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; margin-top: 6px; }
+
+  /* SERVICES */
+  .services { padding: 80px 0; }
+  .sec-head { margin-bottom: 40px; max-width: 700px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .sec-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.022em; font-variation-settings: 'opsz' 96; }
+  body.p-b .sec-title { font-weight: 600; }
+  .sec-title em { color: var(--accent); font-style: italic; }
+  body.p-b .sec-title em { font-style: normal; }
+  .sec-desc { margin-top: 18px; font-size: 16px; color: var(--ink-soft); line-height: 1.6; }
+
+  .service-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .service-item { padding: 32px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); cursor: pointer; transition: background 0.2s; }
+  .service-item:nth-child(3n) { border-right: none; }
+  .service-item:hover { background: var(--surface); }
+  .service-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; }
+  .service-item h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; margin: 10px 0 10px; }
+  body.p-b .service-item h3 { font-weight: 600; }
+  .service-item p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .service-item .time { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+
+  /* DOCTORS */
+  .doctors { padding: 80px 0; border-top: 1px solid var(--line); }
+  .doctor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 40px; }
+  .doctor {
+    padding: 32px;
+    background: var(--surface);
+    border-radius: 6px;
+    display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: start;
+  }
+  .doctor-avatar {
+    width: 120px; height: 120px;
+    background: var(--accent-3); border: 3px solid var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 500; font-size: 48px;
+    color: var(--accent); font-variation-settings: 'opsz' 72;
+  }
+  body.p-b .doctor-avatar { border-radius: 12px; font-weight: 700; }
+  .doctor-info h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; margin-bottom: 4px; }
+  body.p-b .doctor-info h3 { font-weight: 600; }
+  .doctor-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; }
+  .doctor-bio { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin-top: 12px; }
+  .doctor-meta { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase; }
+
+  footer { padding: 32px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · CREAM + FOREST' : 'A · GLACIER + SAGE';">A · GLACIER + SAGE</button>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <div class="brand-name">Huzur Klinik</div>
+  </div>
+  <nav>
+    <a class="active">Ana Sayfa</a>
+    <a>Hizmetler</a>
+    <a>Doktorlar</a>
+    <a>Hakkında</a>
+    <a>İletişim</a>
+  </nav>
+  <button class="apt-btn">+ Randevu Al</button>
+</header>
+
+<main>
+
+  <!-- HERO Q&A -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">DİŞ HEKİMLİĞİ · İMPLANT · ESTETİK</div>
+      <h1>Doğru <em>soru</em><br>doğru <em>randevuya</em><br>götürür.</h1>
+      <p class="hero-sub">
+        Hangi işlem için geldiğinizi birkaç adımda netleştirelim. Uzmanınıza direkt yönlendirelim, bekleme salonunda tekrar anlatma telaşı olmasın. 2 dakika sürer.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-p">Randevu Formunu Başlat</button>
+        <button class="btn-g">Telefon: 0312 225 00 00</button>
+      </div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-step">
+        <div class="qa-q">Hangi şikayet için geliyorsunuz?</div>
+        <div class="qa-options">
+          <button class="qa-option selected">Rutin kontrol</button>
+          <button class="qa-option">Diş ağrısı</button>
+          <button class="qa-option">İmplant</button>
+          <button class="qa-option">Estetik</button>
+          <button class="qa-option">Çocuk</button>
+          <button class="qa-option">Diğer</button>
+        </div>
+      </div>
+      <div class="qa-step">
+        <div class="qa-q">Son diş hekimi ziyaretiniz ne zaman?</div>
+        <div class="qa-options">
+          <button class="qa-option">Son 6 ay</button>
+          <button class="qa-option selected">6–12 ay</button>
+          <button class="qa-option">1–2 yıl</button>
+          <button class="qa-option">Daha uzun</button>
+        </div>
+      </div>
+      <div class="qa-step">
+        <div class="qa-q">Ne zaman uygun?</div>
+        <div class="qa-options">
+          <button class="qa-option">Bu hafta</button>
+          <button class="qa-option selected">Önümüzdeki hafta</button>
+          <button class="qa-option">Esnek</button>
+        </div>
+        <div class="qa-progress">
+          <div class="qa-dot active"></div><div class="qa-dot active"></div><div class="qa-dot active"></div><div class="qa-dot"></div><div class="qa-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust-strip">
+    <div class="trust-item"><div class="tv">17</div><div class="tl">Yıl Deneyim</div></div>
+    <div class="trust-item"><div class="tv">12,400</div><div class="tl">Hasta</div></div>
+    <div class="trust-item"><div class="tv">4.9</div><div class="tl">Google Puanı</div></div>
+    <div class="trust-item"><div class="tv">TDB</div><div class="tl">Üyesi</div></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="sec-head">
+      <div class="sec-label">§ 02 · Hizmetler</div>
+      <h2 class="sec-title">Gülümsemeniz bizim için <em>bir bütündür.</em></h2>
+      <p class="sec-desc">12 alt uzmanlık, 3 katlı klinik, tek randevu. Tüm tedaviler aynı binada — sevk yok, tekrar muayene yok.</p>
+    </div>
+
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <h3>Rutin Kontrol</h3>
+        <p>6 ayda bir. Diş temizliği + florür + panoramik röntgen dahil. 30 dakika.</p>
+        <div class="time">30 DK · ₺850</div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <h3>İmplant</h3>
+        <p>Nobel Biocare + Straumann. Kemik grefti dahil, 3 yıl garanti. Toplam 3-4 seans.</p>
+        <div class="time">3 SEANS · ₺18,500+</div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <h3>Estetik Diş</h3>
+        <p>E-max lamine veneer. Hollywood smile. Dijital tasarım + prova seansı.</p>
+        <div class="time">4 SEANS · ₺32,000+</div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">04</div>
+        <h3>Beyazlatma</h3>
+        <p>Ofis (Zoom LED) ve ev tipi. 45 dakikada 6-8 ton açılma. Hassasiyet kontrolü dahil.</p>
+        <div class="time">1 SEANS · ₺2,200</div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">05</div>
+        <h3>Çocuk Diş</h3>
+        <p>4 yaş + üzeri. Özel pediatri odası, çizgi film, lokal uyuşturma çocuk dozu.</p>
+        <div class="time">20 DK · ₺650</div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">06</div>
+        <h3>Ortodonti</h3>
+        <p>Clear aligner (şeffaf plak) + metal + seramik braket. 3D dijital tarama.</p>
+        <div class="time">12-24 AY · ₺28,000+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTORS -->
+  <section class="doctors">
+    <div class="sec-head">
+      <div class="sec-label">§ 03 · Ekip</div>
+      <h2 class="sec-title">Güvenmeniz gereken <em>eller.</em></h2>
+    </div>
+
+    <div class="doctor-grid">
+      <div class="doctor">
+        <div class="doctor-avatar">GE</div>
+        <div class="doctor-info">
+          <h3>Dt. Gizem Eren</h3>
+          <div class="doctor-title">KURUCU · DİŞ HEKİMİ</div>
+          <p class="doctor-bio">17 yıl deneyim. Hacettepe Diş Hekimliği, Lüksemburg pediatri master. Çocuk ve yetişkin restoratif uzmanı.</p>
+          <div class="doctor-meta"><span>DDS</span><span>TDB #4821</span><span>ICD üye</span></div>
+        </div>
+      </div>
+      <div class="doctor">
+        <div class="doctor-avatar">AK</div>
+        <div class="doctor-info">
+          <h3>Dt. Ahmet Kaya</h3>
+          <div class="doctor-title">İMPLANTOLOG</div>
+          <p class="doctor-bio">12 yıl. Frankfurt Goethe implant master. 2,400+ başarılı implant. Kompleks vaka + kemik grefti uzmanı.</p>
+          <div class="doctor-meta"><span>MSc Dent</span><span>DGOI üye</span></div>
+        </div>
+      </div>
+      <div class="doctor">
+        <div class="doctor-avatar">SY</div>
+        <div class="doctor-info">
+          <h3>Dt. Selin Yıldız</h3>
+          <div class="doctor-title">ESTETİK · LAMİNE</div>
+          <p class="doctor-bio">8 yıl. Hollywood smile, lamine veneer ve dijital tasarım uzmanı. Digital Smile Design sertifikalı.</p>
+          <div class="doctor-meta"><span>DSD sertifikalı</span></div>
+        </div>
+      </div>
+      <div class="doctor">
+        <div class="doctor-avatar">MT</div>
+        <div class="doctor-info">
+          <h3>Dt. Murat Taş</h3>
+          <div class="doctor-title">ORTODONTI</div>
+          <p class="doctor-bio">10 yıl. Ege Üniv. ortodonti doktora. Invisalign Diamond provider. Yetişkin şeffaf plak uzmanı.</p>
+          <div class="doctor-meta"><span>PhD Ort</span><span>Invisalign Diamond</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  HUZUR KLİNİK · TEMPLATE 05 · SAĞLIK<br>
+  COMBO: HR12+L6+L7+TY33/34+PL27/28+MO10/MO4 · ankara · GOP · 0312 225 00 00
+</footer>
+
+</body>
+</html>

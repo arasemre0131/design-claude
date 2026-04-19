@@ -1,0 +1,258 @@
+<!--
+  TEMPLATE 01 · İNŞAAT
+  Palette A: PL4 Concrete Industrial · Palette B: PL21 Ozalit Blueprint
+  Typo A: TY11 Archivo Black + Geist + Stardos · Typo B: TY26 Rubik Mono One + Manrope
+  Hero: HR9 interactive map · Layout: L4 full-bleed rails · Motion: MO2 Lenis + MO1 GSAP
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 01 · İnşaat</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700&family=Stardos+Stencil:wght@400;700&family=Manrope:wght@300;400;500;600;700&family=Rubik+Mono+One&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Concrete Industrial */
+    --bg: #D4CFC4;
+    --surface: #BEB8A9;
+    --ink: #111111;
+    --ink-soft: #2E2E2A;
+    --ink-faint: #6B6860;
+    --accent: #E85D04;
+    --accent-2: #F5C400;
+    --line: #1B1B1B;
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body: 'Geist', sans-serif;
+    --font-stencil: 'Stardos Stencil', sans-serif;
+    --font-mono: 'Geist Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Ozalit Blueprint */
+    --bg: #E8EDF2;
+    --surface: #D4DEE6;
+    --ink: #0D2A3A;
+    --ink-soft: #1F4557;
+    --ink-faint: #5C7A8A;
+    --accent: #1B3A4B;
+    --accent-2: #A0522D;
+    --line: #0D2A3A;
+    --font-display: 'Rubik Mono One', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-stencil: 'JetBrains Mono', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.4s, color 0.4s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* top hazard (sadece A'da) */
+  .hazard-strip { height: 18px; background: repeating-linear-gradient(45deg, #F5C400 0, #F5C400 14px, #111 14px, #111 28px); }
+  body.p-b .hazard-strip { background: #0D2A3A; }
+
+  /* palette toggle fixed button */
+  .palette-switch {
+    position: fixed; top: 50%; right: 24px; transform: translateY(-50%); z-index: 100;
+    padding: 14px 16px; background: var(--ink); color: var(--bg);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    border: none; cursor: pointer; writing-mode: vertical-rl; text-orientation: mixed;
+    transition: all .3s;
+  }
+  .palette-switch:hover { background: var(--accent); }
+
+  /* header */
+  .plate { background: var(--ink); color: var(--accent-2); padding: 14px 32px; display: flex; align-items: center; gap: 20px; }
+  .brand { font-family: var(--font-display); font-size: 22px; letter-spacing: -0.025em; background: var(--ink); padding: 4px 12px; border: 2px solid var(--accent-2); color: var(--accent-2); }
+  .brand-sub { font-family: var(--font-stencil); font-weight: 700; font-size: 12px; letter-spacing: 0.22em; color: var(--bg); text-transform: uppercase; }
+  nav.mega { display: flex; gap: 26px; margin-left: 30px; }
+  nav.mega a { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.02em; color: var(--bg); text-decoration: none; text-transform: uppercase; cursor: pointer; border-bottom: 2px solid transparent; padding-bottom: 3px; }
+  nav.mega a.active { color: var(--accent-2); border-color: var(--accent); }
+  nav.mega a:hover { color: var(--accent-2); }
+  .live-tag { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--accent-2); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* main */
+  main { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  /* HERO with map */
+  .hero-map { position: relative; min-height: 560px; margin: 32px 0; border: 3px solid var(--ink); background: var(--surface); overflow: hidden; }
+  .map-svg { width: 100%; height: 100%; display: block; position: absolute; inset: 0; }
+  .map-overlay { position: relative; padding: 36px; z-index: 2; }
+  .eyebrow { font-family: var(--font-stencil); font-weight: 700; font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  body.p-b .eyebrow { color: var(--accent-2); }
+  h1.hero-h {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 8vw, 108px);
+    line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase;
+    color: var(--ink); max-width: 15ch;
+  }
+  h1.hero-h .hz { background: var(--accent-2); padding: 0 12px; display: inline-block; }
+  body.p-b h1.hero-h .hz { background: var(--accent-2); color: var(--bg); }
+  .hero-sub { margin-top: 16px; font-size: 15px; max-width: 55ch; line-height: 1.55; color: var(--ink-soft); }
+
+  .pin { position: absolute; pointer-events: auto; cursor: pointer; z-index: 3; }
+  .pin-dot { width: 14px; height: 14px; background: var(--accent); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); transition: transform .2s; }
+  .pin:hover .pin-dot { transform: scale(1.4); }
+  .pin-label { position: absolute; left: 22px; top: -3px; background: var(--ink); color: var(--accent-2); padding: 4px 10px; font-family: var(--font-stencil); font-weight: 700; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+
+  /* sections */
+  .sec { margin: 60px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 20px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+  .sec-num { font-family: var(--font-stencil); font-weight: 700; font-size: 13px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; }
+  .sec-title { font-family: var(--font-display); font-size: 38px; letter-spacing: -0.03em; text-transform: uppercase; }
+
+  /* project portfolio grid */
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .project-card { border: 3px solid var(--ink); background: var(--surface); padding: 20px; cursor: pointer; transition: transform .2s, box-shadow .2s; position: relative; }
+  .project-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .project-card .pc-label { font-family: var(--font-stencil); font-weight: 700; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+  .project-card h3 { font-family: var(--font-display); font-size: 24px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; }
+  .project-card .pc-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; margin-top: 10px; text-transform: uppercase; }
+  .project-card .pc-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin-top: 8px; }
+  .project-card .pc-vis { width: 100%; height: 140px; background: var(--ink); margin-top: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-2); font-family: var(--font-display); font-size: 32px; }
+  body.p-b .project-card .pc-vis { background: var(--accent); color: var(--bg); }
+
+  /* timeline */
+  .timeline { position: relative; padding: 40px 60px; border: 3px solid var(--ink); background: var(--surface); }
+  .tl-track { height: 6px; background: var(--ink); position: relative; margin: 40px 20px; }
+  .tl-mile { position: absolute; top: -14px; width: 34px; height: 34px; background: var(--accent-2); border: 3px solid var(--ink); font-family: var(--font-display); font-size: 14px; display: flex; align-items: center; justify-content: center; transform: translateX(-50%); }
+  .tl-mile.active { background: var(--accent); color: var(--bg); }
+  .tl-card { position: absolute; top: 36px; transform: translateX(-50%); width: 180px; padding: 12px 14px; background: var(--bg); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .tl-card-label { font-family: var(--font-stencil); font-weight: 700; font-size: 10px; letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 4px; }
+  .tl-card-val { font-family: var(--font-display); font-size: 24px; line-height: 1; }
+  .tl-card-note { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+
+  /* footer */
+  .foot { background: var(--ink); color: var(--bg); padding: 22px 40px; margin-top: 60px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .foot .accent { color: var(--accent-2); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'PALETTE B · OZALIT' : 'PALETTE A · CONCRETE';">PALETTE A · CONCRETE</button>
+
+<div class="hazard-strip"></div>
+
+<header class="plate">
+  <div class="brand">ÖZKAN İNŞAAT</div>
+  <span class="brand-sub">01 · Saha / Proje Portföyü</span>
+  <nav class="mega">
+    <a class="active">Projeler</a>
+    <a>Referans</a>
+    <a>Süreç</a>
+    <a>Ekip</a>
+    <a>İletişim</a>
+  </nav>
+  <span class="live-tag">● 12 AKTİF ŞANTİYE</span>
+</header>
+
+<main>
+
+  <!-- HERO: Interactive Map -->
+  <section class="hero-map">
+    <svg class="map-svg" viewBox="0 0 1400 560" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-opacity="0.07" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1400" height="560" fill="url(#grid1)" color="#111"/>
+      <path d="M100,100 Q400,180 700,150 T1300,230" stroke="currentColor" color="#111" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M80,320 Q500,300 900,380 T1400,400" stroke="currentColor" color="#111" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M140,500 Q400,520 700,490 T1250,510" stroke="currentColor" color="#111" stroke-width="2" fill="none" opacity="0.5"/>
+    </svg>
+    <div class="map-overlay">
+      <div class="eyebrow">⚠ SAHA · 12 AKTİF ŞANTİYE · 3 ŞEHİR</div>
+      <h1 class="hero-h">Toprağa<br><span class="hz">sağlam</span><br>temel.</h1>
+      <p class="hero-sub">1987'den bugüne Ankara, İstanbul, İzmir'de 247 proje teslim ettik. Her şantiyemiz haritada, her aşaması canlı. Bölgeye tıkla, güncel duruma bak.</p>
+    </div>
+    <div class="pin" style="left: 34%; top: 38%;"><div class="pin-dot"></div><div class="pin-label">Çankaya Villa · 68%</div></div>
+    <div class="pin" style="left: 52%; top: 55%;"><div class="pin-dot"></div><div class="pin-label">Bahçelievler AVM · 42%</div></div>
+    <div class="pin" style="left: 68%; top: 42%;"><div class="pin-dot"></div><div class="pin-label">Çukurambar Ofis · 95%</div></div>
+    <div class="pin" style="left: 42%; top: 72%;"><div class="pin-dot"></div><div class="pin-label">Keçiören 3+1 · 21%</div></div>
+  </section>
+
+  <!-- Project Portfolio -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-num">§ 02 · Portföy</span>
+      <span class="sec-title">Öne Çıkan Projeler</span>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="pc-label">KONUT · 2026</div>
+        <h3>Panorama Villa</h3>
+        <div class="pc-desc">4+1 müstakil, 16 adet, anahtar teslim. Çankaya'nın en yüksek noktasında.</div>
+        <div class="pc-meta">68% · teslim mart 2027</div>
+        <div class="pc-vis">◩◩◩</div>
+      </div>
+      <div class="project-card">
+        <div class="pc-label">AVM · 2026</div>
+        <h3>Bahçelievler Park</h3>
+        <div class="pc-desc">45.000 m² alışveriş merkezi, 180 mağaza kapasiteli, 4 sinema salonu.</div>
+        <div class="pc-meta">42% · teslim kasım 2027</div>
+        <div class="pc-vis">█▓▒░</div>
+      </div>
+      <div class="project-card">
+        <div class="pc-label">OFİS · 2025</div>
+        <h3>Çukurambar Plaza</h3>
+        <div class="pc-desc">12 kat kurumsal ofis, LEED Platinum sertifikalı, 850 araçlık otopark.</div>
+        <div class="pc-meta">95% · son rötuş</div>
+        <div class="pc-vis">▪▪▪</div>
+      </div>
+      <div class="project-card">
+        <div class="pc-label">KONUT · 2025</div>
+        <h3>Keçiören Rezidans</h3>
+        <div class="pc-desc">3+1 daireler, 5 blok, yüzme havuzu + fitness + sosyal alan.</div>
+        <div class="pc-meta">21% · kaba inşaat</div>
+        <div class="pc-vis">▮▮▯▯</div>
+      </div>
+      <div class="project-card">
+        <div class="pc-label">ENDÜSTRİ · 2026</div>
+        <h3>Sincan Lojistik Hub</h3>
+        <div class="pc-desc">120.000 m² depo + ofis, otomatik palet sistemi, TIR rampaları.</div>
+        <div class="pc-meta">14% · kazı</div>
+        <div class="pc-vis">▬▬▬</div>
+      </div>
+      <div class="project-card">
+        <div class="pc-label">KONUT · teslim edildi</div>
+        <h3>Ümitköy Park Evleri</h3>
+        <div class="pc-desc">2+1 / 3+1 daireler, 240 kullanıcı, tamamı teslim edildi 2024.</div>
+        <div class="pc-meta">✓ 2024-11-12</div>
+        <div class="pc-vis">✓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Timeline -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="sec-num">§ 03 · Süreç</span>
+      <span class="sec-title">Fikirden Teslime</span>
+    </div>
+    <div class="timeline">
+      <div class="tl-track">
+        <div class="tl-mile" style="left: 10%;">1</div>
+        <div class="tl-mile" style="left: 30%;">2</div>
+        <div class="tl-mile active" style="left: 50%;">3</div>
+        <div class="tl-mile" style="left: 70%;">4</div>
+        <div class="tl-mile" style="left: 90%;">5</div>
+
+        <div class="tl-card" style="left: 10%;"><div class="tl-card-label">Konsept</div><div class="tl-card-val">2w</div><div class="tl-card-note">ihtiyaç + bütçe netleşir</div></div>
+        <div class="tl-card" style="left: 30%;"><div class="tl-card-label">Proje</div><div class="tl-card-val">6w</div><div class="tl-card-note">mimari + statik + mep</div></div>
+        <div class="tl-card" style="left: 50%;"><div class="tl-card-label">İnşaat</div><div class="tl-card-val">18m</div><div class="tl-card-note">kaba + ince + mep</div></div>
+        <div class="tl-card" style="left: 70%;"><div class="tl-card-label">Test</div><div class="tl-card-val">4w</div><div class="tl-card-note">iskan + deneme</div></div>
+        <div class="tl-card" style="left: 90%;"><div class="tl-card-label">Teslim</div><div class="tl-card-val">✓</div><div class="tl-card-note">anahtar + garanti</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>ÖZKAN İNŞAAT · TEMPLATE 01</span>
+  <span>COMBO: H1+N4+HR9+K9+P5+T7+CH6+L4+MO2 · TY<span class="accent">11/26</span> · PL<span class="accent">4/21</span></span>
+  <span>1987 · ankara · 247 proje</span>
+</footer>
+
+</body>
+</html>

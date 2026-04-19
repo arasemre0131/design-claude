@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CONSTRUO / Lead Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Instrument Serif"', 'serif'],
+          sans: ['"Space Grotesk"', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        colors: {
+          ink: {
+            0: '#000000',
+            50: '#070708',
+            100: '#0A0A0B',
+            200: '#111114',
+            300: '#18181C',
+            400: '#22222A',
+            500: '#2E2E38',
+            600: '#404050',
+            700: '#5A5A6B',
+            800: '#8A8A96',
+            900: '#B5B5BD',
+            950: '#EEEEF1'
+          },
+          gold: {
+            50:  '#FBF5E8',
+            100: '#F3E4BC',
+            200: '#E8CC86',
+            300: '#D4A574',
+            400: '#B88A5A',
+            500: '#8C6943'
+          },
+          rose: '#E8B4A0',
+          moss: '#9CAF88',
+          sky:  '#8EC5D6',
+          danger: '#E06666'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html, body { background:#07070A; color:#EEEEF1; font-family:'Space Grotesk', sans-serif; }
+  *::selection { background:#D4A574; color:#0A0A0B; }
+
+  /* noise overlay */
+  .noise::before {
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:.035;
+    mix-blend-mode:overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* aurora gradient */
+  .aurora {
+    position: fixed; inset:0;
+    pointer-events: none;
+    z-index:0;
+    background:
+      radial-gradient(1200px 600px at 15% 5%, rgba(212,165,116,0.08), transparent 60%),
+      radial-gradient(1000px 500px at 85% 15%, rgba(232,180,160,0.06), transparent 55%),
+      radial-gradient(800px 400px at 50% 110%, rgba(156,175,136,0.05), transparent 60%);
+    animation: aurorashift 18s ease-in-out infinite alternate;
+  }
+  @keyframes aurorashift {
+    0%   { transform: translate3d(0,0,0); filter:hue-rotate(0deg) }
+    100% { transform: translate3d(20px,-20px,0); filter:hue-rotate(-8deg) }
+  }
+
+  /* grid backdrop */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* glass card */
+  .glass {
+    background: linear-gradient(145deg, rgba(20,20,24,0.85), rgba(12,12,16,0.7));
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+  .glass-elevated {
+    background: linear-gradient(145deg, rgba(28,28,34,0.9), rgba(16,16,20,0.8));
+    border: 1px solid rgba(212,165,116,0.15);
+    box-shadow: 0 32px 80px -40px rgba(212,165,116,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* Chrome seams */
+  .seam-top::before { content:''; position:absolute; left:0; right:0; top:0; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+  .seam-bottom::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:linear-gradient(90deg, transparent, rgba(212,165,116,0.2), transparent); }
+
+  /* metric number */
+  .metric {
+    font-family:'Instrument Serif', serif;
+    font-feature-settings: 'ss01' on, 'tnum' on;
+    letter-spacing:-0.03em;
+    line-height:0.9;
+  }
+
+  /* magnetic hover */
+  .magnetic {
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .magnetic:hover {
+    transform: translateY(-2px);
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width:8px; height:8px; }
+  ::-webkit-scrollbar-track { background:#0A0A0B; }
+  ::-webkit-scrollbar-thumb { background:#22222A; border-radius:4px; }
+  ::-webkit-scrollbar-thumb:hover { background:#404050; }
+
+  /* reveal on scroll */
+  .reveal { opacity:0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+  .reveal.visible { opacity:1; transform: translateY(0); }
+
+  /* kinetic title */
+  .kinetic span {
+    display:inline-block;
+    animation: floaty 5s ease-in-out infinite;
+  }
+  .kinetic span:nth-child(2) { animation-delay:.2s; }
+  .kinetic span:nth-child(3) { animation-delay:.4s; }
+  .kinetic span:nth-child(4) { animation-delay:.6s; }
+  .kinetic span:nth-child(5) { animation-delay:.8s; }
+  @keyframes floaty {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-6px); }
+  }
+
+  /* custom cursor */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top:0; left:0;
+    pointer-events:none;
+    z-index: 9999;
+    border-radius:9999px;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: transform .15s ease-out;
+  }
+  .cursor-dot { width:6px; height:6px; background:#F3E4BC; }
+  .cursor-ring {
+    width:44px; height:44px;
+    border:1px solid rgba(243,228,188,.4);
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), width .25s, height .25s;
+  }
+  @media (pointer: coarse) { .cursor-dot, .cursor-ring { display:none; } }
+
+  /* kanban card */
+  .lead-card {
+    transition: all .35s cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
+  }
+  .lead-card:hover {
+    transform: translateY(-3px) rotate(-0.3deg);
+    border-color: rgba(212,165,116,0.3);
+  }
+  .lead-card:hover .lead-avatar { transform: scale(1.08); }
+
+  /* message bubble */
+  .bubble-them {
+    background: linear-gradient(135deg, #151519, #18181C);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .bubble-us {
+    background: linear-gradient(135deg, #D4A574, #B88A5A);
+    color:#0A0A0B;
+  }
+
+  /* progress bar */
+  .prog {
+    background:
+      linear-gradient(90deg, rgba(212,165,116,1) 0%, rgba(232,180,160,1) 100%);
+  }
+
+  /* pulse dot */
+  .pulse-dot { position: relative; }
+  .pulse-dot::after {
+    content:''; position: absolute; inset: -3px;
+    border-radius:9999px;
+    box-shadow: 0 0 0 0 rgba(156,175,136,.6);
+    animation: pulsering 2s infinite;
+  }
+  @keyframes pulsering {
+    0%   { box-shadow: 0 0 0 0 rgba(156,175,136,.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(156,175,136,0); }
+    100% { box-shadow: 0 0 0 0 rgba(156,175,136,0); }
+  }
+
+  /* star accent */
+  .star-divider {
+    position: relative;
+    color: rgba(212,165,116,.5);
+    font-size:10px;
+  }
+
+  /* gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #F3E4BC 0%, #D4A574 40%, #E8B4A0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* dashed divider with node */
+  .node-line {
+    background-image: linear-gradient(90deg, rgba(212,165,116,.3) 50%, transparent 50%);
+    background-size: 8px 1px;
+    height:1px;
+  }
+
+  /* count-up number */
+  .counter { font-variant-numeric: tabular-nums; }
+
+  /* hero grid pattern */
+  .hero-grid {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(212,165,116,.15) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+</style>
+</head>
+<body class="noise relative antialiased">
+
+<div class="aurora"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ============================================================== -->
+<!-- SHELL                                                            -->
+<!-- ============================================================== -->
+<div class="relative z-10 flex min-h-screen">
+
+  <!-- =============== SIDEBAR =============== -->
+  <aside class="hidden lg:flex w-[280px] shrink-0 flex-col border-r border-white/5 bg-ink-100/60 backdrop-blur-xl">
+    <div class="flex items-center gap-3 px-6 pt-7 pb-8">
+      <div class="relative">
+        <div class="h-10 w-10 rounded-sm bg-gradient-to-br from-gold-200 to-gold-400 flex items-center justify-center">
+          <span class="font-display text-ink-50 text-2xl leading-none">c</span>
+        </div>
+        <div class="absolute -right-1 -bottom-1 h-3 w-3 rounded-full bg-moss pulse-dot"></div>
+      </div>
+      <div>
+        <div class="font-display text-[22px] leading-none tracking-tight">Construo</div>
+        <div class="font-mono text-[10px] text-ink-700 uppercase tracking-[0.2em] mt-1">Lead Intelligence</div>
+      </div>
+    </div>
+
+    <div class="px-6 mb-6">
+      <div class="flex items-center justify-between">
+        <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">Workspace</span>
+        <span class="font-mono text-[10px] text-gold-300">v1.0 · Ω</span>
+      </div>
+      <div class="mt-2 flex items-center justify-between px-3 py-2.5 rounded-sm glass magnetic cursor-pointer">
+        <div class="flex items-center gap-2.5">
+          <div class="h-6 w-6 rounded-sm bg-gradient-to-br from-rose to-gold-300"></div>
+          <div class="leading-tight">
+            <div class="text-[13px] font-medium">Yıldız İnşaat</div>
+            <div class="font-mono text-[10px] text-ink-700">ankara · sales ofis</div>
+          </div>
+        </div>
+        <svg class="h-4 w-4 text-ink-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l4-4 4 4M16 15l-4 4-4-4"/></svg>
+      </div>
+    </div>
+
+    <nav class="px-4 flex-1 space-y-0.5">
+      <div class="px-3 pb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">Pipeline</div>
+
+      <a class="nav-item active flex items-center justify-between px-3 py-2.5 rounded-sm bg-gold-300/10 border border-gold-300/20 text-gold-200">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </span>
+        <span class="font-mono text-[10px] text-gold-300">⌘ 1</span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+          Lead Pipeline
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="px-1.5 py-0.5 rounded-sm bg-moss/20 text-moss text-[10px] font-mono">+7</span>
+          <span class="font-mono text-[10px] text-ink-700">⌘ 2</span>
+        </span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          Unified Inbox
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-rose pulse-dot"></span>
+          <span class="font-mono text-[10px] text-ink-700">⌘ 3</span>
+        </span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+          Automation Flow
+        </span>
+        <span class="font-mono text-[10px] text-ink-700">⌘ 4</span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Görevler
+        </span>
+        <span class="font-mono text-[10px] text-ink-700">⌘ 5</span>
+      </a>
+
+      <div class="px-3 pt-5 pb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">Intelligence</div>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M18.7 8l-5.2 5.2-2.8-2.8L7 14.4"/></svg>
+          Analytics
+        </span>
+        <span class="font-mono text-[10px] text-moss">LIVE</span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 018.5 6"/><path d="M12 21a9 9 0 01-8.5-6"/></svg>
+          Ollama Engine
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-moss"></span>
+          <span class="font-mono text-[10px] text-ink-800">qwen2.5</span>
+        </span>
+      </a>
+
+      <a class="nav-item flex items-center justify-between px-3 py-2.5 rounded-sm hover:bg-white/3 text-ink-900">
+        <span class="flex items-center gap-3 text-[14px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Ayarlar
+        </span>
+      </a>
+    </nav>
+
+    <div class="mx-4 mb-5 mt-4 relative overflow-hidden rounded-sm glass-elevated p-4">
+      <div class="absolute -top-8 -right-6 h-24 w-24 rounded-full bg-gold-300/15 blur-2xl"></div>
+      <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-300 mb-2">Meta App Review</div>
+      <div class="text-[13px] leading-snug mb-3">WhatsApp Business API başvurusu 3. gün · beklemede</div>
+      <div class="h-1 bg-ink-400 rounded-full overflow-hidden">
+        <div class="h-full prog rounded-full" style="width:64%"></div>
+      </div>
+      <div class="mt-2 flex justify-between text-[10px] font-mono text-ink-800">
+        <span>64%</span>
+        <span>~5 gün</span>
+      </div>
+    </div>
+
+    <div class="px-5 py-4 border-t border-white/5 flex items-center gap-3">
+      <div class="relative">
+        <div class="h-9 w-9 rounded-sm bg-gradient-to-br from-ink-500 to-ink-300 flex items-center justify-center font-mono text-[12px]">EA</div>
+        <span class="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-moss ring-2 ring-ink-100"></span>
+      </div>
+      <div class="flex-1 leading-tight">
+        <div class="text-[13px] font-medium">Emre Aras</div>
+        <div class="font-mono text-[10px] text-ink-700">admin · tam yetki</div>
+      </div>
+      <button class="text-ink-700 hover:text-ink-950">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =============== MAIN =============== -->
+  <main class="flex-1 min-w-0">
+
+    <!-- TOPBAR -->
+    <header class="sticky top-0 z-30 border-b border-white/5 bg-ink-100/75 backdrop-blur-xl">
+      <div class="px-8 py-4 flex items-center gap-6">
+        <!-- breadcrumb -->
+        <div class="flex items-center gap-3 font-mono text-[11px]">
+          <span class="text-ink-700">construo</span>
+          <span class="text-ink-600">/</span>
+          <span class="text-ink-900">yıldız inşaat</span>
+          <span class="text-ink-600">/</span>
+          <span class="text-gold-300">dashboard</span>
+        </div>
+
+        <div class="flex-1"></div>
+
+        <!-- command bar -->
+        <div class="flex items-center gap-3 px-4 py-2 rounded-sm glass border border-white/5 w-[420px]">
+          <svg class="h-4 w-4 text-ink-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input placeholder="ara veya komut ( ⌘ k )" class="bg-transparent flex-1 text-[13px] outline-none placeholder:text-ink-700" />
+          <span class="font-mono text-[10px] text-ink-700 px-1.5 py-0.5 border border-white/10 rounded">⌘K</span>
+        </div>
+
+        <!-- toggle quick actions -->
+        <div class="flex items-center gap-1 p-1 rounded-sm border border-white/5 glass">
+          <button class="px-3 py-1.5 rounded-sm bg-gold-300/15 text-gold-200 text-[11px] font-mono">CANLI</button>
+          <button class="px-3 py-1.5 rounded-sm text-ink-800 text-[11px] font-mono hover:text-ink-950">FOCUS</button>
+          <button class="px-3 py-1.5 rounded-sm text-ink-800 text-[11px] font-mono hover:text-ink-950">ZEN</button>
+        </div>
+
+        <!-- bell -->
+        <button class="relative h-9 w-9 rounded-sm border border-white/5 glass flex items-center justify-center magnetic">
+          <svg class="h-4 w-4 text-ink-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-rose"></span>
+        </button>
+
+        <!-- add lead CTA -->
+        <button class="group magnetic flex items-center gap-2 pl-4 pr-2 py-2 bg-gold-300 text-ink-50 rounded-sm hover:bg-gold-200 transition-colors">
+          <span class="text-[13px] font-medium">Yeni Lead</span>
+          <span class="h-6 w-6 flex items-center justify-center rounded-sm bg-ink-50/15 group-hover:bg-ink-50/25">
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+      </div>
+
+      <!-- ticker -->
+      <div class="border-t border-white/5 bg-ink-50/50 overflow-hidden">
+        <div class="flex items-center gap-6 px-8 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] whitespace-nowrap overflow-x-auto">
+          <span class="text-moss flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-moss"></span> ollama online · qwen2.5:7b · 14ms</span>
+          <span class="star-divider">✦</span>
+          <span class="text-ink-800">n8n workflow · 4 aktif</span>
+          <span class="star-divider">✦</span>
+          <span class="text-ink-800">evolution api · stabil</span>
+          <span class="star-divider">✦</span>
+          <span class="text-gold-300">supabase realtime · 87 subscriber</span>
+          <span class="star-divider">✦</span>
+          <span class="text-ink-800">son sync · 2 saniye önce</span>
+          <span class="star-divider">✦</span>
+          <span class="text-rose">meta app review · 3/8 gün</span>
+          <span class="star-divider">✦</span>
+          <span class="text-ink-800">cpu 23% · ram 1.4gb · disk ok</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="px-8 py-8 space-y-8">
+
+      <!-- =============== HERO =============== -->
+      <section class="relative overflow-hidden rounded-sm glass-elevated seam-top seam-bottom">
+        <div class="absolute inset-0 hero-grid opacity-60"></div>
+        <div class="absolute -top-40 -right-20 h-[500px] w-[500px] rounded-full bg-gold-300/10 blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-20 h-[400px] w-[400px] rounded-full bg-rose/8 blur-3xl"></div>
+
+        <div class="relative px-10 pt-10 pb-8 flex items-end justify-between gap-10">
+          <div class="flex-1 max-w-3xl">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-gold-300">/ 018 · Cuma</span>
+              <span class="node-line flex-1 max-w-[120px]"></span>
+              <span class="font-mono text-[10px] text-ink-700">18 Nisan 2026</span>
+            </div>
+
+            <h1 class="font-display text-[96px] leading-[0.85] tracking-[-0.04em] mb-2 kinetic">
+              <span>Güzel</span>
+              <span class="italic gradient-text">günaydın,</span>
+              <br/>
+              <span>Emre.</span>
+            </h1>
+            <p class="text-ink-800 text-[15px] max-w-xl leading-relaxed mt-4">
+              Son 24 saatte <span class="text-ink-950 font-medium">14 yeni lead</span> pipeline'a girdi. Ollama <span class="text-moss">3'ünü</span> otomatik yanıtladı, <span class="text-gold-300">2 tanesi</span> satış temsilcisine eskalasyon bekliyor — özellikle <span class="italic font-display text-[17px]">Ayşegül Hanım</span>, ankara villa projesi için sıcak.
+            </p>
+
+            <div class="mt-7 flex items-center gap-4">
+              <button class="magnetic group flex items-center gap-3 pl-5 pr-3 py-2.5 bg-ink-950 text-ink-50 rounded-sm hover:bg-gold-300 transition">
+                <span class="text-[13px] font-medium">pipeline'a geç</span>
+                <span class="h-6 w-6 flex items-center justify-center rounded-sm bg-ink-50/10 group-hover:bg-ink-50/15">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </button>
+              <button class="magnetic flex items-center gap-2 text-[13px] text-ink-900 hover:text-ink-950 transition">
+                <span>sesli brief al</span>
+                <span class="h-1.5 w-1.5 rounded-full bg-rose pulse-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- focus panel -->
+          <div class="w-[320px] shrink-0">
+            <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700 mb-3">bugün odak</div>
+            <div class="space-y-2.5">
+              <div class="flex items-start gap-3 p-3 rounded-sm bg-ink-50/50 border border-white/5 magnetic">
+                <div class="h-5 w-5 rounded-sm border border-gold-300/40 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <span class="font-mono text-[10px] text-gold-300">1</span>
+                </div>
+                <div>
+                  <div class="text-[13px]">Ayşegül H. · villa teklifi gönder</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-1">14:30 · 38 dk kaldı</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-sm bg-ink-50/50 border border-white/5 magnetic">
+                <div class="h-5 w-5 rounded-sm border border-white/15 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <span class="font-mono text-[10px] text-ink-800">2</span>
+                </div>
+                <div>
+                  <div class="text-[13px]">Serkan B. · şantiye ziyareti onayı</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-1">16:00</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 rounded-sm bg-ink-50/50 border border-white/5 magnetic">
+                <div class="h-5 w-5 rounded-sm border border-white/15 flex-shrink-0 flex items-center justify-center mt-0.5">
+                  <span class="font-mono text-[10px] text-ink-800">3</span>
+                </div>
+                <div>
+                  <div class="text-[13px]">Ollama fallback log incele</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-1">opsiyonel · günün sonu</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============== BENTO METRICS =============== -->
+      <section class="grid grid-cols-12 gap-4 reveal">
+
+        <!-- card 1: leads today -->
+        <div class="col-span-3 glass rounded-sm p-6 relative overflow-hidden magnetic">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">yeni lead · 24s</span>
+            <span class="px-1.5 py-0.5 rounded-sm bg-moss/15 text-moss font-mono text-[10px]">+42%</span>
+          </div>
+          <div class="metric text-[86px] text-ink-950">14</div>
+          <div class="mt-2 text-[12px] text-ink-800">önceki gün 9 · haftalık tavan</div>
+          <!-- sparkline -->
+          <div class="absolute bottom-0 left-0 right-0 h-16 pointer-events-none opacity-90">
+            <svg viewBox="0 0 300 64" class="w-full h-full">
+              <defs>
+                <linearGradient id="spark1" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#D4A574" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#D4A574" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,50 L30,48 L60,40 L90,42 L120,30 L150,35 L180,22 L210,28 L240,18 L270,10 L300,14 L300,64 L0,64 Z" fill="url(#spark1)"/>
+              <path d="M0,50 L30,48 L60,40 L90,42 L120,30 L150,35 L180,22 L210,28 L240,18 L270,10 L300,14" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- card 2: auto response rate (wide) -->
+        <div class="col-span-5 glass rounded-sm p-6 relative overflow-hidden magnetic">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">ollama otomatik yanıt oranı</div>
+              <div class="flex items-end gap-3 mt-4">
+                <div class="metric text-[86px] text-ink-950">73<span class="text-[42px] text-ink-800">%</span></div>
+                <div class="pb-5">
+                  <div class="h-0.5 w-10 bg-moss mb-1"></div>
+                  <div class="font-mono text-[10px] text-moss">+8pt · hafta</div>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 px-2 py-1 rounded-sm border border-moss/20 bg-moss/10">
+              <span class="h-1.5 w-1.5 rounded-full bg-moss pulse-dot"></span>
+              <span class="font-mono text-[10px] text-moss">LIVE</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-1 h-10">
+            <!-- path A vs B vs human split visualization -->
+            <div class="flex flex-col items-start gap-1.5">
+              <div class="font-mono text-[10px] text-ink-800">path A · regex</div>
+              <div class="flex items-center gap-2 w-full">
+                <div class="h-1.5 bg-ink-400 flex-1 rounded-full overflow-hidden">
+                  <div class="h-full bg-gold-300" style="width:62%"></div>
+                </div>
+                <span class="font-mono text-[10px] text-ink-950">62</span>
+              </div>
+            </div>
+            <div class="flex flex-col items-start gap-1.5">
+              <div class="font-mono text-[10px] text-ink-800">path B · ollama</div>
+              <div class="flex items-center gap-2 w-full">
+                <div class="h-1.5 bg-ink-400 flex-1 rounded-full overflow-hidden">
+                  <div class="h-full bg-rose" style="width:11%"></div>
+                </div>
+                <span class="font-mono text-[10px] text-ink-950">11</span>
+              </div>
+            </div>
+            <div class="flex flex-col items-start gap-1.5">
+              <div class="font-mono text-[10px] text-ink-800">human · eskalasyon</div>
+              <div class="flex items-center gap-2 w-full">
+                <div class="h-1.5 bg-ink-400 flex-1 rounded-full overflow-hidden">
+                  <div class="h-full bg-sky" style="width:27%"></div>
+                </div>
+                <span class="font-mono text-[10px] text-ink-950">27</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 text-[12px] text-ink-800 italic font-display">
+            "0 TL recurring LLM" prensibiyle bu ay <span class="text-gold-300 not-italic font-sans">2.840 TL</span> API maliyeti önlendi.
+          </div>
+        </div>
+
+        <!-- card 3: revenue vertical -->
+        <div class="col-span-4 row-span-2 glass rounded-sm p-6 relative overflow-hidden magnetic">
+          <div class="flex items-center justify-between mb-5">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">potansiyel ciro · 30g</span>
+            <div class="flex items-center gap-1">
+              <button class="px-2 py-0.5 rounded-sm bg-gold-300/10 text-gold-300 text-[10px] font-mono">30g</button>
+              <button class="px-2 py-0.5 rounded-sm text-ink-800 text-[10px] font-mono">90g</button>
+              <button class="px-2 py-0.5 rounded-sm text-ink-800 text-[10px] font-mono">yıl</button>
+            </div>
+          </div>
+          <div class="metric text-[64px] leading-none text-ink-950">₺ 4.82<span class="text-[32px] text-ink-800">M</span></div>
+          <div class="mt-2 flex items-center gap-3 text-[12px]">
+            <span class="text-moss">↗ %31</span>
+            <span class="text-ink-700">önceki dönem ₺3.68M</span>
+          </div>
+
+          <div class="mt-5 h-48 relative">
+            <canvas id="revenueChart"></canvas>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-white/5 grid grid-cols-3 gap-3">
+            <div>
+              <div class="font-mono text-[10px] text-ink-700">kazanılan</div>
+              <div class="text-[14px] mt-0.5"><span class="metric text-ink-950">7</span> / ₺1.2M</div>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] text-ink-700">görüşmede</div>
+              <div class="text-[14px] mt-0.5"><span class="metric text-gold-300">12</span> / ₺2.1M</div>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] text-ink-700">yeni</div>
+              <div class="text-[14px] mt-0.5"><span class="metric text-rose">23</span> / ₺1.5M</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- card 4: inbox unread -->
+        <div class="col-span-4 glass rounded-sm p-6 relative overflow-hidden magnetic">
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">okunmamış mesaj</span>
+            <div class="flex gap-1">
+              <span class="h-5 px-2 inline-flex items-center rounded-sm bg-moss/15 text-moss font-mono text-[10px]">WA 18</span>
+              <span class="h-5 px-2 inline-flex items-center rounded-sm bg-rose/15 text-rose font-mono text-[10px]">IG 4</span>
+            </div>
+          </div>
+          <div class="metric text-[74px] leading-none text-ink-950">22</div>
+          <div class="mt-3 space-y-1.5">
+            <div class="flex items-center justify-between text-[12px]">
+              <span class="text-ink-800">Ayşegül · villa</span>
+              <span class="font-mono text-[10px] text-gold-300">3dk</span>
+            </div>
+            <div class="flex items-center justify-between text-[12px]">
+              <span class="text-ink-800">Serkan · daire</span>
+              <span class="font-mono text-[10px] text-ink-700">11dk</span>
+            </div>
+            <div class="flex items-center justify-between text-[12px]">
+              <span class="text-ink-800">Mehmet · dükkan</span>
+              <span class="font-mono text-[10px] text-ink-700">27dk</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- card 5: agent leaderboard -->
+        <div class="col-span-4 glass rounded-sm p-6 magnetic">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">satış lideri tablosu</span>
+            <span class="font-mono text-[10px] text-ink-700">ay · nisan</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="font-display text-[22px] text-gold-300">1</span>
+              <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-gold-200 to-gold-400 flex items-center justify-center font-mono text-[11px] text-ink-50">SK</div>
+              <div class="flex-1 leading-tight">
+                <div class="text-[13px]">Selin Karaca</div>
+                <div class="font-mono text-[10px] text-ink-700">11 kapalı · ₺845K</div>
+              </div>
+              <div class="h-1 flex-1 max-w-[80px] bg-ink-400 rounded-full overflow-hidden">
+                <div class="h-full prog" style="width:92%"></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-display text-[22px] text-ink-800">2</span>
+              <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-ink-400 to-ink-500 flex items-center justify-center font-mono text-[11px]">MT</div>
+              <div class="flex-1 leading-tight">
+                <div class="text-[13px]">Murat Toprak</div>
+                <div class="font-mono text-[10px] text-ink-700">8 kapalı · ₺612K</div>
+              </div>
+              <div class="h-1 flex-1 max-w-[80px] bg-ink-400 rounded-full overflow-hidden">
+                <div class="h-full bg-ink-700" style="width:68%"></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-display text-[22px] text-ink-800">3</span>
+              <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-ink-400 to-ink-500 flex items-center justify-center font-mono text-[11px]">EY</div>
+              <div class="flex-1 leading-tight">
+                <div class="text-[13px]">Ece Yıldız</div>
+                <div class="font-mono text-[10px] text-ink-700">6 kapalı · ₺438K</div>
+              </div>
+              <div class="h-1 flex-1 max-w-[80px] bg-ink-400 rounded-full overflow-hidden">
+                <div class="h-full bg-ink-700" style="width:48%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =============== PIPELINE KANBAN =============== -->
+      <section class="reveal">
+        <div class="flex items-end justify-between mb-5">
+          <div>
+            <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-300 mb-1.5">§ 02 · lead pipeline</div>
+            <h2 class="font-display text-[44px] leading-none tracking-[-0.02em]">Sıcak pipeline, <span class="italic">soğumuyor</span>.</h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 p-1 rounded-sm border border-white/5 glass">
+              <button class="px-3 py-1.5 rounded-sm bg-gold-300/15 text-gold-200 text-[11px] font-mono">Kanban</button>
+              <button class="px-3 py-1.5 rounded-sm text-ink-800 text-[11px] font-mono hover:text-ink-950">Liste</button>
+              <button class="px-3 py-1.5 rounded-sm text-ink-800 text-[11px] font-mono hover:text-ink-950">Zaman</button>
+            </div>
+            <button class="text-[12px] text-ink-800 hover:text-ink-950 font-mono">· filtre (3)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-5 gap-3">
+          <!-- column template (repeated 5x) -->
+
+          <!-- YENİ -->
+          <div class="rounded-sm bg-ink-50/40 border border-white/5 p-3">
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900">yeni</span>
+                <span class="px-1.5 py-0.5 rounded-sm bg-white/5 font-mono text-[10px] text-ink-800">23</span>
+              </div>
+              <button class="text-ink-700 hover:text-ink-950">
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+
+            <div class="space-y-2.5">
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-rose to-gold-300 transition-transform"></div>
+                    <span class="text-[13px] font-medium">Ayşegül Hanım</span>
+                  </div>
+                  <span class="px-1.5 py-0.5 bg-rose/15 text-rose font-mono text-[9px] rounded-sm">SICAK</span>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">4+1 villa · Çankaya · anahtar teslim arıyor</div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-1.5 w-1.5 rounded-full bg-moss"></span>
+                    <span class="font-mono text-[10px] text-ink-800">WhatsApp</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺1.2M</span>
+                </div>
+              </div>
+
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-sky to-moss transition-transform"></div>
+                    <span class="text-[13px] font-medium">Mehmet Özer</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">Dükkan · Kızılay · kira getirisi</div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+                    <span class="font-mono text-[10px] text-ink-800">Instagram</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺680K</span>
+                </div>
+              </div>
+
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-gold-300 to-ink-400 transition-transform"></div>
+                    <span class="text-[13px] font-medium">Can Yılmaz</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">2+1 daire · Keçiören · ilk ev</div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-1.5 w-1.5 rounded-full bg-moss"></span>
+                    <span class="font-mono text-[10px] text-ink-800">WhatsApp</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺420K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KVALIFIYE -->
+          <div class="rounded-sm bg-ink-50/40 border border-white/5 p-3">
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky"></span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900">kalifiye</span>
+                <span class="px-1.5 py-0.5 rounded-sm bg-white/5 font-mono text-[10px] text-ink-800">9</span>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-moss to-sky transition-transform"></div>
+                    <span class="text-[13px] font-medium">Serkan B.</span>
+                  </div>
+                  <span class="px-1.5 py-0.5 bg-moss/15 text-moss font-mono text-[9px] rounded-sm">OLLAMA</span>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">3+1 · Bilkent · şantiye ziyareti onayı verildi</div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-1.5 w-1.5 rounded-full bg-moss"></span>
+                    <span class="font-mono text-[10px] text-ink-800">WhatsApp</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺750K</span>
+                </div>
+              </div>
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-gold-200 to-rose transition-transform"></div>
+                    <span class="text-[13px] font-medium">Elif Kaya</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">Ofis blok · Çukurambar · yatırımcı</div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+                    <span class="font-mono text-[10px] text-ink-800">Instagram</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺2.4M</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GÖRÜŞME -->
+          <div class="rounded-sm bg-ink-50/40 border border-white/5 p-3">
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-gold-300"></span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900">görüşme</span>
+                <span class="px-1.5 py-0.5 rounded-sm bg-white/5 font-mono text-[10px] text-ink-800">12</span>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div class="lead-card glass-elevated rounded-sm p-3.5 cursor-grab">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-rose to-gold-300 transition-transform"></div>
+                    <span class="text-[13px] font-medium italic font-display text-[15px]">Ayşegül H.</span>
+                  </div>
+                  <span class="px-1.5 py-0.5 bg-gold-300/15 text-gold-300 font-mono text-[9px] rounded-sm">TEKLIF</span>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">4+1 villa · teklif hazırlanıyor · 14:30</div>
+                <div class="h-1 bg-ink-400 rounded-full overflow-hidden mb-2">
+                  <div class="h-full prog" style="width:72%"></div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="flex -space-x-1">
+                      <div class="h-4 w-4 rounded-sm bg-ink-500 border border-ink-200 ring-1 ring-ink-100"></div>
+                      <div class="h-4 w-4 rounded-sm bg-ink-400 border border-ink-200"></div>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-800">Selin + Emre</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">₺1.2M</span>
+                </div>
+              </div>
+
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-ink-500 to-ink-400 transition-transform"></div>
+                    <span class="text-[13px] font-medium">Burak Arslan</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">Rezidans · İncek · şantiye ziyareti yapıldı</div>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] text-ink-800">Selin K.</span>
+                  <span class="font-mono text-[10px] text-gold-300">₺890K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KAZANILAN -->
+          <div class="rounded-sm bg-ink-50/40 border border-white/5 p-3">
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-moss pulse-dot"></span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900">kazanıldı</span>
+                <span class="px-1.5 py-0.5 rounded-sm bg-moss/15 text-moss font-mono text-[10px]">7</span>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div class="lead-card rounded-sm p-3.5 cursor-grab border border-moss/20" style="background:linear-gradient(145deg,rgba(156,175,136,.1),rgba(156,175,136,.03));">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-moss to-sky transition-transform"></div>
+                    <span class="text-[13px] font-medium">Gökhan E.</span>
+                  </div>
+                  <svg class="h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">2+1 · Ümitköy · 11 Nisan kapandı</div>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] text-moss">SATIŞ</span>
+                  <span class="font-mono text-[10px] text-moss">₺580K ✓</span>
+                </div>
+              </div>
+              <div class="lead-card rounded-sm p-3.5 cursor-grab border border-moss/20" style="background:linear-gradient(145deg,rgba(156,175,136,.1),rgba(156,175,136,.03));">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-gold-300 to-rose transition-transform"></div>
+                    <span class="text-[13px] font-medium">Hande D.</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-900 mb-2 leading-snug">Villa · GOP · 08 Nisan kapandı</div>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] text-moss">SATIŞ</span>
+                  <span class="font-mono text-[10px] text-moss">₺1.45M ✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KAYBEDILEN -->
+          <div class="rounded-sm bg-ink-50/40 border border-white/5 p-3">
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-ink-600"></span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-900">kayıp</span>
+                <span class="px-1.5 py-0.5 rounded-sm bg-white/5 font-mono text-[10px] text-ink-800">5</span>
+              </div>
+            </div>
+            <div class="space-y-2.5">
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5 opacity-75">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-ink-600 to-ink-500 transition-transform"></div>
+                    <span class="text-[13px] line-through decoration-ink-700">Ferhat K.</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-700 mb-2 leading-snug italic">"Başka firmadan aldım" · 2 Nisan</div>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] text-ink-700">COMP · rakip</span>
+                  <span class="font-mono text-[10px] text-ink-700">₺720K</span>
+                </div>
+              </div>
+              <div class="lead-card glass rounded-sm p-3.5 cursor-grab border border-white/5 opacity-75">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="lead-avatar h-6 w-6 rounded-sm bg-gradient-to-br from-ink-600 to-ink-500 transition-transform"></div>
+                    <span class="text-[13px] line-through decoration-ink-700">Özlem N.</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-700 mb-2 leading-snug italic">"Bütçe yetmedi" · 29 Mart</div>
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] text-ink-700">BUDGET</span>
+                  <span class="font-mono text-[10px] text-ink-700">₺950K</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =============== INBOX + AUTOMATION SIDE BY SIDE =============== -->
+      <section class="grid grid-cols-12 gap-4 reveal">
+
+        <!-- INBOX -->
+        <div class="col-span-7 glass rounded-sm overflow-hidden seam-top">
+          <div class="flex items-center justify-between px-6 py-4 border-b border-white/5">
+            <div>
+              <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-300">§ 03 · unified inbox</div>
+              <h3 class="font-display text-[28px] leading-none mt-1">WhatsApp · Instagram · <span class="italic">tek pencere</span></h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-moss pulse-dot"></span>
+              <span class="font-mono text-[10px] text-ink-800">evolution api · stabil</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-[280px_1fr] divide-x divide-white/5">
+            <!-- conversation list -->
+            <div class="max-h-[520px] overflow-y-auto">
+              <div class="p-3 border-b border-white/5 bg-gold-300/5">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-rose to-gold-300"></div>
+                  <div class="flex-1 leading-tight">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[13px] font-medium">Ayşegül Hanım</span>
+                      <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-700">wa · 3dk</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-800 pl-10 truncate">Teşekkürler, teklifi bekliyorum...</div>
+              </div>
+
+              <div class="p-3 border-b border-white/5 hover:bg-white/3 cursor-pointer">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-moss to-sky"></div>
+                  <div class="flex-1 leading-tight">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[13px] font-medium">Serkan B.</span>
+                      <span class="px-1 py-0.5 rounded-sm bg-moss/15 text-moss font-mono text-[9px]">ollama</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-700">wa · 11dk</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-800 pl-10 truncate">→ ziyaret saati yarın 15:00 tamam...</div>
+              </div>
+
+              <div class="p-3 border-b border-white/5 hover:bg-white/3 cursor-pointer">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-gold-300 to-ink-400"></div>
+                  <div class="flex-1 leading-tight">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[13px] font-medium">Mehmet Özer</span>
+                      <span class="h-1.5 w-1.5 rounded-full bg-rose"></span>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-700">ig · 27dk</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-800 pl-10 truncate">Kiraya verebilir miyiz dükkan...</div>
+              </div>
+
+              <div class="p-3 border-b border-white/5 hover:bg-white/3 cursor-pointer">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-sky to-moss"></div>
+                  <div class="flex-1 leading-tight">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[13px] font-medium">Elif Kaya</span>
+                      <span class="px-1 py-0.5 rounded-sm bg-gold-300/15 text-gold-300 font-mono text-[9px]">human</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-700">ig · 44dk</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-800 pl-10 truncate">Ofis blok için toplantı ayarlan...</div>
+              </div>
+
+              <div class="p-3 border-b border-white/5 hover:bg-white/3 cursor-pointer">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-ink-500 to-ink-400"></div>
+                  <div class="flex-1 leading-tight">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[13px] font-medium">Burak A.</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-ink-700">wa · 2s</span>
+                  </div>
+                </div>
+                <div class="text-[12px] text-ink-800 pl-10 truncate">✓ ziyaret sonrası: çok beğendim</div>
+              </div>
+            </div>
+
+            <!-- message thread -->
+            <div class="flex flex-col max-h-[520px]">
+              <div class="px-6 py-4 border-b border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="h-10 w-10 rounded-sm bg-gradient-to-br from-rose to-gold-300"></div>
+                  <div class="leading-tight">
+                    <div class="flex items-center gap-2">
+                      <span class="font-medium">Ayşegül Hanım</span>
+                      <span class="font-mono text-[10px] text-moss">çevrimiçi</span>
+                    </div>
+                    <div class="flex items-center gap-2 mt-0.5">
+                      <span class="font-mono text-[10px] text-ink-800">+90 532 •••• 4521</span>
+                      <span class="star-divider">✦</span>
+                      <span class="font-mono text-[10px] text-ink-800">villa · çankaya · ₺1.2M</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <button class="h-8 px-3 rounded-sm border border-white/5 glass flex items-center gap-2 text-[11px] font-mono magnetic">
+                    <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    ara
+                  </button>
+                  <button class="h-8 w-8 rounded-sm border border-white/5 glass flex items-center justify-center magnetic">
+                    <svg class="h-3.5 w-3.5 text-ink-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+                <div class="text-center">
+                  <span class="font-mono text-[9px] uppercase tracking-[0.3em] text-ink-700 bg-ink-100/50 px-2 py-1 rounded-sm">bugün · 14:02</span>
+                </div>
+
+                <div class="flex gap-2 max-w-[75%]">
+                  <div class="h-7 w-7 rounded-sm bg-gradient-to-br from-rose to-gold-300 flex-shrink-0 mt-1"></div>
+                  <div>
+                    <div class="bubble-them rounded-sm rounded-tl-none px-4 py-2.5 text-[13px] leading-relaxed">
+                      Merhaba, Çankaya'daki 4+1 villa projelerinizle ilgili bilgi almak istiyorum. Anahtar teslim fiyat ve teslimat süresi nedir?
+                    </div>
+                    <div class="font-mono text-[10px] text-ink-700 mt-1 ml-1">14:02 · wa</div>
+                  </div>
+                </div>
+
+                <!-- automation banner -->
+                <div class="flex items-center gap-3 py-2 px-4 rounded-sm bg-moss/5 border border-moss/15 max-w-[75%] mx-auto">
+                  <svg class="h-4 w-4 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  <div class="flex-1 text-[11px] text-ink-900">
+                    <span class="font-mono text-[10px] text-moss">PATH A · regex match</span>
+                    <span class="text-ink-800 ml-2">"villa" + "anahtar teslim" → template #17</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-ink-700">4ms</span>
+                </div>
+
+                <div class="flex gap-2 ml-auto max-w-[75%] justify-end">
+                  <div>
+                    <div class="bubble-us rounded-sm rounded-tr-none px-4 py-2.5 text-[13px] leading-relaxed">
+                      Merhaba Ayşegül Hanım, Çankaya'daki Yıldız Panorama Villa projemiz için ilginize teşekkürler. 4+1 villalarımız anahtar teslim ₺1.180.000 - ₺1.340.000 arasında, teslimat Mart 2027. Tüm detayları içeren katalogu size hemen göndereyim mi?
+                    </div>
+                    <div class="font-mono text-[10px] text-ink-700 mt-1 mr-1 text-right">14:03 · ✓✓ okundu · otomatik</div>
+                  </div>
+                  <div class="h-7 w-7 rounded-sm bg-gradient-to-br from-gold-200 to-gold-400 flex-shrink-0 mt-1 flex items-center justify-center">
+                    <svg class="h-3.5 w-3.5 text-ink-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  </div>
+                </div>
+
+                <div class="flex gap-2 max-w-[75%]">
+                  <div class="h-7 w-7 rounded-sm bg-gradient-to-br from-rose to-gold-300 flex-shrink-0 mt-1"></div>
+                  <div>
+                    <div class="bubble-them rounded-sm rounded-tl-none px-4 py-2.5 text-[13px] leading-relaxed">
+                      Evet lütfen. Ayrıca önümüzdeki hafta yerinde görmek istiyorum, mümkün mü?
+                    </div>
+                    <div class="font-mono text-[10px] text-ink-700 mt-1 ml-1">14:06 · wa</div>
+                  </div>
+                </div>
+
+                <!-- escalation banner -->
+                <div class="flex items-center gap-3 py-2 px-4 rounded-sm bg-gold-300/8 border border-gold-300/20 max-w-[75%] mx-auto">
+                  <svg class="h-4 w-4 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                  <div class="flex-1 text-[11px] text-ink-900">
+                    <span class="font-mono text-[10px] text-gold-300">HUMAN HANDOFF</span>
+                    <span class="text-ink-800 ml-2">randevu talebi · Selin K.'ya bildirim</span>
+                  </div>
+                  <span class="font-mono text-[10px] text-gold-300">beklemede</span>
+                </div>
+
+                <div class="flex gap-2 max-w-[75%]">
+                  <div class="h-7 w-7 rounded-sm bg-gradient-to-br from-rose to-gold-300 flex-shrink-0 mt-1"></div>
+                  <div>
+                    <div class="bubble-them rounded-sm rounded-tl-none px-4 py-2.5 text-[13px] leading-relaxed">
+                      Teşekkürler, teklifi bekliyorum...
+                    </div>
+                    <div class="font-mono text-[10px] text-ink-700 mt-1 ml-1">14:28 · wa</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- composer -->
+              <div class="px-6 py-4 border-t border-white/5 bg-ink-50/50">
+                <div class="flex items-center gap-2 mb-3">
+                  <button class="px-2 py-1 rounded-sm glass border border-white/5 text-[11px] font-mono text-ink-900 magnetic">template #17 · villa</button>
+                  <button class="px-2 py-1 rounded-sm glass border border-white/5 text-[11px] font-mono text-ink-900 magnetic">katalog pdf</button>
+                  <button class="px-2 py-1 rounded-sm glass border border-white/5 text-[11px] font-mono text-ink-900 magnetic">takvim davet</button>
+                  <span class="flex-1"></span>
+                  <span class="font-mono text-[10px] text-ink-700">shift+enter · yeni satır</span>
+                </div>
+                <div class="flex items-center gap-3 px-4 py-3 rounded-sm bg-ink-100/80 border border-white/5">
+                  <input placeholder="cevap yaz veya Ollama'ya taslak hazırlat..." class="bg-transparent flex-1 text-[13px] outline-none placeholder:text-ink-700" />
+                  <button class="h-8 px-3 rounded-sm bg-gold-300 text-ink-50 font-mono text-[11px] uppercase tracking-wider magnetic">gönder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATION FLOW -->
+        <div class="col-span-5 space-y-4">
+
+          <!-- automation status -->
+          <div class="glass rounded-sm p-6 relative overflow-hidden">
+            <div class="flex items-start justify-between mb-5">
+              <div>
+                <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-gold-300">§ 04 · automation</div>
+                <h3 class="font-display text-[28px] leading-none mt-1">n8n · <span class="italic">aktif</span></h3>
+              </div>
+              <div class="flex items-center gap-2 px-2 py-1 rounded-sm bg-moss/10 border border-moss/15">
+                <span class="h-1.5 w-1.5 rounded-full bg-moss pulse-dot"></span>
+                <span class="font-mono text-[10px] text-moss">4 workflow</span>
+              </div>
+            </div>
+
+            <!-- flow diagram -->
+            <div class="space-y-1">
+              <div class="flex items-center gap-3 py-2 px-3 rounded-sm bg-ink-50/50 border border-white/5">
+                <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-moss to-sky flex items-center justify-center">
+                  <svg class="h-4 w-4 text-ink-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                </div>
+                <div class="flex-1 leading-tight">
+                  <div class="text-[13px] font-medium">evolution api · webhook</div>
+                  <div class="font-mono text-[10px] text-ink-700">wa + ig · incoming</div>
+                </div>
+                <span class="font-mono text-[10px] text-moss">12ms</span>
+              </div>
+              <div class="pl-[26px] h-6 flex items-center">
+                <div class="w-px h-full bg-gradient-to-b from-moss to-gold-300"></div>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-sm bg-ink-50/50 border border-white/5">
+                <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-gold-300 to-rose flex items-center justify-center">
+                  <span class="font-mono text-[11px] text-ink-50">Rx</span>
+                </div>
+                <div class="flex-1 leading-tight">
+                  <div class="text-[13px] font-medium">path A · regex switch</div>
+                  <div class="font-mono text-[10px] text-ink-700">17 template · 62% hit rate</div>
+                </div>
+                <span class="font-mono text-[10px] text-gold-300">4ms</span>
+              </div>
+              <div class="pl-[26px] h-6 flex items-center">
+                <div class="w-px h-full bg-gradient-to-b from-gold-300 to-rose"></div>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-sm bg-ink-50/50 border border-white/5">
+                <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-rose to-gold-200 flex items-center justify-center">
+                  <span class="font-mono text-[11px] text-ink-50">∞</span>
+                </div>
+                <div class="flex-1 leading-tight">
+                  <div class="text-[13px] font-medium">path B · ollama fallback</div>
+                  <div class="font-mono text-[10px] text-ink-700">qwen2.5:7b-instruct-q4 · 8gb vram</div>
+                </div>
+                <span class="font-mono text-[10px] text-rose">14ms</span>
+              </div>
+              <div class="pl-[26px] h-6 flex items-center">
+                <div class="w-px h-full bg-gradient-to-b from-rose to-sky"></div>
+              </div>
+              <div class="flex items-center gap-3 py-2 px-3 rounded-sm bg-ink-50/50 border border-white/5">
+                <div class="h-8 w-8 rounded-sm bg-gradient-to-br from-sky to-moss flex items-center justify-center">
+                  <svg class="h-4 w-4 text-ink-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="flex-1 leading-tight">
+                  <div class="text-[13px] font-medium">human handoff · telegram</div>
+                  <div class="font-mono text-[10px] text-ink-700">confidence &lt; 0.7 veya 10sn timeout</div>
+                </div>
+                <span class="font-mono text-[10px] text-sky">27%</span>
+              </div>
+            </div>
+
+            <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="h-3.5 w-3.5 text-moss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="font-mono text-[10px] text-ink-900">bu ay ₺<span class="counter">2.840</span> API maliyeti önlendi</span>
+              </div>
+              <a class="font-mono text-[10px] text-gold-300 hover:text-gold-200">workflow düzenle →</a>
+            </div>
+          </div>
+
+          <!-- activity feed -->
+          <div class="glass rounded-sm p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700">canlı akış</span>
+              <span class="font-mono text-[10px] text-moss flex items-center gap-1.5"><span class="h-1 w-1 rounded-full bg-moss pulse-dot"></span> realtime</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="h-2 w-2 rounded-full bg-moss ring-4 ring-moss/15"></span>
+                  <div class="w-px flex-1 bg-white/5 mt-1"></div>
+                </div>
+                <div class="pb-3 flex-1">
+                  <div class="text-[13px] leading-snug"><span class="font-medium">Ayşegül H.</span> teklif aşamasına taşındı</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-0.5">Selin K. · 2dk önce</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="h-2 w-2 rounded-full bg-gold-300 ring-4 ring-gold-300/15"></span>
+                  <div class="w-px flex-1 bg-white/5 mt-1"></div>
+                </div>
+                <div class="pb-3 flex-1">
+                  <div class="text-[13px] leading-snug">Ollama 3 mesaja otomatik yanıt verdi</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-0.5">system · 4dk önce</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="h-2 w-2 rounded-full bg-rose ring-4 ring-rose/15"></span>
+                  <div class="w-px flex-1 bg-white/5 mt-1"></div>
+                </div>
+                <div class="pb-3 flex-1">
+                  <div class="text-[13px] leading-snug">Instagram'dan 2 yeni lead girişi</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-0.5">evolution api · 11dk önce</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="h-2 w-2 rounded-full bg-sky ring-4 ring-sky/15"></span>
+                </div>
+                <div class="flex-1">
+                  <div class="text-[13px] leading-snug"><span class="font-medium">Gökhan E.</span> satış kapandı · ₺580K</div>
+                  <div class="font-mono text-[10px] text-ink-700 mt-0.5">Murat T. · 2 saat önce</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =============== FOOTER SIGNATURE =============== -->
+      <section class="relative pt-16 pb-10 reveal">
+        <div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/30 to-transparent"></div>
+        <div class="flex items-end justify-between">
+          <div>
+            <div class="font-display text-[120px] leading-[0.85] tracking-[-0.04em] text-ink-300">construo.</div>
+            <div class="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-700 mt-3">lead intelligence · v1.0 · claude design handoff bundle · ω</div>
+          </div>
+          <div class="text-right">
+            <div class="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-700 mb-2">tasarım imzası</div>
+            <div class="font-display italic text-[24px] text-gold-300">emre aras</div>
+            <div class="font-mono text-[10px] text-ink-700 mt-1">18 · nisan · 2026 · istanbul</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // custom cursor
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  window.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    dot.style.top = my+'px'; dot.style.left = mx+'px';
+  });
+  function tick(){
+    rx += (mx-rx) * .18;
+    ry += (my-ry) * .18;
+    ring.style.top = ry+'px'; ring.style.left = rx+'px';
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  document.querySelectorAll('button, a, .magnetic, .lead-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{
+      ring.style.width='60px'; ring.style.height='60px';
+      ring.style.borderColor='rgba(212,165,116,.7)';
+    });
+    el.addEventListener('mouseleave',()=>{
+      ring.style.width='44px'; ring.style.height='44px';
+      ring.style.borderColor='rgba(243,228,188,.4)';
+    });
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // counter animation
+  document.querySelectorAll('.counter').forEach(el => {
+    const target = parseFloat(el.textContent.replace(/\./g,'').replace(/,/g,'.'));
+    let cur = 0;
+    const step = target / 48;
+    const iv = setInterval(()=>{
+      cur += step;
+      if (cur >= target) { cur = target; clearInterval(iv); }
+      el.textContent = Math.round(cur).toLocaleString('tr-TR');
+    }, 18);
+  });
+
+  // chart
+  const ctx = document.getElementById('revenueChart');
+  if (ctx) {
+    const g = ctx.getContext('2d').createLinearGradient(0, 0, 0, 200);
+    g.addColorStop(0, 'rgba(212,165,116,0.45)');
+    g.addColorStop(1, 'rgba(212,165,116,0)');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['1','3','5','7','9','11','13','15','17','19','21','23','25','27','29'],
+        datasets: [
+          {
+            label: 'potansiyel',
+            data: [1.2,1.4,1.3,1.6,1.8,2.0,1.9,2.3,2.6,2.8,3.1,3.4,3.8,4.2,4.82],
+            borderColor: '#D4A574',
+            backgroundColor: g,
+            fill: true,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: '#F3E4BC',
+          },
+          {
+            label: 'kazanılan',
+            data: [0.2,0.3,0.3,0.4,0.5,0.5,0.6,0.7,0.8,0.9,1.0,1.05,1.1,1.15,1.20],
+            borderColor: '#9CAF88',
+            borderDash: [4, 4],
+            fill: false,
+            tension: 0.4,
+            borderWidth: 1.5,
+            pointRadius: 0,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: {
+          backgroundColor:'#0A0A0B',
+          borderColor:'#D4A574',
+          borderWidth:1,
+          titleColor:'#F3E4BC',
+          bodyColor:'#EEEEF1',
+          titleFont:{family:'JetBrains Mono', size:10},
+          bodyFont:{family:'Space Grotesk', size:12},
+          padding: 10,
+          displayColors: false,
+          callbacks: { label: (ctx) => ' ₺' + ctx.parsed.y.toFixed(2) + 'M' }
+        }},
+        scales: {
+          x: { grid: { display:false }, ticks: { color:'#5A5A6B', font:{family:'JetBrains Mono', size:9}}},
+          y: { grid: { color:'rgba(255,255,255,0.03)' }, ticks: { color:'#5A5A6B', font:{family:'JetBrains Mono', size:9}, callback: v => '₺' + v + 'M'}}
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

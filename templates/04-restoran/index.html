@@ -1,0 +1,304 @@
+<!--
+  TEMPLATE 04 · RESTORAN
+  Palette A: PL14 Salmon + Burgundy · Palette B: PL26 Olive + Tomato
+  Typo A: TY31 Fraunces SC + Work Sans · Typo B: TY32 Bricolage + Inter Tight
+  Hero: HR3 + HR11 · Layout: L5 3-col menu · Motion: MO4 + MO6
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 04 · Restoran</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Work+Sans:wght@300;400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette A — Salmon + Burgundy */
+    --bg: #F4D5C4;
+    --surface: #EDCAB6;
+    --ink: #2A1F14;
+    --ink-soft: #5A3A28;
+    --ink-faint: #8A6E5C;
+    --accent: #6B1B2E;
+    --accent-2: #D4B896;
+    --line: rgba(42,31,20,0.15);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  body.p-b {
+    /* Palette B — Olive + Tomato */
+    --bg: #F2EEE5;
+    --surface: #E5DFD0;
+    --ink: #2E2822;
+    --ink-soft: #4A3F35;
+    --ink-faint: #7A6E5E;
+    --accent: #C54B2C;
+    --accent-2: #556B2F;
+    --line: rgba(46,40,34,0.15);
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Inter Tight', sans-serif;
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: var(--font-body); transition: background 0.5s; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .palette-switch { position: fixed; top: 22px; right: 24px; z-index: 100; padding: 10px 16px; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; border: none; cursor: pointer; }
+
+  /* header */
+  header { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 36px; letter-spacing: -0.02em; font-variation-settings: 'opsz' 144; }
+  body.p-b .brand { font-style: normal; font-weight: 700; letter-spacing: -0.03em; font-size: 28px; text-transform: uppercase; }
+  nav { display: flex; gap: 28px; font-size: 14px; letter-spacing: 0.08em; font-weight: 500; text-transform: uppercase; }
+  nav a { color: var(--ink-soft); text-decoration: none; cursor: pointer; padding-bottom: 3px; border-bottom: 2px solid transparent; }
+  nav a.active { border-color: var(--accent); color: var(--ink); }
+
+  .rez-btn { padding: 10px 22px; background: var(--accent); color: var(--bg); border: none; font-family: var(--font-body); font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+
+  main { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  /* HERO */
+  .hero { padding: 80px 0 100px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 60px; align-items: center; }
+  .hero-text .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; gap: 14px; align-items: center; }
+  .hero-text .eyebrow::before { content:''; width: 40px; height: 1px; background: var(--accent); }
+  h1.hero-h { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(64px, 10vw, 132px); line-height: 0.9; letter-spacing: -0.03em; color: var(--ink); font-variation-settings: 'opsz' 144; }
+  body.p-b h1.hero-h { font-family: var(--font-display); font-style: normal; font-weight: 700; letter-spacing: -0.035em; }
+  h1.hero-h em { color: var(--accent); font-style: normal; font-weight: 400; }
+  body.p-b h1.hero-h em { font-weight: 700; text-decoration: underline; text-decoration-color: var(--accent-2); text-decoration-thickness: 4px; text-underline-offset: 8px; }
+  .hero-sub { margin-top: 30px; font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 48ch; }
+  .hero-cta { margin-top: 36px; display: flex; gap: 16px; align-items: center; }
+  .btn-primary { padding: 14px 28px; background: var(--accent); color: var(--bg); border: none; font-weight: 600; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+  .btn-ghost { padding: 14px 28px; background: transparent; color: var(--ink); border: 2px solid var(--ink); font-weight: 600; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+
+  .hero-visual {
+    aspect-ratio: 3/4; background: var(--surface); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-visual::before { content: '⌇'; font-family: var(--font-display); font-style: italic; font-size: 280px; color: var(--accent); opacity: 0.4; font-variation-settings: 'opsz' 144; }
+  body.p-b .hero-visual::before { content: '◢◣'; font-size: 180px; }
+  .hero-visual .tag { position: absolute; top: 20px; left: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; }
+
+  /* DAILY MENU */
+  .daily { padding: 80px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px; }
+  .sec-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  .sec-title { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(44px, 6vw, 72px); line-height: 1; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+  body.p-b .sec-title { font-style: normal; font-weight: 700; }
+  .sec-title em { color: var(--accent); font-style: italic; }
+  body.p-b .sec-title em { font-style: normal; font-weight: 500; }
+  .sec-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .menu-col { padding: 32px 24px; border-right: 1px solid var(--line); }
+  .menu-col:last-child { border-right: none; }
+  .menu-col:first-child { padding-left: 0; }
+  .menu-col:last-child { padding-right: 0; }
+  .menu-col h3 { font-family: var(--font-display); font-weight: 400; font-size: 24px; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--accent); }
+  body.p-b .menu-col h3 { font-weight: 700; }
+  .menu-col .col-sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; padding-bottom: 16px; border-bottom: 2px solid var(--ink); margin-bottom: 18px; }
+  .dish { padding: 14px 0; border-bottom: 1px dashed var(--line); cursor: pointer; transition: background 0.15s; }
+  .dish:hover { background: var(--surface); margin: 0 -8px; padding: 14px 8px; }
+  .dish:last-child { border-bottom: none; }
+  .dish-row { display: flex; align-items: baseline; gap: 12px; }
+  .dish-name { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: 19px; letter-spacing: -0.01em; flex: 1; }
+  body.p-b .dish-name { font-style: normal; font-weight: 500; }
+  .dish-dots { flex: 1; border-bottom: 1px dotted var(--line-faint, var(--ink-faint)); align-self: end; margin: 0 8px 6px; opacity: 0.3; }
+  .dish-price { font-family: var(--font-display); font-weight: 500; font-size: 17px; color: var(--accent); font-variant-numeric: tabular-nums; }
+  body.p-b .dish-price { font-weight: 700; }
+  .dish-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.45; margin-top: 3px; font-style: italic; }
+  body.p-b .dish-desc { font-style: normal; }
+
+  /* SEASONAL BANNER */
+  .seasonal { background: var(--accent); color: var(--bg); padding: 60px 48px; margin: 80px -48px; text-align: center; }
+  .seasonal h2 { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(44px, 6vw, 82px); line-height: 1; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+  body.p-b .seasonal h2 { font-style: normal; font-weight: 700; }
+  .seasonal p { margin-top: 18px; font-size: 17px; opacity: 0.85; max-width: 52ch; margin-left: auto; margin-right: auto; }
+
+  /* RESERVATION */
+  .rez { padding: 80px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .rez-left h2 { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: clamp(44px, 6vw, 72px); line-height: 1; letter-spacing: -0.02em; font-variation-settings: 'opsz' 96; }
+  body.p-b .rez-left h2 { font-style: normal; font-weight: 700; }
+  .rez-left p { margin-top: 20px; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+  .rez-form label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .rez-form input, .rez-form select { width: 100%; padding: 14px 16px; background: transparent; border: 1px solid var(--line); font-family: var(--font-body); font-size: 16px; color: var(--ink); outline: none; margin-bottom: 20px; }
+  .rez-form input:focus, .rez-form select:focus { border-color: var(--accent); }
+  .rez-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rez-btn-full { width: 100%; padding: 18px; background: var(--ink); color: var(--bg); border: none; font-family: var(--font-body); font-weight: 600; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+  .rez-btn-full:hover { background: var(--accent); }
+
+  footer { padding: 32px 48px; text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<button class="palette-switch" onclick="document.body.classList.toggle('p-b'); this.textContent = document.body.classList.contains('p-b') ? 'B · OLIVE + TOMATO' : 'A · SALMON + BURGUNDY';">A · SALMON + BURGUNDY</button>
+
+<header>
+  <div class="brand">Meşe</div>
+  <nav>
+    <a class="active">Ana Sayfa</a>
+    <a>Menü</a>
+    <a>Hikaye</a>
+    <a>Galeri</a>
+    <a>İletişim</a>
+  </nav>
+  <button class="rez-btn">Rezervasyon</button>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Sebze · Ateş · Hafıza · Beyoğlu</div>
+      <h1>Odunda <em>pişen</em><br>her şey <em>anılır.</em></h1>
+      <p class="hero-sub">
+        Meşe ateşi üstünde, mevsim sebzesi ve tek balık menü. Rezervasyonsuz gelmeyin — 14 masa var, 30 gece öncesi dolar. Pazartesi kapalıyız.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary">Rezervasyon</button>
+        <button class="btn-ghost">Bu Akşamın Menüsü</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="tag">NİSAN MENÜSÜ · 18</span>
+    </div>
+  </section>
+
+  <!-- DAILY MENU -->
+  <section class="daily">
+    <div class="sec-head">
+      <div>
+        <div class="sec-label">§ 01 · Bu Akşam</div>
+        <h2 class="sec-title">Cuma <em>menüsü.</em></h2>
+      </div>
+      <div class="sec-meta">18 NİSAN · TEK TAHTA · 7 COURSE</div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-col">
+        <h3>Başlangıç</h3>
+        <div class="col-sub">— İlk 3 Tabak —</div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Odun ateşi ekmek</span><span class="dish-price">₺120</span></div>
+          <div class="dish-desc">ekşi mayalı, zeytinyağı + sumak tereyağı</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Patates ezme</span><span class="dish-price">₺180</span></div>
+          <div class="dish-desc">közlenmiş, taze soğan, dereotu, sumak</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Semizotu salata</span><span class="dish-price">₺160</span></div>
+          <div class="dish-desc">yoğurt, sarımsak, sumak, ceviz</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Enginar</span><span class="dish-price">₺220</span></div>
+          <div class="dish-desc">bezelye, dereotu, limon — soğuk</div>
+        </div>
+      </div>
+
+      <div class="menu-col">
+        <h3>Ana Yemek</h3>
+        <div class="col-sub">— Tahtadan Direkt —</div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Günün balığı</span><span class="dish-price">₺680</span></div>
+          <div class="dish-desc">bugün: levrek · ateşte tuzla · limon</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Kuzu incik</span><span class="dish-price">₺720</span></div>
+          <div class="dish-desc">8 saat odun fırınında · nohut pilavı</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Mantarlı risotto</span><span class="dish-price">₺520</span></div>
+          <div class="dish-desc">kara mantar, tereyağı, parmesan, taze kekik</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Vejetaryen tabağı</span><span class="dish-price">₺440</span></div>
+          <div class="dish-desc">mevsim sebzesi, keşkek, nar ekşisi</div>
+        </div>
+      </div>
+
+      <div class="menu-col">
+        <h3>Tatlı + İçki</h3>
+        <div class="col-sub">— Sonu Güzelletir —</div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Dondurmalı kabak</span><span class="dish-price">₺180</span></div>
+          <div class="dish-desc">kestane balı, kaymak, Karaman dondurması</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Muhallebi</span><span class="dish-price">₺140</span></div>
+          <div class="dish-desc">sahlep, gül reçeli, fıstık</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Şarap çifti</span><span class="dish-price">₺520</span></div>
+          <div class="dish-desc">Öküzgözü + Narince · Boğazkere evi</div>
+        </div>
+        <div class="dish">
+          <div class="dish-row"><span class="dish-name">Türk kahvesi</span><span class="dish-price">₺60</span></div>
+          <div class="dish-desc">mırra, lokum, ikiyle bir</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEASONAL BANNER -->
+  <section class="seasonal">
+    <h2>Nisan'ın <em>enginarı</em><br>yalnızca 3 hafta.</h2>
+    <p>Her yıl bahar başlangıcında, Ege'nin enginarı bizde. 5 yemek, 10 gece, bitince bir sonraki bahara. Masa ayırt — bu yıl 07 Mayıs'a kadar.</p>
+  </section>
+
+  <!-- RESERVATION -->
+  <section class="rez">
+    <div class="rez-left">
+      <div class="sec-label">§ 03 · Rezervasyon</div>
+      <h2>Bir <em>masa</em><br>ayarlayalım.</h2>
+      <p>Rezervasyon WhatsApp veya bu form ile. 14 masa var, iki seans: 19:00 ve 21:30. Çocuk sandalyesi mevcut, köpeğinize su veriyoruz.</p>
+      <div style="margin-top:30px;font-family:var(--font-mono);font-size:13px;color:var(--ink-soft);letter-spacing:0.1em;">
+        <div>+90 212 555 0180</div>
+        <div style="margin-top:4px;">rezervasyon@mesekebabi.com</div>
+        <div style="margin-top:4px;">Asmalımescit · Beyoğlu · İstanbul</div>
+      </div>
+    </div>
+    <form class="rez-form">
+      <label>Ad Soyad</label>
+      <input type="text" placeholder="Emre Aras">
+
+      <div class="rez-row">
+        <div>
+          <label>Tarih</label>
+          <input type="date" value="2026-04-19">
+        </div>
+        <div>
+          <label>Saat</label>
+          <select><option>19:00</option><option>21:30</option></select>
+        </div>
+      </div>
+
+      <div class="rez-row">
+        <div>
+          <label>Kişi Sayısı</label>
+          <select><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+        </div>
+        <div>
+          <label>Telefon</label>
+          <input type="tel" placeholder="+90 5__ ___ __ __">
+        </div>
+      </div>
+
+      <label>Not (alerji, doğum günü, vejetaryen...)</label>
+      <input type="text" placeholder="varsa belirtin">
+
+      <button class="rez-btn-full">Rezervasyon Yap</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  MEŞE · TEMPLATE 04 · RESTORAN<br>
+  COMBO: HR3+L5+L6+TY31/32+PL14/26+MO4/6 · Asmalımescit · Beyoğlu
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!--
+  TEMPLATES INDEX — 10 Sektör Seçici Sayfa
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Templates · 10 Sektör</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2ED;
+    --surface: #EBE6DC;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A48;
+    --ink-faint: #8A8A85;
+    --accent: #D4A574;
+    --line: rgba(26,26,26,0.12);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Inter Tight', sans-serif; font-weight: 400; }
+  ::selection { background: var(--accent); color: var(--ink); }
+
+  header { padding: 60px 48px 40px; border-bottom: 1px solid var(--line); }
+  .head-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .head-row .logo { font-family: 'Bricolage Grotesque'; font-weight: 600; font-size: 22px; letter-spacing: -0.02em; }
+  .head-row .date { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; }
+
+  h1 {
+    font-family: 'Bricolage Grotesque';
+    font-weight: 300; font-style: italic;
+    font-size: clamp(64px, 10vw, 140px);
+    line-height: 0.92; letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 96;
+  }
+  h1 em { color: var(--accent); font-style: italic; font-weight: 500; }
+  .intro {
+    margin-top: 28px; font-size: 18px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch;
+  }
+  .intro strong { color: var(--ink); font-weight: 500; }
+
+  /* counts */
+  .stats { margin-top: 40px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat-v { font-family: 'Bricolage Grotesque'; font-weight: 300; font-size: 48px; line-height: 1; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; }
+  .stat-l { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; margin-top: 6px; }
+
+  main { padding: 60px 48px; max-width: 1600px; margin: 0 auto; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    text-decoration: none; color: inherit; cursor: pointer;
+    display: grid; grid-template-rows: auto 1fr auto;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s;
+    overflow: hidden;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 30px 80px -40px rgba(0,0,0,0.25); }
+
+  .card-head { padding: 22px 24px 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .card-num { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; }
+  .card-cat { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.2em; padding: 4px 10px; background: var(--bg); color: var(--ink); text-transform: uppercase; }
+
+  .card-viz { margin: 16px 24px; aspect-ratio: 16/9; background: var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque'; font-weight: 300; font-size: 120px; color: var(--accent); letter-spacing: -0.04em; position: relative; overflow: hidden; }
+  .card-viz.v1 { background: #D4CFC4; color: #E85D04; }
+  .card-viz.v2 { background: #F5F0E8; color: #A0522D; }
+  .card-viz.v3 { background: #FAF7F2; color: #E89B7C; }
+  .card-viz.v4 { background: #F4D5C4; color: #6B1B2E; }
+  .card-viz.v5 { background: #F0F4F5; color: #2D4A4A; }
+  .card-viz.v6 { background: #1A1D21; color: #D4FF00; }
+  .card-viz.v7 { background: #F5F1E8; color: #A0826D; }
+  .card-viz.v8 { background: #1C1C1E; color: #FF5E3A; }
+  .card-viz.v9 { background: #F0EBE0; color: #1B3A4B; }
+  .card-viz.v10 { background: linear-gradient(135deg, #6B3A1B, #8EC5D6); color: #D4A04C; }
+
+  .card-viz-palette { position: absolute; bottom: 12px; left: 12px; display: flex; gap: 4px; }
+  .swatch { width: 14px; height: 14px; border: 1px solid rgba(255,255,255,0.4); }
+
+  .card-body { padding: 0 24px 24px; }
+  .card-body h3 { font-family: 'Bricolage Grotesque'; font-weight: 500; font-size: 28px; letter-spacing: -0.018em; font-variation-settings: 'opsz' 96; }
+  .card-body h3 em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .card-body p { margin-top: 10px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+  .card-meta { padding: 14px 24px; background: var(--bg); border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); text-transform: uppercase; }
+  .card-meta .palettes { color: var(--accent); }
+
+  /* CRM separator */
+  .crm-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--line); }
+  .crm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+
+  footer { padding: 40px 48px; text-align: center; font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 0.25em; color: var(--ink-faint); text-transform: uppercase; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-row">
+    <div class="logo">design-claude / templates</div>
+    <div class="date">CLAUDE.MD · 2026-04-18</div>
+  </div>
+  <h1>10 sektör,<br>20 palette, <em>her proje farklı.</em></h1>
+  <p class="intro">
+    Aynı "dark + gold + glass + Inter" recipe'sinin 7+ projede tekrarladığını fark ettik. Çözüm: her sektör için **2 alternatif palette + font + hero + layout + motion** kombinasyonu. Her template tek HTML, CDN ile açılır. **Sağ üst palette switch** ile A/B variant arasında canlı geçiş yap.
+  </p>
+
+  <div class="stats">
+    <div><div class="stat-v">13</div><div class="stat-l">Tema</div></div>
+    <div><div class="stat-v">23</div><div class="stat-l">Palette</div></div>
+    <div><div class="stat-v">22</div><div class="stat-l">Font Combo</div></div>
+    <div><div class="stat-v">3</div><div class="stat-l">2026 Showcase</div></div>
+    <div><div class="stat-v">0</div><div class="stat-l">Klişe</div></div>
+  </div>
+</header>
+
+<main>
+
+  <div class="grid">
+
+    <a class="card" href="01-insaat/index.html">
+      <div class="card-head"><div class="card-num">/ 01</div><div class="card-cat">CRM + PORTFOLYO</div></div>
+      <div class="card-viz v1"><span>İ</span><div class="card-viz-palette"><span class="swatch" style="background:#D4CFC4;"></span><span class="swatch" style="background:#E85D04;"></span><span class="swatch" style="background:#F5C400;"></span><span class="swatch" style="background:#E8EDF2;"></span><span class="swatch" style="background:#1B3A4B;"></span></div></div>
+      <div class="card-body">
+        <h3>İnşaat / <em>Construction</em></h3>
+        <p>Harita + proje portfolyo + süreç timeline. Concrete industrial palette veya ozalit blueprint.</p>
+      </div>
+      <div class="card-meta"><span>H1+HR9+L4+MO2</span><span class="palettes">PL4 · PL21</span></div>
+    </a>
+
+    <a class="card" href="02-mucevher/index.html">
+      <div class="card-head"><div class="card-num">/ 02</div><div class="card-cat">E-COMMERCE</div></div>
+      <div class="card-viz v2"><span>M</span><div class="card-viz-palette"><span class="swatch" style="background:#F5F0E8;"></span><span class="swatch" style="background:#2A1F14;"></span><span class="swatch" style="background:#A0522D;"></span><span class="swatch" style="background:#5B2A4A;"></span><span class="swatch" style="background:#D4B896;"></span></div></div>
+      <div class="card-body">
+        <h3>Mücevher / <em>Jewelry</em></h3>
+        <p>Koleksiyon katalog + el emeği hikaye. <strong>Gold klişesi yasak</strong> — tobacco+pearl veya plum+champagne.</p>
+      </div>
+      <div class="card-meta"><span>H2+HR11+L6+L8+MO4</span><span class="palettes">PL22 · PL23</span></div>
+    </a>
+
+    <a class="card" href="03-kuafor/index.html">
+      <div class="card-head"><div class="card-num">/ 03</div><div class="card-cat">LANDING + RANDEVU</div></div>
+      <div class="card-viz v3"><span>K</span><div class="card-viz-palette"><span class="swatch" style="background:#FAF7F2;"></span><span class="swatch" style="background:#E89B7C;"></span><span class="swatch" style="background:#A0522D;"></span><span class="swatch" style="background:#EDEAE3;"></span><span class="swatch" style="background:#556B2F;"></span></div></div>
+      <div class="card-body">
+        <h3>Kuaför / <em>Berber</em></h3>
+        <p>Hero + hizmet + ekip card deck + rezervasyon CTA. <strong>Dark+gold yasak</strong> — salt+peach veya slate+olive.</p>
+      </div>
+      <div class="card-meta"><span>HR3+L4+L9+MO1+MO6</span><span class="palettes">PL24 · PL25</span></div>
+    </a>
+
+    <a class="card" href="04-restoran/index.html">
+      <div class="card-head"><div class="card-num">/ 04</div><div class="card-cat">MENÜ + REZERVASYON</div></div>
+      <div class="card-viz v4"><span>R</span><div class="card-viz-palette"><span class="swatch" style="background:#F4D5C4;"></span><span class="swatch" style="background:#6B1B2E;"></span><span class="swatch" style="background:#D4B896;"></span><span class="swatch" style="background:#F2EEE5;"></span><span class="swatch" style="background:#C54B2C;"></span></div></div>
+      <div class="card-body">
+        <h3>Restoran / <em>Food</em></h3>
+        <p>3-kolonlu menü + günün fix menüsü + rezervasyon formu. Salmon+burgundy veya olive+tomato.</p>
+      </div>
+      <div class="card-meta"><span>HR3+HR11+L5+L6+MO4+MO6</span><span class="palettes">PL14 · PL26</span></div>
+    </a>
+
+    <a class="card" href="05-klinik/index.html">
+      <div class="card-head"><div class="card-num">/ 05</div><div class="card-cat">HAKKINDA + RANDEVU</div></div>
+      <div class="card-viz v5"><span>K</span><div class="card-viz-palette"><span class="swatch" style="background:#F0F4F5;"></span><span class="swatch" style="background:#2D4A4A;"></span><span class="swatch" style="background:#9CAF88;"></span><span class="swatch" style="background:#FBF9F3;"></span><span class="swatch" style="background:#3A5A40;"></span></div></div>
+      <div class="card-body">
+        <h3>Klinik / <em>Sağlık</em></h3>
+        <p>Conversational Q&A + hizmetler + doktor profilleri. Sakin renk + az motion. Glacier+sage veya cream+forest.</p>
+      </div>
+      <div class="card-meta"><span>HR12+L6+L7+MO10+MO4</span><span class="palettes">PL27 · PL28</span></div>
+    </a>
+
+    <a class="card" href="06-eticaret/index.html">
+      <div class="card-head"><div class="card-num">/ 06</div><div class="card-cat">ÜRÜN + SEPET</div></div>
+      <div class="card-viz v6"><span>E</span><div class="card-viz-palette"><span class="swatch" style="background:#F5F7F8;"></span><span class="swatch" style="background:#D4FF00;"></span><span class="swatch" style="background:#EA580C;"></span><span class="swatch" style="background:#F0E6D2;"></span><span class="swatch" style="background:#E85D04;"></span></div></div>
+      <div class="card-body">
+        <h3>E-ticaret / <em>Retail</em></h3>
+        <p>Mega hero + bento kategori + ürün grid. Slate+acid veya kraft+burst.</p>
+      </div>
+      <div class="card-meta"><span>HR11+HR14+L8+L3+MO4+MO7</span><span class="palettes">PL29 · PL30</span></div>
+    </a>
+
+    <a class="card" href="07-spa/index.html">
+      <div class="card-head"><div class="card-num">/ 07</div><div class="card-cat">PAKET + HİZMET</div></div>
+      <div class="card-viz v7"><span>S</span><div class="card-viz-palette"><span class="swatch" style="background:#F5F1E8;"></span><span class="swatch" style="background:#A0826D;"></span><span class="swatch" style="background:#D4B896;"></span><span class="swatch" style="background:#F8F6F1;"></span><span class="swatch" style="background:#3A5A5A;"></span></div></div>
+      <div class="card-body">
+        <h3>Spa / <em>Wellness</em></h3>
+        <p>Yavaş scroll + meditatif tek kolon + paket listesi. Clay+mist veya pearl+seafoam.</p>
+      </div>
+      <div class="card-meta"><span>HR3+L6+MO2+MO3</span><span class="palettes">PL31 · PL32</span></div>
+    </a>
+
+    <a class="card" href="08-fotograf/index.html">
+      <div class="card-head"><div class="card-num">/ 08</div><div class="card-cat">PORTFOLIO</div></div>
+      <div class="card-viz v8"><span>F</span><div class="card-viz-palette"><span class="swatch" style="background:#FAFAFA;"></span><span class="swatch" style="background:#1C1C1E;"></span><span class="swatch" style="background:#FF5E3A;"></span><span class="swatch" style="background:#F5F1E8;"></span><span class="swatch" style="background:#8B6F47;"></span></div></div>
+      <div class="card-body">
+        <h3>Fotoğraf / <em>Medya</em></h3>
+        <p>Hero slideshow + masonry seçki + servis grid. Off-black (resim öncelik) veya cream+black.</p>
+      </div>
+      <div class="card-meta"><span>HR3+L8+L9+MO7+MO4</span><span class="palettes">PL33 · PL34</span></div>
+    </a>
+
+    <a class="card" href="09-gayrimenkul/index.html">
+      <div class="card-head"><div class="card-num">/ 09</div><div class="card-cat">HARITA + LİSTE</div></div>
+      <div class="card-viz v9"><span>G</span><div class="card-viz-palette"><span class="swatch" style="background:#F0EBE0;"></span><span class="swatch" style="background:#1B3A4B;"></span><span class="swatch" style="background:#B87333;"></span><span class="swatch" style="background:#EDE7DF;"></span><span class="swatch" style="background:#E89B7C;"></span></div></div>
+      <div class="card-body">
+        <h3>Gayrimenkul / <em>Real Estate</em></h3>
+        <p>Harita + filtre chip + emlak masonry grid. Sand+ocean veya mist+sunset.</p>
+      </div>
+      <div class="card-meta"><span>HR9+L8+L3+MO1+MO7</span><span class="palettes">PL35 · PL36</span></div>
+    </a>
+
+    <a class="card" href="10-otel/index.html">
+      <div class="card-head"><div class="card-num">/ 10</div><div class="card-cat">OTEL + REZERVASYON</div></div>
+      <div class="card-viz v10"><span>O</span><div class="card-viz-palette"><span class="swatch" style="background:#F2E3D1;"></span><span class="swatch" style="background:#B34F1B;"></span><span class="swatch" style="background:#8EC5D6;"></span><span class="swatch" style="background:#F0F2F5;"></span><span class="swatch" style="background:#1B3A4B;"></span></div></div>
+      <div class="card-body">
+        <h3>Otel / <em>Turizm</em></h3>
+        <p>Video hero + booking bar + oda grid + olanaklar. Terracotta+sky veya cool marble.</p>
+      </div>
+      <div class="card-meta"><span>HR3+L4+L8+MO2+MO7</span><span class="palettes">PL37 · PL38</span></div>
+    </a>
+
+  </div>
+
+  <!-- CRM SECTION (önceki 3 combo template olarak) -->
+  <div class="crm-section">
+    <div class="head-row" style="margin-bottom: 20px;">
+      <h2 style="font-family:'Bricolage Grotesque';font-weight:400;font-style:italic;font-size:48px;letter-spacing:-0.025em;">CRM <em style="color:var(--accent);">dashboard</em> templateleri</h2>
+      <div class="date">insaat-crm için üretilen 3 variant</div>
+    </div>
+
+    <div class="crm-grid">
+      <a class="card" href="../insaat-crm/a-safe/index.html">
+        <div class="card-head"><div class="card-num">/ CRM-A</div><div class="card-cat">SAFE · DATA-FIRST</div></div>
+        <div class="card-viz" style="background:#E8EAEC;color:#B87333;">A<div class="card-viz-palette"><span class="swatch" style="background:#E8EAEC;"></span><span class="swatch" style="background:#B87333;"></span><span class="swatch" style="background:#5F6C7B;"></span></div></div>
+        <div class="card-body"><h3>Steel + <em>Copper</em></h3><p>Linear-style dense table + command palette. İç kullanım için sakin.</p></div>
+        <div class="card-meta"><span>H9+N5+HR14+K2+P8</span><span class="palettes">PL19</span></div>
+      </a>
+      <a class="card" href="../insaat-crm/b-edge/index.html">
+        <div class="card-head"><div class="card-num">/ CRM-B</div><div class="card-cat">EDGE · SECTOR BOLD</div></div>
+        <div class="card-viz" style="background:#D4CFC4;color:#E85D04;">B<div class="card-viz-palette"><span class="swatch" style="background:#D4CFC4;"></span><span class="swatch" style="background:#E85D04;"></span><span class="swatch" style="background:#F5C400;"></span></div></div>
+        <div class="card-body"><h3>Concrete + <em>Hazard</em></h3><p>Interactive map + barometer + timeline + terminal log. Demo için WOW.</p></div>
+        <div class="card-meta"><span>H1+N4+HR9+K9+P5</span><span class="palettes">PL4</span></div>
+      </a>
+      <a class="card" href="../insaat-crm/c-hybrid/index.html">
+        <div class="card-head"><div class="card-num">/ CRM-C</div><div class="card-cat">HYBRID · ARCHIVE</div></div>
+        <div class="card-viz" style="background:#F2EADC;color:#A0522D;">C<div class="card-viz-palette"><span class="swatch" style="background:#F2EADC;"></span><span class="swatch" style="background:#2A1F14;"></span><span class="swatch" style="background:#A0522D;"></span></div></div>
+        <div class="card-body"><h3>Tobacco + <em>Clay</em></h3><p>Blueprint title block + spec sheet + columns chart. Entelektüel, rapor gibi.</p></div>
+        <div class="card-meta"><span>H9+N5+HR13+K12+P5</span><span class="palettes">PL11</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2026 SHOWCASE templates (referans designers'dan türetilmiş) -->
+  <div class="crm-section">
+    <div class="head-row" style="margin-bottom: 20px;">
+      <h2 style="font-family:'Bricolage Grotesque';font-weight:400;font-style:italic;font-size:48px;letter-spacing:-0.025em;">2026 <em style="color:var(--accent);">showcase</em> templateleri</h2>
+      <div class="date">fraxbit · marcelodesignx · wearebrand.io referansları</div>
+    </div>
+
+    <div class="crm-grid">
+      <a class="card" href="11-kinetic/index.html">
+        <div class="card-head"><div class="card-num">/ 11</div><div class="card-cat">KINETIC AGENCY</div></div>
+        <div class="card-viz" style="background:#F2EFE8;color:#8C6A3F;"><em style="font-family:'Fraunces';font-style:italic;font-weight:300;font-size:120px;">k</em><div class="card-viz-palette"><span class="swatch" style="background:#F2EFE8;"></span><span class="swatch" style="background:#0A0A08;"></span><span class="swatch" style="background:#8C6A3F;"></span><span class="swatch" style="background:#C54B2C;"></span></div></div>
+        <div class="card-body"><h3>fraxbit-style <em>kinetic</em></h3><p>Variable font opsz scroll-linked. SplitText italic reveal. GSAP pin. CSS 3D marble sculpture. "We <em>design</em> it. We <em>build</em> it."</p></div>
+        <div class="card-meta"><span>HR15+K13+MO11+MO1</span><span class="palettes">Bronze + Ink</span></div>
+      </a>
+      <a class="card" href="12-immersive-3d/index.html">
+        <div class="card-head"><div class="card-num">/ 12</div><div class="card-cat">3D IMMERSIVE</div></div>
+        <div class="card-viz" style="background:#05060A;color:#D4FF00;"><span style="font-family:'Unbounded';font-weight:200;font-size:100px;">◇</span><div class="card-viz-palette"><span class="swatch" style="background:#05060A;"></span><span class="swatch" style="background:#D4FF00;"></span><span class="swatch" style="background:#FF3DA8;"></span><span class="swatch" style="background:#4DE6FF;"></span></div></div>
+        <div class="card-body"><h3>marcelo-style <em>3D</em></h3><p>Three.js procedural crystal + scroll-camera path. Neon lime + magenta + cyan. Crypto/web3 tonu. Physical material.</p></div>
+        <div class="card-meta"><span>HR16+MO12+THREE.JS</span><span class="palettes">Neon dark</span></div>
+      </a>
+      <a class="card" href="13-maximalist/index.html">
+        <div class="card-head"><div class="card-num">/ 13</div><div class="card-cat">MAXIMALIST</div></div>
+        <div class="card-viz" style="background:linear-gradient(135deg,#3A1B5E,#B83D7E,#6EE2D9);color:#F5F2E8;"><em style="font-family:'Fraunces';font-style:italic;font-weight:300;font-size:100px;">m</em><div class="card-viz-palette"><span class="swatch" style="background:#05060A;"></span><span class="swatch" style="background:#B83D7E;"></span><span class="swatch" style="background:#6EE2D9;"></span><span class="swatch" style="background:#E89B4C;"></span></div></div>
+        <div class="card-body"><h3>wearebrand.io-style <em>atmosphere</em></h3><p>Space/atmospheric aurora gradient + overlapping kinetic headline + spinning porthole. Layered maximalism.</p></div>
+        <div class="card-meta"><span>HR17+L2+MO11</span><span class="palettes">Aurora</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 14 ULTRA (derin araştırma sonucu — gerçek teknikler) -->
+  <div class="crm-section" style="border-top: 3px solid var(--accent); padding-top: 40px;">
+    <div class="head-row" style="margin-bottom: 20px;">
+      <h2 style="font-family:'Bricolage Grotesque';font-weight:400;font-style:italic;font-size:48px;letter-spacing:-0.025em;"><em style="color:var(--accent);">ULTRA</em> · gerçek kaynak koddan</h2>
+      <div class="date">5 agent derin araştırma · fraxbit/mdx.so/wearebrand.io/Awwwards kaynak analizi</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: 2fr 1fr;gap:24px;">
+      <a class="card" href="14-ultra/index.html" style="grid-column: 1;">
+        <div class="card-head"><div class="card-num">/ 14 · ULTRA</div><div class="card-cat" style="background:var(--accent);color:var(--paper);">14+ TEKNİK</div></div>
+        <div class="card-viz" style="background:linear-gradient(135deg,#0D0E14 0%,#3A1B5E 50%,#E85A2C 100%);color:#F2EFE8;aspect-ratio:21/9;">
+          <em style="font-family:'Fraunces';font-style:italic;font-weight:200;font-size:180px;letter-spacing:-0.04em;">ultra</em>
+          <div class="card-viz-palette"><span class="swatch" style="background:#0D0E14;"></span><span class="swatch" style="background:#E85A2C;"></span><span class="swatch" style="background:#D4A574;"></span><span class="swatch" style="background:#F2EFE8;"></span></div>
+        </div>
+        <div class="card-body">
+          <h3>Parallel Studio · <em>gerçek kaynak kodu analizi</em></h3>
+          <p style="margin-top:10px;">
+            5 paralel agent fraxbit/mdx.so/wearebrand.io/Awwwards winners'ı derinlemesine araştırdı.
+            <strong>Uygulanan 14+ imza teknik:</strong>
+            Lenis+GSAP bridge, <strong>Blur-36px→0 text reveal</strong>, <strong>scroll-zoom porthole dive (scale 1→6.5)</strong>,
+            CSS mask <code>--mask-y</code> reveal, magnetic elastic.out(1, 0.3), scroll-scrubbed char opacity,
+            theme switch on scroll, dual custom cursor, <strong>SVG textPath bend marquee</strong>,
+            <strong>SVG grain overlay feTurbulence</strong>, Canvas2D cursor trail (pointer fine-only),
+            <strong>variable font opsz axis scroll-linked</strong>, <strong>ScrambleText hero sub (GSAP 3.13 free)</strong>,
+            clip-path reveal 4-yön.
+          </p>
+        </div>
+        <div class="card-meta">
+          <span>GSAP 3.13 + SplitText + ScrambleText + Lenis 1.3</span>
+          <span class="palettes">14+ teknik</span>
+        </div>
+      </a>
+
+      <div style="background:var(--bg);border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:14px;">
+        <div class="card-num" style="color:var(--accent);">§ RESEARCH</div>
+        <a href="2026-ADVANCED-TECHNIQUES.md" style="font-family:'Bricolage Grotesque';font-weight:500;font-size:18px;line-height:1.3;color:var(--ink);text-decoration:none;letter-spacing:-0.012em;">2026-ADVANCED-TECHNIQUES.md</a>
+        <p style="font-size:13px;color:var(--ink-soft);line-height:1.55;">
+          <strong>Şok bulgular:</strong>
+          fraxbit = WordPress+Elementor+premium plugin (Three.js yok).
+          marcelodesignx "3D" = Blender/C4D render'ı Vimeo'da video (Three.js yok).
+          GSAP 3.13 tüm plugin'leri <em>artık ücretsiz</em> (SplitText, MorphSVG, ScrambleText dahil).
+          wearebrand.io'nun 30KB custom <code>wearebrand-animations.js</code> dosyası indirildi — 10 imza teknik kod seviyesinde çıkarıldı.
+        </p>
+        <a href="REFERENCE-DESIGNERS.md" style="font-family:'Bricolage Grotesque';font-weight:500;font-size:18px;line-height:1.3;color:var(--ink);text-decoration:none;margin-top:10px;">REFERENCE-DESIGNERS.md</a>
+        <p style="font-size:13px;color:var(--ink-soft);line-height:1.55;">7 IG hesap + 2026 trend raporu.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Docs -->
+  <div style="margin-top: 60px; padding: 28px; background: var(--surface); border: 1px solid var(--line);">
+    <div class="card-num" style="margin-bottom: 8px;">§ RESEARCH</div>
+    <a href="SECTOR-RESEARCH.md" style="font-family:'Bricolage Grotesque';font-weight:500;font-size:24px;color:var(--ink);text-decoration:none;letter-spacing:-0.015em;display:block;">SECTOR-RESEARCH.md — 10 sektör derinlikli analiz</a>
+    <p style="margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.55;">23 palette detayları, 22 font combo, her sektör için psikoloji + klişe yasakları + hero/layout/motion eşleşmeleri.</p>
+    <a href="REFERENCE-DESIGNERS.md" style="margin-top:18px;font-family:'Bricolage Grotesque';font-weight:500;font-size:24px;color:var(--ink);text-decoration:none;letter-spacing:-0.015em;display:block;">REFERENCE-DESIGNERS.md — 7 hesap + 2026 trendleri</a>
+    <p style="margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.55;">fraxbit · marcelodesignx · wearebrand.io · Theo Rosel · ve diğerleri. 5 kazanan 2026 trendi: kinetic typography + bento 2.0 + maximalism + 3D Spline/R3F + scroll-triggered real-time.</p>
+  </div>
+
+</main>
+
+<footer>
+  DESIGN-CLAUDE TEMPLATES · 10 SEKTÖR · 2026-04-18<br>
+  EMRE ARAS · DESIGN-PATHWAYS.md · DESIGN-COUNCIL SYSTEM
+</footer>
+
+</body>
+</html>

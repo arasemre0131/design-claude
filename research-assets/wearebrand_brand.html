@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!-- wearebrand. landing page -->
+<html lang="fr-FR">
+<head>
+<meta charset="UTF-8"/>
+<title>WEAREBRAND | Websites, Branding &amp; Digital Experiences</title>
+<meta content="We build premium websites, brands and digital experiences that help ambitious businesses look world-class and sell better." name="description"/>
+<meta content="WEAREBRAND | Websites, Branding &amp; Digital Experiences" property="og:title"/>
+<meta content="We build premium websites, brands and digital experiences that help ambitious businesses look world-class and sell better." property="og:description"/>
+<meta content="WEAREBRAND | Websites, Branding &amp; Digital Experiences" property="twitter:title"/>
+<meta content="We build premium websites, brands and digital experiences that help ambitious businesses look world-class and sell better." property="twitter:description"/>
+<meta property="og:type" content="website"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+<!-- Favicon -->
+<link rel="icon" href="https://wearebrand.io/wp-content/uploads/2024/11/LOGO-TRANSPARENT-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://wearebrand.io/wp-content/uploads/2024/11/LOGO-TRANSPARENT-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://wearebrand.io/wp-content/uploads/2024/11/LOGO-TRANSPARENT-300x300.png" />
+<meta name="msapplication-TileImage" content="https://wearebrand.io/wp-content/uploads/2024/11/LOGO-TRANSPARENT-300x300.png" />
+
+<!-- Preconnect: fonts & CDNs -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Styles (no wp_head — plugin-free) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&#038;family=League+Spartan:wght@400;500;600;700;800&#038;display=swap">
+<link rel="stylesheet" href="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/css/wearebrand.min.css?ver=1.0.0">
+<link rel="stylesheet" href="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/css/wearebrand-custom.css?ver=1.0.0">
+<link rel="stylesheet" href="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/css/lenis.css?ver=1.2.3">
+
+<!-- Force scroll to top on refresh -->
+<script>if('scrollRestoration' in history) history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+<!-- Touch/JS detection -->
+<script type="text/javascript">!function(o,c){var n=c.documentElement,t=" wab-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+<style>
+*,*::before,*::after{font-family:'League Spartan',sans-serif!important}
+@keyframes wabWOut { to { opacity:0; transform:scale(0.8); } }
+@keyframes wabFullIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+/* Page scroll limit — cap at city carousel section */
+.transition-container{max-height:calc(100vh * 3.9);overflow:clip}
+.intro_scroll-area{height:auto!important}
+.ghoste-section,.landscape-cover{display:none!important}
+.cta{position:fixed!important;bottom:0;left:0;right:0;z-index:100}
+@media(max-width:991px){
+  .transition-container{max-height:calc(100vh * 4.2)}
+  /* Mobile: pull content up closer to hero */
+  .about-w{transform:translateY(-60vh)!important}
+  /* Mobile content reorder: form → info → about text → carousel */
+  .about-s > .unit-96{display:none}
+  .about-s > .container{order:-1}
+  .about-s_lead-text{order:5;padding-top:2rem}
+  .about-s > .unit-156{order:9;height:2rem!important}
+  .about-s > div[style*="padding"]{order:10;padding:1rem 0!important}
+  /* Form (5D+5E) before contact info (5A+5B+5C) */
+  .wab-contact-wrap > div:last-child{order:-1}
+  /* Inside contact info: 5A heading → 5B desc → 5C details */
+  .wab-contact-info{display:flex;flex-direction:column}
+  .wab-contact-info > h2{order:1}
+  .wab-contact-info > .wab-contact-desc{order:2}
+  .wab-contact-info > .wab-contact-details{order:3}
+}
+</style>
+</head><body class="body"><div data-barba="wrapper" class="transition-wrapper"><div data-barba-namespace="home" data-barba="container" class="transition-container clip"><div data-wab-preloader="" class="preloader bg-grad"><div class="preloader_c"><div class="container"><div class="grid _21-columns"><div data-wab-flicker="true" data-split-text="lines" data-reveal-text="preloader" id="w-node-eddf7e61-453a-f992-3d91-d4cca023add1-9b251e8a" class="preloader_info"><div class="l1 text-light a-center" style="position:relative;min-height:80px"><img src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/logoWAB.png" alt="wearebrand." style="height:80px;width:auto;animation:wabWOut 0.8s ease 3.5s forwards"><img src="https://wearebrand.io/wp-content/uploads/2024/11/wearebrandlogo.png" alt="wearebrand." style="height:30px;width:auto;filter:brightness(0) invert(1);opacity:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:wabFullIn 1s ease 4.5s forwards"></div></div></div></div></div><div data-wab-preloader-bg="" class="preloader_bg"><div class="preloader_bg_grad"></div><div class="style-css embed"><style>
+.preloader_bg{
+  -webkit-mask-image: url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/globe-mask.webp');
+  mask-image: url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/globe-mask.webp');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  /* Mask position and size variables */
+  --mask-x: 50%;
+  --mask-y: 0%;
+  --mask-size: 100% 200%;
+
+  -webkit-mask-position: var(--mask-x) var(--mask-y);
+  mask-position: var(--mask-x) var(--mask-y);
+
+  -webkit-mask-size: var(--mask-size);
+  mask-size: var(--mask-size);
+}
+</style></div></div></div><div class="theme_on-color"><div data-wab-theme="" data-wab-flicker="true" class="header"><div class="container"><div class="unit-24"></div><div class="header_c"><div class="header_local f-mobile"><div class="nav-item-list"></div></div><div id="w-node-_08b01562-3862-0954-5251-f0b5079d1bf3-079d1bef" class="header_nav f-desktop" style="display:none"><div class="nav-item-list"><a data-wab-hover="nav-item" href="#about" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">About</div><div data-wab-hover="text" class="t7 text-dark is-2">About</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a><a data-wab-hover="nav-item" href="#flight" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">Services</div><div data-wab-hover="text" class="t7 text-dark is-2">Services</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a><a data-wab-hover="nav-item" href="#benefits" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">Process</div><div data-wab-hover="text" class="t7 text-dark is-2">Process</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a><a data-wab-hover="nav-item" href="#contact" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">Contact</div><div data-wab-hover="text" class="t7 text-dark is-2">Contact</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a></div></div><div class="header_logo"><a data-wab-menu-close="mobile" data-div-reveal="true" data-wab-flicker="true" href="#hero" class="link-logo wab-inline"><div class="logo embed"><img src="https://wearebrand.io/wp-content/uploads/2024/11/wearebrandlogo.png" alt="wearebrand." class="wab-header-logo"></div></a></div><div id="w-node-_08b01562-3862-0954-5251-f0b5079d1c00-079d1bef" class="header_cta f-desktop"><div class="nav-item-list"><div class="header_contact-cms wab-list"><div role="list" class="header_contact-cms_list nav-item-list wab-items"><div role="listitem" class="header_contact-cms_list_item wab-item"><a data-wab-hover="nav-item" href="tel:+33678284238" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">+33 6 78 28 42 38</div><div data-wab-hover="text" class="t7 text-dark is-2">+33 6 78 28 42 38</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a></div><div role="listitem" class="header_contact-cms_list_item wab-item"><a data-wab-hover="nav-item" href="mailto:hello@wearebrand.io" class="nav-item wab-inline"><div class="nav-item_label"><div data-wab-hover="text" class="t7 text-dark">hello@wearebrand.io</div><div data-wab-hover="text" class="t7 text-dark is-2">hello@wearebrand.io</div></div><div class="nav-item_bg"><div data-wab-hover="bg" class="nav-item_bg_hover"></div></div></a></div></div></div></div></div><div class="header_menu f-mobile"><div class="nav-item-list"><a data-wab-menu-btn="mobile" href="#" class="btn-menu wab-inline"><div class="btn-menu_icon"><div data-wab-menu-ico-1="mobile" class="ico-20 embed"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2.66797H14V4.0013H2V2.66797Z" fill="currentColor"/>
+</svg></div><div data-wab-menu-ico-2="mobile" class="ico-20 is-2 embed"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 7.33496H14V8.66829H2V7.33496Z" fill="currentColor"/>
+</svg></div><div data-wab-menu-ico-3="mobile" class="ico-20 is-2 embed"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 12.001H14V13.3343H2V12.001Z" fill="currentColor"/>
+</svg></div></div><div class="btn-menu_bg"></div></a></div></div></div><div class="unit-24"></div></div></div></div><div data-wab-bg="color" class="intro_scroll-area"><section id="hero" class="section clip"><div id="main-content"></div><div class="container"><div class="hero_scroll-area"><div class="hero-w"><div class="hero-s"><div class="unit-156"></div><div class="grid fill"><div data-wab-hero-left="" id="w-node-_56a9c997-003c-f73c-85f6-4b080b85aa36-9b251e8a" class="hero-s_title-l"><h1 class="h2 text-light" style="opacity:0 !important">Look Premium</h1></div><div data-wab-hero-right="" id="w-node-b5bc0e69-6d9b-6b76-42c5-655f89025957-9b251e8a" class="hero-s_title-r"><h2 class="h2 a-right text-light" style="opacity:0 !important">Sell Better</h2></div></div><div class="unit-216"></div><div class="hero-s_bot b-desktop"><div class="grid"><div data-wab-hero-left="" id="w-node-fca5a1c1-2abc-b0f2-d9a4-068c5d568a3f-9b251e8a" class="hero-s_bot_desc f-desktop"><h3 id="wab-hero-tagline" class="h3 text-light" style="margin-bottom:1rem;visibility:hidden">Look Premium.<br/>Attract More.<br/>Sell Better.</h3><div class="grid _6-columns"><div id="w-node-_48cf72cc-74cf-d039-2207-aa612fc8b12d-9b251e8a" class="hero-s_bot_desc_title" style="display:none"></div></div><div data-wab-flicker="true" data-div-reveal="true" class="line-divider-w"><div class="unit-24"></div><div class="line-divider on-color"></div><div class="unit-24"></div></div><div class="grid _6-columns"><div id="w-node-_5c05abfb-41cf-d7d3-44c6-33625de3235a-9b251e8a" class="hero-s_bot_desc_w"><p data-wab-flicker="true" data-line-reveal="true" class="p7 text-light" style="font-style:italic;opacity:.8">Not just beautiful, built to convert.</p></div></div></div><div data-wab-hero-right="" data-div-reveal="true" data-wab-flicker="true" id="w-node-_59b46cf7-c31e-7125-08a4-0e9e21a4ddb4-9b251e8a" class="hero-s_bot_scroll" style="text-align:right;margin-left:auto"><div class="line-h on-color"></div><div class="unit-24"></div><div class="hero-s_bot_scroll_cont"><div class="hero-s_bot_scroll_cont_item"><div class="ico_scroll_c"><div class="wab-scroll-icon">
+<svg width="28" height="44" viewBox="0 0 28 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="26" height="42" rx="13" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+<circle class="wab-scroll-dot" cx="14" cy="12" r="3" fill="currentColor"/>
+</svg>
+</div></div><a href="#about" data-wab-popup-close="" data-wab-hover="link" data-wab-popup-open="" class="link wab-inline"><div class="link_label"><div data-wab-hover="text" class="l1 text-light">Scroll down</div><div data-wab-hover="text" class="l1 text-light is-2">Scroll down</div></div></a></div><div class="hero-s_bot_scroll_cont_item"><div class="l1 text-light" style="display:none">To start the journey</div></div></div></div></div><div class="unit-96 b-desktop"></div><div class="unit-156 b-mobile"></div></div></div><div class="hero-w_bg"><div class="hero_overlay"></div><div class="hero-w_bg_front"><div class="img-w"><img src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/spaceship-optimized.webp" loading="eager" alt="View through a spacecraft porthole" class="img"/></div></div><div class="hero-w_bg_window"><div class="hero-w_bg_window_w"><div class="hero-w_bg_window_c"><div data-wab-preloader-knob-c="" class="hero-w_bg_window_knob_"><div data-wab-preloader-window-c="" class="hero-w_bg_window_bg_"><div class="hero-w_bg_window_bg"></div></div><!-- hero window gradient moved to wearebrand-custom.css --></div></div></div></div><div id="about" class="anchor_about"></div></div></div></section><section class="section" style="height:auto;min-height:auto"><div class="container"><div class="about-w"><div id="learn-more" class="about-s"><div class="unit-96"></div><div data-div-reveal="true" id="w-node-c6cefa80-f7b3-f3f7-eec7-08a3529fc895-9b251e8a" class="about-s_lead-text"><div class="about-s_lead-text_c"><h2 data-highlight-text="" class="p2 text-light">wearebrand. is a premium digital agency that builds world-class websites, brands and digital experiences for ambitious businesses across the globe. From strategy to launch, we help you look premium and sell better.</h2></div></div><div class="unit-96"></div>
+<!-- Contact form styles moved to wearebrand-custom.css -->
+<div class="container">
+  <div class="wab-contact-wrap">
+    <!-- LEFT: Contact Info -->
+    <div class="wab-contact-info">
+      <div class="l1-accent" data-div-reveal="true" style="display:none">Get in touch</div>
+      <h2 data-line-reveal="true">Let&rsquo;s make your brand unforgettable.</h2>
+      <p class="wab-contact-desc" data-div-reveal="true">If you&rsquo;re ready to lead your market, let&rsquo;s talk. Fill in the form or reach out directly &mdash; we respond within 24 hours.</p>
+      <div class="wab-contact-details" data-div-reveal="true">
+        <div class="wab-contact-detail">
+          <div class="wab-contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+          <div><div class="detail-label">Email</div><div class="detail-value"><a href="mailto:hello@wearebrand.io">hello@wearebrand.io</a></div></div>
+        </div>
+        <div class="wab-contact-detail">
+          <div class="wab-contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+          <div><div class="detail-label">Europe, USA &amp; Global Office</div><div class="detail-value"><a href="tel:+33678284238">+33 6 78 28 42 38</a></div><div class="detail-value">3 rue du Golf, M&eacute;rignac, France</div></div>
+        </div>
+        <div class="wab-contact-detail">
+          <div class="wab-contact-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+          <div><div class="detail-label">Asia Office</div><div class="detail-value"><a href="tel:+6285337644966">+62 853 3764 4966</a></div><div class="detail-value">15 Beach Road, Singapore</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: Form -->
+    <div>
+      <div class="wab-connected-pill" data-div-reveal="true">
+        <div class="wab-connected-dot2"></div>
+        <span>Connected</span>
+      </div>
+      <div class="wab-form-card2" data-div-reveal="true">
+        <div id="contactFormContent">
+          <div class="form-title">From Brand to Icon.</div>
+          <div class="form-sub">Tell us about your project and we&rsquo;ll get back within 24 hours.</div>
+          <a href="https://wa.me/33678284238" target="_blank" rel="noopener" class="wab-wa-cta2">
+            <div class="wab-wa-icon2"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+            <div><div class="wab-wa-label2">Start a WhatsApp Conversation</div><div class="wab-wa-desc2">Get a faster response &mdash; we&rsquo;re usually online</div></div>
+            <span class="wab-wa-arrow2">&rarr;</span>
+          </a>
+          <div class="wab-form-divider2"><span>or fill the form</span></div>
+          <div class="wab-error-banner2" id="contactErrorBanner">Please fix the errors below</div>
+          <form class="wab-form2" id="wabContactForm2" novalidate>
+            <input type="hidden" name="action" value="wab_contact_form">
+            <input type="hidden" name="wab_nonce" value="e5e6aa8087">
+            <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="wab_hp" tabindex="-1" autocomplete="off"></div>
+            <div class="wab-form-grid2">
+              <div class="wab-field2"><label class="wab-label2" for="wab-name">Name <span class="req">*</span></label><input type="text" name="name" id="wab-name" class="wab-input2" placeholder="Your name" required><span class="wab-field-error2">Required</span></div>
+              <div class="wab-field2"><label class="wab-label2" for="wab-email">Email <span class="req">*</span></label><input type="email" name="email" id="wab-email" class="wab-input2" placeholder="Your email" required><span class="wab-field-error2">Invalid email</span></div>
+            </div>
+            <div class="wab-form-grid2">
+              <div class="wab-field2"><label class="wab-label2" for="wab-country">Country <span class="req">*</span></label><select name="country" id="wab-country" class="wab-select2" required><option value="" disabled selected>Select</option><option>Afghanistan</option><option>Albania</option><option>Algeria</option><option>Andorra</option><option>Angola</option><option>Antigua and Barbuda</option><option>Argentina</option><option>Armenia</option><option>Australia</option><option>Austria</option><option>Azerbaijan</option><option>Bahamas</option><option>Bahrain</option><option>Bangladesh</option><option>Barbados</option><option>Belarus</option><option>Belgium</option><option>Belize</option><option>Benin</option><option>Bhutan</option><option>Bolivia</option><option>Bosnia and Herzegovina</option><option>Botswana</option><option>Brazil</option><option>Brunei</option><option>Bulgaria</option><option>Burkina Faso</option><option>Burundi</option><option>Cabo Verde</option><option>Cambodia</option><option>Cameroon</option><option>Canada</option><option>Central African Republic</option><option>Chad</option><option>Chile</option><option>China</option><option>Colombia</option><option>Comoros</option><option>Congo</option><option>Costa Rica</option><option>Croatia</option><option>Cuba</option><option>Cyprus</option><option>Czech Republic</option><option>Denmark</option><option>Djibouti</option><option>Dominica</option><option>Dominican Republic</option><option>Ecuador</option><option>Egypt</option><option>El Salvador</option><option>Equatorial Guinea</option><option>Eritrea</option><option>Estonia</option><option>Eswatini</option><option>Ethiopia</option><option>Fiji</option><option>Finland</option><option>France</option><option>Gabon</option><option>Gambia</option><option>Georgia</option><option>Germany</option><option>Ghana</option><option>Greece</option><option>Grenada</option><option>Guatemala</option><option>Guinea</option><option>Guinea-Bissau</option><option>Guyana</option><option>Haiti</option><option>Honduras</option><option>Hungary</option><option>Iceland</option><option>India</option><option>Indonesia</option><option>Iran</option><option>Iraq</option><option>Ireland</option><option>Israel</option><option>Italy</option><option>Ivory Coast</option><option>Jamaica</option><option>Japan</option><option>Jordan</option><option>Kazakhstan</option><option>Kenya</option><option>Kiribati</option><option>Kuwait</option><option>Kyrgyzstan</option><option>Laos</option><option>Latvia</option><option>Lebanon</option><option>Lesotho</option><option>Liberia</option><option>Libya</option><option>Liechtenstein</option><option>Lithuania</option><option>Luxembourg</option><option>Madagascar</option><option>Malawi</option><option>Malaysia</option><option>Maldives</option><option>Mali</option><option>Malta</option><option>Marshall Islands</option><option>Mauritania</option><option>Mauritius</option><option>Mexico</option><option>Micronesia</option><option>Moldova</option><option>Monaco</option><option>Mongolia</option><option>Montenegro</option><option>Morocco</option><option>Mozambique</option><option>Myanmar</option><option>Namibia</option><option>Nauru</option><option>Nepal</option><option>Netherlands</option><option>New Zealand</option><option>Nicaragua</option><option>Niger</option><option>Nigeria</option><option>North Korea</option><option>North Macedonia</option><option>Norway</option><option>Oman</option><option>Pakistan</option><option>Palau</option><option>Palestine</option><option>Panama</option><option>Papua New Guinea</option><option>Paraguay</option><option>Peru</option><option>Philippines</option><option>Poland</option><option>Portugal</option><option>Qatar</option><option>Romania</option><option>Russia</option><option>Rwanda</option><option>Saint Kitts and Nevis</option><option>Saint Lucia</option><option>Saint Vincent and the Grenadines</option><option>Samoa</option><option>San Marino</option><option>Sao Tome and Principe</option><option>Saudi Arabia</option><option>Senegal</option><option>Serbia</option><option>Seychelles</option><option>Sierra Leone</option><option>Singapore</option><option>Slovakia</option><option>Slovenia</option><option>Solomon Islands</option><option>Somalia</option><option>South Africa</option><option>South Korea</option><option>South Sudan</option><option>Spain</option><option>Sri Lanka</option><option>Sudan</option><option>Suriname</option><option>Sweden</option><option>Switzerland</option><option>Syria</option><option>Taiwan</option><option>Tajikistan</option><option>Tanzania</option><option>Thailand</option><option>Timor-Leste</option><option>Togo</option><option>Tonga</option><option>Trinidad and Tobago</option><option>Tunisia</option><option>Turkey</option><option>Turkmenistan</option><option>Tuvalu</option><option>Uganda</option><option>Ukraine</option><option>United Arab Emirates</option><option>United Kingdom</option><option>United States</option><option>Uruguay</option><option>Uzbekistan</option><option>Vanuatu</option><option>Vatican City</option><option>Venezuela</option><option>Vietnam</option><option>Yemen</option><option>Zambia</option><option>Zimbabwe</option></select><span class="wab-field-error2">Required</span></div>
+              <div class="wab-field2"><label class="wab-label2" for="wab-phone">Phone <span class="req">*</span></label><input type="tel" name="phone" id="wab-phone" class="wab-input2" placeholder="+1 234 567 8900" required><span class="wab-field-error2">Required</span></div>
+            </div>
+            <div class="wab-field2"><label class="wab-label2" id="wab-services-label">What do you need help with? <span class="req">*</span></label>
+              <div class="wab-chips2" id="serviceChips2" role="group" aria-labelledby="wab-services-label">
+                <span class="wab-chip2" data-service="Website Creation">Website Creation</span>
+                <span class="wab-chip2" data-service="Website Redesign">Website Redesign</span>
+                <span class="wab-chip2" data-service="Ecommerce">Ecommerce</span>
+                <span class="wab-chip2" data-service="Growth / SEO">Growth / SEO</span>
+                <span class="wab-chip2" data-service="Other">Other</span>
+              </div>
+              <span class="wab-field-error2">Select at least one</span>
+            </div>
+            <button type="submit" class="wab-submit-btn2" id="contactSubmitBtn">Request</button>
+          </form>
+        </div>
+        <div class="wab-success2" id="contactSuccess">
+          <div class="wab-success-icon2"><svg viewBox="0 0 52 52"><path d="M14 27l7.5 7.5L38 18"/></svg></div>
+          <div class="wab-success-title2">Request Sent!</div>
+          <p class="wab-success-msg2">Thanks for reaching out! We&rsquo;ll get back within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Operating worldwide (original city carousel from section 3) -->
+<div class="unit-156"></div>
+<style>
+/* === City Carousel === */
+.wc-grid{display:flex;flex-flow:row;align-items:center;justify-content:center;gap:24px;width:100%}
+.wc-title{flex:none}
+.wc-diagram{flex:none}
+.wc-content{flex:none;color:#fff;min-width:200px}
+/* Title */
+.wc-title-w{display:flex;justify-content:center;align-items:center}
+/* Diagram: icon + lines */
+.wc-diagram-c{display:flex;flex-flow:row;justify-content:center;align-items:center;gap:12px}
+.wc-diagram-line-r{background:linear-gradient(270deg,rgba(255,255,255,.25),transparent);width:40px;height:1px}
+.wc-diagram-line-l{background:linear-gradient(90deg,rgba(255,255,255,.25),transparent);width:40px;height:1px}
+/* City list + mask */
+.wc-mask{height:8em;cursor:grab;display:flex;flex-flow:column;justify-content:center;-webkit-mask-image:url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/city-mask.webp');-webkit-mask-size:cover;-webkit-mask-repeat:no-repeat;mask-image:url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/city-mask.webp');mask-size:cover;mask-repeat:no-repeat}
+.wc-cms{height:36px;display:flex;flex-flow:column;justify-content:flex-start}
+.wc-list{display:flex;flex-flow:column}
+.wc-item{padding:6px 0;color:rgba(255,255,255,.15);transition:all .2s cubic-bezier(.77,0,.175,1)}
+.wc-item.current{color:#fff}
+/* Tablet + Mobile */
+@media(max-width:991px){
+  .wc-grid{flex-direction:column;gap:24px}
+  .wc-title{width:100%}
+  .wc-title-w{justify-content:center;align-items:center}
+  .wc-title-w h2{text-align:center}
+  .wc-diagram{width:60px;height:60px}
+  .wc-diagram-c{transform:rotate(90deg);height:100%}
+  .wc-diagram-line-r,.wc-diagram-line-l{flex:1;width:auto}
+  .wc-content{width:100%;text-align:center;overflow:hidden}
+  .wc-mask{height:auto;-webkit-mask-image:url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/city-mask-mobile.webp');-webkit-mask-size:cover;mask-image:url('https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/city-mask-mobile.webp');mask-size:cover;justify-content:center}
+  .wc-cms{height:auto}
+  .wc-list{padding-left:22.582em;flex-flow:row;justify-content:flex-start;align-items:center}
+  .wc-item{text-align:center;flex:none;width:41.938em;padding:1.613em 0}
+}
+</style>
+<div style="padding:4rem 0 6rem">
+  <div class="wc-grid">
+    <div class="wc-title"><div class="wc-title-w"><h2 class="p5 text-light">Operating worldwide</h2></div></div>
+    <div class="wc-diagram"><div class="wc-diagram-c"><div class="wc-diagram-line-r"></div><div class="ico-24 on-color embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM4 12c0-.55.05-1.09.14-1.61L7 13.26V14a2 2 0 002 2v1.93A8.01 8.01 0 014 12zm13.93 5.64A1.99 1.99 0 0016 16h-1v-3a1 1 0 00-1-1H9v-2h2a1 1 0 001-1V7h2a2 2 0 002-2v-.41A8.002 8.002 0 0120 12a7.98 7.98 0 01-2.07 5.64z" fill="currentColor"/></svg></div><div class="wc-diagram-line-l"></div></div></div>
+    <div class="wc-content"><div class="wc-mask"><div class="wc-cms" id="wc-looping"><div class="wc-list" id="wc-list"><div class="wc-item"><h3 class="p5">Dubai</h3></div><div class="wc-item"><h3 class="p5">Miami</h3></div><div class="wc-item"><h3 class="p5">New York</h3></div><div class="wc-item"><h3 class="p5">Los Angeles</h3></div><div class="wc-item"><h3 class="p5">Mexico City</h3></div><div class="wc-item"><h3 class="p5">Paris</h3></div><div class="wc-item"><h3 class="p5">Sydney</h3></div><div class="wc-item"><h3 class="p5">Singapore</h3></div><div class="wc-item"><h3 class="p5">Toronto</h3></div><div class="wc-item"><h3 class="p5">Rio</h3></div></div></div></div></div>
+  </div>
+</div>
+<!-- Legal footer links -->
+<div class="wab-legal-footer">
+  <a href="/privacy-policy">Privacy Policy</a>
+  <span class="wab-legal-sep">|</span>
+  <a href="/legal-notice">Legal Notice</a>
+  <span class="wab-legal-sep">|</span>
+  <a href="/terms-and-conditions-of-sale-wearebrand">TCS</a>
+</div>
+<style>
+.wab-legal-footer{display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:0 0 20px;font-family:'League Spartan',sans-serif}
+@media(min-width:992px){.wab-legal-footer{margin-top:36vh;margin-right:-20px}}
+.wab-legal-footer a{color:rgba(255,255,255,.65);font-size:12px;text-decoration:none;letter-spacing:.5px;transition:color .3s ease}
+.wab-legal-footer a:hover{color:rgba(255,255,255,.95)}
+.wab-legal-sep{color:rgba(255,255,255,.35);font-size:11px}
+@media(max-width:991px){.wab-legal-footer{justify-content:center;margin-top:56vh;margin-right:0;order:99}}
+</style>
+</div></div></div>
+</section><div class="ghoste-section b-desktop"></div><div class="sky-bg"><div class="sky-bg_hero"><div class="img-w"><img alt="view from the airplane window" loading="eager" src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/spacebg-optimized.webp" class="img"/></div><div class="sky-bg_hero_clouds"><div id="wab-star-particles" class="wab-particles-canvas"></div></div><div class="sky-bg_hero_grad-over"></div></div><div class="sky-bg_about"><div class="img-w"><img alt="" role="presentation" loading="eager" src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/sky-about.avif" class="img fill _75-percent"/></div><div class="sky-bg_about_grad-over"></div></div></div></div><div data-wab-flicker="true" class="cta"><div class="unit-36"></div><div class="container"><div class="grid"><div data-wab-popup-btn-c="cta" id="w-node-_0accb775-3996-ad51-334d-ea218344230e-8344230a" class="cta_c"><div class="cta_list"><div class="btn-cta-close_c"><div data-magnetic-strength="" class="btn-cta-close_magnet"><a data-wab-popup-close="cta" href="#" class="btn-cta-close wab-inline"><div class="btn-cta_btn-icon"><div class="btn-cta_btn-icon_icon"><div class="ico-20 embed"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.99948 7.05767L11.2993 3.75781L12.2421 4.70062L8.94228 8.00047L12.2421 11.3003L11.2993 12.2431L7.99948 8.94327L4.69965 12.2431L3.75684 11.3003L7.05668 8.00047L3.75684 4.70062L4.69965 3.75781L7.99948 7.05767Z" fill="currentColor"/>
+</svg></div></div></div></a></div></div><div class="btn-cta_c"><div data-magnetic-strength="" class="btn-cta_magnet"><a data-wab-menu-close="mobile" data-wab-hover="btn-cta" href="https://wa.me/33678284238" target="_blank" rel="noopener" class="btn-cta wab-inline"><div class="btn-cta_btn"><div class="btn-cta_btn_label"><div data-wab-hover="text" class="t7">Get Started</div><div data-wab-hover="text" class="t7 is-2">Get Started</div></div></div><div class="btn-cta_btn-icon"><div class="btn-cta_btn-icon_icon"><div data-wab-hover="icon" class="ico-20 embed"><svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.833 14.167L14.167 5.833M14.167 5.833H7.5M14.167 5.833v6.667" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div><div data-wab-hover="icon" class="ico-20 is-2 embed"><svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.833 14.167L14.167 5.833M14.167 5.833H7.5M14.167 5.833v6.667" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div></div></a></div></div></div><!-- button shadow styles moved to wearebrand-custom.css --></div></div></div><div class="unit-36"></div>
+</div><div data-wab-popup="cta" class="pop-up_cta"><div class="pop-up_cta_form-block wab-form"><form id="wab-form-contact" name="wab-form-contact" data-name="Book the Flight" method="post" action="#" class="pop-up_cta_form-block_form"><div data-wab-popup-main="cta" class="pop-up_cta_c"><div class="pop-up_cta_modal"><div class="grid _21-columns"><div id="w-node-f8de1707-244f-4221-c727-4fcce660691f-9b251e8a" class="pop-up_cta_modal_title"><h5 class="h4">Contact</h5><div class="unit-36 b-mobile"></div></div><div id="w-node-f8de1707-244f-4221-c727-4fcce6606922-9b251e8a" class="input"><div class="input_label"><label for="Name" class="l1">Name</label></div><input class="input_field p6 wab-input" maxlength="256" name="Name" data-name="Name" placeholder="Type..." type="text" id="Name" required=""/></div><div id="w-node-f8de1707-244f-4221-c727-4fcce6606927-9b251e8a" class="input"><div class="input_label"><label for="Email" class="l1">Email</label></div><input class="input_field p6 wab-input" maxlength="256" name="Email" data-name="Email" placeholder="Email..." type="email" id="Email" required=""/></div><div id="w-node-f8de1707-244f-4221-c727-4fcce660692c-9b251e8a" class="input"><div class="input_label"><label for="Phone" class="l1">Phone</label></div><input class="input_field p6 wab-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Phone..." type="tel" id="Phone" required=""/></div><div id="w-node-f8de1707-244f-4221-c727-4fcce6606931-9b251e8a" class="input"><div class="input_label"><label for="Arriving" class="l1">Message</label></div><input class="input_field p6 wab-input" maxlength="256" name="Arriving" data-name="Arriving" placeholder="Tell us about your project..." type="text" id="Arriving"/></div><div id="w-node-f8de1707-244f-4221-c727-4fcce6606936-9b251e8a" class="pop-up_cta_modal_btn"><a data-magnetic-strength="" data-form-btn="" href="#" class="btn-submit wab-inline"><div class="btn-submit_btn-icon"><div class="btn-cta_btn-icon_icon"><div class="ico-20 on-color embed"><svg width="100%" height="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.0354 9.33333L6.66699 14.6667L5.33366 14.6667L7.01786 9.33333L3.44479 9.33333L2.33366 11.3333L1.33366 11.3333L2.00033 8.33333L1.33366 5.33333L2.33366 5.33333L3.44479 7.33333L7.01786 7.33333L5.33366 2L6.66699 2L10.0354 7.33333L13.667 7.33333C14.2193 7.33333 14.667 7.78107 14.667 8.33333C14.667 8.8856 14.2193 9.33333 13.667 9.33333L10.0354 9.33333Z" fill="currentColor"/>
+</svg></div></div></div><div class="d-none">Submit</div></a></div></div><div class="unit-36"></div><div class="grid _21-columns"><div id="w-node-_273aa250-0363-f3df-4bdd-6f70bf523f28-9b251e8a" class="pop-up_cta_modal_desc"><label class="checkbox radio-item"><div class="checkbox-input checkbox-custom radio"></div><input type="checkbox" name="checkbox" id="checkbox" data-name="Checkbox" required="" style="opacity:0;position:absolute;z-index:-1"/><div class="unit-12 b-mobile"></div><span class="l1 text-gray form-label" for="checkbox">By submitting, you agree to our <a href="#" class="link-basic text-gray">Privacy Policy</a></span></label></div></div></div><div class="unit-36"></div></div></form><div data-wab-popup-success="cta" class="pop-up_cta_form-block_success form-success"><div class="pop-up_cta_form-block_success_c"><div class="unit-96"></div><div class="grid _21-columns fill"><div id="w-node-_29acd6b3-f78f-b6d7-a951-8ffdc9a12e1a-9b251e8a" class="form-success_card"><div class="card_bg-white"></div><div class="card_c"><div class="form-success_card_top"><div class="form-success_card_top_name"><div class="l1"><span class="text-gray">project: </span><strong>wearebrand.</strong></div></div><div class="unit-4"></div><div class="form-success_card_bar-code embed"><svg width="100%" height="100%" viewBox="0 0 128 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 1.14441e-05L1.4382 1.13812e-05L1.4382 24H0L0 1.14441e-05Z" fill="currentColor"/><path d="M2.1573 5.7535e-06L2.8764 5.72206e-06L2.8764 24H2.1573L2.1573 5.7535e-06Z" fill="currentColor"/><path d="M4.31461 5.05662e-06L5.03371 5.02519e-06L5.03371 22H4.31461L4.31461 5.05662e-06Z" fill="currentColor"/><path d="M7.91011 4.89946e-06L8.62921 4.86803e-06L8.62921 22H7.91011L7.91011 4.89946e-06Z" fill="currentColor"/><path d="M11.5056 4.7423e-06L12.9438 4.67943e-06L12.9438 22H11.5056L11.5056 4.7423e-06Z" fill="currentColor"/><path d="M14.382 4.61656e-06L15.1011 4.58513e-06L15.1011 22H14.382L14.382 4.61656e-06Z" fill="currentColor"/><path d="M15.8202 5.03054e-06L16.5393 4.9991e-06L16.5393 22L15.8202 22L15.8202 5.03054e-06Z" fill="currentColor"/><path d="M20.1348 4.84194e-06L20.8539 4.81051e-06L20.8539 22H20.1348L20.1348 4.84194e-06Z" fill="currentColor"/><path d="M23.7303 4.68477e-06L24.4494 4.65334e-06L24.4494 22H23.7303L23.7303 4.68477e-06Z" fill="currentColor"/><path d="M29.4831 4.43331e-06L30.2022 4.40188e-06L30.2022 22H29.4831L29.4831 4.43331e-06Z" fill="currentColor"/><path d="M35.9551 4.15041e-06L36.6742 4.11898e-06V22H35.9551V4.15041e-06Z" fill="currentColor"/><path d="M39.5506 3.99325e-06L40.2697 3.96181e-06V22H39.5506V3.99325e-06Z" fill="currentColor"/><path d="M47.4607 3.64748e-06L48.1798 3.61605e-06V22H47.4607V3.64748e-06Z" fill="currentColor"/><path d="M38.1124 4.05611e-06L38.8315 4.02468e-06V22H38.1124V4.05611e-06Z" fill="currentColor"/><path d="M46.0225 3.71035e-06L46.7416 3.67892e-06V22H46.0225V3.71035e-06Z" fill="currentColor"/><path d="M53.9326 3.36459e-06L54.6517 3.33316e-06V22H53.9326V3.36459e-06Z" fill="currentColor"/><path d="M55.3708 3.30172e-06L56.0899 3.27029e-06V22H55.3708V3.30172e-06Z" fill="currentColor"/><path d="M59.6854 3.11313e-06L60.4045 3.08169e-06V22H59.6854V3.11313e-06Z" fill="currentColor"/><path d="M63.2809 2.95596e-06L64 2.92453e-06V22H63.2809V2.95596e-06Z" fill="currentColor"/><path d="M69.0337 2.7045e-06L69.7528 2.67307e-06V22H69.0337V2.7045e-06Z" fill="currentColor"/><path d="M71.191 2.6102e-06L71.9101 2.57877e-06V22H71.191V2.6102e-06Z" fill="currentColor"/><path d="M76.9438 2.35874e-06L77.6629 2.32731e-06V22H76.9438V2.35874e-06Z" fill="currentColor"/><path d="M79.1011 2.26444e-06L79.8202 2.23301e-06V22H79.1011V2.26444e-06Z" fill="currentColor"/><path d="M87.0112 1.91868e-06L87.7303 1.88725e-06V22H87.0112V1.91868e-06Z" fill="currentColor"/><path d="M90.6067 1.76151e-06L91.3258 1.73008e-06V22H90.6067V1.76151e-06Z" fill="currentColor"/><path d="M94.9213 1.57292e-06L95.6404 1.54148e-06V22H94.9213V1.57292e-06Z" fill="currentColor"/><path d="M101.393 1.29003e-06L102.112 1.2586e-06V22H101.393V1.29003e-06Z" fill="currentColor"/><path d="M109.303 9.44273e-07L110.022 9.12844e-07V22H109.303V9.44273e-07Z" fill="currentColor"/><path d="M110.742 8.81372e-07L111.461 8.49944e-07V22H110.742V8.81372e-07Z" fill="currentColor"/><path d="M125.124 3.14285e-08L125.843 0V24H125.124V3.14285e-08Z" fill="currentColor"/><path d="M126.562 6.28697e-08L128 0V24H126.562V6.28697e-08Z" fill="currentColor"/><path d="M122.247 3.78473e-07L124.404 2.84187e-07V22H122.247V3.78473e-07Z" fill="currentColor"/><path d="M116.494 6.29944e-07L117.933 5.67044e-07V22H116.494V6.29944e-07Z" fill="currentColor"/><path d="M118.652 5.35615e-07L120.09 4.72758e-07V22H118.652V5.35615e-07Z" fill="currentColor"/><path d="M112.18 8.18515e-07L114.337 7.2423e-07V22H112.18V8.18515e-07Z" fill="currentColor"/><path d="M106.427 1.06999e-06L108.584 9.757e-07V22H106.427V1.06999e-06Z" fill="currentColor"/><path d="M102.831 1.22717e-06L105.708 1.10142e-06V22H102.831V1.22717e-06Z" fill="currentColor"/><path d="M97.7978 1.44718e-06L100.674 1.32146e-06V22H97.7978V1.44718e-06Z" fill="currentColor"/><path d="M92.0449 1.69865e-06L93.4831 1.63578e-06V22H92.0449V1.69865e-06Z" fill="currentColor"/><path d="M81.2584 2.17014e-06L82.6966 2.10728e-06V22H81.2584V2.17014e-06Z" fill="currentColor"/><path d="M84.1348 2.04441e-06L86.2921 1.95011e-06V22H84.1348V2.04441e-06Z" fill="currentColor"/><path d="M72.6292 2.54734e-06L75.5056 2.4216e-06V22H72.6292V2.54734e-06Z" fill="currentColor"/><path d="M65.4382 2.86166e-06L68.3146 2.73593e-06V22L65.4382 22V2.86166e-06Z" fill="currentColor"/><path d="M31.6404 4.33901e-06L33.0787 4.27614e-06V22H31.6404L31.6404 4.33901e-06Z" fill="currentColor"/><path d="M56.809 3.23886e-06L58.2472 3.17599e-06V22H56.809V3.23886e-06Z" fill="currentColor"/><path d="M51.0562 3.49032e-06L52.4944 3.42746e-06V22H51.0562V3.49032e-06Z" fill="currentColor"/><path d="M42.427 3.86752e-06L45.3034 3.74178e-06V22H42.427V3.86752e-06Z" fill="currentColor"/><path d="M17.2584 4.96767e-06L18.6966 4.9048e-06L18.6966 22H17.2584L17.2584 4.96767e-06Z" fill="currentColor"/><path d="M25.1685 4.62191e-06L28.0449 4.49618e-06L28.0449 22H25.1685L25.1685 4.62191e-06Z" fill="currentColor"/>
+</svg></div><div class="unit-36"></div><div class="form-success_card_top_subtitle"><div class="card_subtitle"><div class="p5 text-light">Request sent</div></div></div><div class="unit-24"></div><div class="form-success_card_top_title"><div class="h2">Thank you!</div></div></div><div class="form-success_card_bot"><div class="grid _6-columns"><div id="w-node-e42798a0-33a2-aeab-f748-f7b99c240fa7-9b251e8a" class="form-success_card_bot_desc"><p class="p6 a-right">Our team will get back to you shortly</p></div></div><div class="unit-24"></div><div class="line-h"></div><div class="unit-12"></div><div data-div-reveal="true" class="form-success_card_bot_diagram"><div class="diagram-logo embed"><img src="https://wearebrand.io/wp-content/uploads/2024/11/wearebrandlogo.png" alt="wearebrand." style="height:16px;width:auto;opacity:.6;filter:brightness(0) invert(1)"></div></div><div class="unit-60"></div><div class="grid _6-columns"><div id="w-node-e9022bbd-8b5c-ef10-3e23-dfa02c83ff05-9b251e8a" class="form-success_card_bot_social"><div class="socials-cms wab-list"><div class="wab-empty-none dyn-empty"></div></div></div><div id="w-node-_8c2040f4-ad14-9aa1-cd1e-abb42344fbe1-9b251e8a" class="form-success_card_bot_legal"><a href="#" data-wab-popup-close="" data-wab-hover="link" data-wab-popup-open="" target="_blank" class="link wab-inline"><div class="link_label"><div data-wab-hover="text" class="l1 text-dark">Privacy Policy</div><div data-wab-hover="text" class="l1 text-dark is-2">Privacy Policy</div></div></a></div></div></div></div><div class="form-success_card_close"><a data-wab-popup-close="cta" data-wab-hover="btn" href="#" class="btn wab-inline"><div class="btn_line on-color"></div><div class="btn_c"><div data-wab-hover="idle" class="btn_idle"><div class="btn_label"><div data-wab-hover="text" class="p5 text-light">Close</div></div></div><div data-wab-hover="hover" class="btn_hover on-color"><div class="btn_label"><div data-wab-hover="text" class="p5 text-dark">Close</div></div></div></div><div class="btn_line on-color"></div></a></div></div></div><div class="unit-96"></div></div></div><div class="pop-up_cta_form-block_error form-error"><div class="p7 text-light">Oops! Something went wrong while submitting the form.</div></div></div><div data-wab-popup-close="cta" data-wab-popup-over="cta" class="pop-up_overlay"></div></div><!-- gradient styles moved to wearebrand-custom.css --></div><div class="landscape-cover"><div class="landscape-cover_img"><img src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images/section-divider.svg" loading="eager" alt="Landscape cover" class="img contain"/></div><div class="landscape-cover_bg-grad"></div></div></div>
+<script>
+/* Pass asset paths to JS */
+window.wabAssets = "https://wearebrand.io/wp-content/themes/wearebrandv2/assets/images";
+/* Force scroll to top on every page load — prevents broken preloader/hero on mid-page refresh */
+window.scrollTo(0,0);
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+/* Center preloader text to match hero logo position */
+(function(){
+    var info = document.querySelector('.preloader_info');
+    var bg = document.querySelector('.preloader_bg');
+    if(!info || !bg) return;
+    var w = window.innerWidth;
+    var ox = w<=479?12:w<=991?2:18;
+    var oy = 10;
+    var br = bg.getBoundingClientRect();
+    var cx = br.left + br.width/2;
+    var cy = br.top + br.height/2;
+    var ir = info.getBoundingClientRect();
+    var ix = ir.left + ir.width/2;
+    var iy = ir.top + ir.height/2;
+    info.style.transform = 'translate(' + (cx-ix+ox) + 'px,' + (cy-iy+oy) + 'px)';
+})();
+</script>
+<script>
+/* Contact Form Logic */
+(function(){
+  var form = document.getElementById('wabContactForm2');
+  if(!form) return;
+  var submitBtn = document.getElementById('contactSubmitBtn');
+  var errorBanner = document.getElementById('contactErrorBanner');
+  var successDiv = document.getElementById('contactSuccess');
+  var formContent = document.getElementById('contactFormContent');
+
+  // Chip toggle
+  document.querySelectorAll('#serviceChips2 .wab-chip2').forEach(function(chip){
+    chip.addEventListener('click', function(){ chip.classList.toggle('active'); });
+  });
+
+  // Validation
+  function validateField(input){
+    var valid = true;
+    var errEl = input.parentElement.querySelector('.wab-field-error2');
+    if(input.required){
+      if(input.tagName==='SELECT'){ valid = input.value!==''; }
+      else if(input.type==='email'){ valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value); }
+      else { valid = input.value.trim().length>0; }
+    }
+    input.classList.toggle('error',!valid);
+    if(errEl) errEl.classList.toggle('show',!valid);
+    return valid;
+  }
+
+  form.querySelectorAll('.wab-input2, .wab-select2').forEach(function(el){
+    el.addEventListener('blur', function(){ validateField(el); });
+    el.addEventListener('input', function(){ if(el.classList.contains('error')) validateField(el); });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var allValid = true;
+    form.querySelectorAll('.wab-input2[required], .wab-select2[required]').forEach(function(el){
+      if(!validateField(el)) allValid = false;
+    });
+    // Check chips
+    var chips = document.querySelectorAll('#serviceChips2 .wab-chip2.active');
+    var chipsErr = document.querySelector('#serviceChips2').parentElement.querySelector('.wab-field-error2');
+    if(chips.length===0){ allValid=false; if(chipsErr) chipsErr.classList.add('show'); }
+    else { if(chipsErr) chipsErr.classList.remove('show'); }
+
+    errorBanner.classList.toggle('show',!allValid);
+    if(!allValid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite"></span> Sending...';
+
+    var fd = new FormData(form);
+    var services = [];
+    chips.forEach(function(c){ services.push(c.dataset.service); });
+    services.forEach(function(s){ fd.append('services[]', s); });
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://wearebrand.io/wp-admin/admin-ajax.php');
+    xhr.onload = function(){
+      if(xhr.status === 200){
+        var res;
+        try { res = JSON.parse(xhr.responseText); } catch(e){ res = null; }
+        if(res && res.success){
+          formContent.style.transition = 'opacity 0.4s ease';
+          formContent.style.opacity = '0';
+          setTimeout(function(){
+            formContent.style.display = 'none';
+            successDiv.classList.add('show');
+            successDiv.style.opacity = '0';
+            successDiv.style.transform = 'translateY(20px)';
+            successDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            requestAnimationFrame(function(){
+              successDiv.style.opacity = '1';
+              successDiv.style.transform = 'translateY(0)';
+              // Scroll success message to center of viewport
+              setTimeout(function(){
+                var rect = successDiv.getBoundingClientRect();
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var targetY = scrollTop + rect.top - (window.innerHeight / 2) + (rect.height / 2);
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              }, 100);
+            });
+          }, 400);
+        } else {
+          var msg = (res && res.data && res.data.message) ? res.data.message : 'Failed to send. Please try again.';
+          errorBanner.textContent = msg;
+          errorBanner.classList.add('show');
+        }
+      } else {
+        errorBanner.textContent = 'Server error. Please try again later.';
+        errorBanner.classList.add('show');
+      }
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Request';
+    };
+    xhr.onerror = function(){
+      errorBanner.textContent = 'Network error. Please check your connection.';
+      errorBanner.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Request';
+    };
+    xhr.send(fd);
+  });
+})();
+</script>
+
+<script>
+/* Dynamic logo color — observe header class changes to match theme.
+   Previously used requestAnimationFrame loop (60fps CPU drain).
+   Now uses MutationObserver on .header element for class changes. */
+(function(){
+  var logo = document.querySelector('.wab-header-logo');
+  if(!logo) return;
+  var navText = document.querySelector('.header .t7.text-dark');
+  if(!navText) return;
+  var headerEl = document.querySelector('.header');
+  if(!headerEl) return;
+
+  function updateLogoTheme(){
+    var color = window.getComputedStyle(navText).color;
+    var match = color.match(/\d+/g);
+    if(match){
+      var brightness = (parseInt(match[0])*299 + parseInt(match[1])*587 + parseInt(match[2])*114) / 1000;
+      if(brightness > 128){
+        logo.classList.remove('is-dark');
+      } else {
+        logo.classList.add('is-dark');
+      }
+    }
+  }
+
+  // Run once on load
+  updateLogoTheme();
+
+  // Observe header class changes (triggered by ScrollTrigger theme switching)
+  // IMPORTANT: only observe headerEl itself, NOT subtree — otherwise
+  // updateLogoTheme() toggling logo class triggers observer again = infinite loop
+  var observer = new MutationObserver(function() {
+    updateLogoTheme();
+  });
+  observer.observe(headerEl, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+
+  // Disconnect observer on Barba.js page leave
+  if (typeof barba !== 'undefined') {
+    barba.hooks.leave(function() { observer.disconnect(); });
+  }
+})();
+</script>
+
+<!-- Star particles -->
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/particles.min.js"></script>
+<script>
+if(typeof particlesJS !== 'undefined' && document.getElementById('wab-star-particles')){
+  particlesJS('wab-star-particles', {
+    particles: {
+      number: { value: 120, density: { enable: true, value_area: 1000 } },
+      color: { value: ["#ffffff", "#aaccff", "#ddeeff"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.6, random: true, anim: { enable: true, speed: 0.4, opacity_min: 0.1, sync: false } },
+      size: { value: 2, random: true, anim: { enable: true, speed: 1, size_min: 0.3, sync: false } },
+      line_linked: { enable: false },
+      move: { enable: true, speed: 0.3, direction: "none", random: true, straight: false, out_mode: "out" }
+    },
+    interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } },
+    retina_detect: true
+  });
+}
+</script>
+<script>
+/* City carousel animation — replica of initLoopingWords */
+(function(){
+  function initCityLoop(){
+    if(typeof gsap==='undefined'){setTimeout(initCityLoop,100);return}
+    var list=document.getElementById('wc-list');
+    if(!list)return;
+    var items=Array.from(list.children);
+    var n=items.length;
+    if(n<5)return;
+    var bp=992;
+
+    function highlight(i){items.forEach(function(el){el.classList.remove('current')});var t=items[i%n];if(t)t.classList.add('current')}
+
+    if(window.innerWidth>=bp){
+      /* Desktop: vertical scroll */
+      var pct=100/n;
+      var idx=5;
+      gsap.set(list,{yPercent:-pct*idx});
+      highlight(idx);
+      gsap.timeline({repeat:-1,delay:0}).call(function(){
+        var next=idx+1;
+        highlight(next);
+        gsap.to(list,{yPercent:-pct*next,duration:.6,ease:'power2.out',onComplete:function(){
+          idx=next;
+          if(idx>=n-6){list.appendChild(list.children[0]);idx--;gsap.set(list,{yPercent:-pct*idx});items.push(items.shift())}
+        }});
+      }).to({},{duration:.8});
+    } else {
+      /* Mobile/Tablet: horizontal scroll */
+      var itemW=items[0]?items[0].getBoundingClientRect().width:0;
+      var idx=5;
+      gsap.set(list,{x:-itemW*idx});
+      highlight(idx);
+      gsap.timeline({repeat:-1,delay:0}).call(function(){
+        var next=idx+1;
+        highlight(next);
+        gsap.to(list,{x:-itemW*next,duration:1,ease:'power2.out',onComplete:function(){
+          idx=next;
+          if(idx>=n-6){
+            list.appendChild(list.children[0]);idx--;
+            itemW=items[0]?items[0].getBoundingClientRect().width:itemW;
+            gsap.set(list,{x:-itemW*idx});
+            items.push(items.shift());
+          }
+        }});
+      }).to({},{duration:1.2});
+      /* Recalculate on resize */
+      window.addEventListener('resize',function(){
+        var nw=items[0]?items[0].getBoundingClientRect().width:0;
+        if(nw){itemW=nw;gsap.set(list,{x:-itemW*idx})}
+      });
+    }
+  }
+  initCityLoop();
+})();
+</script>
+<script>
+/* Delayed reveal for hero tagline — same blur+stagger effect, longer delay */
+(function(){
+  function initDelayedTagline(){
+    var el = document.getElementById('wab-hero-tagline');
+    if(!el || typeof wabSplit !== 'function' || typeof gsap === 'undefined'){
+      setTimeout(initDelayedTagline, 100);
+      return;
+    }
+    var split = wabSplit(el, 'lines');
+    gsap.set(el, {visibility:'visible'});
+    gsap.from(split.lines, {
+      filter:'blur(36px)',
+      opacity:0,
+      duration:1,
+      delay:3,
+      stagger:0.1,
+      ease:'power2.out'
+    });
+  }
+  initDelayedTagline();
+})();
+</script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/jquery-3.7.1.min.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/gsap.min.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/ScrollTrigger.min.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/lenis.min.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/lottie.min.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/vendor/js/barba.core.js"></script>
+<script src="https://wearebrand.io/wp-content/themes/wearebrandv2/assets/js/wearebrand-animations.js?ver=1.0.0"></script>
+</body></html>
