@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
 import PresetRenderer from "@/components/PresetRenderer";
-import { listPresets, loadPreset } from "@/lib/preset-loader";
+import { loadPreset } from "@/lib/preset-loader";
 
-export async function generateStaticParams() {
-  return listPresets().map((id) => ({ preset: id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(props: {
   params: Promise<{ preset: string }>;

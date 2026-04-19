@@ -80,8 +80,7 @@ export function MeshTransmissionViewer({
         rotation={[0, 0, 0]}
         polar={[-Math.PI / 4, Math.PI / 4]}
         azimuth={[-Math.PI / 2, Math.PI / 2]}
-        config={{ mass: 2, tension: 400 }}
-        snap={{ mass: 4, tension: 300 }}
+        snap
       >
         <mesh ref={meshRef} castShadow>
           {geometry ?? <icosahedronGeometry args={[1.5, 8]} />}
