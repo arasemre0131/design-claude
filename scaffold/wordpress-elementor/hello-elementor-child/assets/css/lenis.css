@@ -1,0 +1,54 @@
+/**
+ * lenis.css — Lenis 1.3.4 utility styles
+ * ----------------------------------------------------------------
+ * Required CSS hooks that Lenis expects on the wrapper/html element
+ * so smooth-scroll, anchor jumps and scrollbar are in sync.
+ *
+ * Reference: https://github.com/darkroomengineering/lenis#css
+ */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
+/* Prevent Elementor sticky widgets from clashing with Lenis */
+.elementor-sticky--effects {
+  will-change: transform;
+}
+
+/* Anchor scroll offset for sticky header */
+:target {
+  scroll-margin-top: 96px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html.lenis { scroll-behavior: smooth !important; }
+}

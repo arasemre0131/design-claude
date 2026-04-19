@@ -1,0 +1,318 @@
+{
+  "version": "0.4",
+  "title": "__PRESET_ID__ Homepage",
+  "type": "page",
+  "preset_id": "__PRESET_ID__",
+  "preset_sector": "__PRESET_SECTOR__",
+  "preset_style": "__PRESET_STYLE__",
+  "content": [
+    {
+      "id": "hero-section",
+      "elType": "section",
+      "settings": {
+        "stretch_section": "section-stretched",
+        "layout": "full_width",
+        "gap": "default",
+        "background_background": "classic",
+        "background_color": "__COLOR_BG__",
+        "padding": { "unit": "px", "top": "120", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "css_classes": "section section--hero",
+        "_css_id": "hero"
+      },
+      "elements": [
+        {
+          "id": "hero-column",
+          "elType": "column",
+          "settings": { "_column_size": 100, "_inline_size": null, "content_position": "center" },
+          "elements": [
+            {
+              "id": "hero-label",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "__PRESET_SECTOR__ · __PRESET_STYLE__",
+                "size": "small",
+                "header_size": "p",
+                "align": "center",
+                "title_color": "__COLOR_MUTED__",
+                "typography_font_family": "__FONT_MONO__",
+                "typography_font_size": { "unit": "px", "size": 12 },
+                "typography_text_transform": "uppercase",
+                "typography_letter_spacing": { "unit": "px", "size": 2 },
+                "_margin": { "unit": "px", "top": "0", "right": "0", "bottom": "16", "left": "0", "isLinked": false }
+              }
+            },
+            {
+              "id": "hero-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "__HERO_HEADLINE__",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "__COLOR_INK__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "typography_font_weight": "600",
+                "typography_line_height": { "unit": "em", "size": 1.05 },
+                "typography_letter_spacing": { "unit": "em", "size": -0.02 },
+                "_css_classes": "hero-title",
+                "_element_custom_id": "hero-title",
+                "__attr__data-wab-blur-reveal": "",
+                "__attr__data-blur-type": "chars",
+                "__attr__data-blur-duration": "1.2"
+              }
+            },
+            {
+              "id": "hero-sub",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>__HERO_SUBHEADLINE__</p>",
+                "align": "center",
+                "text_color": "__COLOR_INK__",
+                "typography_font_family": "__FONT_BODY__",
+                "typography_font_size": { "unit": "px", "size": 18 },
+                "typography_line_height": { "unit": "em", "size": 1.55 },
+                "_margin": { "unit": "px", "top": "24", "right": "auto", "bottom": "40", "left": "auto", "isLinked": false },
+                "_element_custom_width": { "unit": "ch", "size": 52 }
+              }
+            },
+            {
+              "id": "hero-cta-row",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "__PRIMARY_CTA__",
+                "link": { "url": "#iletisim", "is_external": "", "nofollow": "" },
+                "align": "center",
+                "size": "lg",
+                "button_type": "info",
+                "background_color": "__COLOR_INK__",
+                "button_text_color": "__COLOR_BG__",
+                "hover_background_color": "__COLOR_ACCENT__",
+                "border_radius": { "unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "8", "isLinked": true },
+                "css_classes": "magnetic",
+                "__attr__data-wab-magnetic": "",
+                "__attr__data-magnetic-strength": "0.25"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "kpi-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "background_color": "__COLOR_SURFACE__",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "css_classes": "section kpi-section"
+      },
+      "elements": [
+        {
+          "id": "kpi-col-1",
+          "elType": "column",
+          "settings": { "_column_size": 33, "_inline_size": null, "content_position": "top" },
+          "elements": [
+            {
+              "id": "kpi1-value",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "15+",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "__COLOR_ACCENT__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "kpi1-label",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": { "editor": "<p>Yıl deneyim</p>", "text_color": "__COLOR_MUTED__" }
+            }
+          ]
+        },
+        {
+          "id": "kpi-col-2",
+          "elType": "column",
+          "settings": { "_column_size": 33, "_inline_size": null },
+          "elements": [
+            {
+              "id": "kpi2-value",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "2 000+",
+                "header_size": "h2",
+                "title_color": "__COLOR_ACCENT__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "kpi2-label",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": { "editor": "<p>Mutlu müşteri</p>", "text_color": "__COLOR_MUTED__" }
+            }
+          ]
+        },
+        {
+          "id": "kpi-col-3",
+          "elType": "column",
+          "settings": { "_column_size": 34, "_inline_size": null },
+          "elements": [
+            {
+              "id": "kpi3-value",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "7/7",
+                "header_size": "h2",
+                "title_color": "__COLOR_ACCENT__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "kpi3-label",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": { "editor": "<p>Açık (Paz. hariç)</p>", "text_color": "__COLOR_MUTED__" }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "services-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "padding": { "unit": "px", "top": "96", "right": "24", "bottom": "96", "left": "24", "isLinked": false },
+        "css_classes": "section services-section",
+        "_css_id": "hizmetler"
+      },
+      "elements": [
+        {
+          "id": "svc-col",
+          "elType": "column",
+          "settings": { "_column_size": 100, "_inline_size": null },
+          "elements": [
+            {
+              "id": "svc-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Hizmetler",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "__COLOR_INK__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "__attr__data-wab-blur-reveal": "",
+                "__attr__data-blur-type": "words"
+              }
+            },
+            {
+              "id": "svc-list",
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  { "text": "Hizmet 1 — Kısa açıklama ve fiyat aralığı.", "selected_icon": { "value": "fas fa-chevron-right", "library": "fa-solid" } },
+                  { "text": "Hizmet 2 — Kısa açıklama ve fiyat aralığı.", "selected_icon": { "value": "fas fa-chevron-right", "library": "fa-solid" } },
+                  { "text": "Hizmet 3 — Kısa açıklama ve fiyat aralığı.", "selected_icon": { "value": "fas fa-chevron-right", "library": "fa-solid" } },
+                  { "text": "Hizmet 4 — Kısa açıklama ve fiyat aralığı.", "selected_icon": { "value": "fas fa-chevron-right", "library": "fa-solid" } }
+                ],
+                "space_between": { "unit": "px", "size": 16 },
+                "icon_color": "__COLOR_ACCENT__",
+                "text_color": "__COLOR_INK__",
+                "text_typography_font_family": "__FONT_BODY__",
+                "text_typography_font_size": { "unit": "px", "size": 16 }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "contact-section",
+      "elType": "section",
+      "settings": {
+        "background_color": "__COLOR_INK__",
+        "padding": { "unit": "px", "top": "96", "right": "24", "bottom": "96", "left": "24", "isLinked": false },
+        "css_classes": "section contact-section",
+        "_css_id": "iletisim"
+      },
+      "elements": [
+        {
+          "id": "contact-col",
+          "elType": "column",
+          "settings": { "_column_size": 100, "_inline_size": null },
+          "elements": [
+            {
+              "id": "contact-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "İletişim",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "__COLOR_BG__",
+                "typography_font_family": "__FONT_DISPLAY__",
+                "__attr__data-wab-blur-reveal": "",
+                "__attr__data-blur-type": "words"
+              }
+            },
+            {
+              "id": "contact-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center\">Randevu ve bilgi için bize ulaşın.</p>",
+                "text_color": "__COLOR_BG__"
+              }
+            },
+            {
+              "id": "contact-form",
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "İletişim Formu",
+                "form_fields": [
+                  { "field_type": "text",     "field_label": "Ad Soyad", "placeholder": "Ad Soyad", "required": "true",  "custom_id": "name" },
+                  { "field_type": "tel",      "field_label": "Telefon",  "placeholder": "+90 ...",  "required": "true",  "custom_id": "phone" },
+                  { "field_type": "email",    "field_label": "E-posta",  "placeholder": "you@example.com", "required": "false", "custom_id": "email" },
+                  { "field_type": "textarea", "field_label": "Mesaj",    "placeholder": "Mesajınız", "required": "true", "custom_id": "message" }
+                ],
+                "button_text": "__PRIMARY_CTA__",
+                "email_to": "info@example.com",
+                "email_subject": "Yeni iletişim formu",
+                "success_message": "Teşekkürler! En kısa zamanda dönüş yapacağız."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "template": "elementor_canvas",
+    "hide_title": "yes"
+  },
+  "_metadata": {
+    "generator": "design-claude scaffold-wp.js",
+    "generated_at": "__GENERATED_AT__",
+    "recipe": "wordpress-elementor-motion",
+    "palette_atom": "__PALETTE_ID__",
+    "typography_atom": "__TYPOGRAPHY_ID__",
+    "note": "Manuel import: WP Admin -> Templates -> Saved Templates -> Import -> upload this JSON"
+  }
+}

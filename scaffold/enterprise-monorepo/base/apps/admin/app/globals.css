@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: __COLOR_BG__;
+  --color-ink: __COLOR_INK__;
+  --color-accent: __COLOR_ACCENT__;
+  --color-muted: __COLOR_MUTED__;
+  --color-surface: __COLOR_SURFACE__;
+  --color-border: __COLOR_BORDER__;
+
+  --font-display: __FONT_DISPLAY__;
+  --font-body: __FONT_BODY__;
+  --font-mono: __FONT_MONO__;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+  }
+
+  /* Admin-specific: tabular numerals for dense data */
+  table, .tabular-data {
+    font-variant-numeric: tabular-nums;
+  }
+}

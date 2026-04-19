@@ -1,0 +1,22 @@
+{
+  "name": "@preset/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared config — eslint, tsconfig presets, tailwind base",
+  "exports": {
+    "./eslint-base": "./eslint-base.js",
+    "./eslint-next": "./eslint-next.js",
+    "./tsconfig-library": "./tsconfig-library.json",
+    "./tsconfig-nextjs": "./tsconfig-nextjs.json",
+    "./tailwind": "./tailwind.config.js"
+  },
+  "scripts": {
+    "lint": "echo 'no lint for config'"
+  },
+  "dependencies": {
+    "eslint": "^9.20.0",
+    "eslint-config-next": "16.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0"
+  }
+}

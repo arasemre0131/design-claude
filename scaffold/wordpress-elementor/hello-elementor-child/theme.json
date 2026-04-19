@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "__PRESET_ID__ child theme",
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "780px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "custom": true,
+      "customDuotone": false,
+      "palette": [
+        { "slug": "bg",        "color": "__COLOR_BG__",        "name": "Background" },
+        { "slug": "ink",       "color": "__COLOR_INK__",       "name": "Ink" },
+        { "slug": "accent",    "color": "__COLOR_ACCENT__",    "name": "Accent" },
+        { "slug": "accent-2",  "color": "__COLOR_SECONDARY__", "name": "Accent 2" },
+        { "slug": "muted",     "color": "__COLOR_MUTED__",     "name": "Muted" },
+        { "slug": "surface",   "color": "__COLOR_SURFACE__",   "name": "Surface" },
+        { "slug": "border",    "color": "__COLOR_BORDER__",    "name": "Border" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        { "slug": "display", "fontFamily": "'__FONT_DISPLAY__', serif",        "name": "Display" },
+        { "slug": "body",    "fontFamily": "'__FONT_BODY__', system-ui, sans-serif", "name": "Body" },
+        { "slug": "mono",    "fontFamily": "'__FONT_MONO__', ui-monospace, monospace", "name": "Mono" }
+      ],
+      "fontSizes": [
+        { "slug": "xs",   "size": "12px",                                        "name": "XS" },
+        { "slug": "sm",   "size": "14px",                                        "name": "SM" },
+        { "slug": "base", "size": "16px",                                        "name": "Base" },
+        { "slug": "lg",   "size": "18px",                                        "name": "LG" },
+        { "slug": "xl",   "size": "clamp(1.25rem, 1vw + 1rem, 1.5rem)",          "name": "XL" },
+        { "slug": "h3",   "size": "clamp(1.35rem, 2vw + 0.75rem, 2.25rem)",      "name": "H3" },
+        { "slug": "h2",   "size": "clamp(1.75rem, 3vw + 1rem, 3.25rem)",         "name": "H2" },
+        { "slug": "h1",   "size": "clamp(2.25rem, 5vw + 1rem, 5rem)",            "name": "H1" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "em", "rem", "%", "vh", "vw"],
+      "spacingSizes": [
+        { "slug": "1", "size": "8px",  "name": "1" },
+        { "slug": "2", "size": "16px", "name": "2" },
+        { "slug": "3", "size": "24px", "name": "3" },
+        { "slug": "4", "size": "32px", "name": "4" },
+        { "slug": "5", "size": "48px", "name": "5" },
+        { "slug": "6", "size": "64px", "name": "6" },
+        { "slug": "7", "size": "96px", "name": "7" }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--bg)",
+      "text": "var(--ink)"
+    },
+    "typography": {
+      "fontFamily": "var(--font-body)",
+      "fontSize": "16px",
+      "lineHeight": "1.55"
+    },
+    "elements": {
+      "h1": { "typography": { "fontFamily": "var(--font-display)", "fontWeight": "600", "lineHeight": "1.1" } },
+      "h2": { "typography": { "fontFamily": "var(--font-display)", "fontWeight": "600", "lineHeight": "1.1" } },
+      "h3": { "typography": { "fontFamily": "var(--font-display)", "fontWeight": "600", "lineHeight": "1.2" } },
+      "link": { "color": { "text": "var(--accent)" } }
+    }
+  }
+}

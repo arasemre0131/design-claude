@@ -1,0 +1,51 @@
+{
+  "name": "@preset/admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "__PRESET_ID__ admin dashboard (Next.js 16, tenant-aware)",
+  "scripts": {
+    "dev": "next dev --turbopack --port 3001",
+    "build": "next build",
+    "start": "next start --port 3001",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next .turbo node_modules"
+  },
+  "dependencies": {
+    "next": "16.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@preset/ui": "workspace:*",
+    "@preset/db": "workspace:*",
+    "@preset/auth": "workspace:*",
+    "@preset/observability": "workspace:*",
+    "@supabase/supabase-js": "^2.49.4",
+    "@supabase/ssr": "^0.6.1",
+    "zod": "^3.25.0",
+    "react-hook-form": "^7.55.0",
+    "@hookform/resolvers": "^3.10.0",
+    "zustand": "^5.0.3",
+    "@tanstack/react-query": "^5.66.0",
+    "@tanstack/react-table": "^8.21.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0",
+    "lucide-react": "^0.479.0",
+    "recharts": "^2.15.0",
+    "@sentry/nextjs": "^8.50.0",
+    "mixpanel-browser": "^2.60.0",
+    "posthog-js": "^1.215.0",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/mixpanel-browser": "^2.57.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.0",
+    "eslint": "^9.20.0",
+    "eslint-config-next": "16.0.0"
+  }
+}

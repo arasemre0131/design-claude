@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "jsx": "preserve",
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@preset/ui": ["./packages/ui/src/index.ts"],
+      "@preset/ui/*": ["./packages/ui/src/*"],
+      "@preset/db": ["./packages/db/src/index.ts"],
+      "@preset/db/*": ["./packages/db/src/*"],
+      "@preset/auth": ["./packages/auth/src/index.ts"],
+      "@preset/auth/*": ["./packages/auth/src/*"],
+      "@preset/observability": ["./packages/observability/src/index.ts"],
+      "@preset/observability/*": ["./packages/observability/src/*"],
+      "@preset/config/*": ["./packages/config/*"]
+    }
+  },
+  "exclude": ["node_modules", ".next", "dist", "build", "coverage"]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "__PRESET_ID__-enterprise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "__PRESET_DESCRIPTION__",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "typecheck": "turbo run typecheck",
+    "db:generate": "pnpm --filter @preset/db drizzle-kit generate",
+    "db:migrate": "pnpm --filter @preset/db drizzle-kit migrate",
+    "db:push": "pnpm --filter @preset/db drizzle-kit push",
+    "db:studio": "pnpm --filter @preset/db drizzle-kit studio",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,yaml,yml}\"",
+    "docker:up": "docker compose -f docker/compose.dev.yaml up -d",
+    "docker:down": "docker compose -f docker/compose.dev.yaml down"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.9.0",
+    "prettier": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "@types/node": "^22.13.0",
+    "eslint": "^9.20.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  }
+}

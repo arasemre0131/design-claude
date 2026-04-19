@@ -1,0 +1,258 @@
+/**
+ * custom.css — __PRESET_ID__ preset-specific utilities
+ * ----------------------------------------------------------------
+ * These classes map to wab-safe-animations data-attributes and
+ * provide the visual scaffolding that the JS patterns depend on.
+ *
+ * Preset: __PRESET_ID__  (__PRESET_SECTOR__ × __PRESET_STYLE__)
+ * Palette: __PALETTE_ID__   Typography: __TYPOGRAPHY_ID__
+ */
+
+/* ============================================================
+   Section primitives
+   ============================================================ */
+.section {
+  padding: clamp(4rem, 8vw, 8rem) 0;
+}
+
+.section--tight { padding: clamp(2rem, 4vw, 4rem) 0; }
+.section--hero  { padding: clamp(6rem, 12vw, 12rem) 0 clamp(4rem, 8vw, 6rem); }
+
+/* ============================================================
+   Blur-reveal target prep
+   ============================================================ */
+[data-wab-blur-reveal] {
+  visibility: hidden;
+}
+
+[data-wab-blur-reveal] .wab-char,
+[data-wab-blur-reveal] .wab-word {
+  display: inline-block;
+  will-change: filter, opacity;
+}
+
+/* ============================================================
+   Magnetic targets
+   ============================================================ */
+[data-wab-magnetic] {
+  will-change: transform;
+  display: inline-flex;
+}
+
+[data-wab-magnetic-inner] {
+  pointer-events: none;
+}
+
+/* ============================================================
+   Mask-y reveal (Pattern 4)
+   ============================================================ */
+[data-wab-mask-y] {
+  --mask-y: 0%;
+  --mask-size: 100% 200%;
+  -webkit-mask-image: linear-gradient(to bottom,
+    #000 var(--mask-y),
+    transparent calc(var(--mask-y) + 50%));
+  mask-image: linear-gradient(to bottom,
+    #000 var(--mask-y),
+    transparent calc(var(--mask-y) + 50%));
+  -webkit-mask-size: var(--mask-size);
+  mask-size: var(--mask-size);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* ============================================================
+   Theme-switch target (Pattern 5)
+   ============================================================ */
+[data-wab-theme] {
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* ============================================================
+   Buttons — CTA (primary/secondary)
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn--primary:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn--outline:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: transparent;
+  padding-inline: 0;
+}
+
+.btn--ghost::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.btn--ghost:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.18);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.card__meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Header / nav primitives
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.site-header__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 16px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gutter);
+}
+
+.site-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.site-nav__link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-nav__link:hover { color: var(--accent); }
+
+/* ============================================================
+   Footer primitive
+   ============================================================ */
+.site-footer {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 64px 0 32px;
+  margin-top: 120px;
+}
+
+.site-footer__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.site-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================================
+   KVKK / Hidden states
+   ============================================================ */
+.hide-on-kvkk-accepted { display: none; }
+html[data-kvkk="accepted"] .hide-on-kvkk-accepted { display: none !important; }
+
+/* ============================================================
+   Responsive overrides
+   ============================================================ */
+@media (max-width: 992px) {
+  .site-nav { display: none; }
+  [data-wab-magnetic] { /* disabled on mobile — see wab-safe-animations.js */ }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 16px;
+  }
+  .section { padding: clamp(3rem, 6vw, 5rem) 0; }
+}

@@ -1,0 +1,204 @@
+/*
+Theme Name: __PRESET_ID__-child
+Template: hello-elementor
+Version: 1.0.0
+Description: __PRESET_ID__ preset (__PRESET_SECTOR__ × __PRESET_STYLE__) — design-claude generated Elementor child theme with GSAP 3.13 + Lenis 1.3.4 motion. Budget tier (7.5-15K TRY). Hand-coded wab-safe-animations.js (MIT-safe rewrite).
+Author: Emre (via design-claude scaffold-wp.js)
+Author URI: https://github.com/
+Text Domain: __PRESET_ID___child
+Tags: elementor, motion, gsap, lenis, turkish, custom-colors, custom-logo
+License: GPL-3.0
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+/* ============================================================
+   Preset tokens — CSS vars (palette: __PALETTE_ID__)
+   ============================================================ */
+:root {
+  --bg:         __COLOR_BG__;
+  --ink:        __COLOR_INK__;
+  --accent:     __COLOR_ACCENT__;
+  --accent-2:   __COLOR_SECONDARY__;
+  --muted:      __COLOR_MUTED__;
+  --surface:    __COLOR_SURFACE__;
+  --line:       __COLOR_BORDER__;
+  --border:     __COLOR_BORDER__;
+
+  /* Typography (__TYPOGRAPHY_ID__) */
+  --font-display: "__FONT_DISPLAY__", serif;
+  --font-body:    "__FONT_BODY__", system-ui, sans-serif;
+  --font-mono:    "__FONT_MONO__", ui-monospace, monospace;
+
+  /* Spacing + sizing tokens (Swiss-grid base) */
+  --gutter:       24px;
+  --max-w:        1280px;
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    16px;
+
+  /* Motion tokens */
+  --ease-out:     cubic-bezier(.16,1,.3,1);
+  --ease-elastic: cubic-bezier(.64,.01,.07,1);
+  --dur-fast:     0.3s;
+  --dur-med:      0.6s;
+  --dur-slow:     1.2s;
+}
+
+/* Dark theme switch (Pattern 5 — data-theme attribute) */
+body[data-theme="dark"] {
+  --bg:       __COLOR_INK__;
+  --ink:      __COLOR_BG__;
+  --surface:  #111;
+  --line:     rgba(255,255,255,0.12);
+}
+
+/* ============================================================
+   Base reset + typography
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: clamp(2.25rem, 5vw + 1rem, 5rem); }
+h2 { font-size: clamp(1.75rem, 3vw + 1rem, 3.25rem); }
+h3 { font-size: clamp(1.35rem, 2vw + 0.75rem, 2.25rem); }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+a:hover { color: var(--accent); }
+
+code, kbd, pre, samp { font-family: var(--font-mono); }
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   Utility classes — Swiss grid base
+   ============================================================ */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--gutter);
+}
+
+/* ============================================================
+   Elementor widget overrides (unlock design control)
+   ============================================================ */
+.elementor-widget-heading h1,
+.elementor-widget-heading h2,
+.elementor-widget-heading h3 {
+  font-family: var(--font-display);
+}
+
+.elementor-widget-button .elementor-button {
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: transform var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+
+.elementor-widget-button .elementor-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+/* ============================================================
+   Accessibility
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================
+   Import preset utility + Lenis styles
+   ============================================================ */
+@import url("./assets/css/custom.css");
+@import url("./assets/css/lenis.css");

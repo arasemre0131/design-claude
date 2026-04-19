@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@preset/db": ["../../packages/db/src/index.ts"],
+      "@preset/db/*": ["../../packages/db/src/*"],
+      "@preset/auth": ["../../packages/auth/src/index.ts"],
+      "@preset/auth/*": ["../../packages/auth/src/*"],
+      "@preset/observability": ["../../packages/observability/src/index.ts"],
+      "@preset/observability/*": ["../../packages/observability/src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "app/**/*", "src/**/*", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next"]
+}
