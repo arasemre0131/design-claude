@@ -1,0 +1,572 @@
+version: "1.0"
+updated: "2026-04-19"
+description: >
+  design-claude anti-cliché + sector-style compatibility matrix.
+  validate-combo.js bunu okur. MATRIX.md bu dosyadan türetilir.
+  Kaynak: catalog/sectors/*.yaml (anti_cliche, existing_projects),
+  catalog/styles/*.yaml (forbidden, compatible_sectors, incompatible_sectors),
+  mevcut pipeline ve techstack/DESIGN-PATHWAYS.md § PROJECT MATRIX + § Repeat Guard.
+
+# ============================================================
+# GLOBALLY FORBIDDEN PATHWAY ID'LER
+# Tüm sektör + tüm stil için yasak (validate-combo.js check 1)
+# ============================================================
+globally_forbidden_ids:
+  typography:
+    - id: TY1
+      name: "Inter-only"
+      reason: "Freeman + BG Foto + Dagintaslı benzeri 5+ proje"
+      alternatives: [TY27, TY39, TY29]
+    - id: TY2
+      name: "Playfair Italic + Inter"
+      reason: "Mücevher klişesi — Fatih Bey, BG Foto, Dagintaslı, Modern Alyans 5+ proje"
+      alternatives: [TY27, TY28, TY31]
+    - id: TY4
+      name: "Instrument Serif + Space Grotesk + JetBrains Mono"
+      reason: "v1-CONSTRUO editorial luxury klişesi"
+      alternatives: [TY9, TY5, TY7]
+    - id: TY8
+      name: "DM Serif Display + Inter"
+      reason: "v2-immersive-3d, tekrar riski yüksek"
+      alternatives: [TY14, TY12]
+
+  palette:
+    - id: PL1
+      name: "Dark #0A0A0A + Gold #C9A84C"
+      reason: "Freeman + BG Foto + Dagintaslı + Modern Alyans + Fatih Bey (kısmen) + v1 — 6 proje"
+      alternatives: [PL22, PL23, PL10, PL11]
+
+  kpi:
+    - id: K1
+      name: "Bento Grid Glass"
+      reason: "v1 + Freeman + Dagintaslı + Fatih Bey + BG Foto — 5+ proje"
+      alternatives: [K2, K3, K5, K10]
+
+  hero:
+    - id: HR2
+      name: "Split Hero — büyük ürün + yan metin + CTA"
+      reason: "Freeman + BG Foto + Dagintaslı + Modern Alyans + Fatih Bey — 5+ proje"
+      alternatives: [HR11, HR3, HR9, HR16]
+    - id: HR7
+      name: "Dashboard-as-Hero"
+      reason: "v1-CONSTRUO editorial luxury klişesi"
+      alternatives: [HR8, HR13, HR6]
+
+  header:
+    - id: H8
+      name: "Hero-Attached Header (mix-blend-mode difference)"
+      reason: "Freeman + BG Foto + Dagintaslı + Modern Alyans + Fatih Bey + v2-immersive-3d — 6+ proje"
+      alternatives: [H1, H2, H3, H5, H9]
+
+  pipeline:
+    - id: P1
+      name: "Klasik Kanban Pipeline"
+      reason: "v1-CONSTRUO klişesi"
+      alternatives: [P2, P3, P8, P10]
+
+  table:
+    - id: T6
+      name: "Card Grid Table"
+      reason: "v2-neobrutalist + v2-immersive-3d + Fatih Bey — 5+ proje"
+      alternatives: [T2, T3, T4]
+
+  chart:
+    - id: CH1
+      name: "Chart.js Smooth"
+      reason: "v1-CONSTRUO + Freeman analytics klişesi"
+      alternatives: [CH3, CH6, CH7, CH11]
+    - id: CH2
+      name: "Recharts Tremor SaaS default"
+      reason: "SaaS default, 3+ proje uyarı"
+      alternatives: [CH3, CH11, CH7]
+
+# ============================================================
+# FORBIDDEN COMBINATIONS (10×10 matrix'te ✗ hücreler)
+# Hedef: 20 hücre
+# ============================================================
+forbidden_combinations:
+  # --- brutalist × incompatible sektörler (6) ---
+  - sektör: mucevher
+    stil: brutalist
+    reason: "Raw + saturated primary renk mücevher premium/el-emeği havasını kırar. styles/brutalist.yaml: incompatible_sectors."
+  - sektör: klinik
+    stil: brutalist
+    reason: "Raw brutalist + hard shadow hasta güvenini kırar, tedirginlik yaratır. brutalist.yaml incompatible."
+  - sektör: kuafor
+    stil: brutalist
+    reason: "Hijyen için concrete/industrial tekstür UYMAZ (sectors/kuafor.yaml warning). Raw brutalist sıcak-karşılama psikolojisine ters."
+  - sektör: spa
+    stil: brutalist
+    reason: "Raw + sharp shadow + primary renk spa huzur/sessizlik beklentisiyle çelişir. brutalist.yaml incompatible."
+  - sektör: gayrimenkul
+    stil: brutalist
+    reason: "Raw brutalist premium emlak algısına uymaz, yatırım-güveni için güvenilir + lokasyon gerekir."
+  - sektör: otel
+    stil: brutalist
+    reason: "Raw + primary luxury/butik otel algısına uymaz. brutalist.yaml incompatible_sectors."
+
+  # --- immersive-3d × minimal/statik sektörler (3) ---
+  - sektör: kuafor
+    stil: immersive-3d
+    reason: "Saç kesimi 3D render yapay. sectors/kuafor.yaml budget_tiers premium suitability ✗."
+  - sektör: restoran
+    stil: immersive-3d
+    reason: "2D food photography daha iştah açıcı, 3D yemek render yapay. sectors/restoran.yaml 3d_spline: no."
+  - sektör: spa
+    stil: immersive-3d
+    reason: "Spa fiziksel deneyim, 3D render mesafe yaratır. sectors/spa.yaml 3d_spline: no + premium suitability ✗."
+
+  # --- maximalist-atmospheric × disiplin-gerektiren sektörler (4) ---
+  - sektör: insaat
+    stil: maximalist-atmospheric
+    reason: "Aurora + overlap endüstriyel disiplin + güven değil. sectors/insaat.yaml maximalism: no."
+  - sektör: klinik
+    stil: maximalist-atmospheric
+    reason: "Dense atmospheric + kinetic overlay medikal güveni kırar. sectors/klinik.yaml maximalism: no + forbidden_motion."
+  - sektör: spa
+    stil: maximalist-atmospheric
+    reason: "Dense + aurora + italic overlap spa sessizlik/huzur değil. maximalist.yaml incompatible klinik/spa."
+  - sektör: gayrimenkul
+    stil: maximalist-atmospheric
+    reason: "Güven + netlik gerekli. sectors/gayrimenkul.yaml maximalism: no."
+
+  # --- industrial-workwear × premium/luxury sektörler (7) ---
+  - sektör: mucevher
+    stil: industrial-workwear
+    reason: "Hazard stripe + concrete bg mücevher premium algısına ters. industrial.yaml incompatible mucevher-premium."
+  - sektör: kuafor
+    stil: industrial-workwear
+    reason: "Concrete bg + stencil kuaför sıcak-karşılama mood'una ters. sectors/kuafor.yaml warning: 'industrial tekstür UYMAZ'."
+  - sektör: klinik
+    stil: industrial-workwear
+    reason: "Hazard + stencil klinik premium algısına ters. industrial.yaml incompatible klinik-premium."
+  - sektör: spa
+    stil: industrial-workwear
+    reason: "Concrete + hazard spa huzuruna ters. industrial.yaml incompatible spa."
+  - sektör: fotograf
+    stil: industrial-workwear
+    reason: "Görsel-öncelik + sessiz tipografi fotoğrafçı portfolyosu için — hazard stencil gürültülü."
+  - sektör: gayrimenkul
+    stil: industrial-workwear
+    reason: "Yaşam-tarzı + yatırım güveni için concrete/hazard değil sand/ocean organik palette."
+  - sektör: otel
+    stil: industrial-workwear
+    reason: "Kaçış/lüks-erişilebilir için hazard stripe + concrete OTEL değil atölye hissi."
+
+# ============================================================
+# CONDITIONAL COMBINATIONS (10×10 matrix'te ⚠ hücreler)
+# Koşulu sağlıyorsa OK, aksi takdirde kontrol et
+# Hedef: 20 hücre
+# ============================================================
+conditional_combinations:
+  # --- brutalist ⚠ (2) ---
+  - sektör: restoran
+    stil: brutalist
+    condition: "Street food / kreatif fast food (ramen-ya, taco, pizza) için OK ama fine dining için ✗. Bistro/fine dining'te editorial-luxury tercih."
+  - sektör: fotograf
+    stil: brutalist
+    condition: "Kreatif moda/portfolyo brutalist OK ama sessiz belgesel/düğün fotoğrafçısı için kullanılmaz."
+
+  # --- editorial-luxury ⚠ (2) ---
+  - sektör: insaat
+    stil: editorial-luxury
+    condition: "CRM/admin paneli için uygun, şantiye tanıtımı için industrial-workwear tercih edilir. sectors/insaat.yaml editorial/print alt-koluna kayar."
+  - sektör: eticaret
+    stil: editorial-luxury
+    condition: "Lüks e-ticaret (mücevher, premium mobilya, butik moda) için ✓ ama commodity/mass e-ticaret için maximalist/data-dense tercih edilir."
+
+  # --- kinetic-agency ⚠ (4) ---
+  - sektör: mucevher
+    stil: kinetic-agency
+    condition: "Mücevher fashion-editorial yönelirse OK (variable opsz scroll) ama zarafet kaybı riski — editorial-luxury default önerilir."
+  - sektör: restoran
+    stil: kinetic-agency
+    condition: "Kreatif kokteyl/bar/şef-driven restoran için OK. Aile lokantası/terroir için editorial-luxury tercih."
+  - sektör: gayrimenkul
+    stil: kinetic-agency
+    condition: "Butik/design-forward emlak ofisi için OK. Genel portföy için güven odaklı editorial-luxury tercih."
+  - sektör: otel
+    stil: kinetic-agency
+    condition: "Butik design hotel için OK. Resort/aile oteli için warm-organic veya editorial-luxury tercih."
+
+  # --- maximalist-atmospheric ⚠ (2) ---
+  - sektör: mucevher
+    stil: maximalist-atmospheric
+    condition: "Kampanya sayfası (koleksiyon launch) için OK. Kök portföy için editorial-luxury tercih."
+  - sektör: eticaret
+    stil: maximalist-atmospheric
+    condition: "Genç marka (Liquid Death tarzı) + kampanya landing için ✓. Klasik e-ticaret için ✗."
+
+  # --- warm-organic ⚠ (3) ---
+  - sektör: eticaret
+    stil: warm-organic
+    condition: "Doğal/organik ürün e-ticareti (sabun, zanaat mobilya, el-örme) için OK. Genel e-ticaret için warm yavaş Lenis friction yaratır."
+  - sektör: fotograf
+    stil: warm-organic
+    condition: "Doğa/natural/botanik fotoğrafçı için OK. Moda/ticari fotoğrafçı için minimal-swiss tercih."
+  - sektör: insaat
+    stil: warm-organic
+    condition: "Zanaat-tarzı atölye (ahşap işleri, tuğla restorasyon) için OK. Endüstriyel şantiye için industrial-workwear tercih."
+
+  # --- data-dense-dashboard ⚠ (2) ---
+  - sektör: klinik
+    stil: data-dense-dashboard
+    condition: "Hastane admin / randevu yönetimi / hasta portalı için ✓. Klinik tanıtım sitesi için editorial-luxury tercih — müşteri-facing."
+  - sektör: gayrimenkul
+    stil: data-dense-dashboard
+    condition: "Agent portal / CRM / iç kullanım için ✓. Müşteri-facing ilan sitesi için warm-organic veya editorial tercih."
+
+  # --- editorial-print ⚠ (5) ---
+  - sektör: insaat
+    stil: editorial-print
+    condition: "v2-blueprint ozalit stili ile hibrit OK. Kök şantiye CRM için industrial-workwear tercih."
+  - sektör: kuafor
+    stil: editorial-print
+    condition: "Koleksiyon/lookbook/editorial portföy için ✓. Randevu-odaklı salon için minimal-swiss/warm-organic tercih."
+  - sektör: klinik
+    stil: editorial-print
+    condition: "Sağlık editorial (yazı dergisi tarzı) için OK. Hasta portalı için data-dense tercih."
+  - sektör: eticaret
+    stil: editorial-print
+    condition: "Editorial e-ticaret (kitap, plak, dergi abonelik, zanaat) için ✓. Commodity için ✗."
+  - sektör: spa
+    stil: editorial-print
+    condition: "Editorial terroir spa (doğa + bitki + çay içerik ağırlıklı) için OK. Kampanya/paket satış için warm-organic tercih."
+  - sektör: gayrimenkul
+    stil: editorial-print
+    condition: "Premium/butik emlak katalogu için OK. MLS/ilan-yoğun site için data-dense tercih."
+  - sektör: otel
+    stil: editorial-print
+    condition: "Butik dergi-editorial otel (terroir, tarihi, sanat koleksiyonu) için OK. Booking-flow yoğun otel için warm-organic tercih."
+
+# ============================================================
+# SECTOR-SPECIFIC WARNINGS
+# (sectors/*.yaml warning alanından konsolide)
+# ============================================================
+sector_specific_warnings:
+  mucevher:
+    - "Playfair italic + gold gradient (PL1+TY2) YASAK — 5+ proje kullandı"
+    - "Custom cursor + gold shimmer klişesi kaçınılmalı"
+    - "Italic başlık → Fraunces opsz 144 axis VEYA Cormorant Garamond (Playfair DEĞİL)"
+    - "Fatih Bey Mücevher combo'su (H8+HR2+K1+T6+L1+TY3+PL10) yeni projede kopyalanamaz"
+    - "Diamond configurator/varsa drei MeshTransmissionMaterial zorunlu (Tier 3+)"
+    - "Ürün kart: square crop (1:1), hover alternate angle, HR2 split YASAK"
+
+  insaat:
+    - "Stok fotoğraf hero YASAK (Unsplash safety-vest adamı değil — gerçek proje)"
+    - "'Mavi dalga hero + 20 yıldır' klişe metin YASAK"
+    - "Dribbble turuncu/siyah SaaS dashboard klişesi YASAK"
+    - "Concrete/hazard OK ama K1 bento glass YASAK"
+
+  kuafor:
+    - "Dark #0A0A0A + gold #C9A84C + custom cursor Freeman/Odak/Solarium klişesi YASAK"
+    - "Feminen warm (PL24 Salt+Peach) veya modern cool (PL25 Slate+Olive) tercih"
+    - "Custom cursor + magnetic button abartılı"
+    - "Hijyen için concrete/industrial tekstür UYMAZ"
+
+  restoran:
+    - "Generic dark menü + Playfair italic + gold underline 'fine dining' klişesi YASAK"
+    - "Menü sayfası T6 card grid YASAK — editorial list (L5 3-col) tercih"
+    - "Yemek fotoğrafı üstünde gold italic başlık klişesi YASAK"
+
+  klinik:
+    - "Agresif renk + hızlı motion YASAK (güven kaybı)"
+    - "Dental boutique Playfair italic + gold underline klişesi YASAK"
+    - "Stok foto 'gülümseyen dişler' YASAK — gerçek ekip + klinik fotoğrafı"
+    - "MO10 print-first veya MO4 Framer light tercih (kinetic YASAK)"
+    - "Sağlık Bakanlığı reklam yasası 'öncesi-sonrası bildirimi' zorunlu"
+
+  eticaret:
+    - "Hero carousel 5-slide autoplay CTR < %1 — tek güçlü statik hero tercih"
+    - "Glass morphism kart (K1) kontrast kırar — L3 bento-no-glass tercih"
+    - "Fake countdown timer (sıfırlanan 'son 2 saat!') güven kırıcı"
+    - "T6 ürün kartı grid YASAK — editorial masonry (L8) tercih"
+
+  spa:
+    - "Luxury spa dark + gold şelale foto klişesi YASAK"
+    - "Framer Motion bouncy spring spa'da fazla — Lenis lerp 0.05-0.08 tercih"
+    - "Gold vurgu YASAK"
+    - "Stok foto 'yüzü peçeli kadın + taş' YASAK"
+    - "Organik clay/pearl/seafoam palette zorunlu"
+
+  fotograf:
+    - "BG Foto combo'su (TY2+PL1+HR2) tam yasak örneği"
+    - "Tipografi sessiz (IBM Plex monolithic veya Inter Tight) tercih"
+    - "Italic gradient başlık YASAK — fotoğraf kahraman, font kürsüsü boş"
+
+  gayrimenkul:
+    - "Stok foto hero YASAK (bu ev değil, bu fotoğraf kriz)"
+    - "Google Maps embed minimum — Mapbox/MapLibre custom style marka tonu"
+    - "'Yatırım güvencesi + altın anahtar' klişe metni YASAK"
+    - "Tüm ilan kartı aynı template değil — premium villa + 2+1 farklı"
+
+  otel:
+    - "Luxury dark gradient + gold italic 'Welcome to X' klişesi YASAK"
+    - "Stok foto havuz YASAK — gerçek otel + drone video"
+    - "Booking.com iframe native rezervasyon akışını öldürür — native rezervasyon zorunlu"
+    - "Fine-art italic başlık: Fraunces italic OK ama Playfair YASAK"
+
+# ============================================================
+# REPEAT-GUARD SKORLAMA KURALLARI
+# validate-combo.js check 2 → bu tabloya bakar
+# ============================================================
+repeat_guard_rules:
+  score_0_3:
+    level: PASS
+    symbol: "✓"
+    action: "OK — farklı, geç"
+  score_4_5:
+    level: WARN
+    symbol: "⚠"
+    action: "İkinci tur gözden geçir"
+  score_6_7:
+    level: WARN2
+    symbol: "⚠⚠"
+    action: "En az 3 kolon değiştir"
+  score_8_plus:
+    level: FAIL
+    symbol: "✗"
+    action: "RED — combo yeniden türetilmeli"
+  max_retry: 2
+  columns_checked: [header, nav, hero, kpi, pipeline, table, chat, chart, form, modal, footer, typography, palette, layout, motion]
+
+# ============================================================
+# EXISTING PROJECTS (DESIGN-PATHWAYS.md § PROJECT MATRIX)
+# 13 proje — yeni combo bunlarla ≥8 kolon eşleşirse reddedilir
+# ============================================================
+existing_projects:
+  - name: Freeman
+    sector: kuafor
+    combo: "H8 · N2 · HR2 · — · — · — · — · — · F1 · M1 · FT1 · TY1 · PL1 · L1 · MO4"
+    status: deprecated
+    reason: "TY1 + PL1 + HR2 + H8 — tam yasak combo örneği"
+  - name: "BG Foto"
+    sector: fotograf
+    combo: "H8 · N2 · HR2 · K1 · — · — · — · — · F1 · M1 · FT1 · TY2 · PL1 · L1 · MO4"
+    status: deprecated
+    reason: "TY2 + PL1 + HR2 + K1 + H8 — mücevher/fotoğraf klişe örneği"
+  - name: Dagintaslı
+    sector: mucevher
+    combo: "H8 · N2 · HR2 · K1 · — · — · — · — · F1 · M1 · FT2 · TY2 · PL1 · L1 · MO4"
+    status: deprecated
+    reason: "Aynı klişe combo — TY2 + PL1 + HR2 + K1"
+  - name: "Modern Alyans"
+    sector: mucevher
+    combo: "H8 · N2 · HR2 · K1 · — · — · — · — · F1 · M1 · FT2 · TY2 · PL1 · L1 · MO4"
+    status: deprecated
+    reason: "Dagintaslı'nın ikizi — yasak örneği"
+  - name: "Fatih Bey Mücevher"
+    sector: mucevher
+    combo: "H8 · N2 · HR2 · K1 · — · T6 · — · — · F1 · M1 · FT2 · TY3 · PL10 · L1 · MO4"
+    status: active
+    reason: "PL10 + TY3 gold'dan kaçtı ama HR2 + K1 + T6 + L1 tekrar riski kaldı"
+  - name: v1-CONSTRUO
+    sector: insaat-crm-editorial
+    combo: "H3 · N1 · HR7 · K1 · P1 · T2 · C1 · CH1 · — · M1 · FT1 · TY4 · PL8-variant · L1 · MO4"
+    status: deprecated
+    reason: "Editorial luxury klişesi — TY4 + HR7 + K1 + CH1 + P1"
+  - name: v2-blueprint
+    sector: insaat
+    combo: "H9 · N3 · HR13 · K12 · P2 · T3 · — · CH6 · — · — · FT6 · TY5 · PL5 · L5 · MO1"
+    status: reference
+    reason: "Ozalit blueprint variant — özgün, tekrar riski düşük"
+  - name: v2-neobrutalist
+    sector: creative
+    combo: "H1-variant · N2 · HR5 · K3 · P10 · T6 · C2 · CH3 · — · — · FT1 · TY6 · PL6 · L2 · MO4"
+    status: reference
+    reason: "Brutalist imza combo — T6 tekrar riski var"
+  - name: v2-kinetic-data
+    sector: agency-data
+    combo: "H5 · N7 · HR1 · K10 · P3+P4 · T4 · — · CH11 · — · — · FT7 · TY7 · PL7 · L4 · MO1+MO2+MO6"
+    status: reference
+    reason: "Kinetic ticker imza — özgün"
+  - name: v2-immersive-3d
+    sector: premium-3d
+    combo: "H8 · N10 · HR4 · K7 · P7 · T6 · — · CH7 · — · — · FT1 · TY8 · PL8 · L7 · MO1+3D"
+    status: deprecated
+    reason: "TY8 + H8 + T6 — 3'ü birden klişe"
+  - name: "mockup-A (warm-dark)"
+    sector: mucevher-editorial
+    combo: "H8 · — · HR11 · K2 · — · — · — · — · — · — · FT3 · TY9 · PL2 · L6 · MO10"
+    status: reference
+    reason: "Warm-dark espresso — özgün varyant"
+  - name: "mockup-B (editorial)"
+    sector: editorial-newspaper
+    combo: "H2 · — · HR6 · K5 · — · — · — · — · — · — · FT4 · TY10 · PL3 · L5 · MO10"
+    status: reference
+    reason: "Newspaper Instrument italic — editorial-print iconic"
+  - name: "mockup-C (industrial)"
+    sector: insaat
+    combo: "H1 · — · HR5 · K3 · — · T3 · — · — · — · — · FT8 · TY11 · PL4 · L1 · MO10"
+    status: reference
+    reason: "Concrete industrial — özgün"
+
+# ============================================================
+# 2026 TREND UYUMLULUĞU
+# Her stil için hangi 2026 trend uyumlu
+# ============================================================
+trends_2026:
+  kinetic_typography:
+    compatible_styles: [editorial-luxury, kinetic-agency, warm-organic, maximalist-atmospheric]
+    partial_styles: [brutalist, immersive-3d, industrial-workwear, editorial-print]
+    incompatible_styles: [minimal-swiss, data-dense-dashboard]
+
+  bento_2_0:
+    compatible_styles: [brutalist, maximalist-atmospheric, data-dense-dashboard, industrial-workwear]
+    partial_styles: [editorial-luxury, kinetic-agency, minimal-swiss, warm-organic]
+    incompatible_styles: [editorial-print, immersive-3d]
+
+  maximalism:
+    compatible_styles: [maximalist-atmospheric]
+    partial_styles: [brutalist, kinetic-agency]
+    incompatible_styles: [minimal-swiss, editorial-luxury, editorial-print, warm-organic, data-dense-dashboard]
+
+  3d_spline:
+    compatible_styles: [immersive-3d, maximalist-atmospheric]
+    partial_styles: [editorial-luxury, kinetic-agency]
+    incompatible_styles: [minimal-swiss, editorial-print, warm-organic, data-dense-dashboard, brutalist, industrial-workwear]
+    tier_min: 3
+
+  scroll_triggered_3d:
+    compatible_styles: [immersive-3d]
+    partial_styles: [editorial-luxury, kinetic-agency, maximalist-atmospheric]
+    incompatible_styles: [minimal-swiss, editorial-print, warm-organic, brutalist, data-dense-dashboard, industrial-workwear]
+    tier_min: 3
+
+  variable_fonts_opsz:
+    compatible_styles: [editorial-luxury, kinetic-agency, maximalist-atmospheric, warm-organic]
+    partial_styles: [immersive-3d, editorial-print, minimal-swiss]
+    incompatible_styles: [brutalist, industrial-workwear, data-dense-dashboard]
+
+  view_transitions_api:
+    compatible_styles: [minimal-swiss, editorial-print, data-dense-dashboard]
+    partial_styles: [editorial-luxury, warm-organic, editorial-print]
+    incompatible_styles: []
+
+# ============================================================
+# STYLE-SECTOR COMPATIBILITY MATRIX
+# 10 sektör × 10 stil = 100 hücre
+# Her hücre durumu: ✓✓ (default) · ✓ (aktif) · ⚠ (koşullu) · ✗ (forbidden)
+# validate-combo.js bunu kullanmaz ama MATRIX.md'nin kaynağı
+# Toplam: 60 aktif (✓✓ + ✓) + 20 koşullu + 20 forbidden
+# ============================================================
+matrix:
+  insaat:
+    brutalist: "✓"               # industrial spirit uyar
+    editorial-luxury: "⚠"         # CRM/admin OK, şantiye değil
+    kinetic-agency: "✓"
+    immersive-3d: "✓"             # Tier 3+ 3D yapı
+    maximalist-atmospheric: "✗"
+    minimal-swiss: "✓"
+    warm-organic: "⚠"             # zanaat atölye
+    data-dense-dashboard: "✓"     # CRM doğal match
+    editorial-print: "⚠"          # ozalit editorial
+    industrial-workwear: "✓✓"     # DEFAULT
+
+  mucevher:
+    brutalist: "✗"
+    editorial-luxury: "✓✓"        # DEFAULT
+    kinetic-agency: "⚠"
+    immersive-3d: "✓"             # Tier 3+ diamond
+    maximalist-atmospheric: "⚠"   # kampanya
+    minimal-swiss: "✓"
+    warm-organic: "✓"             # el-emeği tarafı
+    data-dense-dashboard: "✗"
+    editorial-print: "✓"
+    industrial-workwear: "✗"
+
+  kuafor:
+    brutalist: "✗"                # hijyen
+    editorial-luxury: "✓"
+    kinetic-agency: "✓"
+    immersive-3d: "✗"             # saç 3D yapay
+    maximalist-atmospheric: "⚠"
+    minimal-swiss: "✓✓"           # DEFAULT
+    warm-organic: "✓"
+    data-dense-dashboard: "✗"
+    editorial-print: "⚠"
+    industrial-workwear: "✗"
+
+  restoran:
+    brutalist: "⚠"                # street food
+    editorial-luxury: "✓"
+    kinetic-agency: "⚠"           # bar/şef-driven
+    immersive-3d: "✗"             # 2D food
+    maximalist-atmospheric: "✓"
+    minimal-swiss: "✓"
+    warm-organic: "✓"
+    data-dense-dashboard: "✗"
+    editorial-print: "✓✓"         # DEFAULT (menu masthead)
+    industrial-workwear: "✗"
+
+  klinik:
+    brutalist: "✗"
+    editorial-luxury: "✓✓"        # DEFAULT
+    kinetic-agency: "✗"
+    immersive-3d: "⚠"             # estetik before-after
+    maximalist-atmospheric: "✗"
+    minimal-swiss: "✓"
+    warm-organic: "✓"
+    data-dense-dashboard: "⚠"     # hastane admin
+    editorial-print: "⚠"          # sağlık dergisi
+    industrial-workwear: "✗"
+
+  eticaret:
+    brutalist: "✓"
+    editorial-luxury: "⚠"         # lüks e-ticaret
+    kinetic-agency: "✓"
+    immersive-3d: "✓"             # mobilya/mücevher
+    maximalist-atmospheric: "⚠"   # genç marka kampanya
+    minimal-swiss: "✓"
+    warm-organic: "⚠"             # organik ürün
+    data-dense-dashboard: "✓✓"    # DEFAULT (admin)
+    editorial-print: "⚠"          # editorial e-ticaret
+    industrial-workwear: "✓"      # B2B tedarik
+
+  spa:
+    brutalist: "✗"
+    editorial-luxury: "✓"
+    kinetic-agency: "✗"
+    immersive-3d: "✗"
+    maximalist-atmospheric: "✗"
+    minimal-swiss: "✓"
+    warm-organic: "✓✓"            # DEFAULT
+    data-dense-dashboard: "✗"
+    editorial-print: "⚠"          # editorial terroir
+    industrial-workwear: "✗"
+
+  fotograf:
+    brutalist: "⚠"                # moda kreatif
+    editorial-luxury: "✓"
+    kinetic-agency: "✓"
+    immersive-3d: "✓"             # 360/VR
+    maximalist-atmospheric: "✓"
+    minimal-swiss: "✓"
+    warm-organic: "⚠"             # doğa fotoğrafçı
+    data-dense-dashboard: "✗"
+    editorial-print: "✓✓"         # DEFAULT
+    industrial-workwear: "✗"
+
+  gayrimenkul:
+    brutalist: "✗"
+    editorial-luxury: "✓"
+    kinetic-agency: "⚠"           # butik
+    immersive-3d: "✓"             # sanal tur
+    maximalist-atmospheric: "✗"
+    minimal-swiss: "✓"
+    warm-organic: "✓✓"            # DEFAULT (sand+ocean)
+    data-dense-dashboard: "⚠"     # agent CRM
+    editorial-print: "⚠"          # butik katalog
+    industrial-workwear: "✗"
+
+  otel:
+    brutalist: "✗"
+    editorial-luxury: "✓"
+    kinetic-agency: "⚠"           # butik design
+    immersive-3d: "✓"             # sanal oda turu
+    maximalist-atmospheric: "✓"   # warm terracotta
+    minimal-swiss: "✓"
+    warm-organic: "✓✓"            # DEFAULT
+    data-dense-dashboard: "✗"
+    editorial-print: "⚠"          # butik dergi
+    industrial-workwear: "✗"

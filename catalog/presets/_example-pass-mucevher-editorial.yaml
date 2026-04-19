@@ -1,0 +1,28 @@
+---
+id: example-pass-mucevher-editorial
+name: "Örnek geçerli combo: Mücevher × Editorial Luxury"
+description: "validate-combo.js test fixture — PASS beklenen"
+sector: mucevher
+style: editorial-luxury
+---
+
+combo:
+  header: H1
+  nav: N3
+  hero: HR11
+  kpi: K2
+  pipeline: null
+  table: T3
+  chat: null
+  chart: null
+  form: F2
+  modal: M2
+  footer: FT4
+  typography: TY27
+  palette: PL22
+  layout: L6
+  motion: MO4
+
+notes:
+  - "Bu fixture PASS vermeli: TY27 (Fraunces+IBM Plex), PL22 (Tobacco+Pearl), HR11 (brochure cover), H1 — hiçbiri yasaklı değil"
+  - "Fatih Bey Mücevher combo'suyla eşleşme skoru düşük olmalı (sadece motion MO4 eşleşir)"

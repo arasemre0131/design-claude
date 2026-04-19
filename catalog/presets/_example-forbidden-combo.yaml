@@ -1,0 +1,18 @@
+---
+id: example-forbidden-mucevher-brutalist
+name: "Test: forbidden_combinations check"
+sector: mucevher
+style: brutalist
+---
+
+combo:
+  header: H1
+  nav: N4
+  hero: HR8
+  kpi: K3
+  table: T3
+  footer: FT2
+  typography: TY6
+  palette: PL6
+  layout: L11
+  motion: MO4

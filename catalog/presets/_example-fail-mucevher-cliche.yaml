@@ -1,0 +1,28 @@
+---
+id: example-fail-mucevher-cliche
+name: "Örnek yasak combo: Mücevher klişesi (Playfair + Gold)"
+description: "validate-combo.js test fixture — FAIL beklenen"
+sector: mucevher
+style: editorial-luxury
+---
+
+combo:
+  header: H8
+  nav: N2
+  hero: HR2
+  kpi: K1
+  pipeline: null
+  table: T6
+  chat: null
+  chart: null
+  form: F1
+  modal: M1
+  footer: FT2
+  typography: TY2
+  palette: PL1
+  layout: L1
+  motion: MO4
+
+notes:
+  - "Bu fixture FAIL vermeli: TY2 + PL1 + HR2 + K1 + H8 + T6 tümü YASAK"
+  - "Dagintaslı/Modern Alyans ile neredeyse aynı combo (repeat 10+)"
